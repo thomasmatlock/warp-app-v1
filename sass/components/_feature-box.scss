@@ -1,0 +1,29 @@
+.feature-box {
+    background-color: rgba($color-white, .8);
+    font-size: 1.5rem;
+    padding: 2.5rem;
+    text-align: center;
+    border-radius: 3px;
+    box-shadow: $shadow-light;
+    transition: transform 0.3s;
+
+
+    &__icon {
+        font-size: 6rem;
+        margin-bottom: .5rem;
+        display: inline-block; // this allows our following color grad to limit itself to the space our element occupies, not spread to max-width
+        background-image: linear-gradient(to right,
+                $color-primary-light,
+                $color-primary-dark); // gives us a l-r color grad behind text, which we superimpose on the text itself as follows
+        -webkit-background-clip: text; // this clips background exactly where text actually is. basically removes all background except where it shares space with text characters
+        color: transparent;
+    }
+
+
+
+    &:hover {
+        transform: translateY(-1.5rem) scale(1.03);
+        box-shadow: 0 2.5rem 4rem rgba($color-black, 0.4);
+
+    }
+}

@@ -1,0 +1,143 @@
+.card {
+
+    // FUNCTIONALITY
+    perspective: 150rem; // the lower the value the more dramatic the effect, ie 15rem is super pronounced/wonky
+    -moz-perspective: 150rem; // mozilla version of above
+    position: relative;
+    height: 52rem;
+
+    &__side {
+
+        height: 52rem;
+        transition: all .8s ease;
+        position: absolute; // the card sides stack vertically, but we stack them on top of each other with absolute position, then top/left both 0
+        top: 0;
+        left: 0;
+        width: 100%; // consume entire column width
+        backface-visibility: hidden; // IMPORTANT, basically makes element backside invisible
+        border-radius: 3px;
+        box-shadow: $shadow-light;
+        overflow: hidden; // hides the front side image corners from not being rounded using border radius
+
+        &--front {
+            background-color: $color-white;
+
+
+        }
+
+        &--back {
+            background-color: $color-primary;
+            transform: rotateY(180deg); // reverses the backside initially but on hover rotates it to face us, while front reverses to face away
+
+            &-1 {
+                background-image: linear-gradient(to bottom right, $color-secondary-light, $color-secondary-dark);
+            }
+
+            &-2 {
+                background-image: linear-gradient(to bottom right, $color-primary-light, $color-primary-dark);
+            }
+
+            &-3 {
+                background-image: linear-gradient(to bottom right, $color-tertiary-light, $color-tertiary-dark);
+            }
+        }
+    }
+
+
+
+    &:hover &__side--front {
+        // we basically flip the front side of the card
+        // this occurs when we hover on the parent element, the __side child element transforms
+        transform: rotateY(-180deg);
+    }
+
+    &:hover &__side--back {
+        // here we flip
+        transform: rotateY(0deg);
+    }
+
+
+    // FRONT SIDE STYLING
+    &__picture {
+        background-size: cover; // makes sure image covers for each child
+        height: 23rem;
+
+        background-blend-mode: screen; // blends the background images together, must be used on parent
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%); // again created the slanted bottom of image
+        clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%); // again created the slanted bottom of image
+
+        &--1 {
+            background-image: linear-gradient(to bottom right, $color-secondary-light, $color-secondary-dark), url(../img/nat-5.jpg); // IMPORTANT the path needs to reference CSS file path to img folder, not the sass path to img.
+            //thats why that above looks weird
+        }
+
+        &--2 {
+            background-image: url(../img/nat-5.jpg); // IMPORTANT the path needs to reference CSS file path to img folder, not the sass path to img.
+            //thats why that above looks weird
+        }
+
+        &--3 {
+            background-image: url(../img/nat-5.jpg); // IMPORTANT the path needs to reference CSS file path to img folder, not the sass path to img.
+            //thats why that above looks weird
+        }
+    }
+
+    &__heading {
+        color: $color-white;
+        font-family: "Lato", sans-serif;
+        font-size: 2.8rem;
+        font-weight: 300;
+        text-transform: uppercase;
+        position: absolute;
+        top: 12rem;
+        right: 2rem;
+        text-align: right;
+        width: 75%;
+
+
+
+    }
+
+    &__heading-span {
+        padding: 1rem 1.5rem; // add some space around letters for more background
+
+        // right now there is no padding on right of top letter set, and none to left of bottom set -- its treated as one element
+        // we fix that with the following:
+        -webkit-box-decoration-break: clone;
+        box-decoration-break: clone; // this applies all the different decoration to all the boxes created by line breaks
+
+        &--1 {
+            background-image: linear-gradient(to right bottom,
+                    rgba($color-secondary-light, 0.85),
+                    rgba($color-secondary-dark, 0.85))
+        }
+    }
+
+    &__details {
+        padding: 3rem;
+
+        ul {
+            list-style: none;
+            width: 80%;
+            margin: 0 auto; // centers block automatically
+
+
+            li {
+                text-align: center;
+                font-size: 1.5rem;
+                padding: 1rem;
+
+                &:not(:last-child) {
+                    border-bottom: 1px solid $color-gray-light-2;
+                }
+
+
+            }
+        }
+
+
+    }
+
+    // BACK SIDE STYLING
+
+}

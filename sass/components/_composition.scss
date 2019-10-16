@@ -1,0 +1,63 @@
+.composition {
+    position: relative;
+
+    &__photo {
+        width: 55%; // % to adapt to viewport
+        box-shadow: 0 1.5rem 4rem rgba($color-black, 0.4);
+        // IMPORTANT, you must set parent position to relative to use absolute positioning on child element
+        // now when you use absolute position, the 0,0 positioning is top left corner of parent element
+        position: absolute; // when go absolute, the element positions itself according to the nearest parent element it encounters
+        // set the zindex transition as low as possible manually here to prevent images clipping through each other. 1ms is lowest value, browsers dont accept 0
+        transition: all 0.2s, z-index 1ms; // so all means all the transition properties take the time value, like transform, box-shadow, etc
+
+        z-index: 10;
+        outline-offset: 2rem; // ties into outline of hover state below, gives us 20px of space between outline and img
+
+        &--p1 {
+            left: 0; // all the way to left
+            top: -2rem; // 2-px above the top
+        }
+
+        &--p2 {
+            right: 0; // all the way to right
+            top: 2rem; // 20px from top
+        }
+
+        &--p3 {
+            left: 20%; // 20% from left side
+            top: 10rem; // 100px from top
+        }
+
+        &:hover {
+            outline: 1.5rem solid $color-primary; // this ties into outline-offset in the non-hover state above, the offset allows us to give some space between the outline and image
+            transform: scale(1.05) translateY(-.5rem);
+            box-shadow: 0 2.5rem 4rem rgba($color-black, 0.4);
+            z-index: 20;
+        }
+    }
+
+
+
+
+    /*
+    translation for code below, what actually happens to scale down images not being hovered over
+    composition:hover composition__photo:not(:hover) 
+
+    you have to put composition:hover other it scales all the pictures back when you're not hovering, otherwise
+    composition__photo:not(:hover) shrinks all the pics, and you need the first part because
+    
+    NOT SURE  quite how this works, mathwise. it seems that if you're hovering on composition, and not hovering on the photo, it shrinks. 
+    
+    it's like 
+    an AND operator, if you hover on composition AND NOT the photo, it shrinks
+    also, it doesn't activate when we hover over the .composition blank space, because technically there is no element there. the child elements constitute 
+    .composition, so it only works if we hover ovver the constituent elements. k
+
+    kind of like a body in a t-pose, technically you can fit a imaginary square around it, but touching blank air around body doesnt touch the body
+    actually touching the physical space the t-posed body aka physical html elements occupy, then its considering touching/aka hovering
+    */
+    &:hover &__photo:not(:hover) {
+        transform: scale(.95);
+    }
+
+}

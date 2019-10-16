@@ -1,0 +1,8 @@
+// clearfix basically appends one more empty child to stuff we've floated, to give it some height
+@mixin clearfix {
+    &::after {
+        content: ""; // needs blank content to appear
+        display: table; // 
+        clear: both; // clear both whether we float our fixed content left or right
+    }
+}

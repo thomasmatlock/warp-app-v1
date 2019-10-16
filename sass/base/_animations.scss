@@ -1,0 +1,49 @@
+// this is for animating elements using @keyframes, it's followed by whatever name you give it
+@keyframes moveInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-10rem); // start keyframe, just translate position on x axis to left 10rem
+    }
+
+    80% {
+        transform: translateX(1rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0);
+        //putting zero basically places elements how it looks normally above we just offset the starting keyframes by translating it over
+    }
+}
+
+@keyframes moveInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(10rem); // start keyframe, just translate position on x axis to left 10rem
+    }
+
+    80% {
+        transform: translateX(-1rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0);
+        /*putting zero basically places elements how it looks normally
+    above we just offset the starting keyframes by translating it over */
+    }
+}
+
+@keyframes moveInBottom {
+    0% {
+        opacity: 0;
+        transform: translateY(3rem); //start keyframe, just translate position on x axis to left 10rem
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        /*putting zero basically places elements how it looks normally
+    above we just offset the starting keyframes by translating it over */
+    }
+}

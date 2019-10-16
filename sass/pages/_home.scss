@@ -1,0 +1,30 @@
+.section-about {
+    background-color: $color-gray-light-1;
+    padding: 25rem 0;
+    margin-top: -20vh; // moving this up allows us to "join" the slanted part where the header ends
+}
+
+.section-features {
+    padding: 20rem 0; // padding to top, none to sides
+    background-image: linear-gradient(to right,
+            rgba($color-primary-light, 0.8),
+            rgba($color-primary-dark, 0.8)),
+        url("../img/nat-4.jpg");
+    background-size: cover; // almost always need this for bgd to cover
+    margin-top: -20vh;
+    //background-color: $color-primary;
+    transform: skewY(-7deg); // we skew the entire section, as opposed to using clippath like the above sections
+    // we need to unskew all the children though, especially as we may re-use this section and dont want to write custom unskewing for each re-use instance
+
+    &>* {
+        // this is a direct selector, and selects all the children
+        transform: skewY(7deg);
+    }
+}
+
+.section-tours {
+    background-color: $color-gray-light-1;
+    padding: 20rem 0 50rem 0;
+    margin-top: -10rem;
+
+}

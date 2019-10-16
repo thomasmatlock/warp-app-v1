@@ -1,0 +1,118 @@
+.btn {
+
+    /*cool something is a link, add :link to it
+    :link is a pseudo-class, which are special states of selectors
+    we want to use this to style elements under special conditions, like hover or link or whatever
+    here we want the normal and visited states to look styled the same*/
+    &:link,
+    &:visited {
+        text-transform: uppercase;
+        text-decoration: none;
+        /*removes underline of default anchor*/
+        padding: 1.5rem 4rem;
+        /*this creates button/element size around text, with 1 value, its for all 4 sides, but 2 values
+        val1 is top/bottom, val2 is right/left
+        we can also write 4 values, top right bottom left, but that kinda makes a weird asymetrical shape*/
+        display: inline-block;
+        /*inlineblocks are treated as text, so set textalign center in parent element, text-box*/
+        color: $color-black;
+        /*transition property always goes on initial state, not hover/active, thats just how it works*/
+        transition: all ease-out 0.1s;
+        /*you can specify which property(s) you want to animate with transition or just write 'all', and specify time*/
+        position: relative;
+        /*this is so the :after class can latch on this because absolute positions itself to nearest relative*/
+        font-size: 1.6rem;
+    }
+
+    &:hover {
+        transform: translateY(-0.3rem);
+        /*causes element to appear to rise up*/
+        box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+        /*box shadow takes a bunch of values, 
+      value1 is x direction, left/right, 
+      val2 is y, we want 1rem
+      3rd value is blur
+      val4 is color, we go complete black rgba with 20% opacity */
+
+        /*this is a pseudo element for after, which happens on hover*/
+        &::after {
+            transform: scaleX(1.4) scaleY(1.6);
+            /*just like translate has x/y versions, so does scale*/
+            opacity: 0;
+            /*fadeout element*/
+        }
+    }
+
+    &:active {
+        /*heres what happens when it's active by user, aka a click lol*/
+        transform: translateY(-0.1rem);
+        /*this value is in relation to initial state, not hover state*/
+        box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
+        /*cool effect, cut shadow length and shadow blur in half so element looks closer to page,
+        further from user when clicked*/
+    }
+
+    &--white {
+        background-color: $color-white;
+        border-radius: 10rem;
+
+        &::after {
+            background-color: $color-white;
+        }
+    }
+
+    /*so the :after pseudo element is pretty cool
+      here we create the ghost element that appears on hover then retreats again, it appear to zoom into infinity
+      it adds virtual element right after element we are selecting which we can style
+      the trick is basically place it behind our element, when activated it appears, but then also disappears behind its original element
+      we ALWAYS specify content property, even empty, or else it wont appear*/
+    &::after {
+        content: "";
+        display: inline-block;
+        height: 100%;
+        width: 100%;
+        border-radius: 10rem;
+        /*so it looks like its below oru button, so position it absolutely, and 0 from top/left to align it*/
+        position: absolute;
+        /*absolute position needs a reference, which is 1st element with relative position that it can find
+        which means we go up to btn:link/visited and set position to reletive, so this hover can "latch" onto it*/
+        top: 0;
+        left: 0;
+        z-index: -1;
+        transition: all 0.4s;
+    }
+
+    &--animated {
+        animation: moveInBottom 1s ease-out 1s;
+        /*last value is delay, we want it to come in last*/
+        animation-fill-mode: backwards;
+        /*without this, the element initially appears, then after delay, disappears, then animates
+      this prevents it from initially appearing and being ugly like dat
+      --- it automatically applies the starting keyframe values before it even starts animating, like opacity etc*/
+    }
+}
+
+.btn-text {
+
+    &:link,
+    &:visited {
+        color: $color-primary;
+        text-decoration: none;
+        border-bottom: 1px solid $color-primary; //  manual underline allows us to give some padding between letters and underline...values: thickness, style, color
+        padding: 3px; // padding between letters and borderbottom underline
+        font-size: $default-font-size;
+        transition: all 0.2s; // look up 'all' what it means
+    }
+
+    &:hover {
+        background-color: $color-primary;
+        color: white;
+        box-shadow: 0 1rem 2rem rgba($color-black, 0.15); // values: x, y, blur, color
+        transform: translateY(-2px); //moves button up 2px on hover
+    }
+
+    &:active {
+        box-shadow: 0 .5rem 1rem rgba($color-black, 0.25); // values: x, y, blur, color
+        transform: translateY(0px); //moves button up 2px on hover
+    }
+}

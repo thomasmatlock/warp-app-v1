@@ -1,0 +1,55 @@
+.header {
+    /*
+- vh is viewport height, 95vh is 95% of the viewport height
+- jonas called the hero section the header
+- basically he wants the hero to be at 95 so a small blank at bottom invites user to scroll down
+    */
+    height: 95vh;
+    //notice in regular css we cant include variables in the rgba parens, but in sass we totally can
+    background-image: linear-gradient(to right,
+            rgba($color-primary-light, 0.8),
+            rgba($color-primary-dark, 0.8)),
+        url("../img/hero.jpg");
+    /* if you want another layer on top,, you just add it, putting top layer first*/
+    background-size: cover;
+    /* attempts to fit entire image into viewport without cropping or stretching*/
+    background-position: top;
+    /* makes top of image always stay at top of container. this may crop bottom of image
+    - bottom keeps bottom in view, cropping top
+    - center crops all sides as viewport h/w changes, keeping center in view at all times */
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+    /*start with from top left, top right, bottom right, bottom left coords, 
+  THESE ARE WHAT YOU WANT VISIBLE
+  https://bennettfeely.com/clippy/
+    */
+    position: relative;
+
+    &__logo-box {
+        position: absolute;
+
+        /* this positions it absolutely within its parent element, i think parent element must be relative, 
+  otherwise this positions itself according to the viewport instead of to its parent el*/
+        top: 5rem;
+        left: 4rem;
+    }
+
+    &__logo {
+        height: 3.5rem;
+        /*I tried setting height on the logo-box div, but that doesnt work, you have to set img height, so give it a classname*/
+    }
+
+    &__text-box {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        /*IMPORTANT
+         if we leave top/left @ 50%, the 0,0 coords technically are positioned at 50%/50%, but the entire element is way to far over to right/bottom
+        fix it with transform/translate!!
+        translate takes our object and adjusts it over, in this case -50% for X, moving it left, -50% on y-axis, moving it up by 50% of its own size
+        */
+        /*(x, y)*/
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+}

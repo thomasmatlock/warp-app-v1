@@ -1,0 +1,21 @@
+/* * is universal selector for everything on your page, it applies all block rules to everything inside it*/
+*,
+*::after,
+*::before {
+    //margin: 0; // all elements naturally have some padding and margin, so we set both to 0 for a fresh slate approach
+    //padding: 0;
+    //box-sizing: inherit; // borderbox makes it so elements no longer add margin or padding to total height/width of elements
+    /*we set this to border-box in body, so then here we ensure every el inherits that unless we specify otherwise*/
+}
+
+html {
+    font-size: 62.5%; // this defines what 1 rem means
+    /* 1 rem = exactly 10px. Very useful for scaling everything else on page in rem*/
+    /*important step2: users often set their own font size, so writing 10px as default font-size is bad practice, so we use percentages
+  default font-size is 16px, so 100% would be 16px
+  so we want 10px, default is 16, we divide 10 by the 16, and our percentage is 62.5%*/
+}
+
+body {
+    box-sizing: border-box;
+}

@@ -1,0 +1,91 @@
+body {
+  /* everything related we specify in body, not in universal selector
+    font props here, usually fonts just inherit everything, so we specify 
+    -font family followed by option 1, comma, then option B if A is unavailable
+    - lineheight 1.0 is just default line height anything else, ie 1.7 is 70% more than default*/
+  font-family: "Nunito", sans-serif;
+  font-weight: 400;
+  /*font-size: 1.6rem;*/
+  line-height: 1.7;
+  color: $color-gray-dark;
+  padding: 3rem;
+}
+
+// remove all underline, etc, from anchor tags, so links aren't underlined
+a {
+  text-decoration: none;
+}
+
+.heading-primary {
+  color: $color-white;
+  text-transform: uppercase;
+  font-family: "Lato", sans-serif;
+  backface-visibility: hidden; // sometimes at animation end, it briefly bumps up the element position, this fixes this problem*/
+  margin-bottom: 6rem;
+
+  &--main {
+    display: block; //display as block elements because block els occupy the entire width available, and create line breaks before/after them
+    font-size: 6rem;
+    font-weight: 400;
+    letter-spacing: 3.5rem;
+    animation-name: moveInLeft;
+    /*specify what animation this element uses*/
+    animation-duration: 1s;
+    /*specify animation duration*/
+    animation-timing-function: ease-out;
+    /*specify our how fast or slow our animation keyframes occur ie 0%, 80% etc
+      ease-in means it starts slower and speeds up, ease-out means it starts fast, and slows at end
+      ease-out is one of most essential, it slows down the end of all your anims*/
+    /*
+      animation-delay: 1s;
+      animation-iteration-count: 2; /*specify how many times animation occurs*/
+  }
+
+  &--sub {
+    /* display as block elements because block els occupy the entire width available, and create line breaks before/after them*/
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1.75rem;
+    /*TIMESAVER - instead of inserting animation-name, animation-duration, animation-timing-function, etc,
+        you can put them all together in a single line and it will figure it out by itself*/
+    animation: moveInRight 1s ease-out;
+  }
+}
+
+.heading-secondary {
+
+  font-family: "Lato", sans-serif;
+  font-size: 3.5rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  display: inline-block; // this allows our following color grad to limit itself to the space our element occupies, not spread to max-width
+  background-image: linear-gradient(to right,
+      $color-primary-light,
+      $color-primary-dark); // gives us a l-r color grad behind text, which we superimpose on the text itself as follows
+  -webkit-background-clip: text; // this clips background exactly where text actually is. basically removes all background except where it shares space with text characters
+  color: transparent;
+  letter-spacing: 2px;
+  transition: all 0.1s;
+
+  &:hover {
+    transform: skewY(2deg) skewX(20deg) scale(1.1); // 3 different transforms 
+    text-shadow: .5rem 1rem 2rem rgba($color-black, 0.2); // shadow values: x, y, blur, color
+  }
+}
+
+.heading-tertiary {
+  font-family: "Lato", sans-serif;
+  font-size: $default-font-size;
+  font-weight: 700;
+  text-transform: uppercase;
+
+}
+
+.paragraph {
+  font-size: $default-font-size;
+
+  &:not(:last-child) {
+    margin-bottom: 3rem; // adds margin to bottom of each paragraph except last one
+  }
+}
