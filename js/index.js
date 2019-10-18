@@ -36,11 +36,11 @@ class StickyNavigation {
     }
 
     checkTabContainerPosition() {
-        let offset = $('.et-hero-tabs').offset().top + $('.et-hero-tabs').height() - this.tabContainerHeight;
+        let offset = $('.primary-nav-tabs').offset().top + $('.primary-nav-tabs').height() - this.tabContainerHeight;
         if ($(window).scrollTop() > offset) {
-            $('.et-hero-tabs-container').addClass('et-hero-tabs-container--top');
+            $('.primary-nav-tabs-container').addClass('primary-nav-tabs-container--top');
         } else {
-            $('.et-hero-tabs-container').removeClass('et-hero-tabs-container--top');
+            $('.primary-nav-tabs-container').removeClass('primary-nav-tabs-container--top');
         }
     }
 

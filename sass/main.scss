@@ -11,7 +11,7 @@ a {
 	text-decoration: none;
 }
 
-.et-hero-tabs,
+.primary-nav-tabs,
 .et-slide {
 	display: flex;
 	flex-direction: column;
@@ -36,7 +36,7 @@ a {
 	}
 }
 
-.et-hero-tabs-container {
+.primary-nav-tabs-container {
 	display: flex;
 	flex-direction: row;
 	position: absolute;
@@ -77,7 +77,7 @@ a {
 }
 
 @media (min-width: 800px) {
-	.et-hero-tabs,
+	.primary-nav-tabs,
 	.et-slide {
 		h1 {
 			font-size: 3rem;

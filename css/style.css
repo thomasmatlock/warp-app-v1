@@ -1,5 +1,5 @@
 body {
-  font-family: "Century Gothic", 'Lato', sans-serif;
+  font-family: "Century Gothic", "Lato", sans-serif;
   overflow: hidden; }
 
 h3 {
@@ -8,7 +8,7 @@ h3 {
 a {
   text-decoration: none; }
 
-.et-hero-tabs,
+.primary-nav-tabs,
 .et-slide {
   display: flex;
   flex-direction: column;
@@ -19,18 +19,18 @@ a {
   background: white;
   text-align: center;
   padding: 0 2em; }
-  .et-hero-tabs h1,
+  .primary-nav-tabs h1,
   .et-slide h1 {
     font-size: 2rem;
     margin: 0;
     letter-spacing: 1rem; }
-  .et-hero-tabs h3,
+  .primary-nav-tabs h3,
   .et-slide h3 {
     font-size: 1rem;
     letter-spacing: 0.3rem;
     opacity: 1; }
 
-.et-hero-tabs-container {
+.primary-nav-tabs-container {
   display: flex;
   flex-direction: row;
   position: absolute;
@@ -62,14 +62,14 @@ a {
   bottom: 0;
   width: 0;
   height: 6px;
-  background: #66B1F1;
+  background: #66b1f1;
   transition: left 0.3s ease; }
 
 @media (min-width: 800px) {
-  .et-hero-tabs h1,
+  .primary-nav-tabs h1,
   .et-slide h1 {
     font-size: 3rem; }
-  .et-hero-tabs h3,
+  .primary-nav-tabs h3,
   .et-slide h3 {
     font-size: 1rem; }
   .et-hero-tab {
