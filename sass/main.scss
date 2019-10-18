@@ -12,7 +12,7 @@ a {
 }
 
 .primary-nav-tabs,
-.et-slide {
+.content-slide {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -77,8 +77,9 @@ a {
 }
 
 @media (min-width: 800px) {
+
 	.primary-nav-tabs,
-	.et-slide {
+	.content-slide {
 		h1 {
 			font-size: 3rem;
 		}
@@ -87,6 +88,7 @@ a {
 			font-size: 1rem;
 		}
 	}
+
 
 	.primary-nav-tab {
 		font-size: 1rem;
