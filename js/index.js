@@ -5,7 +5,7 @@ class StickyNavigation {
         this.currentTab = null;
         this.tabContainerHeight = 70;
         let self = this;
-        $('.et-hero-tab').click(function () {
+        $('.primary-nav-tab').click(function () {
             self.onTabClick(event, $(this));
         });
         $(window).scroll(() => {
@@ -48,7 +48,7 @@ class StickyNavigation {
         let newCurrentId;
         let newCurrentTab;
         let self = this;
-        $('.et-hero-tab').each(function () {
+        $('.primary-nav-tab').each(function () {
             let id = $(this).attr('href');
             let offsetTop = $(id).offset().top - self.tabContainerHeight;
             let offsetBottom = $(id).offset().top + $(id).height() - self.tabContainerHeight;
@@ -71,8 +71,8 @@ class StickyNavigation {
             width = this.currentTab.css('width');
             left = this.currentTab.offset().left;
         }
-        $('.et-hero-tab-slider').css('width', width);
-        $('.et-hero-tab-slider').css('left', left);
+        $('.primary-nav-tab-slider').css('width', width);
+        $('.primary-nav-tab-slider').css('left', left);
     }
 
 }
