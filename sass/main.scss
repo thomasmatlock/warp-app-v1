@@ -1,5 +1,5 @@
 body {
-	font-family: "Century Gothic", 'Lato', sans-serif;
+	font-family: "Century Gothic", "Lato", sans-serif;
 	overflow: hidden; // prevents scrolling
 }
 
@@ -11,7 +11,6 @@ a {
 	text-decoration: none;
 }
 
-/*test comment*/
 .et-hero-tabs,
 .et-slide {
 	display: flex;
@@ -23,7 +22,6 @@ a {
 	background: rgb(255, 255, 255);
 	text-align: center;
 	padding: 0 2em;
-
 
 	h1 {
 		font-size: 2rem;
@@ -50,7 +48,6 @@ a {
 	z-index: 10;
 	position: fixed;
 	top: 0;
-
 }
 
 .et-hero-tab {
@@ -75,12 +72,11 @@ a {
 	bottom: 0;
 	width: 0;
 	height: 6px;
-	background: #66B1F1;
+	background: #66b1f1;
 	transition: left 0.3s ease;
 }
 
 @media (min-width: 800px) {
-
 	.et-hero-tabs,
 	.et-slide {
 		h1 {
@@ -95,5 +91,4 @@ a {
 	.et-hero-tab {
 		font-size: 1rem;
 	}
-
 }
