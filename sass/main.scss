@@ -1,21 +1,20 @@
 body {
-	font-family: "Century Gothic", "Lato", sans-serif;
-	overflow: hidden; // prevents scrolling
+	font-family: "Century Gothic", "Lato", sans-serif; // sharp font
+	//overflow: hidden; // prevents scrolling
 }
 
 h3 {
-	font-family: "Nunito", sans-serif;
+	font-family: "Nunito", sans-serif; // soft, rounded font
 }
 
 a {
 	text-decoration: none;
 }
 
-.primary-nav-tabs,
-.content-slide {
+.primary-nav-tabs {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	//justify-content: center;
 	align-items: center;
 	height: 100vh;
 	position: relative;
@@ -51,9 +50,9 @@ a {
 }
 
 .primary-nav-tab {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	display: flex; // content starts at top otherwise
+	justify-content: center; // content start at left otherwise
+	align-items: center; // content starts at top otherwise
 	flex: 1;
 	color: #000;
 	letter-spacing: 0.1rem;
@@ -76,6 +75,46 @@ a {
 	transition: left 0.3s ease;
 }
 
+.content-slide {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	position: relative;
+	background: rgb(255, 255, 255);
+	text-align: center;
+	padding: 0 2em;
+
+	h1 {
+		font-size: 2rem;
+		margin: 0;
+		letter-spacing: 1rem;
+	}
+
+	h3 {
+		font-size: 1rem;
+		letter-spacing: 0.3rem;
+		opacity: 1;
+	}
+}
+
+#tab-0 {
+	background-color: #66b1f1;
+}
+
+#tab-1 {
+	background-color: aquamarine;
+}
+
+#tab-2 {
+	background-color: crimson;
+}
+
+#tab-4 {
+	background-color: burlywood;
+}
+
 @media (min-width: 800px) {
 
 	.primary-nav-tabs,
@@ -88,7 +127,6 @@ a {
 			font-size: 1rem;
 		}
 	}
-
 
 	.primary-nav-tab {
 		font-size: 1rem;

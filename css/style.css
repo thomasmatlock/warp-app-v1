@@ -1,6 +1,5 @@
 body {
-  font-family: "Century Gothic", "Lato", sans-serif;
-  overflow: hidden; }
+  font-family: "Century Gothic", "Lato", sans-serif; }
 
 h3 {
   font-family: "Nunito", sans-serif; }
@@ -8,24 +7,20 @@ h3 {
 a {
   text-decoration: none; }
 
-.primary-nav-tabs,
-.content-slide {
+.primary-nav-tabs {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   height: 100vh;
   position: relative;
   background: white;
   text-align: center;
   padding: 0 2em; }
-  .primary-nav-tabs h1,
-  .content-slide h1 {
+  .primary-nav-tabs h1 {
     font-size: 2rem;
     margin: 0;
     letter-spacing: 1rem; }
-  .primary-nav-tabs h3,
-  .content-slide h3 {
+  .primary-nav-tabs h3 {
     font-size: 1rem;
     letter-spacing: 0.3rem;
     opacity: 1; }
@@ -64,6 +59,37 @@ a {
   height: 6px;
   background: #66b1f1;
   transition: left 0.3s ease; }
+
+.content-slide {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: relative;
+  background: white;
+  text-align: center;
+  padding: 0 2em; }
+  .content-slide h1 {
+    font-size: 2rem;
+    margin: 0;
+    letter-spacing: 1rem; }
+  .content-slide h3 {
+    font-size: 1rem;
+    letter-spacing: 0.3rem;
+    opacity: 1; }
+
+#tab-0 {
+  background-color: #66b1f1; }
+
+#tab-1 {
+  background-color: aquamarine; }
+
+#tab-2 {
+  background-color: crimson; }
+
+#tab-4 {
+  background-color: burlywood; }
 
 @media (min-width: 800px) {
   .primary-nav-tabs h1,
