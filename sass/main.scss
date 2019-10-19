@@ -41,10 +41,10 @@ a {
 	position: absolute;
 	bottom: 0;
 	width: 60%;
-	height: 70px;
-	box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+	height: 70px; // know it
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); // know it
 	background: #fff;
-	z-index: 10;
+	z-index: 10; // know it
 	position: fixed;
 	top: 0;
 }
@@ -53,16 +53,16 @@ a {
 	display: flex; // content starts at top otherwise
 	justify-content: center; // content start at left otherwise
 	align-items: center; // content starts at top otherwise
-	flex: 1;
+	flex: 1; // ?
 	color: #000;
-	letter-spacing: 0.1rem;
-	transition: all 0.5s ease;
-	font-size: 0.8rem;
+	letter-spacing: 0.1rem; // know it
+	transition: all 0.5s ease; // know it
+	font-size: 0.8rem; // know it
 
 	&:hover {
-		color: white;
-		background: rgba(102, 177, 241, 0.8);
-		transition: all 0.5s ease;
+		color: white; // changed text color on hover
+		background: rgba(102, 177, 241, 0.8); // changed bgd color on hover
+		//transition: all 0.5s ease; // know it
 	}
 }
 
@@ -76,11 +76,13 @@ a {
 }
 
 .content-slide {
+
+
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	height: 100vh;
+	height: 100vh; // covers 100% of the screen
 	position: relative;
 	background: rgb(255, 255, 255);
 	text-align: center;
@@ -114,6 +116,7 @@ a {
 #tab-4 {
 	background-color: burlywood;
 }
+
 
 @media (min-width: 800px) {
 
