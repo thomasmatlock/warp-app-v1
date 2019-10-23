@@ -1,14 +1,16 @@
 .secondary-nav-tabs {
     display: flex;
     flex-direction: column;
-    //justify-content: center;
+    justify-content: center;
     align-items: center;
-    height: 0px;
+    height: 70px;
     position: relative;
-    background: #66b1f1;
+    background: $color-primary-light;
     text-align: center;
     padding: 0 2em;
+    //width: 50%;
 
+    /*
     h1 {
         font-size: 3rem;
         margin: 0;
@@ -20,6 +22,7 @@
         letter-spacing: 0.3rem;
         opacity: 1;
     }
+    */
 }
 
 .secondary-nav-tabs-container {
@@ -27,7 +30,7 @@
     flex-direction: row;
     position: absolute;
     bottom: 0;
-    width: 35%;
+    width: 40%;
     height: 70px; // know it
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); // know it
     background: #eee;
@@ -44,8 +47,10 @@
     flex: 1; // ?
     color: #000;
     letter-spacing: 0.1rem; // know it
-    transition: all 0.2s ease; // know it
-    font-size: 0.8rem; // know it
+    transition: all 0.1s ease; // know it
+    font-size: 1.8rem;
+
+
 
     &:hover {
         color: white; // changed text color on hover

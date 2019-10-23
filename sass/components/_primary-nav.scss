@@ -1,58 +1,61 @@
 .primary-nav-tabs {
-    display: flex;
-    flex-direction: column;
-    //justify-content: center;
-    align-items: center;
-    height: 0px;
-    position: relative;
-    background: rgb(255, 255, 255);
-    text-align: center;
+    display: flex; // this makes this parent grow or shrink according to its children
+    flex-direction: column; // row/column displays children in a row or column
+    justify-content: center; // packs children toward center
+    align-items: center; // places children to center
+    height: 70px; // know it, will need to be 0
+    position: relative; // basically all items we want to see in a fixed position we must give them an invisible parent to position them according to
+    background: $color-secondary-light;
+    //text-align: center;
     padding: 0 2em;
 
+    /*
     h1 {
-        font-size: 3rem;
+        font-size: 1rem;
         margin: 0;
         letter-spacing: 1rem;
     }
 
     h3 {
-        font-size: 1rem;
+        font-size: 0.5rem;
         letter-spacing: 0.3rem;
         opacity: 1;
     }
+    */
 }
 
 .primary-nav-tabs-container {
-    display: flex;
-    flex-direction: row;
-    position: absolute;
-    //bottom: 0;
-    width: 60%;
-    height: 70px; // know it
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); // know it
-    background: #fff;
-    z-index: 11; // know it
-    position: fixed;
+    display: flex; // this makes this parent grow or shrink according to its children
+    flex-direction: row; // row/column displays children in a row or column
+    position: absolute; // positioned relative to nearpositioned parent (instead of positioned relative to the viewport, like fixed).
+    position: fixed; // is positioned relative to the viewport, which means it always stays in the same place even if the page is scrolled. The top, right, bottom, and left properties are used to position the element.
     top: 0;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.9); // know it
+    background: #fff; // know it
+    z-index: 11; // know it
+    width: 60%; // know
+    height: 70px; // know it
 }
 
 .primary-nav-tab {
-    display: flex; // content starts at top otherwise
-    justify-content: center; // content start at left otherwise
-    align-items: center; // content starts at top otherwise
-    flex: 1; // ?
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: auto;
     color: #000;
-    letter-spacing: 0.1rem; // know it
-    transition: all 0.5s ease; // know it
-    font-size: 0.8rem; // know it
+    letter-spacing: 0.1rem;
+    transition: all 0.5s ease;
+    font-size: 1.8rem;
+
 
     &:hover {
-        color: white; // changed text color on hover
-        background: rgba(102, 177, 241, 0.8); // changed bgd color on hover
+        color: white;
+        background: rgba(102, 177, 241, 0.8);
         //transition: all 0.5s ease; // know it
     }
 }
 
+/*
 .primary-nav-tab-slider {
     position: absolute;
     bottom: 0;
@@ -61,3 +64,4 @@
     background: #66b1f1;
     transition: left 0.3s ease;
 }
+*/

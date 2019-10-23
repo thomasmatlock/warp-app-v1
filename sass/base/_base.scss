@@ -1,10 +1,10 @@
 /* * is universal selector for everything on your page, it applies all block rules to everything inside it*/
-*,
+// *,
 *::after,
 *::before {
-    //margin: 0; // all elements naturally have some padding and margin, so we set both to 0 for a fresh slate approach
-    //padding: 0;
-    //box-sizing: inherit; // borderbox makes it so elements no longer add margin or padding to total height/width of elements
+    margin: 0; // all elements naturally have some padding and margin, so we set both to 0 for a fresh slate approach
+    padding: 0;
+    box-sizing: inherit; // borderbox makes it so elements no longer add margin or padding to total height/width of elements
     /*we set this to border-box in body, so then here we ensure every el inherits that unless we specify otherwise*/
 }
 

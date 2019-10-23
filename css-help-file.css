@@ -1,0 +1,18 @@
+/* https: //www.w3schools.com/cssref */
+/* https: //developer.mozilla.org/en-US/docs/Web/CSS/flex */
+
+/* Positional alignment */
+justify-content: center;
+/* Pack items around the center */
+justify-content: start;
+/* Pack items from the start */
+justify-content: end;
+/* Pack items from the end */
+justify-content: flex-start;
+/* Pack flex items from the start */
+justify-content: flex-end;
+/* Pack flex items from the end */
+justify-content: left;
+/* Pack items from the left */
+justify-content: right;
+/* Pack items from the right */

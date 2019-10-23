@@ -1,17 +1,13 @@
+@import "abstracts/variables";
+
+@import "base/animations";
+@import "base/base";
 @import "base/typography";
 
 @import "components/primary-nav";
 @import "components/secondary-nav";
 
 @import "layouts/content-slide";
-
-
-
-
-
-
-
-
 
 
 #tab-0 {
@@ -30,6 +26,7 @@
 	background-color: #66b1f1;
 }
 
+/*
 @media (min-width: 800px) {
 
 	.primary-nav-tabs,
@@ -45,6 +42,7 @@
 
 	.primary-nav-tab,
 	.secondary-nav-tab {
-		font-size: 1rem;
+		//font-size: 1rem;
 	}
 }
+*/
