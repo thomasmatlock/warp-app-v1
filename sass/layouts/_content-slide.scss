@@ -1,0 +1,24 @@
+.content-slide {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; // covers 100% of the screen
+    position: relative;
+    background: rgb(255, 255, 255);
+    text-align: center;
+    padding: 0 2em;
+    bottom: 0;
+
+    h1 {
+        font-size: 2rem;
+        margin: 0;
+        letter-spacing: 1rem;
+    }
+
+    h3 {
+        font-size: 1rem;
+        letter-spacing: 0.3rem;
+        opacity: 1;
+    }
+}
