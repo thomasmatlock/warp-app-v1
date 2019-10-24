@@ -7,42 +7,7 @@
 @import "components/primary-nav";
 @import "components/secondary-nav";
 
+
+
+
 @import "layouts/content-slide";
-
-
-#tab-0 {
-	background-color: #fff;
-}
-
-#tab-1 {
-	background-color: aquamarine;
-}
-
-#tab-2 {
-	background-color: crimson;
-}
-
-#tab-4 {
-	background-color: #66b1f1;
-}
-
-/*
-@media (min-width: 800px) {
-
-	.primary-nav-tabs,
-	.content-slide {
-		h1 {
-			font-size: 3rem;
-		}
-
-		h3 {
-			font-size: 1rem;
-		}
-	}
-
-	.primary-nav-tab,
-	.secondary-nav-tab {
-		//font-size: 1rem;
-	}
-}
-*/

@@ -53,10 +53,12 @@ body {
   overflow: hidden; }
 
 h1 {
-  font-family: "Century Gothic", "Lato", sans-serif; }
+  font-family: "Century Gothic", "Lato", sans-serif;
+  animation: moveInLeft 1s ease-out; }
 
 h3 {
-  font-family: "Nunito", sans-serif; }
+  font-family: "Nunito", sans-serif;
+  animation: moveInRight 1s ease-out; }
 
 a {
   text-decoration: none; }
@@ -92,9 +94,9 @@ a {
   top: 0;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.9);
   background: #fff;
-  z-index: 11;
+  z-index: 10;
   width: 60%;
-  height: 70px; }
+  height: 60px; }
 
 .primary-nav-tab {
   display: flex;
@@ -147,14 +149,13 @@ a {
   display: flex;
   flex-direction: row;
   position: absolute;
-  bottom: 0;
   width: 40%;
-  height: 70px;
+  height: 60px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   background: #eee;
-  z-index: 10;
+  z-index: 1;
   position: fixed;
-  top: 70px;
+  top: 60px;
   border-radius: 0 0 5px 5px; }
 
 .secondary-nav-tab {
@@ -178,6 +179,25 @@ a {
   background: #66b1f1;
   transition: left 0.3s ease; }
 
+.content-main {
+  position: relative;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 0px;
+  padding: 0 2em;
+  display: flex; }
+
+.content-main-container {
+  background-color: rebeccapurple;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 95%;
+  position: absolute;
+  top: 150px;
+  height: 90vh; }
+
 .content-slide {
   display: flex;
   flex-direction: column;
@@ -185,7 +205,7 @@ a {
   align-items: center;
   height: 100vh;
   position: relative;
-  background: white;
+  background: #dadada;
   text-align: center;
   padding: 0 2em;
   bottom: 0; }
@@ -207,26 +227,5 @@ a {
 #tab-2 {
   background-color: crimson; }
 
-#tab-4 {
+#tab-3 {
   background-color: #66b1f1; }
-
-/*
-@media (min-width: 800px) {
-
-	.primary-nav-tabs,
-	.content-slide {
-		h1 {
-			font-size: 3rem;
-		}
-
-		h3 {
-			font-size: 1rem;
-		}
-	}
-
-	.primary-nav-tab,
-	.secondary-nav-tab {
-		//font-size: 1rem;
-	}
-}
-*/

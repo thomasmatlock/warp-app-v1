@@ -29,14 +29,13 @@
     display: flex;
     flex-direction: row;
     position: absolute;
-    bottom: 0;
     width: 40%;
-    height: 70px; // know it
+    height: 60px; // know it
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); // know it
     background: #eee;
-    z-index: 10; // know it
+    z-index: 1; // know it
     position: fixed;
-    top: 70px;
+    top: 60px;
     border-radius: 0 0 5px 5px;
 }
 

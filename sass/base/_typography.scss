@@ -6,10 +6,14 @@ body {
 
 h1 {
   font-family: "Century Gothic", "Lato", sans-serif; // sharp font
+  animation: moveInLeft 1s ease-out;
+
 }
 
 h3 {
   font-family: "Nunito", sans-serif; // soft, rounded font
+  animation: moveInRight 1s ease-out;
+
 }
 
 a {
