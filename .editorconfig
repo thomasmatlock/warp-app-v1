@@ -1,18 +1,7 @@
-### SAMPLE editor config
-
-# editorconfig.org
-# root = true
-
-# [*]
-# charset = utf-8
-# end_of_line = lf
-# indent_size = 2
-# indent_style = space
-# insert_final_newline = true
-# max_line_length = 100
-# tab_width = 2
-# trim_trailing_whitespace = true
-
-### real editor config values below
 # https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf
-# Ctrl Shift H = Find Replace
+# https://code.visualstudio.com/docs/getstarted/keybindings
+# Ctrl Shift F = search all files
+# Ctrl Shift H = Search Replace
+# Open the Keyboard Shortcut by pressing Ctrl + K then Ctrl + S and search for Collapse, you will see the Collapse Folders in Explorer key binding (It is empty by default). Press the + button to add your desired key binding.
+
+
