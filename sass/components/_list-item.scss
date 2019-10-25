@@ -1,0 +1,27 @@
+.downloads {
+    padding: 3rem 4rem;
+    display: flex;
+    flex-direction: column;
+    background: #eee;
+
+
+}
+
+.downloads__list {
+    position: absolute;
+    top: 0px;
+    list-style: none;
+    max-height: 77rem;
+    overflow: scroll;
+
+}
+
+.downloads__item {
+    display: flex;
+    align-items: flex-start;
+    padding: 1.3rem 0;
+    border-bottom: 1px solid #F2EFEE;
+    position: relative;
+    transition: 0.06s all ease-in-out;
+    margin: 8px;
+}

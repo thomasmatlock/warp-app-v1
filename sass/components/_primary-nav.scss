@@ -5,7 +5,7 @@
     align-items: center; // places children to center
     height: 70px; // know it, will need to be 0
     position: relative; // basically all items we want to see in a fixed position we must give them an invisible parent to position them according to
-    background: $color-secondary-light;
+    //background: $color-secondary-light; //TESTING
     //text-align: center;
     padding: 0 2em;
 
@@ -25,12 +25,12 @@
 }
 
 .primary-nav-tabs-container {
-    display: flex; // this makes this parent grow or shrink according to its children
+    display: flex; // this makes this parent grow or shrink according to its contents
     flex-direction: row; // row/column displays children in a row or column
     position: absolute; // positioned relative to nearpositioned parent (instead of positioned relative to the viewport, like fixed).
     position: fixed; // is positioned relative to the viewport, which means it always stays in the same place even if the page is scrolled. The top, right, bottom, and left properties are used to position the element.
     top: 0;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.9); // know it
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); // know it
     background: #fff; // know it
     z-index: 10; // know it
     width: 60%; // know
@@ -41,7 +41,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    flex: auto;
+    flex: 1;
     color: #000;
     letter-spacing: 0.1rem;
     transition: all 0.5s ease;
@@ -51,7 +51,10 @@
     &:hover {
         color: white;
         background: rgba(102, 177, 241, 0.8);
-        //transition: all 0.5s ease; // know it
+        background-position: right center;
+        transform: scale(1.05);
+        transition: all 0.5s ease;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     }
 }
 

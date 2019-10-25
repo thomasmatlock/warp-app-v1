@@ -1,37 +1,47 @@
-.content-main {
-    position: relative;
+.content {
+    //position: relative;
     align-items: center;
     display: flex;
     justify-content: center;
     height: 0px;
     padding: 0 2em;
     display: flex;
+    background-color: #66b1f1;
 }
 
 
-.content-main-container {
-    background-color: rebeccapurple;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    width: 95%;
+
+
+
+
+
+.content-container {
     //display: flex;
-    position: absolute;
-    top: 150px;
-    height: 90vh; // covers 100% of the screen
-}
-
-.content-slide {
-    display: flex;
+    background-color: rebeccapurple;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh; // covers 100% of the screen
+    width: 90%;
+    //display: flex;
+    position: absolute;
+    top: 0;
+    height: 0px; // covers 100% of the screen
+
+}
+
+
+.content-slide {
+    display: flex;
+    flex-direction: column; //displays children in a row or column
+    justify-content: center;
+    align-items: center;
+    height: 100vh; // covers 100% of its container
+    //flex: auto;
     position: relative;
     background: rgb(218, 218, 218);
     text-align: center;
     padding: 0 2em;
-    bottom: 0;
+    top: 120px;
 
     h1 {
         font-size: 5rem;
@@ -45,6 +55,8 @@
         opacity: 1;
     }
 }
+
+
 
 
 #tab-0 {
