@@ -3,5 +3,7 @@
 # Ctrl Shift F = search all files
 # Ctrl Shift H = Search Replace
 # Open the Keyboard Shortcut by pressing Ctrl + K then Ctrl + S and search for Collapse, you will see the Collapse Folders in Explorer key binding (It is empty by default). Press the + button to add your desired key binding.
+# Ctrl Shift B for npm scripts
+
 
 
