@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "sasswatch": "node-sass sass/main.scss css/style.css -w"
+    "sasswatch": "node-sass sass/main.scss css/style.css -w",
+    "liveserver": "live-server"
   },
   "author": "",
   "license": "ISC",
