@@ -1,10 +1,9 @@
 /* https: //www.w3schools.com/cssref */
 /* https: //developer.mozilla.org/en-US/docs/Web/CSS/flex */
 
-
-///// FLEXBOX 
+///// FLEXBOX
 // (all properties apply to parent container, except flex-shrink and beyond apply to child items of flex containers)
-display: flex; // display: flex to an element turns it into a flex container. This makes it possible to align any children of that element into rows or columns. You do this by adding the flex-direction property to the parent item and setting it to row or column. 
+display: flex; // display: flex to an element turns it into a flex container. This makes it possible to align any children of that element into rows or columns. You do this by adding the flex-direction property to the parent item and setting it to row or column.
 
 /// SPECIFY direction of flex items, row or column
 flex-direction: row; // align the children horizontally
@@ -13,7 +12,7 @@ flex-direction: column; //align the children vertically
 flex-direction: column-reverse; // align the children vertically in reverse order
 
 /*ALIGNS items along main axis*/
-justify-content: center; // Pack items around the center 
+justify-content: center; // Pack items around the center
 justify-content: start; // Pack items from the start
 justify-content: end; // Pack items from the end
 justify-content: flex-start; // Pack flex items from the start
