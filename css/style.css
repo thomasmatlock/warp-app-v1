@@ -145,30 +145,15 @@ li {
 
 .primary-nav-tabs {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 70px;
   position: relative;
-  padding: 0 2em;
-  /*
-    h1 {
-        font-size: 1rem;
-        margin: 0;
-        letter-spacing: 1rem;
-    }
-
-    h3 {
-        font-size: 0.5rem;
-        letter-spacing: 0.3rem;
-        opacity: 1;
-    }
-    */ }
+  padding: 0 2em; }
 
 .primary-nav-tabs-container {
   display: flex;
   flex-direction: row;
-  position: absolute;
   position: fixed;
   top: 0;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
@@ -206,11 +191,11 @@ li {
 */
 .secondary-nav-tabs {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 70px;
+  height: 0px;
   position: relative;
+  background: #7ed56f;
   text-align: center;
   padding: 0 2em;
   /*
@@ -276,7 +261,7 @@ li {
   justify-content: center;
   align-items: center;
   width: 90%;
-  position: absolute;
+  position: relative;
   top: 0;
   height: 0px; }
 
