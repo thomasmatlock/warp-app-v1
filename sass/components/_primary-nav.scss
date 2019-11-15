@@ -6,9 +6,7 @@
     //top: 0;
     height: 0px;
     //text-align: center;
-    // background: $color-secondary-light; // TESTING
-    // background-color: blue; // TESTING
-    // padding: 0 0em;
+    background: $color-secondary-light; // TESTING
 }
 
 .primary-nav-tabs {
@@ -19,11 +17,12 @@
     position: fixed;
     top: 0;
     width: 60%;
-    height: 60px;
+    height: $nav-primary-height;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
     background-color: #fff;
     z-index: 10;
 }
+
 
 
 
@@ -35,14 +34,14 @@
     color: #000;
     font-size: 1.8rem;
     letter-spacing: 0.1rem;
-    transition: all 0.5s ease;
+    transition: all 0.25s ease;
 
     &:hover {
         color: white;
         background: rgba(102, 177, 241, 0.8);
         background-position: right center;
         transform: scale(1.05);
-        transition: all 0.5s ease;
+        transition: all 0.25s ease;
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     }
 }
