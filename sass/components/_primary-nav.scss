@@ -1,36 +1,41 @@
-.primary-nav-tabs {
+.header {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 70px;
-    position: relative;
-    //background: $color-secondary-light; 
+    //position: relative;
+    //top: 0;
+    height: 0px;
     //text-align: center;
-    padding: 0 2em;
+    // background: $color-secondary-light; // TESTING
+    // background-color: blue; // TESTING
+    // padding: 0 0em;
 }
 
-.primary-nav-tabs-container {
+.primary-nav-tabs {
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    //align-items: center;
     position: fixed;
     top: 0;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); // know it
-    background: #fff; // know it
-    z-index: 10; // know it
-    width: 60%; // know
-    height: 60px; // know it
+    width: 60%;
+    height: 60px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+    z-index: 10;
 }
+
+
 
 .primary-nav-tab {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex: 1;
+    flex: 1 2;
     color: #000;
+    font-size: 1.8rem;
     letter-spacing: 0.1rem;
     transition: all 0.5s ease;
-    font-size: 1.8rem;
-
 
     &:hover {
         color: white;
@@ -41,14 +46,3 @@
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     }
 }
-
-/*
-.primary-nav-tab-slider {
-    position: absolute;
-    bottom: 0;
-    width: 0;
-    height: 6px;
-    background: #66b1f1;
-    transition: left 0.3s ease;
-}
-*/
