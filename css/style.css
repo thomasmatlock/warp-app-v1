@@ -121,28 +121,6 @@ li {
 .btn-5 {
   background-image: linear-gradient(to right, #ffecd2 0%, #fcb69f 51%, #ffecd2 100%); }
 
-.downloads {
-  padding: 3rem 4rem;
-  display: flex;
-  flex-direction: column;
-  background: #eee; }
-
-.downloads__list {
-  position: absolute;
-  top: 0px;
-  list-style: none;
-  max-height: 77rem;
-  overflow: scroll; }
-
-.downloads__item {
-  display: flex;
-  align-items: flex-start;
-  padding: 1.3rem 0;
-  border-bottom: 1px solid #F2EFEE;
-  position: relative;
-  transition: 0.06s all ease-in-out;
-  margin: 8px; }
-
 .header {
   display: flex;
   justify-content: center;
@@ -159,8 +137,8 @@ li {
   width: 60%;
   height: 60px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-  background-color: #fff;
-  z-index: 10; }
+  z-index: 10;
+  background-color: #fff; }
 
 .primary-nav-tab {
   display: flex;
@@ -237,55 +215,16 @@ li {
   transition: left 0.3s ease; }
 
 .content {
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  height: 0px;
-  padding: 0 2em;
-  display: flex;
-  background-color: #66b1f1; }
-
-.content-container {
-  background-color: rebeccapurple;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 90%;
-  position: relative;
-  top: 0;
-  height: 0px; }
-
-.content-slide {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  position: relative;
-  background: #dadada;
-  text-align: center;
-  padding: 0 2em;
-  top: 120px; }
-  .content-slide h1 {
-    font-size: 5rem;
-    margin: 0;
-    letter-spacing: 1rem; }
-  .content-slide h3 {
-    font-size: 2rem;
-    letter-spacing: 0.3rem;
-    opacity: 1; }
-
-#tab-0 {
-  background-color: #fff; }
-
-#tab-1 {
-  background-color: aquamarine; }
-
-#tab-2 {
-  background-color: crimson; }
-
-#tab-3 {
-  background-color: #66b1f1; }
+  max-width: 95%;
+  margin: 60px auto;
+  background-color: #fff;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 2rem 6rem 0.5rem rgba(101, 90, 86, 0.2);
+  display: grid;
+  background-image: linear-gradient(to right, #a1c4fd 0%, #c2e9fb 51%, #a1c4fd 100%);
+  grid-template-rows: 10rem minmax(100rem, auto);
+  grid-template-columns: 1.1fr 2fr 1.1fr; }
 
 .row {
   max-width: 114rem;
