@@ -54,11 +54,11 @@ body {
 
 h1 {
   font-family: "Century Gothic", "Lato", sans-serif;
-  animation: moveInLeft 1s ease-out; }
+  animation: moveInBottom 1s ease-out; }
 
-h3 {
-  font-family: "Nunito", sans-serif;
-  animation: moveInRight 1s ease-out; }
+h3,
+h4 {
+  font-family: "Nunito", sans-serif; }
 
 a {
   text-decoration: none;
@@ -215,23 +215,19 @@ li {
   transition: left 0.3s ease; }
 
 .content {
-  height: 100vh;
-  max-width: 90%;
+  height: 90vh;
+  max-width: 75%;
   margin: 60px auto;
   background-color: #fff;
   border-radius: 6px;
   overflow: hidden;
   box-shadow: 0 2rem 6rem 0.5rem rgba(101, 90, 86, 0.2);
-  background-image: linear-gradient(to right, #a1c4fd 0%, #c2e9fb 51%, #a1c4fd 100%);
-  display: grid;
-  grid-template-rows: 10rem minmax(100rem, auto);
+  background-image: linear-gradient(to right, #f6d365 0%, #fda085 51%, #f6d365 100%);
   /*
     You also have access to a function which can help set boundaries for otherwise flexible units.
     For example to set a column to be 1fr, but shrink no further than 200px:
     grid-template-columns: 1fr minmax(200px, 1fr);
     */
-  grid-template-columns: 1.1fr 2fr 1.1fr;
-  grid-template-areas: "head head head" "list recipe shopping";
   /*
     https://css-tricks.com/snippets/css/complete-guide-grid/
     .container {
@@ -246,23 +242,71 @@ li {
     */ }
 
 .content__list {
-  list-style: none; }
+  list-style: none;
+  padding-top: 3rem; }
+
+.content__list li {
+  display: flex;
+  margin-left: 3rem;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center; }
+
+.content__list a {
+  height: 6rem; }
 
 .content__link:link,
 .content__link:visited {
-  background-color: red;
+  background-color: #fff;
   display: flex;
-  width: 100%;
+  flex-direction: row;
+  justify-content: start;
   align-items: center;
-  padding: 1.5rem 3rem;
-  transition: all 0.3s;
-  border-right: 1px solid #fff;
+  height: 60px;
+  width: 95%;
+  align-items: center;
+  transition: all 0.05s;
+  border-bottom: 1px solid #cacaca;
   text-decoration: none;
-  border-radius: 6px; }
+  border-radius: 3px; }
 
 .content__link:hover {
-  background-color: #f9f5f3;
-  transform: translateY(-2px); }
+  background-color: #ffffff;
+  transform: translateY(-2px);
+  transform: scale(1.01);
+  box-shadow: 0px 5px 10px #eee;
+  z-index: 4; }
+
+.content__thumbnail {
+  flex: 0 0 5.5rem;
+  border-radius: 3px;
+  height: 5.5rem;
+  width: 4.5rem;
+  margin-right: 2rem; }
+
+.content__thumbnail img {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.3s; }
+
+.content__data {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center; }
+
+.content__data * {
+  margin-left: 20rem; }
+
+.content__data h4 {
+  font-size: smaller;
+  color: #000;
+  font-weight: 900; }
+
+.content__data p {
+  color: #000;
+  font-size: small; }
 
 .row {
   max-width: 114rem;
