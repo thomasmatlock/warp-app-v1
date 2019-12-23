@@ -4,7 +4,18 @@
 # Ctrl Shift H = Search Replace
 # Open the Keyboard Shortcut by pressing Ctrl + K then Ctrl + S and search for Collapse, you will see the Collapse Folders in Explorer key binding (It is empty by default). Press the + button to add your desired key binding.
 # Ctrl Shift B for npm scripts
+
+Fold folds the innermost uncollapsed region at the cursor:
+Ctrl+Shift+[ on Windows
+
+Unfold unfolds the collapsed region at the cursor:
+Ctrl+Shift+] on Windows
+
+Fold All folds all region in the editor:
 Ctrl+K Ctrl+0 (zero) on Windows
+
+Unfold All unfolds all regions in the editor:
+Ctrl+K Ctrl+J on Windows
 
 
 
