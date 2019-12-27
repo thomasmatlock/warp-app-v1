@@ -1,85 +1,47 @@
-// class StickyNavigation {
-
-//     constructor() {
-//         this.currentId = null;
-//         this.currentTab = null;
-//         this.tabContainerHeight = 70;
-//         let self = this;
-//         $('.primary-nav-tab').click(function () {
-//             self.onTabClick(event, $(this));
-//         });
-//         $(window).scroll(() => {
-//             this.onScroll();
-//         });
-//         $(window).resize(() => {
-//             this.onResize();
-//         });
-//     }
-
-//     onTabClick(event, element) {
-//         event.preventDefault();
-//         let scrollTop = $(element.attr('href')).offset().top - this.tabContainerHeight + 1;
-//         $('html, body').animate({
-//             scrollTop: scrollTop
-//         }, 600);
-//     }
-
-//     onScroll() {
-//         this.checkTabContainerPosition();
-//         this.findCurrentTabSelector();
-//     }
-
-//     onResize() {
-//         if (this.currentId) {
-//             this.setSliderCss();
-//         }
-//     }
-
-//     checkTabContainerPosition() {
-//         let offset = $('.primary-nav-tabs').offset().top + $('.primary-nav-tabs').height() - this.tabContainerHeight;
-//         if ($(window).scrollTop() > offset) {
-//             $('.primary-nav-tabs-container').addClass('primary-nav-tabs-container--top');
-//         } else {
-//             $('.primary-nav-tabs-container').removeClass('primary-nav-tabs-container--top');
-//         }
-//     }
-
-//     findCurrentTabSelector(element) {
-//         let newCurrentId;
-//         let newCurrentTab;
-//         let self = this;
-//         $('.primary-nav-tab').each(function () {
-//             let id = $(this).attr('href');
-//             let offsetTop = $(id).offset().top - self.tabContainerHeight;
-//             let offsetBottom = $(id).offset().top + $(id).height() - self.tabContainerHeight;
-//             if ($(window).scrollTop() > offsetTop && $(window).scrollTop() < offsetBottom) {
-//                 newCurrentId = id;
-//                 newCurrentTab = $(this);
-//             }
-//         });
-//         if (this.currentId != newCurrentId || this.currentId === null) {
-//             this.currentId = newCurrentId;
-//             this.currentTab = newCurrentTab;
-//             this.setSliderCss();
-//         }
-//     }
-
-//     setSliderCss() {
-//         let width = 0;
-//         let left = 0;
-//         if (this.currentTab) {
-//             width = this.currentTab.css('width');
-//             left = this.currentTab.offset().left;
-//         }
-//         $('.primary-nav-tab-slider').css('width', width);
-//         $('.primary-nav-tab-slider').css('left', left);
-//     }
-
-// }
-
-// new StickyNavigation();
-
-document.querySelector('.test_button').addEventListener('click', e => { // PRODUCTION MODE
+document.querySelector('.test_list_item').addEventListener('click', e => { // PRODUCTION MODE
     // e.preventDefault(); // prevents page from reloading on click submit button
     console.log('Hi there');
 });
+
+import { elements } from './views/base.js';
+
+/** 
+ * PRIMARY NAV CONTROLLER
+ */
+
+
+
+
+elements.primaryNavTabs.addEventListener('click', e => { // PRODUCTION MODE
+    // GETS CLICK EVENT TARGET
+    const target = e.target;
+    
+    // while(target && !target.id) target = target.parentNode;
+   
+    
+    if( target) {
+        console.log("You clicked element #"+target.id);
+            }
+
+    const id = target.id;
+    
+     highlightSelected(id);
+});
+
+const highlightSelected = id => {
+    // GET ARRAY OF NAV TABS
+    const tabsArr = Array.from(document.querySelectorAll('.primary-nav-tab'));
+
+    // REMOVE ACTIVE CLASS FROM ALL TABS
+    tabsArr.forEach(el => {
+        el.classList.remove('primary-nav-tab--active');
+    });
+
+    // Add active class to selected tabs
+    document.querySelector(`.primary-nav-tab[href*="${id}"]`).classList.add('primary-nav-tab--active');
+};
+
+
+
+
+
