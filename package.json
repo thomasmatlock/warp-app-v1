@@ -12,7 +12,5 @@
   "devDependencies": {
     "node-sass": "^4.12.0"
   },
-  "dependencies": {
-    "milsymbol": "^2.0.0"
-  }
+  "dependencies": {}
 }
