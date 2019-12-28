@@ -1,5 +1,4 @@
 LOCAL REPO
-
 • STAGING
 
     - git status // tells us the tracked changes/returns a list of what files we have changed in the cwd, and whether they are added to staging for a commit or not
