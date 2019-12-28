@@ -159,7 +159,8 @@ li {
 
 .primary-nav-tab--active {
   background-color: #ff8500;
-  transform: scale(1.05); }
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); }
 
 .secondary-nav-tabs {
   display: flex;
