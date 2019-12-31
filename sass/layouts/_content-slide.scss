@@ -1,69 +1,69 @@
-.content {
-    //position: relative;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    height: 0px;
-    padding: 0 2em;
-    display: flex;
-    background-color: #66b1f1;
-}
+// .content {
+//     //position: relative;
+//     align-items: center;
+//     display: flex;
+//     justify-content: center;
+//     height: 0px;
+//     padding: 0 2em;
+//     display: flex;
+//     background-color: #66b1f1;
+// }
 
-.content-container {
-    //display: flex;
-    background-color: rebeccapurple;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 90%;
-    //display: flex;
-    position: relative;
-    top: 0;
-    height: 0px; // covers 100% of the screen
+// .content-container {
+//     //display: flex;
+//     background-color: rebeccapurple;
+//     flex-direction: column;
+//     justify-content: center;
+//     align-items: center;
+//     width: 90%;
+//     //display: flex;
+//     position: relative;
+//     top: 0;
+//     height: 0px; // covers 100% of the screen
 
-}
+// }
 
-.content-slide {
-    display: flex;
-    flex-direction: column; //displays children in a row or column
-    justify-content: center;
-    align-items: center;
-    height: 100vh; // covers 100% of its container
-    //flex: auto;
-    position: relative;
-    background: rgb(218, 218, 218);
-    text-align: center;
-    padding: 0 2em;
-    top: 120px;
+// .content-slide {
+//     display: flex;
+//     flex-direction: column; //displays children in a row or column
+//     justify-content: center;
+//     align-items: center;
+//     height: 100vh; // covers 100% of its container
+//     //flex: auto;
+//     position: relative;
+//     background: rgb(218, 218, 218);
+//     text-align: center;
+//     padding: 0 2em;
+//     top: 120px;
 
-    h1 {
-        font-size: 5rem;
-        margin: 0;
-        letter-spacing: 1rem;
-    }
+//     h1 {
+//         font-size: 5rem;
+//         margin: 0;
+//         letter-spacing: 1rem;
+//     }
 
-    h3 {
-        font-size: 2rem;
-        letter-spacing: 0.3rem;
-        opacity: 1;
-    }
-}
-
-
+//     h3 {
+//         font-size: 2rem;
+//         letter-spacing: 0.3rem;
+//         opacity: 1;
+//     }
+// }
 
 
-#tab-0 {
-    background-color: #fff;
-}
 
-#tab-1 {
-    background-color: aquamarine;
-}
 
-#tab-2 {
-    background-color: crimson;
-}
+// #tab-0 {
+//     background-color: #fff;
+// }
 
-#tab-3 {
-    background-color: #66b1f1;
-}
+// #tab-1 {
+//     background-color: aquamarine;
+// }
+
+// #tab-2 {
+//     background-color: crimson;
+// }
+
+// #tab-3 {
+//     background-color: #66b1f1;
+// }

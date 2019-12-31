@@ -3,7 +3,7 @@
 	max-width: 75%;
 	margin: $nav-primary-height auto;
 	background-color: #fff;
-	//padding: 0 auto 5rem;
+	padding: 0 auto 5rem;
 	border-radius: 6px;
 	overflow: hidden;
 	box-shadow: 0 2rem 6rem 0.5rem rgba(101, 90, 86, 0.2);
@@ -48,23 +48,12 @@
 	// scrollbar-width: none;
 	// overflow: scroll;
 	// background-color: rgb(179, 179, 179); // TESTING
-	padding-top: 3rem;
-}
-
-.content__list li {
-	// height: 6rem;
+	padding-top: 6.5rem;
 	display: flex;
-	margin-left: 3rem;
-	flex-direction: row;
-	justify-content: start;
-	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+	// align-items: center;
 }
-
-.content__list a {
-	height: 6rem;
-}
-
-
 
 .content__link:link,
 .content__link:visited {
@@ -74,7 +63,7 @@
 	justify-content: start;
 	align-items: center;
 	height: 60px;
-	width: 95%;
+	width: 90%;
 	align-items: center;
 	// padding: 0rem 1rem;
 	transition: all 0.05s;
@@ -84,11 +73,29 @@
 }
 
 .content__link:hover {
-	background-color: #ffffff;
+	background-color: #eee;
 	transform: translateY(-2px);
 	transform: scale(1.01);
 	box-shadow: 0px 5px 10px #eee;
 	z-index: 4;
+}
+
+.content__link--active {
+	// background-color: rgba(101, 90, 86, 0.9);
+	background-color: #000;
+}
+
+.content__list li {
+	// height: 7rem;
+	// display: flex;
+	margin-left: 3rem;
+	// flex-direction: row;
+	// justify-content: start;
+	// align-items: center;
+}
+
+.content__list a {
+	height: 10rem;
 }
 
 .content__thumbnail {
@@ -99,12 +106,12 @@
 	width: 4.5rem;
 	margin-right: 2rem;
 	// position: relative;
-	//backface-visibility: hidden;
+	// backface-visibility: hidden;
 }
 
 .content__thumbnail img {
 	display: block;
-	// width: 100%;
+	width: 175%;
 	height: 100%;
 	object-fit: cover;
 	transition: all 0.3s;
@@ -126,10 +133,17 @@
 	color: #000;
 	font-weight: 900;
 	// text-transform: uppercase;
+	// position: relative;
+	// left: 0%;
 }
-
 
 .content__data p {
 	color: #000;
 	font-size: small;
+}
+
+.content__file-length {
+	// position: relative;
+	// left: 5%;
+	// margin: auto 10%;
 }

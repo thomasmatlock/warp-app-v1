@@ -1,7 +1,14 @@
-document.querySelector('.test_list_item').addEventListener('click', e => { // PRODUCTION MODE
+document.querySelector('.test_add_item').addEventListener('click', e => { // PRODUCTION MODE
     // e.preventDefault(); // prevents page from reloading on click submit button
     console.log('Hi there');
+    listView.renderItem();
 });
+
+// document.querySelector('.test_remove_item').addEventListener('click', e => { // PRODUCTION MODE
+//     // e.preventDefault(); // prevents page from reloading on click submit button
+//     // console.log('Hi there');
+//     listView.deleteItem();
+// });
 
 
 import * as navPrimaryView from './views/navPrimaryView.js';
