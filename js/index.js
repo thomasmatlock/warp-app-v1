@@ -3,29 +3,27 @@ document.querySelector('.test_list_item').addEventListener('click', e => { // PR
     console.log('Hi there');
 });
 
-import { elements } from './views/base.js';
+import {
+    elements
+} from './views/base.js';
 
 /** 
  * PRIMARY NAV CONTROLLER
  */
-
-
-
-
 elements.primaryNavTabs.addEventListener('click', e => { // PRODUCTION MODE
     // GETS CLICK EVENT TARGET
     const target = e.target;
-    
+
     // while(target && !target.id) target = target.parentNode;
-   
-    
-    if( target) {
-        console.log("You clicked element #"+target.id);
-            }
+
+
+    if (target) {
+        console.log("You clicked element #" + target.id);
+    }
 
     const id = target.id;
-    
-     highlightSelected(id);
+
+    highlightSelected(id);
 });
 
 const highlightSelected = id => {
@@ -40,8 +38,3 @@ const highlightSelected = id => {
     // Add active class to selected tabs
     document.querySelector(`.primary-nav-tab[href*="${id}"]`).classList.add('primary-nav-tab--active');
 };
-
-
-
-
-
