@@ -7,7 +7,7 @@ document.querySelector('.test_list_item').addEventListener('click', e => { // PR
 import * as navPrimaryView from './views/navPrimaryView.js';
 import * as navSecondaryView from './views/navSecondaryView.js';
 import * as listView from './views/listView.js';
-// console.log(navPrimaryView.testVars.firstName,navSecondaryView.testVars.lastName,listView.testVars.firstName);
+// console.log(navPrimaryView.testVars.firstName, navSecondaryView.testVars.lastName, listView.testVars.firstName);
 
 import {
     elements
@@ -47,4 +47,8 @@ const highlightSelected = id => {
 
 /** 
  * NAV SECONDARY CONTROLLER
+ */
+
+/** 
+ * LIST CONTROLLER
  */
