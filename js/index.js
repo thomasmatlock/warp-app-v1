@@ -3,12 +3,18 @@ document.querySelector('.test_list_item').addEventListener('click', e => { // PR
     console.log('Hi there');
 });
 
+
+import * as navPrimaryView from './views/navPrimaryView.js';
+import * as navSecondaryView from './views/navSecondaryView.js';
+import * as listView from './views/listView.js';
+// console.log(navPrimaryView.testVars.firstName,navSecondaryView.testVars.lastName,listView.testVars.firstName);
+
 import {
     elements
 } from './views/base.js';
 
 /** 
- * PRIMARY NAV CONTROLLER
+ * NAV PRIMARY CONTROLLER
  */
 elements.primaryNavTabs.addEventListener('click', e => { // PRODUCTION MODE
     // GETS CLICK EVENT TARGET
@@ -38,3 +44,7 @@ const highlightSelected = id => {
     // Add active class to selected tabs
     document.querySelector(`.primary-nav-tab[href*="${id}"]`).classList.add('primary-nav-tab--active');
 };
+
+/** 
+ * NAV SECONDARY CONTROLLER
+ */

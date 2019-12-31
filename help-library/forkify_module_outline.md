@@ -6,10 +6,10 @@ Forkify module outline
     - import Recipe from './models/Recipe';
     - import List from './models/List';
     - import Likes from './models/Likes';
-    - import \* as searchView from './views/searchView';
-    - import \* as recipeView from './views/recipeView';
-    - import \* as listView from './views/listView';
-    - import \* as likesView from './views/likesView';
+    - import \* as searchView from './views/searchView'; // handles everything related to search and search results
+    - import \* as recipeView from './views/recipeView'; // handles everything related to recipe in center container
+    - import \* as listView from './views/listView'; // handles shopping list items
+    - import \* as likesView from './views/likesView'; // handles list of user-liked item
     - import { elements, renderLoader, clearLoader } from './views/base';
   - SEARCH CONTROLLER
     - elements.searchForm.addEventListener('submit' // user input form submit
