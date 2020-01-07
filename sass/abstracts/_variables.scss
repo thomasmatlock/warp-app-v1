@@ -11,24 +11,66 @@ $color-tertiary-medium: #2998ff;
 $color-tertiary-dark: #5643fa;
 
 // COLOR GRADIENTS
-
-$color-gradient-1: linear-gradient(to right, #f6d365 0%, #fda085 51%, #f6d365 100%);
-$color-gradient-2: linear-gradient(to right, #fbc2eb 0%, #a6c1ee 51%, #fbc2eb 100%);
-$color-gradient-3: linear-gradient(to right, #84fab0 0%, #8fd3f4 51%, #84fab0 100%);
-$color-gradient-4: linear-gradient(to right, #a1c4fd 0%, #c2e9fb 51%, #a1c4fd 100%);
-$color-gradient-5: linear-gradient(to right, #ffecd2 0%, #fcb69f 51%, #ffecd2 100%);
+$color-gradient-1: linear-gradient(
+	to right,
+	#f6d365 0%,
+	#fda085 51%,
+	#f6d365 100%
+);
+$color-gradient-2: linear-gradient(
+	to right,
+	#fbc2eb 0%,
+	#a6c1ee 51%,
+	#fbc2eb 100%
+);
+$color-gradient-3: linear-gradient(
+	to right,
+	#84fab0 0%,
+	#8fd3f4 51%,
+	#84fab0 100%
+);
+$color-gradient-4: linear-gradient(
+	to right,
+	#a1c4fd 0%,
+	#c2e9fb 51%,
+	#a1c4fd 100%
+);
+$color-gradient-5: linear-gradient(
+	to right,
+	#ffecd2 0%,
+	#fcb69f 51%,
+	#ffecd2 100%
+);
 
 // WILDFIRE GRADIENTS
-$wildfire-background-orange-color-gradient-1: linear-gradient(to right, #FD5550 0%, #F77B2B 51%, #FEE29C 100%);
-$wildfire-background-blue-color-gradient-1: linear-gradient(to right, #0463DB 0%, #0B88E6 33%, #13AFF2 66%, #19D2FC 100%);
-$wildfire-button-color-gradient-1: linear-gradient(to right, #EE603C 0%, #FC8C22 51%, #FFE6A0 100%);
-$wildfire-button-color-gradient-2: linear-gradient(to right, #EF603D 0%, #F77D2A 33%, #FDA849 66%, #FFE7A1 100%);
-$wildfire-blue: #3275FE;
-$wildfire-red: #FF5451;
-
-
-
-
+$wildfire-background-orange-color-gradient-1: linear-gradient(
+	to right,
+	#fd5550 0%,
+	#f77b2b 51%,
+	#fee29c 100%
+);
+$wildfire-background-blue-color-gradient-1: linear-gradient(
+	to right,
+	#0463db 0%,
+	#0b88e6 33%,
+	#13aff2 66%,
+	#19d2fc 100%
+);
+$wildfire-button-color-gradient-1: linear-gradient(
+	to right,
+	#ee603c 0%,
+	#fc8c22 51%,
+	#ffe6a0 100%
+);
+$wildfire-button-color-gradient-2: linear-gradient(
+	to right,
+	#ef603d 0%,
+	#f77d2a 33%,
+	#fda849 66%,
+	#ffe7a1 100%
+);
+$wildfire-blue: #3275fe;
+$wildfire-red: #ff5451;
 
 $color-gray-dark: #777;
 $color-gray-light-1: #f7f7f7;
