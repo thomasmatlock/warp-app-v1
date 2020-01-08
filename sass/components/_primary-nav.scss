@@ -2,13 +2,14 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	//position: relative;
+	// position: relative;
 	//top: 0;
 	height: 0px;
 	//text-align: center;
 	background: $color-secondary-light; // TESTING
 }
 
+// PARENT CONTAINER FOR CHILDREN TABS
 .primary-nav-tabs {
 	display: flex;
 	flex-direction: row;
@@ -16,22 +17,26 @@
 	//align-items: center;
 	position: fixed;
 	top: 0;
-	width: 60%;
 	height: $nav-primary-height;
+	width: 60%;
 	box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 	z-index: 10;
 	background-color: #fff;
 }
 
+// CHILDREN TABS
 .primary-nav-tab {
 	display: flex;
-	justify-content: center;
+	justify-content: center; // PRODUCTION
+	// justify-content: start; // TESTING
 	align-items: center;
 	flex: 1 2;
 	color: #000;
 	font-size: 1.8rem;
 	letter-spacing: 0.1rem;
 	transition: all 0.25s ease;
+	// padding-left: 2rem; // TESTING
+	// border: solid 1px $color-gray-dark; // TESTING
 
 	&:hover {
 		color: white;
@@ -41,6 +46,7 @@
 		transition: all 0.25s ease;
 		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 	}
+
 }
 
 .primary-nav-tab--active {
