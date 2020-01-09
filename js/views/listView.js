@@ -14,7 +14,7 @@ export const renderItem = () => {
             <img src="img/youtube-thumbnail.jpg" alt="Test" />
         </figure>
         <div class="content__data">
-            <h4 class="content__file-property content__file-title">One Breath Around The World Breath</h4>
+            <h4 class="content__file-property content__file-title">One Breath Around The World</h4>
             <p class="content__file-property content__file-length">0:45:18</p>
             <p class="content__file-property content__file-size">297.4 MB</p>
             <p class="content__file-property content__file-format">MP4</p>
