@@ -48,10 +48,16 @@
 		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 	}
 
+	&:active {
+		background-color: yellow;
+		transform: scale(1);
+	}
+
 }
 
 .primary-nav-tab--active {
-	background-color: $color-secondary-dark;
+	// background-color: $color-secondary-dark;
+	background-image: $wildfire-button-color-gradient-1;
 	transform: scale(1.05);
 	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 	// z-index: 15;

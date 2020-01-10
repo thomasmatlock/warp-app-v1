@@ -18,9 +18,13 @@
         flex-direction: row;
         justify-content: center;
         align-content: center;
-        border: dotted 1px #000;
+        // border: dotted 1px #000;
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-        border-radius: 6px;
+        border-radius: 0 0 10% 10%;
+    }
+
+    &:active {
+        background-color: yellow;
     }
 
     // LEFT CHILD
@@ -35,7 +39,8 @@
 }
 
 // CHILDREN TABS
-.nav-secondary-tab {
+.nav-secondary-tab:link,
+.nav-secondary-tab:visited {
     display: flex;
     justify-content: center;
     align-content: center;
@@ -47,11 +52,23 @@
     // border: solid 1px red; // TEST
     transition: all ease-out 0.1s;
     max-width: 10rem;
+    border-radius: 0 0 10% 10%;
 
     &:hover {
         transform: scale(1.01);
-        background-color: rgb(245, 245, 245);
+        // background-color: rgb(245, 245, 245);
+        background-image: $wildfire-background-blue-color-gradient-1; // testing
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        color: white;
+        border-radius: 0 0 10% 10%;
         // border-radius: 6px;
     }
+
+    &:active {
+        background-color: yellow;
+    }
+}
+
+.nav-secondary-tab a {
+    // background-color: yellow;
 }
