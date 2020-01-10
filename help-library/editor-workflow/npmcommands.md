@@ -1,0 +1,1 @@
+- npm outdated // checks and displays current/latest versions for any outdated packages

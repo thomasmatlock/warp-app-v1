@@ -1,3 +1,88 @@
-const navSecondaryTitles = {
-    mp3: ['Paste', 'Activate']
+const menus = [
+    // Menus
+
+    // - Youtube to MP3
+    //   - File
+    //     - Import Download Links
+    //     - Export Download Links
+    //     - Quit
+    //   - Downloads
+    //     - Paste Link Ctrl + V
+    //     - Pause All
+    //     - Resume All
+    //     - Remove All
+    //   - Tools
+    //     - Activate
+    //     - Check for Updates
+    //     - Preferences
+    //   - Help
+    //     - Help Center F1
+    //     - Video Tutorial
+    //     - Feedback
+    //     - Support
+    //     - Facebook
+    //     - Twitter
+    //     - Vimeo
+    //     - About
+    // - 4k Video Downloader
+    //   - File
+    //     - Import Download Links
+    //     - Export Download Links
+    //     - Import Subscriptions
+    //     - Export Subscriptions
+    //     - Quit
+    //   - Downloads
+    //     - Paste Link Ctrl + V
+    //     - Pause All
+    //     - Resume All
+    //     - Remove All
+    //   - Tools
+    //     - Activate
+    //     - Smart Mode
+    //     - Subscriptions
+    //     - Check for Updates
+    //     - Preferences
+    //   - Help
+    //     - Help Center F1
+    //     - Video Tutorial
+    //     - Feedback
+    //     - Support
+    //     - Facebook
+    //     - Twitter
+    //     - Vimeo
+    //     - About
+    // - 4kstogram
+    //   - File
+    //     - Import Subscriptions
+    //     - Export Subscriptions
+    //     - Export File Paths and Captions
+    //   - Edit
+    //     - Subscribe to my account
+    //     - Subscribe to my saved posts
+    //     - Subscribe to accounts I'm following
+    //     - Update all subscriptions
+    //     - Pause all subscriptions
+    //     - Remove all subscriptions
+    //   - Tools
+    //     - Check for Updates
+    //     - Preferences
+    //   - Help
+    //     - Help Center F1
+    //     - Video Tutorial
+    //     - Feedback
+    //     - Support
+    //     - Facebook
+    //     - Twitter
+    //     - Vimeo
+    //     - About
+]
+
+export const navSecondaryTitles = {
+    audio: ['Paste link',
+        'Smart Mode',
+        'Activate',
+        'subscriptions',
+        'Preferences',
+        'Help'
+    ]
 }

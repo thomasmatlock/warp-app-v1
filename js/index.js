@@ -14,7 +14,9 @@ document.querySelector('.test_add_item').addEventListener('click', e => { // PRO
 import * as navPrimaryView from './views/navPrimaryView.js';
 import * as navSecondaryView from './views/navSecondaryView.js';
 import * as listView from './views/listView.js';
-// console.log(navPrimaryView.testVars.firstName, navSecondaryView.testVars.lastName, listView.testVars.firstName);
+import * as navTitles from './models/config.js';
+
+console.log(navTitles.navSecondaryTitles.audio[0]); // TEST
 
 import {
     elements

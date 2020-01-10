@@ -1,69 +1,48 @@
-// .content {
-//     //position: relative;
-//     align-items: center;
-//     display: flex;
-//     justify-content: center;
-//     height: 0px;
-//     padding: 0 2em;
-//     display: flex;
-//     background-color: #66b1f1;
-// }
-
-// .content-container {
-//     //display: flex;
-//     background-color: rebeccapurple;
-//     flex-direction: column;
-//     justify-content: center;
-//     align-items: center;
-//     width: 90%;
-//     //display: flex;
-//     position: relative;
-//     top: 0;
-//     height: 0px; // covers 100% of the screen
-
-// }
-
-// .content-slide {
-//     display: flex;
-//     flex-direction: column; //displays children in a row or column
-//     justify-content: center;
-//     align-items: center;
-//     height: 100vh; // covers 100% of its container
-//     //flex: auto;
-//     position: relative;
-//     background: rgb(218, 218, 218);
-//     text-align: center;
-//     padding: 0 2em;
-//     top: 120px;
-
-//     h1 {
-//         font-size: 5rem;
-//         margin: 0;
-//         letter-spacing: 1rem;
-//     }
-
-//     h3 {
-//         font-size: 2rem;
-//         letter-spacing: 0.3rem;
-//         opacity: 1;
-//     }
-// }
+.content {
+    // display: flex;
+    height: 90vh;
+    max-width: 75%;
+    margin: $nav-primary-height auto;
+    position: relative;
+    // padding: $nav-primary-height auto;
+    background-color: #fff;
+    padding: 0 auto 5rem;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 2rem 6rem 0.5rem rgba(101, 90, 86, 0.2);
+    background-image: $wildfire-background-blue-color-gradient-1; // testing
+    border: dotted 1px #000;
 
 
+    /// GRID STUFF ///
+    // display: grid; // https://css-tricks.com/snippets/css/complete-guide-grid/
 
+    // MEASURES WIDTH OF COLUMNS, TOP TO BOTTOM
+    //grid-template-rows: 10rem minmax(100rem, auto); // 10rem/100px height, but shrinks no less than 100rem, height is auto
 
-// #tab-0 {
-//     background-color: #fff;
-// }
+    // FOR EXAMPPLE: grid-template-rows: 25% 100px auto; means top to bottom, 25% top row, 100px, then auto to fill in rest of available space
+    /*
+    You also have access to a function which can help set boundaries for otherwise flexible units.
+    For example to set a column to be 1fr, but shrink no further than 200px:
+    grid-template-columns: 1fr minmax(200px, 1fr);
+    */
 
-// #tab-1 {
-//     background-color: aquamarine;
-// }
+    // MEASURES WIDTH OF COLUMNS, LEFT TO RIGHT
+    // grid-template-columns: 1.1fr 2fr 1.1fr;
+    // grid-template-areas: "head head head""list recipe shopping";
+    // basically fr === fraction, this means its thirds, where center is roughly 3x the sides
+    // fr units: https://css-tricks.com/introduction-fr-css-unit/
 
-// #tab-2 {
-//     background-color: crimson;
-// }
-
-// #tab-3 {
-//     background-color: #66b1f1;
-// }
+    /*
+    https://css-tricks.com/snippets/css/complete-guide-grid/
+    .container {
+  display: grid;
+  grid-template-columns: 50px 50px 50px 50px;
+  grid-template-rows: auto;
+  grid-template-areas: 
+    "header header header header"
+    "main main . sidebar"
+    "footer footer footer footer";
+    }
+    */
+}
