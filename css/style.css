@@ -291,6 +291,7 @@ li {
   font-size: 1.4rem;
   color: #000;
   font-weight: 900;
+  border: solid 1px red;
   transition: all ease-out 0.1s;
   max-width: 10rem;
   border-radius: 0 0 10% 10%; }
