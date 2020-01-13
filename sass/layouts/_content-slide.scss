@@ -1,39 +1,40 @@
 .content {
-    // display: flex;
-    height: 90vh;
-    max-width: 75%;
-    margin: $nav-primary-height auto;
-    position: relative;
-    // padding: $nav-primary-height auto;
-    background-color: #fff;
-    padding: 0 auto 5rem;
-    border-radius: 6px;
-    overflow: hidden;
-    box-shadow: 0 2rem 6rem 0.5rem rgba(101, 90, 86, 0.2);
-    background-image: $wildfire-background-blue-color-gradient-1; // testing
-    border: dotted 1px #000;
+  // display: flex;
+  height: 90vh;
+  max-width: 90%;
+  margin: $nav-primary-height auto;
+  position: relative;
+  // padding: $nav-primary-height auto;
+  background-color: #fff;
+  padding: 0 auto 5rem;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 2rem 6rem 0.5rem rgba(101, 90, 86, 0.2);
+  // background-image: $wildfire-background-blue-color-gradient-1; // testing
+  background: #353746; // testing
+  // border: dotted 1px #000; // TEST
 
 
-    /// GRID STUFF ///
-    // display: grid; // https://css-tricks.com/snippets/css/complete-guide-grid/
+  /// GRID STUFF ///
+  // display: grid; // https://css-tricks.com/snippets/css/complete-guide-grid/
 
-    // MEASURES WIDTH OF COLUMNS, TOP TO BOTTOM
-    //grid-template-rows: 10rem minmax(100rem, auto); // 10rem/100px height, but shrinks no less than 100rem, height is auto
+  // MEASURES WIDTH OF COLUMNS, TOP TO BOTTOM
+  //grid-template-rows: 10rem minmax(100rem, auto); // 10rem/100px height, but shrinks no less than 100rem, height is auto
 
-    // FOR EXAMPPLE: grid-template-rows: 25% 100px auto; means top to bottom, 25% top row, 100px, then auto to fill in rest of available space
-    /*
+  // FOR EXAMPPLE: grid-template-rows: 25% 100px auto; means top to bottom, 25% top row, 100px, then auto to fill in rest of available space
+  /*
     You also have access to a function which can help set boundaries for otherwise flexible units.
     For example to set a column to be 1fr, but shrink no further than 200px:
     grid-template-columns: 1fr minmax(200px, 1fr);
     */
 
-    // MEASURES WIDTH OF COLUMNS, LEFT TO RIGHT
-    // grid-template-columns: 1.1fr 2fr 1.1fr;
-    // grid-template-areas: "head head head""list recipe shopping";
-    // basically fr === fraction, this means its thirds, where center is roughly 3x the sides
-    // fr units: https://css-tricks.com/introduction-fr-css-unit/
+  // MEASURES WIDTH OF COLUMNS, LEFT TO RIGHT
+  // grid-template-columns: 1.1fr 2fr 1.1fr;
+  // grid-template-areas: "head head head""list recipe shopping";
+  // basically fr === fraction, this means its thirds, where center is roughly 3x the sides
+  // fr units: https://css-tricks.com/introduction-fr-css-unit/
 
-    /*
+  /*
     https://css-tricks.com/snippets/css/complete-guide-grid/
     .container {
   display: grid;

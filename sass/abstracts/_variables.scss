@@ -10,6 +10,13 @@ $color-tertiary-light: rgba(102, 177, 241, 0.8);
 $color-tertiary-medium: #2998ff;
 $color-tertiary-dark: #5643fa;
 
+$gray-light: #f0eff3;
+$dark-blue: #1f2029;
+$dark-light: #353746;
+$red: #da2c4d;
+$yellow: #f8ab37;
+$grey: #ecedf3;
+
 // COLOR GRADIENTS
 $color-gradient-1: linear-gradient(to right,
 	#f6d365 0%,
@@ -81,12 +88,27 @@ $amazon-orange: linear-gradient(to right,
 	#FFC400 100%);
 
 
+// CODEPEN GRADS
+$codepen-orange-1: linear-gradient(298deg, #da2c4d, #f8ab37);
+
+:root {
+	--white: #ffffff;
+	--light: #f0eff3;
+	--black: #000000;
+	--dark-blue: #1f2029;
+	--dark-light: #353746;
+	--red: #da2c4d;
+	--yellow: #f8ab37;
+	--grey: #ecedf3;
+}
+
 $color-gray-dark: #777;
 $color-gray-light-1: #f7f7f7;
 $color-gray-light-2: #eee;
 
 $color-white: #fff;
 $color-black: #000;
+
 
 // FONT
 $default-font-size: 1.6rem;
@@ -98,6 +120,9 @@ $gutter-horizontal: 6rem; //60px
 
 // SHADOWS
 $shadow-light: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+$shadow-before: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+$shadow-after: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+
 
 // DIMENSIONS
 $nav-primary-height: 60px;

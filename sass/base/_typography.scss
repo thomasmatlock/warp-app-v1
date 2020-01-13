@@ -1,18 +1,24 @@
 body {
   //font-family: "Century Gothic", "Lato", sans-serif; // sharp font
   font-family: "Nunito", sans-serif; // soft, rounded font
+  // font-family: 'Poppins', sans-serif; // soft, rounded font
   overflow: hidden; // prevents scrolling
 }
 
 h1 {
   font-family: "Century Gothic", "Lato", sans-serif; // sharp font
+  // font-family: 'Poppins', sans-serif; // soft, rounded font
   animation: moveInBottom 1s ease-out;
 
 }
 
 h3,
 h4 {
-  font-family: "Nunito", sans-serif; // soft, rounded font
+  // font-family: "Nunito", sans-serif; // soft, rounded font
+  font-family: 'Poppins', sans-serif; // soft, rounded font
+  // font-size: 17px;
+  font-weight: 500;
+  // letter-spacing: 1px;
   // animation: moveInRight 1s ease-out;
 
 }
@@ -22,6 +28,7 @@ h4 {
 a {
   text-decoration: none;
   font-size: 2rem;
+  // font-family: 'Poppins', sans-serif; // soft, rounded font
 }
 
 li {

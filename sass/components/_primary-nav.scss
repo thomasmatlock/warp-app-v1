@@ -35,17 +35,22 @@
 	color: #000;
 	font-size: 1.8rem;
 	letter-spacing: 0.1rem;
-	transition: all 0.25s ease;
+	transition: all 0.3s ease;
+	border-radius: 4px;
 	// padding-left: 2rem; // TESTING
 	// border: solid 1px $color-gray-dark; // TESTING
+	box-shadow: $shadow-before;
+	// font-family: 'Poppins', sans-serif; // soft, rounded font
+	font-weight: 200;
 
 	&:hover {
 		color: white;
-		background: $color-tertiary-light;
+		background: $color-tertiary-medium;
+		// background: $dark-light;
 		background-position: right center;
 		transform: scale(1.05);
-		transition: all 0.25s ease;
-		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+		transition: all 0.3s ease;
+		box-shadow: $shadow-after;
 	}
 
 	&:active {
@@ -57,7 +62,8 @@
 
 .primary-nav-tab--active {
 	// background-color: $color-secondary-dark;
-	background-image: $wildfire-button-color-gradient-1;
+	// background-image: $wildfire-button-color-gradient-1;
+	background-image: $codepen-orange-1;
 	transform: scale(1.05);
 	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 	// z-index: 15;
