@@ -54,7 +54,32 @@ $wildfire-button-color-gradient-2: linear-gradient(to right,
 $wildfire-blue: #3275fe;
 $wildfire-red: #ff5451;
 
-// amazon color gradients
+// AMAZON COLOR GRADIENTS
+$amazon-blue: linear-gradient(to right,
+	#2C88AE 0%,
+	#1995C2 50%,
+	#2C88AE 100%);
+
+$amazon-red: linear-gradient(to right,
+	#840825 0%,
+	#DE2A39 50%,
+	#FF6138 100%);
+
+$amazon-purple: linear-gradient(to right,
+	#A90067 0%,
+	#C10D66 50%,
+	#E31F64 100%);
+
+$amazon-green: linear-gradient(to right,
+	#008577 0%,
+	#159D8F 50%,
+	#36C2B4 100%);
+
+$amazon-orange: linear-gradient(to right,
+	#FF8F00 0%,
+	#FFA400 50%,
+	#FFC400 100%);
+
 
 $color-gray-dark: #777;
 $color-gray-light-1: #f7f7f7;
