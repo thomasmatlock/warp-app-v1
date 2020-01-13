@@ -1,0 +1,112 @@
+// COLORS
+$color-primary: #55c57a;
+$color-primary-light: #7ed56f;
+$color-primary-dark: #28b485;
+
+$color-secondary-light: #ffb900;
+$color-secondary-dark: #ff7730;
+
+$color-tertiary-light: rgba(102, 177, 241, 0.8);
+$color-tertiary-medium: #2998ff;
+$color-tertiary-dark: #5643fa;
+
+$gray-light: #f0eff3;
+$dark-blue: #1f2029;
+$dark-light: #353746;
+$red: #da2c4d;
+$yellow: #f8ab37;
+$grey: #ecedf3;
+
+$wildfire-blue: #3275fe;
+$wildfire-red: #ff5451;
+
+// COLOR GRADIENTS
+$color-gradient-1: linear-gradient(to right,
+    #f6d365 0%,
+    #fda085 51%,
+    #f6d365 100%);
+$color-gradient-2: linear-gradient(to right,
+    #fbc2eb 0%,
+    #a6c1ee 51%,
+    #fbc2eb 100%);
+$color-gradient-3: linear-gradient(to right,
+    #84fab0 0%,
+    #8fd3f4 51%,
+    #84fab0 100%);
+$color-gradient-4: linear-gradient(to right,
+    #a1c4fd 0%,
+    #c2e9fb 51%,
+    #a1c4fd 100%);
+$color-gradient-5: linear-gradient(to right,
+    #ffecd2 0%,
+    #fcb69f 51%,
+    #ffecd2 100%);
+
+// WILDFIRE GRADIENTS
+$wildfire-background-orange-color-gradient-1: linear-gradient(to right,
+    #fd5550 0%,
+    #f77b2b 51%,
+    #fee29c 100%);
+$wildfire-background-blue-color-gradient-1: linear-gradient(to right,
+    #0463db 0%,
+    #0b88e6 33%,
+    #13aff2 66%,
+    #19d2fc 100%);
+$wildfire-button-color-gradient-1: linear-gradient(to right,
+    #ee603c 0%,
+    #fc8c22 51%,
+    #ffe6a0 100%);
+$wildfire-button-color-gradient-2: linear-gradient(to right,
+    #ef603d 0%,
+    #f77d2a 33%,
+    #fda849 66%,
+    #ffe7a1 100%);
+
+
+// AMAZON COLOR GRADIENTS
+$amazon-blue: linear-gradient(to right,
+    #2C88AE 0%,
+    #1995C2 50%,
+    #2C88AE 100%);
+
+$amazon-red: linear-gradient(to right,
+    #840825 0%,
+    #DE2A39 50%,
+    #FF6138 100%);
+
+$amazon-purple: linear-gradient(to right,
+    #A90067 0%,
+    #C10D66 50%,
+    #E31F64 100%);
+
+$amazon-green: linear-gradient(to right,
+    #008577 0%,
+    #159D8F 50%,
+    #36C2B4 100%);
+
+$amazon-orange: linear-gradient(to right,
+    #FF8F00 0%,
+    #FFA400 50%,
+    #FFC400 100%);
+
+
+// CODEPEN GRADS
+$codepen-orange-1: linear-gradient(298deg, #da2c4d, #f8ab37);
+
+:root {
+    --white: #ffffff;
+    --light: #f0eff3;
+    --black: #000000;
+    --dark-blue: #1f2029;
+    --dark-light: #353746;
+    --red: #da2c4d;
+    --yellow: #f8ab37;
+    --grey: #ecedf3;
+}
+
+$color-gray-dark: #777;
+$color-gray-light-1: #f7f7f7;
+$color-gray-light-2: #eee;
+
+$color-white: #fff;
+$color-black: #000;
