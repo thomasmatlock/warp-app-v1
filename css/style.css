@@ -40,6 +40,16 @@
     /*putting zero basically places elements how it looks normally
     above we just offset the starting keyframes by translating it over */ } }
 
+@keyframes moveInTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-3rem); }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    /*putting zero basically places elements how it looks normally
+    above we just offset the starting keyframes by translating it over */ } }
+
 /* * is universal selector for everything on your page, it applies all block rules to everything inside it*/
 *::after,
 *::before {
@@ -254,7 +264,9 @@ li {
   transition: all 0.3s ease;
   border-radius: 4px;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
-  font-weight: 200; }
+  font-weight: 200;
+  animation-name: moveInTop;
+  animation-duration: 0.3s; }
   .primary-nav-tab:hover {
     color: white;
     background: #2998ff;
@@ -269,7 +281,8 @@ li {
 .primary-nav-tab--active {
   background-image: linear-gradient(298deg, #da2c4d, #f8ab37);
   transform: scale(1.05);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); }
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  color: white; }
 
 .nav-secondary {
   display: flex;
@@ -308,7 +321,9 @@ li {
   border-radius: 4px;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
   width: 11rem;
-  background: #f0eff3; }
+  background: #f0eff3;
+  animation-name: moveInTop;
+  animation-duration: 0.6s; }
   .nav-secondary-tab:link:hover,
   .nav-secondary-tab:visited:hover {
     transform: scale(1.01);

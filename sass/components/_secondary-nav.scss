@@ -64,6 +64,10 @@
 	box-shadow: $shadow-before;
 	width: 11rem;
 	background: $gray-light;
+  animation-name: moveInTop;
+  animation-duration: 0.6s;
+
+
 
 	&:hover {
 		transform: scale(1.01);
@@ -75,6 +79,10 @@
 		// border-radius: 0 0 10% 10%;
 		border-radius: 4px;
 		// border-radius: 6px;
+			//   -webkit-animation-name: $moveInBottom; /* Safari 4.0 - 8.0 */
+//   -webkit-animation-duration: 0.3s; /* Safari 4.0 - 8.0 */
+//   animation-name: moveInBottom;
+//   animation-duration: 0.3s;
 	}
 
 	&:active {

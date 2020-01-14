@@ -42,6 +42,9 @@
 	box-shadow: $shadow-before;
 	// font-family: 'Poppins', sans-serif; // soft, rounded font
 	font-weight: 200;
+	animation-name: moveInTop;
+  animation-duration: 0.3s;
+
 
 	&:hover {
 		color: white;
@@ -56,6 +59,7 @@
 	&:active {
 		background-color: yellow;
 		transform: scale(1);
+		
 	}
 
 }
@@ -66,5 +70,6 @@
 	background-image: $codepen-orange-1;
 	transform: scale(1.05);
 	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+	color: white;
 	// z-index: 15;
 }
