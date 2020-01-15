@@ -15,7 +15,7 @@ body {
 .header2 {
   position: relative;
   text-align: center;
-  background: linear-gradient(to right, #ef603d 0%, #f77d2a 33%, #fda849 66%, #ffe7a1 100%); }
+  background: linear-gradient(60deg, #543ab7 0%, #00acc1 100%); }
 
 .inner-header {
   height: 0vh;
@@ -210,7 +210,7 @@ li {
 
 .cta-upgrade {
   bottom: 0;
-  height: 10vh;
+  height: 6rem;
   width: 100%;
   position: absolute;
   background-image: linear-gradient(to right, #ef603d 0%, #f77d2a 33%, #fda849 66%, #ffe7a1 100%);
