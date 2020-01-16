@@ -16,7 +16,8 @@ import * as navSecondaryView from './views/navSecondaryView.js';
 import * as listView from './views/listView.js';
 import * as navTitles from './models/config.js';
 
-console.log(navTitles.navSecondaryTitles.audio[0]); // TEST
+console.log(navTitles.menus.warpstogram.Edit[2]); // TEST
+console.log(navTitles.navSecondaryTitles.audioTools[2]); // TEST
 
 import {
     elements
