@@ -5,7 +5,7 @@ class StickyNavigation {
         this.currentTab = null;
         this.tabContainerHeight = 70;
         let self = this;
-        $('.primary-nav-tab').click(function () {
+        $('.nav-primary-tab').click(function () {
             self.onTabClick(event, $(this));
         });
         $(window).scroll(() => {
@@ -36,11 +36,11 @@ class StickyNavigation {
     }
 
     checkTabContainerPosition() {
-        let offset = $('.primary-nav-tabs').offset().top + $('.primary-nav-tabs').height() - this.tabContainerHeight;
+        let offset = $('.nav-primary-tabs').offset().top + $('.nav-primary-tabs').height() - this.tabContainerHeight;
         if ($(window).scrollTop() > offset) {
-            $('.primary-nav-tabs-container').addClass('primary-nav-tabs-container--top');
+            $('.nav-primary-tabs-container').addClass('nav-primary-tabs-container--top');
         } else {
-            $('.primary-nav-tabs-container').removeClass('primary-nav-tabs-container--top');
+            $('.nav-primary-tabs-container').removeClass('nav-primary-tabs-container--top');
         }
     }
 
@@ -48,7 +48,7 @@ class StickyNavigation {
         let newCurrentId;
         let newCurrentTab;
         let self = this;
-        $('.primary-nav-tab').each(function () {
+        $('.').each(function () {
             let id = $(this).attr('href');
             let offsetTop = $(id).offset().top - self.tabContainerHeight;
             let offsetBottom = $(id).offset().top + $(id).height() - self.tabContainerHeight;
@@ -71,8 +71,8 @@ class StickyNavigation {
             width = this.currentTab.css('width');
             left = this.currentTab.offset().left;
         }
-        $('.primary-nav-tab-slider').css('width', width);
-        $('.primary-nav-tab-slider').css('left', left);
+        $('.nav-primary-tab-slider').css('width', width);
+        $('.nav-primary-tab-slider').css('left', left);
     }
 
 }

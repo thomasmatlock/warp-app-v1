@@ -34,7 +34,7 @@ elements.primaryNavTabs.addEventListener('click', e => { // PRODUCTION MODE
 
 
     if (target) {
-        // console.log("You clicked element #" + target.id);
+        console.log("You clicked element #" + target.id);
     }
 
     const id = target.id;
@@ -44,7 +44,7 @@ elements.primaryNavTabs.addEventListener('click', e => { // PRODUCTION MODE
 
 const highlightSelected = id => {
     // GET ARRAY OF NAV TABS
-    const tabsArr = Array.from(document.querySelectorAll('.primary-nav-tab'));
+    const tabsArr = Array.from(document.querySelectorAll('.nav-primary-tab'));
 
     // REMOVE ACTIVE CLASS FROM ALL TABS
     tabsArr.forEach(el => {
@@ -52,7 +52,7 @@ const highlightSelected = id => {
     });
 
     // Add active class to selected tabs
-    document.querySelector(`.primary-nav-tab[href*="${id}"]`).classList.add('nav-primary-tab--active');
+    document.querySelector(`.nav-primary-tab[href*="${id}"]`).classList.add('nav-primary-tab--active');
 };
 
 /** 

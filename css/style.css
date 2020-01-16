@@ -294,7 +294,7 @@ li {
   height: 0px;
   background: #ffb900; }
 
-.primary-nav-tabs {
+.nav-primary-tabs {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -306,7 +306,7 @@ li {
   z-index: 10;
   background-color: #fff; }
 
-.primary-nav-tab {
+.nav-primary-tab {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -318,14 +318,14 @@ li {
   border-radius: 4px;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
   font-weight: 200; }
-  .primary-nav-tab:hover {
+  .nav-primary-tab:hover {
     color: white;
     background: #2998ff;
     background-position: right center;
     transform: scale(1.05);
     transition: all 0.3s ease;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2); }
-  .primary-nav-tab:active {
+  .nav-primary-tab:active {
     background-color: yellow;
     transform: scale(1); }
 
