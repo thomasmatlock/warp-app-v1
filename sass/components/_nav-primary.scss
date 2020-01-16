@@ -43,7 +43,7 @@
 	// font-family: 'Poppins', sans-serif; // soft, rounded font
 	font-weight: 200;
 	// animation-name: moveInTop;
-//   animation-duration: 0.3s;
+	//   animation-duration: 0.3s;
 
 
 	&:hover {
@@ -59,12 +59,12 @@
 	&:active {
 		background-color: yellow;
 		transform: scale(1);
-		
+
 	}
 
 }
 
-.primary-nav-tab--active {
+.nav-primary-tab--active {
 	// background-color: $color-secondary-dark;
 	// background-image: $wildfire-button-color-gradient-1;
 	background-image: $codepen-orange-1;
