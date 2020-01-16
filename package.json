@@ -1,7 +1,7 @@
 {
 	"name": "starter",
 	"version": "1.0.0",
-	"description": "",
+	"description": "wip",
 	"main": "index.js",
 	"scripts": {
 		"sasswatch": "node-sass sass/main.scss css/style.css -w",
@@ -12,5 +12,7 @@
 	"devDependencies": {
 		"node-sass": "^4.13.0"
 	},
-	"dependencies": {}
+	"dependencies": {
+		"electron": "^7.1.9"
+	}
 }
