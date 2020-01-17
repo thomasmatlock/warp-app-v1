@@ -370,7 +370,7 @@ li {
   max-width: 10rem;
   border-radius: 4px;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
-  width: 11rem;
+  width: 10rem;
   background: #f0eff3;
   animation-name: moveInTop;
   animation-duration: 0.6s; }
