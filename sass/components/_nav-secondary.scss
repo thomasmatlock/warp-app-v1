@@ -1,14 +1,17 @@
 // PARENT CONTAINER FOR CHILDREN TABS
 .nav-secondary {
+	//// SIZE
+	width: 60%;
+	height: 10rem;
+
+	//// SPACING
+	margin: 1rem auto 1rem;
+
+	//// FLEX
 	display: flex;
 	flex-direction: row;
 	justify-content: space-evenly;
 	align-content: center;
-	// position: absolute;
-	margin: 1rem auto 1rem;
-	// box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-	width: 60%;
-	height: 10rem;
 
 	// COMMON FOR ALL CHILDREN
 	&__child {
@@ -22,7 +25,6 @@
 		// box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 		// border-radius: 0 0 10% 10%;
 		// border-radius: 4px 0 0;
-
 	}
 
 	&:active {
@@ -45,45 +47,52 @@
 // CHILDREN TABS
 .nav-secondary-tab:link,
 .nav-secondary-tab:visited {
+	//// SIZE
+	width: 10rem;
+	max-width: 10rem;
+	height: 7.5rem;
+
+	//// SPACING
+	margin: auto 2rem;
+
+	//// CONTENT
+	font-size: 1.4rem;
+	color: #000;
+	font-weight: 900;
+
+	//// POSITION
+	// position: absolute;
+
+	//// FLEX
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
 	align-content: center;
 	align-items: center;
-	margin: auto 2rem;
-	height: 5rem;
 	flex: 1 2;
-	font-size: 1.4rem;
-	// padding-top: 2rem;
-	color: #000;
-	font-weight: 900;
-	// border: solid 1px red; // TEST
-	transition: all ease-out 0.3s;
-	max-width: 10rem;
-	// border-radius: 0 0 10% 10%;
+
+	//// DECORATIVE
+	// border: dotted 1px red; // test
+	background: $gray-light;
 	border-radius: 4px;
 	box-shadow: $shadow-before;
-	width: 10rem;
-	background: $gray-light;
+
+	//// ANIMATION
+	transition: all ease-out 0.3s;
 	animation-name: moveInTop;
 	animation-duration: 0.6s;
 
-
-
 	&:hover {
-		transform: scale(1.01);
-		// background-color: rgb(245, 245, 245);
-		// background-image: $wildfire-background-blue-color-gradient-1; // testing
-		background-image: $codepen-orange-1; // testing
-		box-shadow: $shadow-after;
+		//// CONTENT
 		color: white;
-		// border-radius: 0 0 10% 10%;
+		background-image: $codepen-orange-1;
+
+		//// DECORATIVE
+		box-shadow: $shadow-after;
 		border-radius: 4px;
-		// border-radius: 6px;
-		//   -webkit-animation-name: $moveInBottom; /* Safari 4.0 - 8.0 */
-		//   -webkit-animation-duration: 0.3s; /* Safari 4.0 - 8.0 */
-		//   animation-name: moveInBottom;
-		//   animation-duration: 0.3s;
+
+		//// ANIMATION
+		transform: scale(1.01);
 	}
 
 	&:active {

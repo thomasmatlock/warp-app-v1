@@ -335,13 +335,13 @@ li {
   color: white; }
 
 .nav-secondary {
+  width: 60%;
+  height: 10rem;
+  margin: 1rem auto 1rem;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  align-content: center;
-  margin: 1rem auto 1rem;
-  width: 60%;
-  height: 10rem; }
+  align-content: center; }
   .nav-secondary__child {
     width: 100%;
     background-color: #fff;
@@ -355,32 +355,32 @@ li {
 
 .nav-secondary-tab:link,
 .nav-secondary-tab:visited {
+  width: 10rem;
+  max-width: 10rem;
+  height: 7.5rem;
+  margin: auto 2rem;
+  font-size: 1.4rem;
+  color: #000;
+  font-weight: 900;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-content: center;
   align-items: center;
-  margin: auto 2rem;
-  height: 5rem;
   flex: 1 2;
-  font-size: 1.4rem;
-  color: #000;
-  font-weight: 900;
-  transition: all ease-out 0.3s;
-  max-width: 10rem;
+  background: #f0eff3;
   border-radius: 4px;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
-  width: 10rem;
-  background: #f0eff3;
+  transition: all ease-out 0.3s;
   animation-name: moveInTop;
   animation-duration: 0.6s; }
   .nav-secondary-tab:link:hover,
   .nav-secondary-tab:visited:hover {
-    transform: scale(1.01);
+    color: white;
     background-image: linear-gradient(268deg, #da2c4d, #f8ab37);
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-    color: white;
-    border-radius: 4px; }
+    border-radius: 4px;
+    transform: scale(1.01); }
   .nav-secondary-tab:link:active,
   .nav-secondary-tab:visited:active {
     background-color: yellow;
