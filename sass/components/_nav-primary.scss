@@ -57,6 +57,7 @@
 		transform: scale(1.05);
 		transition: all 0.3s ease;
 		box-shadow: $shadow-after;
+		z-index: 20;
 	}
 
 	&:active {
