@@ -1,0 +1,38 @@
+.example {
+    //SIZE
+    width: 60%;
+    height: 10rem;
+
+    // SPACING
+    margin: 1rem auto 1rem;
+
+    //POSITION
+    position: absolute;
+
+
+    // FLEX
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-content: center;
+    align-content: flex-start;
+
+
+
+    // DECORATIVE
+    background: $gray-light;
+    box-shadow: $shadow-before;
+    border-radius: 0 0 10% 10%;
+    border: dotted 1px red; // test
+
+    // ANIMATION
+
+    &:hover {
+        // DECORATIVE
+        box-shadow: $shadow-after;
+        border-radius: 4px;
+
+        // ANIMATION
+        transform: scale(1.01);
+    }
+}

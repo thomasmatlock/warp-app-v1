@@ -30,8 +30,9 @@
 	display: flex;
 	justify-content: center; // PRODUCTION
 	// justify-content: start; // TESTING
+	// align-content: center;
 	align-items: center;
-	flex: 1 2;
+	flex: 1 2 auto;
 	color: #000;
 	font-size: 1.7rem;
 	letter-spacing: 0.1rem;
@@ -44,20 +45,22 @@
 	font-weight: 200;
 	// animation-name: moveInTop;
 	//   animation-duration: 0.3s;
+	// background-size: 200% auto; //test
 
 
 	&:hover {
 		color: white;
 		background: $color-tertiary-medium;
+		// background-image: $codepen-orange-1;
 		// background: $dark-light;
-		background-position: right center;
+		background-position: bottom;
 		transform: scale(1.05);
 		transition: all 0.3s ease;
 		box-shadow: $shadow-after;
 	}
 
 	&:active {
-		background-color: yellow;
+		// background-color: yellow;
 		transform: scale(1);
 
 	}

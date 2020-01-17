@@ -310,7 +310,7 @@ li {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex: 1 2;
+  flex: 1 2 auto;
   color: #000;
   font-size: 1.7rem;
   letter-spacing: 0.1rem;
@@ -321,16 +321,15 @@ li {
   .nav-primary-tab:hover {
     color: white;
     background: #2998ff;
-    background-position: right center;
+    background-position: bottom;
     transform: scale(1.05);
     transition: all 0.3s ease;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2); }
   .nav-primary-tab:active {
-    background-color: yellow;
     transform: scale(1); }
 
 .nav-primary-tab--active {
-  background-image: linear-gradient(298deg, #da2c4d, #f8ab37);
+  background-image: linear-gradient(268deg, #da2c4d, #f8ab37);
   transform: scale(1.05);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   color: white; }
@@ -360,11 +359,11 @@ li {
   flex-direction: row;
   justify-content: center;
   align-content: center;
-  margin: 1rem 2rem;
+  align-items: center;
+  margin: auto 2rem;
   height: 5rem;
   flex: 1 2;
   font-size: 1.4rem;
-  padding-top: 2rem;
   color: #000;
   font-weight: 900;
   transition: all ease-out 0.3s;
@@ -378,7 +377,7 @@ li {
   .nav-secondary-tab:link:hover,
   .nav-secondary-tab:visited:hover {
     transform: scale(1.01);
-    background-image: linear-gradient(298deg, #da2c4d, #f8ab37);
+    background-image: linear-gradient(268deg, #da2c4d, #f8ab37);
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
     color: white;
     border-radius: 4px; }
