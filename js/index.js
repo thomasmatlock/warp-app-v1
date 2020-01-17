@@ -42,7 +42,7 @@ elements.navPrimaryTabs.addEventListener('click', e => { // PRODUCTION MODE
     highlightSelected(id);
 });
 
-const highlightSelected = id => {
+const highlightSelected = (id) => {
     // GET ARRAY OF NAV TABS
     const tabsArr = Array.from(document.querySelectorAll('.nav-primary-tab'));
 
@@ -58,6 +58,31 @@ const highlightSelected = id => {
 /** 
  * NAV SECONDARY CONTROLLER
  */
+
+elements.navSecondaryTabs.addEventListener('click', e => { // PRODUCTION MODE
+    // GETS CLICK EVENT TARGET
+    const target = e.target;
+    let id = target.id;
+    // console.log(id);
+
+
+    // console.log(target.class); //testing
+    // console.log(target.classList); //testing
+
+    // CHECK FOR BUTTON CLICK
+    if (target.classList.contains('nav-secondary-tab')) { // checks if event has a classname i want
+        console.log('You clicked ' + target.id);
+
+        if (id) {
+            // console.log(id);
+            // highlightSelected(id);
+        }
+        return id; // NOT WORKING!!!
+    }
+
+
+
+});
 
 /** 
  * LIST CONTROLLER

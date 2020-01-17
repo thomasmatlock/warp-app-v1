@@ -17,6 +17,10 @@ Ctrl+K Ctrl+0 (zero) on Windows
 Unfold All unfolds all regions in the editor:
 Ctrl+K Ctrl+J on Windows
 
+Select All Occurrences of Find Match editor.action.selectHighlights.
+
+Ctrl+Shift+L
+
 
 
 
