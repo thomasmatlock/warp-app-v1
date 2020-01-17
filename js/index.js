@@ -26,7 +26,7 @@ import {
 /** 
  * NAV PRIMARY CONTROLLER
  */
-elements.primaryNavTabs.addEventListener('click', e => { // PRODUCTION MODE
+elements.navPrimaryTabs.addEventListener('click', e => { // PRODUCTION MODE
     // GETS CLICK EVENT TARGET
     const target = e.target;
 
