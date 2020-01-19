@@ -93,6 +93,12 @@ $amazon-orange: linear-gradient(to right,
 // CODEPEN GRADS
 $codepen-orange-1: linear-gradient(268deg, #da2c4d, #f8ab37);
 
+// HUGGING FACE GRADS
+$hug-orange: radial-gradient(circle at 50% 0, #E56C3E 0, #F5BC3B 100%);
+$hug-purple: linear-gradient(-136deg, #7C42D9 29%, #B852E1 74%, #B847DC 100%);
+$hug-green: linear-gradient(136deg, #95CA22 29%, #B2ED33 74%, #D7FA11 100%);
+;
+
 :root {
     --white: #ffffff;
     --light: #f0eff3;
