@@ -107,6 +107,14 @@ body {
     /*putting zero basically places elements how it looks normally
     above we just offset the starting keyframes by translating it over */ } }
 
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%; }
+  50% {
+    background-position: 100% 50%; }
+  100% {
+    background-position: 0% 50%; } }
+
 /* * is universal selector for everything on your page, it applies all block rules to everything inside it*/
 *::after,
 *::before {
@@ -406,7 +414,9 @@ li {
   border-radius: 6px;
   overflow: hidden;
   box-shadow: 0 2rem 6rem 0.5rem rgba(101, 90, 86, 0.2);
-  background-image: linear-gradient(to right, #0463db 0%, #0b88e6 33%, #13aff2 66%, #19d2fc 100%);
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 500% 500%;
+  animation: gradient 15s ease infinite;
   /*
     You also have access to a function which can help set boundaries for otherwise flexible units.
     For example to set a column to be 1fr, but shrink no further than 200px:
