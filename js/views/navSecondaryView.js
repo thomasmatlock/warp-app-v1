@@ -17,9 +17,12 @@ export const updateNavSecondaryTitles = (navPrimaryId) => {
         let titlesCount = 0; // counter for number of titles
 
         //  nav secondary titles
+
         navSecondaryTitlesArr.forEach(el => {
+
             el.textContent = `${titles[titlesCount]}`;
             titlesCount = titlesCount + 1;
+
         });
     } else if (navPrimaryId === 'tab-1') {
         // get array of nav secondary tabs
@@ -31,8 +34,10 @@ export const updateNavSecondaryTitles = (navPrimaryId) => {
 
         //  nav secondary titles
         navSecondaryTitlesArr.forEach(el => {
+
             el.textContent = `${titles[titlesCount]}`;
             titlesCount = titlesCount + 1;
+
         });
     } else if (navPrimaryId === 'tab-2') {
         // get array of nav secondary tabs
@@ -44,23 +49,25 @@ export const updateNavSecondaryTitles = (navPrimaryId) => {
 
         //  nav secondary titles
         navSecondaryTitlesArr.forEach(el => {
+
             el.textContent = `${titles[titlesCount]}`;
             titlesCount = titlesCount + 1;
-            // console.log(titlesCount);
-
         });
     }
 }
 
 
-export const highlightSelected = () => {
-    let tab = document.getElementById('tab-b');
-    // console.log(tab);
-    tab.classList.add('nav-secondary-tab--active');
+export const highlightSelected = (type, tabId) => {
+    if (type === 'add') {
+        let tab = document.getElementById(`${tabId}`);
+        tab.classList.add('nav-secondary-tab--active');
+    } else if (type === 'remove') {
+        let tab = document.getElementById(`${tabId}`);
+        tab.classList.remove('nav-secondary-tab--active');
+    }
 }
 
-export const removeHighlightSelected = () => {
-    let tab = document.getElementById('tab-b');
-    // console.log(tab);
-    tab.classList.remove('nav-secondary-tab--active');
-}
+// export const removeHighlightSelected = () => {
+//     let tab = document.getElementById('tab-b');
+//     tab.classList.remove('nav-secondary-tab--active');
+// }

@@ -87,11 +87,11 @@ elements.navSecondaryTabs.addEventListener("click", e => {
 
 	// console.log(target.className);
 
-
+	const nav2TestTab = 'tab-b'; //test
 	if (text.includes(textSubString) && target.className.includes('active') === false) {
-		navSecondaryView.highlightSelected();
+		navSecondaryView.highlightSelected('add', nav2TestTab);
 	} else if (text.includes(textSubString) && target.className.includes('active') === true) {
-		navSecondaryView.removeHighlightSelected();
+		navSecondaryView.highlightSelected('remove', nav2TestTab);
 	}
 
 	// console.log(target.class); //testing
