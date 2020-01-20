@@ -57,7 +57,7 @@ export const updateNavSecondaryTitles = (navPrimaryId) => {
 }
 
 
-export const highlightSelected = (type, tabId) => {
+export const toggleHighlightSelected = (type, tabId) => {
     if (type === 'add') {
         let tab = document.getElementById(`${tabId}`);
         tab.classList.add('nav-secondary-tab--active');
@@ -66,8 +66,3 @@ export const highlightSelected = (type, tabId) => {
         tab.classList.remove('nav-secondary-tab--active');
     }
 }
-
-// export const removeHighlightSelected = () => {
-//     let tab = document.getElementById('tab-b');
-//     tab.classList.remove('nav-secondary-tab--active');
-// }
