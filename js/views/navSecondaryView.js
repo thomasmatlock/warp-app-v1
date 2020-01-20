@@ -1,3 +1,3 @@
-export const testVars = {
-    lastName: 'to print'
-}
+// export const testVars = {
+//     lastName: 'to print'
+// }

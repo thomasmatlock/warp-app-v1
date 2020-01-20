@@ -101,12 +101,12 @@
             'Help'
         ],
 
-        video: ['Video Paste link',
-            'Video Smart Mode',
-            'Video Activate',
-            'Video Subscriptions',
-            'Video Preferences',
-            'Video Help'
+        video: ['Paste link',
+            'Smart Mode',
+            'Activate',
+            'Subscriptions',
+            'Preferences',
+            'Help'
         ],
 
         audioTools: [
