@@ -16,10 +16,18 @@ import * as navSecondaryView from "./views/navSecondaryView.js";
 import * as listView from "./views/listView.js";
 import * as navTitles from "./models/config.js";
 
-console.log(navTitles.menus.warpstogram.Edit[2]); // TEST
-console.log(navTitles.navSecondaryTitles.audioTools[2]); // TEST
+// console.log(navTitles.menus.warpstogram.Edit[2]); // TEST
+// console.log(navTitles.navSecondaryTitles.audioTools[2]); // TEST
 
-import { elements } from "./views/base.js";
+import {
+	elements
+} from "./views/base.js";
+
+/**
+ * STARTUP INIT
+ */
+navPrimaryView.updateNavSecondaryTitles('tab-0');
+
 
 /**
  * NAV PRIMARY CONTROLLER
@@ -32,10 +40,16 @@ elements.navPrimaryTabs.addEventListener("click", e => {
 	// while(target && !target.id) target = target.parentNode;
 
 	if (target) {
-		console.log("You clicked nav-primary__" + target.id);
+		// console.log("You clicked nav-primary__" + target.id);
+
 	}
 
 	const id = target.id;
+	// console.log(id);
+	if (id) {
+		// console.log('yea its tab 2');
+		navPrimaryView.updateNavSecondaryTitles(id);
+	}
 
 	highlightSelected(id);
 });

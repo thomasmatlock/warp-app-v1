@@ -96,24 +96,24 @@
         audio: ['Paste link',
             'Smart Mode',
             'Activate',
-            'subscriptions',
+            'Subscriptions',
             'Preferences',
             'Help'
         ],
 
-        video: ['Paste link',
-            'Smart Mode',
-            'Activate',
-            'subscriptions',
-            'Preferences',
-            'Help'
+        video: ['Video Paste link',
+            'Video Smart Mode',
+            'Video Activate',
+            'Video Subscriptions',
+            'Video Preferences',
+            'Video Help'
         ],
 
         audioTools: [
-            'convert',
-            'extract',
-            'bulk convert',
-            'bulk extract'
+            'Convert',
+            'Extract',
+            'Bulk convert',
+            'Bulk extract'
         ]
 
     }

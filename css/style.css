@@ -365,6 +365,7 @@ li {
   font-size: 1.4rem;
   color: #000;
   font-weight: 900;
+  text-align: center;
   display: flex;
   flex-direction: row;
   justify-content: center;
