@@ -104,4 +104,13 @@
 		background-color: yellow;
 		transform: scale(0.95);
 	}
+
+
+}
+
+.nav-secondary-tab--active {
+	background-image: $codepen-orange-1 !important;
+	transform: scale(1.01);
+	box-shadow: $shadow-after !important;
+	color: white !important;
 }

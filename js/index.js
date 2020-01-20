@@ -26,7 +26,8 @@ import {
 /**
  * STARTUP INIT
  */
-navPrimaryView.updateNavSecondaryTitles('tab-0');
+navSecondaryView.updateNavSecondaryTitles('tab-0');
+// navSecondaryView.highlightSelected();
 
 
 /**
@@ -48,7 +49,7 @@ elements.navPrimaryTabs.addEventListener("click", e => {
 	// console.log(id);
 	if (id) {
 		// console.log('yea its tab 2');
-		navPrimaryView.updateNavSecondaryTitles(id);
+		navSecondaryView.updateNavSecondaryTitles(id);
 	}
 
 	highlightSelected(id);
@@ -79,6 +80,19 @@ elements.navSecondaryTabs.addEventListener("click", e => {
 	const target = e.target;
 	let id = target.id;
 	// console.log(id);
+	const text = target.textContent;
+	const textSubString = 'mart'; // looks for [s]mart mode, skip 'S' cuz maybe not always in caps
+	// console.log(text);
+	// console.log(text.includes(textSubString));
+
+	// console.log(target.className);
+
+
+	if (text.includes(textSubString) && target.className.includes('active') === false) {
+		navSecondaryView.highlightSelected();
+	} else if (text.includes(textSubString) && target.className.includes('active') === true) {
+		navSecondaryView.removeHighlightSelected();
+	}
 
 	// console.log(target.class); //testing
 	// console.log(target.classList); //testing
@@ -86,7 +100,7 @@ elements.navSecondaryTabs.addEventListener("click", e => {
 	// CHECK FOR BUTTON CLICK
 	if (target.classList.contains("nav-secondary-tab")) {
 		// checks if event has a classname i want
-		console.log("You clicked nav-secondary__" + target.id);
+		// console.log("You clicked nav-secondary__" + target.id);
 
 		if (id) {
 			// console.log(id);
