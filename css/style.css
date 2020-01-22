@@ -467,3 +467,97 @@ li {
     width: calc(((100% - 3 * 6rem) / 4) * 2 + (6rem)); }
   .row .col-3-of-4 {
     width: calc(((100% - 3 * 6rem) / 4) * 3 + (6rem * 2)); }
+
+h3 {
+  font-family: "Nunito", sans-serif; }
+
+a {
+  text-decoration: none; }
+
+.et-main {
+  border: dotted 1px #000; }
+
+.test-container {
+  width: 90vw;
+  height: 85vh;
+  display: flex;
+  border-radius: 4px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2); }
+
+.test-container-1 {
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 500% 500%;
+  animation: gradient 20s ease infinite; }
+
+.test-container-2 {
+  background: linear-gradient(-45deg, #23d5ab, #ee7752, #e73c7e, #23a6d5);
+  background-size: 500% 500%;
+  animation: gradient 20s ease infinite; }
+
+.test-container-3 {
+  background: linear-gradient(-45deg, #23a6d5, #23d5ab, #ee7752, #e73c7e);
+  background-size: 500% 500%;
+  animation: gradient 20s ease infinite; }
+
+.test-container-4 {
+  background: linear-gradient(-45deg, #e73c7e, #23a6d5, #23d5ab, #ee7752);
+  background-size: 500% 500%;
+  animation: gradient 20s ease infinite; }
+
+.et-slide {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: relative;
+  background: white;
+  text-align: center;
+  padding: 0 2em;
+  border: dotted 1px red; }
+  .et-slide h1 {
+    font-size: 2rem;
+    margin: 0;
+    letter-spacing: 1rem;
+    border: #000 dotted 1px; }
+  .et-slide h3 {
+    font-size: 1rem;
+    letter-spacing: 0.3rem;
+    opacity: 1;
+    border: #000 dotted 1px; }
+
+.et-hero-tabs-container {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  bottom: 0;
+  width: 60%;
+  height: 70px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  z-index: 10;
+  position: fixed;
+  top: 0;
+  margin-top: 10rem; }
+
+.et-hero-tab {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  color: #000;
+  letter-spacing: 0.1rem;
+  transition: all 0.5s ease;
+  font-size: 0.8rem; }
+  .et-hero-tab:hover {
+    color: white;
+    background: rgba(102, 177, 241, 0.8);
+    transition: all 0.5s ease; }
+
+.et-hero-tab-slider {
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  height: 6px;
+  background: #66B1F1;
+  transition: left 0.3s ease; }
