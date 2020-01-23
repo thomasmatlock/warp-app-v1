@@ -29,6 +29,10 @@ import {
 navSecondaryView.updateNavSecondaryTitles('tab-0');
 // navSecondaryView.highlightSelected();
 
+const state = {
+
+}
+
 
 /**
  * NAV PRIMARY CONTROLLER
@@ -46,12 +50,6 @@ elements.navPrimaryTabs.addEventListener("click", e => {
 	}
 
 	const id = target.id;
-	// console.log(target.href);
-
-	// const href = target.href;
-	// console.log(href);
-	// console.log(id);
-
 
 	if (id) {
 		// console.log('yea its tab 2');
@@ -59,8 +57,24 @@ elements.navPrimaryTabs.addEventListener("click", e => {
 		navSecondaryView.updateNavSecondaryTitles(id);
 	}
 
-	// highlightSelected(id);
 	highlightSelected(id);
+	// console.log(target.textContent);
+
+	const tabTextContent = target.textContent;
+	const textSubString1 = 'ownload';
+	const nav2SmartModeTab = 'tab-b'; //test
+
+	if (tabTextContent.includes(textSubString1) === true) {
+		// console.log('hi');
+		// navSecondaryView.toggleHighlightSelected('remove', nav2SmartModeTab);
+	}
+
+	// if (text.includes(textSubString) && target.className.includes('active') === false) {
+	// 	navSecondaryView.toggleHighlightSelected('add', nav2TestTab);
+
+
+
+
 });
 
 const highlightSelected = id => {
