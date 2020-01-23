@@ -17,39 +17,24 @@
 // @import "layouts/content-slide";
 @import "layouts/grid";
 
-
-
-body {
-    // font-family: "Century Gothic", 'Lato', sans-serif;
-    overflow: hidden; // prevents scrolling
-    // margin: 10vh auto;
+// BLANK CONTAINER SLIDE HOLDING COLORED CONTENT
+.content-slide {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+    background: rgb(255, 255, 255);
+    text-align: center;
+    padding: 0 2em;
 }
 
-h3 {
-    font-family: "Nunito", sans-serif;
-}
-
-
-a {
-    text-decoration: none;
-}
-
-.et-main {
-    // margin-top: 10vh auto 50vh;
-    // margin-bottom: 15vh;
-    border: dotted 1px #000;
-}
-
-
-// .et-slide {
-//     // margin: 10vh 0 0 0 !important;
-// }
-
-
+// COLORED CONTENT INSIDE SLIDE
 .test-container {
     width: 90vw;
-    height: 85vh;
-    // background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    margin-top: 4vh;
+    height: 90vh;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -88,76 +73,8 @@ a {
 }
 
 
-.et-slide {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    position: relative;
-    background: rgb(255, 255, 255);
-    text-align: center;
-    padding: 0 2em;
 
-    // margin: 6rem auto;
-    border: dotted 1px red;
 
-    h1 {
-        font-size: 2rem;
-        margin: 0;
-        letter-spacing: 1rem;
-        border: #000 dotted 1px;
-    }
-
-    h3 {
-        font-size: 1rem;
-        letter-spacing: 0.3rem;
-        opacity: 1;
-        border: #000 dotted 1px;
-    }
-}
-
-.et-hero-tabs-container {
-    display: flex;
-    flex-direction: row;
-    position: absolute;
-    bottom: 0;
-    width: 60%;
-    height: 70px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    background: #fff;
-    z-index: 10;
-    position: fixed;
-    top: 0;
-    margin-top: 10rem;
-
-}
-
-.et-hero-tab {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex: 1;
-    color: #000;
-    letter-spacing: 0.1rem;
-    transition: all 0.5s ease;
-    font-size: 0.8rem;
-
-    &:hover {
-        color: white;
-        background: rgba(102, 177, 241, 0.8);
-        transition: all 0.5s ease;
-    }
-}
-
-.et-hero-tab-slider {
-    position: absolute;
-    bottom: 0;
-    width: 0;
-    height: 6px;
-    background: #66B1F1;
-    transition: left 0.3s ease;
-}
 
 // @media (min-width: 800px) {
 

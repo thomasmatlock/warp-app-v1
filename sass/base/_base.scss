@@ -20,4 +20,16 @@ body {
     box-sizing: border-box;
     // overflow-y: hidden;
     // overflow-x: hidden;
+    overflow: hidden; // prevents scrolling
+}
+
+
+
+h3 {
+    font-family: "Nunito", sans-serif;
+}
+
+
+a {
+    text-decoration: none;
 }

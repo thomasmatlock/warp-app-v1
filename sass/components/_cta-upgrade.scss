@@ -11,8 +11,10 @@
     // flex-direction: row;
     // justify-content: center;
     // margin-top: 10rem;
-    // border-radius: 6px;
+    border-radius: 0 0 4px 4px;
     box-shadow: 0 2rem 6rem 0.5rem rgba(101, 90, 86, 0.2);
     // border: dotted 1px #000;
     overflow: hidden;
+
+    // z-index: -1;
 }
