@@ -55,6 +55,7 @@ elements.navPrimaryTabs.addEventListener("click", e => {
 
 	if (id) {
 		// console.log('yea its tab 2');
+		// console.log(id);
 		navSecondaryView.updateNavSecondaryTitles(id);
 	}
 
@@ -85,7 +86,6 @@ const highlightSelected = id => {
  */
 
 elements.navSecondaryTabs.addEventListener("click", e => {
-	// PRODUCTION MODE
 	// GETS CLICK EVENT TARGET
 	const target = e.target;
 	let id = target.id;
