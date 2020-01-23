@@ -46,20 +46,29 @@ elements.navPrimaryTabs.addEventListener("click", e => {
 	}
 
 	const id = target.id;
+	// console.log(target.href);
+
+	// const href = target.href;
+	// console.log(href);
 	// console.log(id);
+
+
 	if (id) {
 		// console.log('yea its tab 2');
 		navSecondaryView.updateNavSecondaryTitles(id);
 	}
 
+	// highlightSelected(id);
 	highlightSelected(id);
 });
 
 const highlightSelected = id => {
 	// GET ARRAY OF NAV TABS
-	console.log(id);
+	// console.log(id);
 
 	const tabsArr = Array.from(document.querySelectorAll(".nav-primary-tab"));
+	// console.log(tabsArr);
+
 
 	// REMOVE ACTIVE CLASS FROM ALL TABS
 	tabsArr.forEach(el => {
@@ -67,9 +76,8 @@ const highlightSelected = id => {
 	});
 
 	// Add active class to selected tabs
-	document
-		.querySelector(`.nav-primary-tab[href*="${id}"]`)
-		.classList.add("nav-primary-tab--active");
+	let tab = document.getElementById(`${id}`);
+	tab.classList.add('nav-primary-tab--active');
 };
 
 /**
