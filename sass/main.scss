@@ -14,18 +14,21 @@
 @import "components/nav-primary";
 @import "components/nav-secondary";
 
-@import "layouts/content-slide";
+// @import "layouts/content-slide";
 @import "layouts/grid";
 
-// body {
-//     // font-family: "Century Gothic", 'Lato', sans-serif;
-//     // overflow: hidden; // prevents scrolling
-//     // margin: 10vh auto;
-// }
+
+
+body {
+    // font-family: "Century Gothic", 'Lato', sans-serif;
+    overflow: hidden; // prevents scrolling
+    // margin: 10vh auto;
+}
 
 h3 {
     font-family: "Nunito", sans-serif;
 }
+
 
 a {
     text-decoration: none;
@@ -42,15 +45,19 @@ a {
 //     // margin: 10vh 0 0 0 !important;
 // }
 
+
 .test-container {
     width: 90vw;
     height: 85vh;
     // background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    position: relative;
     display: flex;
+    flex-direction: column;
     border-radius: 4px;
     box-shadow: $shadow-after;
 
 }
+
 
 .test-container-1 {
 

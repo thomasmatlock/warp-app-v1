@@ -57,6 +57,8 @@ elements.navPrimaryTabs.addEventListener("click", e => {
 
 const highlightSelected = id => {
 	// GET ARRAY OF NAV TABS
+	console.log(id);
+
 	const tabsArr = Array.from(document.querySelectorAll(".nav-primary-tab"));
 
 	// REMOVE ACTIVE CLASS FROM ALL TABS

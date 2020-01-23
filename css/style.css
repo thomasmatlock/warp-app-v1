@@ -208,27 +208,30 @@ li {
   background-image: linear-gradient(to right, #ffecd2 0%, #fcb69f 51%, #ffecd2 100%); }
 
 .cta-upgrade {
-  bottom: 0;
-  height: 6rem;
+  bottom: 0vh;
+  height: 5rem;
   width: 100%;
   position: absolute;
   background-image: linear-gradient(to right, #ef603d 0%, #f77d2a 33%, #fda849 66%, #ffe7a1 100%);
-  box-shadow: 0 2rem 6rem 0.5rem rgba(101, 90, 86, 0.2); }
+  box-shadow: 0 2rem 6rem 0.5rem rgba(101, 90, 86, 0.2);
+  overflow: hidden; }
 
 .content__list {
   list-style: none;
-  height: 110rem;
+  height: 70vh;
+  scrollbar-width: none;
   overflow: scroll;
   display: flex;
   width: 95%;
   flex-direction: column;
   justify-content: start;
   background-color: #fff;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0;
   border: solid 2px #ecedf3;
   box-shadow: 0px 5px 5px #9c9c9c;
-  border-radius: 4px;
-  z-index: 5; }
+  border-radius: 4px; }
 
 .content__list li {
   height: 5rem; }
@@ -345,8 +348,8 @@ li {
 
 .nav-secondary {
   width: 60%;
-  height: 10rem;
-  margin: 1rem auto 1rem;
+  height: 10vh;
+  margin: 1vh auto;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -404,37 +407,6 @@ li {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2) !important;
   color: white !important; }
 
-.content {
-  height: 90vh;
-  max-width: 90%;
-  margin: 60px auto;
-  position: relative;
-  background-color: #fff;
-  padding: 0 auto 5rem;
-  border-radius: 6px;
-  overflow: hidden;
-  box-shadow: 0 2rem 6rem 0.5rem rgba(101, 90, 86, 0.2);
-  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-  background-size: 500% 500%;
-  animation: gradient 15s ease infinite;
-  /*
-    You also have access to a function which can help set boundaries for otherwise flexible units.
-    For example to set a column to be 1fr, but shrink no further than 200px:
-    grid-template-columns: 1fr minmax(200px, 1fr);
-    */
-  /*
-    https://css-tricks.com/snippets/css/complete-guide-grid/
-    .container {
-  display: grid;
-  grid-template-columns: 50px 50px 50px 50px;
-  grid-template-rows: auto;
-  grid-template-areas: 
-    "header header header header"
-    "main main . sidebar"
-    "footer footer footer footer";
-    }
-    */ }
-
 .row {
   max-width: 114rem;
   background-color: transparent;
@@ -468,6 +440,9 @@ li {
   .row .col-3-of-4 {
     width: calc(((100% - 3 * 6rem) / 4) * 3 + (6rem * 2)); }
 
+body {
+  overflow: hidden; }
+
 h3 {
   font-family: "Nunito", sans-serif; }
 
@@ -480,7 +455,9 @@ a {
 .test-container {
   width: 90vw;
   height: 85vh;
+  position: relative;
   display: flex;
+  flex-direction: column;
   border-radius: 4px;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2); }
 
