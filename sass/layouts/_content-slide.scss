@@ -1,46 +1,72 @@
-.content {
-  // display: flex;
-  height: 90vh;
-  max-width: 90%;
-  margin: $nav-primary-height auto;
+// BLANK CONTAINER SLIDE HOLDING COLORED CONTENT
+.content-slide {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
   position: relative;
-  // padding: $nav-primary-height auto;
-  background-color: #fff;
-  padding: 0 auto 5rem;
-  border-radius: 6px;
-  overflow: hidden;
-  box-shadow: 0 2rem 6rem 0.5rem rgba(101, 90, 86, 0.2);
-  // background-image: $wildfire-background-blue-color-gradient-1; // testing
-  // background: #353746; // testing
-  // border: dotted 1px #000; // TEST
-  // background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-  // background-size: 500% 500%;
-  // animation: gradient 15s ease infinite;
+  background: rgb(255, 255, 255);
+  text-align: center;
+  padding: 0 2em;
+}
 
+// COLORED CONTENT INSIDE SLIDE
+.test-container {
+  width: 90vw;
+  margin-top: 4vh;
+  height: 90vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 4px;
+  box-shadow: $shadow-after;
+}
 
+.test-container-1 {
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 500% 500%;
+  animation: gradient $duration-1 ease infinite;
+}
 
+.test-container-2 {
+  background: linear-gradient(-45deg, #23d5ab, #ee7752, #e73c7e, #23a6d5);
+  background-size: 500% 500%;
+  animation: gradient $duration-1 ease infinite;
+}
 
+.test-container-3 {
+  background: linear-gradient(-45deg, #23a6d5, #23d5ab, #ee7752, #e73c7e);
+  background-size: 500% 500%;
+  animation: gradient $duration-1 ease infinite;
+}
 
-  /// GRID STUFF ///
-  // display: grid; // https://css-tricks.com/snippets/css/complete-guide-grid/
+.test-container-4 {
+  background: linear-gradient(-45deg, #e73c7e, #23a6d5, #23d5ab, #ee7752);
+  background-size: 500% 500%;
+  animation: gradient $duration-1 ease infinite;
+}
 
-  // MEASURES WIDTH OF COLUMNS, TOP TO BOTTOM
-  //grid-template-rows: 10rem minmax(100rem, auto); // 10rem/100px height, but shrinks no less than 100rem, height is auto
+/// GRID STUFF ///
+// display: grid; // https://css-tricks.com/snippets/css/complete-guide-grid/
 
-  // FOR EXAMPPLE: grid-template-rows: 25% 100px auto; means top to bottom, 25% top row, 100px, then auto to fill in rest of available space
-  /*
+// MEASURES WIDTH OF COLUMNS, TOP TO BOTTOM
+//grid-template-rows: 10rem minmax(100rem, auto); // 10rem/100px height, but shrinks no less than 100rem, height is auto
+
+// FOR EXAMPPLE: grid-template-rows: 25% 100px auto; means top to bottom, 25% top row, 100px, then auto to fill in rest of available space
+/*
     You also have access to a function which can help set boundaries for otherwise flexible units.
     For example to set a column to be 1fr, but shrink no further than 200px:
     grid-template-columns: 1fr minmax(200px, 1fr);
     */
 
-  // MEASURES WIDTH OF COLUMNS, LEFT TO RIGHT
-  // grid-template-columns: 1.1fr 2fr 1.1fr;
-  // grid-template-areas: "head head head""list recipe shopping";
-  // basically fr === fraction, this means its thirds, where center is roughly 3x the sides
-  // fr units: https://css-tricks.com/introduction-fr-css-unit/
+// MEASURES WIDTH OF COLUMNS, LEFT TO RIGHT
+// grid-template-columns: 1.1fr 2fr 1.1fr;
+// grid-template-areas: "head head head""list recipe shopping";
+// basically fr === fraction, this means its thirds, where center is roughly 3x the sides
+// fr units: https://css-tricks.com/introduction-fr-css-unit/
 
-  /*
+/*
     https://css-tricks.com/snippets/css/complete-guide-grid/
     .container {
   display: grid;
@@ -52,4 +78,3 @@
     "footer footer footer footer";
     }
     */
-}
