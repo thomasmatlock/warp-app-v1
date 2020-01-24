@@ -26,12 +26,21 @@ import {
 /**
  * STARTUP INIT
  */
-navSecondaryView.updateNavSecondaryTitles('tab-0');
+navSecondaryView.updateNavSecondaryTitles('tab_0');
 // navSecondaryView.highlightSelected();
 
 const state = {
-
+	nav1: {
+		tab_0: false,
+		tab_1: false,
+		tab_2: false,
+		tab_3: false
+	}
 }
+
+
+
+
 
 
 /**
@@ -55,9 +64,16 @@ elements.navPrimaryTabs.addEventListener("click", e => {
 		// console.log('yea its tab 2');
 		// console.log(id);
 		navSecondaryView.updateNavSecondaryTitles(id);
+		updateNav1Active(id);
+		// state.nav1[tabID] = true;
 	}
+	console.log(state.nav1);
 
 	highlightSelected(id);
+
+	// console.log(state.nav1_0);
+
+
 	// console.log(target.textContent);
 
 	const tabTextContent = target.textContent;
@@ -94,6 +110,20 @@ const highlightSelected = id => {
 	let tab = document.getElementById(`${id}`);
 	tab.classList.add('nav-primary-tab--active');
 };
+
+
+const updateNav1Active = (tabID) => {
+	// LOOP THROUGH OBJECT PROPERTIES TO REMOVE ACTIVE CLASS
+	for (var key in state.nav1) {
+		if (state.nav1.hasOwnProperty(key)) {
+			// console.log(key + " is " + state.nav1[key]);
+			state.nav1[key] = false;
+		}
+	}
+
+	// ADD TRUE TO SELECTED TAB
+	state.nav1[tabID] = true;
+}
 
 /**
  * NAV SECONDARY CONTROLLER
