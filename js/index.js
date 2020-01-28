@@ -4,12 +4,7 @@ document.querySelector(".test_add_item").addEventListener("click", e => {
 	console.log("Hi there");
 	listView.renderItem();
 });
-
-// document.querySelector('.test_remove_item').addEventListener('click', e => { // PRODUCTION MODE
-//     // e.preventDefault(); // prevents page from reloading on click submit button
-//     // console.log('Hi there');
-//     listView.deleteItem();
-// });
+import Nav from './models/Nav.js';
 
 import * as navPrimaryView from "./views/navPrimaryView.js";
 import * as navSecondaryView from "./views/navSecondaryView.js";
@@ -26,7 +21,7 @@ import {
 /**
  * STARTUP INIT
  */
-navSecondaryView.updateNavSecondaryTitles('nav_A_0');
+navSecondaryView.updateTitles('nav_A_0');
 // navSecondaryView.highlightSelected();
 
 const state = {
@@ -38,13 +33,13 @@ const state = {
 	}
 }
 
-const updateState = (navType, NavIndex) => {
+// const updateState = (navType, NavIndex) => {
 
-}
+// }
 
-const updateView = () => {
+// const updateView = () => {
 
-}
+// }
 
 
 
@@ -55,70 +50,22 @@ const updateView = () => {
  * NAV PRIMARY CONTROLLER
  */
 elements.nav_A.addEventListener("click", e => {
-	// PRODUCTION MODE
 	// GETS CLICK EVENT TARGET
 	const target = e.target;
+	const nav_A_id = target.id;
 
-	if (target) {
-		// console.log("You clicked nav_A__" + target.id);
-
+	if (nav_A_id) {
+		navSecondaryView.updateTitles(nav_A_id);
+		updateState(nav_A_id);
+		console.log(state.nav_A);
 	}
 
-	const id = target.id;
-
-	if (id) {
-		// console.log('yea its tab 2');
-		// console.log(id);
-		navSecondaryView.updateNavSecondaryTitles(id);
-		updatenav_AActive(id);
-		// state.nav_A[tabID] = true;
-	}
-	console.log(state.nav_A);
-
-	highlightSelected(id);
-
-	// console.log(state.nav_A_0);
-
-
-	// console.log(target.textContent);
-
-	const tabTextContent = target.textContent;
-	const textSubString1 = 'ownload';
-	const nav2SmartModeTab = 'nav_B_1'; //test
-
-	if (tabTextContent.includes(textSubString1) === true) {
-		// console.log('hi');
-		// navSecondaryView.toggleHighlightSelected('remove', nav2SmartModeTab);
-	}
-
-	// if (text.includes(textSubString) && target.className.includes('active') === false) {
-	// 	navSecondaryView.toggleHighlightSelected('add', nav2TestTab);
-
-
-
-
+	// 	CLEARS ACTIVE AND ADDS IT TO SELECTED TAB
+	navPrimaryView.clearActive();
+	navPrimaryView.highlightSelected(nav_A_id);
 });
 
-const highlightSelected = id => {
-	// GET ARRAY OF NAV TABS
-	// console.log(id);
-
-	const tabsArr = Array.from(document.querySelectorAll(".nav_A-tab"));
-	// console.log(tabsArr);
-
-
-	// REMOVE ACTIVE CLASS FROM ALL TABS
-	tabsArr.forEach(el => {
-		el.classList.remove("nav_A-tab--active");
-	});
-
-	// Add active class to selected tabs
-	let tab = document.getElementById(`${id}`);
-	tab.classList.add('nav_A-tab--active');
-};
-
-
-const updatenav_AActive = (tabID) => {
+const updateState = (tabID) => {
 	// LOOP THROUGH OBJECT PROPERTIES TO REMOVE ACTIVE CLASS
 	for (var key in state.nav_A) {
 		if (state.nav_A.hasOwnProperty(key)) {

@@ -6,7 +6,17 @@ import {
     navSecondaryTitles
 } from "../models/config.js";
 
-export const updateNavSecondaryTitles = (navPrimaryId) => {
+export const clearActive = () => {
+    // GET ARRAY OF NAV TABS
+    const tabsArr = Array.from(document.querySelectorAll(".nav_B-tab"));
+
+    // REMOVE ACTIVE CLASS FROM ALL TABS
+    tabsArr.forEach(el => {
+        el.classList.remove("nav_B-tab--active");
+    });
+}
+// REPLACE NAVB TITLES DEPENDING ON WHICH NAV PRIMARY IS CLICKED
+export const updateTitles = (navPrimaryId) => {
     // console.log(navPrimaryId);
     if (navPrimaryId === 'nav_A_0') {
 
@@ -35,6 +45,7 @@ export const updateNavSecondaryTitles = (navPrimaryId) => {
     }
 }
 
+// USED ABOVE IN updateTitles
 const replaceNavSecondaryTitles = (targetTabs, newTitles) => {
     let titlesCount = 0; // counter for number of titles
 

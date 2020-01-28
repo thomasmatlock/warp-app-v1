@@ -2,10 +2,6 @@ import {
     elements
 } from './base.js'
 
-export const testVars = {
-    firstName: 'money'
-}
-
 export const renderItem = () => {
     const markup = `
     <li>
