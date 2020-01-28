@@ -40,16 +40,16 @@ class StickyNavigation {
 
 	checkTabContainerPosition() {
 		let offset =
-			$(".nav-primary-tabs").offset().top +
-			$(".nav-primary-tabs").height() -
+			$(".nav_A-tabs").offset().top +
+			$(".nav_A-tabs").height() -
 			this.tabContainerHeight;
 		if ($(window).scrollTop() > offset) {
-			$(".nav-primary-tabs-container").addClass(
-				"nav-primary-tabs-container--top"
+			$(".nav_A-tabs-container").addClass(
+				"nav_A-tabs-container--top"
 			);
 		} else {
-			$(".nav-primary-tabs-container").removeClass(
-				"nav-primary-tabs-container--top"
+			$(".nav_A-tabs-container").removeClass(
+				"nav_A-tabs-container--top"
 			);
 		}
 	}
