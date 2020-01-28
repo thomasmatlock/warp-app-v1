@@ -152,9 +152,9 @@ elements.navSecondaryTabs.addEventListener("click", e => {
 	// console.log(target.classList); //testing
 
 	// CHECK FOR BUTTON CLICK
-	if (target.classList.contains("nav-secondary-tab")) {
+	if (target.classList.contains("nav_B-tab")) {
 		// checks if event has a classname i want
-		// console.log("You clicked nav-secondary__" + target.id);
+		// console.log("You clicked nav_B__" + target.id);
 
 		if (id) {
 			// console.log(id);

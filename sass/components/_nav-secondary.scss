@@ -1,5 +1,5 @@
 // PARENT CONTAINER FOR CHILDREN TABS
-.nav-secondary {
+.nav_B {
 	//// SIZE
 	width: 60%;
 	height: 10vh;
@@ -49,8 +49,8 @@
 }
 
 // CHILDREN TABS
-.nav-secondary-tab:link,
-.nav-secondary-tab:visited {
+.nav_B-tab:link,
+.nav_B-tab:visited {
 	//// SIZE
 	width: 10rem;
 	max-width: 10rem;
@@ -108,7 +108,7 @@
 
 }
 
-.nav-secondary-tab--active {
+.nav_B-tab--active {
 	background-image: $codepen-orange-1 !important;
 	transform: scale(1.01);
 	box-shadow: $shadow-after !important;

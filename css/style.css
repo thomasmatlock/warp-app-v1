@@ -354,7 +354,7 @@ li {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   color: white; }
 
-.nav-secondary {
+.nav_B {
   width: 60%;
   height: 10vh;
   margin: 1vh auto 0;
@@ -364,19 +364,19 @@ li {
   align-content: center;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
   border-radius: 4px; }
-  .nav-secondary__child {
+  .nav_B__child {
     width: 100%;
     background-color: #fff;
     display: flex; }
-  .nav-secondary__main {
+  .nav_B__main {
     justify-content: flex-start;
     border-radius: 4px 0 0 4px; }
-  .nav-secondary__minor {
+  .nav_B__minor {
     justify-content: flex-end;
     border-radius: 0 4px 4px 0; }
 
-.nav-secondary-tab:link,
-.nav-secondary-tab:visited {
+.nav_B-tab:link,
+.nav_B-tab:visited {
   width: 10rem;
   max-width: 10rem;
   height: 7.5rem;
@@ -397,19 +397,19 @@ li {
   transition: all ease-out 0.3s;
   animation-name: moveInTop;
   animation-duration: 0.6s; }
-  .nav-secondary-tab:link:hover,
-  .nav-secondary-tab:visited:hover {
+  .nav_B-tab:link:hover,
+  .nav_B-tab:visited:hover {
     color: white;
     background-image: linear-gradient(268deg, #da2c4d, #f8ab37);
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
     border-radius: 4px;
     transform: scale(1.01); }
-  .nav-secondary-tab:link:active,
-  .nav-secondary-tab:visited:active {
+  .nav_B-tab:link:active,
+  .nav_B-tab:visited:active {
     background-color: yellow;
     transform: scale(0.95); }
 
-.nav-secondary-tab--active {
+.nav_B-tab--active {
   background-image: linear-gradient(268deg, #da2c4d, #f8ab37) !important;
   transform: scale(1.01);
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2) !important;
