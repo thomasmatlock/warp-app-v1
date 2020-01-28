@@ -26,15 +26,15 @@ import {
 /**
  * STARTUP INIT
  */
-navSecondaryView.updateNavSecondaryTitles('nav_A_00');
+navSecondaryView.updateNavSecondaryTitles('nav_A_0');
 // navSecondaryView.highlightSelected();
 
 const state = {
 	nav1: {
-		nav_A_00: false,
-		nav_A_01: false,
-		nav_A_02: false,
-		nav_A_03: false
+		nav_A_0: false,
+		nav_A_1: false,
+		nav_A_2: false,
+		nav_A_3: false
 	}
 }
 
