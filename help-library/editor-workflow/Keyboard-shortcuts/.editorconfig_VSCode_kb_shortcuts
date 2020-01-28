@@ -6,20 +6,19 @@
 # Ctrl Shift B for npm scripts
 
 Fold folds the innermost uncollapsed region at the cursor:
-Ctrl+Shift+[ on Windows
+ - Ctrl+Shift+[ on Windows
 
 Unfold unfolds the collapsed region at the cursor:
-Ctrl+Shift+] on Windows
+ - Ctrl+Shift+] on Windows
 
 Fold All folds all region in the editor:
-Ctrl+K Ctrl+0 (zero) on Windows
+ - Ctrl+K Ctrl+0 (zero) on Windows
 
 Unfold All unfolds all regions in the editor:
-Ctrl+K Ctrl+J on Windows
+ - Ctrl+K Ctrl+J on Windows
 
 Select All Occurrences of Find Match editor.action.selectHighlights.
-
-Ctrl+Shift+L
+- Ctrl+Shift+L
 
 
 
