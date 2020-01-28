@@ -15,6 +15,7 @@ export const clearActive = () => {
         el.classList.remove("nav_B-tab--active");
     });
 }
+
 // REPLACE NAVB TITLES DEPENDING ON WHICH NAV PRIMARY IS CLICKED
 export const updateTitles = (navPrimaryId) => {
     // console.log(navPrimaryId);
@@ -64,5 +65,17 @@ export const toggleHighlightSelected = (type, tabId) => {
     } else if (type === 'remove') {
         let tab = document.getElementById(`${tabId}`);
         tab.classList.remove('nav_B-tab--active');
+    }
+}
+
+export const checkForSubstring = (target, subString) => {
+    // const id = target.id;
+    const text = target.textContent;
+
+    const nav_B_test_placeholder = 'nav_B_1'; //test
+    if (text.includes(subString) && target.className.includes('active') === false) {
+        toggleHighlightSelected('add', nav_B_test_placeholder);
+    } else if (text.includes(subString) && target.className.includes('active') === true) {
+        toggleHighlightSelected('remove', nav_B_test_placeholder);
     }
 }

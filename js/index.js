@@ -21,8 +21,12 @@ import {
 /**
  * STARTUP INIT
  */
-navSecondaryView.updateTitles('nav_A_0');
-// navSecondaryView.highlightSelected();
+const init = () => {
+	// navSecondaryView.updateTitles('nav_A_0');
+	// navSecondaryView.highlightSelected();
+}
+init();
+
 
 const state = {
 	nav_A: {
@@ -33,40 +37,11 @@ const state = {
 	}
 }
 
-// const updateState = (navType, NavIndex) => {
-
-// }
-
-// const updateView = () => {
-
-// }
-
-
-
-
-
-
-/**
- * NAV PRIMARY CONTROLLER
- */
-elements.nav_A.addEventListener("click", e => {
-	// GETS CLICK EVENT TARGET
-	const target = e.target;
-	const nav_A_id = target.id;
-
-	if (nav_A_id) {
-		navSecondaryView.updateTitles(nav_A_id);
-		updateState(nav_A_id);
-		console.log(state.nav_A);
-	}
-
-	// 	CLEARS ACTIVE AND ADDS IT TO SELECTED TAB
-	navPrimaryView.clearActive();
-	navPrimaryView.highlightSelected(nav_A_id);
-});
-
+// updates selected nav_A tab to state as active
 const updateState = (tabID) => {
 	// LOOP THROUGH OBJECT PROPERTIES TO REMOVE ACTIVE CLASS
+	console.log(tabID);
+
 	for (var key in state.nav_A) {
 		if (state.nav_A.hasOwnProperty(key)) {
 			// console.log(key + " is " + state.nav_A[key]);
@@ -79,43 +54,40 @@ const updateState = (tabID) => {
 }
 
 /**
+ * NAV PRIMARY CONTROLLER
+ */
+elements.nav_A.addEventListener("click", e => {
+	// GETS CLICK EVENT TARGET
+	const target = e.target;
+	const nav_A_id = target.id;
+
+	if (nav_A_id) {
+		navSecondaryView.updateTitles(nav_A_id); // updateTitles NEEDS WORK
+		updateState(nav_A_id);
+	}
+
+	// 	CLEARS ACTIVE AND ADDS IT TO SELECTED TAB
+	navPrimaryView.clearActive();
+	navPrimaryView.highlightSelected(nav_A_id);
+});
+
+
+
+/**
  * NAV SECONDARY CONTROLLER
  */
 
 elements.nav_B.addEventListener("click", e => {
 	// GETS CLICK EVENT TARGET
 	const target = e.target;
-	let id = target.id;
-	// console.log(id);
-	const text = target.textContent;
-	const textSubString = 'mart'; // looks for [s]mart mode, skip 'S' cuz maybe not always in caps
-	// console.log(text);
-	// console.log(text.includes(textSubString));
+	const subString = 'mart';
 
-	// console.log(target.className);
+	navSecondaryView.clearActive();
+	navSecondaryView.checkForSubstring(target, subString);
 
-	const nav2TestTab = 'nav_B_1'; //test
-	if (text.includes(textSubString) && target.className.includes('active') === false) {
-		navSecondaryView.toggleHighlightSelected('add', nav2TestTab);
-	} else if (text.includes(textSubString) && target.className.includes('active') === true) {
-		navSecondaryView.toggleHighlightSelected('remove', nav2TestTab);
-	}
-
-	// console.log(target.class); //testing
-	// console.log(target.classList); //testing
-
-	// CHECK FOR BUTTON CLICK
-	if (target.classList.contains("nav_B-tab")) {
-		// checks if event has a classname i want
-		// console.log("You clicked nav_B__" + target.id);
-
-		if (id) {
-			// console.log(id);
-			// highlightSelected(id);
-		}
-		return id; // NOT WORKING!!!
-	}
 });
+
+
 
 /**
  * LIST CONTROLLER
