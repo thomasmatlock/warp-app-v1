@@ -328,6 +328,7 @@ li {
 .nav_A-tab {
   display: flex;
   justify-content: center;
+  width: 25%;
   align-items: center;
   flex: 1 2 auto;
   color: #000;
