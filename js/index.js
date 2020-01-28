@@ -37,6 +37,8 @@ const state = {
 	}
 }
 
+state.nav = new Nav('something');
+
 // updates selected nav_A tab to state as active
 const updateState = (tabID) => {
 	// LOOP THROUGH OBJECT PROPERTIES TO REMOVE ACTIVE CLASS
