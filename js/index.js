@@ -135,7 +135,7 @@ const updatenav_AActive = (tabID) => {
  * NAV SECONDARY CONTROLLER
  */
 
-elements.navSecondaryTabs.addEventListener("click", e => {
+elements.nav_B.addEventListener("click", e => {
 	// GETS CLICK EVENT TARGET
 	const target = e.target;
 	let id = target.id;
