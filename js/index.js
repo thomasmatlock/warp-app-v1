@@ -30,12 +30,20 @@ navSecondaryView.updateNavSecondaryTitles('nav_A_0');
 // navSecondaryView.highlightSelected();
 
 const state = {
-	nav1: {
+	nav_A: {
 		nav_A_0: false,
 		nav_A_1: false,
 		nav_A_2: false,
 		nav_A_3: false
 	}
+}
+
+const updateState = (navType, NavIndex) => {
+
+}
+
+const updateView = () => {
+
 }
 
 
@@ -46,12 +54,10 @@ const state = {
 /**
  * NAV PRIMARY CONTROLLER
  */
-elements.navPrimaryTabs.addEventListener("click", e => {
+elements.nav_A.addEventListener("click", e => {
 	// PRODUCTION MODE
 	// GETS CLICK EVENT TARGET
 	const target = e.target;
-
-	// while(target && !target.id) target = target.parentNode;
 
 	if (target) {
 		// console.log("You clicked nav_A__" + target.id);
@@ -64,14 +70,14 @@ elements.navPrimaryTabs.addEventListener("click", e => {
 		// console.log('yea its tab 2');
 		// console.log(id);
 		navSecondaryView.updateNavSecondaryTitles(id);
-		updateNav1Active(id);
-		// state.nav1[tabID] = true;
+		updatenav_AActive(id);
+		// state.nav_A[tabID] = true;
 	}
-	console.log(state.nav1);
+	console.log(state.nav_A);
 
 	highlightSelected(id);
 
-	// console.log(state.nav1_0);
+	// console.log(state.nav_A_0);
 
 
 	// console.log(target.textContent);
@@ -112,17 +118,17 @@ const highlightSelected = id => {
 };
 
 
-const updateNav1Active = (tabID) => {
+const updatenav_AActive = (tabID) => {
 	// LOOP THROUGH OBJECT PROPERTIES TO REMOVE ACTIVE CLASS
-	for (var key in state.nav1) {
-		if (state.nav1.hasOwnProperty(key)) {
-			// console.log(key + " is " + state.nav1[key]);
-			state.nav1[key] = false;
+	for (var key in state.nav_A) {
+		if (state.nav_A.hasOwnProperty(key)) {
+			// console.log(key + " is " + state.nav_A[key]);
+			state.nav_A[key] = false;
 		}
 	}
 
 	// ADD TRUE TO SELECTED TAB
-	state.nav1[tabID] = true;
+	state.nav_A[tabID] = true;
 }
 
 /**
