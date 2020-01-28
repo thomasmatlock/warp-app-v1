@@ -18,7 +18,7 @@
 	//align-items: center;
 	position: fixed;
 	top: 0;
-	height: $nav-primary-height;
+	height: $nav_A-height;
 	width: 60%;
 	box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 	z-index: 10;
@@ -26,7 +26,7 @@
 }
 
 // CHILDREN TABS
-.nav-primary-tab {
+.nav_A-tab {
 	display: flex;
 	justify-content: center; // PRODUCTION
 	// justify-content: start; // TESTING
@@ -69,7 +69,7 @@
 
 }
 
-.nav-primary-tab--active {
+.nav_A-tab--active {
 	// background-color: $color-secondary-dark;
 	// background-image: $wildfire-button-color-gradient-1;
 	background-image: $codepen-orange-1;

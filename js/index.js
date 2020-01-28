@@ -54,7 +54,7 @@ elements.navPrimaryTabs.addEventListener("click", e => {
 	// while(target && !target.id) target = target.parentNode;
 
 	if (target) {
-		// console.log("You clicked nav-primary__" + target.id);
+		// console.log("You clicked nav_A__" + target.id);
 
 	}
 
@@ -97,18 +97,18 @@ const highlightSelected = id => {
 	// GET ARRAY OF NAV TABS
 	// console.log(id);
 
-	const tabsArr = Array.from(document.querySelectorAll(".nav-primary-tab"));
+	const tabsArr = Array.from(document.querySelectorAll(".nav_A-tab"));
 	// console.log(tabsArr);
 
 
 	// REMOVE ACTIVE CLASS FROM ALL TABS
 	tabsArr.forEach(el => {
-		el.classList.remove("nav-primary-tab--active");
+		el.classList.remove("nav_A-tab--active");
 	});
 
 	// Add active class to selected tabs
 	let tab = document.getElementById(`${id}`);
-	tab.classList.add('nav-primary-tab--active');
+	tab.classList.add('nav_A-tab--active');
 };
 
 

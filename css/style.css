@@ -325,7 +325,7 @@ li {
   z-index: 10;
   background-color: #fff; }
 
-.nav-primary-tab {
+.nav_A-tab {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -337,7 +337,7 @@ li {
   border-radius: 4px;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
   font-weight: 200; }
-  .nav-primary-tab:hover {
+  .nav_A-tab:hover {
     color: white;
     background: #2998ff;
     background-position: bottom;
@@ -345,10 +345,10 @@ li {
     transition: all 0.3s ease;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
     z-index: 20; }
-  .nav-primary-tab:active {
+  .nav_A-tab:active {
     transform: scale(1); }
 
-.nav-primary-tab--active {
+.nav_A-tab--active {
   background-image: linear-gradient(268deg, #da2c4d, #f8ab37);
   transform: scale(1.05);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
