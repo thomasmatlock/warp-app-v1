@@ -1,5 +1,5 @@
 export const elements = {
-    navPrimaryTabs: document.querySelector('.nav_A-tabs'),
+    navPrimaryTabs: document.querySelector('.nav_A'),
     navPrimaryTab: document.querySelector('.nav_A-tab'),
     navSecondaryTabs: document.querySelector('.nav_B'),
     navSecondaryTab: document.querySelector('.nav_B-tab'),
