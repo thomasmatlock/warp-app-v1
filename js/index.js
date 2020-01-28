@@ -78,7 +78,7 @@ elements.navPrimaryTabs.addEventListener("click", e => {
 
 	const tabTextContent = target.textContent;
 	const textSubString1 = 'ownload';
-	const nav2SmartModeTab = 'tab-b'; //test
+	const nav2SmartModeTab = 'nav_B_1'; //test
 
 	if (tabTextContent.includes(textSubString1) === true) {
 		// console.log('hi');
@@ -141,7 +141,7 @@ elements.navSecondaryTabs.addEventListener("click", e => {
 
 	// console.log(target.className);
 
-	const nav2TestTab = 'tab-b'; //test
+	const nav2TestTab = 'nav_B_1'; //test
 	if (text.includes(textSubString) && target.className.includes('active') === false) {
 		navSecondaryView.toggleHighlightSelected('add', nav2TestTab);
 	} else if (text.includes(textSubString) && target.className.includes('active') === true) {
