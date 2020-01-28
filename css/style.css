@@ -426,7 +426,7 @@ li {
   text-align: center;
   padding: 0 2em; }
 
-.test-container {
+.content-container {
   width: 90vw;
   margin-top: 4vh;
   height: 90vh;
@@ -436,22 +436,22 @@ li {
   border-radius: 4px;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2); }
 
-.test-container-1 {
+.content-container-1 {
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
   background-size: 500% 500%;
   animation: gradient 20s ease infinite; }
 
-.test-container-2 {
+.content-container-2 {
   background: linear-gradient(-45deg, #23d5ab, #ee7752, #e73c7e, #23a6d5);
   background-size: 500% 500%;
   animation: gradient 20s ease infinite; }
 
-.test-container-3 {
+.content-container-3 {
   background: linear-gradient(-45deg, #23a6d5, #23d5ab, #ee7752, #e73c7e);
   background-size: 500% 500%;
   animation: gradient 20s ease infinite; }
 
-.test-container-4 {
+.content-container-4 {
   background: linear-gradient(-45deg, #e73c7e, #23a6d5, #23d5ab, #ee7752);
   background-size: 500% 500%;
   animation: gradient 20s ease infinite; }
