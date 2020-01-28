@@ -8,25 +8,25 @@ import {
 
 export const updateNavSecondaryTitles = (navPrimaryId) => {
     // console.log(navPrimaryId);
-    if (navPrimaryId === 'tab_0') {
+    if (navPrimaryId === 'nav_A_00') {
 
         const navSecondaryTitlesArr = Array.from(document.querySelectorAll(".nav-secondary-tab-0")); // creates array of current tabs to target for title replacement
         const titles = navSecondaryTitles.audio; // saves array of new nav titles
         replaceNavSecondaryTitles(navSecondaryTitlesArr, titles); // replaces old titles with new titles
 
-    } else if (navPrimaryId === 'tab_1') {
+    } else if (navPrimaryId === 'nav_A_01') {
 
         const navSecondaryTitlesArr = Array.from(document.querySelectorAll(".nav-secondary-tab-1")); // creates array of current tabs to target for title replacement
         const titles = navSecondaryTitles.video; // saves array of new nav titles
         replaceNavSecondaryTitles(navSecondaryTitlesArr, titles); // replaces old titles with new titles
 
-    } else if (navPrimaryId === 'tab_2') {
+    } else if (navPrimaryId === 'nav_A_02') {
 
         const navSecondaryTitlesArr = Array.from(document.querySelectorAll(".nav-secondary-tab-2")); // creates array of current tabs to target for title replacement
         const titles = navSecondaryTitles.audioTools; // saves array of new nav titles
         replaceNavSecondaryTitles(navSecondaryTitlesArr, titles); // replaces old titles with new titles
 
-    } else if (navPrimaryId === 'tab_3') {
+    } else if (navPrimaryId === 'nav_A_03') {
 
         const navSecondaryTitlesArr = Array.from(document.querySelectorAll(".nav-secondary-tab-3")); // creates array of current tabs to target for title replacement
         const titles = navSecondaryTitles.placeholder; // saves array of new nav titles
