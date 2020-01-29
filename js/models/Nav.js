@@ -79,15 +79,15 @@ export default class Nav {
             console.log('it was false, but it should be true now');
             this.nav_B[nav_A_active][id] = true;
 
-            console.log(this.nav_B[nav_A_active]);
+            // console.log(this.nav_B[nav_A_active]);
 
         } else if (this.nav_B[nav_A_active][id] = true) {
 
             console.log('it was true, but it should be false now');
-            console.log(id);
+            // console.log(id);
 
             this.nav_B[nav_A_active][id] = false;
-            console.log(this.nav_B[nav_A_active]);
+            // console.log(this.nav_B[nav_A_active]);
 
         }
     }
