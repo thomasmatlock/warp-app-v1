@@ -1,9 +1,3 @@
-document.querySelector(".test_add_item").addEventListener("click", e => {
-	// PRODUCTION MODE
-	// e.preventDefault(); // prevents page from reloading on click submit button
-	console.log("Hi there");
-	listView.renderItem();
-});
 import Nav from './models/Nav.js';
 
 import * as navPrimaryView from "./views/navPrimaryView.js";
@@ -37,23 +31,25 @@ const state = {
 	}
 }
 
-state.nav = new Nav('something');
+state.nav = new Nav();
+console.log(state.nav.nav_A);
+
 
 // updates selected nav_A tab to state as active
-const updateState = (tabID) => {
-	// LOOP THROUGH OBJECT PROPERTIES TO REMOVE ACTIVE CLASS
-	console.log(tabID);
+// const updateActive = (tabID) => {
+// 	// LOOP THROUGH OBJECT PROPERTIES TO REMOVE ACTIVE CLASS
+// 	console.log(tabID);
 
-	for (var key in state.nav_A) {
-		if (state.nav_A.hasOwnProperty(key)) {
-			// console.log(key + " is " + state.nav_A[key]);
-			state.nav_A[key] = false;
-		}
-	}
+// 	for (var key in state.nav_A) {
+// 		if (state.nav_A.hasOwnProperty(key)) {
+// 			// console.log(key + " is " + state.nav_A[key]);
+// 			state.nav_A[key] = false;
+// 		}
+// 	}
 
-	// ADD TRUE TO SELECTED TAB
-	state.nav_A[tabID] = true;
-}
+// 	// ADD TRUE TO SELECTED TAB
+// 	state.nav_A[tabID] = true;
+// }
 
 /**
  * NAV PRIMARY CONTROLLER
@@ -61,16 +57,16 @@ const updateState = (tabID) => {
 elements.nav_A.addEventListener("click", e => {
 	// GETS CLICK EVENT TARGET
 	const target = e.target;
-	const nav_A_id = target.id;
+	const id = target.id;
 
-	if (nav_A_id) {
-		navSecondaryView.updateTitles(nav_A_id); // updateTitles NEEDS WORK
-		updateState(nav_A_id);
+	if (id) {
+		state.nav.updateActive(id);
+		navSecondaryView.updateTitles(id); // updateTitles NEEDS WORK
 	}
 
 	// 	CLEARS ACTIVE AND ADDS IT TO SELECTED TAB
 	navPrimaryView.clearActive();
-	navPrimaryView.highlightSelected(nav_A_id);
+	navPrimaryView.highlightSelected(id);
 });
 
 
@@ -78,7 +74,6 @@ elements.nav_A.addEventListener("click", e => {
 /**
  * NAV SECONDARY CONTROLLER
  */
-
 elements.nav_B.addEventListener("click", e => {
 	// GETS CLICK EVENT TARGET
 	const target = e.target;
@@ -94,3 +89,7 @@ elements.nav_B.addEventListener("click", e => {
 /**
  * LIST CONTROLLER
  */
+
+document.querySelector(".test_add_item").addEventListener("click", e => {
+	listView.renderItem();
+});

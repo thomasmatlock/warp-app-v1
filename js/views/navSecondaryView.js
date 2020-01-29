@@ -17,27 +17,33 @@ export const clearActive = () => {
 }
 
 // REPLACE NAVB TITLES DEPENDING ON WHICH NAV PRIMARY IS CLICKED
-export const updateTitles = (navPrimaryId) => {
-    // console.log(navPrimaryId);
-    if (navPrimaryId === 'nav_A_0') {
+export const updateTitles = (nav_A_id) => {
+    // console.log(nav_A_id);
+    const nav_B_id_arr = [
+        ".nav_B-tab-0",
+        ".nav_B-tab-1",
+        ".nav_B-tab-2",
+        ".nav_B-tab-3"
+    ]
+    if (nav_A_id === 'nav_A_0') {
 
         const navSecondaryTitlesArr = Array.from(document.querySelectorAll(".nav_B-tab-0")); // creates array of current tabs to target for title replacement
         const titles = navSecondaryTitles.audio; // saves array of new nav titles
         replaceNavSecondaryTitles(navSecondaryTitlesArr, titles); // replaces old titles with new titles
 
-    } else if (navPrimaryId === 'nav_A_1') {
+    } else if (nav_A_id === 'nav_A_1') {
 
         const navSecondaryTitlesArr = Array.from(document.querySelectorAll(".nav_B-tab-1")); // creates array of current tabs to target for title replacement
         const titles = navSecondaryTitles.video; // saves array of new nav titles
         replaceNavSecondaryTitles(navSecondaryTitlesArr, titles); // replaces old titles with new titles
 
-    } else if (navPrimaryId === 'nav_A_2') {
+    } else if (nav_A_id === 'nav_A_2') {
 
         const navSecondaryTitlesArr = Array.from(document.querySelectorAll(".nav_B-tab-2")); // creates array of current tabs to target for title replacement
         const titles = navSecondaryTitles.audioTools; // saves array of new nav titles
         replaceNavSecondaryTitles(navSecondaryTitlesArr, titles); // replaces old titles with new titles
 
-    } else if (navPrimaryId === 'nav_A_3') {
+    } else if (nav_A_id === 'nav_A_3') {
 
         const navSecondaryTitlesArr = Array.from(document.querySelectorAll(".nav_B-tab-3")); // creates array of current tabs to target for title replacement
         const titles = navSecondaryTitles.placeholder; // saves array of new nav titles
