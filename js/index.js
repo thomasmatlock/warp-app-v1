@@ -51,6 +51,8 @@ state.nav = new Nav();
 // 	state.nav_A[tabID] = true;
 // }
 
+let nav_A_active = 'nav_A_0';
+
 /**
  * NAV PRIMARY CONTROLLER
  */
@@ -58,18 +60,22 @@ elements.nav_A.addEventListener("click", e => {
 	// GETS CLICK EVENT TARGET
 	const target = e.target;
 	const id = target.id;
+	nav_A_active = id;
+	console.log(id);
+
 
 	if (id) {
-		state.nav.updateActive(id);
+		state.nav.updateActiveNav_A(id);
 		navSecondaryView.updateTitles(id); // updateTitles NEEDS WORK
 	}
 
 	// 	CLEARS ACTIVE AND ADDS IT TO SELECTED TAB
 	navPrimaryView.clearActive();
-	navSecondaryView.clearActive();
-
 	navPrimaryView.highlightSelected(id);
+
+	navSecondaryView.clearActive();
 });
+
 
 
 
@@ -78,10 +84,24 @@ elements.nav_A.addEventListener("click", e => {
  */
 elements.nav_B.addEventListener("click", e => {
 	const target = e.target;
+	const id = target.id;
 	const subString = 'mart';
+
 
 	navSecondaryView.clearActive();
 	navSecondaryView.checkForSubstring(target, subString);
+
+	state.nav.updateActiveNav_B(nav_A_active, id);
+
+	// if (state.nav.nav_B[nav_A_active][id] != true) {
+	// 	state.nav.nav_B[nav_A_active][id] = true;
+	// } else if (state.nav.nav_B[nav_A_active][id] = true;) {
+	// 	state.nav.nav_B[nav_A_active][id] = false;
+	// }
+
+	// console.log(state.nav.nav_B[nav_A_active][id]);
+
+
 
 });
 
