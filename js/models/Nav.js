@@ -10,7 +10,7 @@ export default class Nav {
 
     updateActive = (id) => {
         // LOOP THROUGH OBJECT PROPERTIES TO REMOVE ACTIVE CLASS
-        console.log(id);
+        // console.log(id);
 
         for (var key in this.nav_A) {
             if (this.nav_A.hasOwnProperty(key)) {

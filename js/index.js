@@ -32,7 +32,7 @@ const state = {
 }
 
 state.nav = new Nav();
-console.log(state.nav.nav_A);
+// console.log(state.nav.nav_A);
 
 
 // updates selected nav_A tab to state as active
@@ -66,6 +66,8 @@ elements.nav_A.addEventListener("click", e => {
 
 	// 	CLEARS ACTIVE AND ADDS IT TO SELECTED TAB
 	navPrimaryView.clearActive();
+	navSecondaryView.clearActive();
+
 	navPrimaryView.highlightSelected(id);
 });
 
@@ -75,7 +77,6 @@ elements.nav_A.addEventListener("click", e => {
  * NAV SECONDARY CONTROLLER
  */
 elements.nav_B.addEventListener("click", e => {
-	// GETS CLICK EVENT TARGET
 	const target = e.target;
 	const subString = 'mart';
 

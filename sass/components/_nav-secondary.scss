@@ -50,8 +50,8 @@
 }
 
 // CHILDREN TABS
-.nav_B-tab:link,
-.nav_B-tab:visited {
+.nav_B-button:link,
+.nav_B-button:visited {
 	//// SIZE
 	width: 10rem;
 	max-width: 10rem;
@@ -109,7 +109,7 @@
 
 }
 
-.nav_B-slide--active {
+.nav_B-button--active {
 	background-image: $codepen-orange-1 !important;
 	transform: scale(1.01);
 	box-shadow: $shadow-after !important;
