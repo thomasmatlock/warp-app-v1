@@ -56,7 +56,7 @@ const replaceNavSecondaryTitles = (targetTabs, newTitles) => {
 }
 
 
-export const toggleHighlightSelected = (type, tabId) => {
+export const highlightSelected = (type, tabId) => {
     // const id = tabId;
     // console.log(`${type} active class to ${tabId}`);
 
@@ -80,8 +80,8 @@ export const checkForSubstring = (target, subString) => {
     const text = target.textContent;
 
     if (text.includes(subString) && target.className.includes('active') === !true) {
-        toggleHighlightSelected('add', id);
+        highlightSelected('add', id);
     } else if (text.includes(subString) && target.className.includes('active') === true) {
-        toggleHighlightSelected('remove', id);
+        highlightSelected('remove', id);
     }
 }

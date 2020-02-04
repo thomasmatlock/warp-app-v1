@@ -20,6 +20,8 @@ Unfold All unfolds all regions in the editor:
 Select All Occurrences of Find Match editor.action.selectHighlights.
 - Ctrl+Shift+L
 
+Ctrl+P gives us Command Palette, muchn easier to find a find, it's instant find-a-file
+
 
 
 
