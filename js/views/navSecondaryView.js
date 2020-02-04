@@ -75,13 +75,17 @@ export const highlightSelected = (type, tabId) => {
     }
 }
 
+let containsSubStr;
 export const checkForSubstring = (target, subString) => {
     const id = target.id;
     const text = target.textContent;
 
+
     if (text.includes(subString) && target.className.includes('active') === !true) {
-        highlightSelected('add', id);
+        containsSubStr = false;
+        return containsSubStr;
     } else if (text.includes(subString) && target.className.includes('active') === true) {
-        highlightSelected('remove', id);
+        containsSubStr = true;
+        return containsSubStr;
     }
 }

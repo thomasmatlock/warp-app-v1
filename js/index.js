@@ -32,25 +32,6 @@ const state = {
 }
 
 state.nav = new Nav();
-// console.log(state.nav.nav_A);
-
-
-// updates selected nav_A tab to state as active
-// const updateActive = (tabID) => {
-// 	// LOOP THROUGH OBJECT PROPERTIES TO REMOVE ACTIVE CLASS
-// 	console.log(tabID);
-
-// 	for (var key in state.nav_A) {
-// 		if (state.nav_A.hasOwnProperty(key)) {
-// 			// console.log(key + " is " + state.nav_A[key]);
-// 			state.nav_A[key] = false;
-// 		}
-// 	}
-
-// 	// ADD TRUE TO SELECTED TAB
-// 	state.nav_A[tabID] = true;
-// }
-
 let nav_A_active = 'nav_A_0';
 
 /**
@@ -72,11 +53,21 @@ elements.nav_A.addEventListener("click", e => {
 	// 	CLEARS ACTIVE AND ADDS IT TO SELECTED TAB
 	navPrimaryView.clearActive();
 	navPrimaryView.highlightSelected(id);
-	// console.log(state.nav.nav_A);
-
 
 	navSecondaryView.clearActive();
+
+	const nav_B_actives = state.nav.nav_B[nav_A_active];
+	for (var key in nav_B_actives) {
+		if (nav_B_actives.hasOwnProperty(key) && nav_B_actives[key] === true) {
+			// console.log(key + " is " + nav_B_actives[key]);
+			navSecondaryView.highlightSelected('add', key);
+
+		}
+	}
 });
+
+
+
 
 
 
@@ -87,21 +78,18 @@ elements.nav_A.addEventListener("click", e => {
 elements.nav_B.addEventListener("click", e => {
 	const target = e.target;
 	const id = target.id;
-	const subString = 'mart';
+	const subString = 'e';
 
 
 	navSecondaryView.clearActive();
-	navSecondaryView.checkForSubstring(target, subString);
 
-	state.nav.updateActiveNav_B(nav_A_active, id);
-
-	// if (state.nav.nav_B[nav_A_active][id] != true) {
-	// 	state.nav.nav_B[nav_A_active][id] = true;
-	// } else if (state.nav.nav_B[nav_A_active][id] = true;) {
-	// 	state.nav.nav_B[nav_A_active][id] = false;
-	// }
-
-	// console.log(state.nav.nav_B[nav_A_active][id]);
+	const containsSubString = navSecondaryView.checkForSubstring(target, subString);
+	if (containsSubString === false) {
+		navSecondaryView.highlightSelected('add', id);
+		state.nav.updateActiveNav_B(nav_A_active, id);
+	} else if (containsSubString === true) {
+		navSecondaryView.highlightSelected('remove', id);
+	}
 
 
 

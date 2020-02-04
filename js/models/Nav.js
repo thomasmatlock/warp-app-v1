@@ -69,21 +69,21 @@ export default class Nav {
     }
 
     updateActiveNav_B = (nav_A_active, nav_B_id) => {
-        // console.log('hi there');
+        console.log('hi there');
         const id = nav_B_id;
 
 
         if (this.nav_B[nav_A_active][id] != true) {
 
             // console.log('its false, gotta set it to true');
-            console.log('it was false, but it should be true now');
+            // console.log('it was false, but it should be true now');
             this.nav_B[nav_A_active][id] = true;
 
             // console.log(this.nav_B[nav_A_active]);
 
         } else if (this.nav_B[nav_A_active][id] = true) {
 
-            console.log('it was true, but it should be false now');
+            // console.log('it was true, but it should be false now');
             // console.log(id);
 
             this.nav_B[nav_A_active][id] = false;
