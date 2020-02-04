@@ -72,6 +72,8 @@ elements.nav_A.addEventListener("click", e => {
 	// 	CLEARS ACTIVE AND ADDS IT TO SELECTED TAB
 	navPrimaryView.clearActive();
 	navPrimaryView.highlightSelected(id);
+	// console.log(state.nav.nav_A);
+
 
 	navSecondaryView.clearActive();
 });

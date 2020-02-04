@@ -22,6 +22,8 @@ Select All Occurrences of Find Match editor.action.selectHighlights.
 
 Ctrl+P gives us Command Palette, muchn easier to find a find, it's instant find-a-file
 
+# RENAME ALL: right click and rename anything, variables, functions etc. Much safer than Find All/Replace All
+
 
 
 
