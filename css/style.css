@@ -440,22 +440,22 @@ li {
 .content-container-1 {
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
   background-size: 500% 500%;
-  animation: gradient 20s ease infinite; }
+  animation: gradient 60s ease infinite; }
 
 .content-container-2 {
   background: linear-gradient(-45deg, #23d5ab, #ee7752, #e73c7e, #23a6d5);
   background-size: 500% 500%;
-  animation: gradient 20s ease infinite; }
+  animation: gradient 60s ease infinite; }
 
 .content-container-3 {
   background: linear-gradient(-45deg, #23a6d5, #23d5ab, #ee7752, #e73c7e);
   background-size: 500% 500%;
-  animation: gradient 20s ease infinite; }
+  animation: gradient 60s ease infinite; }
 
 .content-container-4 {
   background: linear-gradient(-45deg, #e73c7e, #23a6d5, #23d5ab, #ee7752);
   background-size: 500% 500%;
-  animation: gradient 20s ease infinite; }
+  animation: gradient 60s ease infinite; }
 
 /*
     You also have access to a function which can help set boundaries for otherwise flexible units.
