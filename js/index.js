@@ -33,6 +33,7 @@ const state = {
 state.nav = new Nav();
 let nav_A_active = "nav_A_0";
 
+
 /**
  * NAV PRIMARY CONTROLLER
  */
@@ -66,7 +67,9 @@ elements.nav_A.addEventListener("click", e => {
 /**
  * NAV SECONDARY CONTROLLER
  */
-elements.nav_B1.addEventListener("click", e => {
+let nav_B_active = elements.nav_B1;
+
+nav_B_active.addEventListener("click", e => {
 	const target = e.target;
 	console.log(target);
 
