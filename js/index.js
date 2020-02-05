@@ -21,16 +21,10 @@ const init = () => {
 };
 init();
 
-const state = {
-	nav_A: {
-		nav_A_0: false,
-		nav_A_1: false,
-		nav_A_2: false,
-		nav_A_3: false
-	}
-};
-
+const state = {};
 state.nav = new Nav();
+
+
 let nav_A_active = "nav_A_0";
 
 
@@ -42,11 +36,12 @@ elements.nav_A.addEventListener("click", e => {
 	const target = e.target;
 	const id = target.id;
 	nav_A_active = id;
-	console.log(id);
+	// console.log(id);
 
 	if (id) {
 		state.nav.updateActiveNav_A(id);
 		navSecondaryView.updateTitles(id); // updateTitles NEEDS WORK
+		// changeNavB_listener(id);
 	}
 
 	// 	CLEARS ACTIVE AND ADDS IT TO SELECTED TAB
@@ -56,6 +51,8 @@ elements.nav_A.addEventListener("click", e => {
 	navSecondaryView.clearActive();
 
 	const nav_B_actives = state.nav.nav_B[nav_A_active];
+	
+	
 	for (var key in nav_B_actives) {
 		if (nav_B_actives.hasOwnProperty(key) && nav_B_actives[key] === true) {
 			// console.log(key + " is " + nav_B_actives[key]);
@@ -64,15 +61,56 @@ elements.nav_A.addEventListener("click", e => {
 	}
 });
 
+// const changeNavB_listener = (id) => {
+// 	if (id.includes('0')) {
+// 		// console.log('its 0');
+// 		nav_B_active = elements.nav_B0;
+// 		// console.log(nav_B_active);
+// 		return nav_B_active;
+// 	} else if (id.includes('1')) {
+// 		nav_B_active = elements.nav_B1;
+// 		// console.log('its 1');
+// 		// console.log(nav_B_active);
+// 		return nav_B_active;
+// 	} else if (id.includes('2')) {
+// 		nav_B_active = elements.nav_B2;
+// 		// console.log('its 2');
+// 		// console.log(nav_B_active);
+// 		return nav_B_active;
+// 	} else if (id.includes('3')) {
+// 		nav_B_active = elements.nav_B3;
+
+// 		// console.log('its 3');
+// 		// console.log(nav_B_active);
+		
+// 		return nav_B_active;
+// 	}
+// 	console.log(nav_B_active + ' is now active');
+// 	}
+
 /**
  * NAV SECONDARY CONTROLLER
  */
-let nav_B_active = elements.nav_B1;
+// let nav_B_active = elements.nav_B2;
+// console.log(nav_B_active);
 
-nav_B_active.addEventListener("click", e => {
+
+elements.nav_B0.addEventListener('click', e => {
+	nav_B_sequence(e);
+});
+elements.nav_B1.addEventListener('click', e => {
+	nav_B_sequence(e);
+});
+elements.nav_B2.addEventListener('click', e => {
+	nav_B_sequence(e);
+});
+elements.nav_B3.addEventListener("click", e => {
+	nav_B_sequence(e);
+});
+
+const nav_B_sequence = (e) => {
+
 	const target = e.target;
-	console.log(target);
-
 	const id = target.id;
 	const subString = "e";
 	console.log(id);
@@ -89,7 +127,7 @@ nav_B_active.addEventListener("click", e => {
 	} else if (containsSubString === true) {
 		navSecondaryView.highlightSelected("remove", id);
 	}
-});
+}
 
 /**
  * LIST CONTROLLER
@@ -97,4 +135,6 @@ nav_B_active.addEventListener("click", e => {
 
 document.querySelector(".test_add_item").addEventListener("click", e => {
 	listView.renderItem();
+	// console.log(nav_B_active);
+	
 });
