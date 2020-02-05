@@ -66,7 +66,7 @@ elements.nav_A.addEventListener("click", e => {
 /**
  * NAV SECONDARY CONTROLLER
  */
-elements.nav_B.addEventListener("click", e => {
+elements.nav_B_1.addEventListener("click", e => {
 	const target = e.target;
 	console.log(target);
 
