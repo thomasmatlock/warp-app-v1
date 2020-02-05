@@ -8,7 +8,9 @@ import * as navTitles from "./models/config.js";
 // console.log(navTitles.menus.warpstogram.Edit[2]); // TEST
 // console.log(navTitles.navSecondaryTitles.audioTools[2]); // TEST
 
-import { elements } from "./views/base.js";
+import {
+	elements
+} from "./views/base.js";
 
 /**
  * STARTUP INIT
@@ -66,6 +68,8 @@ elements.nav_A.addEventListener("click", e => {
  */
 elements.nav_B.addEventListener("click", e => {
 	const target = e.target;
+	console.log(target);
+
 	const id = target.id;
 	const subString = "e";
 	console.log(id);
