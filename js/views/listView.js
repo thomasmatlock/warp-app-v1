@@ -2,7 +2,7 @@ import {
     elements
 } from './base.js'
 
-export const renderItem = (contentListId) => {
+export const renderItem = (nav_A_active) => {
     const markup = `
     <li>
     <a href="#" class="content__link test_add_item">
@@ -19,7 +19,19 @@ export const renderItem = (contentListId) => {
     </a>
 </li>
     `;
-    elements.content__list.insertAdjacentHTML('beforeend', markup);
+
+
+    if (nav_A_active.includes('0')) {
+        elements.content__list_0.insertAdjacentHTML('beforeend', markup);
+    } else if (nav_A_active.includes('1')) {
+        elements.content__list_1.insertAdjacentHTML('beforeend', markup);
+    } else if (nav_A_active.includes('2')) {
+        elements.content__list_2.insertAdjacentHTML('beforeend', markup);
+    } else if (nav_A_active.includes('3')) {
+        elements.content__list_3.insertAdjacentHTML('beforeend', markup);
+    }
+
+
 };
 
 // export const deleteItem = () => {

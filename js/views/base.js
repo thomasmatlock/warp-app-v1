@@ -12,4 +12,9 @@ export const elements = {
     content__list_1: document.querySelector('.content__list_1'),
     content__list_2: document.querySelector('.content__list_2'),
     content__list_3: document.querySelector('.content__list_3'),
+    test_add_item: document.querySelector('.test_add_item'),
+    test_add_item_0: document.querySelector('.test_add_item_0'),
+    test_add_item_1: document.querySelector('.test_add_item_1'),
+    test_add_item_2: document.querySelector('.test_add_item_2'),
+    test_add_item_3: document.querySelector('.test_add_item_3')
 }

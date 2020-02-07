@@ -15,10 +15,7 @@ import {
 /**
  * STARTUP INIT
  */
-const init = () => {
-	// navSecondaryView.updateTitles('nav_A_0');
-	// navSecondaryView.highlightSelected();
-};
+const init = () => {};
 init();
 
 const state = {};
@@ -37,6 +34,7 @@ elements.nav_A.addEventListener("click", e => {
 	const id = target.id;
 	nav_A_active = id;
 	// console.log(id);
+
 
 	if (id) {
 		state.nav.updateActiveNav_A(id);
@@ -104,11 +102,20 @@ const nav_B_sequence = (e) => {
 /**
  * LIST CONTROLLER
  */
-
-document.querySelector(".test_add_item").addEventListener("click", e => {
-	listView.renderItem();
-	console.log(nav_A_active);
-
-	// console.log(nav_B_active);
-
+elements.test_add_item_0.addEventListener('click', e => {
+	listItemFunction();
 });
+elements.test_add_item_1.addEventListener('click', e => {
+	listItemFunction();
+});
+elements.test_add_item_2.addEventListener('click', e => {
+	listItemFunction();
+});
+elements.test_add_item_3.addEventListener('click', e => {
+	listItemFunction();
+});
+
+const listItemFunction = () => {
+	// console.log(nav_A_active);
+	listView.renderItem(nav_A_active);
+};
