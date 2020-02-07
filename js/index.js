@@ -51,8 +51,8 @@ elements.nav_A.addEventListener("click", e => {
 	navSecondaryView.clearActive();
 
 	const nav_B_actives = state.nav.nav_B[nav_A_active];
-	
-	
+
+
 	for (var key in nav_B_actives) {
 		if (nav_B_actives.hasOwnProperty(key) && nav_B_actives[key] === true) {
 			// console.log(key + " is " + nav_B_actives[key]);
@@ -61,38 +61,10 @@ elements.nav_A.addEventListener("click", e => {
 	}
 });
 
-// const changeNavB_listener = (id) => {
-// 	if (id.includes('0')) {
-// 		// console.log('its 0');
-// 		nav_B_active = elements.nav_B0;
-// 		// console.log(nav_B_active);
-// 		return nav_B_active;
-// 	} else if (id.includes('1')) {
-// 		nav_B_active = elements.nav_B1;
-// 		// console.log('its 1');
-// 		// console.log(nav_B_active);
-// 		return nav_B_active;
-// 	} else if (id.includes('2')) {
-// 		nav_B_active = elements.nav_B2;
-// 		// console.log('its 2');
-// 		// console.log(nav_B_active);
-// 		return nav_B_active;
-// 	} else if (id.includes('3')) {
-// 		nav_B_active = elements.nav_B3;
-
-// 		// console.log('its 3');
-// 		// console.log(nav_B_active);
-		
-// 		return nav_B_active;
-// 	}
-// 	console.log(nav_B_active + ' is now active');
-// 	}
-
 /**
  * NAV SECONDARY CONTROLLER
  */
-// let nav_B_active = elements.nav_B2;
-// console.log(nav_B_active);
+
 
 
 elements.nav_B0.addEventListener('click', e => {
@@ -135,6 +107,8 @@ const nav_B_sequence = (e) => {
 
 document.querySelector(".test_add_item").addEventListener("click", e => {
 	listView.renderItem();
+	console.log(nav_A_active);
+
 	// console.log(nav_B_active);
-	
+
 });

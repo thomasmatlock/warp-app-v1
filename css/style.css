@@ -224,23 +224,6 @@ li {
   box-shadow: 0 2rem 6rem 0.5rem rgba(101, 90, 86, 0.2);
   overflow: hidden; }
 
-.content__list {
-  list-style: none;
-  height: 70vh;
-  scrollbar-width: none;
-  overflow: scroll;
-  display: flex;
-  width: 95%;
-  flex-direction: column;
-  justify-content: start;
-  background-color: #fff;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 0;
-  border: solid 2px #ecedf3;
-  box-shadow: 0px 5px 5px #9c9c9c;
-  border-radius: 4px; }
-
 .content__list li {
   height: 5rem; }
 
@@ -305,6 +288,23 @@ li {
 
 .content__data p {
   color: #000; }
+
+.content__list {
+  list-style: none;
+  height: 70vh;
+  scrollbar-width: none;
+  overflow: scroll;
+  display: flex;
+  width: 95%;
+  flex-direction: column;
+  justify-content: start;
+  background-color: #fff;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0;
+  border: solid 2px #ecedf3;
+  box-shadow: 0px 5px 5px #9c9c9c;
+  border-radius: 4px; }
 
 .header {
   display: flex;

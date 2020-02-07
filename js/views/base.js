@@ -7,5 +7,9 @@ export const elements = {
     nav_B2: document.querySelector('.nav_B2'),
     nav_B3: document.querySelector('.nav_B3'),
     nav_B_button: document.querySelector('.nav_B-button'),
-    content__list: document.querySelector('.content__list')
+    content__list: document.querySelector('.content__list'),
+    content__list_0: document.querySelector('.content__list_0'),
+    content__list_1: document.querySelector('.content__list_1'),
+    content__list_2: document.querySelector('.content__list_2'),
+    content__list_3: document.querySelector('.content__list_3'),
 }

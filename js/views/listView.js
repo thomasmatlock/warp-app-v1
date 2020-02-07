@@ -2,7 +2,7 @@ import {
     elements
 } from './base.js'
 
-export const renderItem = () => {
+export const renderItem = (contentListId) => {
     const markup = `
     <li>
     <a href="#" class="content__link test_add_item">
