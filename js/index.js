@@ -15,14 +15,19 @@ import {
 /**
  * STARTUP INIT
  */
-const init = () => {};
-init();
-
 const state = {};
 state.nav = new Nav();
-
-
 let nav_A_active = "nav_A_0";
+
+const init = () => {
+	state.nav.nav_A[nav_A_active] = true;
+	console.log(`${nav_A_active} is active: ${state.nav.nav_A[nav_A_active]}`);
+};
+init();
+
+
+
+
 
 
 /**
@@ -84,6 +89,10 @@ const nav_B_sequence = (e) => {
 	const id = target.id;
 	const subString = "e";
 	console.log(id);
+	console.log(state.nav.nav_B[nav_A_active]);
+	// console.log(state.nav.nav_B);
+
+
 
 	navSecondaryView.clearActive();
 
