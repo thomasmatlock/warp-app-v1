@@ -105,6 +105,7 @@ const nav_B_sequence = (e) => {
 		state.nav.updateActiveNav_B(nav_A_active, id);
 	} else if (containsSubString === true) {
 		navSecondaryView.highlightSelected("remove", id);
+		// state.nav.updateActiveNav_B(nav_A_active, id); // DO THIS TO REMOVE STATE
 	}
 }
 
