@@ -87,7 +87,7 @@ const nav_B_sequence = (e) => {
 
 	const target = e.target;
 	const id = target.id;
-	const subString = "e";
+	const subString = "mart";
 	const classString = 'active';
 	// console.log(id);
 	// console.log(`${id} is ${state.nav.nav_B[nav_A_active][id]}`);

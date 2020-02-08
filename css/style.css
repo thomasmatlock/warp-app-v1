@@ -340,7 +340,7 @@ li {
   font-weight: 200; }
   .nav_A-tab:hover {
     color: white;
-    background: #2998ff;
+    background-image: linear-gradient(268deg, #da2c4d, #f8ab37);
     background-position: bottom;
     transform: scale(1.05);
     transition: all 0.3s ease;

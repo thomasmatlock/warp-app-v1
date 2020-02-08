@@ -51,8 +51,11 @@
 
 
 	&:hover {
+		//// CONTENT
 		color: white;
-		background: $color-tertiary-medium;
+		background-image: $codepen-orange-1;
+		// color: white;
+		// background: $color-tertiary-medium;
 		// background-image: $codepen-orange-1;
 		// background: $dark-light;
 		background-position: bottom;
