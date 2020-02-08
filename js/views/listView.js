@@ -5,7 +5,7 @@ import {
 export const renderItem = (nav_A_active) => {
     const markup = `
     <li>
-    <a href="#" class="content__link test_add_item">
+    <a href="#" class="content__link test_add_item_0">
         <figure class="content__thumbnail">
             <img src="img/youtube-thumbnail.jpg" alt="Test" />
         </figure>

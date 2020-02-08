@@ -57,35 +57,42 @@ const replaceNavSecondaryTitles = (targetTabs, newTitles) => {
 
 
 export const highlightSelected = (type, tabId) => {
-    // const id = tabId;
-    // console.log(`${type} active class to ${tabId}`);
-
-
     if (type === 'add') {
-
-
         let tab = document.getElementById(`${tabId}`);
         tab.classList.add('nav_B-button--active');
-        // console.log('adding');
-
     } else if (type === 'remove') {
-        // console.log('removing');
         let tab = document.getElementById(`${tabId}`);
         tab.classList.remove('nav_B-button--active');
     }
 }
 
 let containsSubStr;
+let isActive;
 export const checkForSubstring = (target, subString) => {
     const id = target.id;
     const text = target.textContent;
-
-
-    if (text.includes(subString) && target.className.includes('active') === !true) {
-        containsSubStr = false;
-        return containsSubStr;
-    } else if (text.includes(subString) && target.className.includes('active') === true) {
-        containsSubStr = true;
-        return containsSubStr;
-    }
+    return (text.includes(subString) ? containsSubStr = true : containsSubStr = false);
 }
+
+export const checkActive = (target, classString) => {
+    return (target.className.includes(classString) ? isActive = true : isActive = false);
+}
+
+// if (text.includes(subString) && target.className.includes('active') === false) {
+//     containsSubStr = false;
+//     console.log(`contains substring: false`);
+//     return containsSubStr;
+// } else if (text.includes(subString) && target.className.includes('active') === true) {
+//     console.log(`contains substring: true`);
+//     containsSubStr = true;
+//     return containsSubStr;
+// }
+
+
+
+// if (target.className.includes('active')) {
+//     console.log(`ACTIVE`);
+//     containsSubStr = true;
+// } else if (target.className.includes(`active`) === false) {
+//     console.log(`NOT ACTIVE`);
+// }
