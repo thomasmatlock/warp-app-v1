@@ -1,9 +1,9 @@
-# https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf
-# https://code.visualstudio.com/docs/getstarted/keybindings
-# Ctrl Shift F = search all files
-# Ctrl Shift H = Search Replace
-# Open the Keyboard Shortcut by pressing Ctrl + K then Ctrl + S and search for Collapse, you will see the Collapse Folders in Explorer key binding (It is empty by default). Press the + button to add your desired key binding.
-# Ctrl Shift B for npm scripts
+https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf
+https://code.visualstudio.com/docs/getstarted/keybindings
+Ctrl Shift F = search all files
+Ctrl Shift H = Search Replace
+Open the Keyboard Shortcut by pressing Ctrl + K then Ctrl + S and search for Collapse, you will see the Collapse Folders in Explorer key binding (It is empty by default). Press the + button to add your desired key binding.
+Ctrl Shift B for npm scripts
 
 Fold folds the innermost uncollapsed region at the cursor:
  - Ctrl+Shift+[ on Windows
@@ -24,6 +24,7 @@ Ctrl+P gives us Command Palette, muchn easier to find a find, it's instant find-
 
 # RENAME ALL: right click and rename anything, variables, functions etc. Much safer than Find All/Replace All
 
+Ctrl Shift I = Inspect mode on browser
 
 
 

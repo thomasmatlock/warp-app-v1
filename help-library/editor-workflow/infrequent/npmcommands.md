@@ -8,5 +8,3 @@ Step 2: Delete node_modules by \$ rm -rf node_modules folder or delete it manual
 Step 3: 'npm install'
 
 To start again, 'npm start'
-
-This worked for me. Hopes it works for you too.

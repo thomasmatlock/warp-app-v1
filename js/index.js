@@ -1,16 +1,20 @@
+// WEB LIVE-SERVER
 import Nav from "./models/Nav.js";
-
 import * as navPrimaryView from "./views/navPrimaryView.js";
 import * as navSecondaryView from "./views/navSecondaryView.js";
 import * as listView from "./views/listView.js";
 import * as navTitles from "./models/config.js";
-
-// console.log(navTitles.menus.warpstogram.Edit[2]); // TEST
-// console.log(navTitles.navSecondaryTitles.audioTools[2]); // TEST
-
 import {
 	elements
 } from "./views/base.js";
+// ELECTRON BRANCH
+// const Nav = require("./models/Nav.js");
+// const navPrimaryView = require("./views/navPrimaryView.js");
+// const navSecondaryView = require("./views/navSecondaryView.js");
+// const listView = require("./views/listView.js");
+// const navTitles = require("./models/config.js");
+// const elements = require("./views/base.js");
+
 
 /**
  * STARTUP INIT
