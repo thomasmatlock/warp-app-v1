@@ -1,4 +1,8 @@
 - npm outdated // checks and displays current/latest versions for any outdated packages
+- npm update --save/--save-dev // updates every package to latest minor version, not major so nothing breaks
+- npm i <package>
+- npm un <package>
+- npm
 
 // node-sass giving me problems, throwing errors 'npm ERR! code ELIFECYCLE'
 Step 1: 'npm cache clean --force'
