@@ -19,5 +19,8 @@
   - git reset --hard origin/<branch_name> // OVERWRITES everything local with branch_name repo
 
 - UNUSED (https://www.git-tower.com/learn/git/faq/difference-between-git-fetch-git-pull)
+
   - git fetch origin // USEFUL IN TEAM SETTING. git fetch really only downloads new data from a remote repository - but it doesn't integrate any of this new data into your working files. Fetch is great for getting a fresh view on all the things that happened in a remote repository. Due to it's "harmless" nature, you can rest assured: fetch will never manipulate, destroy, or screw up anything. This means you can never fetch often enough.
   - git pull origin master // in contrast, pull is used with a different goal in mind: to update your current HEAD branch with the latest changes from the remote server. This means that pull not only downloads new data; it also directly integrates it into your current working copy files. This has a couple of consequences:
+
+  file:///C:/Program%20Files/Git/mingw64/share/doc/git-doc/git.html
