@@ -77,22 +77,3 @@ export const checkForSubstring = (target, subString) => {
 export const checkActive = (target, classString) => {
     return (target.className.includes(classString) ? isActive = true : isActive = false);
 }
-
-// if (text.includes(subString) && target.className.includes('active') === false) {
-//     containsSubStr = false;
-//     console.log(`contains substring: false`);
-//     return containsSubStr;
-// } else if (text.includes(subString) && target.className.includes('active') === true) {
-//     console.log(`contains substring: true`);
-//     containsSubStr = true;
-//     return containsSubStr;
-// }
-
-
-
-// if (target.className.includes('active')) {
-//     console.log(`ACTIVE`);
-//     containsSubStr = true;
-// } else if (target.className.includes(`active`) === false) {
-//     console.log(`NOT ACTIVE`);
-// }
