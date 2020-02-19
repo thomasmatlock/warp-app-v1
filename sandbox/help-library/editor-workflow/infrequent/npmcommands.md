@@ -4,6 +4,14 @@
 - npm un <package>
 - npm
 
+// NODE
+https://stackoverflow.com/questions/8191459/how-do-i-update-node-js
+
+- node -v // node version
+- nvm list available // table of latest node versions
+- nvm install 'v13.8.7' // installs version of node
+- nvm use '13.8.7' // switches to version you want to use
+
 // node-sass giving me problems, throwing errors 'npm ERR! code ELIFECYCLE'
 Step 1: 'npm cache clean --force'
 
