@@ -35,3 +35,47 @@ Before After anchor navs
         - nav-secondary
         - content\_\_list
         - cta-upgrade
+
+HTML Architecture
+
+- Using Jonas 4 projects, 3 CSS projects and 1 JS project
+  - Natours (CSS)
+    - body
+      - div nav
+      - header
+      - main
+        - 5 sections
+      - footer
+  - Nexter (CSS)
+    - container (body)
+      - sidebar
+      - header
+      - div realtors
+      - section features
+      - div story pictures
+      - div story content
+      - section homes
+      - section gallery
+      - footer
+  - Trillo (CSS)
+    - container
+      - header
+      - content
+        - nav sidebar
+        - hotel-view
+          - gallery
+          - overview
+          - detail
+  - Forkify (CSS)
+    - container
+      - header
+      - left container
+      - center container
+      - right container
+  - Warp
+    - container
+      - header
+        - nav primary
+        - nav secondary
+      - content
+        - downloads
