@@ -4,7 +4,7 @@
 	"description": "wip",
 	"main": "index.js",
 	"scripts": {
-		"sasswatch": "node-sass sass/main.scss css/style.css -w",
+		"sasswatch": "node-sass src/sass/main.scss css/style.css -w",
 		"liveserver": "live-server",
 		"electron": "electron ./js"
 	},
