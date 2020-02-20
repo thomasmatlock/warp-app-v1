@@ -1,0 +1,37 @@
+Before After anchor navs
+
+- Original
+  - container
+    - header
+      - nav-primary-tabs
+        - nav-primary-tab
+        - nav-primary-tab
+        - nav-primary-tab
+        - nav-primary-tab
+    - content (et-main)
+      - nav-secondary
+      - content\_\_list
+      - cta-upgrade
+- Other version
+  - container
+    - header
+      - nav-primary-tabs
+        - nav-primary-tab (change href target)
+        - nav-primary-tab (change href target)
+        - nav-primary-tab (change href target)
+        - nav-primary-tab (change href target)
+    - et-main (content)
+      - et-slide/anchor id target
+        - container (colored)
+        - container (colored)
+        - container (colored)
+        - container (colored)
+- Merged and updated
+  - container
+  - header
+  - content
+    - et-slide/anchor id target
+      - container (colored) (x4)
+        - nav-secondary
+        - content\_\_list
+        - cta-upgrade
