@@ -1,55 +1,44 @@
 export const navSecondaryTitles = {
-
-    audio: ['Paste link',
+    audio: [
+        'Paste link',
         'Smart Mode',
         'Activate',
         'Subscriptions',
         'Preferences',
-        'Help'
+        'Help',
     ],
 
-    video: ['Paste link',
+    video: [
+        'Paste link',
         'Smart Mode',
         'Activate',
         'Subscriptions',
         'Preferences',
-        'Help'
+        'Help',
     ],
 
-    audioTools: [
-        'Convert',
-        'Extract',
-        'Bulk convert',
-        'Bulk extract'
-    ],
+    audioTools: ['Convert', 'Extract', 'Bulk convert', 'Bulk extract'],
 
-    placeholder: ['Freedom',
+    placeholder: [
+        'Freedom',
         'Smart Mode',
         'Activate',
         'Subscriptions',
         'Preferences',
-        'Help'
-    ]
-}
+        'Help',
+    ],
+};
 
 export const menus = {
     audio: {
-        File: [
-            'Import Download Links',
-            'Export Download Links',
-            'Quit'
-        ],
+        File: ['Import Download Links', 'Export Download Links', 'Quit'],
         Downloads: [
             'Paste Link Ctrl + V',
             'Pause All',
             'Resume All',
-            'Remove All'
+            'Remove All',
         ],
-        Tools: [
-            'Activate',
-            'Check for Updates',
-            'Preferences'
-        ],
+        Tools: ['Activate', 'Check for Updates', 'Preferences'],
         Help: [
             'Help Center F1',
             'Video Tutorial',
@@ -58,8 +47,8 @@ export const menus = {
             'Facebook',
             'Twitter',
             'Vimeo',
-            'About'
-        ]
+            'About',
+        ],
     },
     video: {
         File: [
@@ -67,20 +56,20 @@ export const menus = {
             'Export Download Links',
             'Import Subscriptions',
             'Export Subscriptions',
-            'Quit'
+            'Quit',
         ],
         Downloads: [
             'Paste Link Ctrl + V',
             'Pause All',
             'Resume All',
-            'Remove All'
+            'Remove All',
         ],
         Tools: [
             'Activate',
             'Smart Mode',
             'Subscriptions',
             'Check for Updates',
-            'Preferences'
+            'Preferences',
         ],
         Help: [
             'Help Center F1',
@@ -90,27 +79,24 @@ export const menus = {
             'Facebook',
             'Twitter',
             'Vimeo',
-            'About'
-        ]
+            'About',
+        ],
     },
     warpstogram: {
         File: [
             'Import Subscriptions',
             'Export Subscriptions',
-            'Export File Paths and Captions'
+            'Export File Paths and Captions',
         ],
         Edit: [
             'Subscribe to my account',
             'Subscribe to my saved posts',
-            'Subscribe to accounts I\'m following ',
+            "Subscribe to accounts I'm following ",
             'Update all subscriptions',
             'Pause all subscriptions',
-            'Remove all subscriptions'
+            'Remove all subscriptions',
         ],
-        Tools: [
-            'Check for Updates',
-            'Preferences'
-        ],
+        Tools: ['Check for Updates', 'Preferences'],
         Help: [
             'Help Center F1',
             'Video Tutorial',
@@ -119,7 +105,7 @@ export const menus = {
             'Facebook',
             'Twitter',
             'Vimeo',
-            'About'
-        ]
-    }
-}
+            'About',
+        ],
+    },
+};

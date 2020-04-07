@@ -1,6 +1,4 @@
-import {
-    elements
-} from './base.js'
+import { elements } from './base.js';
 
 export const renderItem = (nav_A_active) => {
     const markup = `
@@ -20,7 +18,6 @@ export const renderItem = (nav_A_active) => {
 </li>
     `;
 
-
     if (nav_A_active.includes('0')) {
         elements.content__list_0.insertAdjacentHTML('beforeend', markup);
     } else if (nav_A_active.includes('1')) {
@@ -30,8 +27,6 @@ export const renderItem = (nav_A_active) => {
     } else if (nav_A_active.includes('3')) {
         elements.content__list_3.insertAdjacentHTML('beforeend', markup);
     }
-
-
 };
 
 // export const deleteItem = () => {

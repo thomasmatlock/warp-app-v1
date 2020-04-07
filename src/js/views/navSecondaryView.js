@@ -16,6 +16,7 @@ export const clearActive = () => {
     });
 }
 
+
 // REPLACE NAVB TITLES DEPENDING ON WHICH NAV PRIMARY IS CLICKED
 export const updateTitles = (nav_A_id) => {
     const nav_B_button_arr = [
