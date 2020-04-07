@@ -1,20 +1,20 @@
 {
-	"name": "starter",
-	"version": "1.0.0",
-	"description": "wip",
-	"main": "index.js",
-	"scripts": {
-		"sasswatch": "node-sass src/sass/main.scss css/style.css -w",
-		"liveserver": "live-server",
-		"electron": "electron ./js"
-	},
-	"author": "",
-	"license": "ISC",
-	"devDependencies": {
-		"node-sass": "^4.13.0"
-	},
-	"dependencies": {
-		"electron": "^8.0.0",
-		"live-server": "^1.2.1"
-	}
+    "name": "starter",
+    "version": "1.0.0",
+    "description": "wip",
+    "main": "index.js",
+    "scripts": {
+        "sasswatch": "node-sass src/sass/main.scss css/style.css -w",
+        "liveserver": "live-server",
+        "electron": "electron ./js/index.js"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "node-sass": "^4.13.0"
+    },
+    "dependencies": {
+        "electron": "^8.2.1",
+        "live-server": "^1.2.1"
+    }
 }
