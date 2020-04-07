@@ -6,7 +6,7 @@
     "scripts": {
         "sasswatch": "node-sass src/sass/main.scss css/style.css -w",
         "liveserver": "live-server",
-        "electron": "electron ./js/index.js"
+        "electron": "electron ./js"
     },
     "author": "",
     "license": "ISC",

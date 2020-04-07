@@ -11,7 +11,7 @@ import { elements } from './views/base.js';
 // const navSecondaryView = require("./views/navSecondaryView.js");
 // const listView = require("./views/listView.js");
 // const navTitles = require("./models/config.js");
-// const elements = require("./views/base.js");
+// const elements = require("./views/base.js");git status
 
 /**
  * STARTUP INIT
@@ -86,7 +86,10 @@ const nav_B_sequence = (e) => {
 
     navSecondaryView.clearActive();
 
-    const containsSubString = navSecondaryView.checkForSubstring(target, subString);
+    const containsSubString = navSecondaryView.checkForSubstring(
+        target,
+        subString
+    );
     const isActive = navSecondaryView.checkActive(target, classString);
     if (containsSubString) {
         // console.log(`Contains substring: true`);
