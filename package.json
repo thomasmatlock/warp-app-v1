@@ -4,13 +4,15 @@
     "description": "wip",
     "main": "index.js",
     "scripts": {
-        "sasswatch": "node-sass src/sass/main.scss css/style.css -w",
+        "node-sass": "node-sass src/sass/main.scss css/style.css -w",
         "liveserver": "live-server",
-        "electron": "electron ./js"
+        "electron": "electron ./js",
+        "dev": "concurrently --kill-others \"npm run node-sass\" \"npm run liveserver\""
     },
     "author": "",
     "license": "ISC",
     "devDependencies": {
+        "concurrently": "^5.1.0",
         "eslint": "^6.8.0",
         "eslint-config-airbnb": "^18.1.0",
         "eslint-config-prettier": "^6.10.1",

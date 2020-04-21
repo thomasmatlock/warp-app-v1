@@ -4,14 +4,16 @@ import * as navPrimaryView from './views/navPrimaryView.js';
 import * as navSecondaryView from './views/navSecondaryView.js';
 import * as listView from './views/listView.js';
 import * as navTitles from './models/config.js';
-import { elements } from './views/base.js';
+import {
+    elements
+} from './views/base.js';
 // ELECTRON BRANCH
 // const Nav = require("./models/Nav.js");
 // const navPrimaryView = require("./views/navPrimaryView.js");
 // const navSecondaryView = require("./views/navSecondaryView.js");
 // const listView = require("./views/listView.js");
 // const navTitles = require("./models/config.js");
-// const elements = require("./views/base.js");git status
+// const elements = require("./views/base.js");
 
 /**
  * STARTUP INIT
@@ -25,7 +27,7 @@ const init = () => {
     // console.log(`${nav_A_active} is active: ${state.nav.nav_A[nav_A_active]}`);
 };
 init();
-
+console.log(typeof (elements))
 /**
  * NAV PRIMARY CONTROLLER
  */
