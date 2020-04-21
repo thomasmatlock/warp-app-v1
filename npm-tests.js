@@ -1,7 +1,6 @@
 // const uniqid = require('uniqid');
-// const instagramPosts = require('instagram-posts');
+const instagramPosts = require('instagram-posts');
 // console.log(uniqid('Warp-Pro-'));
-
 
 (async () => {
     console.log(await instagramPosts('tomtacular'));

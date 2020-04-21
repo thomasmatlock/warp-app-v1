@@ -24,6 +24,7 @@
     },
     "dependencies": {
         "electron": "^8.2.1",
+        "instagram-posts": "^2.2.0",
         "live-server": "^1.2.1"
     }
 }
