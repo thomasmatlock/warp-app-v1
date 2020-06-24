@@ -2,11 +2,12 @@
     "name": "starter",
     "version": "1.0.0",
     "description": "wip",
-    "main": "index.js",
+    "main": "./src/js/main.js",
     "scripts": {
         "node-sass": "node-sass src/sass/main.scss css/style.css -w",
-        "liveserver": "live-server",
-        "electron": "electron ./js",
+        "live-server": "live-server",
+        "watch": "nodemon --exec electron .",
+        "start": "electron .",
         "dev": "concurrently --kill-others \"npm run node-sass\" \"npm run liveserver\""
     },
     "author": "",
