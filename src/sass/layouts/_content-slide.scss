@@ -13,7 +13,7 @@
 
 // COLORED CONTENT INSIDE SLIDE
 .content-container {
-  width: 90vw;
+  width: 100vw;
   margin-top: 4vh;
   height: 90vh;
   position: relative;
@@ -22,6 +22,7 @@
   border-radius: 4px;
   box-shadow: $shadow-after;
 }
+
 
 .content-container-1 {
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);

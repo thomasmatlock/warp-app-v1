@@ -34,7 +34,7 @@ function createWindow() {
 
     mainWindow.loadFile('./index.html'); // Load index.html into the new BrowserWindow
 
-    mainWindow.webContents.openDevTools(); // Open DevTools - Remove for PRODUCTION!
+    // mainWindow.webContents.openDevTools(); // Open DevTools - Remove for PRODUCTION!
 
     // Listen for window being closed
     mainWindow.on('closed', () => {
@@ -47,9 +47,9 @@ app.on('before-quit', (event) => {
     event.preventDefault(); // if you wanna save a users work, check out section 8 of class. this is supposed to make the thing not close but Ctrl Q doesnt seem to work
 });
 
-// app.on('browser-window-blur', () => {
-//     console.log('App unfocused');
-// });
+app.on('browser-window-blur', () => {
+    console.log('App unfocused');
+});
 
 // quits if unfocused
 // app.on('browser-window-blur', () => {
