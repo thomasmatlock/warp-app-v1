@@ -1,20 +1,12 @@
 ////////////////////////////////////////////////////////////////
 // ELECTRON
-const { app, BrowserWindow } = require('electron');
-// const test = require('./test')
-// console.log(test.module.testName);
-
-// const Nav = require('./renderer');
-// console.log(Nav.updateActiveNav_A);
-
-// const navController = new Nav();
-// console.log(navController);
-// navController.updateActiveNav_A(1)
-
-// this checks if its ready after 2 secs
-// setTimeout(() => {
-//     console.log(`Checking ready: ${app.isReady()}`); // logs whether app is ready or not
-// }, 2000);
+const {
+    app,
+    BrowserWindow
+} = require('electron');
+const Nav = require('./models/Nav');
+const navController = new Nav();
+console.log(navController);
 
 let mainWindow; // Keep a global reference of the window object, if you don't, the window will be closed automatically when the JavaScript object is garbage collected.
 
@@ -22,20 +14,19 @@ let mainWindow; // Keep a global reference of the window object, if you don't, t
 // with node integration, we can also set node js to run in the browser window, through scripts, using nodes require function in the html document
 // we require in renderer.js, which allows JS to run in browser window, which is no different from standard JS in a standard browser, except for having access to node.js
 function createWindow() {
-    // console.log('creating window...again');
-
     mainWindow = new BrowserWindow({
         width: 1600,
         height: 900,
+        x: 3000,
+        y: 350,
         webPreferences: {
             nodeIntegration: true,
         },
-    });
+        backgroundColor: '##ff8500', // use the same color as your html file is, the main window will display this until html fully loads. This is a little better than making your app hang for a second until the html loads, then displaying the window
+    })
 
     mainWindow.loadFile('./index.html'); // Load index.html into the new BrowserWindow
-
     // mainWindow.webContents.openDevTools(); // Open DevTools - Remove for PRODUCTION!
-
     // Listen for window being closed
     mainWindow.on('closed', () => {
         mainWindow = null;
@@ -45,21 +36,6 @@ function createWindow() {
 app.on('before-quit', (event) => {
     console.log('Preventing app from quitting');
     event.preventDefault(); // if you wanna save a users work, check out section 8 of class. this is supposed to make the thing not close but Ctrl Q doesnt seem to work
-});
-
-app.on('browser-window-blur', () => {
-    console.log('App unfocused');
-});
-
-// quits if unfocused
-// app.on('browser-window-blur', () => {
-//     // console.log('App unfocused');
-//     setTimeout(() => {
-//         app.quit();
-//     }, 500);
-// });
-app.on('browser-window-focus', () => {
-    // console.log('App focused');
 });
 
 // Electron `app` is ready
