@@ -1,18 +1,13 @@
-////////////////////////////////////////////////////////////////
-// ELECTRON
 const {
     app,
     BrowserWindow
 } = require('electron');
 const Nav = require('./models/Nav');
 const navController = new Nav();
-console.log(navController);
+navController.testFunction('Abracadabra');
 
 let mainWindow; // Keep a global reference of the window object, if you don't, the window will be closed automatically when the JavaScript object is garbage collected.
 
-// Create a new BrowserWindow when `app` is ready // nodeIntegration set to true allows us to access nodejs process in renderer
-// with node integration, we can also set node js to run in the browser window, through scripts, using nodes require function in the html document
-// we require in renderer.js, which allows JS to run in browser window, which is no different from standard JS in a standard browser, except for having access to node.js
 function createWindow() {
     mainWindow = new BrowserWindow({
         width: 1600,
@@ -23,10 +18,12 @@ function createWindow() {
             nodeIntegration: true,
         },
         backgroundColor: '##ff8500', // use the same color as your html file is, the main window will display this until html fully loads. This is a little better than making your app hang for a second until the html loads, then displaying the window
-    })
+    });
 
     mainWindow.loadFile('./index.html'); // Load index.html into the new BrowserWindow
+
     // mainWindow.webContents.openDevTools(); // Open DevTools - Remove for PRODUCTION!
+
     // Listen for window being closed
     mainWindow.on('closed', () => {
         mainWindow = null;
