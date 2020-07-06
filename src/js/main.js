@@ -1,8 +1,6 @@
-const {
-    app,
-    BrowserWindow
-} = require('electron');
+const { app, BrowserWindow } = require('electron');
 const Nav = require('./models/Nav');
+
 const navController = new Nav();
 navController.testFunction('Abracadabra');
 

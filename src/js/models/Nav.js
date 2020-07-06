@@ -86,7 +86,6 @@ class testObject {
             }
             console.log(`Its ${this.nav_B[nav_A_active][id]} now`);
     };
-
 }
 
 module.exports = testObject;
