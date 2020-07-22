@@ -1,8 +1,8 @@
-import { elements } from './base.js';
+// import { elements } from './base.js';
 
-import { navSecondaryTitles } from '../models/config.js';
+const navSecondaryTitles = require('../models/config');
 
-export const clearActive = () => {
+exports.clearActive = () => {
     // GET ARRAY OF NAV TABS
     const tabsArr = Array.from(document.querySelectorAll('.nav_A-tab'));
 
@@ -12,7 +12,7 @@ export const clearActive = () => {
     });
 };
 
-export const highlightSelected = (id) => {
+exports.highlightSelected = (id) => {
     // Add active class to selected tabs
     const tab = document.getElementById(`${id}`);
     tab.classList.add('nav_A-tab--active');

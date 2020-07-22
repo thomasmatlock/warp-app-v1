@@ -1,6 +1,7 @@
-import { elements } from './base.js';
+// import { elements } from './base.js';
+// const elements =require('./base')
 
-export const renderItem = (nav_A_active) => {
+exports.renderItem = (nav_A_active) => {
     const markup = `
     <li>
     <a href="#" class="content__link test_add_item_0">
@@ -29,7 +30,7 @@ export const renderItem = (nav_A_active) => {
     }
 };
 
-// export const deleteItem = () => {
-//     const item = document.querySelector(`[data-itemid="${id}"]`);
-//     if (item) item.parentElement.removeChild(item);
-// };
+exports.deleteItem = () => {
+    const item = document.querySelector(`[data-itemid="${id}"]`);
+    if (item) item.parentElement.removeChild(item);
+};

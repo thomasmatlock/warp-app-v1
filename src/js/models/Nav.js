@@ -1,49 +1,49 @@
 class testObject {
-        constructor() {
-            this.nav_A = {
-                nav_A_0: false,
-                nav_A_1: false,
-                nav_A_2: false,
-                nav_A_3: false,
-            };
+    constructor() {
+        this.nav_A = {
+            nav_A_0: false,
+            nav_A_1: false,
+            nav_A_2: false,
+            nav_A_3: false,
+        };
 
-            this.nav_B = {
-                nav_A_0: {
-                    nav_B0_0: false,
-                    nav_B0_1: false,
-                    nav_B0_2: false,
-                    nav_B0_3: false,
-                    nav_B0_4: false,
-                    nav_B0_5: false,
-                },
+        this.nav_B = {
+            nav_A_0: {
+                nav_B0_0: false,
+                nav_B0_1: false,
+                nav_B0_2: false,
+                nav_B0_3: false,
+                nav_B0_4: false,
+                nav_B0_5: false,
+            },
 
-                nav_A_1: {
-                    nav_B1_0: false,
-                    nav_B1_1: false,
-                    nav_B1_2: false,
-                    nav_B1_3: false,
-                    nav_B1_4: false,
-                    nav_B1_5: false,
-                },
-                nav_A_2: {
-                    nav_B2_0: false,
-                    nav_B2_1: false,
-                    nav_B2_2: false,
-                    nav_B2_3: false,
-                    nav_B2_4: false,
-                    nav_B2_5: false,
-                },
-                nav_A_3: {
-                    nav_B3_0: false,
-                    nav_B3_1: false,
-                    nav_B3_2: false,
-                    nav_B3_3: false,
-                    nav_B3_4: false,
-                    nav_B3_5: false,
-                },
-                nav_A_4 : [false, false, false, false, false, false]
-            };
-        }
+            nav_A_1: {
+                nav_B1_0: false,
+                nav_B1_1: false,
+                nav_B1_2: false,
+                nav_B1_3: false,
+                nav_B1_4: false,
+                nav_B1_5: false,
+            },
+            nav_A_2: {
+                nav_B2_0: false,
+                nav_B2_1: false,
+                nav_B2_2: false,
+                nav_B2_3: false,
+                nav_B2_4: false,
+                nav_B2_5: false,
+            },
+            nav_A_3: {
+                nav_B3_0: false,
+                nav_B3_1: false,
+                nav_B3_2: false,
+                nav_B3_3: false,
+                nav_B3_4: false,
+                nav_B3_5: false,
+            },
+            nav_A_4: [false, false, false, false, false, false],
+        };
+    }
 
     testFunction = (sample) => {
         console.log(`${sample} is passed`);
@@ -65,26 +65,26 @@ class testObject {
     };
 
     updateActiveNav_B = (nav_A_active, nav_B_id) => {
-            // console.log('hi there');
-            // console.log(nav_A_active, nav_B_id);
+        // console.log('hi there');
+        // console.log(nav_A_active, nav_B_id);
 
-            const id = nav_B_id;
-            // console.log(`This button's state was ${this.nav_B[nav_A_active][id]}`);
-            // console.log(`${this.nav_B[nav_A_active][id]}`);
+        const id = nav_B_id;
+        // console.log(`This button's state was ${this.nav_B[nav_A_active][id]}`);
+        // console.log(`${this.nav_B[nav_A_active][id]}`);
 
-            if (this.nav_B[nav_A_active][id] === false) {
-                // console.log('its inactive, gotta set it to active');
-                this.nav_B[nav_A_active][id] = true;
-                // console.log('it was inactive, but it should be active now');
-                // console.log(this.nav_B[nav_A_active]);
-            } else if (this.nav_B[nav_A_active][id] === true) {
-                // console.log('it was active, but it should be inactive now');
-                // console.log(id);
-                this.nav_B[nav_A_active][id] = false;
-                // console.log('it was active, but it should be inactive now');
-                // console.log(this.nav_B[nav_A_active]);
-            }
-            console.log(`Its ${this.nav_B[nav_A_active][id]} now`);
+        if (this.nav_B[nav_A_active][id] === false) {
+            // console.log('its inactive, gotta set it to active');
+            this.nav_B[nav_A_active][id] = true;
+            // console.log('it was inactive, but it should be active now');
+            // console.log(this.nav_B[nav_A_active]);
+        } else if (this.nav_B[nav_A_active][id] === true) {
+            // console.log('it was active, but it should be inactive now');
+            // console.log(id);
+            this.nav_B[nav_A_active][id] = false;
+            // console.log('it was active, but it should be inactive now');
+            // console.log(this.nav_B[nav_A_active]);
+        }
+        console.log(`Its ${this.nav_B[nav_A_active][id]} now`);
     };
 }
 
