@@ -16,9 +16,9 @@ import { elements } from './views/base.js';
 /**
  * STARTUP INIT
  */
-const state = {};
-state.nav = new Nav();
-let nav_A_active = 'nav_A_0';
+// const state = {};
+// state.nav = new Nav();
+// let nav_A_active = 'nav_A_0';
 
 const init = () => {
     state.nav.nav_A[nav_A_active] = true;

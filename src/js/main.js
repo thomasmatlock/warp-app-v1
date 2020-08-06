@@ -11,6 +11,10 @@ const navController = new Nav();
 const electronController = new ElectronController();
 console.log(electronController.mainMenu.audio.File[1]);
 
+const state = {};
+state.nav = new Nav();
+let nav_A_active = 'nav_A_0';
+
 let mainWindow; // Keep a global reference of the window object, if you don't, the window will be closed automatically when the JavaScript object is garbage collected.
 
 function createWindow() {
