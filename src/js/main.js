@@ -6,6 +6,7 @@ const navSecondaryView = require('./views/navSecondaryView.js');
 const listView = require('./views/listView.js');
 const navTitles = require('./models/config.js');
 // const elements = require('./views/base.js');
+app.allowRendererProcessReuse = true;
 
 const navController = new Nav();
 const electronController = new ElectronController();

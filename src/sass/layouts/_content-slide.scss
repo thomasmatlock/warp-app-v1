@@ -1,61 +1,58 @@
 // BLANK CONTAINER SLIDE HOLDING COLORED CONTENT
 .content-slide {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  position: relative;
-  background: rgb(255, 255, 255);
-  text-align: center;
-  padding: 0 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+    background: rgb(255, 255, 255);
+    text-align: center;
+    padding: 0 2em;
 }
-
 
 // COLORED CONTENT INSIDE SLIDE
 .content-container {
-  width: 100vw;
-  margin-top: 4vh;
-  height: 90vh;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  // border-radius: 4px;
-  box-shadow: $shadow-after;
+    width: 100vw;
+    margin-top: 4vh;
+    height: 90vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    // border-radius: 4px;
+    box-shadow: $shadow-after;
 }
 
-
 .content-container-1 {
-  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-  background-size: 500% 500%;
-  animation: gradient $duration-1 ease infinite;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 500% 500%;
+    animation: gradient $duration-1 ease infinite;
 }
 
 .content-container-2 {
-  background: linear-gradient(-45deg, #23d5ab, #ee7752, #e73c7e, #23a6d5);
-  background-size: 500% 500%;
-  animation: gradient $duration-1 ease infinite;
+    background: linear-gradient(-45deg, #23d5ab, #ee7752, #e73c7e, #23a6d5);
+    background-size: 500% 500%;
+    animation: gradient $duration-1 ease infinite;
 }
 
 .content-container-3 {
-  background: linear-gradient(-45deg, #23a6d5, #23d5ab, #ee7752, #e73c7e);
-  background-size: 500% 500%;
-  animation: gradient $duration-1 ease infinite;
+    background: linear-gradient(-45deg, #23a6d5, #23d5ab, #ee7752, #e73c7e);
+    background-size: 500% 500%;
+    animation: gradient $duration-1 ease infinite;
 }
 
 .content-container-4 {
-  background: linear-gradient(-45deg, #e73c7e, #23a6d5, #23d5ab, #ee7752);
-  background-size: 500% 500%;
-  animation: gradient $duration-1 ease infinite;
+    background: linear-gradient(-45deg, #e73c7e, #23a6d5, #23d5ab, #ee7752);
+    background-size: 500% 500%;
+    animation: gradient $duration-1 ease infinite;
 }
 
 /// GRID STUFF ///
 // display: grid; // https://css-tricks.com/snippets/css/complete-guide-grid/
-
 // MEASURES WIDTH OF COLUMNS, TOP TO BOTTOM
 //grid-template-rows: 10rem minmax(100rem, auto); // 10rem/100px height, but shrinks no less than 100rem, height is auto
-
 // FOR EXAMPPLE: grid-template-rows: 25% 100px auto; means top to bottom, 25% top row, 100px, then auto to fill in rest of available space
+
 /*
     You also have access to a function which can help set boundaries for otherwise flexible units.
     For example to set a column to be 1fr, but shrink no further than 200px:
