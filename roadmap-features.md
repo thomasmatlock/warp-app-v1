@@ -1,0 +1,4 @@
+-   network detection
+-   server auth
+-   update check
+-   filesystem load
