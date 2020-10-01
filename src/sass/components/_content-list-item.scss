@@ -1,4 +1,4 @@
-.content__list li {
+.download__list li {
     // height: 7rem;
     // display: flex;
     // margin: 0 auto; // fix this, parent container needs to be centering its children not doing this lopsided off-left stuff
@@ -6,12 +6,10 @@
     // justify-content: start;
     // align-items: flex-start;
     height: 5rem;
-
-
 }
 
-.content__link:link,
-.content__link:visited {
+.download__link:link,
+.download__link:visited {
     display: flex;
     flex-direction: row;
     justify-content: start;
@@ -22,11 +20,9 @@
     // padding: 0rem 1rem;
     // transition: all 0.3s;
     // border: 1px solid rgb(202, 202, 202);
-
     text-decoration: none;
     border-radius: 3px;
     box-shadow: $shadow-before;
-
     &:hover {
         background-color: $grey;
         // background-color: #eee;
@@ -35,19 +31,14 @@
         box-shadow: $shadow-after;
         z-index: 4;
     }
-
     // &:active {
     //     background-color: yellow;
     // }
 }
 
-// .content__link--active {
+// .download__link--active {
 //     // background-color: #eee;
 // }
-
-
-
-
 .content__thumbnail {
     flex: 0 0 5.5rem;
     border-radius: 3px;
@@ -55,7 +46,6 @@
     // height: 5.5rem;
     height: 4.5rem;
     width: 2.5rem;
-
     margin-right: 5rem;
     // border: solid 1px red; // TESTING
     // position: relative;
@@ -80,7 +70,7 @@
     // border: solid 2px #000; // TESTING
 }
 
-// CHILDREN 
+// CHILDREN
 .content__file-property {
     display: flex;
     // justify-content: center; // PRODUCTION
@@ -98,8 +88,6 @@
 //     // margin-left: 5rem; // TESTING
 //     // border: solid 1px green; // TESTING
 // }
-
-
 .content__data * {
     color: #000;
     font-family: 'Poppins', sans-serif;
@@ -117,4 +105,12 @@
 .content__data p {
     color: #000;
     // font-size: small;
+}
+
+.content__panel {
+    display: flex;
+    width: 50%;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }

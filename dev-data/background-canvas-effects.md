@@ -1,0 +1,11 @@
+-   YouTube audio, yellow
+-   Soundcloud, orange
+-   YouTube video, red
+-   Instagram, spectrum || purple
+-   Extract/convert audio from video blue
+
+-   Flux for audio, https://codepen.io/Mamboleoo/pen/eEvJKo
+-   Fluid for video
+-   Particle helix
+-   Sine: https://codepen.io/isuttell/pen/OPVELL
+-   WebGL fluid simulation https://codepen.io/PavelDoGreat/details/zdWzEL

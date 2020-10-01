@@ -1,20 +1,15 @@
-@import "abstracts/mixins";
-@import "abstracts/variables";
-@import "abstracts/variables-colors";
-
-@import "backgrounds/waves";
-
-@import "base/animations";
-@import "base/base";
-@import "base/typography";
-
-@import "components/buttons";
-@import "components/cta-upgrade";
-@import "components/content-list-item";
-@import "components/content-list";
-@import "components/nav-primary";
-@import "components/nav-secondary";
-
-
-@import "layouts/content-slide";
-@import "layouts/grid";
+@import 'abstracts/mixins';
+@import 'abstracts/variables';
+@import 'abstracts/variables-colors';
+// @import 'backgrounds/waves';
+// @import 'components/cta-upgrade';
+@import 'base/animations';
+@import 'base/base';
+@import 'base/typography';
+@import 'components/buttons';
+@import 'components/content-list-item';
+@import 'components/content-list';
+@import 'components/nav-primary';
+@import 'components/nav-secondary';
+@import 'layouts/content-slide';
+@import 'layouts/grid';

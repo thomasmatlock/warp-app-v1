@@ -4,7 +4,7 @@
 exports.renderItem = (nav_A_active) => {
     const markup = `
     <li>
-    <a href="#" class="content__link test_add_item_0">
+    <a href="#" class="download__link test_add_item_0">
         <figure class="content__thumbnail">
             <img src="img/youtube-thumbnail.jpg" alt="Test" />
         </figure>
@@ -20,13 +20,13 @@ exports.renderItem = (nav_A_active) => {
     `;
 
     if (nav_A_active.includes('0')) {
-        elements.content__list_0.insertAdjacentHTML('beforeend', markup);
+        elements.download__list_0.insertAdjacentHTML('beforeend', markup);
     } else if (nav_A_active.includes('1')) {
-        elements.content__list_1.insertAdjacentHTML('beforeend', markup);
+        elements.download__list_1.insertAdjacentHTML('beforeend', markup);
     } else if (nav_A_active.includes('2')) {
-        elements.content__list_2.insertAdjacentHTML('beforeend', markup);
+        elements.download__list_2.insertAdjacentHTML('beforeend', markup);
     } else if (nav_A_active.includes('3')) {
-        elements.content__list_3.insertAdjacentHTML('beforeend', markup);
+        elements.download__list_3.insertAdjacentHTML('beforeend', markup);
     }
 };
 

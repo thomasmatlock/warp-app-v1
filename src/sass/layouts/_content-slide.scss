@@ -1,7 +1,7 @@
 // BLANK CONTAINER SLIDE HOLDING COLORED CONTENT
 .content-slide {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -9,10 +9,12 @@
     background: rgb(255, 255, 255);
     text-align: center;
     padding: 0 2em;
+    border: 1px dotted;
 }
 
 // COLORED CONTENT INSIDE SLIDE
 .content-container {
+    border: 1px dotted;
     width: 100vw;
     margin-top: 4vh;
     height: 90vh;
@@ -77,3 +79,15 @@
     "footer footer footer footer";
     }
     */
+
+.content__panel-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#iframe-test {
+    width: 100%;
+    height: 650px;
+}

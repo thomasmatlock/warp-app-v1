@@ -1,0 +1,68 @@
+# Warp-App
+
+-   Functions
+    -   Twitch - npm mp4 streaming downloader
+        -   https://www.npmjs.com/package/mp4-stream - it also uses headers, which is awesome, check the Streaggming bulletpoint below how to get headers - also it has dependancy -https://www.npmjs.com/package/mp4-box-encoding - Streaming - https://m.twitch.tv/tfue - open dev console, Network, highlight/scrub the bit of the clip you want, then under Headers tab it will be there (the Request URL, that is what downloads - https://gist.github.com/danfinlay/7357098 - Completed clips - fire, rightlick view page info, its an mp4 file that wants to be downloaded when you enter it in URL bar - eg: - https://clips-media-assets2.twitch.tv/AT-cm%7C505162477.mp4
+    -   npm packages
+        -   Video Downloader
+            -   https://www.npmjs.com/package/pully (dl HD, UHD youtube vids)
+            -   Facebook vids
+                -   https://www.npmjs.com/package/facebook-video-downloader
+                -   https://www.npmjs.com/package/fb-video-downloader
+            -   Twitter
+                -   https://www.npmjs.com/package/twdown
+        -   Warpstagram, save user IG images
+            -   https://www.npmjs.com/package/instagram-save
+        -   Vimeo
+        -   YouTube to MP3
+            -   https://www.npmjs.com/package/youtube-audio-server
+            -   https://www.npmjs.com/package/youtube-mp3-downloader // ffmpeg required
+            -   playlists
+                -   https://www.npmjs.com/package/yt_mp3_downloader
+                -   https://www.npmjs.com/package/youtube-playlist
+        -   Video to MP3
+            -   https://www.npmjs.com/package/ffmpeg-extract-audio
+        -   Soundcloud to MP3
+            -   https://www.npmjs.com/package/soundcloud-mp3
+            -   Auth
+                -   https://www.npmjs.com/package/passport-soundcloud-token
+                -
+            -   playlists
+                -   https://www.npmjs.com/package/soundcloud-audio
+            -   "permalink_url":"https://soundcloud.com/themonday-morning-podcast/tammp-3-28-19",
+        -   Audio converter
+            -   https://www.npmjs.com/package/batch-audio-converter
+        -   Video converter
+            -   https://www.npmjs.com/package/video-converter (audio and video)
+            -   https://www.npmjs.com/package/the-video-converter
+        -   Misc packages (payments, auth, etc)
+            -   Electron
+                -   https://www.npmjs.com/package/electron-builder
+                -   https://www.npmjs.com/package/electron-nightly
+                -   https://www.npmjs.com/package/electron-window-state
+                -   https://www.npmjs.com/package/electron-json-storage
+            -   OS, filesystem
+                -   https://www.npmjs.com/package/getos
+                -   https://www.npmjs.com/package/user-home
+                -   https://www.npmjs.com/package/os-locale
+                -   https://www.npmjs.com/package/systeminformation
+                -   https://www.npmjs.com/package/is-windows
+            -   Payments
+                -   Stripe
+                    -   https://www.npmjs.com/package/stripe
+                -   Paypal
+                    -   https://www.npmjs.com/package/paypal-checkout
+                    -   https://www.npmjs.com/package/paypal-nvp-api
+                    -   https://www.npmjs.com/package/@paypal/sdk-release
+            -   Auth
+                -   Google
+                    -   https://www.npmjs.com/package/google-auth-library
+        -   Instagram
+            -   https://www.npmjs.com/~rishi
+            -   https://hackernoon.com/how-to-create-an-instagram-bot-with-node-js-a289185a7d6f
+            -   Selenium-webdriver
+        -   Google Auth
+            -   https://www.npmjs.com/package/google-auth-library
+            -   https://www.npmjs.com/package/googleapis
+        -   Multi-threading downloading
+            -   https://www.npmjs.com/package/threads

@@ -1,7 +1,12 @@
-const { app, BrowserWindow } = require('electron');
+// const { app, BrowserWindow } = require('electron');
 const elements = {
     nav_A: document.querySelector('.nav_A'),
     nav_A_tab: document.querySelector('.nav_A-tab'),
+
+    nav_A_0: document.getElementById('nav_A_0'),
+    nav_A_1: document.querySelector('.nav_A_1'),
+    nav_A_2: document.querySelector('.nav_A_2'),
+    nav_A_3: document.querySelector('.nav_A_3'),
 
     nav_B: document.querySelector('.nav_B'),
     nav_B0: document.querySelector('.nav_B0'),
@@ -10,11 +15,11 @@ const elements = {
     nav_B3: document.querySelector('.nav_B3'),
     nav_B_button: document.querySelector('.nav_B-button'),
 
-    content__list: document.querySelector('.content__list'),
-    content__list_0: document.querySelector('.content__list_0'),
-    content__list_1: document.querySelector('.content__list_1'),
-    content__list_2: document.querySelector('.content__list_2'),
-    content__list_3: document.querySelector('.content__list_3'),
+    download__list: document.querySelector('.download__list'),
+    download__list_0: document.querySelector('.download__list_0'),
+    download__list_1: document.querySelector('.download__list_1'),
+    download__list_2: document.querySelector('.download__list_2'),
+    download__list_3: document.querySelector('.download__list_3'),
 
     test_add_item: document.querySelector('.test_add_item'),
     test_add_item_0: document.querySelector('.test_add_item_0'),
