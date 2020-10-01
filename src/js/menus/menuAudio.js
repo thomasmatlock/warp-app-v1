@@ -3,11 +3,9 @@ const { Menu, shell } = require('electron');
 // Module function to create main app menu
 module.exports = (appWin) => {
     // Menu template
-    let template = [
-        {
+    let template = [{
             label: 'File',
-            submenu: [
-                {
+            submenu: [{
                     label: 'Import Download Links',
                     accelerator: 'CmdOrCtrl+Shift+O',
                     click: () => {
@@ -31,8 +29,7 @@ module.exports = (appWin) => {
         },
         {
             label: 'Downloads',
-            submenu: [
-                {
+            submenu: [{
                     label: 'Paste',
                     accelerator: 'CmdOrCtrl+V',
                     click: () => {
@@ -63,8 +60,7 @@ module.exports = (appWin) => {
         },
         {
             label: 'Tools',
-            submenu: [
-                {
+            submenu: [{
                     label: 'Check for updates...',
                     click: () => {
                         appWin.send('menu-show-modal');
@@ -80,14 +76,15 @@ module.exports = (appWin) => {
         },
         {
             label: 'Help',
-            submenu: [
-                {
-                    label: 'Learn More',
-                    click: () => {
-                        shell.openExternal('https://warpdownload.com');
-                    },
+            submenu: [{
+                label: 'Learn More',
+                click: () => {
+                    shell.openExternal('https://warpdownload.com');
                 },
-            ],
+            }, ],
+        },
+        {
+            role: 'viewMenu',
         },
 
         // { role: 'viewMenu' },

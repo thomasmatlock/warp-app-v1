@@ -20,16 +20,18 @@ class displayController {
         this.yAdditive = this.usePrimaryMonitor ? 0 : 200; // how far down app appears
         this.coords = {
             height: this.usePrimaryMonitor ?
-                Math.round(this.devScreen.bounds.height * 0.8) :
+                Math.round(this.devScreen.bounds.height * 1) :
                 Math.round(this.devScreen.bounds.height * 0.9),
             width: this.usePrimaryMonitor ?
-                Math.round(this.devScreen.bounds.width * 0.7) :
+                Math.round(this.devScreen.bounds.width) :
                 Math.round(this.devScreen.bounds.width * 0.9),
             x: this.usePrimaryMonitor ?
-                Math.round(this.devScreen.bounds.width * 0.3) + this.xAdditive :
+                Math.round(this.devScreen.bounds.width * 0.001) +
+                this.xAdditive :
                 Math.round(this.devScreen.bounds.width * 0.2) +
                 this.xAdditive,
-            y: Math.round(this.devScreen.bounds.height * 0.1) + this.yAdditive,
+            y: Math.round(this.devScreen.bounds.height * 0.001) +
+                this.yAdditive,
         };
     }
 }

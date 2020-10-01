@@ -296,6 +296,7 @@ li {
 .nav_B {
   width: 60%;
   height: 10vh;
+  min-height: 100px;
   margin: 1vh auto 0;
   display: flex;
   flex-direction: row;
@@ -369,7 +370,7 @@ li {
 .content-container {
   border: 1px dotted;
   width: 100vw;
-  margin-top: 4vh;
+  margin-top: 5vh;
   height: 90vh;
   position: relative;
   display: flex;

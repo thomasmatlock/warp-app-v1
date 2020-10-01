@@ -8,7 +8,7 @@
         "live-server": "live-server",
         "watch": "nodemon --exec electron .",
         "start": "electron .",
-        "dev": "concurrently --kill-others \"npm run node-sass\" \"npm run liveserver\""
+        "dev": "concurrently --kill-others \"npm run node-sass\" \"npm run watch\""
     },
     "author": "",
     "license": "ISC",
