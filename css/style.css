@@ -364,8 +364,8 @@ li {
   position: relative;
   background: white;
   text-align: center;
-  padding: 0 2em;
-  border: 1px dotted; }
+  padding: 0;
+  border: 3px dotted; }
 
 .content-container {
   border: 1px dotted;

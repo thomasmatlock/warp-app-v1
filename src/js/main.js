@@ -10,11 +10,6 @@ const ElectronController = require('./electron/electronController.js');
 const DisplayController = require('./system/displayController');
 const appMenu = require('./menus/menuAudio');
 
-const navPrimaryView = require('./views/navPrimaryView.js');
-const navSecondaryView = require('./views/navSecondaryView.js');
-const listView = require('./views/listView.js');
-const navTitles = require('./models/config.js');
-// const elements = require('./views/base.js');
 app.allowRendererProcessReuse = true;
 
 const navController = new Nav();
@@ -81,7 +76,7 @@ function createWindow() {
     mainWindow.loadFile('./main.html'); // Load index.html into the new BrowserWindow
     // secWindow.loadURL('https://www.youtube.com');
 
-    // mainWindow.webContents.openDevTools(); // Open DevTools - Remove for PRODUCTION!
+    mainWindow.webContents.openDevTools(); // Open DevTools - Remove for PRODUCTION!
     // Menu.setApplicationMenu(mainMenu); // set the menu object we created to the menu
 
     // Listen for window being closed

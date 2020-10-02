@@ -30,7 +30,10 @@ class displayController {
                 this.xAdditive :
                 Math.round(this.devScreen.bounds.width * 0.2) +
                 this.xAdditive,
-            y: Math.round(this.devScreen.bounds.height * 0.001) +
+            y: this.usePrimaryMonitor ?
+                Math.round(this.devScreen.bounds.height * 0.001) +
+                this.yAdditive :
+                Math.round(this.devScreen.bounds.height * 0.1) +
                 this.yAdditive,
         };
     }

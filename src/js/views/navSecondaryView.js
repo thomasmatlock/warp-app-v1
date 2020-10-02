@@ -1,13 +1,14 @@
 // import {    elements} from "./base.js";
 // import {    navSecondaryTitles} from "../models/config.js";
 const navSecondaryTitles = require('../models/config');
+const elements = require('./base');
 
 exports.clearActive = () => {
     // GET ARRAY OF NAV TABS
-    const tabsArr = Array.from(document.querySelectorAll('.nav_B-button'));
-
+    // const tabsArr = Array.from(document.querySelectorAll('.nav_B-button'));
+    console.log(elements.nav_B_buttonArr);
     // REMOVE ACTIVE CLASS FROM ALL TABS
-    tabsArr.forEach((el) => {
+    elements.nav_B_buttonArr.forEach((el) => {
         el.classList.remove('nav_B-button-slide--active');
     });
 };
@@ -46,7 +47,7 @@ const replaceNavSecondaryTitles = (targetTabs, newTitles) => {
 
     // replaces old titles with new titles
     targetTabs.forEach((el) => {
-        el.textContent = `${newTitles[titlesCount]}`;
+        // el.textContent = `${newTitles[titlesCount]}`;
         titlesCount = titlesCount + 1;
     });
 };
