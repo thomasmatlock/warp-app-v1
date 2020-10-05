@@ -1,85 +1,82 @@
 .header {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 0px;
-	background: $color-secondary-light; // TESTING
-	//top: 0;
-	// position: relative;
-	//text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 0px;
+    background: $color-secondary-light; // TESTING
+    //top: 0;
+    // position: relative;
+    //text-align: center;
 }
-
 
 // PARENT CONTAINER FOR CHILDREN TABS
 .nav_A {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	//align-items: center;
-	position: fixed;
-	top: 0;
-	height: $nav_A-height;
-	width: 60%;
-	box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-	z-index: 10;
-	background-color: #fff;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    // background: linear-gradient(-45deg, rgb(197, 197, 197), rgb(197, 197, 197));
+    //align-items: center;
+    position: fixed;
+    top: 0;
+    height: $nav_A-height;
+    width: 60%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+    background-color: #fff;
 }
 
 // CHILDREN TABS
 .nav_A-tab {
-	display: flex;
-	justify-content: center; // PRODUCTION
-	width: 25%;
-	// justify-content: start; // TESTING
-	// align-content: center;
-	align-items: center;
-	flex: 1 2 auto;
-	color: #000;
-	font-size: 1.7rem;
-	letter-spacing: 0.1rem;
-	transition: all 0.3s ease;
-	border-radius: 4px;
-	// padding-left: 2rem; // TESTING
-	// border: solid 1px $color-gray-dark; // TESTING
-	box-shadow: $shadow-before;
-	// font-family: 'Poppins', sans-serif; // soft, rounded font
-	font-weight: 200;
-	// animation-name: moveInTop;
-	//   animation-duration: 0.3s;
-	// background-size: 200% auto; //test
-	// margin: 0 1rem; //test
-
-
-	&:hover {
-		//// CONTENT
-		color: white;
-		// background-image: $codepen-orange-1;
-		background-image: $wildfire-background-blue-color-gradient-1;
-		// color: white;
-		// background: $color-tertiary-medium;
-		// background-image: $codepen-orange-1;
-		// background: $dark-light;
-		background-position: bottom;
-		transform: scale(1.05);
-		transition: all 0.3s ease;
-		box-shadow: $shadow-after;
-		z-index: 20;
-	}
-
-	&:active {
-		// background-color: yellow;
-		transform: scale(1);
-
-	}
-
+    display: flex;
+    justify-content: center; // PRODUCTION
+    width: 20%;
+    // justify-content: start; // TESTING
+    // align-content: center;
+    align-items: center;
+    flex: 1 2 auto;
+    color: #000;
+    font-size: 1.7rem;
+    letter-spacing: 0.1rem;
+    transition: all 0.1s ease;
+    border-radius: 4px;
+    // padding-left: 2rem; // TESTING
+    // border: solid 1px $color-gray-dark; // TESTING
+    box-shadow: $shadow-before;
+    // font-family: 'Poppins', sans-serif; // soft, rounded font
+    font-weight: 200;
+    // padding: 0 3rem;
+    margin: 0 0.2rem;
+    // animation-name: moveInTop;
+    //   animation-duration: 0.3s;
+    // background-size: 200% auto; //test
+    // margin: 0 1rem; //test
+    &:hover {
+        //// CONTENT
+        color: white;
+        // background-image: $codepen-orange-1;
+        background-image: $wildfire-background-blue-color-gradient-1;
+        // color: white;
+        // background: $color-tertiary-medium;
+        // background-image: $codepen-orange-1;
+        // background: $dark-light;
+        background-position: bottom;
+        transform: scale(1.05);
+        transition: all 0.1s ease;
+        box-shadow: $shadow-after;
+        z-index: 20;
+    }
+    &:active {
+        // background-color: yellow;
+        transform: scale(1);
+    }
 }
 
 .nav_A-tab--active {
-	// background-color: $color-secondary-dark;
-	// background-image: $wildfire-button-color-gradient-1;
-	background-image: $codepen-orange-1;
-	transform: scale(1.05);
-	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-	color: white;
-	// z-index: 15;
+    // background-color: $color-secondary-dark;
+    // background-image: $wildfire-button-color-gradient-1;
+    background-image: $codepen-orange-1;
+    transform: scale(1.025);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    color: white;
+    // z-index: 15;
 }

@@ -101,6 +101,9 @@ a {
 li {
   font-size: 1.5rem; }
 
+.nav_A a {
+  font-size: 1.25rem; }
+
 /*
 // CODEPEN HTML
 <div class="container">
@@ -257,7 +260,7 @@ li {
   justify-content: center;
   position: fixed;
   top: 0;
-  height: 60px;
+  height: 8vh;
   width: 60%;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   z-index: 10;
@@ -266,22 +269,23 @@ li {
 .nav_A-tab {
   display: flex;
   justify-content: center;
-  width: 25%;
+  width: 20%;
   align-items: center;
   flex: 1 2 auto;
   color: #000;
   font-size: 1.7rem;
   letter-spacing: 0.1rem;
-  transition: all 0.3s ease;
+  transition: all 0.1s ease;
   border-radius: 4px;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
-  font-weight: 200; }
+  font-weight: 200;
+  margin: 0 0.2rem; }
   .nav_A-tab:hover {
     color: white;
     background-image: linear-gradient(to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, #19d2fc 100%);
     background-position: bottom;
     transform: scale(1.05);
-    transition: all 0.3s ease;
+    transition: all 0.1s ease;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
     z-index: 20; }
   .nav_A-tab:active {
@@ -289,7 +293,7 @@ li {
 
 .nav_A-tab--active {
   background-image: linear-gradient(268deg, #da2c4d, #f8ab37);
-  transform: scale(1.05);
+  transform: scale(1.025);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   color: white; }
 
@@ -334,7 +338,7 @@ li {
   background: #f0eff3;
   border-radius: 4px;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
-  transition: all ease-out 0.3s;
+  transition: all ease-out 0.1s;
   animation-name: moveInTop;
   animation-duration: 1.5s; }
   .nav_B-button:link:hover,
@@ -343,7 +347,7 @@ li {
     background-image: linear-gradient(268deg, #da2c4d, #f8ab37);
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
     border-radius: 4px;
-    transform: scale(1.01); }
+    transform: scale(1.025); }
   .nav_B-button:link:active,
   .nav_B-button:visited:active {
     background-color: yellow;
@@ -364,13 +368,11 @@ li {
   position: relative;
   background: white;
   text-align: center;
-  padding: 0;
-  border: 3px dotted; }
+  padding: 0; }
 
 .content-container {
-  border: 1px dotted;
   width: 100vw;
-  margin-top: 5vh;
+  margin-top: 7vh;
   height: 90vh;
   position: relative;
   display: flex;
