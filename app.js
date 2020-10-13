@@ -59,22 +59,22 @@ elements.nav_A.addEventListener('click', (e) => {
     }
 });
 
-elements.nav_B0.addEventListener('click', (e) => {
-    // nav_B_sequence(e);
-    console.log('You clicked');
-});
-elements.nav_B1.addEventListener('click', (e) => {
-    // nav_B_sequence(e);
-    console.log('You clicked');
-});
-elements.nav_B2.addEventListener('click', (e) => {
-    // nav_B_sequence(e);
-    console.log('You clicked');
-});
-elements.nav_B3.addEventListener('click', (e) => {
-    // nav_B_sequence(e);
-    console.log('You clicked');
-});
+// elements.nav_B0.addEventListener('click', (e) => {
+//     // nav_B_sequence(e);
+//     console.log('You clicked');
+// });
+// elements.nav_B1.addEventListener('click', (e) => {
+//     // nav_B_sequence(e);
+//     console.log('You clicked');
+// });
+// elements.nav_B2.addEventListener('click', (e) => {
+//     // nav_B_sequence(e);
+//     console.log('You clicked');
+// });
+// elements.nav_B3.addEventListener('click', (e) => {
+//     // nav_B_sequence(e);
+//     console.log('You clicked');
+// });
 
 const validateURL = (url) => {
     // Regex pattern

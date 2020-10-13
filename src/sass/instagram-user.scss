@@ -1,0 +1,123 @@
+.user-container {
+    display: flex;
+    flex-direction: column;
+    // justify-content: center;
+    // align-content: center;
+    // align-items: center;
+    width: 100%;
+    height: 100%;
+    // background-image: $codepen-orange-1;
+    // border: 1px solid black;
+    background: $gray-light;
+    // border-radius: 4px;
+    // box-shadow: $shadow-before;
+}
+
+.user {
+    height: 30vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    // justify-content: center;
+    align-content: left;
+    // align-items: left;
+    // border: 1px dotted gray;
+    background-image: white;
+    //// ANIMATION
+    transition: all ease-out 0.1s;
+    animation-name: moveInTop;
+    animation-duration: 0.5s;
+    border: $dev-border;
+    border: 1px solid lightgrey;
+    &:hover {
+        //// CONTENT
+        // color: white;
+        // background-image: $codepen-orange-1;
+        //// DECORATIVE
+        box-shadow: $shadow-after;
+        // border-radius: 4px;
+        //// ANIMATION
+        // transform: scale(1.025);
+    }
+}
+
+.user-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-content: center;
+    height: 5vh;
+    width: 100%;
+    align-content: center;
+    // margin: 1vh;
+    // border: 1px solid #eee;
+    border: $dev-border;
+}
+
+.user-info-stats {
+    align-items: center;
+    align-content: center;
+    justify-content: flex-start;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    // border: 1px solid #eee;
+    border: $dev-border;
+}
+
+.user-info-stats__avatar {
+    height: 24px;
+    width: 24px;
+    border-radius: 45px;
+}
+
+.user-info-actions {
+    align-items: center;
+    align-content: right;
+    // align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    // border: 1px solid #eee;
+    border: $dev-border;
+}
+
+.user-info-stats__item {
+    border: $dev-border;
+    font-size: 13px;
+    margin-left: 4vh;
+}
+
+.user-images {
+    display: flex;
+    flex-direction: row;
+    height: 25vh;
+    width: 100%;
+    // margin: 1vh;
+    // border: 1px solid #eee;
+    border: $dev-border;
+}
+
+.user-image {
+    width: 22vh;
+    height: 22vh;
+    background-image: white;
+    //// ANIMATION
+    transition: all ease-out 0.1s;
+    animation-name: moveInTop;
+    animation-duration: 1.5s;
+    margin: 1vh;
+    &:hover {
+        //// CONTENT
+        color: white;
+        // background-image: $codepen-orange-1;
+        background-image: rgba(0, 0, 0, 0.2);
+        background: rgba(0, 0, 0, 0.2);
+        //// DECORATIVE
+        box-shadow: $shadow-after;
+        // border-radius: 4px;
+        //// ANIMATION
+        // transform: scale(1.025);
+    }
+}

@@ -13,8 +13,92 @@
 @import 'components/nav-secondary';
 @import 'layouts/content-slide';
 @import 'layouts/grid';
-// @media only screen and (max-width: 600px) {
-//     body {
-//         background-color: lightblue;
-//     }
-// }
+@import 'instagram-filter';
+@import 'instagram-search';
+@import 'instagram-user';
+.user-search {
+    display: flex;
+    flex-direction: row;
+    border: $dev-border;
+    align-items: center;
+    align-content: center;
+    justify-content: flex-start;
+    padding: 1vh;
+    height: 5vh;
+    width: 100%;
+}
+
+.user-search-input {
+    width: 70%;
+    // flex: 15;
+    border: $dev-border;
+    height: 4vh;
+    margin: 0 1vh 0;
+}
+
+#user-search-input__field {
+    border-radius: 4px;
+    width: 100%;
+    height: 100%;
+    &:hover {
+        //// CONTENT
+        color: white;
+        // background-image: $codepen-orange-1;
+        // background-image: $wildfire-background-blue-color-gradient-1;
+        // color: white;
+        // background: $color-tertiary-medium;
+        // background-image: $codepen-orange-1;
+        // background: $dark-light;
+        background-position: bottom;
+        // transform: scale(1.05);
+        transition: all 0.5s ease;
+        box-shadow: $shadow-after;
+        z-index: 20;
+    }
+}
+
+.user-search-subscribe {
+    border: $dev-border;
+    border-radius: 4px;
+    // flex: 3;
+    width: 25%;
+    height: 100%;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-search-subscribe__button {
+    height: 100%;
+}
+
+.user-search-settings {
+    border: $dev-border;
+    height: 100%;
+    border-radius: 4px;
+    width: 5%;
+    // flex: 1;
+}
+
+#user-search-subscribe__button {
+    width: 100%;
+    &:hover {
+        //// CONTENT
+        // color: white;
+        // background-image: $codepen-orange-1;
+        // background-image: $wildfire-background-blue-color-gradient-1;
+        // color: white;
+        // background: $color-tertiary-medium;
+        // background-image: $codepen-orange-1;
+        // background: $dark-light;
+        background-position: bottom;
+        // transform: scale(1.05);
+        transition: all 0.1s ease;
+        box-shadow: $shadow-after;
+        z-index: 20;
+    }
+}
+
+.user-search-settings img {
+    height: 24px;
+}

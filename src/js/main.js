@@ -76,7 +76,7 @@ function createWindow() {
     mainWindow.loadFile('./main.html'); // Load index.html into the new BrowserWindow
     // secWindow.loadURL('https://www.youtube.com');
 
-    mainWindow.webContents.openDevTools(); // Open DevTools - Remove for PRODUCTION!
+    // mainWindow.webContents.openDevTools(); // Open DevTools - Remove for PRODUCTION!
     // Menu.setApplicationMenu(mainMenu); // set the menu object we created to the menu
 
     // Listen for window being closed
