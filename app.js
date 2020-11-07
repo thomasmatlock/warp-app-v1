@@ -14,12 +14,13 @@ let state = {};
 let nav_A_active;
 state.nav = new Nav();
 state.nav.nav_A = [];
+console.log(nav_A_active);
 
 // STATE CONTROLLER
 const init = () => {
     state.nav.nav_A[nav_A_active] = true;
-
-    // console.log(`${nav_A_active} is active: ${state.nav.nav_A[nav_A_active]}`);
+    // elements.nav_A_3.style.classList.add('nav_A-tab--active');
+    console.log(`${nav_A_active} is active: ${state.nav.nav_A[nav_A_active]}`);
 };
 init();
 // console.log(typeof elements);
