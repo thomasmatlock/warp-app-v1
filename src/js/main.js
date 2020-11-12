@@ -91,7 +91,7 @@ function createWindow() {
     mainWindow.loadFile('./main.html'); // Load index.html into the new BrowserWindow
     // secWindow.loadURL('https://www.youtube.com');
 
-    // mainWindow.webContents.openDevTools(); // Open DevTools - Remove for PRODUCTION!
+    mainWindow.webContents.openDevTools(); // Open DevTools - Remove for PRODUCTION!
 
     mainWindow.on('ready', () => {
         console.log('ready');
