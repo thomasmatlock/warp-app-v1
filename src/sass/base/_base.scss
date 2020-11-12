@@ -1,4 +1,5 @@
 /* * is universal selector for everything on your page, it applies all block rules to everything inside it*/
+
 // *,
 *::after,
 *::before {
@@ -23,12 +24,9 @@ body {
     overflow: hidden; // prevents scrolling
 }
 
-
-
 h3 {
-    font-family: "Nunito", sans-serif;
+    // font-family: "Nunito", sans-serif;
 }
-
 
 a {
     text-decoration: none;

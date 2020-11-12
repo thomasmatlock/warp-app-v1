@@ -1,14 +1,19 @@
 /* eslint-disable no-console */
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-expressions */
 /* eslint-disable no-unused-vars */
+/* eslint-disable one-var */
+
+// 1st party (nodejs)
+// 2nd party (npm)
 const { clipboard, ipcRenderer } = require('electron');
+// 3rd party (mine)
 const elements = require('./src/js/views/base');
-// import * as navPrimaryView from './views/navPrimaryView.js';
 const navPrimaryView = require('./src/js/views/navPrimaryView.js');
 const navSecondaryView = require('./src/js/views/navSecondaryView.js');
 const listView = require('./src/js/views/listView.js');
-// const navTitles = require('./src/js/models/config.js');
 const Nav = require('./src/js/models/Nav.js');
-// const validate = require;
+// const navTitles = require('./src/js/models/config.js');
 
 let state = {};
 let nav_A_active;

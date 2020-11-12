@@ -14,6 +14,8 @@ exports.clearActive = () => {
     });
 };
 
+
+
 exports.highlightSelected = (id) => {
     // Add active class to selected tabs
     const tab = document.getElementById(`${id}`);

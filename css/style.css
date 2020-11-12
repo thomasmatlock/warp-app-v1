@@ -77,25 +77,15 @@ body {
   box-sizing: border-box;
   overflow: hidden; }
 
-h3 {
-  font-family: "Nunito", sans-serif; }
-
 a {
   text-decoration: none; }
 
 body {
-  font-family: 'Century Gothic', 'Lato', sans-serif;
+  font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
   overflow: hidden; }
 
 h1 {
   animation: moveInBottom 1s ease-out; }
-
-p {
-  font-family: 'Poppins', sans-serif; }
-
-h3,
-h4 {
-  font-weight: 500; }
 
 a {
   text-decoration: none;
@@ -161,94 +151,24 @@ li {
 .btn-5 {
   background-image: linear-gradient(to right, #ffecd2 0%, #fcb69f 51%, #ffecd2 100%); }
 
-.download__list li {
-  height: 5rem; }
-
-.download__link:link,
-.download__link:visited {
-  display: flex;
-  flex-direction: row;
-  justify-content: start;
-  align-items: center;
-  height: 5rem;
-  width: 100%;
-  align-items: center;
-  text-decoration: none;
-  border-radius: 3px;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1); }
-  .download__link:link:hover,
-  .download__link:visited:hover {
-    background-color: #ecedf3;
-    transform: translateY(-2px);
-    transform: scale(1.01);
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-    z-index: 4; }
-
-.content__thumbnail {
-  flex: 0 0 5.5rem;
-  border-radius: 3px;
-  height: 4.5rem;
-  width: 2.5rem;
-  margin-right: 5rem; }
-
-.content__thumbnail img {
-  display: block;
-  width: 175%;
-  height: 100%;
-  object-fit: cover;
-  transition: all 0.3s; }
-
-.content__data {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: 100%; }
-
-.content__file-property {
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  flex: 1 3;
-  padding-left: 6rem;
-  margin: 0 auto; }
-
-.content__data * {
-  color: #000;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 500;
-  font-size: 1.2rem; }
-
-.content__data h4 {
-  min-width: 30%;
-  font-weight: 500; }
-
-.content__data p {
-  color: #000; }
-
-.content__panel {
-  display: flex;
-  width: 50%;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center; }
-
 .download__list {
   list-style: none;
   height: 70vh;
-  scrollbar-width: none;
-  overflow: scroll;
   display: flex;
-  width: 95%;
+  width: 100%;
   flex-direction: column;
   justify-content: start;
+  align-content: left;
   background-color: #fff;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 0;
+  padding: 0;
   border: solid 2px #ecedf3;
-  box-shadow: 0px 5px 5px #9c9c9c;
-  border-radius: 4px; }
+  border-radius: 3px; }
+
+.download__item__data__property {
+  color: #777; }
+
+.download__item__data__property-title {
+  color: black; }
 
 .header {
   display: flex;
@@ -330,7 +250,7 @@ li {
   margin: auto 2rem;
   font-size: 1.2rem;
   color: #000;
-  font-weight: 900;
+  font-weight: 400;
   text-align: center;
   display: flex;
   flex-direction: row;
@@ -604,8 +524,7 @@ li {
   height: 24px; }
 
 input[type="text"] {
-  font-weight: 500;
-  font-family: 'Century Gothic', 'Lato', sans-serif; }
+  font-weight: 500; }
 
 .user-filterToolbar {
   display: flex;
@@ -650,6 +569,7 @@ input[type="text"] {
 #modal-settings {
   border: 1px dotted rgba(255, 0, 0, 0.5);
   position: absolute;
+  transform: perspective();
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.85);
@@ -668,3 +588,56 @@ input[type="text"] {
   color: black;
   margin-left: 15px;
   display: flex; }
+
+.download__list li {
+  height: 7vh;
+  border: 1px solid #eee;
+  transition: all ease-out 0.05s; }
+  .download__list li:hover {
+    background-color: #ecedf3;
+    transform: translateY(-2px);
+    transform: scale(1.005);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    z-index: 4; }
+
+.download__item {
+  height: 7vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start; }
+
+.download__item__thumbnail img {
+  height: 7vh;
+  border: dotted red 0px;
+  border-radius: 3px; }
+
+.download__item_info-pane {
+  display: flex;
+  flex-direction: column;
+  height: 7vh;
+  color: black;
+  font-size: 1.2rem;
+  padding: 0;
+  border: dotted red 0px; }
+
+.download__item_info-pane-data {
+  width: 100%; }
+
+.download__item_info-pane__top {
+  height: 3.5vh;
+  display: flex;
+  border: dotted red 0px;
+  align-items: center; }
+
+.download__item_info-pane__bottom {
+  display: flex;
+  border: dotted red 0px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  height: 3.5vh; }
+
+.download__item__data__property {
+  border: dotted red 0px;
+  margin-left: 1vw; }

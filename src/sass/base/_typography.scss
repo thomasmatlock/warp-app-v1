@@ -1,5 +1,6 @@
 body {
-    font-family: 'Century Gothic', 'Lato', sans-serif; // sharp font
+    // font-family: 'Century Gothic', 'Lato', sans-serif; // sharp font
+    font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
     // font-family: 'Nunito', sans-serif; // soft, rounded font
     // font-family: 'Poppins', sans-serif; // soft, rounded font
     overflow: hidden; // prevents scrolling
@@ -11,7 +12,7 @@ h1 {
 }
 
 p {
-    font-family: 'Poppins', sans-serif; // soft, rounded font
+    // font-family: 'Poppins', sans-serif; // soft, rounded font
 }
 
 h3,
@@ -19,7 +20,7 @@ h4 {
     // font-family: "Nunito", sans-serif; // soft, rounded font
     // font-family: 'Poppins', sans-serif; // soft, rounded font
     // font-size: 17px;
-    font-weight: 500;
+    // font-weight: 500;
     // letter-spacing: 1px;
     // animation: moveInRight 1s ease-out;
 }

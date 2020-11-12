@@ -3,6 +3,11 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-unused-vars */
 /* eslint-disable one-var */
+
+// 1st party (nodejs)
+const fs = require('fs');
+const path = require('path');
+// 2nd party (npm)
 const {
     app,
     BrowserView,
@@ -11,11 +16,9 @@ const {
     MenuItem,
     shell,
 } = require('electron');
-const fs = require('fs');
-const path = require('path');
 const youtubedl = require('youtube-dl');
+// 3rd party (mine)
 const Nav = require('./models/Nav');
-const ElectronController = require('./electron/electronController.js');
 const DisplayController = require('./system/displayController');
 const fileController = require('./system/fileController');
 const userAuthController = require('./utils/userAuth');
@@ -25,8 +28,6 @@ const appMenu = require('./menus/menuAudio');
 app.allowRendererProcessReuse = true;
 
 const navController = new Nav();
-const electronController = new ElectronController();
-// console.log(electronController.mainMenu.audio.File[1]);
 
 let testUrlYoutube = 'https://www.youtube.com/watch?v=7mCktSlyETw&t';
 const devMode = true;
@@ -48,7 +49,7 @@ function createWindow() {
             nodeIntegration: true,
             worldSafeExecuteJavaScript: true,
         },
-        backgroundColor: '##ff8500', // use the same color as your html file is, the main window will display this until html fully loads. This is a little better than making your app hang for a second until the html loads, then displaying the window
+        // backgroundColor: '#ff8500', // use the same color as your html file is, the main window will display this until html fully loads. This is a little better than making your app hang for a second until the html loads, then displaying the window
     });
 
     // const secWindow = new BrowserWindow({ width: 800, height: 600 });
@@ -90,8 +91,7 @@ function createWindow() {
     mainWindow.loadFile('./main.html'); // Load index.html into the new BrowserWindow
     // secWindow.loadURL('https://www.youtube.com');
 
-    mainWindow.webContents.openDevTools(); // Open DevTools - Remove for PRODUCTION!
-    // Menu.setApplicationMenu(mainMenu); // set the menu object we created to the menu
+    // mainWindow.webContents.openDevTools(); // Open DevTools - Remove for PRODUCTION!
 
     mainWindow.on('ready', () => {
         console.log('ready');
@@ -119,7 +119,6 @@ app.on('ready', () => {
     networkController.init();
     createWindow();
 });
-
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') app.quit();
 });

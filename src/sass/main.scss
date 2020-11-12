@@ -43,11 +43,9 @@
     &:hover {
         //// CONTENT
         color: white;
-        // background-image: $codepen-orange-1;
         // background-image: $wildfire-background-blue-color-gradient-1;
         // color: white;
         // background: $color-tertiary-medium;
-        // background-image: $codepen-orange-1;
         // background: $dark-light;
         background-position: bottom;
         // transform: scale(1.05);
@@ -110,7 +108,7 @@
 input[type="text"] {
     // font-size: 24px;
     font-weight: 500;
-    font-family: 'Century Gothic', 'Lato', sans-serif; // sharp font
+    // font-family: 'Century Gothic', 'Lato', sans-serif; // sharp font
 }
 
 ////////////////////////////////////////////////////////////////
@@ -167,6 +165,7 @@ input[type="text"] {
 #modal-settings {
     border: $dev-border;
     position: absolute;
+    transform: perspective();
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.85);
@@ -187,4 +186,74 @@ input[type="text"] {
     color: black;
     margin-left: 15px;
     display: flex;
+}
+
+//////////////////////////
+.download__list li {
+    // height: 7rem;
+    // display: flex;
+    // flex-direction: row;
+    // justify-content: start;
+    // align-items: flex-start;
+    height: $download-item-height;
+    border: 1px solid #eee;
+    // background-color: #eee;
+    transition: all ease-out 0.05s;
+    &:hover {
+        background-color: $grey;
+        // background-color: #eee;
+        transform: translateY(-2px);
+        transform: scale(1.005);
+        box-shadow: $shadow-after;
+        z-index: 4;
+    }
+}
+
+.download__item {
+    height: $download-item-height;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+}
+
+.download__item__thumbnail img {
+    height: $download-item-height;
+    border: dotted red 0px;
+    border-radius: 3px;
+}
+
+.download__item_info-pane {
+    display: flex;
+    flex-direction: column;
+    height: $download-item-height;
+    color: black;
+    font-size: 1.2rem;
+    padding: 0;
+    border: dotted red 0px;
+}
+
+.download__item_info-pane-data {
+    width: 100%;
+}
+
+.download__item_info-pane__top {
+    height: $download-item-height / 2;
+    display: flex;
+    border: dotted red 0px;
+    align-items: center;
+}
+
+.download__item_info-pane__bottom {
+    display: flex;
+    border: dotted red 0px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    height: $download-item-height / 2;
+}
+
+.download__item__data__property {
+    border: dotted red 0px;
+    margin-left: 1vw;
 }
