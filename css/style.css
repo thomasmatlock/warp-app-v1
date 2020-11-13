@@ -585,7 +585,7 @@ input[type="text"] {
   display: flex; }
 
 .download__list li {
-  height: 60px;
+  height: 7vh;
   border: 1px solid #eee;
   transition: all ease-out 0.05s; }
   .download__list li:hover {
@@ -596,21 +596,21 @@ input[type="text"] {
     z-index: 4; }
 
 .download__item {
-  height: 60px;
+  height: 7vh;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: start; }
 
 .download__item__thumbnail img {
-  height: 60px;
+  height: 7vh;
   border: dotted red 0px;
   border-radius: 3px; }
 
 .download__item_info-pane {
   display: flex;
   flex-direction: column;
-  height: 60px;
+  height: 7vh;
   color: black;
   font-size: 1.2rem;
   padding: 0;
@@ -620,7 +620,7 @@ input[type="text"] {
   width: 100%; }
 
 .download__item_info-pane__top {
-  height: 30px;
+  height: 3.5vh;
   display: flex;
   border: dotted red 0px;
   align-items: center; }
@@ -631,7 +631,7 @@ input[type="text"] {
   flex-direction: row;
   align-items: center;
   justify-content: start;
-  height: 30px; }
+  height: 3.5vh; }
 
 .download__item__data__property {
   border: dotted red 0px;
