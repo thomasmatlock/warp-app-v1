@@ -1,5 +1,7 @@
+const os = require('os');
 const fs = require('fs');
 const path = require('path');
+
 const userDocumentsPath = 'C:\\Users\\Tommy\\Documents\\';
 const dirMainName = 'Warp Downloader';
 const dirMainPath = `${userDocumentsPath}${dirMainName}`;

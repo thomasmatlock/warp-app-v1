@@ -1,9 +1,9 @@
 .download__list {
     list-style: none;
-    height: 70vh;
+    height: 80vh;
     // scrollbar-width: none;
     // overflow: scroll;
-    // background-color: rgb(179, 179, 179); // TESTING
+    // background-color: rgb(179, 179, 179, ); // TESTING
     // padding-top: 6.5rem;
     display: flex;
     width: 100%;
@@ -12,7 +12,7 @@
     align-content: left;
     // align-items: left;
     // align-items: flex-start;
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 1);
     // margin: 6.5rem auto;
     // margin-top: 1rem;
     padding: 0;

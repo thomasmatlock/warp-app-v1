@@ -73,7 +73,7 @@
     box-shadow: $shadow-before;
     //// ANIMATION
     transition: all ease-out 0.1s;
-    animation-name: moveInTop;
+    // animation-name: moveInTop;
     animation-duration: 1.5s;
     &:hover {
         //// CONTENT
@@ -86,7 +86,7 @@
         transform: scale(1.025);
     }
     &:active {
-        background-color: yellow;
+        // background-color: yellow;
         transform: scale(0.95);
     }
 }

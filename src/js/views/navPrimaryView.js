@@ -1,6 +1,6 @@
 // import { elements } from './base.js';
 
-const elements = require('./base');
+const elements = require('./elements');
 
 exports.clearActive = () => {
     // GET ARRAY OF NAV TABS
@@ -13,8 +13,6 @@ exports.clearActive = () => {
         // console.log('Active class removed from navA tabs');
     });
 };
-
-
 
 exports.highlightSelected = (id) => {
     // Add active class to selected tabs

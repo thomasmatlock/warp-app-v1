@@ -5,6 +5,7 @@
 /* eslint-disable one-var */
 
 // 1st party (nodejs)
+const os = require('os');
 const fs = require('fs');
 const path = require('path');
 // 2nd party (npm)
@@ -12,6 +13,7 @@ const {
     app,
     BrowserView,
     BrowserWindow,
+    ipcMain,
     Menu,
     MenuItem,
     shell,
@@ -25,14 +27,99 @@ const userAuthController = require('./utils/userAuth');
 const networkController = require('./utils/network');
 const appMenu = require('./menus/menuAudio');
 
-app.allowRendererProcessReuse = true;
-
-const navController = new Nav();
-
-let testUrlYoutube = 'https://www.youtube.com/watch?v=7mCktSlyETw&t';
 const devMode = true;
-
+const navController = new Nav();
 let mainWindow, displays; // Keep a global reference of the window object, if you don't, the window will be closed automatically when the JavaScript object is garbage collected.
+let itemURL;
+
+app.allowRendererProcessReuse = true;
+const sampleURLS = [
+    'https://www.facebook.com/hmtheus/videos/3230852170358533',
+    'https://www.instagram.com/p/CFmU6REA5dl/',
+    'https://soundcloud.com/themonday-morning-podcast/mmpc-11-16-20',
+    'https://www.twitch.tv/videos/805708310',
+    'https://twitter.com/LouDobbs/status/1328469195550576645',
+    'https://vimeo.com/210599507',
+    'https://www.youtube.com/watch?v=TeBSVS3FwRY',
+    'https://www.tiktok.com/@foodies/video/6895167017570127109',
+];
+const dirUser = os.userInfo().homedir;
+const dirMainName = 'Warp Downloader';
+const dirMainPath = path.join(dirUser, 'Documents', dirMainName);
+const dirSubNames = ['Audio', 'Video', 'Warpstagram', 'Postfire'];
+const dirMainVideoPath = path.join(
+    dirUser,
+    'Documents',
+    dirMainName,
+    dirSubNames[1]
+);
+
+// Project: Listen for new item request
+ipcMain.on('new-item', (e, itemURL) => {
+    // console.log(itemURL);
+
+    // readItem(itemURL, (item) => {
+    //     e.sender.send('new-item-success', item);
+    // });
+
+    // Will be called when the download starts.
+    const video = youtubedl(
+        itemURL, [
+            // Optional arguments passed to youtube-dl.
+            // '--format=302',
+            // '--format=249',
+        ]
+        // Additional options can be given for calling `child_process.execFile()`.
+    );
+    let videoData = {
+        title: '',
+        duration: '',
+        size: '',
+        thumbnailURL: '',
+    };
+
+    // Will be called when the download starts.
+    video.on('info', function(info) {
+        // console.log('Download started');
+        // console.log('filename: ' + info._filename);
+        // console.log('size: ' + info.size);
+        // console.log(`${info.formats.length} formats`);
+        // videoData = {
+        //     title = info.title,
+        //     duration = info.duration,
+        //     size = info.size,
+        //     thumbnailURL = info.thumbnail,
+        // }
+        videoData.title = info.title;
+        videoData.duration = info.duration;
+        videoData.size = info.size;
+        videoData.thumbnailURL = info.thumbnail;
+        return videoData;
+
+        // console.log(
+        //     `'${info.title}': ${info.formats.length} formats, ${info.duration} minutes long, is ${info.filesize} large, and the thumbnail URL is '${info.thumbnail}'`
+        // );
+
+        // const data = JSON.stringify(info, null, 4);
+        // WRITE DATA RETURNED TO FILE
+        // fs.writeFile('./downloadInfo.json', data, 'utf8', (err) => {
+        //     if (err) {
+        //         console.log(`Error writing file: ${err}`);
+        //     } else {
+        //         console.log(`File is written successfully!`);
+        //     }
+        // });
+    });
+    // console.log(video.info);
+    // dl.pipe(fs.createWriteStream(filepath));
+
+    setTimeout(() => {
+        // console.log(videoData);
+        var filepath = path.join(dirMainVideoPath, `${videoData.title}.mp4`);
+        video.pipe(fs.createWriteStream(filepath));
+        console.log('Done!');
+    }, 4000);
+});
 
 function createWindow() {
     mainWindow = new BrowserWindow({
@@ -91,7 +178,7 @@ function createWindow() {
     mainWindow.loadFile('./main.html'); // Load index.html into the new BrowserWindow
     // secWindow.loadURL('https://www.youtube.com');
 
-    mainWindow.webContents.openDevTools(); // Open DevTools - Remove for PRODUCTION!
+    // mainWindow.webContents.openDevTools(); // Open DevTools - Remove for PRODUCTION!
 
     mainWindow.on('ready', () => {
         console.log('ready');
@@ -109,7 +196,7 @@ app.on('before-quit', (event) => {
 });
 app.on('ready', () => {
     if (devMode) {
-        console.log('Dev mode active');
+        // console.log('Dev mode active');
     } else {
         console.log('Dev mode inactive');
         userAuthController.init();
@@ -135,27 +222,3 @@ Object.size = function(obj) {
     }
     return size;
 };
-
-// youtube-dl
-// const video = youtubedl(
-//     // 'http://www.youtube.com/watch?v=90AiXO1pAiA',
-//     'https://www.youtube.com/watch?v=sb6WlQiaJeM',
-//     // Optional arguments passed to youtube-dl.
-//     ['--format=18'],
-//     // Additional options can be given for calling `child_process.execFile()`.
-//     { cwd: __dirname }
-// );
-
-// // Will be called when the download starts.
-// video.on('info', function(info) {
-//     // console.log('Download started');
-//     // console.log('filename: ' + info._filename);
-//     // console.log('size: ' + info.size);
-//     console.log(info.formats.length);
-// });
-
-// video.pipe(fs.createWriteStream('myvideo.mp4'));
-
-// console.log(process.platform);
-// console.log(path.dirname());
-// console.log(shell);

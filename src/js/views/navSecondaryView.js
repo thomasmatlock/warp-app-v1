@@ -1,12 +1,12 @@
 // import {    elements} from "./base.js";
 // import {    navSecondaryTitles} from "../models/config.js";
 const navSecondaryTitles = require('../models/config');
-const elements = require('./base');
+const elements = require('./elements');
 
 exports.clearActive = () => {
     // GET ARRAY OF NAV TABS
     // const tabsArr = Array.from(document.querySelectorAll('.nav_B-button'));
-    console.log(elements.nav_B_buttonArr);
+    // console.log(elements.nav_B_buttonArr);
     // REMOVE ACTIVE CLASS FROM ALL TABS
     elements.nav_B_buttonArr.forEach((el) => {
         el.classList.remove('nav_B-button-slide--active');
@@ -16,10 +16,12 @@ exports.clearActive = () => {
 // REPLACE NAVB TITLES DEPENDING ON WHICH NAV PRIMARY IS CLICKED
 exports.updateTitles = (nav_A_id) => {
     const nav_B_button_arr = [
-        Array.from(document.querySelectorAll('.nav_B-button-slide-0')),
-        Array.from(document.querySelectorAll('.nav_B-button-slide-1')),
+        Array.from(document.querySelectorAll('.nav_B-button-slide-audio')),
+        Array.from(document.querySelectorAll('.nav_B-button-slide-video')),
         Array.from(document.querySelectorAll('.nav_B-button-slide-2')),
-        Array.from(document.querySelectorAll('.nav_B-button-slide-3')),
+        Array.from(
+            document.querySelectorAll('.nav_B-button-slide-warpstagram')
+        ),
     ];
 
     const navSecondaryTitlesv2 = [

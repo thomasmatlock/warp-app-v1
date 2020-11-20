@@ -29,6 +29,7 @@
         "prettier": "^2.0.4"
     },
     "dependencies": {
+        "electron-json-storage": "^4.3.0",
         "instagram-basic-data-scraper-with-username": "^4.0.1",
         "instagram-posts": "^2.2.0",
         "instagram-save": "^1.3.2",
