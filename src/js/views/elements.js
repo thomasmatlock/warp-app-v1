@@ -3,7 +3,7 @@ const elements = {
     nav_A: document.querySelector('.nav_A'),
     nav_A_tab: document.querySelector('.nav_A-tab'),
     nav_A_tabArr: document.querySelectorAll('.nav_A-tab'),
-    nav_A_0: document.getElementById('nav_A_0'),
+    nav_A_audio: document.getElementById('nav_A_audio'),
     nav_A_1: document.querySelector('.nav_A_1'),
     nav_A_2: document.querySelector('.nav_A_2'),
     nav_A_3: document.querySelector('.nav_A_3'),

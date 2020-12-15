@@ -16,13 +16,28 @@ const Nav = require('./src/js/models/Nav.js');
 // const navTitles = require('./src/js/models/config.js');
 
 let state = {};
-let nav_A_active;
+let nav_A_active = 0;
 state.nav = new Nav();
 state.nav.nav_A = [];
 // console.log(nav_A_active);
 
+ipcRenderer.on('new-item-success', (e, newItem) => {
+    // console.log(newItem);
+    // add new item to "items" node
+    items.addItem(newItem, true);
+
+    // Enable buttons
+    // toggleModalButtons();
+
+    // Hide modal and clear input value
+    // modal.style.display = 'none';
+    // itemURL.value = '';
+});
+
 // STATE CONTROLLER
 const init = () => {
+    console.log(nav_A_active);
+    console.log(state.nav);
     state.nav.nav_A[nav_A_active] = true;
     // elements.nav_A_3.style.classList.add('nav_A-tab--active');
     // console.log(`${nav_A_active} is active: ${state.nav.nav_A[nav_A_active]}`);
@@ -30,7 +45,7 @@ const init = () => {
 init();
 // console.log(typeof elements);
 
-// elements.nav_A_0.addEventListener('click', (e) => {
+// elements.nav_A_audio.addEventListener('click', (e) => {
 //     console.log(e);
 //     // console.log('You clicked');
 // });
@@ -93,17 +108,7 @@ elements.testClassVideo.addEventListener('click', (e) => {
 //     // nav_B_sequence(e);
 //     console.log('You clicked');
 // });
-const sampleURLS = [
-    'https://www.facebook.com/hmtheus/videos/3230852170358533',
-    'https://www.instagram.com/p/CFmU6REA5dl/',
-    'https://soundcloud.com/themonday-morning-podcast/mmpc-11-16-20',
-    'https://streamable.com/yhl89p',
-    'https://www.twitch.tv/videos/805708310',
-    'https://twitter.com/LouDobbs/status/1328469195550576645',
-    'https://vimeo.com/210599507',
-    'https://www.youtube.com/watch?v=TeBSVS3FwRY',
-    'https://www.tiktok.com/@foodies/video/6895167017570127109',
-];
+
 // https://www.youtube.com/watch?v=TeBSVS3FwRY
 
 const pattArr = [
@@ -150,19 +155,17 @@ const mediaController = (url, sourceType, format) => {
 };
 
 // Paste
-//parse
+// parse
 // download
 // update state
 // update local user file
 // update UI
 
-// Now let’s remove the last character from the string using the substring method in the below example.
+/////////////////////////////
 
-// function removeLastCharacter() {
-// var str = 'tracedynamics';
-// str = str.substring(0,str.length-1);
-// console.log(str);
-// }
+// Free version uses nav B
+// Free version has a CTA on left hand side
 
-// Output:
-// tracedynamic
+// Pro version replaces Nav A with Downloader (removes Audio/Video tabs), Warpstagram, and Postfire tabs
+// Pro version replaces Nav B with dynamic jumplist (download audio/video buttons)
+// Pro version has iframe/2nd window on left half of content slide

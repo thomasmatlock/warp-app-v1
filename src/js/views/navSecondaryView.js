@@ -32,7 +32,7 @@ exports.updateTitles = (nav_A_id) => {
     ];
     // console.log(navSecondaryTitlesv2[0][0]);
 
-    if (nav_A_id === 'nav_A_0') {
+    if (nav_A_id === 'nav_A_audio') {
         replaceNavSecondaryTitles(nav_B_button_arr[0], navSecondaryTitlesv2[0]); // replaces old titles with new titles
     } else if (nav_A_id === 'nav_A_1') {
         replaceNavSecondaryTitles(nav_B_button_arr[1], navSecondaryTitlesv2[1]); // replaces old titles with new titles

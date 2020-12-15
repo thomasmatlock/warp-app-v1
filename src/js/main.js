@@ -20,46 +20,31 @@ const {
 } = require('electron');
 const youtubedl = require('youtube-dl');
 // 3rd party (mine)
-const Nav = require('./models/Nav');
+const config = require('../../dev-data/config');
 const DisplayController = require('./system/displayController');
-const fileController = require('./system/fileController');
-const userAuthController = require('./utils/userAuth');
-const networkController = require('./utils/network');
+const systemInfo = require('./system/system-info');
+const fileController = require('./system/fileController'); // const userAuthController = require('./utils/userAuth');
 const appMenu = require('./menus/menuAudio');
+const Nav = require('./models/Nav');
 
-const devMode = true;
+// console.log(systemInfo.dirMainVideoPath);
+const randomURL =
+    config.dev.URLS[
+        Math.floor(Math.random() * Math.floor(config.dev.URLS.length - 1))
+    ];
+// console.log(randomURL);
+
 const navController = new Nav();
-let mainWindow, displays; // Keep a global reference of the window object, if you don't, the window will be closed automatically when the JavaScript object is garbage collected.
-let itemURL;
+let itemURL, mainWindow, displays; // Keep a global reference of the window object, if you don't, the window will be closed automatically when the JavaScript object is garbage collected.
 
 app.allowRendererProcessReuse = true;
-const sampleURLS = [
-    'https://www.facebook.com/hmtheus/videos/3230852170358533',
-    'https://www.instagram.com/p/CFmU6REA5dl/',
-    'https://soundcloud.com/themonday-morning-podcast/mmpc-11-16-20',
-    'https://www.twitch.tv/videos/805708310',
-    'https://twitter.com/LouDobbs/status/1328469195550576645',
-    'https://vimeo.com/210599507',
-    'https://www.youtube.com/watch?v=TeBSVS3FwRY',
-    'https://www.tiktok.com/@foodies/video/6895167017570127109',
-];
-const dirUser = os.userInfo().homedir;
-const dirMainName = 'Warp Downloader';
-const dirMainPath = path.join(dirUser, 'Documents', dirMainName);
-const dirSubNames = ['Audio', 'Video', 'Warpstagram', 'Postfire'];
-const dirMainVideoPath = path.join(
-    dirUser,
-    'Documents',
-    dirMainName,
-    dirSubNames[1]
-);
 
 // Project: Listen for new item request
 ipcMain.on('new-item', (e, itemURL) => {
-    // console.log(itemURL);
+    console.log(itemURL);
 
     // readItem(itemURL, (item) => {
-    //     e.sender.send('new-item-success', item);
+    // e.sender.send('new-item-success', item);
     // });
 
     // Will be called when the download starts.
@@ -115,7 +100,10 @@ ipcMain.on('new-item', (e, itemURL) => {
 
     setTimeout(() => {
         // console.log(videoData);
-        var filepath = path.join(dirMainVideoPath, `${videoData.title}.mp4`);
+        var filepath = path.join(
+            systemInfo.dirMainVideoPath,
+            `${videoData.title}.mp4`
+        );
         video.pipe(fs.createWriteStream(filepath));
         console.log('Done!');
     }, 4000);
@@ -178,7 +166,7 @@ function createWindow() {
     mainWindow.loadFile('./main.html'); // Load index.html into the new BrowserWindow
     // secWindow.loadURL('https://www.youtube.com');
 
-    // mainWindow.webContents.openDevTools(); // Open DevTools - Remove for PRODUCTION!
+    mainWindow.webContents.openDevTools(); // Open DevTools - Remove for PRODUCTION!
 
     mainWindow.on('ready', () => {
         console.log('ready');
@@ -189,21 +177,21 @@ function createWindow() {
         mainWindow = null;
     });
 }
+
 ////////////////////////////////////////////////////////////////////
 // APP LISTENERS (main node process)
 app.on('before-quit', (event) => {
     // event.preventDefault(); //
 });
 app.on('ready', () => {
-    if (devMode) {
-        // console.log('Dev mode active');
+    if (config) {
+        // console.log(config.user);
     } else {
         console.log('Dev mode inactive');
         userAuthController.init();
     }
     displays = new DisplayController();
     fileController.init();
-    networkController.init();
     createWindow();
 });
 app.on('window-all-closed', () => {
