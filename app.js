@@ -34,6 +34,8 @@ ipcRenderer.on('new-item-success', (e, newItem) => {
     // itemURL.value = '';
 });
 
+ipcRenderer.on('app-ready', (e) => {});
+
 // STATE CONTROLLER
 const init = () => {
     console.log(nav_A_active);

@@ -1,6 +1,6 @@
 const config = {
     dev: {
-        devMode: true,
+        isDevMode: true,
         nav_A_active: 0,
         URLS: [
             'https://www.facebook.com/hmtheus/videos/3230852170358533',
@@ -15,10 +15,15 @@ const config = {
         ],
     },
     user: {
-        acceptedEULA: false,
-        upgraded: false,
-        online: true,
-        latestVersion: false,
+        hasAcceptedEULA: false,
+        isOnline: true,
+        islatestVersion: false,
+        hasFFmpeg: false,
+        serverCheck: false,
+        isUpgradedUser: false,
+        readLocalFiles: true,
+        updateStateLocalFiles: true,
+        updateUILocalFiles: false,
     },
 };
 

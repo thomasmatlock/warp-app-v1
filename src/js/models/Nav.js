@@ -1,48 +1,11 @@
-class testObject {
+class nav {
     constructor() {
-        this.nav_A = {
-            nav_A_audio: false,
-            nav_A_1: false,
-            nav_A_2: false,
-            // nav_A_3: false,
-        };
+        this.nav_A = [false, false, false];
 
         this.nav_B = {
-            nav_A_audio: {
-                nav_B0_0: false,
-                nav_B0_1: false,
-                nav_B0_2: false,
-                nav_B0_3: false,
-                nav_B0_4: false,
-                nav_B0_5: false,
-            },
-
-            nav_A_1: {
-                nav_B1_0: false,
-                nav_B1_1: false,
-                nav_B1_2: false,
-                nav_B1_3: false,
-                nav_B1_4: false,
-                nav_B1_5: false,
-            },
-            nav_A_2: {
-                nav_B2_0: false,
-                nav_B2_1: false,
-                nav_B2_2: false,
-                nav_B2_3: false,
-                nav_B2_4: false,
-                nav_B2_5: false,
-            },
-            nav_A_3: {
-                nav_B3_0: false,
-                nav_B3_1: false,
-                nav_B3_2: false,
-                nav_B3_3: false,
-                nav_B3_4: false,
-                nav_B3_5: false,
-            },
-            nav_A_3: [false, false, false, false, false, false],
-            nav_A_4: [false, false, false, false, false, false],
+            nav_A_audio: [false, false, false, false, false, false],
+            nav_A_video: [false, false, false, false, false, false],
+            nav_A_warpstagram: [false, false, false, false, false, false],
         };
     }
 
@@ -89,4 +52,4 @@ class testObject {
     };
 }
 
-module.exports = testObject;
+module.exports = nav;

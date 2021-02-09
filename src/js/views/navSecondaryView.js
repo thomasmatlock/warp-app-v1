@@ -34,9 +34,9 @@ exports.updateTitles = (nav_A_id) => {
 
     if (nav_A_id === 'nav_A_audio') {
         replaceNavSecondaryTitles(nav_B_button_arr[0], navSecondaryTitlesv2[0]); // replaces old titles with new titles
-    } else if (nav_A_id === 'nav_A_1') {
+    } else if (nav_A_id === 'nav_A_video') {
         replaceNavSecondaryTitles(nav_B_button_arr[1], navSecondaryTitlesv2[1]); // replaces old titles with new titles
-    } else if (nav_A_id === 'nav_A_2') {
+    } else if (nav_A_id === 'nav_A_warpstagram') {
         replaceNavSecondaryTitles(nav_B_button_arr[2], navSecondaryTitlesv2[2]); // replaces old titles with new titles
     } else if (nav_A_id === 'nav_A_3') {
         replaceNavSecondaryTitles(nav_B_button_arr[3], navSecondaryTitlesv2[3]); // replaces old titles with new titles

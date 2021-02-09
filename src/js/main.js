@@ -20,7 +20,7 @@ const {
 } = require('electron');
 const youtubedl = require('youtube-dl');
 // 3rd party (mine)
-const config = require('../../dev-data/config');
+const config = require('../../dev/config');
 const DisplayController = require('./system/displayController');
 const systemInfo = require('./system/system-info');
 const fileController = require('./system/fileController'); // const userAuthController = require('./utils/userAuth');
@@ -32,6 +32,7 @@ const randomURL =
     config.dev.URLS[
         Math.floor(Math.random() * Math.floor(config.dev.URLS.length - 1))
     ];
+console.log(config.user.islatestVersion);
 // console.log(randomURL);
 
 const navController = new Nav();
