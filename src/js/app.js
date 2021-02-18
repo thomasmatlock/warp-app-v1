@@ -4,22 +4,22 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable one-var */
 
-// 1st party (nodejs)
-// 2nd party (npm)
 const { clipboard, ipcRenderer } = require('electron');
-// 3rd party (mine)
-const elements = require('./src/js/views/elements');
-const navPrimaryView = require('./src/js/views/navPrimaryView.js');
-const navSecondaryView = require('./src/js/views/navSecondaryView.js');
-const listView = require('./src/js/views/listView.js');
-const Nav = require('./src/js/models/Nav.js');
+const elements = require('./views/elements');
+const navPrimaryView = require('./views/navPrimaryView.js');
+const navSecondaryView = require('./views/navSecondaryView.js');
+const listView = require('./views/listView.js');
+const Nav = require('./models/Nav.js');
+const config = require('../../dev/startup-config');
+const userInput = require('./userInput');
+const userInputController = new userInput();
+// console.log(userInputController);
+
 // const navTitles = require('./src/js/models/config.js');
 
 let state = {};
-let nav_A_active = 0;
+let nav_A_active = config.dev.nav_A_active;
 state.nav = new Nav();
-state.nav.nav_A = [];
-// console.log(nav_A_active);
 
 ipcRenderer.on('new-item-success', (e, newItem) => {
     // console.log(newItem);
@@ -38,19 +38,11 @@ ipcRenderer.on('app-ready', (e) => {});
 
 // STATE CONTROLLER
 const init = () => {
-    console.log(nav_A_active);
-    console.log(state.nav);
-    state.nav.nav_A[nav_A_active] = true;
-    // elements.nav_A_3.style.classList.add('nav_A-tab--active');
-    // console.log(`${nav_A_active} is active: ${state.nav.nav_A[nav_A_active]}`);
+    if (config.dev.isDevMode) {
+        console.log(`nav_A_active is ${nav_A_active}`);
+    }
 };
 init();
-// console.log(typeof elements);
-
-// elements.nav_A_audio.addEventListener('click', (e) => {
-//     console.log(e);
-//     // console.log('You clicked');
-// });
 
 // Nav A LISTENERS
 elements.nav_A.addEventListener('click', (e) => {
@@ -81,14 +73,12 @@ elements.nav_A.addEventListener('click', (e) => {
         }
     }
 });
-// elements.nav_B0_0.addEventListener('click', (e) => {
-//     console.log('you clicked paste');
-// });
-
 elements.testClassAudio.addEventListener('click', (e) => {
     // console.log('You pasted in the audio tab');
     const url = clipboard.readText();
+    // console.log(url);
     validateURL(url, 'audio');
+    // userInputController.validateURL(url, 'audio');
 });
 elements.testClassVideo.addEventListener('click', (e) => {
     // console.log('You pasted in the video tab');
@@ -98,20 +88,6 @@ elements.testClassVideo.addEventListener('click', (e) => {
 
     // console.log(text);
 });
-// elements.nav_B1.addEventListener('click', (e) => {
-//     // nav_B_sequence(e);
-//     console.log('You clicked');
-// });
-// elements.nav_B2.addEventListener('click', (e) => {
-//     // nav_B_sequence(e);
-//     console.log('You clicked');
-// });
-// elements.nav_B3.addEventListener('click', (e) => {
-//     // nav_B_sequence(e);
-//     console.log('You clicked');
-// });
-
-// https://www.youtube.com/watch?v=TeBSVS3FwRY
 
 const pattArr = [
     /facebook/i,
@@ -164,10 +140,3 @@ const mediaController = (url, sourceType, format) => {
 // update UI
 
 /////////////////////////////
-
-// Free version uses nav B
-// Free version has a CTA on left hand side
-
-// Pro version replaces Nav A with Downloader (removes Audio/Video tabs), Warpstagram, and Postfire tabs
-// Pro version replaces Nav B with dynamic jumplist (download audio/video buttons)
-// Pro version has iframe/2nd window on left half of content slide

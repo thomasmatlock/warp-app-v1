@@ -1,7 +1,8 @@
 const config = {
     dev: {
         isDevMode: true,
-        nav_A_active: 0,
+        nav_A_active: 2,
+        downloadItems: false,
         URLS: [
             'https://www.facebook.com/hmtheus/videos/3230852170358533',
             'https://www.instagram.com/p/CFmU6REA5dl/',
@@ -12,7 +13,12 @@ const config = {
             'https://www.youtube.com/watch?v=TeBSVS3FwRY',
             'https://www.youtube.com/watch?v=WT3TwF8oVis',
             'https://www.tiktok.com/@foodies/video/6895167017570127109',
+            'https://www.youtube.com/watch?v=LoD9RlPr51k',
         ],
+        testURLstatic: 'https://www.youtube.com/watch?v=LoD9RlPr51k',
+        // testURLrandom: this.dev.URLS[
+        //     Math.floor(Math.random() * Math.floor(config.dev.URLS.length - 1))
+        // ],
     },
     user: {
         hasAcceptedEULA: false,

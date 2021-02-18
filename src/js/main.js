@@ -4,11 +4,9 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable one-var */
 
-// 1st party (nodejs)
 const os = require('os');
 const fs = require('fs');
 const path = require('path');
-// 2nd party (npm)
 const {
     app,
     BrowserView,
@@ -19,95 +17,94 @@ const {
     shell,
 } = require('electron');
 const youtubedl = require('youtube-dl');
-// 3rd party (mine)
-const config = require('../../dev/config');
+const config = require('../../dev/startup-config');
 const DisplayController = require('./system/displayController');
 const systemInfo = require('./system/system-info');
-const fileController = require('./system/fileController'); // const userAuthController = require('./utils/userAuth');
+const fileController = require('./system/fileController');
 const appMenu = require('./menus/menuAudio');
 const Nav = require('./models/Nav');
-
-// console.log(systemInfo.dirMainVideoPath);
-const randomURL =
-    config.dev.URLS[
-        Math.floor(Math.random() * Math.floor(config.dev.URLS.length - 1))
-    ];
-console.log(config.user.islatestVersion);
-// console.log(randomURL);
-
 const navController = new Nav();
+const startupReq = require('./startup');
+const startup = new startupReq();
+
 let itemURL, mainWindow, displays; // Keep a global reference of the window object, if you don't, the window will be closed automatically when the JavaScript object is garbage collected.
 
 app.allowRendererProcessReuse = true;
 
-// Project: Listen for new item request
+////////////////////////////////////////////////////////////////////
+// IPC LISTENERS
 ipcMain.on('new-item', (e, itemURL) => {
-    console.log(itemURL);
+    if (config.dev.downloadItems) {
+        console.log(`Received ${itemURL}`);
 
-    // readItem(itemURL, (item) => {
-    // e.sender.send('new-item-success', item);
-    // });
-
-    // Will be called when the download starts.
-    const video = youtubedl(
-        itemURL, [
-            // Optional arguments passed to youtube-dl.
-            // '--format=302',
-            // '--format=249',
-        ]
-        // Additional options can be given for calling `child_process.execFile()`.
-    );
-    let videoData = {
-        title: '',
-        duration: '',
-        size: '',
-        thumbnailURL: '',
-    };
-
-    // Will be called when the download starts.
-    video.on('info', function(info) {
-        // console.log('Download started');
-        // console.log('filename: ' + info._filename);
-        // console.log('size: ' + info.size);
-        // console.log(`${info.formats.length} formats`);
-        // videoData = {
-        //     title = info.title,
-        //     duration = info.duration,
-        //     size = info.size,
-        //     thumbnailURL = info.thumbnail,
-        // }
-        videoData.title = info.title;
-        videoData.duration = info.duration;
-        videoData.size = info.size;
-        videoData.thumbnailURL = info.thumbnail;
-        return videoData;
-
-        // console.log(
-        //     `'${info.title}': ${info.formats.length} formats, ${info.duration} minutes long, is ${info.filesize} large, and the thumbnail URL is '${info.thumbnail}'`
-        // );
-
-        // const data = JSON.stringify(info, null, 4);
-        // WRITE DATA RETURNED TO FILE
-        // fs.writeFile('./downloadInfo.json', data, 'utf8', (err) => {
-        //     if (err) {
-        //         console.log(`Error writing file: ${err}`);
-        //     } else {
-        //         console.log(`File is written successfully!`);
-        //     }
+        // readItem(itemURL, (item) => {
+        // e.sender.send('new-item-success', item);
         // });
-    });
-    // console.log(video.info);
-    // dl.pipe(fs.createWriteStream(filepath));
 
-    setTimeout(() => {
-        // console.log(videoData);
-        var filepath = path.join(
-            systemInfo.dirMainVideoPath,
-            `${videoData.title}.mp4`
+        // Will be called when the download starts.
+        const video = youtubedl(
+            itemURL, [
+                // Optional arguments passed to youtube-dl.
+                // '--format=302',
+                // '--format=249',
+            ]
+            // Additional options can be given for calling `child_process.execFile()`.
         );
-        video.pipe(fs.createWriteStream(filepath));
-        console.log('Done!');
-    }, 4000);
+        let videoData = {
+            title: '',
+            duration: '',
+            size: '',
+            thumbnailURL: '',
+        };
+
+        // Will be called when the download starts.
+        video.on('info', function(info) {
+            // console.log('Download started');
+            // console.log('filename: ' + info._filename);
+            // console.log('size: ' + info.size);
+            // console.log(`${info.formats.length} formats`);
+            // videoData = {
+            //     title = info.title,
+            //     duration = info.duration,
+            //     size = info.size,
+            //     thumbnailURL = info.thumbnail,
+            // }
+            videoData.title = info.title;
+            videoData.duration = info.duration;
+            videoData.size = info.size;
+            videoData.thumbnailURL = info.thumbnail;
+            return videoData;
+
+            // console.log(
+            //     `'${info.title}': ${info.formats.length} formats, ${info.duration} minutes long, is ${info.filesize} large, and the thumbnail URL is '${info.thumbnail}'`
+            // );
+
+            // const data = JSON.stringify(info, null, 4);
+            // WRITE DATA RETURNED TO FILE
+            // fs.writeFile('./downloadInfo.json', data, 'utf8', (err) => {
+            //     if (err) {
+            //         console.log(`Error writing file: ${err}`);
+            //     } else {
+            //         console.log(`File is written successfully!`);
+            //     }
+            // });
+        });
+        // console.log(video.info);
+        // dl.pipe(fs.createWriteStream(filepath));
+
+        setTimeout(() => {
+            // console.log(videoData);
+
+            var filepath = path.join(
+                systemInfo.dirMainVideoPath,
+                `${videoData.title}.mp4`
+            );
+            video.pipe(fs.createWriteStream(filepath));
+            console.log('Done!');
+        }, 4000);
+    } else {
+        console.log('Dev mode: not currently downloading items');
+    }
 });
 
 function createWindow() {
@@ -181,9 +178,6 @@ function createWindow() {
 
 ////////////////////////////////////////////////////////////////////
 // APP LISTENERS (main node process)
-app.on('before-quit', (event) => {
-    // event.preventDefault(); //
-});
 app.on('ready', () => {
     if (config) {
         // console.log(config.user);
@@ -195,19 +189,12 @@ app.on('ready', () => {
     fileController.init();
     createWindow();
 });
+app.on('before-quit', (event) => {
+    // event.preventDefault(); //
+});
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') app.quit();
 });
 app.on('activate', () => {
     if (mainWindow === null) createWindow(); // When app icon is clicked and app is running, (macOS) recreate the BrowserWindow
 });
-
-// Returns object length
-Object.size = function(obj) {
-    var size = 0,
-        key;
-    for (key in obj) {
-        if (obj.hasOwnProperty(key)) size++;
-    }
-    return size;
-};
