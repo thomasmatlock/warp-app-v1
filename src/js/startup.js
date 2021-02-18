@@ -3,7 +3,7 @@ const config = require('../../dev/startup-config');
 const http = require('http');
 class startup {
     constructor() {
-        this.isDevMode = true;
+        this.devMode = true;
         this.nav_A_active = 0;
         this.downloadItems = false;
         this.testURLstatic = 'https://www.youtube.com/watch?v=LoD9RlPr51k';
@@ -21,10 +21,23 @@ class startup {
         ];
     }
 
+    isDevMode = () => {
+        if (this.devMode) {
+            console.log('Dev mode active');
+        } else console.log('Production mode active');
+    };
+
     isOnline = () => {
         // https://stackoverflow.com/questions/15270902/check-for-internet-connectivity-in-nodejs
-        return 'hello';
+        require('dns').resolve('www.google.com', function(err) {
+            if (err) {
+                console.log('Not online.');
+            } else {
+                console.log('App is online');
+            }
+        });
     };
+
     serverConnected = () => {};
     isLatestVersion = () => {};
     isUpgradedUser = () => {};

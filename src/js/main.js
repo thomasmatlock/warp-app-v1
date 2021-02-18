@@ -187,6 +187,10 @@ app.on('ready', () => {
     }
     displays = new DisplayController();
     fileController.init();
+
+    startup.isDevMode();
+    startup.isOnline();
+
     createWindow();
 });
 app.on('before-quit', (event) => {
