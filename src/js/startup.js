@@ -23,21 +23,29 @@ class startup {
 
     isDevMode = () => {
         if (this.devMode) {
-            console.log('Dev mode active');
-        } else console.log('Production mode active');
+            this.downloadItems = false;
+            console.log(`Dev mode active, NOT downloading items`);
+            // this.updateDevModeActiveTab();
+        } else {
+            this.downloadItems = true;
+            console.log(`Production mode active, downloading items`);
+        }
     };
 
     isOnline = () => {
         // https://stackoverflow.com/questions/15270902/check-for-internet-connectivity-in-nodejs
         require('dns').resolve('www.google.com', function(err) {
             if (err) {
-                console.log('Not online.');
+                console.log('App is OFFLINE');
             } else {
                 console.log('App is online');
             }
         });
     };
 
+    updateDevModeActiveTab = () => {
+        console.log(`Updating dev mode active tab`);
+    };
     serverConnected = () => {};
     isLatestVersion = () => {};
     isUpgradedUser = () => {};
@@ -46,6 +54,10 @@ class startup {
     readLocalFiles = () => {};
     updateFilesState = () => {};
     updateFilesUI = () => {};
+    controller = () => {
+        this.isDevMode();
+        this.isOnline();
+    };
 }
 
 module.exports = startup;

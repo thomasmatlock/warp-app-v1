@@ -13,9 +13,22 @@ const Nav = require('./models/Nav.js');
 const config = require('../../dev/startup-config');
 const userInput = require('./userInput');
 const userInputController = new userInput();
+const startupReq = require('./startup');
+const startup = new startupReq();
+// console.log(elements.nav_A_audio);
 // console.log(userInputController);
-
+// console.log(elements);
 // const navTitles = require('./src/js/models/config.js');
+
+// activate dev mode active tab
+// console.log(startup);
+// startup.updateDevModeActiveTab();
+
+nav_A_video = document.getElementById('.nav_A_video');
+// elements.nav_A_video.click();
+// console.log(nav_A_video);
+// console.log(elements);
+// nav_A_video.click();
 
 let state = {};
 let nav_A_active = config.dev.nav_A_active;
@@ -36,10 +49,15 @@ ipcRenderer.on('new-item-success', (e, newItem) => {
 
 ipcRenderer.on('app-ready', (e) => {});
 
+// Open modal from menu
+ipcRenderer.on('menu-show-modal', () => {
+    elements.nav_A_video.click();
+});
+
 // STATE CONTROLLER
 const init = () => {
     if (config.dev.isDevMode) {
-        console.log(`nav_A_active is ${nav_A_active}`);
+        // console.log(`nav_A_active is ${nav_A_active}`);
     }
 };
 init();

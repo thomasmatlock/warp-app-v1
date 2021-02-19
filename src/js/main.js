@@ -16,6 +16,7 @@ const {
     MenuItem,
     shell,
 } = require('electron');
+
 const youtubedl = require('youtube-dl');
 const config = require('../../dev/startup-config');
 const DisplayController = require('./system/displayController');
@@ -160,19 +161,21 @@ function createWindow() {
 
     // Create main app menu
     appMenu(mainWindow.webContents);
+    // if (startup.devMode) appMenu.append({ role: 'viewMenu' });
 
     mainWindow.loadFile('./main.html'); // Load index.html into the new BrowserWindow
     // secWindow.loadURL('https://www.youtube.com');
 
     mainWindow.webContents.openDevTools(); // Open DevTools - Remove for PRODUCTION!
 
-    mainWindow.on('ready', () => {
-        console.log('ready');
+    mainWindow.webContents.on('did-finish-load', () => {
+        // console.log('ready');
     });
 
     // Listen for window being closed
     mainWindow.on('closed', () => {
         mainWindow = null;
+        console.log('window closed');
     });
 }
 
@@ -188,10 +191,10 @@ app.on('ready', () => {
     displays = new DisplayController();
     fileController.init();
 
-    startup.isDevMode();
-    startup.isOnline();
+    startup.controller();
 
     createWindow();
+    // if (startup.devMode) startup.updateDevModeActiveTab();
 });
 app.on('before-quit', (event) => {
     // event.preventDefault(); //

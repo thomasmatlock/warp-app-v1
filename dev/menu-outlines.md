@@ -1,6 +1,7 @@
 # menu outline
 
 -   Youtube to MP3
+
     -   File
         -   Import Download Links
         -   Export Download Links
@@ -14,16 +15,9 @@
         -   Activate
         -   Check for Updates
         -   Preferences
-    -   Help
-        -   Help Center F1
-        -   Video Tutorial
-        -   Feedback
-        -   Support
-        -   Facebook
-        -   Twitter
-        -   Vimeo
-        -   About
+
 -   4k Video Downloader
+
     -   File
         -   Import Download Links
         -   Export Download Links
@@ -41,17 +35,25 @@
         -   Subscriptions
         -   Check for Updates
         -   Preferences
-    -   Help
-        -   Help Center F1
-        -   Video Tutorial
-        -   Feedback
-        -   Support
-        -   Facebook
-        -   Twitter
-        -   Vimeo
-        -   About
--   4kstogram - File - Import Subscriptions - Export Subscriptions - Export File Paths and Captions - Edit - Subscribe to my account - Subscribe to my saved posts - Subscribe to accounts I'm following - Update all subscriptions - Pause all subscriptions - Remove all subscriptions - Tools - Check for Updates - Preferences - Help - Help Center F1 - Video Tutorial - Feedback - Support - Facebook - Twitter - Vimeo - About
-    Sub Menu buttons
+
+-   4kstogram
+    -   File
+        -   Import Subscriptions
+        -   Export Subscriptions
+        -   Export File Paths and Captions
+    -   Edit
+        -   Subscribe to my account
+        -   Subscribe to my saved posts
+        -   Subscribe to accounts I'm following
+        -   Update all subscriptions
+        -   Pause all subscriptions
+        -   Remove all subscriptions
+    -   Tools
+        -   Check for Updates
+        -   Preferences
+
+# Nav B buttons
+
 -   Youtube to MP3
     -   Paste Link
     -   Activate
@@ -65,5 +67,18 @@
     -   Preferences
     -   Help
 -   4kstogram
+
     -   ssearch input form
     -   submit 'subscribe 'button
+
+    # menu help jumplist
+
+        -   Help
+        -   Help Center F1
+        -   Video Tutorial
+        -   Feedback
+        -   Support
+        -   Facebook
+        -   Twitter
+        -   Vimeo
+        -   About

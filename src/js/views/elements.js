@@ -4,9 +4,9 @@ const elements = {
     nav_A_tab: document.querySelector('.nav_A-tab'),
     nav_A_tabArr: document.querySelectorAll('.nav_A-tab'),
     nav_A_audio: document.getElementById('nav_A_audio'),
-    nav_A_video: document.querySelector('.nav_A_video'),
+    nav_A_video: document.getElementById('.nav_A_video'),
     nav_A_warpstagram: document.querySelector('.nav_A_warpstagram'),
-    nav_A_3: document.querySelector('.nav_A_3'),
+    nav_A_3: document.getElementById('.nav_A_3'),
 
     nav_B: document.querySelector('.nav_B'),
     nav_B_button: document.querySelector('.nav_B-button'),
