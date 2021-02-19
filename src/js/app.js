@@ -120,20 +120,20 @@ const pattArr = [
 ];
 const validateURL = (url, format) => {
     let pattMatchIndex;
+    console.log(url);
     // check url against each pattern
-    let pattMatchInded = pattArr.forEach(function(item, index) {
+    pattMatchIndex = pattArr.forEach(function(item, index) {
         if (url.match(item)) {
             pattMatchIndex = index;
 
             let type = `${pattArr[pattMatchIndex]}`;
+            console.log(type);
             // console.log(
             //     `${pattArr[pattMatchIndex]} at index ${pattMatchIndex}`
             // );
             mediaController(url, type, format);
             return;
-        } else {
-            // console.log(`${url} is not a match`);
-        }
+        } else {}
     });
 
     // console.log(pattArr[pattMatchIndex]);

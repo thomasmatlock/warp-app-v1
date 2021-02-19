@@ -54,7 +54,7 @@ class startup {
     readLocalFiles = () => {};
     updateFilesState = () => {};
     updateFilesUI = () => {};
-    controller = () => {
+    init = () => {
         this.isDevMode();
         this.isOnline();
     };

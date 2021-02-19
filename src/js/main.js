@@ -15,6 +15,7 @@ const {
     Menu,
     MenuItem,
     shell,
+    webContents,
 } = require('electron');
 
 const youtubedl = require('youtube-dl');
@@ -108,6 +109,8 @@ ipcMain.on('new-item', (e, itemURL) => {
     }
 });
 
+////////////////////////////////////////////////////////////////////
+// CREATE WINDOW
 function createWindow() {
     mainWindow = new BrowserWindow({
         width: displays.coords.width,
@@ -178,20 +181,13 @@ function createWindow() {
         console.log('window closed');
     });
 }
-
 ////////////////////////////////////////////////////////////////////
 // APP LISTENERS (main node process)
 app.on('ready', () => {
-    if (config) {
-        // console.log(config.user);
-    } else {
-        console.log('Dev mode inactive');
-        userAuthController.init();
-    }
     displays = new DisplayController();
     fileController.init();
 
-    startup.controller();
+    startup.init();
 
     createWindow();
     // if (startup.devMode) startup.updateDevModeActiveTab();

@@ -6,7 +6,7 @@ const systemInfo = require('./system-info');
 const userDocumentsPath = 'C:\\Users\\Tommy\\Documents\\';
 const dirMainName = 'Warp Downloader';
 const dirMainPath = `${userDocumentsPath}${systemInfo.dirMainName}`;
-const dirSubNames = ['Audio', 'Video', 'Warpstagram', 'Postfire'];
+const dirSubNames = ['Audio', 'Video', 'Warpstagram'];
 
 // Check for and create main/sub directory
 exports.init = () => {
