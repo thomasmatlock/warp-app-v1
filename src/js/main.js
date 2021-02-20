@@ -22,10 +22,12 @@ const youtubedl = require('youtube-dl');
 const config = require('../../dev/startup-config');
 const DisplayController = require('./system/displayController');
 const systemInfo = require('./system/system-info');
-const fileController = require('./system/fileController');
 const appMenu = require('./menus/menuAudio');
 const Nav = require('./models/Nav');
 const navController = new Nav();
+// const fileController = require('./system/fileController');
+const fileControllerReq = require('./system/fileController');
+const fileController = new fileControllerReq();
 const startupReq = require('./startup');
 const startup = new startupReq();
 
@@ -184,12 +186,11 @@ function createWindow() {
 ////////////////////////////////////////////////////////////////////
 // APP LISTENERS (main node process)
 app.on('ready', () => {
-    displays = new DisplayController();
-    fileController.init();
+    displays = new DisplayController(); // positions output window to display depending on single/multi-monitor
+    fileController.init(); // checks for local directories and creates them if non existent
+    startup.init(); // all startup checks, latest version, isOnline, hasFFmpeg etc
 
-    startup.init();
-
-    createWindow();
+    createWindow(); // creates main app window
     // if (startup.devMode) startup.updateDevModeActiveTab();
 });
 app.on('before-quit', (event) => {

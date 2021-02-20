@@ -34,13 +34,15 @@ class startup {
 
     isOnline = () => {
         // https://stackoverflow.com/questions/15270902/check-for-internet-connectivity-in-nodejs
-        require('dns').resolve('www.google.com', function(err) {
-            if (err) {
-                console.log('App is OFFLINE');
-            } else {
-                console.log('App is online');
-            }
-        });
+        if (!this.devMode) {
+            require('dns').resolve('www.google.com', function(err) {
+                if (err) {
+                    console.log('App is OFFLINE');
+                } else {
+                    console.log('App is online');
+                }
+            });
+        }
     };
 
     updateDevModeActiveTab = () => {
