@@ -1,6 +1,4 @@
-// import {    elements} from "./base.js";
-// import {    navSecondaryTitles} from "../models/config.js";
-const navSecondaryTitles = require('../models/config');
+const navSecondaryTitles = {};
 const elements = require('./elements');
 
 exports.clearActive = () => {
