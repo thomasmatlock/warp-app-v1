@@ -7,12 +7,14 @@ class fileController {
     constructor() {
         this.userDocumentsPath = 'C:\\Users\\Tommy\\Documents\\';
         this.dirMainName = 'Warp Downloader';
-        this.dirMainPath = `${this.userDocumentsPath}${this.systemInfo}.${this.dirMainName}`;
+        this.dirMainPath = `${this.userDocumentsPath}${this.dirMainName}`;
         this.dirSubNames = ['Audio', 'Video', 'Warpstagram'];
     }
 
     init = () => {
+        // main directory
         try {
+            // console.log(systemInfo);
             if (!fs.existsSync(this.dirMainPath)) {
                 fs.mkdirSync(this.dirMainPath);
                 console.log(`Created main directory`);
@@ -32,6 +34,9 @@ class fileController {
             console.error(err);
         }
     };
+
+    placeholder = () => {};
+    initReadFiles = () => {};
 }
 
 module.exports = fileController;

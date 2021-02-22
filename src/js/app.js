@@ -10,7 +10,6 @@ const navPrimaryView = require('./views/navPrimaryView.js');
 const navSecondaryView = require('./views/navSecondaryView.js');
 const listView = require('./views/listView.js');
 const Nav = require('./models/Nav.js');
-const config = require('../../dev/startup-config');
 const userInput = require('./userInput');
 const userInputController = new userInput();
 const startupReq = require('./startup');
@@ -56,8 +55,8 @@ ipcRenderer.on('menu-show-modal', () => {
 
 // STATE CONTROLLER
 const init = () => {
-    if (config.dev.isDevMode) {
-        // console.log(`nav_A_active is ${nav_A_active}`);
+    if (startup.devMode) {
+        console.log(`nav_A_active is ${nav_A_active}`);
     }
 };
 init();

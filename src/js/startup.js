@@ -1,4 +1,3 @@
-const config = require('../../dev/startup-config');
 // const axios = require('axios');
 const http = require('http');
 class startup {

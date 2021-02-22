@@ -19,13 +19,11 @@ const {
 } = require('electron');
 
 const youtubedl = require('youtube-dl');
-const config = require('../../dev/startup-config');
 const DisplayController = require('./system/displayController');
 const systemInfo = require('./system/system-info');
 const appMenu = require('./menus/menuAudio');
 const Nav = require('./models/Nav');
 const navController = new Nav();
-// const fileController = require('./system/fileController');
 const fileControllerReq = require('./system/fileController');
 const fileController = new fileControllerReq();
 const startupReq = require('./startup');
@@ -38,7 +36,7 @@ app.allowRendererProcessReuse = true;
 ////////////////////////////////////////////////////////////////////
 // IPC LISTENERS
 ipcMain.on('new-item', (e, itemURL) => {
-    if (config.dev.downloadItems) {
+    if (startup.downloadItems) {
         console.log(`Received ${itemURL}`);
 
         // readItem(itemURL, (item) => {
