@@ -13,7 +13,7 @@ class input {
         ];
     }
 
-    validateURL = (url, format) => {
+    validateURL = (url, format, pattArr) => {
         let pattMatchIndex;
         console.log(url);
         // console.log(this.pattMatchIndex);

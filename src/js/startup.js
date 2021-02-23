@@ -1,5 +1,3 @@
-// const axios = require('axios');
-const http = require('http');
 class startup {
     constructor() {
         this.devMode = true;

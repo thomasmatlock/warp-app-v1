@@ -6,9 +6,9 @@ class fileController {
     constructor() {
         this.dirMainName = 'Warp Downloader'; // main download directory
         this.dirSubNames = ['Audio', 'Video', 'Warpstagram']; // sub download directories
-        this.documents = '\\Documents\\';
+        this.documents = 'Documents';
         this.dirUser = os.userInfo().homedir; // 'C:\\Users\\Tommy\\'
-        this.userDocumentsPath = path.join(this.dirUser, this.documents);
+        this.userDocumentsPath = path.join(this.dirUser, this.documents); // 'C:\\Users\\Tommy\\Documents'
         this.dirMainPath = path.join(this.userDocumentsPath, this.dirMainName);
         this.dirAudioPath = path.join(
             this.dirUser,
@@ -54,7 +54,7 @@ class fileController {
         }
     };
 
-    placeholder = () => {};
+    exampleFunction = () => {};
     initReadFiles = () => {};
 }
 

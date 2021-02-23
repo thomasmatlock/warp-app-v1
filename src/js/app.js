@@ -10,25 +10,13 @@ const navPrimaryView = require('./views/navPrimaryView.js');
 const navSecondaryView = require('./views/navSecondaryView.js');
 const listView = require('./views/listView.js');
 const Nav = require('./models/Nav.js');
-const userInput = require('./userInput');
-const userInputController = new userInput();
+const userInputReq = require('./userInput');
+const userInput = new userInputReq();
 const startupReq = require('./startup');
 const startup = new startupReq();
-// console.log(elements.nav_A_audio);
-// console.log(userInputController);
-// console.log(elements);
-// const navTitles = require('./src/js/models/config.js');
-
-// activate dev mode active tab
-// console.log(startup);
-// startup.updateDevModeActiveTab();
 
 nav_A_video = document.getElementById('.nav_A_video');
-// elements.nav_A_video.click();
-// console.log(nav_A_video);
-// console.log(elements);
-// nav_A_video.click();
-
+// console.log(startup.testURLstatic);
 let state = {};
 // let nav_A_active = config.dev.nav_A_active;
 state.nav = new Nav();
@@ -37,13 +25,6 @@ ipcRenderer.on('new-item-success', (e, newItem) => {
     // console.log(newItem);
     // add new item to "items" node
     items.addItem(newItem, true);
-
-    // Enable buttons
-    // toggleModalButtons();
-
-    // Hide modal and clear input value
-    // modal.style.display = 'none';
-    // itemURL.value = '';
 });
 
 ipcRenderer.on('app-ready', (e) => {});
@@ -90,15 +71,19 @@ elements.nav_A.addEventListener('click', (e) => {
         }
     }
 });
+// Nav B LISTENERS
 elements.testClassAudio.addEventListener('click', (e) => {
     // console.log('You pasted in the audio tab');
     const url = clipboard.readText();
     // console.log(url);
     validateURL(url, 'audio');
-    // userInputController.validateURL(url, 'audio');
+    // userInput.validateURL(url, 'audio');
+    // console.log(userInput.pattArr);
 });
+
+//
 elements.testClassVideo.addEventListener('click', (e) => {
-    // console.log('You pasted in the video tab');
+    console.log('You pasted in the video tab');
     const url = clipboard.readText();
 
     validateURL(url, 'video');
@@ -130,16 +115,16 @@ const validateURL = (url, format) => {
             // console.log(
             //     `${pattArr[pattMatchIndex]} at index ${pattMatchIndex}`
             // );
+
+            // if (startup.devMode) clipboard.writeText(startup.testURLstatic);
             mediaController(url, type, format);
             return;
-        } else {}
+        } else {
+            if (startup.devMode) clipboard.writeText(startup.testURLstatic);
+        }
     });
-
-    // console.log(pattArr[pattMatchIndex]);
 };
 
-// const audioController = (url, sourceType) => {};
-// const videoController = (url, sourceType) => {};
 const mediaController = (url, sourceType, format) => {
     // str = str.substring(0,str.length-1);
     let type = sourceType.substring(1, sourceType.length - 2);

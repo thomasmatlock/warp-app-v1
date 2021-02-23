@@ -31,7 +31,6 @@ const startup = new startupReq();
 let itemURL, mainWindow, displays; // Keep a global reference of the window object, if you don't, the window will be closed automatically when the JavaScript object is garbage collected.
 
 app.allowRendererProcessReuse = true;
-// console.log(fileController);
 ////////////////////////////////////////////////////////////////////
 // IPC LISTENERS
 ipcMain.on('new-item', (e, itemURL) => {
@@ -104,7 +103,7 @@ ipcMain.on('new-item', (e, itemURL) => {
             console.log('Done!');
         }, 4000);
     } else {
-        console.log('Dev mode: not currently downloading items');
+        // console.log('Dev mode: not currently downloading items');
     }
 });
 
@@ -189,7 +188,7 @@ app.on('ready', () => {
     startup.init(); // all startup checks, latest version, isOnline, hasFFmpeg etc
 
     createWindow(); // creates main app window
-    mainWindow.hide(); // devMode only
+    // mainWindow.hide(); // devMode only
     // if (startup.devMode) startup.updateDevModeActiveTab();
 });
 app.on('before-quit', (event) => {
