@@ -72,46 +72,8 @@ elements.nav_A.addEventListener('click', (e) => {
 });
 // Nav B LISTENERS
 elements.testClassAudio.addEventListener('click', (e) => {
-    validateURL(clipboard.readText(), 'audio');
+    userInput.validateURL(clipboard.readText(), 'audio');
 });
-
-//
 elements.testClassVideo.addEventListener('click', (e) => {
-    validateURL(clipboard.readText(), 'video');
+    userInput.validateURL(clipboard.readText(), 'video');
 });
-
-const pattArr = [
-    /facebook/i,
-    /instagram/i,
-    /soundcloud/i,
-    /streamable/i,
-    /twitch/i,
-    /twitter/i,
-    /vimeo/i,
-    /youtube/i,
-    /tiktok/i,
-];
-const validateURL = (url, format) => {
-    let pattMatchIndex;
-    // console.log(url);
-    // check url against each pattern
-    pattMatchIndex = pattArr.forEach(function(item, index) {
-        if (url.match(item)) {
-            pattMatchIndex = index;
-
-            let type = `${pattArr[pattMatchIndex]}`;
-
-            mediaController(url, type, format);
-            return;
-        } else {
-            if (startup.devMode) clipboard.writeText(startup.testURLstatic);
-        }
-    });
-};
-
-const mediaController = (url, sourceType, format) => {
-    // str = str.substring(0,str.length-1);
-    let type = sourceType.substring(1, sourceType.length - 2);
-    console.log(`${url} from ${type} in ${format} format...`);
-    ipcRenderer.send('new-item', url);
-};
