@@ -10,8 +10,7 @@ const navPrimaryView = require('./views/navPrimaryView.js');
 const navSecondaryView = require('./views/navSecondaryView.js');
 const listView = require('./views/listView.js');
 const Nav = require('./models/Nav.js');
-const userInputReq = require('./userInput');
-const userInput = new userInputReq();
+const userInput = require('./userInput');
 const startupReq = require('./startup');
 const startup = new startupReq();
 
@@ -73,22 +72,12 @@ elements.nav_A.addEventListener('click', (e) => {
 });
 // Nav B LISTENERS
 elements.testClassAudio.addEventListener('click', (e) => {
-    // console.log('You pasted in the audio tab');
-    const url = clipboard.readText();
-    // console.log(url);
-    validateURL(url, 'audio');
-    // userInput.validateURL(url, 'audio');
-    // console.log(userInput.pattArr);
+    validateURL(clipboard.readText(), 'audio');
 });
 
 //
 elements.testClassVideo.addEventListener('click', (e) => {
-    console.log('You pasted in the video tab');
-    const url = clipboard.readText();
-
-    validateURL(url, 'video');
-
-    // console.log(text);
+    validateURL(clipboard.readText(), 'video');
 });
 
 const pattArr = [
@@ -104,19 +93,14 @@ const pattArr = [
 ];
 const validateURL = (url, format) => {
     let pattMatchIndex;
-    console.log(url);
+    // console.log(url);
     // check url against each pattern
     pattMatchIndex = pattArr.forEach(function(item, index) {
         if (url.match(item)) {
             pattMatchIndex = index;
 
             let type = `${pattArr[pattMatchIndex]}`;
-            console.log(type);
-            // console.log(
-            //     `${pattArr[pattMatchIndex]} at index ${pattMatchIndex}`
-            // );
 
-            // if (startup.devMode) clipboard.writeText(startup.testURLstatic);
             mediaController(url, type, format);
             return;
         } else {
@@ -128,17 +112,6 @@ const validateURL = (url, format) => {
 const mediaController = (url, sourceType, format) => {
     // str = str.substring(0,str.length-1);
     let type = sourceType.substring(1, sourceType.length - 2);
-    console.log(`Ready: ${url} from ${type} in ${format} format...`);
-    // ipcRenderer.send('new-item', itemURL.value);
+    console.log(`${url} from ${type} in ${format} format...`);
     ipcRenderer.send('new-item', url);
-    // console.log(`Detected ${} in ${format} format`);
 };
-
-// Paste
-// parse
-// download
-// update state
-// update local user file
-// update UI
-
-/////////////////////////////
