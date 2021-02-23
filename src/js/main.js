@@ -20,7 +20,6 @@ const {
 
 const youtubedl = require('youtube-dl');
 const DisplayController = require('./system/displayController');
-const systemInfo = require('./system/system-info');
 const appMenu = require('./menus/menuAudio');
 const Nav = require('./models/Nav');
 const navController = new Nav();
@@ -32,7 +31,7 @@ const startup = new startupReq();
 let itemURL, mainWindow, displays; // Keep a global reference of the window object, if you don't, the window will be closed automatically when the JavaScript object is garbage collected.
 
 app.allowRendererProcessReuse = true;
-
+// console.log(fileController);
 ////////////////////////////////////////////////////////////////////
 // IPC LISTENERS
 ipcMain.on('new-item', (e, itemURL) => {
@@ -98,7 +97,7 @@ ipcMain.on('new-item', (e, itemURL) => {
             // console.log(videoData);
 
             var filepath = path.join(
-                systemInfo.dirMainVideoPath,
+                fileController.dirVideoPath,
                 `${videoData.title}.mp4`
             );
             video.pipe(fs.createWriteStream(filepath));
@@ -125,6 +124,7 @@ function createWindow() {
         webPreferences: {
             nodeIntegration: true,
             worldSafeExecuteJavaScript: true,
+            // show: false, // devMode only
         },
         // backgroundColor: '#ff8500', // use the same color as your html file is, the main window will display this until html fully loads. This is a little better than making your app hang for a second until the html loads, then displaying the window
     });
@@ -189,6 +189,7 @@ app.on('ready', () => {
     startup.init(); // all startup checks, latest version, isOnline, hasFFmpeg etc
 
     createWindow(); // creates main app window
+    mainWindow.hide(); // devMode only
     // if (startup.devMode) startup.updateDevModeActiveTab();
 });
 app.on('before-quit', (event) => {

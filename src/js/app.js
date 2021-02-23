@@ -30,7 +30,7 @@ nav_A_video = document.getElementById('.nav_A_video');
 // nav_A_video.click();
 
 let state = {};
-let nav_A_active = config.dev.nav_A_active;
+// let nav_A_active = config.dev.nav_A_active;
 state.nav = new Nav();
 
 ipcRenderer.on('new-item-success', (e, newItem) => {
@@ -56,7 +56,7 @@ ipcRenderer.on('menu-show-modal', () => {
 // STATE CONTROLLER
 const init = () => {
     if (startup.devMode) {
-        console.log(`nav_A_active is ${nav_A_active}`);
+        // console.log(`nav_A_active is ${nav_A_active}`);
     }
 };
 init();
