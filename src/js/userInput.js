@@ -19,24 +19,19 @@ const pattArr = [
     /youtube/i,
     /tiktok/i,
 ];
-let pattMatchIndex;
+let pattMatchIndex, inputURL, inputType;
 exports.validateURL = (url, format) => {
-    // let type;
+    if (startup.devMode) url = startup.testURL; // substitutes a placeholder URL if dev mode active
     checkURLforPattern(url, format);
+    mediaController(url, inputType, format);
 };
 checkURLforPattern = (url, format) => {
     // check url against each pattern
     pattMatchIndex = pattArr.forEach(function(item, index) {
         if (url.match(item)) {
-            pattMatchIndex = index;
-
-            let type = `${pattArr[pattMatchIndex]}`;
-            type = type.substring(1, type.length - 2); // removes beginning/end characters: changes "/youtube/i to simply 'youtube'
-
-            mediaController(url, type, format);
-            // console.log(url, type, format);
-        } else {
-            if (startup.devMode) url = startup.testURLstatic; // automatically substitutes a sample URL to test pasting with if devMode is active
+            pattMatchIndex = index; // saves the index at which the match was found in the pattern array
+            let type = `${pattArr[pattMatchIndex]}`; // saves type of source, ie /youtube/i
+            inputType = type.substring(1, type.length - 2); // removes beginning/end characters: changes "/youtube/i to simply 'youtube'
         }
     });
 };

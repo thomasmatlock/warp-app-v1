@@ -15,7 +15,7 @@ const startupReq = require('./startup');
 const startup = new startupReq();
 
 nav_A_video = document.getElementById('.nav_A_video');
-// console.log(startup.testURLstatic);
+// console.log(startup.testURL);
 let state = {};
 // let nav_A_active = config.dev.nav_A_active;
 state.nav = new Nav();
