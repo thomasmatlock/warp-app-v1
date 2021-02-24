@@ -21,23 +21,27 @@ const pattArr = [
 ];
 let pattMatchIndex;
 exports.validateURL = (url, format) => {
+    // let type;
+    checkURLforPattern(url, format);
+};
+checkURLforPattern = (url, format) => {
     // check url against each pattern
     pattMatchIndex = pattArr.forEach(function(item, index) {
         if (url.match(item)) {
             pattMatchIndex = index;
 
             let type = `${pattArr[pattMatchIndex]}`;
+            type = type.substring(1, type.length - 2); // removes beginning/end characters: changes "/youtube/i to simply 'youtube'
 
             mediaController(url, type, format);
+            // console.log(url, type, format);
         } else {
-            if (startup.devMode) clipboard.writeText(startup.testURLstatic);
+            if (startup.devMode) url = startup.testURLstatic; // automatically substitutes a sample URL to test pasting with if devMode is active
         }
     });
 };
-checkURLforPattern = () => {};
 
-const mediaController = (url, sourceType, format) => {
-    let type = sourceType.substring(1, sourceType.length - 2); // removes beginning/end characters: changes "/youtube/i to simply 'youtube'
+const mediaController = (url, type, format) => {
     console.log(`${url} ${type} ${format} `);
     ipcRenderer.send('new-item', url);
 };
