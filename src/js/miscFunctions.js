@@ -1,8 +1,9 @@
 // returns random item from array
-exports.random = (arr) => {
-    arr[Math.floor(Math.random() * Math.floor(arr.length - 1))];
+exports.randomFromArray = (arr) => {
+    randomItem = arr[Math.floor(Math.random() * Math.floor(arr.length - 1))];
+    // console.log(randomItem);
+    return randomItem;
 };
-
 // Returns object length
 Object.size = function(obj) {
     var size = 0,

@@ -7,6 +7,7 @@
 const { clipboard, ipcRenderer } = require('electron');
 const startupReq = require('./startup');
 const startup = new startupReq();
+const miscFunctions = require('./miscFunctions');
 
 const pattArr = [
     /facebook/i,
@@ -19,9 +20,11 @@ const pattArr = [
     /youtube/i,
     /tiktok/i,
 ];
+
 let pattMatchIndex, inputURL, inputType;
 exports.validateURL = (url, format) => {
-    if (startup.devMode) url = startup.testURL; // substitutes a placeholder URL if dev mode active
+    if (startup.devMode)
+        url = miscFunctions.randomFromArray(startup.URLSyoutube); // substitutes a random placeholder URL if dev mode active
     checkURLforPattern(url, format);
     mediaController(url, inputType, format);
 };
