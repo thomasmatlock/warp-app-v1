@@ -31,7 +31,7 @@ class fileController {
     }
 
     init = () => {
-        // main directory
+        // create main directory
         try {
             // console.log(systemInfo);
             if (!fs.existsSync(this.dirMainPath)) {
@@ -41,7 +41,7 @@ class fileController {
         } catch (err) {
             console.error(err);
         }
-        // sub directories
+        // create sub directories
         try {
             this.dirSubNames.forEach((el) => {
                 if (!fs.existsSync(`${this.dirMainPath}\\${el}`)) {
@@ -56,6 +56,9 @@ class fileController {
 
     exampleFunction = () => {};
     initReadFiles = () => {};
+    readFilesAudio = () => {};
+    readFilesVideo = () => {};
+    readFilesWarpstagram = () => {};
 }
 
 module.exports = fileController;

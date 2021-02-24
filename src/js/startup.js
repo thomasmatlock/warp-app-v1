@@ -21,7 +21,7 @@ class startup {
     isDevMode = () => {
         if (this.devMode) {
             this.downloadItems = false;
-            console.log(`Dev mode active, NOT downloading items`);
+            // console.log(`Dev mode active, NOT downloading items`);
             // this.updateDevModeActiveTab();
         } else {
             this.downloadItems = true;

@@ -34,6 +34,7 @@ app.allowRendererProcessReuse = true;
 ////////////////////////////////////////////////////////////////////
 // IPC LISTENERS
 ipcMain.on('new-item', (e, itemURL) => {
+    // console.log(`Received ${itemURL}`);
     if (startup.downloadItems) {
         console.log(`Received ${itemURL}`);
 

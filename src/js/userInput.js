@@ -19,9 +19,8 @@ const pattArr = [
     /youtube/i,
     /tiktok/i,
 ];
+let pattMatchIndex;
 exports.validateURL = (url, format) => {
-    let pattMatchIndex;
-    // console.log(url);
     // check url against each pattern
     pattMatchIndex = pattArr.forEach(function(item, index) {
         if (url.match(item)) {
@@ -30,16 +29,15 @@ exports.validateURL = (url, format) => {
             let type = `${pattArr[pattMatchIndex]}`;
 
             mediaController(url, type, format);
-            return;
         } else {
             if (startup.devMode) clipboard.writeText(startup.testURLstatic);
         }
     });
 };
+checkURLforPattern = () => {};
 
 const mediaController = (url, sourceType, format) => {
-    // str = str.substring(0,str.length-1);
-    let type = sourceType.substring(1, sourceType.length - 2);
-    console.log(`${url} from ${type} in ${format} format...`);
+    let type = sourceType.substring(1, sourceType.length - 2); // removes beginning/end characters: changes "/youtube/i to simply 'youtube'
+    console.log(`${url} ${type} ${format} `);
     ipcRenderer.send('new-item', url);
 };
