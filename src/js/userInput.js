@@ -1,3 +1,10 @@
+/* eslint-disable no-console */
+/* eslint-disable no-undef */
+/* eslint-disable no-use-before-define */
+/* eslint-disable no-unused-expressions */
+/* eslint-disable no-unused-vars */
+/* eslint-disable one-var */
+
 // Paste
 // parse
 // download
