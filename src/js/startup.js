@@ -1,10 +1,15 @@
 const miscFunctions = require('./miscFunctions');
-
+const fileControllerReq = require('./system/fileController');
+const fileController = new fileControllerReq();
+const os = require('os');
+const path = require('path');
+const fs = require('fs');
 class startup {
     constructor() {
         this.devMode = true;
         this.nav_A_active = 0;
         this.downloadItems = false;
+        this.hasFFmpeg = false;
         this.URLS = [
             'https://www.facebook.com/hmtheus/videos/3230852170358533',
             'https://www.instagram.com/p/CFmU6REA5dl/',
@@ -61,13 +66,32 @@ class startup {
     isLatestVersion = () => {};
     isUpgradedUser = () => {};
     acceptedEULA = () => {};
-    hasFFmpeg = () => {};
+    checkFFmpeg = () => {
+        // Windows check
+        var driveLetterObj = path.parse(fileController.dirUser); // saves obj containing root, etc from C:\\Users\\Tommy\\'
+        var driveLetter = driveLetterObj.root; // saves main drive as string
+        var ffmpegPath = path.join(driveLetter, '\\', fileController.ffmpeg); // joins C:\ and ffmpeg
+        // check if windows ffmpeg directory exists
+        try {
+            if (fs.existsSync(ffmpegPath)) {
+                // console.log('ffmpeg exists');
+                this.hasFFmpeg = true;
+            } else if (!fs.existsSync(ffmpegPath)) {
+                console.log('ffmpeg doesnt exist');
+                this.hasFFmpeg = false;
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
     readLocalFiles = () => {};
     updateFilesState = () => {};
     updateFilesUI = () => {};
     init = () => {
         this.isDevMode();
         this.isOnline();
+        this.checkFFmpeg();
     };
 }
 

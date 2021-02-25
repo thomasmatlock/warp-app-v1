@@ -7,6 +7,7 @@ class fileController {
         this.dirMainName = 'Warp Downloader'; // main download directory
         this.dirSubNames = ['Audio', 'Video', 'Warpstagram']; // sub download directories
         this.documents = 'Documents';
+        this.ffmpeg = 'ffmpeg';
         this.dirUser = os.userInfo().homedir; // 'C:\\Users\\Tommy\\'
         this.userDocumentsPath = path.join(this.dirUser, this.documents); // 'C:\\Users\\Tommy\\Documents'
         this.dirMainPath = path.join(this.userDocumentsPath, this.dirMainName);

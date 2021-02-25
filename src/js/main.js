@@ -124,7 +124,6 @@ function createWindow() {
         webPreferences: {
             nodeIntegration: true,
             worldSafeExecuteJavaScript: true,
-            // show: false, // devMode only
         },
         // backgroundColor: '#ff8500', // use the same color as your html file is, the main window will display this until html fully loads. This is a little better than making your app hang for a second until the html loads, then displaying the window
     });
@@ -189,7 +188,7 @@ app.on('ready', () => {
     startup.init(); // all startup checks, latest version, isOnline, hasFFmpeg etc
 
     createWindow(); // creates main app window
-    // mainWindow.hide(); // devMode only
+    mainWindow.hide(); // devMode only
     // if (startup.devMode) startup.updateDevModeActiveTab();
 });
 app.on('before-quit', (event) => {
