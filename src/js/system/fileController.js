@@ -31,7 +31,7 @@ class fileController {
         ); // C:\Users\Tommy\Documents\Warp Downloader\Warpstagram
     }
 
-    init = () => {
+    initDirCreation = () => {
         // create main directory
         try {
             // console.log(systemInfo);
@@ -54,12 +54,37 @@ class fileController {
             console.error(err);
         }
     };
-
     exampleFunction = () => {};
     initReadFiles = () => {};
-    readFilesAudio = () => {};
-    readFilesVideo = () => {};
+    readDirFiles = (dir) => {
+        // directory path
+        //  const dir = this.dirVideoPath;
+
+        // list all files in the directory
+        fs.readdir(dir, (err, files) => {
+            if (err) {
+                throw err;
+            }
+
+            // files object contains all files names
+            // log them on console
+            files.forEach((file) => {
+                console.log(file);
+            });
+        });
+    };
+    readFilesAudio = () => {
+        this.readDirFiles(this.dirAudioPath);
+    };
+    readFilesVideo = () => {
+        this.readDirFiles(this.dirVideoPath);
+    };
     readFilesWarpstagram = () => {};
+    init = () => {
+        this.initDirCreation();
+        // this.readFilesAudio();
+        // this.readFilesVideo();
+    };
 }
 
 module.exports = fileController;

@@ -7,8 +7,9 @@ const fs = require('fs');
 class startup {
     constructor() {
         this.devMode = true;
+        this.devModeBackendOnly = false;
         this.nav_A_active = 0;
-        this.downloadItems = false;
+        this.downloadItems = true;
         this.hasFFmpeg = false;
         this.URLS = [
             'https://www.facebook.com/hmtheus/videos/3230852170358533',

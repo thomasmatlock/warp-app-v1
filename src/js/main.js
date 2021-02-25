@@ -29,13 +29,14 @@ const startupReq = require('./startup');
 const startup = new startupReq();
 
 let itemURL, mainWindow, displays; // Keep a global reference of the window object, if you don't, the window will be closed automatically when the JavaScript object is garbage collected.
-
+console.log(startup.downloadItems);
 app.allowRendererProcessReuse = true;
 ////////////////////////////////////////////////////////////////////
 // IPC LISTENERS
 ipcMain.on('new-item', (e, itemURL) => {
     // console.log(`Received ${itemURL}`);
-    if (startup.downloadItems) {
+    let testBool = true;
+    if (testBool) {
         console.log(`Received ${itemURL}`);
 
         // readItem(itemURL, (item) => {
@@ -103,8 +104,8 @@ ipcMain.on('new-item', (e, itemURL) => {
             video.pipe(fs.createWriteStream(filepath));
             console.log('Done!');
         }, 4000);
-    } else {
-        // console.log('Dev mode: not currently downloading items');
+    } else if (!startup.downloadItems) {
+        console.log('Dev mode: not currently downloading items');
     }
 });
 
@@ -127,39 +128,6 @@ function createWindow() {
         },
         // backgroundColor: '#ff8500', // use the same color as your html file is, the main window will display this until html fully loads. This is a little better than making your app hang for a second until the html loads, then displaying the window
     });
-
-    // const secWindow = new BrowserWindow({ width: 800, height: 600 });
-
-    // secWindow
-    // secWindow = new BrowserWindow({
-    //     // width: displays.coords.width,
-    //     // height: displays.coords.height,
-    //     minWidth: 450,
-    //     minHeight: 300,
-    //     x: displays.coords.x,
-    //     y: displays.coords.y,
-
-    //     darkTheme: false,
-    //     webPreferences: {
-    //         nodeIntegration: true,
-    //         worldSafeExecuteJavaScript: true,
-    //     },
-    //     backgroundColor: '##ff8500', // use the same color as your html file is, the main window will display this until html fully loads. This is a little better than making your app hang for a second until the html loads, then displaying the window
-    // });
-
-    // const view = new BrowserView();
-    // secWindow.setBrowserView(view);
-    // view.setBounds({
-    //     x: 0,
-    //     y: 0,
-    //     width: displays.coords.width / 2,
-    //     height: displays.coords.height / 2,
-    //     frame: false,
-    //     setAutoResize: { width: true, height: true },
-    // });
-    // // view.webContents.loadURL('https://electronjs.org');
-    // view.webContents.loadURL('https://youtube.com');
-    // secWindow
 
     // Create main app menu
     appMenu(mainWindow.webContents);
@@ -188,7 +156,7 @@ app.on('ready', () => {
     startup.init(); // all startup checks, latest version, isOnline, hasFFmpeg etc
 
     createWindow(); // creates main app window
-    mainWindow.hide(); // devMode only
+    if (startup.devModeBackendOnly) mainWindow.hide(); // devMode only
     // if (startup.devMode) startup.updateDevModeActiveTab();
 });
 app.on('before-quit', (event) => {
