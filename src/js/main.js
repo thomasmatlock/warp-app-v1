@@ -27,16 +27,14 @@ const fileControllerReq = require('./system/fileController');
 const fileController = new fileControllerReq();
 const startupReq = require('./startup');
 const startup = new startupReq();
-
+// console.log(DisplayController);
 let itemURL, mainWindow, displays; // Keep a global reference of the window object, if you don't, the window will be closed automatically when the JavaScript object is garbage collected.
-console.log(startup.downloadItems);
+// console.log(startup.downloadItems);
 app.allowRendererProcessReuse = true;
 ////////////////////////////////////////////////////////////////////
 // IPC LISTENERS
-ipcMain.on('new-item', (e, itemURL) => {
-    // console.log(`Received ${itemURL}`);
-    let testBool = true;
-    if (testBool) {
+ipcMain.on('new-item', (e, itemURL, type) => {
+    if (startup.downloadItemsTesting) {
         console.log(`Received ${itemURL}`);
 
         // readItem(itemURL, (item) => {
@@ -61,10 +59,10 @@ ipcMain.on('new-item', (e, itemURL) => {
 
         // Will be called when the download starts.
         video.on('info', function(info) {
-            // console.log('Download started');
-            // console.log('filename: ' + info._filename);
-            // console.log('size: ' + info.size);
-            // console.log(`${info.formats.length} formats`);
+            console.log(info);
+            console.log(
+                `Download of title: "${info._filename}" starting... ${info.formats.length} formats available`
+            );
             // videoData = {
             //     title = info.title,
             //     duration = info.duration,
@@ -113,12 +111,14 @@ ipcMain.on('new-item', (e, itemURL) => {
 // CREATE WINDOW
 function createWindow() {
     mainWindow = new BrowserWindow({
-        width: displays.coords.width,
-        height: displays.coords.height,
-        minWidth: 450,
+        // height: displays.coords.height,
+        // width: displays.coords.width,
+        width: 1700,
+        height: 700,
+        minWidth: 800,
         minHeight: 300,
-        x: displays.coords.x,
-        y: displays.coords.y,
+        x: startup.devMode ? 1000 : displays.coords.x,
+        y: startup.devMode ? 300 : displays.coords.y,
 
         darkTheme: false,
         // skipTaskbar: true,

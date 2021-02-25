@@ -10,6 +10,7 @@ class startup {
         this.devModeBackendOnly = false;
         this.nav_A_active = 0;
         this.downloadItems = true;
+        this.downloadItemsTesting = true;
         this.hasFFmpeg = false;
         this.URLS = [
             'https://www.facebook.com/hmtheus/videos/3230852170358533',
@@ -31,6 +32,19 @@ class startup {
             'https://www.youtube.com/watch?v=GyB6ffmXsZo',
             'https://www.youtube.com/watch?v=WARfyYsb3dw',
             'https://www.youtube.com/watch?v=2IvEDtL27sY',
+            'https://www.youtube.com/watch?v=Bgmdw4E7gE4',
+            'https://www.youtube.com/watch?v=JvvqKKcd4vQ',
+            'https://www.youtube.com/watch?v=kfUROAaKaxc',
+            'https://www.youtube.com/watch?v=9NtiT1Fnrjs',
+            'https://www.youtube.com/watch?v=DyQuSuyCuLg',
+            'https://www.youtube.com/watch?v=TVyPF9STsHU',
+            'https://www.youtube.com/watch?v=51HjuUDK-5w',
+            'https://www.youtube.com/watch?v=fZR_MVDldxU',
+            'https://www.youtube.com/watch?v=Af7Pv86RR0Y',
+            'https://www.youtube.com/watch?v=GAxWyaSWwcg',
+            'https://www.youtube.com/watch?v=AbiTODVXMro',
+            'https://www.youtube.com/watch?v=VpPyytsTxkU',
+            'https://www.youtube.com/watch?v=FuxoqOkjiBo',
         ];
         this.testURL = this.URLSyoutube[0];
         this.testURLrandom = miscFunctions.randomFromArray(this.URLSyoutube);
@@ -78,7 +92,7 @@ class startup {
                 // console.log('ffmpeg exists');
                 this.hasFFmpeg = true;
             } else if (!fs.existsSync(ffmpegPath)) {
-                console.log('ffmpeg doesnt exist');
+                // console.log('ffmpeg doesnt exist');
                 this.hasFFmpeg = false;
             }
         } catch (err) {
