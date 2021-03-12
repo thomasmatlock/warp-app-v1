@@ -7,36 +7,44 @@
 const { screen } = require('electron');
 class displayController {
     constructor() {
-        // 34 inch display is 2752 x 1152
-        // laptop display is
-        this.displays = screen.getAllDisplays();
+        // 34 inch display bounds = 2752 x 1152, workArea = 2752, 1112
+        // laptop display bounds = 1536, 864, workArea = 1536, 824
+        this.displays = screen.getAllDisplays(); // array of available displays
+        this.count = this.displays.length; // number of displays
         this.devScreen =
-            this.displays.length == 1 ?
-            (this.devScreen = this.displays[0]) :
-            (this.devScreen = this.displays[1]);
-        this.usePrimaryMonitor =
+            this.count == 1 ?
+            (this.devScreen = this.displays[0]) // devScreen is uses only available screen
+            :
+            (this.devScreen = this.displays[1]); // devScreen uses secondary
+        this.useLaptop = false;
+        this.useDesktopPrimary = false;
+        this.useDesktopPrimary = // checks if height is over 1080, then
             this.devScreen.size.height >= 1080 ?
-            (this.usePrimaryMonitor = false) :
-            (this.usePrimaryMonitor = true);
-        this.xAdditive = this.usePrimaryMonitor ? 0 : 2500; // how far to the right app appears
-        this.yAdditive = this.usePrimaryMonitor ? 0 : 200; // how far down app appears
+            (this.useLaptop = true) :
+            (this.useDesktopPrimary = true);
+        this.xAdditive = this.useDesktopPrimary ? 600 : 0; // desktop : laptop, how far to the right app appears
+        this.yAdditive = this.useDesktopPrimary ? 250 : 0; // desktop : laptop, how far down app appears
         this.coords = {
-            height: this.usePrimaryMonitor ?
-                Math.round(this.devScreen.bounds.height * 1) :
-                Math.round(this.devScreen.bounds.height * 0.9),
-            width: this.usePrimaryMonitor ?
-                Math.round(this.devScreen.bounds.width) :
+            height: this.useDesktopPrimary ?
+                Math.round(this.devScreen.bounds.height * 0.6) // desktop
+                :
+                Math.round(this.devScreen.bounds.height * 0.9), // laptop
+            width: this.useDesktopPrimary ?
+                Math.round(this.devScreen.bounds.width * 0.75) // desktop
+                :
                 Math.round(this.devScreen.bounds.width * 0.9),
-            x: this.usePrimaryMonitor ?
+            x: this.useDesktopPrimary ?
                 Math.round(this.devScreen.bounds.width * 0.001) +
-                this.xAdditive :
+                this.xAdditive // desktop
+                :
                 Math.round(this.devScreen.bounds.width * 0.2) +
-                this.xAdditive,
-            y: this.usePrimaryMonitor ?
+                this.xAdditive, // laptop
+            y: this.useDesktopPrimary ?
                 Math.round(this.devScreen.bounds.height * 0.001) +
-                this.yAdditive :
+                this.yAdditive // desktop
+                :
                 Math.round(this.devScreen.bounds.height * 0.1) +
-                this.yAdditive,
+                this.yAdditive, // laptop
         };
     }
 }
