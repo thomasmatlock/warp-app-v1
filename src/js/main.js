@@ -111,14 +111,14 @@ ipcMain.on('new-item', (e, itemURL, type) => {
 // CREATE WINDOW
 function createWindow() {
     mainWindow = new BrowserWindow({
-        // height: displays.coords.height,
-        // width: displays.coords.width,
-        width: 1700,
-        height: 700,
+        height: displays.laptop ? displays.coords.height : 1000,
+        width: displays.laptop ? displays.coords.width : 700,
+        // width: 1700,
+        // height: 700,
         minWidth: 800,
         minHeight: 300,
-        x: startup.devMode ? 1000 : displays.coords.x,
-        y: startup.devMode ? 300 : displays.coords.y,
+        x: displays.laptop ? displays.coords.x : 1000,
+        y: displays.laptop ? displays.coords.y : 700,
 
         darkTheme: false,
         // skipTaskbar: true,

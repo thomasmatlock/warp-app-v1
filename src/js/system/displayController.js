@@ -7,6 +7,8 @@
 const { screen } = require('electron');
 class displayController {
     constructor() {
+        this.laptop = true;
+        this.desktop = false;
         this.displays = screen.getAllDisplays();
         this.devScreen =
             this.displays.length == 1 ?
