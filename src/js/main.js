@@ -111,6 +111,7 @@ ipcMain.on('new-item', (e, itemURL, type) => {
 // CREATE WINDOW
 function createWindow() {
     // console.log(displays.displays);
+    console.log(displays.devScreen);
     mainWindow = new BrowserWindow({
         height: displays.coords.height,
         width: displays.coords.width,
