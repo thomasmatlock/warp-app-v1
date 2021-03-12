@@ -7,8 +7,8 @@
 const { screen } = require('electron');
 class displayController {
     constructor() {
-        this.laptop = true;
-        this.desktop = false;
+        // 34 inch display is 2752 x 1152
+        // laptop display is
         this.displays = screen.getAllDisplays();
         this.devScreen =
             this.displays.length == 1 ?
