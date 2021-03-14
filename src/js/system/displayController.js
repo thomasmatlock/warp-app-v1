@@ -23,12 +23,15 @@ class displayController {
         this.width;
         this.x;
         this.y;
+        this.minWidth = 800;
+        this.minHeight = 600;
     }
     discoverDisplay = () => {
         // PRODUCTION MODE
         if (!startup.devMode) {
             this.height = 900;
             this.width = 1600;
+
             // DEV MODE, LAPTOP
         } else if (startup.devMode && this.displayToUse.size.height === 864) {
             console.log(`Dev mode, using laptop`);
@@ -38,6 +41,11 @@ class displayController {
             // DEV MODE, DESKTOP PRIMARY
         } else if (startup.devMode && this.displayToUse.size.height === 1152) {
             console.log(`Dev mode, using desktop primary`);
+            this.height = Math.round(this.displayToUse.size.height * 0.6); // app height
+            this.width = Math.round(this.displayToUse.size.width * 0.75); // app width
+            this.x = Math.round(this.displayToUse.size.width * 0.25); // how far to the right app appears
+            this.y = Math.round(this.displayToUse.size.height * 0.2); // how far down the app
+
             // DEV MODE, DESKTOP SECONDARY
         } else if (
             startup.devMode &&
