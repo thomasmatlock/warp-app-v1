@@ -38,6 +38,6 @@
         "live-server": "^1.2.1",
         "youtube-audio-server": "^2.4.2",
         "youtube-dl": "^3.0.2",
-        "youtube-dl-exec": "^1.1.0"
+        "youtube-dl-exec": "^1.1.3"
     }
 }

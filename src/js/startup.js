@@ -27,8 +27,6 @@ class startup {
             'https://www.youtube.com/watch?v=LoD9RlPr51k',
             'https://www.youtube.com/watch?v=LOPsIByPn48',
             'https://www.youtube.com/watch?v=YExiDiVPbzw',
-            'https://www.youtube.com/watch?v=gR7HDERBCQE',
-            'https://www.youtube.com/watch?v=g2iErckaIl8',
             'https://www.youtube.com/watch?v=GyB6ffmXsZo',
             'https://www.youtube.com/watch?v=WARfyYsb3dw',
             'https://www.youtube.com/watch?v=2IvEDtL27sY',
