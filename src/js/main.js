@@ -55,9 +55,6 @@ ipcMain.on('new-item', (e, itemURL, type) => {
 ////////////////////////////////////////////////////////////////////
 // CREATE WINDOW
 function createWindow() {
-    displays.discoverDisplay();
-    console.log(`Height: ${displays.height}, width: ${displays.width}`);
-    console.log(`X at ${displays.x}, Y at ${displays.y}`);
     mainWindow = new BrowserWindow({
         height: displays.height,
         width: displays.width,
@@ -100,10 +97,9 @@ app.on('ready', () => {
     displays = new DisplayController(); // positions output window to display depending on single/multi-monitor
     fileController.init(); // checks for local directories and creates them if non existent
     startup.init(); // all startup checks, latest version, isOnline, hasFFmpeg etc
-
+    displays.discoverDisplay(); // discovers which display to use, 3 dev mode displays or production
     createWindow(); // creates main app window
     if (startup.devModeBackendOnly) mainWindow.hide(); // devMode only
-    // if (startup.devMode) startup.updateDevModeActiveTab();
 });
 app.on('before-quit', (event) => {
     // event.preventDefault(); //
