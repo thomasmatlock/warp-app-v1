@@ -110,17 +110,17 @@ ipcMain.on('new-item', (e, itemURL, type) => {
 ////////////////////////////////////////////////////////////////////
 // CREATE WINDOW
 function createWindow() {
-    // console.log(displays.displays);
-    console.log(displays.devScreen);
+    // console.log(displays.displayToUse);
+    displays.discoverDisplay();
+    // console.log(displays.displayToUse.size.height);
+    // console.log(displays.height);
     mainWindow = new BrowserWindow({
-        height: displays.coords.height,
-        width: displays.coords.width,
-        // width: 1700,
-        // height: 700,
+        height: displays.height,
+        width: displays.width,
         minWidth: 800,
-        minHeight: 300,
-        x: displays.coords.x,
-        y: displays.coords.y,
+        minHeight: 600,
+        x: 0,
+        y: 0,
 
         darkTheme: false,
         // skipTaskbar: true,

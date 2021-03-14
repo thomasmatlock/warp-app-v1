@@ -5,48 +5,48 @@
 /* eslint-disable one-var */
 
 const { screen } = require('electron');
+const startupReq = require('../startup');
+const startup = new startupReq();
 class displayController {
     constructor() {
         // 34 inch display bounds = 2752 x 1152, workArea = 2752, 1112
         // laptop display bounds = 1536, 864, workArea = 1536, 824
-        this.displays = screen.getAllDisplays(); // array of available displays
-        this.count = this.displays.length; // number of displays
-        this.devScreen =
-            this.count == 1 ?
-            (this.devScreen = this.displays[0]) // devScreen is uses only available screen
+        this.all = screen.getAllDisplays(); // array of available displays
+        this.total = this.all.length; // number of displays
+        this.useSecondaryDisplay = false;
+        this.displayToUse = this.useSecondaryDisplay ?
+            this.all[1] // change this, [0, 1, 2] to select dev mode secondary or tertiary display
             :
-            (this.devScreen = this.displays[1]); // devScreen uses secondary
-        this.useLaptop = false;
-        this.useDesktopPrimary = false;
-        this.useDesktopPrimary = // checks if height is over 1080, then
-            this.devScreen.size.height >= 1080 ?
-            (this.useLaptop = true) :
-            (this.useDesktopPrimary = true);
-        this.xAdditive = this.useDesktopPrimary ? 600 : 0; // desktop : laptop, how far to the right app appears
-        this.yAdditive = this.useDesktopPrimary ? 250 : 0; // desktop : laptop, how far down app appears
-        this.coords = {
-            height: this.useDesktopPrimary ?
-                Math.round(this.devScreen.bounds.height * 0.6) // desktop
-                :
-                Math.round(this.devScreen.bounds.height * 0.9), // laptop
-            width: this.useDesktopPrimary ?
-                Math.round(this.devScreen.bounds.width * 0.75) // desktop
-                :
-                Math.round(this.devScreen.bounds.width * 0.9),
-            x: this.useDesktopPrimary ?
-                Math.round(this.devScreen.bounds.width * 0.001) +
-                this.xAdditive // desktop
-                :
-                Math.round(this.devScreen.bounds.width * 0.2) +
-                this.xAdditive, // laptop
-            y: this.useDesktopPrimary ?
-                Math.round(this.devScreen.bounds.height * 0.001) +
-                this.yAdditive // desktop
-                :
-                Math.round(this.devScreen.bounds.height * 0.1) +
-                this.yAdditive, // laptop
-        };
+            this.all[0]; // defaults to using display 0
+
+        this.height;
+        this.width;
+        this.x;
+        this.y;
     }
+    discoverDisplay = () => {
+        // PRODUCTION MODE
+        if (!startup.devMode) {
+            this.height = 900;
+            this.width = 1600;
+            // DEV MODE, LAPTOP
+        } else if (startup.devMode && this.displayToUse.size.height === 864) {
+            console.log(`Dev mode, using laptop`);
+            this.height = 900;
+            this.width = 1600;
+
+            // DEV MODE, DESKTOP PRIMARY
+        } else if (startup.devMode && this.displayToUse.size.height === 1152) {
+            console.log(`Dev mode, using desktop primary`);
+            // DEV MODE, DESKTOP SECONDARY
+        } else if (
+            startup.devMode &&
+            this.displayToUse.size.height === 1152 &&
+            this.useSecondaryDisplay
+        ) {
+            console.log(`Dev mode, using desktop secondary`);
+        }
+    };
 }
 
 module.exports = displayController;
