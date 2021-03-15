@@ -11,7 +11,7 @@ class displayController {
     constructor() {
         // 34 inch display bounds = 2752 x 1152, workArea = 2752, 1112
         // laptop display bounds = 1536, 864, workArea = 1536, 824
-        this.logging = true;
+        this.logging = false;
         this.all = screen.getAllDisplays(); // array of available displays
         this.total = this.all.length; // number of displays
         this.useSecondaryDisplay = false;
@@ -19,7 +19,6 @@ class displayController {
             this.all[1] // change this, [0, 1, 2] to select dev mode secondary or tertiary display
             :
             this.all[0]; // defaults to using display 0
-
         this.height;
         this.width;
         this.x;
@@ -51,8 +50,8 @@ class displayController {
             // DEV MODE, DESKTOP PRIMARY
         } else if (startup.devMode && this.displayToUse.size.height > 1151) {
             this.height = Math.round(this.displayToUse.size.height * 0.6); // app height
-            this.width = Math.round(this.displayToUse.size.width * 0.75); // app width
-            this.x = Math.round(this.displayToUse.size.width * 0.25); // how far to the right app appears
+            this.width = Math.round(this.displayToUse.size.width * 0.5); // app width
+            this.x = Math.round(this.displayToUse.size.width * 0.5); // how far to the right app appears
             this.y = Math.round(this.displayToUse.size.height * 0.2); // how far down the app
             if (this.logging)
                 console.log(
