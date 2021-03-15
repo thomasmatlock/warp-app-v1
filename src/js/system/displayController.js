@@ -28,35 +28,47 @@ class displayController {
         this.minHeight = 600;
     }
     discoverDisplay = () => {
-        
         // PRODUCTION MODE
         if (!startup.devMode) {
             this.height = 900;
             this.width = 1600;
-            
+
             // DEV MODE, LAPTOP
-        } else if (startup.devMode && this.displayToUse.size.height > 863 && this.displayToUse.size.height < 1151) {
-            if (this.logging) console.log(`Dev mode, laptop, height ${this.height}, width ${this.width}, x ${this.x}, y ${this.y}`);
+        } else if (
+            startup.devMode &&
+            this.displayToUse.size.height > 863 &&
+            this.displayToUse.size.height < 1151
+        ) {
             this.height = 900;
             this.width = 1600;
             this.x = Math.round(this.displayToUse.size.width * 0); // how far to the right app appears
             this.y = Math.round(this.displayToUse.size.height * 0); // how far down the app
-            
+            if (this.logging)
+                console.log(
+                    `Dev mode, laptop, height ${this.height}, width ${this.width}, x ${this.x}, y ${this.y}`
+                );
+
             // DEV MODE, DESKTOP PRIMARY
         } else if (startup.devMode && this.displayToUse.size.height > 1151) {
             this.height = Math.round(this.displayToUse.size.height * 0.6); // app height
             this.width = Math.round(this.displayToUse.size.width * 0.75); // app width
             this.x = Math.round(this.displayToUse.size.width * 0.25); // how far to the right app appears
             this.y = Math.round(this.displayToUse.size.height * 0.2); // how far down the app
-            if (this.logging) console.log(`Dev mode, desktop primary, height ${this.height}, width ${this.width}, x ${this.x}, y ${this.y}`);
-            
+            if (this.logging)
+                console.log(
+                    `Dev mode, desktop primary, height ${this.height}, width ${this.width}, x ${this.x}, y ${this.y}`
+                );
+
             // DEV MODE, DESKTOP SECONDARY
         } else if (
             startup.devMode &&
             this.displayToUse.size.height === 1152 &&
             this.useSecondaryDisplay
-            ) {
-            if (this.logging) console.log(`Dev mode, desktop secondary, height ${this.height}, width ${this.width}, x ${this.x}, y ${this.y}`);
+        ) {
+            if (this.logging)
+                console.log(
+                    `Dev mode, desktop secondary, height ${this.height}, width ${this.width}, x ${this.x}, y ${this.y}`
+                );
         }
     };
 }
