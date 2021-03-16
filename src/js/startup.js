@@ -1,4 +1,4 @@
-const miscFunctions = require('./miscFunctions');
+const miscFunctions = require('../../library/miscFunctions');
 const fileControllerReq = require('./system/fileController');
 const fileController = new fileControllerReq();
 const os = require('os');

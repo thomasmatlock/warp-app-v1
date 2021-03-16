@@ -14,7 +14,7 @@
 const { clipboard, ipcRenderer } = require('electron');
 const startupReq = require('./startup');
 const startup = new startupReq();
-const miscFunctions = require('./miscFunctions');
+const miscFunctions = require('../../library/miscFunctions');
 
 const pattArr = [
     /facebook/i,
