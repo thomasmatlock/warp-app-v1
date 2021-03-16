@@ -42,7 +42,7 @@ ipcMain.on('new-item', (e, itemURL, type) => {
         console.clear();
         // YOUTUBEDL
         youtubedl(itemURL, {
-            dumpJson: true,
+            // dumpJson: true,
             noWarnings: true,
             noCallHome: true,
             noCheckCertificate: true,
@@ -52,7 +52,7 @@ ipcMain.on('new-item', (e, itemURL, type) => {
         }).then((output) => console.log(output));
     }
 });
-
+// console.log(process);
 ////////////////////////////////////////////////////////////////////
 // CREATE WINDOW
 function createWindow() {
