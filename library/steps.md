@@ -1,6 +1,6 @@
 # HTML/CSS
 - add to html //         <button id="test-youtube">+</button>
-- add css styling // #test-youtube {}
+- add css styling // #test-youtube { width: 50px;}
 
 # RENDERER 
 - add DOM node to app.js // testYoutube = document.getElementById('test-youtube');

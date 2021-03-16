@@ -18,9 +18,6 @@ const {
     webContents,
 } = require('electron');
 
-// const youtubedl = require('youtube-dl');
-const youtubedl = require('youtube-dl-exec');
-
 const DisplayController = require('./system/displayController');
 const appMenu = require('./menus/menuAudio');
 const Nav = require('./models/Nav');
@@ -40,16 +37,6 @@ ipcMain.on('new-item', (e, itemURL, type) => {
     if (startup.downloadItemsTesting) {
         console.log(`Received ${itemURL}`);
         console.clear();
-        // YOUTUBEDL
-        youtubedl(itemURL, {
-            // dumpJson: true,
-            noWarnings: true,
-            noCallHome: true,
-            noCheckCertificate: true,
-            preferFreeFormats: true,
-            youtubeSkipDashManifest: true,
-            referer: itemURL,
-        }).then((output) => console.log(output));
     }
 });
 // console.log(process);
