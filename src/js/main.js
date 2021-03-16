@@ -4,9 +4,11 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable one-var */
 
+// NODE requires
 const os = require('os');
 const fs = require('fs');
 const path = require('path');
+// NPM requires
 const {
     app,
     BrowserView,
@@ -17,7 +19,8 @@ const {
     shell,
     webContents,
 } = require('electron');
-
+const ytdl = require('ytdl-core');
+// My requires
 const DisplayController = require('./system/displayController');
 const appMenu = require('./menus/menuAudio');
 const Nav = require('./models/Nav');
@@ -26,17 +29,32 @@ const fileControllerReq = require('./system/fileController');
 const fileController = new fileControllerReq();
 const startupReq = require('./startup');
 const startup = new startupReq();
-// console.log(DisplayController);
+
 let itemURL, mainWindow, displays; // Keep a global reference of the window object, if you don't, the window will be closed automatically when the JavaScript object is garbage collected.
-// console.log(startup.downloadItems);
-app.allowRendererProcessReuse = true;
+
+// app.allowRendererProcessReuse = true;
 // hello
 ////////////////////////////////////////////////////////////////////
+
 // IPC LISTENERS
 ipcMain.on('new-item', (e, itemURL, type) => {
     if (startup.downloadItemsTesting) {
         console.log(`Received ${itemURL}`);
         console.clear();
+
+        // ytdl-core
+        // let info = await ytdl.getInfo(videoID);
+        // let audioFormats = ytdl.filterFormats(info.formats, 'audioonly');
+        // console.log('Formats with only audio: ' + audioFormats.length);
+        let videoID = ytdl.getURLVideoID(itemURL);
+        console.log(videoID);
+        let resolved;
+        ytdl.getBasicInfo(itemURL).then((info) => {
+            resolved = info;
+            console.log(resolved);
+        });
+
+        // ytdl(itemURL).pipe(fs.createWriteStream('video.mp4')); // downloads video
     }
 });
 // console.log(process);
