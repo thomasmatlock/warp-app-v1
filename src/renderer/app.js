@@ -9,9 +9,9 @@ const elements = require('./views/elements');
 const navPrimaryView = require('./views/navPrimaryView.js');
 const navSecondaryView = require('./views/navSecondaryView.js');
 const listView = require('./views/listView.js');
-const Nav = require('./models/Nav.js');
-const userInput = require('./userInput');
-const startupReq = require('./startup');
+const Nav = require('../js/models/Nav.js');
+const userInput = require('../js/userInput');
+const startupReq = require('../js/startup');
 const startup = new startupReq();
 
 nav_A_video = document.getElementById('.nav_A_video');
