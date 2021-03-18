@@ -1,24 +1,23 @@
 // const { app, BrowserWindow } = require('electron');
 const elements = {
+    // Nav A
     nav_A: document.querySelector('.nav_A'),
-    nav_A_tab: document.querySelector('.nav_A-tab'),
-    nav_A_tabArr: document.querySelectorAll('.nav_A-tab'),
+    nav_A_button: document.querySelector('.nav_A-tab'),
+    nav_A_buttonArr: document.querySelectorAll('.nav_A-tab'),
     nav_A_audio: document.getElementById('nav_A_audio'),
     nav_A_video: document.getElementById('nav_A_video'),
     nav_A_warpstagram: document.getElementById('nav_A_warpstagram'),
-
+    // Nav B
     nav_B: document.querySelector('.nav_B'),
     nav_B_button: document.querySelector('.nav_B-button'),
     nav_B_buttonArr: document.querySelectorAll('.nav_B-button'),
-    nav_B0: document.querySelector('.nav_B0'),
-    nav_B1: document.querySelector('.nav_B1'),
-    // nav_B2: document.querySelector('nav_B2'),
-    // nav_B3: document.querySelector('nav_B3'),
-    nav_B0_0: document.getElementById('nav_B0_0'),
+    nav_B_audio: document.querySelector('.nav_B_audio'),
+    nav_B_video: document.querySelector('.nav_B_video'),
     nav_B__main: document.querySelector('.nav_B__main'),
+    nav_B__minor: document.querySelector('.nav_B__minor'),
     testClassAudio: document.querySelector('.testClassAudio'),
     testClassVideo: document.querySelector('.testClassVideo'),
-
+    // Download lists
     download__list: document.querySelector('.download__list'),
     download__list_audio: document.querySelector('.download__list_audio'),
     download__list_video: document.querySelector('.download__list_video'),

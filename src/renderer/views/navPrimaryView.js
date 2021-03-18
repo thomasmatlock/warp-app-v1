@@ -5,10 +5,10 @@ const elements = require('./elements');
 exports.clearActive = () => {
     // GET ARRAY OF NAV TABS
     // const tabsArr = Array.from(document.querySelectorAll('.nav_A-tab'));
-    // console.log(elements.nav_A_tabArr);
+    // console.log(elements.nav_A_buttonArr);
 
     // REMOVE ACTIVE CLASS FROM ALL TABS
-    elements.nav_A_tabArr.forEach((el) => {
+    elements.nav_A_buttonArr.forEach((el) => {
         el.classList.remove('nav_A-tab--active');
         // console.log('Active class removed from navA tabs');
     });

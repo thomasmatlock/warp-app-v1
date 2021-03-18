@@ -2,10 +2,10 @@
  * NAV SECONDARY CONTROLLER
  */
 
-elements.nav_B0.addEventListener('click', (e) => {
+elements.nav_B_audio.addEventListener('click', (e) => {
     nav_B_sequence(e);
 });
-elements.nav_B1.addEventListener('click', (e) => {
+elements.nav_B_video.addEventListener('click', (e) => {
     nav_B_sequence(e);
 });
 elements.nav_B2.addEventListener('click', (e) => {
