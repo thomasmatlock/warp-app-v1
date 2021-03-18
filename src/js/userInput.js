@@ -12,9 +12,9 @@
 // update local user file
 // update UI
 const { clipboard, ipcRenderer } = require('electron');
-const startupReq = require('./startup');
+const startupReq = require('./system/startup');
 const startup = new startupReq();
-const miscFunctions = require('../../library/miscFunctions');
+const miscFunctions = require('../../library/miscArrays');
 
 const pattArr = [
     /facebook/i,

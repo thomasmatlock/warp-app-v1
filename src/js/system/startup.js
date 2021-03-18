@@ -1,5 +1,5 @@
-const miscFunctions = require('../../library/miscFunctions');
-const fileControllerReq = require('./system/fileController');
+const miscFunctions = require('../../../library/miscArrays');
+const fileControllerReq = require('./fileController');
 const fileController = new fileControllerReq();
 const os = require('os');
 const path = require('path');

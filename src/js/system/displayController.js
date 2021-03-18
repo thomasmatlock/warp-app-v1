@@ -5,7 +5,7 @@
 /* eslint-disable one-var */
 
 const { screen } = require('electron');
-const startupReq = require('../startup');
+const startupReq = require('./startup');
 const startup = new startupReq();
 class displayController {
     constructor() {

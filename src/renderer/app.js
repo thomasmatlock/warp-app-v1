@@ -11,18 +11,22 @@ const navSecondaryView = require('./views/navSecondaryView.js');
 const listView = require('./views/listView.js');
 const Nav = require('../js/models/Nav.js');
 const userInput = require('../js/userInput');
-const startupReq = require('../js/startup');
+const startupReq = require('../js/system/startup');
 const startup = new startupReq();
+const miscArrays = require('../../library/miscArrays');
+const { nav_A_video } = require('./views/elements');
+// console.log(miscArrays);
 
 let state = {};
 state.nav = new Nav(); // controls active nav
+
 ////////////////////////////////////////////////////////////
 // IPCRENDERER LISTENERS
-ipcRenderer.on('new-item-success', (e, newItem) => {
-    // console.log(newItem);
-    // add new item to "items" node
-    items.addItem(newItem, true);
+// clicks nav A tab on window ready
+ipcRenderer.on('window-ready', () => {
+    elements.nav_A_audio.click();
 });
+ipcRenderer.on('resize', () => {});
 // Menu listeners, audio
 ipcRenderer.on('Audio: File: Import Download Links', () => {
     if (startup.menuLogging) console.log('you imported audio');
@@ -68,13 +72,6 @@ ipcRenderer.on('Video: Tools: Preferences', () => {
 ipcRenderer.on('Quit', () => {
     if (startup.menuLogging) console.log('you quit');
 });
-// Open modal from menu
-// ipcRenderer.on('menu-show-modal', () => {
-// });
-
-ipcRenderer.on('ready', (e, args) => {
-    elements.nav_A_audio.click();
-});
 
 ////////////////////////////////////////////////////////////
 // DOM EVENT LISTENERS
@@ -109,9 +106,11 @@ elements.nav_A.addEventListener('click', (e) => {
 });
 elements.nav_A_audio.addEventListener('click', (e) => {
     if (startup.menuLogging) console.log(`you clicked audio`);
+    ipcRenderer.send('menu-change', 'audio');
 });
 elements.nav_A_video.addEventListener('click', (e) => {
     if (startup.menuLogging) console.log(`you clicked video`);
+    ipcRenderer.send('menu-change', 'video');
 });
 elements.nav_A_warpstagram.addEventListener('click', (e) => {
     if (startup.menuLogging) console.log(`you clicked warpstagram`);

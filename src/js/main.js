@@ -28,7 +28,7 @@ const Nav = require('./models/Nav');
 const navController = new Nav();
 const fileControllerReq = require('./system/fileController');
 const fileController = new fileControllerReq();
-const startupReq = require('./startup');
+const startupReq = require('./system/startup');
 const startup = new startupReq();
 
 let itemURL, mainWindow, displays; // Keep a global reference of the window object, if you don't, the window will be closed automatically when the JavaScript object is garbage collected.
@@ -55,6 +55,10 @@ ipcMain.on('new-item', (e, itemURL, type) => {
 
         // ytdl(itemURL).pipe(fs.createWriteStream('video.mp4')); // downloads video
     }
+});
+ipcMain.on('menu-change', (e, menuType) => {
+    if (menuType === 'audio') appMenuAudio(mainWindow.webContents); // sets audio menu if audio tab is clicked
+    if (menuType === 'video') appMenuVideo(mainWindow.webContents); // sets video menu if video tab is clicked
 });
 // console.log(process);
 ////////////////////////////////////////////////////////////////////
@@ -87,11 +91,12 @@ function createWindow() {
 
     mainWindow.webContents.openDevTools(); // Open DevTools - Remove for PRODUCTION!
 
-    mainWindow.webContents.on('did-finish-load', () => {
+    const wc = mainWindow.webContents;
+    wc.on('did-finish-load', () => {
         // console.log('ready');
     });
-    mainWindow.webContents.on('devtools-opened', () => {
-        console.log('ready');
+    wc.on('devtools-opened', () => {
+        // console.log('ready');
     });
 
     // Listen for window being closed
@@ -99,11 +104,16 @@ function createWindow() {
         mainWindow = null;
         console.log('window closed');
     });
-    const wc = mainWindow.webContents;
+    mainWindow.on('resize', () => {
+        wc.send('resize');
+    });
+    mainWindow.on('maximize', () => {
+        console.log('window maximize');
+    });
     // send stuff to app.js
     wc.on('did-finish-load', (e) => {
         // console.log();
-        wc.send('ready');
+        wc.send('window-ready');
     });
 }
 ////////////////////////////////////////////////////////////////////

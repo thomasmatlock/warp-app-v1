@@ -1,5 +1,5 @@
 const { Menu, shell } = require('electron');
-const startupReq = require('../startup');
+const startupReq = require('../system/startup');
 const startup = new startupReq();
 // Module function to create main app menu
 module.exports = (appWin) => {

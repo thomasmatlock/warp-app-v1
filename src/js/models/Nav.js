@@ -1,6 +1,10 @@
 class nav {
     constructor() {
-        this.nav_A = [false, false, false];
+        this.nav_A = {
+            audio: false,
+            video: false,
+            warpstagram: false,
+        };
 
         this.nav_B = {
             nav_A_audio: [false, false, false, false, false, false],
