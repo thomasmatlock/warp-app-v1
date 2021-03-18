@@ -3,109 +3,112 @@ const { Menu, shell } = require('electron');
 // Module function to create main app menu
 module.exports = (appWin) => {
     // Menu template
-    let template = [
-        {
+    let template = [{
             label: 'File',
-            submenu: [
-                {
+            submenu: [{
                     label: 'Import Download Links',
                     accelerator: 'CmdOrCtrl+O',
                     click: () => {
-                        appWin.send('menu-show-modal');
+                        appWin.send('Video: File: Import Download Links');
                     },
                 },
                 {
                     label: 'Export Download Links',
                     accelerator: 'CmdOrCtrl+O',
                     click: () => {
-                        appWin.send('menu-show-modal');
+                        appWin.send('Video: File: Export Download Links');
                     },
                 },
                 {
                     label: 'Import Subscriptions',
                     accelerator: 'CmdOrCtrl+O',
                     click: () => {
-                        appWin.send('menu-show-modal');
+                        appWin.send('Video: File: Import Subscriptions');
                     },
                 },
                 {
                     label: 'Export Subscriptions',
                     accelerator: 'CmdOrCtrl+O',
                     click: () => {
-                        appWin.send('menu-show-modal');
+                        appWin.send('Video: File: Export Subscriptions');
                     },
                 },
                 {
                     label: 'Quit',
                     accelerator: 'CmdOrCtrl+O',
                     click: () => {
-                        appWin.send('menu-show-modal');
+                        appWin.send('Quit');
                     },
                 },
             ],
         },
         {
             label: 'Downloads',
-            submenu: [
-                {
-                    label: 'Import Download Links',
-                    accelerator: 'CmdOrCtrl+O',
+            submenu: [{
+                    label: 'Paste',
+                    accelerator: 'CmdOrCtrl+V',
                     click: () => {
-                        appWin.send('menu-show-modal');
+                        appWin.send('Video: Downloads: Paste');
                     },
                 },
                 {
-                    label: 'Export Download Links',
-                    accelerator: 'CmdOrCtrl+O',
+                    label: 'Pause All',
+                    enabled: false,
                     click: () => {
-                        appWin.send('menu-show-modal');
+                        appWin.send('blank, TBD');
                     },
                 },
                 {
-                    label: 'Quit',
-                    accelerator: 'CmdOrCtrl+O',
+                    label: 'Resume All',
+                    enabled: false,
                     click: () => {
-                        appWin.send('menu-show-modal');
+                        appWin.send('blank, TBD');
+                    },
+                },
+                {
+                    label: 'Remove All',
+                    click: () => {
+                        appWin.send('blank, TBD');
                     },
                 },
             ],
         },
         {
             label: 'Tools',
-            submenu: [
-                {
-                    label: 'Import Download Links',
-                    accelerator: 'CmdOrCtrl+O',
+            submenu: [{
+                    label: 'Smart Mode...',
                     click: () => {
-                        appWin.send('menu-show-modal');
+                        appWin.send('Video: Tools: Smart Mode');
                     },
                 },
                 {
-                    label: 'Export Download Links',
-                    accelerator: 'CmdOrCtrl+O',
+                    label: 'Subscriptions...',
                     click: () => {
-                        appWin.send('menu-show-modal');
+                        appWin.send('Video: Tools: Subscriptions');
                     },
                 },
                 {
-                    label: 'Quit',
-                    accelerator: 'CmdOrCtrl+O',
+                    label: 'Check for updates...',
                     click: () => {
-                        appWin.send('menu-show-modal');
+                        appWin.send('Video: Tools: Check for update');
+                    },
+                },
+                {
+                    label: 'Preferences',
+                    click: () => {
+                        appWin.send('Video: Tools: Preferences');
                     },
                 },
             ],
         },
         {
             label: 'Help',
-            submenu: [
-                {
-                    label: 'Learn More',
-                    click: () => {
-                        shell.openExternal('https://warpdownload.com');
-                    },
+            submenu: [{
+                label: 'Learn More',
+                click: () => {
+                    shell.openExternal('https://warpdownload.com');
                 },
-            ],
+            }, ],
         },
 
         // { role: 'viewMenu' },

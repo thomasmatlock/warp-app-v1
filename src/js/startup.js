@@ -11,6 +11,7 @@ class startup {
         this.nav_A_active = 0;
         this.downloadItems = true;
         this.downloadItemsTesting = true;
+        this.menuLogging = false;
         this.hasFFmpeg = false;
         this.URLS = [
             'https://www.facebook.com/hmtheus/videos/3230852170358533',

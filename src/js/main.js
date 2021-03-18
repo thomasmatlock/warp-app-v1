@@ -22,7 +22,8 @@ const {
 const ytdl = require('ytdl-core');
 // My requires
 const DisplayController = require('./system/displayController');
-const appMenu = require('./menus/menuAudio');
+const appMenuAudio = require('./menus/menuAudio');
+const appMenuVideo = require('./menus/menuVideo');
 const Nav = require('./models/Nav');
 const navController = new Nav();
 const fileControllerReq = require('./system/fileController');
@@ -77,7 +78,8 @@ function createWindow() {
     });
 
     // Create main app menu
-    appMenu(mainWindow.webContents);
+    // appMenuAudio(mainWindow.webContents);
+    appMenuVideo(mainWindow.webContents);
     // if (startup.devMode) appMenu.append({ role: 'viewMenu' });
 
     mainWindow.loadFile('./main.html'); // Load index.html into the new BrowserWindow

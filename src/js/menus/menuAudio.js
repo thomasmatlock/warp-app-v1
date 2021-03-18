@@ -10,20 +10,20 @@ module.exports = (appWin) => {
                     label: 'Import Download Links',
                     accelerator: 'CmdOrCtrl+Shift+O',
                     click: () => {
-                        appWin.send('menu-show-modal');
+                        appWin.send('Audio: File: Import Download Links');
                     },
                 },
                 {
                     label: 'Export Download Links',
                     accelerator: 'CmdOrCtrl+Shift+S',
                     click: () => {
-                        appWin.send('menu-show-modal');
+                        appWin.send('Audio: File: Export Download Links');
                     },
                 },
                 {
                     label: 'Quit',
                     click: () => {
-                        appWin.send('menu-show-modal');
+                        appWin.send('Quit');
                     },
                 },
             ],
@@ -34,27 +34,27 @@ module.exports = (appWin) => {
                     label: 'Paste',
                     accelerator: 'CmdOrCtrl+V',
                     click: () => {
-                        appWin.send('menu-show-modal');
+                        appWin.send('Audio: Downloads: Paste');
                     },
                 },
                 {
                     label: 'Pause All',
                     enabled: false,
                     click: () => {
-                        appWin.send('menu-show-modal');
+                        appWin.send('blank, TBD');
                     },
                 },
                 {
                     label: 'Resume All',
                     enabled: false,
                     click: () => {
-                        appWin.send('menu-show-modal');
+                        appWin.send('blank, TBD');
                     },
                 },
                 {
                     label: 'Remove All',
                     click: () => {
-                        appWin.send('menu-show-modal');
+                        appWin.send('blank, TBD');
                     },
                 },
             ],
@@ -64,13 +64,13 @@ module.exports = (appWin) => {
             submenu: [{
                     label: 'Check for updates...',
                     click: () => {
-                        appWin.send('menu-show-modal');
+                        appWin.send('blank, TBD');
                     },
                 },
                 {
                     label: 'Preferences',
                     click: () => {
-                        appWin.send('menu-show-modal');
+                        appWin.send('blank, TBD');
                     },
                 },
             ],

@@ -6,9 +6,6 @@ let showModal = document.getElementById('show-modal'),
 search = document.getElementById('search');
 
 // Open modal from menu
-ipcRenderer.on('menu-show-modal', () => {
-    showModal.click();
-});
 
 // leftover from mainWindow
 // const secWindow = new BrowserWindow({ width: 800, height: 600 });
