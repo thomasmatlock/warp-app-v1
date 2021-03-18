@@ -6,6 +6,7 @@
     // justify-content: start;
     // align-items: flex-start;
     height: $download-item-video-height;
+    // max-height: $download-item-video-max-height;
     border: 1px solid #eee;
     // background-color: #eee;
     transition: all ease-out 0.05s;
@@ -21,6 +22,7 @@
 
 .dl__item {
     height: $download-item-video-height;
+    // max-height: $download-item-video-max-height;
     display: flex;
     flex-direction: row;
     align-items: center;

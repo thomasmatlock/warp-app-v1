@@ -22,3 +22,5 @@ for (var key in objectToLoopThrough) {
         objectToLoopThrough[key] = false;
     }
 }
+
+// console.log(Object.getOwnPropertyNames(obj)); // converts object to array

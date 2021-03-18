@@ -90,11 +90,20 @@ function createWindow() {
     mainWindow.webContents.on('did-finish-load', () => {
         // console.log('ready');
     });
+    mainWindow.webContents.on('devtools-opened', () => {
+        console.log('ready');
+    });
 
     // Listen for window being closed
     mainWindow.on('closed', () => {
         mainWindow = null;
         console.log('window closed');
+    });
+    const wc = mainWindow.webContents;
+    // send stuff to app.js
+    wc.on('did-finish-load', (e) => {
+        // console.log();
+        wc.send('ready');
     });
 }
 ////////////////////////////////////////////////////////////////////

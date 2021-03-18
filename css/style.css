@@ -178,7 +178,7 @@ li {
   position: fixed;
   top: 0;
   height: 8vh;
-  max-height: 80px;
+  max-height: 60px;
   width: 60%;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   z-index: 10;
@@ -343,7 +343,8 @@ li {
   background-color: white; }
 
 .download__list_audio li {
-  height: 3.5vh; }
+  height: 3.5vh;
+  max-height: 35px; }
 
 .dl__item-audio_info-pane {
   height: 3.5vh;

@@ -16,6 +16,7 @@
 // }
 .download__list_audio li {
     height: $download-item-audio-height;
+    max-height: $download-item-audio-max-height;
 }
 
 .dl__item-audio_info-pane {

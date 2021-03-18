@@ -8,7 +8,7 @@ class startup {
     constructor() {
         this.devMode = true;
         this.devModeBackendOnly = false;
-        this.nav_A_active = 0;
+        this.nav_A_active = 'nav_A_video';
         this.downloadItems = true;
         this.downloadItemsTesting = true;
         this.menuLogging = false;

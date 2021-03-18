@@ -62,7 +62,6 @@ ipcRenderer.on('Video: Tools: Check for update', () => {
 });
 ipcRenderer.on('Video: Tools: Preferences', () => {
     if (startup.menuLogging) console.log('you pasted video');
-    elements.nav_A_video.click();
 });
 
 // Menu listeners, universal commands
@@ -71,8 +70,11 @@ ipcRenderer.on('Quit', () => {
 });
 // Open modal from menu
 // ipcRenderer.on('menu-show-modal', () => {
-// elements.nav_A_video.click();
 // });
+
+ipcRenderer.on('ready', (e, args) => {
+    elements.nav_A_audio.click();
+});
 
 ////////////////////////////////////////////////////////////
 // DOM EVENT LISTENERS
@@ -106,13 +108,13 @@ elements.nav_A.addEventListener('click', (e) => {
     }
 });
 elements.nav_A_audio.addEventListener('click', (e) => {
-    console.log(`you clicked audio`);
+    if (startup.menuLogging) console.log(`you clicked audio`);
 });
 elements.nav_A_video.addEventListener('click', (e) => {
-    console.log(`you clicked video`);
+    if (startup.menuLogging) console.log(`you clicked video`);
 });
 elements.nav_A_warpstagram.addEventListener('click', (e) => {
-    console.log(`you clicked warpstagram`);
+    if (startup.menuLogging) console.log(`you clicked warpstagram`);
 });
 // Nav B LISTENERS
 elements.testClassAudio.addEventListener('click', (e) => {
