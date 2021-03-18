@@ -31,12 +31,10 @@ const startupReq = require('./startup');
 const startup = new startupReq();
 
 let itemURL, mainWindow, displays; // Keep a global reference of the window object, if you don't, the window will be closed automatically when the JavaScript object is garbage collected.
+app.allowRendererProcessReuse = true; // not sure what this does but I added it for a reason
 
-// app.allowRendererProcessReuse = true;
-// hello
 ////////////////////////////////////////////////////////////////////
-
-// IPC LISTENERS
+// IPC LISTENERS FOR EVENTS FROM APP.JS
 ipcMain.on('new-item', (e, itemURL, type) => {
     if (startup.downloadItemsTesting) {
         console.log(`Received ${itemURL}`);

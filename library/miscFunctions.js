@@ -13,3 +13,12 @@ Object.size = function(obj) {
     }
     return size;
 };
+
+// LOOP THROUGH OBJECT PROPERTIES      console.log(id);
+let objectToLoopThrough;
+for (var key in objectToLoopThrough) {
+    if (objectToLoopThrough.hasOwnProperty(key)) {
+        // console.log(key + " is " + objectToLoopThrough[key]);
+        objectToLoopThrough[key] = false;
+    }
+}

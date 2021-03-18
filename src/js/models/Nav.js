@@ -9,10 +9,6 @@ class nav {
         };
     }
 
-    testFunction = (sample) => {
-        console.log(`${sample} is passed`);
-    };
-
     updateActiveNav_A = (id) => {
         // LOOP THROUGH OBJECT PROPERTIES TO REMOVE ACTIVE CLASS        console.log(id);
 

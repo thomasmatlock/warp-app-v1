@@ -15,11 +15,13 @@ const startupReq = require('../js/startup');
 const startup = new startupReq();
 
 nav_A_video = document.getElementById('.nav_A_video');
-// console.log(startup.testURL);
-let state = {};
-// let nav_A_active = config.dev.nav_A_active;
-state.nav = new Nav();
+console.log(elements);
 
+let state = {};
+state.nav = new Nav(); // controls active nav
+
+////////////////////////////////////////////////////////////
+// IPCRENDERER LISTENERS
 ipcRenderer.on('new-item-success', (e, newItem) => {
     // console.log(newItem);
     // add new item to "items" node
@@ -33,14 +35,8 @@ ipcRenderer.on('menu-show-modal', () => {
     elements.nav_A_video.click();
 });
 
-// STATE CONTROLLER
-const init = () => {
-    if (startup.devMode) {
-        // console.log(`nav_A_active is ${nav_A_active}`);
-    }
-};
-init();
-
+////////////////////////////////////////////////////////////
+// DOM EVENT LISTENERS
 // Nav A LISTENERS
 elements.nav_A.addEventListener('click', (e) => {
     // GETS CLICK EVENT TARGET
