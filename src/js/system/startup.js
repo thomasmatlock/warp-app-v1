@@ -8,7 +8,7 @@ class startup {
     constructor() {
         this.devMode = true;
         this.devModeBackendOnly = false;
-        this.nav_A_active = 'nav_A_video';
+        this.nav_A_active = 'warpstagram'; // can be, audio, video, or warpstagram
         this.downloadItems = true;
         this.downloadItemsTesting = true;
         this.menuLogging = false;
@@ -53,6 +53,7 @@ class startup {
             this.downloadItems = false;
             // console.log(`Dev mode active, NOT downloading items`);
             // this.updateDevModeActiveTab();
+            this.nav_A_active = 'audio'; // sets default to load audio if devmode isnt on
         } else {
             this.downloadItems = true;
             console.log(`Production mode active, downloading items`);

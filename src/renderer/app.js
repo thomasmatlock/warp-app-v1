@@ -4,7 +4,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable one-var */
 
-const { clipboard, ipcRenderer } = require('electron');
+const { app, clipboard, ipcRenderer } = require('electron');
 const elements = require('./views/elements');
 const navPrimaryView = require('./views/navPrimaryView.js');
 const navSecondaryView = require('./views/navSecondaryView.js');
@@ -13,9 +13,6 @@ const Nav = require('../js/models/Nav.js');
 const userInput = require('../js/userInput');
 const startupReq = require('../js/system/startup');
 const startup = new startupReq();
-const miscArrays = require('../../library/miscArrays');
-const { nav_A_video } = require('./views/elements');
-// console.log(miscArrays);
 
 let state = {};
 state.nav = new Nav(); // controls active nav
@@ -24,7 +21,10 @@ state.nav = new Nav(); // controls active nav
 // IPCRENDERER LISTENERS
 // clicks nav A tab on window ready
 ipcRenderer.on('window-ready', () => {
-    elements.nav_A_audio.click();
+    if (startup.nav_A_active == 'audio') elements.nav_A_audio.click();
+    if (startup.nav_A_active == 'video') elements.nav_A_video.click();
+    if (startup.nav_A_active == 'warpstagram')
+        elements.nav_A_warpstagram.click();
 });
 ipcRenderer.on('resize', () => {});
 // Menu listeners, audio
@@ -37,7 +37,6 @@ ipcRenderer.on('Audio: File: Export Download Links', () => {
 ipcRenderer.on('Audio: Downloads: Paste', () => {
     if (startup.menuLogging) console.log('you pasted audio');
 });
-
 // Menu listeners, video
 ipcRenderer.on('Video: File: Import Download Links', () => {
     if (startup.menuLogging) console.log('you pasted video');
@@ -67,10 +66,13 @@ ipcRenderer.on('Video: Tools: Check for update', () => {
 ipcRenderer.on('Video: Tools: Preferences', () => {
     if (startup.menuLogging) console.log('you pasted video');
 });
-
 // Menu listeners, universal commands
 ipcRenderer.on('Quit', () => {
     if (startup.menuLogging) console.log('you quit');
+    ipcRenderer.send('quit');
+
+    // app.quit();
+    // mainWindow = null;
 });
 
 ////////////////////////////////////////////////////////////
@@ -104,6 +106,7 @@ elements.nav_A.addEventListener('click', (e) => {
         }
     }
 });
+// menu-change
 elements.nav_A_audio.addEventListener('click', (e) => {
     if (startup.menuLogging) console.log(`you clicked audio`);
     ipcRenderer.send('menu-change', 'audio');
@@ -114,6 +117,7 @@ elements.nav_A_video.addEventListener('click', (e) => {
 });
 elements.nav_A_warpstagram.addEventListener('click', (e) => {
     if (startup.menuLogging) console.log(`you clicked warpstagram`);
+    ipcRenderer.send('menu-change', 'warpstagram');
 });
 // Nav B LISTENERS
 elements.testClassAudio.addEventListener('click', (e) => {

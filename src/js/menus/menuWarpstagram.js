@@ -1,23 +1,32 @@
 const { Menu, shell } = require('electron');
-const startupReq = require('../system/startup');
-const startup = new startupReq();
+
 // Module function to create main app menu
 module.exports = (appWin) => {
     // Menu template
     let template = [{
             label: 'File',
             submenu: [{
-                    label: 'Import Download Links',
-                    accelerator: 'CmdOrCtrl+Shift+O',
+                    label: 'Import Subscriptions',
+                    accelerator: 'CmdOrCtrl+O',
                     click: () => {
-                        appWin.send('Audio: File: Import Download Links');
+                        appWin.send('Video: File: Import Subscriptions');
                     },
                 },
                 {
-                    label: 'Export Download Links',
-                    accelerator: 'CmdOrCtrl+Shift+S',
+                    label: 'Export Subscriptions',
+                    accelerator: 'CmdOrCtrl+S',
                     click: () => {
-                        appWin.send('Audio: File: Export Download Links');
+                        appWin.send('Video: File: Export Subscriptions');
+                    },
+                },
+                {
+                    label: 'separator',
+                    type: 'separator',
+                },
+                {
+                    label: 'Export Posts...',
+                    click: () => {
+                        appWin.send('Video: File: Export Subscriptions');
                     },
                 },
                 {
@@ -26,7 +35,9 @@ module.exports = (appWin) => {
                 },
                 {
                     label: 'Quit',
+
                     accelerator: 'CmdOrCtrl+Shift+Q',
+
                     click: () => {
                         appWin.send('Quit');
                     },
@@ -34,28 +45,21 @@ module.exports = (appWin) => {
             ],
         },
         {
-            label: 'Downloads',
+            label: 'Edit',
             submenu: [{
-                    label: 'Paste',
-                    accelerator: 'CmdOrCtrl+V',
+                    label: 'Subscribe to ',
                     click: () => {
-                        appWin.send('Audio: Downloads: Paste');
+                        appWin.send('Video: Downloads: Paste');
                     },
                 },
                 {
-                    label: 'separator',
-                    type: 'separator',
-                },
-                {
-                    label: 'Pause All',
-                    enabled: false,
+                    label: 'Subscribe to my saved posts',
                     click: () => {
                         appWin.send('blank, TBD');
                     },
                 },
                 {
-                    label: 'Resume All',
-                    enabled: false,
+                    label: `Subscribe to accounts I'm following`,
                     click: () => {
                         appWin.send('blank, TBD');
                     },
@@ -65,7 +69,25 @@ module.exports = (appWin) => {
                     type: 'separator',
                 },
                 {
-                    label: 'Remove All',
+                    label: 'Update pinned subscriptions',
+                    click: () => {
+                        appWin.send('blank, TBD');
+                    },
+                },
+                {
+                    label: 'Update all subscriptions',
+                    click: () => {
+                        appWin.send('blank, TBD');
+                    },
+                },
+                {
+                    label: 'Pause all subscriptions',
+                    click: () => {
+                        appWin.send('blank, TBD');
+                    },
+                },
+                {
+                    label: 'Remove all subscriptions',
                     click: () => {
                         appWin.send('blank, TBD');
                     },
@@ -75,15 +97,35 @@ module.exports = (appWin) => {
         {
             label: 'Tools',
             submenu: [{
+                    label: 'Login',
+                    click: () => {
+                        appWin.send('Warpstagram: Tools: Login');
+                    },
+                },
+                {
+                    label: 'separator',
+                    type: 'separator',
+                },
+                {
+                    label: 'Manage license',
+                    click: () => {
+                        appWin.send('Warpstagram: Tools: Manage license');
+                    },
+                },
+                {
+                    label: 'separator',
+                    type: 'separator',
+                },
+                {
                     label: 'Check for updates...',
                     click: () => {
-                        appWin.send('blank, TBD');
+                        appWin.send('Warpstagram: Tools: Check for update');
                     },
                 },
                 {
                     label: 'Preferences',
                     click: () => {
-                        appWin.send('blank, TBD');
+                        appWin.send('Warpstagram: Tools: Preferences');
                     },
                 },
             ],
@@ -97,9 +139,6 @@ module.exports = (appWin) => {
                 },
             }, ],
         },
-        // {
-        //     role: 'viewMenu',
-        // },
 
         // { role: 'viewMenu' },
     ];

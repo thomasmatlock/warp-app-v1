@@ -14,28 +14,36 @@ module.exports = (appWin) => {
                 },
                 {
                     label: 'Export Download Links',
-                    accelerator: 'CmdOrCtrl+O',
+                    accelerator: 'CmdOrCtrl+S',
                     click: () => {
                         appWin.send('Video: File: Export Download Links');
                     },
                 },
                 {
+                    label: 'separator',
+                    type: 'separator',
+                },
+                {
                     label: 'Import Subscriptions',
-                    accelerator: 'CmdOrCtrl+O',
                     click: () => {
                         appWin.send('Video: File: Import Subscriptions');
                     },
                 },
                 {
                     label: 'Export Subscriptions',
-                    accelerator: 'CmdOrCtrl+O',
                     click: () => {
                         appWin.send('Video: File: Export Subscriptions');
                     },
                 },
                 {
+                    label: 'separator',
+                    type: 'separator',
+                },
+                {
                     label: 'Quit',
-                    accelerator: 'CmdOrCtrl+O',
+
+                    accelerator: 'CmdOrCtrl+Shift+Q',
+
                     click: () => {
                         appWin.send('Quit');
                     },
@@ -52,6 +60,10 @@ module.exports = (appWin) => {
                     },
                 },
                 {
+                    label: 'separator',
+                    type: 'separator',
+                },
+                {
                     label: 'Pause All',
                     enabled: false,
                     click: () => {
@@ -64,6 +76,10 @@ module.exports = (appWin) => {
                     click: () => {
                         appWin.send('blank, TBD');
                     },
+                },
+                {
+                    label: 'separator',
+                    type: 'separator',
                 },
                 {
                     label: 'Remove All',
@@ -86,6 +102,10 @@ module.exports = (appWin) => {
                     click: () => {
                         appWin.send('Video: Tools: Subscriptions');
                     },
+                },
+                {
+                    label: 'separator',
+                    type: 'separator',
                 },
                 {
                     label: 'Check for updates...',

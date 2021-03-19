@@ -15,3 +15,6 @@ for (var key in objectToLoopThrough) {
         // objectToLoopThrough[key] = false;
     }
 }
+
+//  display all properties of an object
+Object.getOwnPropertyNames(obj);

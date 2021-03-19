@@ -24,6 +24,7 @@ const ytdl = require('ytdl-core');
 const DisplayController = require('./system/displayController');
 const appMenuAudio = require('./menus/menuAudio');
 const appMenuVideo = require('./menus/menuVideo');
+const appMenuWarpstagram = require('./menus/menuWarpstagram');
 const Nav = require('./models/Nav');
 const navController = new Nav();
 const fileControllerReq = require('./system/fileController');
@@ -59,6 +60,12 @@ ipcMain.on('new-item', (e, itemURL, type) => {
 ipcMain.on('menu-change', (e, menuType) => {
     if (menuType === 'audio') appMenuAudio(mainWindow.webContents); // sets audio menu if audio tab is clicked
     if (menuType === 'video') appMenuVideo(mainWindow.webContents); // sets video menu if video tab is clicked
+    if (menuType === 'warpstagram') appMenuWarpstagram(mainWindow.webContents); // sets video menu if video tab is clicked
+});
+ipcMain.on('quit', () => {
+    console.log('you quit');
+    app.quit();
+    mainWindow = null;
 });
 // console.log(process);
 ////////////////////////////////////////////////////////////////////
@@ -89,7 +96,7 @@ function createWindow() {
     mainWindow.loadFile('./main.html'); // Load index.html into the new BrowserWindow
     // secWindow.loadURL('https://www.youtube.com');
 
-    mainWindow.webContents.openDevTools(); // Open DevTools - Remove for PRODUCTION!
+    // mainWindow.webContents.openDevTools(); // Open DevTools - Remove for PRODUCTION!
 
     const wc = mainWindow.webContents;
     wc.on('did-finish-load', () => {
@@ -116,6 +123,7 @@ function createWindow() {
         wc.send('window-ready');
     });
 }
+
 ////////////////////////////////////////////////////////////////////
 // APP LISTENERS (main node process)
 app.on('ready', () => {
