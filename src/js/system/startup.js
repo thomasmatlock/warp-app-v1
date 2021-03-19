@@ -13,6 +13,9 @@ class startup {
         this.downloadItemsTesting = true;
         this.menuLogging = false;
         this.hasFFmpeg = false;
+        this.audioTabActive = false; // set to true to load the audio portion of the content slide
+        this.videoTabActive = false; // set to true to load the video portion of the content slide
+        this.warpstagramTabActive = false; // set to true to load the warpstagram portion of the content slide
         this.URLS = [
             'https://www.facebook.com/hmtheus/videos/3230852170358533',
             'https://www.instagram.com/p/CFmU6REA5dl/',
