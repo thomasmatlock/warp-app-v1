@@ -50,14 +50,14 @@ module.exports = (appWin) => {
                     label: 'Pause All',
                     enabled: false,
                     click: () => {
-                        appWin.send('blank, TBD');
+                        appWin.send('Audio: Downloads: Pause All');
                     },
                 },
                 {
                     label: 'Resume All',
                     enabled: false,
                     click: () => {
-                        appWin.send('blank, TBD');
+                        appWin.send('Audio: Downloads: Resume All');
                     },
                 },
                 {
@@ -67,7 +67,7 @@ module.exports = (appWin) => {
                 {
                     label: 'Remove All',
                     click: () => {
-                        appWin.send('blank, TBD');
+                        appWin.send('Audio: Downloads: Remove All');
                     },
                 },
             ],
@@ -77,13 +77,13 @@ module.exports = (appWin) => {
             submenu: [{
                     label: 'Check for updates...',
                     click: () => {
-                        appWin.send('blank, TBD');
+                        appWin.send('Check for update');
                     },
                 },
                 {
                     label: 'Preferences',
                     click: () => {
-                        appWin.send('blank, TBD');
+                        appWin.send('Preferences');
                     },
                 },
             ],

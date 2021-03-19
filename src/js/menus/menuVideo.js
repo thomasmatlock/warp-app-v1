@@ -67,14 +67,14 @@ module.exports = (appWin) => {
                     label: 'Pause All',
                     enabled: false,
                     click: () => {
-                        appWin.send('blank, TBD');
+                        appWin.send('Video: Downloads: Pause All');
                     },
                 },
                 {
                     label: 'Resume All',
                     enabled: false,
                     click: () => {
-                        appWin.send('blank, TBD');
+                        appWin.send('Video: Downloads: Resume All');
                     },
                 },
                 {
@@ -84,7 +84,7 @@ module.exports = (appWin) => {
                 {
                     label: 'Remove All',
                     click: () => {
-                        appWin.send('blank, TBD');
+                        appWin.send('Video: Downloads: Remove All');
                     },
                 },
             ],

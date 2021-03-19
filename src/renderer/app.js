@@ -19,7 +19,7 @@ state.nav = new Nav(); // controls active nav
 
 ////////////////////////////////////////////////////////////
 // IPCRENDERER LISTENERS
-// clicks nav A tab on window ready
+// activates selected nav A tab on window ready
 ipcRenderer.on('window-ready', () => {
     if (startup.nav_A_active == 'audio') elements.nav_A_audio.click();
     if (startup.nav_A_active == 'video') elements.nav_A_video.click();
@@ -27,46 +27,55 @@ ipcRenderer.on('window-ready', () => {
         elements.nav_A_warpstagram.click();
 });
 ipcRenderer.on('resize', () => {});
-// Menu listeners, audio
-ipcRenderer.on('Audio: File: Import Download Links', () => {
-    if (startup.menuLogging) console.log('you imported audio');
-});
-ipcRenderer.on('Audio: File: Export Download Links', () => {
-    if (startup.menuLogging) console.log('you exported audio');
-});
-ipcRenderer.on('Audio: Downloads: Paste', () => {
-    if (startup.menuLogging) console.log('you pasted audio');
-});
-// Menu listeners, video
-ipcRenderer.on('Video: File: Import Download Links', () => {
-    if (startup.menuLogging) console.log('you pasted video');
-});
-ipcRenderer.on('Video: File: Export Download Links', () => {
-    if (startup.menuLogging) console.log('you pasted video');
-});
-ipcRenderer.on('Video: File: Import Subscriptions', () => {
-    if (startup.menuLogging) console.log('you pasted video');
-});
-ipcRenderer.on('Video: File: Export Subscriptions', () => {
-    if (startup.menuLogging) console.log('you pasted video');
-});
-ipcRenderer.on('Video: Downloads: Paste', () => {
-    if (startup.menuLogging) console.log('you pasted video');
-    elements.testClassVideo.click();
-});
-ipcRenderer.on('Video: Tools: Smart Mode', () => {
-    if (startup.menuLogging) console.log('you pasted video');
-});
-ipcRenderer.on('Video: Tools: Subscriptions', () => {
-    if (startup.menuLogging) console.log('you pasted video');
-});
-ipcRenderer.on('Video: Tools: Check for update', () => {
-    if (startup.menuLogging) console.log('you pasted video');
-});
-ipcRenderer.on('Video: Tools: Preferences', () => {
-    if (startup.menuLogging) console.log('you pasted video');
-});
+
+// MENU LISTENERS, AUDIO
+// File
+ipcRenderer.on('Audio: File: Import Download Links', () => {});
+ipcRenderer.on('Audio: File: Export Download Links', () => {});
+// Downloads
+ipcRenderer.on('Audio: Downloads: Paste', () => {});
+ipcRenderer.on('Audio: Downloads: Pause All', () => {});
+ipcRenderer.on('Audio: Downloads: Resume All', () => {});
+ipcRenderer.on('Audio: Downloads: Remove All', () => {});
+ipcRenderer.on('Audio: Tools: Preferences', () => {});
+
+// MENU LISTENERS, VIDEO
+// File
+ipcRenderer.on('Video: File: Import Download Links', () => {});
+ipcRenderer.on('Video: File: Export Download Links', () => {});
+ipcRenderer.on('Video: File: Import Subscriptions', () => {});
+ipcRenderer.on('Video: File: Export Subscriptions', () => {});
+// Downloads
+ipcRenderer.on('Video: Downloads: Paste', () => {});
+ipcRenderer.on('Video: Downloads: Pause All', () => {});
+ipcRenderer.on('Video: Downloads: Resume All', () => {});
+ipcRenderer.on('Video: Downloads: Remove All', () => {});
+// Tools
+ipcRenderer.on('Video: Tools: Smart Mode', () => {});
+ipcRenderer.on('Video: Tools: Subscriptions', () => {});
+ipcRenderer.on('Video: Tools: Check for update', () => {});
+ipcRenderer.on('Video: Tools: Preferences', () => {});
+
+// MENU LISTENERS, WARPSTAGRAM
+// File
+ipcRenderer.on('Warpstagram: File: Import Subscriptions', () => {});
+ipcRenderer.on('Warpstagram: File: Export Subscriptions', () => {});
+ipcRenderer.on('Warpstagram: File: Export Posts', () => {});
+// Edit
+ipcRenderer.on('Warpstagram: Edit: Sub to My Saved Posts', () => {});
+ipcRenderer.on('Warpstagram: Edit: Sub to Accts I Follow', () => {});
+ipcRenderer.on('Warpstagram: Edit: Sub to Stories Of Accts I Follow', () => {});
+ipcRenderer.on('Warpstagram: Edit: Update pinned subscriptions', () => {});
+ipcRenderer.on('Warpstagram: Edit: Update all subscriptions', () => {});
+ipcRenderer.on('Warpstagram: Edit: Pause all subscriptions', () => {});
+ipcRenderer.on('Warpstagram: Edit: Remove all subscriptions', () => {});
+// Tools
+ipcRenderer.on('Warpstagram: Tools: Login', () => {});
+ipcRenderer.on('Warpstagram: Tools: Manage license', () => {});
+ipcRenderer.on('Warpstagram: Tools: Preferences', () => {});
+
 // Menu listeners, universal commands
+ipcRenderer.on('Check for update', () => {});
 ipcRenderer.on('Quit', () => {
     if (startup.menuLogging) console.log('you quit');
     ipcRenderer.send('quit');

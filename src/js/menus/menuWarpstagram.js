@@ -9,14 +9,14 @@ module.exports = (appWin) => {
                     label: 'Import Subscriptions',
                     accelerator: 'CmdOrCtrl+O',
                     click: () => {
-                        appWin.send('Video: File: Import Subscriptions');
+                        appWin.send('Warpstagram: File: Import Subscriptions');
                     },
                 },
                 {
                     label: 'Export Subscriptions',
                     accelerator: 'CmdOrCtrl+S',
                     click: () => {
-                        appWin.send('Video: File: Export Subscriptions');
+                        appWin.send('Warpstagram: File: Export Subscriptions');
                     },
                 },
                 {
@@ -26,7 +26,7 @@ module.exports = (appWin) => {
                 {
                     label: 'Export Posts...',
                     click: () => {
-                        appWin.send('Video: File: Export Subscriptions');
+                        appWin.send('Warpstagram: File: Export Posts');
                     },
                 },
                 {
@@ -48,22 +48,35 @@ module.exports = (appWin) => {
             label: 'Edit',
             submenu: [{
                     label: 'Subscribe to ',
-                    click: () => {
-                        appWin.send('Video: Downloads: Paste');
-                    },
+                    submenu: [
+                        { label: 'My Account' },
+                        {
+                            label: 'My Saved Posts',
+                            click: () => {
+                                appWin.send(
+                                    'Warpstagram: Edit: Subscribe to My Saved Posts'
+                                );
+                            },
+                        },
+                        {
+                            label: `Accounts I'm Following`,
+                            click: () => {
+                                appWin.send(
+                                    'Warpstagram: Edit: Sub to Accts I Follow'
+                                );
+                            },
+                        },
+                        {
+                            label: `Stories Of Accounts I'm Following`,
+                            click: () => {
+                                appWin.send(
+                                    'Warpstagram: Edit: Sub to Stories Of Accts I Follow'
+                                );
+                            },
+                        },
+                    ],
                 },
-                {
-                    label: 'Subscribe to my saved posts',
-                    click: () => {
-                        appWin.send('blank, TBD');
-                    },
-                },
-                {
-                    label: `Subscribe to accounts I'm following`,
-                    click: () => {
-                        appWin.send('blank, TBD');
-                    },
-                },
+
                 {
                     label: 'separator',
                     type: 'separator',
@@ -71,25 +84,33 @@ module.exports = (appWin) => {
                 {
                     label: 'Update pinned subscriptions',
                     click: () => {
-                        appWin.send('blank, TBD');
+                        appWin.send(
+                            'Warpstagram: Edit: Update pinned subscriptions'
+                        );
                     },
                 },
                 {
                     label: 'Update all subscriptions',
                     click: () => {
-                        appWin.send('blank, TBD');
+                        appWin.send(
+                            'Warpstagram: Edit: Update all subscriptions'
+                        );
                     },
                 },
                 {
                     label: 'Pause all subscriptions',
                     click: () => {
-                        appWin.send('blank, TBD');
+                        appWin.send(
+                            'Warpstagram: Edit: Pause all subscriptions'
+                        );
                     },
                 },
                 {
                     label: 'Remove all subscriptions',
                     click: () => {
-                        appWin.send('blank, TBD');
+                        appWin.send(
+                            'Warpstagram: Edit: Remove all subscriptions'
+                        );
                     },
                 },
             ],
@@ -119,7 +140,7 @@ module.exports = (appWin) => {
                 {
                     label: 'Check for updates...',
                     click: () => {
-                        appWin.send('Warpstagram: Tools: Check for update');
+                        appWin.send('Check for update');
                     },
                 },
                 {

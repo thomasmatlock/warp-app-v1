@@ -109,13 +109,12 @@ function createWindow() {
     // Listen for window being closed
     mainWindow.on('closed', () => {
         mainWindow = null;
-        console.log('window closed');
     });
     mainWindow.on('resize', () => {
         wc.send('resize');
     });
     mainWindow.on('maximize', () => {
-        console.log('window maximize');
+        // console.log('window maximize');
     });
     // send stuff to app.js
     wc.on('did-finish-load', (e) => {
