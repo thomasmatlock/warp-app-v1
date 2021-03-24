@@ -17,14 +17,3 @@
 @import 'layouts/grid';
 @import 'pages/warpstagram';
 @import 'pages/modal-settings';
-.content-container-audio {
-    background: $wildfire-background-orange-color-gradient-1;
-    background-size: 500% 500%;
-    animation: gradient 15s ease infinite;
-}
-
-.content-container-video {
-    background-size: 500% 500%;
-    animation: gradient 15s ease infinite;
-    background: linear-gradient(-45deg, #0463db, #0b88e6, #13aff2, #19d2fc);
-}

@@ -16,7 +16,7 @@ class displayController {
         this.total = this.all.length; // number of displays
         this.useSecondaryDisplay = false;
         this.displayToUse = this.useSecondaryDisplay ?
-            this.all[1] // change this, [0, 1, 2] to select dev mode secondary or tertiary display
+            this.all // change this, [0, 1, 2] to select dev mode secondary or tertiary display
             :
             this.all[0]; // defaults to using display 0
         this.height;
@@ -50,8 +50,8 @@ class displayController {
             // DEV MODE, DESKTOP PRIMARY
         } else if (startup.devMode && this.displayToUse.size.height > 1151) {
             this.height = Math.round(this.displayToUse.size.height * 0.6); // app height
-            this.width = Math.round(this.displayToUse.size.width * 0.5); // app width
-            this.x = Math.round(this.displayToUse.size.width * 0.5); // how far to the right app appears
+            this.width = Math.round(this.displayToUse.size.width * 0.65); // app width
+            this.x = Math.round(this.displayToUse.size.width * 0.35); // how far to the right app appears
             this.y = Math.round(this.displayToUse.size.height * 0.2); // how far down the app
             if (this.logging)
                 console.log(

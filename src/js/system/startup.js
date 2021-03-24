@@ -12,6 +12,7 @@ class startup {
         this.downloadItems = true;
         this.downloadItemsTesting = true;
         this.menuLogging = false;
+        this.devModeAutoClickPaste = false;
         this.hasFFmpeg = false;
         this.audioTabActive = false; // set to true to load the audio portion of the content slide
         this.videoTabActive = false; // set to true to load the video portion of the content slide

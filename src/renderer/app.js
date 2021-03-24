@@ -13,6 +13,8 @@ const Nav = require('../js/models/Nav.js');
 const userInput = require('../js/userInput');
 const startupReq = require('../js/system/startup');
 const startup = new startupReq();
+const markupAudio = require('./markups/markupAudio');
+// console.log(markupAudio);
 
 let state = {};
 state.nav = new Nav(); // controls active nav
@@ -21,10 +23,14 @@ state.nav = new Nav(); // controls active nav
 // IPCRENDERER LISTENERS
 // activates selected nav A tab on window ready
 ipcRenderer.on('window-ready', () => {
-    if (startup.nav_A_active == 'audio') elements.nav_A_audio.click();
+    if (startup.nav_A_active == 'audio') elements.nav_A_audio.click(); // clicks audio tab
+    if (startup.nav_A_active == 'audio' && startup.devModeAutoClickPaste)
+        elements.testClassAudio.click(); // clicks audio paste
     if (startup.nav_A_active == 'video') elements.nav_A_video.click();
+    if (startup.nav_A_active == 'video' && startup.devModeAutoClickPaste)
+        elements.testClassVideo.click(); // clicks video paste
     if (startup.nav_A_active == 'warpstagram')
-        elements.nav_A_warpstagram.click();
+        elements.nav_A_warpstagram.click(); // clicks warpstagram tab
 });
 ipcRenderer.on('resize', () => {});
 

@@ -71,7 +71,8 @@ html {
   /* 1 rem = exactly 10px. Very useful for scaling everything else on page in rem*/
   /*important step2: users often set their own font size, so writing 10px as default font-size is bad practice, so we use percentages
   default font-size is 16px, so 100% would be 16px
-  so we want 10px, default is 16, we divide 10 by the 16, and our percentage is 62.5%*/ }
+  so we want 10px, default is 16, we divide 10 by the 16, and our percentage is 62.5%*/
+  width: 100%; }
 
 body {
   box-sizing: border-box;
@@ -618,13 +619,3 @@ input[type="text"] {
   color: black;
   margin-left: 15px;
   display: flex; }
-
-.content-container-audio {
-  background: linear-gradient(to right, #fd5550 0%, #f77b2b 51%, #fee29c 100%);
-  background-size: 500% 500%;
-  animation: gradient 15s ease infinite; }
-
-.content-container-video {
-  background-size: 500% 500%;
-  animation: gradient 15s ease infinite;
-  background: linear-gradient(-45deg, #0463db, #0b88e6, #13aff2, #19d2fc); }

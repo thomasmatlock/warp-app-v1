@@ -15,6 +15,7 @@ html {
     /*important step2: users often set their own font size, so writing 10px as default font-size is bad practice, so we use percentages
   default font-size is 16px, so 100% would be 16px
   so we want 10px, default is 16, we divide 10 by the 16, and our percentage is 62.5%*/
+    width: 100%;
 }
 
 body {

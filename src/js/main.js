@@ -25,21 +25,19 @@ const DisplayController = require('./system/displayController');
 const appMenuAudio = require('./menus/menuAudio');
 const appMenuVideo = require('./menus/menuVideo');
 const appMenuWarpstagram = require('./menus/menuWarpstagram');
-const Nav = require('./models/Nav');
-const navController = new Nav();
 const fileControllerReq = require('./system/fileController');
 const fileController = new fileControllerReq();
 const startupReq = require('./system/startup');
 const startup = new startupReq();
 
-let itemURL, mainWindow, displays; // Keep a global reference of the window object, if you don't, the window will be closed automatically when the JavaScript object is garbage collected.
+let mainWindow, modalWindow, displays; // Keep a global reference of the window object, if you don't, the window will be closed automatically when the JavaScript object is garbage collected.
 app.allowRendererProcessReuse = true; // not sure what this does but I added it for a reason
 
 ////////////////////////////////////////////////////////////////////
 // IPC LISTENERS FOR EVENTS FROM APP.JS
 ipcMain.on('new-item', (e, itemURL, type) => {
     if (startup.downloadItemsTesting) {
-        console.log(`Received ${itemURL}`);
+        // console.log(`Received ${itemURL}`); // dev mode only
         console.clear();
 
         // ytdl-core
@@ -47,11 +45,16 @@ ipcMain.on('new-item', (e, itemURL, type) => {
         // let audioFormats = ytdl.filterFormats(info.formats, 'audioonly');
         // console.log('Formats with only audio: ' + audioFormats.length);
         let videoID = ytdl.getURLVideoID(itemURL);
-        console.log(videoID);
+        console.log(videoID); // dev mode only
         let resolved;
         ytdl.getBasicInfo(itemURL).then((info) => {
-            resolved = info;
-            console.log(resolved);
+            let resolved = JSON.stringify(info);
+            fs.writeFile('./src/js/ytdl-video-info.json', resolved, (err) => {
+                if (err) console.log(err);
+                else {
+                    console.log('File written successfully\n');
+                }
+            });
         });
 
         // ytdl(itemURL).pipe(fs.createWriteStream('video.mp4')); // downloads video
@@ -85,18 +88,31 @@ function createWindow() {
             nodeIntegration: true,
             worldSafeExecuteJavaScript: true,
         },
+        // backgroundColor: '#0463db', // use the same color as your html file is, the main window will display this until html fully loads. This is a little better than making your app hang for a second until the html loads, then displaying the window
         // backgroundColor: '#ff8500', // use the same color as your html file is, the main window will display this until html fully loads. This is a little better than making your app hang for a second until the html loads, then displaying the window
     });
+    // modalWindow = new BrowserWindow({
+    //     parent: mainWindow,
+    //     modal: true,
+    //     show: false,
+    //     transparent: true,
+    //     // frame: false,
+    // });
+    // modalWindow.loadURL('https://warpdownload.com');
+    // mainWindow.loadFile('./main.html'); // Load index.html into the new BrowserWindow
+    // modalWindow.once('ready-to-show', () => {
+    //     // modalWindow.show();
+    // });
 
     // Create main app menu
     // appMenuAudio(mainWindow.webContents);
-    appMenuVideo(mainWindow.webContents);
+    // appMenuVideo(mainWindow.webContents);
     // if (startup.devMode) appMenu.append({ role: 'viewMenu' });
 
     mainWindow.loadFile('./main.html'); // Load index.html into the new BrowserWindow
     // secWindow.loadURL('https://www.youtube.com');
 
-    // mainWindow.webContents.openDevTools(); // Open DevTools - Remove for PRODUCTION!
+    mainWindow.webContents.openDevTools(); // Open DevTools - Remove for PRODUCTION!
 
     const wc = mainWindow.webContents;
     wc.on('did-finish-load', () => {
