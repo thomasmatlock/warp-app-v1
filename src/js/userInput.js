@@ -32,7 +32,7 @@ let pattMatchIndex, inputURL, inputType;
 exports.validateURL = (url, format) => {
     if (startup.devMode)
         url = miscFunctions.randomFromArray(startup.URLSyoutube); // substitutes a random placeholder URL if dev mode active
-    url = startup.testURL;
+    // url = startup.testURL;
     checkURLforPattern(url, format);
     mediaController(url, inputType, format);
 };

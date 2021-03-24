@@ -40,10 +40,13 @@ ipcMain.on('new-item', (e, itemURL, type) => {
         // let resolved;
         ytdl.getBasicInfo(itemURL).then((info) => {
             // console.log(info.formats);
-            let videoLengthSecs = info.formats[2].approxDurationMs / 1000;
+            let videoLengthSecs = Math.round(
+                info.formats[2].approxDurationMs / 1000
+            );
             let videoLengthMins = (videoLengthSecs / 60).toFixed(1);
             console.log(
-                `Video height ${info.formats[2].height}, title ${info.videoDetails.title}, fps ${info.formats[2].fps}, length ${videoLengthSecs}, or ${videoLengthMins} mins`
+                `Video height ${info.formats[2].height},\n 
+                title ${info.videoDetails.title},\n                 fps ${info.formats[2].fps}, \n                length ${videoLengthSecs} seconds,\n                 or ${videoLengthMins} mins`
             );
             let resolved = JSON.stringify(info);
             // fs.writeFile(
