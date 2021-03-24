@@ -29,6 +29,10 @@ const fileControllerReq = require('./system/fileController');
 const fileController = new fileControllerReq();
 const startupReq = require('./system/startup');
 const startup = new startupReq();
+const downloadHandlerReq = require('./downloadHandler');
+// const downloadHandler = new downloadHandlerReq();
+let downloadHandler;
+// console.log(downloadHandler);
 
 let mainWindow, modalWindow, displays; // Keep a global reference of the window object, if you don't, the window will be closed automatically when the JavaScript object is garbage collected.
 app.allowRendererProcessReuse = true; // not sure what this does but I added it for a reason
@@ -44,10 +48,16 @@ ipcMain.on('new-item', (e, itemURL, type) => {
                 info.formats[2].approxDurationMs / 1000
             );
             let videoLengthMins = (videoLengthSecs / 60).toFixed(1);
-            console.log(
-                `Video height ${info.formats[2].height},\n 
-                title ${info.videoDetails.title},\n                 fps ${info.formats[2].fps}, \n                length ${videoLengthSecs} seconds,\n                 or ${videoLengthMins} mins`
-            );
+            downloadHandler = new downloadHandlerReq();
+            downloadHandler.title = info.videoDetails.title;
+            downloadHandler.formatLength(info.formats[0].approxDurationMs);
+            console.log(downloadHandler.title, downloadHandler.lengthFormatted);
+
+            // console.log(
+            //     `Video height ${info.formats[2].height},\n
+            //     title ${info.videoDetails.title},\n
+            //              fps ${info.formats[2].fps}, \n                length ${videoLengthSecs} seconds,\n                 or ${videoLengthMins} mins`
+            // );
             let resolved = JSON.stringify(info);
             // fs.writeFile(
             //     './dev/video-details/video-info-writeable.json',
