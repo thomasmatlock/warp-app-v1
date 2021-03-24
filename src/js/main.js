@@ -37,24 +37,26 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
 // IPC LISTENERS FOR EVENTS FROM APP.JS
 ipcMain.on('new-item', (e, itemURL, type) => {
     if (startup.downloadItemsTesting) {
-        // console.log(`Received ${itemURL}`); // dev mode only
-        console.clear();
-
-        // ytdl-core
-        // let info = await ytdl.getInfo(videoID);
-        // let audioFormats = ytdl.filterFormats(info.formats, 'audioonly');
-        // console.log('Formats with only audio: ' + audioFormats.length);
-        let videoID = ytdl.getURLVideoID(itemURL);
-        console.log(videoID); // dev mode only
-        let resolved;
+        // let resolved;
         ytdl.getBasicInfo(itemURL).then((info) => {
+            // console.log(info.formats);
+            let videoLengthSecs = info.formats[2].approxDurationMs / 1000;
+            let videoLengthMins = (videoLengthSecs / 60).toFixed(1);
+            console.log(
+                `Video height ${info.formats[2].height}, title ${info.videoDetails.title}, fps ${info.formats[2].fps}, length ${videoLengthSecs}, or ${videoLengthMins} mins`
+            );
             let resolved = JSON.stringify(info);
-            fs.writeFile('./src/js/ytdl-video-info.json', resolved, (err) => {
-                if (err) console.log(err);
-                else {
-                    console.log('File written successfully\n');
-                }
-            });
+            // fs.writeFile(
+            //     './dev/video-details/video-info-writeable.json',
+            //     resolved,
+            //     (err) => {
+            //         if (err) console.log(err);
+            //         else {
+            //             console.log('File written successfully\n');
+            //             // console.log(resolved.formats);
+            //         }
+            //     }
+            // );
         });
 
         // ytdl(itemURL).pipe(fs.createWriteStream('video.mp4')); // downloads video

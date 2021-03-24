@@ -8,11 +8,11 @@ class startup {
     constructor() {
         this.devMode = true;
         this.devModeBackendOnly = false;
-        this.nav_A_active = 'video'; // can be, audio, video, or warpstagram
+        this.nav_A_active = 'audio'; // can be, audio, video, or warpstagram
         this.downloadItems = true;
         this.downloadItemsTesting = true;
         this.menuLogging = false;
-        this.devModeAutoClickPaste = false;
+        this.devModeAutoClickPaste = true;
         this.hasFFmpeg = false;
         this.audioTabActive = false; // set to true to load the audio portion of the content slide
         this.videoTabActive = false; // set to true to load the video portion of the content slide
@@ -27,6 +27,7 @@ class startup {
             'https://www.tiktok.com/@foodies/video/6895167017570127109',
         ];
         this.URLSyoutube = [
+            'https://www.youtube.com/watch?v=gYO1uk7vIcc', // 8k hong kong video
             'https://www.youtube.com/watch?v=TeBSVS3FwRY',
             'https://www.youtube.com/watch?v=WT3TwF8oVis',
             'https://www.youtube.com/watch?v=LoD9RlPr51k',
