@@ -9,11 +9,12 @@ class startup {
     constructor() {
         this.devMode = true;
         this.devModeBackendOnly = false;
+        this.downloadSmallestFile = true;
         this.nav_A_active = 'video'; // can be, audio, video, or warpstagram
+        this.devModeAutoClickPaste = true; // autoclicks paste on window ready
         this.downloadItems = true;
         this.downloadItemsTesting = true;
-        this.menuLogging = false;
-        this.devModeAutoClickPaste = true;
+        this.menuLogging = false; // logs what menu buttons you click
         this.hasFFmpeg = false;
         this.audioTabActive = false; // set to true to load the audio portion of the content slide
         this.videoTabActive = false; // set to true to load the video portion of the content slide

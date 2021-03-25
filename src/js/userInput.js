@@ -11,11 +11,11 @@
 // update state
 // update local user file
 // update UI
+const logging = false;
 const { clipboard, ipcRenderer } = require('electron');
 const startupReq = require('./system/startup');
 const startup = new startupReq();
 const miscFunctions = require('../../library/miscArrays');
-
 const pattArr = [
     /facebook/i,
     /instagram/i,
@@ -48,6 +48,8 @@ checkURLforPattern = (url, format) => {
 };
 
 const mediaController = (url, type, format) => {
-    console.log(`${url} ${type} ${format} `);
+    if (logging) {
+        console.log(`${url} ${type} ${format} `);
+    }
     ipcRenderer.send('new-item', url, startup.nav_A_active);
 };

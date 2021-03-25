@@ -1,5 +1,15 @@
+const fs = require('fs');
+const path = require('path');
+const ytdl = require('ytdl-core');
+const fileControllerReq = require('./system/fileController');
+const fileController = new fileControllerReq();
+const startupReq = require('./system/startup');
+const startup = new startupReq();
+
 class dlhandler {
-    constructor() {
+    constructor(itemURL) {
+        this.logging = true;
+        this.itemURL = itemURL;
         this.type; // set to either audio or video
         this.selectedFormat;
         this.thumbnail;
@@ -14,7 +24,15 @@ class dlhandler {
         this.fileType;
         this.format; // which of the 35 formats, from 1080p, 720p60, etc
     }
+    getInfo = (itemURL) => {
+        ytdl.getBasicInfo(itemURL).then((info) => {
+            this.cloneVideoDetails(info, this.type);
 
+            if (this.logging)
+                console.log(`
+                ${this.title},${this.lengthFormatted} long,${this.type} type,${this.height} pixels tall,${this.fps} fps`);
+        });
+    };
     formatLength = (approxDurationMs) => {
         this.secs = Math.round(approxDurationMs / 1000); // returns video length in this.secs, rounded
         this.mins = (this.secs / 60).toFixed(1); // returns minutes with one decimal, ie, 3.4 mins long
@@ -40,11 +58,16 @@ class dlhandler {
     };
 
     cloneVideoDetails = (info, type) => {
-        this.selectedFormat = info.formats[0];
+        // if (startup.downloadSmallestFile) this.selectedFormat = info.formats[0];
+        startup.downloadSmallestFile ?
+            (this.selectedFormat = info.formats[0]) // sets to smallest format for easy dev downloading
+            :
+            (this.selectedFormat = info.formats[1]);
+        // if (this.logging) console.log(`${startup.downloadSmallestFile}`);
         this.title = info.videoDetails.title;
         this.formatLength(this.selectedFormat.approxDurationMs);
         this.height = this.selectedFormat.height;
-        this.type = type; // audio or video
+        // this.type = type; // audio or video
         this.thumbnail = info.videoDetails.thumbnails[3]; // (or the last thumbnail) usually seems to be highest res thumbnail. thumbn\ails are in descending order from low res to highest res
         // this.fileSize;
         this.fileType = 'MP4'; // mp4, etc
@@ -65,6 +88,49 @@ class dlhandler {
         // this.bitrate = this.selectedFormat.bitrate;
         // this.audioSampleRate = this.selectedFormat.audioSampleRate;
         // this.audioChannels = this.selectedFormat.audioChannels;
+    };
+    removeCharactersFromTitle = () => {
+        this.title = this.title.replace('/', '');
+        this.title = this.title.replace('?', '');
+        this.title = this.title.replace(`\\`, '');
+        this.title = this.title.replace(':', '');
+        this.title = this.title.replace('*', '');
+        this.title = this.title.replace(`"`, '');
+        this.title = this.title.replace('<', '');
+        this.title = this.title.replace('>', '');
+        this.title = this.title.replace(`|`, '');
+        // if (this.logging) console.log('removed characters from title');
+    };
+
+    downloadAndWrite = (itemURL) => {
+        setTimeout(() => {
+            this.removeCharactersFromTitle();
+            var filepath;
+            console.log(this.type);
+            if (this.type === 'audio') {
+                // console.log('its audio type');
+                filepath = path.join(
+                    fileController.dirAudioPath,
+                    `${this.title}.mp3` // fix this, needs to be audio and mp3
+                );
+            } else if (this.type === 'video') {
+                // console.log('its video type');
+                filepath = path.join(
+                    fileController.dirVideoPath,
+                    `${this.title}.mp4`
+                );
+            }
+
+            ytdl(itemURL).pipe(fs.createWriteStream(filepath)); // downloads video
+            if (this.logging) console.log('item downloaded');
+        }, 1000);
+    };
+
+    all = (itemURL, type) => {
+        console.log(type, this.type);
+        this.type = type;
+        this.getInfo(itemURL);
+        this.downloadAndWrite(itemURL);
     };
 }
 

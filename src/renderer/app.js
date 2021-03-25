@@ -125,14 +125,17 @@ elements.nav_A.addEventListener('click', (e) => {
 elements.nav_A_audio.addEventListener('click', (e) => {
     if (startup.menuLogging) console.log(`you clicked audio`);
     ipcRenderer.send('menu-change', 'audio');
+    startup.nav_A_active = 'audio';
 });
 elements.nav_A_video.addEventListener('click', (e) => {
     if (startup.menuLogging) console.log(`you clicked video`);
     ipcRenderer.send('menu-change', 'video');
+    startup.nav_A_active = 'video';
 });
 elements.nav_A_warpstagram.addEventListener('click', (e) => {
     if (startup.menuLogging) console.log(`you clicked warpstagram`);
     ipcRenderer.send('menu-change', 'warpstagram');
+    startup.nav_A_active = 'warpstagram';
 });
 // Nav B LISTENERS
 elements.testClassAudio.addEventListener('click', (e) => {

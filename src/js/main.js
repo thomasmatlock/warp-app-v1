@@ -30,9 +30,6 @@ const fileController = new fileControllerReq();
 const startupReq = require('./system/startup');
 const startup = new startupReq();
 const dlhandlerReq = require('./downloadHandler');
-// const dlhandler = new dlhandlerReq();
-let dlhandler;
-// console.log(dlhandler);
 
 let mainWindow, modalWindow, displays; // Keep a global reference of the window object, if you don't, the window will be closed automatically when the JavaScript object is garbage collected.
 app.allowRendererProcessReuse = true; // not sure what this does but I added it for a reason
@@ -41,47 +38,9 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
 // IPC LISTENERS FOR EVENTS FROM APP.JS
 ipcMain.on('new-item', (e, itemURL, type) => {
     if (startup.downloadItemsTesting) {
-        // let resolved;
-        ytdl.getBasicInfo(itemURL).then((info) => {
-            dlhandler = new dlhandlerReq();
-            dlhandler.cloneVideoDetails(info, type);
-            if (type === 'audio') {
-                console.log(`
-                ${dlhandler.title},
-                ${dlhandler.lengthFormatted} long,
-                    `);
-            } else if (type === 'video') {
-                console.log(`
-                ${dlhandler.title},
-                ${dlhandler.lengthFormatted} long,
-                ${dlhandler.type} type,
-                thumbnail ${dlhandler.thumbnail},
-                ${dlhandler.fileSize} fileSize,
-                ${dlhandler.height} pixels tall,
-                ${dlhandler.fps} fps,
-                file type ${dlhandler.fileType},               `);
-            }
-
-            // let resolved = JSON.stringify(info);
-            // fs.writeFile(
-            //     './dev/video-details/video-info-writeable.json',
-            //     resolved,
-            //     (err) => {
-            //         if (err) console.log(err);
-            //         else {
-            //             console.log('File written successfully\n');
-            //             // console.log(resolved.formats);
-            //         }
-            //     }
-            // );
-        });
-        setTimeout(() => {
-            var filepath = path.join(
-                fileController.dirVideoPath,
-                `${dlhandler.title}.mp4`
-            );
-            ytdl(itemURL).pipe(fs.createWriteStream(filepath)); // downloads video
-        }, 2000);
+        let dlhandler = new dlhandlerReq(itemURL);
+        dlhandler.all(itemURL, type);
+        dlhandler = null;
     }
 });
 ipcMain.on('menu-change', (e, menuType) => {
