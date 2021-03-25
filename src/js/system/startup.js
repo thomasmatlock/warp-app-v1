@@ -4,11 +4,12 @@ const fileController = new fileControllerReq();
 const os = require('os');
 const path = require('path');
 const fs = require('fs');
+const urls = require('./testURLS');
 class startup {
     constructor() {
         this.devMode = true;
         this.devModeBackendOnly = false;
-        this.nav_A_active = 'audio'; // can be, audio, video, or warpstagram
+        this.nav_A_active = 'video'; // can be, audio, video, or warpstagram
         this.downloadItems = true;
         this.downloadItemsTesting = true;
         this.menuLogging = false;
@@ -26,29 +27,7 @@ class startup {
             'https://vimeo.com/210599507',
             'https://www.tiktok.com/@foodies/video/6895167017570127109',
         ];
-        this.URLSyoutube = [
-            'https://www.youtube.com/watch?v=gYO1uk7vIcc', // 8k hong kong video
-            'https://www.youtube.com/watch?v=TeBSVS3FwRY',
-            'https://www.youtube.com/watch?v=WT3TwF8oVis',
-            'https://www.youtube.com/watch?v=LoD9RlPr51k',
-            'https://www.youtube.com/watch?v=LOPsIByPn48',
-            'https://www.youtube.com/watch?v=YExiDiVPbzw',
-            'https://www.youtube.com/watch?v=GyB6ffmXsZo',
-            'https://www.youtube.com/watch?v=WARfyYsb3dw',
-            'https://www.youtube.com/watch?v=Bgmdw4E7gE4',
-            'https://www.youtube.com/watch?v=JvvqKKcd4vQ',
-            'https://www.youtube.com/watch?v=kfUROAaKaxc',
-            'https://www.youtube.com/watch?v=9NtiT1Fnrjs',
-            'https://www.youtube.com/watch?v=DyQuSuyCuLg',
-            'https://www.youtube.com/watch?v=TVyPF9STsHU',
-            'https://www.youtube.com/watch?v=51HjuUDK-5w',
-            'https://www.youtube.com/watch?v=fZR_MVDldxU',
-            'https://www.youtube.com/watch?v=Af7Pv86RR0Y',
-            'https://www.youtube.com/watch?v=GAxWyaSWwcg',
-            'https://www.youtube.com/watch?v=AbiTODVXMro',
-            'https://www.youtube.com/watch?v=VpPyytsTxkU',
-            'https://www.youtube.com/watch?v=FuxoqOkjiBo',
-        ];
+        this.URLSyoutube = urls;
         this.testURL = this.URLSyoutube[0];
         this.testURLrandom = miscFunctions.randomFromArray(this.URLSyoutube);
     }

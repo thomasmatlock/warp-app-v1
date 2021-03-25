@@ -35,10 +35,10 @@ formats[selectedFormat].height,
     // itag": 160,	qualityLabel": "144p",
     // itag": 278,	qualityLabel": "144p",
     // itag": 394,	qualityLabel": "144p",
-    // itag": 140,	
-    // itag": 249,	
-    // itag": 250,	
-    // itag": 251,	
+    // itag": 140,	AUDIO_QUALITY_MEDIUM, 2nd highest bitrate
+    // itag": 249,	AUDIO_QUALITY_LOW, lowest bitrate
+    // itag": 250,	AUDIO_QUALITY_LOW, 2nd lowest bitrate
+    // itag": 251,	AUDIO_QUALITY_MEDIUM, highest bitrate
 
     "formats": [{
             "itag": 18,

@@ -49,5 +49,5 @@ checkURLforPattern = (url, format) => {
 
 const mediaController = (url, type, format) => {
     console.log(`${url} ${type} ${format} `);
-    ipcRenderer.send('new-item', url, type);
+    ipcRenderer.send('new-item', url, startup.nav_A_active);
 };
