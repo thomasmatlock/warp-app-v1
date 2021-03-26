@@ -1,6 +1,4 @@
-// import { elements } from './base.js';
-// const elements =require('./base')
-
+const logging = true;
 exports.renderItem = (nav_A_active) => {
     const markup = `
     <li>

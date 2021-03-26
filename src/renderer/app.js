@@ -3,7 +3,7 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-unused-vars */
 /* eslint-disable one-var */
-
+const logging = false;
 const { app, clipboard, ipcRenderer } = require('electron');
 const elements = require('./views/elements');
 const navPrimaryView = require('./views/navPrimaryView.js');
@@ -15,6 +15,7 @@ const startupReq = require('../js/system/startup');
 const startup = new startupReq();
 const markupAudio = require('./markups/markupAudio');
 // console.log(markupAudio);
+// allright this is much easier
 
 let state = {};
 state.nav = new Nav(); // controls active nav
@@ -23,6 +24,11 @@ state.nav = new Nav(); // controls active nav
 // IPCRENDERER LISTENERS
 // activates selected nav A tab on window ready
 ipcRenderer.on('window-ready', () => {
+    if (logging) {
+        console.log(
+            `ipcRenderer.on('window-ready', nav_A_active is ${startup.nav_A_active}`
+        );
+    }
     if (startup.nav_A_active == 'audio') elements.nav_A_audio.click(); // clicks audio tab
     if (startup.nav_A_active == 'audio' && startup.devModeAutoClickPaste)
         elements.testClassAudio.click(); // clicks audio paste
@@ -123,24 +129,24 @@ elements.nav_A.addEventListener('click', (e) => {
 });
 // menu-change
 elements.nav_A_audio.addEventListener('click', (e) => {
-    if (startup.menuLogging) console.log(`you clicked audio`);
     ipcRenderer.send('menu-change', 'audio');
     startup.nav_A_active = 'audio';
+    if (logging) console.log(`nav_A_active is now ${startup.nav_A_active}`);
 });
 elements.nav_A_video.addEventListener('click', (e) => {
-    if (startup.menuLogging) console.log(`you clicked video`);
     ipcRenderer.send('menu-change', 'video');
     startup.nav_A_active = 'video';
+    if (logging) console.log(`nav_A_active is now ${startup.nav_A_active}`);
 });
 elements.nav_A_warpstagram.addEventListener('click', (e) => {
-    if (startup.menuLogging) console.log(`you clicked warpstagram`);
     ipcRenderer.send('menu-change', 'warpstagram');
     startup.nav_A_active = 'warpstagram';
+    if (logging) console.log(`nav_A_active is now ${startup.nav_A_active}`);
 });
 // Nav B LISTENERS
 elements.testClassAudio.addEventListener('click', (e) => {
-    userInput.validateURL(clipboard.readText(), 'audio');
+    userInput.validateURL(clipboard.readText(), startup.nav_A_active);
 });
 elements.testClassVideo.addEventListener('click', (e) => {
-    userInput.validateURL(clipboard.readText(), 'video');
+    userInput.validateURL(clipboard.readText(), startup.nav_A_active);
 });

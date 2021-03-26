@@ -1,3 +1,4 @@
+const logging = true;
 const os = require('os');
 const fs = require('fs');
 const path = require('path');

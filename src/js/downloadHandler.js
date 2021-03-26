@@ -1,3 +1,4 @@
+const logging = true;
 const fs = require('fs');
 const path = require('path');
 const ytdl = require('ytdl-core');
@@ -106,7 +107,7 @@ class dlhandler {
         setTimeout(() => {
             this.removeCharactersFromTitle();
             var filepath;
-            console.log(this.type);
+            // console.log(this.type);
             if (this.type === 'audio') {
                 // console.log('its audio type');
                 filepath = path.join(
@@ -127,7 +128,7 @@ class dlhandler {
     };
 
     all = (itemURL, type) => {
-        console.log(type, this.type);
+        // console.log(type, this.type);
         this.type = type;
         this.getInfo(itemURL);
         this.downloadAndWrite(itemURL);

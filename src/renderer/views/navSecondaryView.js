@@ -1,3 +1,4 @@
+const logging = true;
 const navSecondaryTitles = {};
 const elements = require('./elements');
 

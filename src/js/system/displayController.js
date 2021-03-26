@@ -3,7 +3,7 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-unused-vars */
 /* eslint-disable one-var */
-
+const logging = false;
 const { screen } = require('electron');
 const startupReq = require('./startup');
 const startup = new startupReq();

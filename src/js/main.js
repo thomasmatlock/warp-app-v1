@@ -4,11 +4,10 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable one-var */
 
-// NODE requires
+const logging = false;
 const os = require('os');
 const fs = require('fs');
 const path = require('path');
-// NPM requires
 const {
     app,
     BrowserView,
@@ -20,7 +19,6 @@ const {
     webContents,
 } = require('electron');
 const ytdl = require('ytdl-core');
-// My requires
 const DisplayController = require('./system/displayController');
 const appMenuAudio = require('./menus/menuAudio');
 const appMenuVideo = require('./menus/menuVideo');
@@ -30,17 +28,27 @@ const fileController = new fileControllerReq();
 const startupReq = require('./system/startup');
 const startup = new startupReq();
 const dlhandlerReq = require('./downloadHandler');
+const items = require('../renderer/items');
 
 let mainWindow, modalWindow, displays; // Keep a global reference of the window object, if you don't, the window will be closed automatically when the JavaScript object is garbage collected.
 app.allowRendererProcessReuse = true; // not sure what this does but I added it for a reason
 
 ////////////////////////////////////////////////////////////////////
 // IPC LISTENERS FOR EVENTS FROM APP.JS
-ipcMain.on('new-item', (e, itemURL, type) => {
+ipcMain.on('new-item', (e, itemURL, avType) => {
+    startup.nav_A_active = avType;
+    if (logging) {
+        console.log(
+            `ipcMain.on, new-item, nav_A_active is ${startup.nav_A_active}`
+        );
+        console.log(`ipcMain.on, new-item, avType is ${avType}`);
+    }
     if (startup.downloadItemsTesting) {
-        let dlhandler = new dlhandlerReq(itemURL);
-        dlhandler.all(itemURL, type);
-        dlhandler = null;
+        // const items = new itemsReq();
+        items.downloadItem(itemURL, avType);
+        // let dlhandler = new dlhandlerReq(itemURL);
+        // dlhandler.all(itemURL, avType);
+        // dlhandler = null;
     }
 });
 ipcMain.on('menu-change', (e, menuType) => {
@@ -53,7 +61,7 @@ ipcMain.on('quit', () => {
     app.quit();
     mainWindow = null;
 });
-// console.log(process);
+
 ////////////////////////////////////////////////////////////////////
 // CREATE WINDOW
 function createWindow() {
@@ -94,8 +102,9 @@ function createWindow() {
 
     mainWindow.loadFile('./main.html'); // Load index.html into the new BrowserWindow
     // secWindow.loadURL('https://www.youtube.com');
-
-    mainWindow.webContents.openDevTools(); // Open DevTools - Remove for PRODUCTION!
+    if (startup.devModeDevTools) {
+        mainWindow.webContents.openDevTools(); // Open DevTools - Remove for PRODUCTION!
+    }
 
     const wc = mainWindow.webContents;
     wc.on('did-finish-load', () => {

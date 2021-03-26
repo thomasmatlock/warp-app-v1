@@ -28,15 +28,16 @@ const pattArr = [
     /tiktok/i,
 ];
 
-let pattMatchIndex, inputURL, inputType;
-exports.validateURL = (url, format) => {
+let pattMatchIndex, inputType;
+exports.validateURL = (url, avType) => {
+    if (logging) console.log(`validateURL: avType is ${avType}`);
     if (startup.devMode)
         url = miscFunctions.randomFromArray(startup.URLSyoutube); // substitutes a random placeholder URL if dev mode active
     // url = startup.testURL;
-    checkURLforPattern(url, format);
-    mediaController(url, inputType, format);
+    checkURLforPattern(url, avType);
+    mediaController(url, inputType, avType);
 };
-checkURLforPattern = (url, format) => {
+checkURLforPattern = (url, avType) => {
     // check url against each pattern
     pattMatchIndex = pattArr.forEach(function(item, index) {
         if (url.match(item)) {
@@ -47,9 +48,8 @@ checkURLforPattern = (url, format) => {
     });
 };
 
-const mediaController = (url, type, format) => {
-    if (logging) {
-        console.log(`${url} ${type} ${format} `);
-    }
-    ipcRenderer.send('new-item', url, startup.nav_A_active);
+const mediaController = (url, type, avType) => {
+    if (logging) console.log(`mediaController: ${url} ${type} ${avType} `);
+    startup.nav_A_active = avType;
+    ipcRenderer.send('new-item', url, avType);
 };

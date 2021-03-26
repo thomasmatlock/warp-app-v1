@@ -9,3 +9,4 @@
 // Preferences, General
 // Preferences, Connection
 // Preferences, Notifications
+const logging = true;
