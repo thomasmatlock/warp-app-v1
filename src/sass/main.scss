@@ -17,3 +17,8 @@
 @import 'layouts/grid';
 @import 'pages/warpstagram';
 @import 'pages/modal-settings';
+.container {
+    width: 100%;
+    border: $border-heavy2;
+    height: 100%;
+}

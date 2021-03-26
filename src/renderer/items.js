@@ -12,7 +12,7 @@ const dlhandlerReq = require('../js/downloadHandler');
 exports.downloadItem = (itemURL, avType) => {
     if (logging) console.log(`items.downloadItem: ${itemURL}, ${avType}`);
     let dlhandler = new dlhandlerReq(itemURL);
-    // dlhandler.all(itemURL, avType);
+    dlhandler.all(itemURL, avType);
 };
 // UPDATE UI
 // exports.updateUI = () => {};

@@ -18,6 +18,10 @@ const elements = {
     nav_B__minor: document.querySelector('.nav_B__minor'),
     testClassAudio: document.querySelector('.testClassAudio'),
     testClassVideo: document.querySelector('.testClassVideo'),
+    videoSmartMode: document.querySelector(
+        '.nav_B-button-slide-video-SmartMode'
+    ),
+
     // Download lists
     download__list: document.querySelector('.download__list'),
     download__list_audio: document.querySelector('.download__list_audio'),
