@@ -78,3 +78,9 @@ exports.checkActive = (target, classString) => {
         (isActive = true) :
         (isActive = false);
 };
+
+// exports.toggleHighlight = (id) => {
+//     console.log(`toggling highlight on ${id}`);
+//     let tab = document.getElementById(`${id}`);
+//     tab.classList.add('nav_B-button--active');
+// };

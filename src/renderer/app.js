@@ -3,7 +3,7 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-unused-vars */
 /* eslint-disable one-var */
-const logging = false;
+const logging = true;
 const { app, clipboard, ipcRenderer } = require('electron');
 const elements = require('./views/elements');
 const navPrimaryView = require('./views/navPrimaryView.js');
@@ -149,4 +149,7 @@ elements.testClassAudio.addEventListener('click', (e) => {
 });
 elements.testClassVideo.addEventListener('click', (e) => {
     userInput.validateURL(clipboard.readText(), startup.nav_A_active);
+});
+elements.videoSmartMode.addEventListener('click', (e) => {
+    if (logging) console.log('clicked smart mode');
 });

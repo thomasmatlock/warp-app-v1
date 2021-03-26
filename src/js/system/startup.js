@@ -11,8 +11,8 @@ class startup {
         this.devMode = true;
         this.devModeBackendOnly = false;
         this.downloadSmallestFile = true;
-        this.devModeDevTools = false;
-        this.nav_A_active = 'audio'; // can be, audio, video, or warpstagram
+        this.devModeDevTools = true;
+        this.nav_A_active = 'video'; // can be, audio, video, or warpstagram
         this.devModeAutoClickPaste = false; // autoclicks paste on window ready
         this.downloadItems = true;
         this.downloadItemsTesting = true;
