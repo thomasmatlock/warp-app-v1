@@ -96,8 +96,8 @@ function createWindow() {
     // appMenuVideo(mainWindow.webContents);
     // if (startup.devMode) appMenu.append({ role: 'viewMenu' });
 
-    mainWindow.loadFile('./main.html'); // Load index.html into the new BrowserWindow
-    // mainWindow.loadFile('./src/renderer/main.html'); // Load index.html into the new BrowserWindow
+    mainWindow.loadFile('./src/renderer/main.html'); // Load index.html into the new BrowserWindow
+    // mainWindow.loadFile('./main.html'); // Load index.html into the new BrowserWindow
     // secWindow.loadURL('https://www.youtube.com');
     if (startup.devModeDevTools) {
         mainWindow.webContents.openDevTools(); // Open DevTools - Remove for PRODUCTION!
