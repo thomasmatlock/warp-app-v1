@@ -1,7 +1,9 @@
 // this is started, taken from the electron course
 const logging = false;
 const fs = require('fs');
-const { shell } = require('electron');
+// const { ipcRenderer } = require('electron');
+
+const { ipcRenderer, shell } = require('electron');
 const dlhandlerReq = require('../js/downloadHandler');
 
 ////////////////////////////////////////////////////////////////////
@@ -10,11 +12,20 @@ const dlhandlerReq = require('../js/downloadHandler');
 exports.downloadItem = (itemURL, avType) => {
     if (logging) console.log(`items.downloadItem: ${itemURL}, ${avType}`);
     let dlhandler = new dlhandlerReq(itemURL);
-    dlhandler.all(itemURL, avType);
+    // dlhandler.all(itemURL, avType);
 };
 // UPDATE UI
+// exports.updateUI = () => {};
+// exports.delete = () => {};
+// exports.storage = JSON.parse(localStorage.getItem('readit-items'));
+
+// Persist storage
+exports.save = () => {
+    // localStorage.setItem('readit-items', JSON.stringify(this.storage));
+};
 ////////////////////////////////////////////////////////////////////
 
+////////////////////////////////////////////////////////////////////
 // DURING SESSION
 //  handles download, persisting to state storage, and updating UI
 // Build UI controller, includes type (audio video), receives arrays of download items to push for front end
@@ -23,7 +34,10 @@ exports.downloadItem = (itemURL, avType) => {
 // STARTUP
 // Startup, Read files
 // Startup, Update UI  with read files
+////////////////////////////////////////////////////////////////////
 
+////////////////////////////////////////////////////////////////////
+// ELECTRON PROJECT CODE
 // // Dom nodes
 // let items = document.getElementById('items');
 

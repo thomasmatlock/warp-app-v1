@@ -44,11 +44,7 @@ ipcMain.on('new-item', (e, itemURL, avType) => {
         console.log(`ipcMain.on, new-item, avType is ${avType}`);
     }
     if (startup.downloadItemsTesting) {
-        // const items = new itemsReq();
         items.downloadItem(itemURL, avType);
-        // let dlhandler = new dlhandlerReq(itemURL);
-        // dlhandler.all(itemURL, avType);
-        // dlhandler = null;
     }
 });
 ipcMain.on('menu-change', (e, menuType) => {
@@ -101,6 +97,7 @@ function createWindow() {
     // if (startup.devMode) appMenu.append({ role: 'viewMenu' });
 
     mainWindow.loadFile('./main.html'); // Load index.html into the new BrowserWindow
+    // mainWindow.loadFile('./src/renderer/main.html'); // Load index.html into the new BrowserWindow
     // secWindow.loadURL('https://www.youtube.com');
     if (startup.devModeDevTools) {
         mainWindow.webContents.openDevTools(); // Open DevTools - Remove for PRODUCTION!
