@@ -13,7 +13,7 @@ class startup {
             devTools: !this.devMode ? false : true, // defaults to false, change 2nd option true for devTools
             backendOnly: false, // hides window
             downloadSmallestFile: true,
-            autoClickPaste: true,
+            autoClickPaste: false,
             downloadItemsTesting: true,
             URLS: [
                 'https://www.facebook.com/hmtheus/videos/3230852170358533',
@@ -28,8 +28,6 @@ class startup {
         };
 
         this.nav_A_active = !this.devMode ? 'audio' : 'audio'; // defaults to audio, change 2nd option to audio, video, or warpstagram
-        this.downloadItems = true;
-        this.downloadItemsTesting = true;
         this.env = {
             downloadItems: true,
             nav_A_active: !this.dev.mode ? 'audio' : 'video', // defaults to audio, change 2nd option to audio, video, or warpstagram
@@ -42,10 +40,10 @@ class startup {
 
     isDevMode = () => {
         if (this.devMode) {
-            this.downloadItems = false;
+            this.env.downloadItems = false;
             this.nav_A_active = 'audio'; // sets default to load audio if devmode isnt on
         } else {
-            this.downloadItems = true;
+            this.env.downloadItems = true;
             console.log(`Production mode active, downloading items`);
         }
     };

@@ -77,7 +77,7 @@ ipcRenderer.on('resize', () => {
     }
 });
 ipcRenderer.on('asynchronous-reply', (event, itemURL, avType) => {
-    if (startup.downloadItemsTesting) {
+    if (startup.dev.downloadItemsTesting) {
         if (logging) console.log(itemURL, avType);
         items.downloadItem(itemURL, avType);
         // items.addItem();
