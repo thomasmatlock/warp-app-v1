@@ -10,7 +10,8 @@ class startup {
     constructor() {
         this.devMode = true;
         this.dev = {
-            backendOnly: false,
+            devTools: !this.devMode ? false : true, // defaults to false, change 2nd option true for devTools
+            backendOnly: false, // hides window
             downloadSmallestFile: true,
             autoClickPaste: false,
             downloadItemsTesting: true,
@@ -26,7 +27,7 @@ class startup {
             URLSyoutube: urls,
         };
 
-        this.devModeBackendOnly = false;
+        // this.devModeBackendOnly = false;
         this.downloadSmallestFile = true;
         this.devModeDevTools = !this.devMode ? false : true; // defaults to false, change 2nd option true for devTools
         this.nav_A_active = !this.devMode ? 'audio' : 'audio'; // defaults to audio, change 2nd option to audio, video, or warpstagram
