@@ -4,16 +4,14 @@ const fs = require('fs');
 const { app, clipboard, ipcRenderer } = require('electron');
 const dlhandlerReq = require('../js/downloadHandler');
 const markup = require('./views/markup');
-// console.log(markup.audio);
-// const elements = require('./views/elements');
-// console.log(elements);
+let dlhandler;
 
 ////////////////////////////////////////////////////////////////////
 exports.downloadItem = (itemURL, avType) => {
     // if (logging) console.log(`items.downloadItem: ${itemURL}, ${avType}`);
 
     // DOWNLOAD ITEM
-    let dlhandler = new dlhandlerReq(itemURL);
+    dlhandler = new dlhandlerReq(itemURL);
     dlhandler.all(itemURL, avType);
 
     // UPDATE UI

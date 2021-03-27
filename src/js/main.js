@@ -78,26 +78,21 @@ function createWindow() {
         // backgroundColor: '#ff8500', // use the same color as your html file is, the main window will display this until html fully loads. This is a little better than making your app hang for a second until the html loads, then displaying the window
     });
     // modalWindow = new BrowserWindow({
-    //     parent: mainWindow,
-    //     modal: true,
+    //     // parent: mainWindow,
+    //     // modal: true,
     //     show: false,
     //     transparent: true,
-    //     // frame: false,
+    //     frame: false,
     // });
-    // modalWindow.loadURL('https://warpdownload.com');
-    // mainWindow.loadFile('./main.html'); // Load index.html into the new BrowserWindow
+    // // modalWindow.loadURL('https://warpdownload.com');
+    // modalWindow.loadURL('https://www.youtube.com');
+    // // mainWindow.loadFile('./main.html'); // Load index.html into the new BrowserWindow
     // modalWindow.once('ready-to-show', () => {
-    //     // modalWindow.show();
+    //     modalWindow.show();
     // });
-
-    // Create main app menu
-    // appMenuAudio(mainWindow.webContents);
-    // appMenuVideo(mainWindow.webContents);
-    // if (startup.devMode) appMenu.append({ role: 'viewMenu' });
 
     mainWindow.loadFile('./src/renderer/main.html'); // Load index.html into the new BrowserWindow
     // mainWindow.loadFile('./main.html'); // Load index.html into the new BrowserWindow
-    // secWindow.loadURL('https://www.youtube.com');
     if (startup.dev.devTools) {
         mainWindow.webContents.openDevTools(); // Open DevTools - Remove for PRODUCTION!
     }
