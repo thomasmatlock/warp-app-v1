@@ -78,11 +78,8 @@ ipcRenderer.on('resize', () => {
     }
 });
 ipcRenderer.on('asynchronous-reply', (event, itemURL, avType) => {
-    if (startup.dev.downloadItemsTesting) {
-        if (logging) console.log(`url ${itemURL}, avType ${avType}`);
-        items.downloadItem(itemURL, avType);
-        // items.addItem();
-    }
+    // if (logging) console.log(`url ${itemURL}, avType ${avType}`);
+    items.downloadItem(itemURL, avType);
 });
 
 // MENU LISTENERS, AUDIO

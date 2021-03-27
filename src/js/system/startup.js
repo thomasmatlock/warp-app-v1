@@ -12,11 +12,11 @@ class startup {
         this.dev = {
             devTools: !this.devMode ? false : true, // defaults to false, change 2nd option true for devTools
             backendOnly: false, // hides window
-            downloadSmallestFile: true,
             downloadFile: false,
+            downloadSmallestFile: true,
             autoClickPaste: false,
-            downloadItemsTesting: true,
-            URLS: [
+            URLSyoutube: urls,
+            URLSmisc: [
                 'https://www.facebook.com/hmtheus/videos/3230852170358533',
                 'https://www.instagram.com/p/CFmU6REA5dl/',
                 'https://soundcloud.com/themonday-morning-podcast/mmpc-11-16-20',
@@ -25,10 +25,8 @@ class startup {
                 'https://vimeo.com/210599507',
                 'https://www.tiktok.com/@foodies/video/6895167017570127109',
             ],
-            URLSyoutube: urls,
         };
         this.env = {
-            downloadItems: true,
             nav_A_active: !this.devMode ? 'audio' : 'video', // defaults to audio, change 2nd option to audio, video, or warpstagram
             // hasFFmpeg: this.checkFFmpeg(),
             // this.loadAudioSlide = false; // set to true to load the audio portion of the content slide
@@ -37,14 +35,7 @@ class startup {
         };
     }
 
-    isDevMode = () => {
-        if (this.devMode) {
-            this.env.downloadItems = false;
-        } else {
-            this.env.downloadItems = true;
-            console.log(`Production mode active, downloading items`);
-        }
-    };
+    isDevMode = () => {};
 
     isOnline = () => {
         // https://stackoverflow.com/questions/15270902/check-for-internet-connectivity-in-nodejs

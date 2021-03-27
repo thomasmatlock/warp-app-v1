@@ -18,7 +18,6 @@ const {
     shell,
     webContents,
 } = require('electron');
-const ytdl = require('ytdl-core');
 const DisplayController = require('./system/displayController');
 const appMenuAudio = require('./menus/menuAudio');
 const appMenuVideo = require('./menus/menuVideo');
@@ -36,21 +35,14 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
 ////////////////////////////////////////////////////////////////////
 // IPC LISTENERS FOR EVENTS FROM APP.JS
 ipcMain.on('new-item', (e, itemURL, avType) => {
-    startup.env.nav_A_active = avType;
-    // download items
-    e.reply('asynchronous-reply', itemURL, avType);
+    startup.env.nav_A_active = avType; // sets nav A active
+    e.reply('asynchronous-reply', itemURL, avType); // send message to app js
 });
 ipcMain.on('menu-change', (e, menuType) => {
     if (menuType === 'audio') appMenuAudio(mainWindow.webContents); // sets audio menu if audio tab is clicked
     if (menuType === 'video') appMenuVideo(mainWindow.webContents); // sets video menu if video tab is clicked
     if (menuType === 'warpstagram') appMenuWarpstagram(mainWindow.webContents); // sets video menu if video tab is clicked
 });
-
-// ipcMain.on('asynchronous-message', (event, arg) => {
-//     console.log(arg); // prints "ping"
-//     event.reply('asynchronous-reply', 'pong');
-// });
-
 ipcMain.on('quit', () => {
     console.log('you quit');
     app.quit();
@@ -58,7 +50,7 @@ ipcMain.on('quit', () => {
 });
 
 ////////////////////////////////////////////////////////////////////
-// CREATE WINDOW
+// WINDOW CREATION
 function createWindow() {
     mainWindow = new BrowserWindow({
         height: displays.height,
@@ -124,7 +116,7 @@ function createWindow() {
 }
 
 ////////////////////////////////////////////////////////////////////
-// APP LISTENERS (main node process)
+// APP LISTENERS (monitoring main node process)
 app.on('ready', () => {
     displays = new DisplayController(); // positions output window to display depending on single/multi-monitor
     fileController.init(); // checks for local directories and creates them if non existent
