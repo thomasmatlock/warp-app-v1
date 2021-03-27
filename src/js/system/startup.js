@@ -1,20 +1,21 @@
 const logging = true;
-const miscFunctions = require('../../../library/miscArrays');
 const fileControllerReq = require('./fileController');
 const fileController = new fileControllerReq();
-const os = require('os');
 const path = require('path');
 const fs = require('fs');
 const urls = require('./testURLS');
 class startup {
     constructor() {
         this.devMode = true;
+        this.testingYoutubeURLS = true; // true will use youtube URLS, false will use misc non youtube URLS
         this.dev = {
             devTools: !this.devMode ? false : true, // defaults to false, change 2nd option true for devTools
             backendOnly: false, // hides window
             downloadFile: false,
             downloadSmallestFile: true,
             autoClickPaste: false,
+            useRandomYoutubeURL: this.testingYoutubeURLS ? true : false, // uses YT URLS if testingYoutubeURLS is true
+            useRandomMiscURL: !this.testingYoutubeURLS ? true : false, // uses misc URLS if testingYoutubeURLS is false
             URLSyoutube: urls,
             URLSmisc: [
                 'https://www.facebook.com/hmtheus/videos/3230852170358533',

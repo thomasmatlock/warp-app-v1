@@ -11,7 +11,7 @@
 // update state
 // update local user file
 // update UI
-const logging = false;
+const logging = true;
 const { clipboard, ipcRenderer } = require('electron');
 const startupReq = require('./system/startup');
 const startup = new startupReq();
@@ -28,13 +28,17 @@ const pattArr = [
     /tiktok/i,
 ];
 
-let pattMatchIndex, inputType;
+let pattMatchIndex, platform;
 exports.validateURL = (url, avType) => {
-    if (logging) console.log(`validateURL: avType is ${avType}`);
-    if (startup.devMode)
+    if (startup.dev.useRandomYoutubeURL)
         url = miscFunctions.randomFromArray(startup.dev.URLSyoutube); // substitutes a random placeholder URL if dev mode active
+    if (startup.dev.useRandomMiscURL) {
+        url = miscFunctions.randomFromArray(startup.dev.URLSmisc); // substitutes a random placeholder URL if dev mode active
+    }
     checkURLforPattern(url, avType);
-    mediaController(url, inputType, avType);
+    if (platform === 'youtube') {
+        mediaController(url, avType, platform);
+    }
 };
 checkURLforPattern = (url, avType) => {
     // check url against each pattern
@@ -42,13 +46,17 @@ checkURLforPattern = (url, avType) => {
         if (url.match(item)) {
             pattMatchIndex = index; // saves the index at which the match was found in the pattern array
             let type = `${pattArr[pattMatchIndex]}`; // saves type of source, ie /youtube/i
-            inputType = type.substring(1, type.length - 2); // removes beginning/end characters: changes "/youtube/i to simply 'youtube'
+            platform = type.substring(1, type.length - 2); // removes beginning/end characters: changes "/youtube/i to simply 'youtube'
         }
     });
+    // if (logging) console.log(platform);
 };
 
-const mediaController = (url, type, avType) => {
-    if (logging) console.log(`mediaController: ${url} ${type} ${avType} `);
+const mediaController = (url, avType, platform) => {
+    if (logging)
+        console.log(
+            `mediaController: url ${url} platform ${platform} avType ${avType} `
+        );
     startup.env.nav_A_active = avType;
     ipcRenderer.send('new-item', url, avType);
 };
