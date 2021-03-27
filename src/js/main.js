@@ -28,7 +28,7 @@ const fileController = new fileControllerReq();
 const startupReq = require('./system/startup');
 const startup = new startupReq();
 
-// console.log(startup.dev.URLSyoutube);
+console.log(startup.dev.autoClickPaste);
 
 let mainWindow, modalWindow, displays; // Keep a global reference of the window object, if you don't, the window will be closed automatically when the JavaScript object is garbage collected.
 app.allowRendererProcessReuse = true; // not sure what this does but I added it for a reason

@@ -10,7 +10,6 @@ class startup {
     constructor() {
         this.devMode = true;
         this.dev = {
-            mode: true,
             backendOnly: false,
             downloadSmallestFile: true,
             autoClickPaste: false,

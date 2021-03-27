@@ -32,7 +32,7 @@ let pattMatchIndex, inputType;
 exports.validateURL = (url, avType) => {
     if (logging) console.log(`validateURL: avType is ${avType}`);
     if (startup.devMode)
-        url = miscFunctions.randomFromArray(startup.URLSyoutube); // substitutes a random placeholder URL if dev mode active
+        url = miscFunctions.randomFromArray(startup.dev.URLSyoutube); // substitutes a random placeholder URL if dev mode active
     checkURLforPattern(url, avType);
     mediaController(url, inputType, avType);
 };
