@@ -14,6 +14,7 @@
         -   Warpstagram, save user IG images
             -   https://www.npmjs.com/package/instagram-save
         -   Vimeo
+            -   https://www.npmjs.com/package/vimeo-downloader
         -   YouTube to MP3
             -   https://www.npmjs.com/package/youtube-audio-server
             -   https://www.npmjs.com/package/youtube-mp3-downloader // ffmpeg required

@@ -15,7 +15,7 @@ exports.downloadItem = (itemURL, avType, platform) => {
         );
 
     // DOWNLOAD ITEM
-    dlhandler = new dlhandlerReq(itemURL);
+    dlhandler = new dlhandlerReq(itemURL); // creates new object using url to extract and download video with details
     dlhandler.all(itemURL, avType);
     // console.log(dlhandler);
 
