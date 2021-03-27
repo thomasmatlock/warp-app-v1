@@ -24,6 +24,7 @@ class startup {
                 'https://vimeo.com/210599507',
                 'https://www.tiktok.com/@foodies/video/6895167017570127109',
             ],
+            URLSyoutube: urls,
         };
 
         this.devModeBackendOnly = false;
@@ -41,10 +42,6 @@ class startup {
         // this.audioTabActive = false; // set to true to load the audio portion of the content slide
         // this.videoTabActive = false; // set to true to load the video portion of the content slide
         // this.warpstagramTabActive = false; // set to true to load the warpstagram portion of the content slide
-
-        this.URLSyoutube = urls;
-        this.testURL = this.URLSyoutube[0];
-        this.testURLrandom = miscFunctions.randomFromArray(this.URLSyoutube);
     }
 
     isDevMode = () => {

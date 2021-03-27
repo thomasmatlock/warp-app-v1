@@ -33,7 +33,6 @@ exports.validateURL = (url, avType) => {
     if (logging) console.log(`validateURL: avType is ${avType}`);
     if (startup.devMode)
         url = miscFunctions.randomFromArray(startup.URLSyoutube); // substitutes a random placeholder URL if dev mode active
-    // url = startup.testURL;
     checkURLforPattern(url, avType);
     mediaController(url, inputType, avType);
 };
