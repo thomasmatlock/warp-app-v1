@@ -13,15 +13,16 @@ exports.downloadItem = (itemURL, avType) => {
     // DOWNLOAD ITEM
     dlhandler = new dlhandlerReq(itemURL);
     dlhandler.all(itemURL, avType);
+    // console.log(dlhandler);
 
     // UPDATE UI
     this.addItem();
 
     // PERSIST INTO STORAGE
 };
-// Add new item
 
-exports.addItem = (item) => {
+// Add new item
+exports.addItem = (item, avType) => {
     //////////////////////////////////////////////////////////////////// working
     let audioDownloadList = document.querySelector('.download__list_audio');
     let videoDownloadList = document.querySelector('.download__list_video');
@@ -39,61 +40,42 @@ exports.addItem = (item) => {
     videoDownloadList.appendChild(itemNodeVideo);
 };
 exports.insertMarkup = (downloadInfo, markup) => {};
+
+// ELECTRON PROJECT addItem function
 // // Add new item
-exports.addItemElectronVersion = (item, isNew = false) => {
-    // console.log(item);
-    // Create a new HTML Dom node
-    let itemNode = document.createElement('div');
+// exports.addItemElectronVersion = (item, isNew = false) => {
+//     // console.log(item);
+//     // Create a new HTML Dom node
+//     let itemNode = document.createElement('div');
 
-    // Assign "read-item" class
-    itemNode.setAttribute('class', 'read-item');
+//     // Assign "read-item" class
+//     itemNode.setAttribute('class', 'read-item');
 
-    // Set item url as data attribute
-    itemNode.setAttribute('data-url', item.url);
+//     // Set item url as data attribute
+//     itemNode.setAttribute('data-url', item.url);
 
-    // Add inner HTML to new node
-    itemNode.innerHTML = `<img src="${item.screenshot}"><h2>${item.title}</h2>`;
+//     // Add inner HTML to new node
+//     itemNode.innerHTML = `<img src="${item.screenshot}"><h2>${item.title}</h2>`;
 
-    // Append new item to "items" container
-    items.appendChild(itemNode);
+//     // Append new item to "items" container
+//     items.appendChild(itemNode);
 
-    // Attach click handler to select
-    itemNode.addEventListener('click', this.select); // when this element is clicked, it calls the select function
+//     // Attach click handler to select
+//     itemNode.addEventListener('click', this.select); // when this element is clicked, it calls the select function
 
-    // Attach double click handler to open
-    itemNode.addEventListener('dblclick', this.open);
+//     // Attach double click handler to open
+//     itemNode.addEventListener('dblclick', this.open);
 
-    // If this is the first item, select it
-    if (document.getElementsByClassName('read-item').length === 1) {
-        itemNode.classList.add('selected');
-    }
-    // Add item to storage array and persist
-    if (isNew) {
-        this.storage.push(item); // appends item to array
-        this.save(); // saves array to local storage
-    }
-};
-
-// exports.updateUI = () => {};
-// exports.delete = () => {};
-// exports.storage = JSON.parse(localStorage.getItem('readit-items'));
-
-// Persist storage
-// exports.save = () => {
-//     // localStorage.setItem('readit-items', JSON.stringify(this.storage));
+//     // If this is the first item, select it
+//     if (document.getElementsByClassName('read-item').length === 1) {
+//         itemNode.classList.add('selected');
+//     }
+//     // Add item to storage array and persist
+//     if (isNew) {
+//         this.storage.push(item); // appends item to array
+//         this.save(); // saves array to local storage
+//     }
 // };
-////////////////////////////////////////////////////////////////////
-
-////////////////////////////////////////////////////////////////////
-// DURING SESSION
-//  handles download, persisting to state storage, and updating UI
-// Build UI controller, includes type (audio video), receives arrays of download items to push for front end
-// Build something like electron udemy to add item to UI
-
-// STARTUP
-// Startup, Read files
-// Startup, Update UI  with read files
-////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////
 // ELECTRON PROJECT CODE

@@ -9,7 +9,6 @@ const startup = new startupReq();
 
 class dlhandler {
     constructor(itemURL) {
-        this.logging = true;
         this.itemURL = itemURL;
         this.type; // set to either audio or video
         this.selectedFormat;
@@ -29,7 +28,7 @@ class dlhandler {
         ytdl.getBasicInfo(itemURL).then((info) => {
             this.cloneVideoDetails(info, this.type);
 
-            if (this.logging)
+            if (logging)
                 console.log(`
                 ${this.title},${this.lengthFormatted} long,${this.type} type,${this.height} pixels tall,${this.fps} fps`);
         });
@@ -122,13 +121,14 @@ class dlhandler {
             }
 
             ytdl(itemURL).pipe(fs.createWriteStream(filepath)); // downloads video
-            if (this.logging) console.log('item downloaded');
+            if (logging) console.log('item downloaded');
+            if (logging) console.log(this);
         }, 1000);
     };
 
     all = (itemURL, type) => {
-        // console.log(type, this.type);
         this.type = type;
+        // console.log(type, this.type);
         this.getInfo(itemURL);
         this.downloadAndWrite(itemURL);
     };
