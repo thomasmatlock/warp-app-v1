@@ -8,7 +8,7 @@ const fs = require('fs');
 const urls = require('./testURLS');
 class startup {
     constructor() {
-        this.devMode = true;
+        this.devMode = false;
         this.devModeBackendOnly = false;
         this.downloadSmallestFile = true;
         this.devModeDevTools = !this.devMode ? false : false; // defaults to false, change 2nd option true for devTools

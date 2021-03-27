@@ -27,9 +27,6 @@ const fileControllerReq = require('./system/fileController');
 const fileController = new fileControllerReq();
 const startupReq = require('./system/startup');
 const startup = new startupReq();
-const dlhandlerReq = require('./downloadHandler');
-const items = require('../renderer/items');
-// console.log(items);
 
 let mainWindow, modalWindow, displays; // Keep a global reference of the window object, if you don't, the window will be closed automatically when the JavaScript object is garbage collected.
 app.allowRendererProcessReuse = true; // not sure what this does but I added it for a reason
