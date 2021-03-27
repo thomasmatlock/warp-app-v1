@@ -27,6 +27,9 @@ const fileControllerReq = require('./system/fileController');
 const fileController = new fileControllerReq();
 const startupReq = require('./system/startup');
 const startup = new startupReq();
+const dlhandlerReq = require('./downloadHandler');
+const items = require('../renderer/items');
+// console.log(items);
 
 console.log(startup.dev.devTools);
 

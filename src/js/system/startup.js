@@ -8,17 +8,10 @@ const fs = require('fs');
 const urls = require('./testURLS');
 class startup {
     constructor() {
-        this.dev = {
-            backendOnly: false,
-            menuLogging: true,
-            downloadSmallestFile: true,
-            autoClickPaste: false, // autoclicks paste on window ready
-        };
-        this.env = {
-            hasFFmpeg: false,
-        };
         this.devMode = true;
-        this.devModeDevTools = !this.devMode ? false : true; // defaults to false, change 2nd option true for devTools
+        this.devModeBackendOnly = false;
+        this.downloadSmallestFile = true;
+        this.devModeDevTools = !this.devMode ? false : false; // defaults to false, change 2nd option true for devTools
         this.nav_A_active = !this.devMode ? 'audio' : 'video'; // defaults to audio, change 2nd option to audio, video, or warpstagram
         this.downloadItems = true;
         this.downloadItemsTesting = true;
