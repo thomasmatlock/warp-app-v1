@@ -32,9 +32,9 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
 
 ////////////////////////////////////////////////////////////////////
 // IPC LISTENERS FOR EVENTS FROM APP.JS
-ipcMain.on('new-item', (e, itemURL, avType) => {
+ipcMain.on('new-item', (e, itemURL, avType, platform) => {
     startup.updateActiveTab(avType); // sets nav A active
-    e.reply('asynchronous-reply', itemURL, avType); // send message to app js
+    e.reply('asynchronous-reply', itemURL, avType, platform); // send message to app js
 });
 ipcMain.on('menu-change', (e, menuType) => {
     if (menuType === 'audio') appMenuAudio(mainWindow.webContents); // sets audio menu if audio tab is clicked

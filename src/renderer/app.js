@@ -3,7 +3,7 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-unused-vars */
 /* eslint-disable one-var */
-const logging = true;
+const logging = false;
 const { app, clipboard, ipcRenderer } = require('electron');
 let elements = require('./views/elements');
 const navPrimaryView = require('./views/navPrimaryView.js');
@@ -77,9 +77,10 @@ ipcRenderer.on('resize', () => {
         }, clickDelay);
     }
 });
-ipcRenderer.on('asynchronous-reply', (event, itemURL, avType) => {
-    // if (logging) console.log(`url ${itemURL}, avType ${avType}`);
-    items.downloadItem(itemURL, avType);
+ipcRenderer.on('asynchronous-reply', (event, itemURL, avType, platform) => {
+    if (logging)
+        console.log(`url ${itemURL}, avType ${avType}, platform ${platform}`);
+    items.downloadItem(itemURL, avType, platform);
 });
 
 // MENU LISTENERS, AUDIO

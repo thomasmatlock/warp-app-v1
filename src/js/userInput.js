@@ -11,7 +11,7 @@
 // update state
 // update local user file
 // update UI
-const logging = true;
+const logging = false;
 const { clipboard, ipcRenderer } = require('electron');
 const startupReq = require('./system/startup');
 const startup = new startupReq();
@@ -58,5 +58,5 @@ const mediaController = (url, avType, platform) => {
             `mediaController: url ${url} platform ${platform} avType ${avType} `
         );
     startup.env.nav_A_active = avType;
-    ipcRenderer.send('new-item', url, avType);
+    ipcRenderer.send('new-item', url, avType, platform);
 };

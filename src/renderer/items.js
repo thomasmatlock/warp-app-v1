@@ -1,5 +1,5 @@
 // this is started, taken from the electron course
-const logging = false;
+const logging = true;
 const fs = require('fs');
 const { app, clipboard, ipcRenderer } = require('electron');
 const dlhandlerReq = require('../js/downloadHandler');
@@ -7,8 +7,12 @@ const markup = require('./views/markup');
 let dlhandler;
 
 ////////////////////////////////////////////////////////////////////
-exports.downloadItem = (itemURL, avType) => {
+exports.downloadItem = (itemURL, avType, platform) => {
     // if (logging) console.log(`items.downloadItem: ${itemURL}, ${avType}`);
+    if (logging)
+        console.log(
+            `itemsjs: url ${itemURL}, avType ${avType}, platform ${platform}`
+        );
 
     // DOWNLOAD ITEM
     dlhandler = new dlhandlerReq(itemURL);
