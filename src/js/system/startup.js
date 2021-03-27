@@ -13,6 +13,7 @@ class startup {
             devTools: !this.devMode ? false : true, // defaults to false, change 2nd option true for devTools
             backendOnly: false, // hides window
             downloadSmallestFile: true,
+            downloadFile: false,
             autoClickPaste: false,
             downloadItemsTesting: true,
             URLS: [

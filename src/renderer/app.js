@@ -3,7 +3,7 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-unused-vars */
 /* eslint-disable one-var */
-const logging = false;
+const logging = true;
 const { app, clipboard, ipcRenderer } = require('electron');
 let elements = require('./views/elements');
 const navPrimaryView = require('./views/navPrimaryView.js');
@@ -26,9 +26,9 @@ state.nav = new Nav(); // controls active nav
 ipcRenderer.on('window-ready', () => {
     // console.log(startup.env.nav_A_active);
     if (logging) {
-        console.log(
-            `ipcRenderer.on('window-ready', nav_A_active is ${startup.env.nav_A_active}`
-        );
+        // console.log(
+        //     `ipcRenderer.on('window-ready', nav_A_active is ${startup.env.nav_A_active}`
+        // );
     }
     // Set Nav A
     if (startup.env.nav_A_active == 'audio') {
@@ -79,7 +79,7 @@ ipcRenderer.on('resize', () => {
 });
 ipcRenderer.on('asynchronous-reply', (event, itemURL, avType) => {
     if (startup.dev.downloadItemsTesting) {
-        if (logging) console.log(itemURL, avType);
+        if (logging) console.log(`url ${itemURL}, avType ${avType}`);
         items.downloadItem(itemURL, avType);
         // items.addItem();
     }
@@ -186,8 +186,8 @@ elements.nav_A_audio.addEventListener('click', (e) => {
 elements.nav_A_video.addEventListener('click', (e) => {
     ipcRenderer.send('menu-change', 'video');
     startup.env.nav_A_active = 'video';
-    if (logging)
-        console.log(`env.nav_A_active is now ${startup.env.nav_A_active}`);
+    // if (logging)
+    //     console.log(`env.nav_A_active is now ${startup.env.nav_A_active}`);
 });
 elements.nav_A_warpstagram.addEventListener('click', (e) => {
     ipcRenderer.send('menu-change', 'warpstagram');

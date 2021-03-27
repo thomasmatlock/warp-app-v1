@@ -46,10 +46,10 @@ ipcMain.on('menu-change', (e, menuType) => {
     if (menuType === 'warpstagram') appMenuWarpstagram(mainWindow.webContents); // sets video menu if video tab is clicked
 });
 
-ipcMain.on('asynchronous-message', (event, arg) => {
-    console.log(arg); // prints "ping"
-    event.reply('asynchronous-reply', 'pong');
-});
+// ipcMain.on('asynchronous-message', (event, arg) => {
+//     console.log(arg); // prints "ping"
+//     event.reply('asynchronous-reply', 'pong');
+// });
 
 ipcMain.on('quit', () => {
     console.log('you quit');

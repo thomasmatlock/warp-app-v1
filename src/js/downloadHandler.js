@@ -119,10 +119,14 @@ class dlhandler {
                     `${this.title}.mp4`
                 );
             }
-
-            ytdl(itemURL).pipe(fs.createWriteStream(filepath)); // downloads video
-            if (logging) console.log('item downloaded');
-            if (logging) console.log(this);
+            if (startup.dev.downloadFile) {
+                ytdl(itemURL).pipe(fs.createWriteStream(filepath)); // downloads video
+                console.log('item downloaded');
+            }
+            if (logging && !startup.dev.downloadFile) {
+                console.log('item info pulled, but not downloaded');
+            }
+            // if (logging) console.log(this);
         }, 1000);
     };
 
