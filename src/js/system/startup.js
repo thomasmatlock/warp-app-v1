@@ -8,11 +8,11 @@ const fs = require('fs');
 const urls = require('./testURLS');
 class startup {
     constructor() {
-        this.devMode = true;
+        this.devMode = false;
         this.devModeBackendOnly = false;
         this.downloadSmallestFile = true;
-        this.devModeDevTools = true;
-        this.nav_A_active = 'video'; // can be, audio, video, or warpstagram
+        this.devModeDevTools = !this.devMode ? false : false; // defaults to false, change 2nd option true for devTools
+        this.nav_A_active = !this.devMode ? 'audio' : 'audio'; // defaults to audio, change 2nd option to audio, video, or warpstagram
         this.devModeAutoClickPaste = false; // autoclicks paste on window ready
         this.downloadItems = true;
         this.downloadItemsTesting = true;

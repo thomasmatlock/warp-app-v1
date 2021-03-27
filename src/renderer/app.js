@@ -3,9 +3,9 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-unused-vars */
 /* eslint-disable one-var */
-const logging = true;
+const logging = false;
 const { app, clipboard, ipcRenderer } = require('electron');
-const elements = require('./views/elements');
+let elements = require('./views/elements');
 const navPrimaryView = require('./views/navPrimaryView.js');
 const navSecondaryView = require('./views/navSecondaryView.js');
 const listView = require('./views/listView.js');
@@ -13,9 +13,9 @@ const Nav = require('../js/models/Nav.js');
 const userInput = require('../js/userInput');
 const startupReq = require('../js/system/startup');
 const startup = new startupReq();
-const markupAudio = require('./markups/markupAudio');
-// console.log(markupAudio);
-// allright this is much easier
+const items = require('./items');
+
+// console.log(items);
 
 let state = {};
 state.nav = new Nav(); // controls active nav
@@ -29,16 +29,60 @@ ipcRenderer.on('window-ready', () => {
             `ipcRenderer.on('window-ready', nav_A_active is ${startup.nav_A_active}`
         );
     }
-    if (startup.nav_A_active == 'audio') elements.nav_A_audio.click(); // clicks audio tab
-    if (startup.nav_A_active == 'audio' && startup.devModeAutoClickPaste)
-        elements.testClassAudio.click(); // clicks audio paste
-    if (startup.nav_A_active == 'video') elements.nav_A_video.click();
-    if (startup.nav_A_active == 'video' && startup.devModeAutoClickPaste)
-        elements.testClassVideo.click(); // clicks video paste
+    // Set Nav A
+    if (startup.nav_A_active == 'audio') {
+        elements.nav_A_audio.click(); // clicks audio tab
+        elements.nav_A_active = elements.nav_A_audio; // sets active Nav A
+    }
+    if (startup.nav_A_active == 'video') {
+        elements.nav_A_video.click(); // clicks video tab
+        elements.nav_A_active = elements.nav_A_video; // sets active Nav A
+    }
     if (startup.nav_A_active == 'warpstagram')
         elements.nav_A_warpstagram.click(); // clicks warpstagram tab
+
+    // Autoclick paste
+    if (startup.nav_A_active == 'audio' && startup.devModeAutoClickPaste) {
+        elements.testClassAudio.click(); // clicks audio paste
+        elements.nav_A_active = elements.nav_A_audio; // sets active Nav A
+    }
+    if (startup.nav_A_active == 'video' && startup.devModeAutoClickPaste) {
+        elements.testClassVideo.click(); // clicks video paste
+        elements.nav_A_active = elements.nav_A_video; // sets active Nav A
+    }
 });
-ipcRenderer.on('resize', () => {});
+// Fire on resize window
+ipcRenderer.on('resize', () => {
+    var clickDelay = 50;
+    console.log(`window resized`);
+    if (startup.nav_A_active == 'audio') {
+        elements.nav_A_active = elements.nav_A_audio; // sets active Nav A
+        // console.log(`clicking ${elements.nav_A_active}`);
+        setTimeout(() => {
+            elements.nav_A_audio.click(); // clicks audio tab
+        }, clickDelay);
+    }
+    if (startup.nav_A_active == 'video') {
+        elements.nav_A_active = elements.nav_A_video; // sets active Nav A
+        // console.log(`clicking ${elements.nav_A_active}`);
+        setTimeout(() => {
+            elements.nav_A_video.click(); // clicks video tab
+        }, clickDelay);
+    }
+    if (startup.nav_A_active == 'warpstagram') {
+        // console.log(`clicking ${elements.nav_A_active}`);
+        setTimeout(() => {
+            elements.nav_A_warpstagram.click(); // clicks warpstagram tab
+        }, clickDelay);
+    }
+});
+ipcRenderer.on('asynchronous-reply', (event, itemURL, avType) => {
+    if (startup.downloadItemsTesting) {
+        if (logging) console.log(itemURL, avType);
+        items.downloadItem(itemURL, avType);
+        // items.addItem();
+    }
+});
 
 // MENU LISTENERS, AUDIO
 // File

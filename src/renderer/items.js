@@ -1,28 +1,89 @@
 // this is started, taken from the electron course
 const logging = false;
 const fs = require('fs');
-// const { ipcRenderer } = require('electron');
-
-const { ipcRenderer, shell } = require('electron');
+const { app, clipboard, ipcRenderer } = require('electron');
 const dlhandlerReq = require('../js/downloadHandler');
+const markup = require('./views/markup');
+// console.log(markup.audio);
+// const elements = require('./views/elements');
+// console.log(elements);
 
 ////////////////////////////////////////////////////////////////////
-// DOWNLOAD ITEM
-// PERSIST INTO STORAGE
 exports.downloadItem = (itemURL, avType) => {
-    if (logging) console.log(`items.downloadItem: ${itemURL}, ${avType}`);
+    // if (logging) console.log(`items.downloadItem: ${itemURL}, ${avType}`);
+
+    // DOWNLOAD ITEM
     let dlhandler = new dlhandlerReq(itemURL);
     dlhandler.all(itemURL, avType);
+
+    // UPDATE UI
+    this.addItem();
+
+    // PERSIST INTO STORAGE
 };
-// UPDATE UI
+// Add new item
+
+exports.addItem = (item) => {
+    //////////////////////////////////////////////////////////////////// working
+    let audioDownloadList = document.querySelector('.download__list_audio');
+    let videoDownloadList = document.querySelector('.download__list_video');
+
+    // Create a new HTML Dom node
+    let itemNodeAudio = document.createElement('li');
+    let itemNodeVideo = document.createElement('li');
+
+    // Insert markup
+    itemNodeAudio.innerHTML = markup.audio;
+    itemNodeVideo.innerHTML = markup.video;
+
+    // Append item node
+    audioDownloadList.appendChild(itemNodeAudio);
+    videoDownloadList.appendChild(itemNodeVideo);
+};
+exports.insertMarkup = (downloadInfo, markup) => {};
+// // Add new item
+exports.addItemElectronVersion = (item, isNew = false) => {
+    // console.log(item);
+    // Create a new HTML Dom node
+    let itemNode = document.createElement('div');
+
+    // Assign "read-item" class
+    itemNode.setAttribute('class', 'read-item');
+
+    // Set item url as data attribute
+    itemNode.setAttribute('data-url', item.url);
+
+    // Add inner HTML to new node
+    itemNode.innerHTML = `<img src="${item.screenshot}"><h2>${item.title}</h2>`;
+
+    // Append new item to "items" container
+    items.appendChild(itemNode);
+
+    // Attach click handler to select
+    itemNode.addEventListener('click', this.select); // when this element is clicked, it calls the select function
+
+    // Attach double click handler to open
+    itemNode.addEventListener('dblclick', this.open);
+
+    // If this is the first item, select it
+    if (document.getElementsByClassName('read-item').length === 1) {
+        itemNode.classList.add('selected');
+    }
+    // Add item to storage array and persist
+    if (isNew) {
+        this.storage.push(item); // appends item to array
+        this.save(); // saves array to local storage
+    }
+};
+
 // exports.updateUI = () => {};
 // exports.delete = () => {};
 // exports.storage = JSON.parse(localStorage.getItem('readit-items'));
 
 // Persist storage
-exports.save = () => {
-    // localStorage.setItem('readit-items', JSON.stringify(this.storage));
-};
+// exports.save = () => {
+//     // localStorage.setItem('readit-items', JSON.stringify(this.storage));
+// };
 ////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////

@@ -29,6 +29,7 @@ const startupReq = require('./system/startup');
 const startup = new startupReq();
 const dlhandlerReq = require('./downloadHandler');
 const items = require('../renderer/items');
+// console.log(items);
 
 let mainWindow, modalWindow, displays; // Keep a global reference of the window object, if you don't, the window will be closed automatically when the JavaScript object is garbage collected.
 app.allowRendererProcessReuse = true; // not sure what this does but I added it for a reason
@@ -37,21 +38,20 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
 // IPC LISTENERS FOR EVENTS FROM APP.JS
 ipcMain.on('new-item', (e, itemURL, avType) => {
     startup.nav_A_active = avType;
-    if (logging) {
-        console.log(
-            `ipcMain.on, new-item, nav_A_active is ${startup.nav_A_active}`
-        );
-        console.log(`ipcMain.on, new-item, avType is ${avType}`);
-    }
-    if (startup.downloadItemsTesting) {
-        items.downloadItem(itemURL, avType);
-    }
+    // download items
+    e.reply('asynchronous-reply', itemURL, avType);
 });
 ipcMain.on('menu-change', (e, menuType) => {
     if (menuType === 'audio') appMenuAudio(mainWindow.webContents); // sets audio menu if audio tab is clicked
     if (menuType === 'video') appMenuVideo(mainWindow.webContents); // sets video menu if video tab is clicked
     if (menuType === 'warpstagram') appMenuWarpstagram(mainWindow.webContents); // sets video menu if video tab is clicked
 });
+
+ipcMain.on('asynchronous-message', (event, arg) => {
+    console.log(arg); // prints "ping"
+    event.reply('asynchronous-reply', 'pong');
+});
+
 ipcMain.on('quit', () => {
     console.log('you quit');
     app.quit();
@@ -118,6 +118,7 @@ function createWindow() {
     mainWindow.on('resize', () => {
         wc.send('resize');
     });
+
     mainWindow.on('maximize', () => {
         // console.log('window maximize');
     });
