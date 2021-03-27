@@ -13,7 +13,7 @@ class startup {
             devTools: !this.devMode ? false : true, // defaults to false, change 2nd option true for devTools
             backendOnly: false, // hides window
             downloadSmallestFile: true,
-            autoClickPaste: false,
+            autoClickPaste: true,
             downloadItemsTesting: true,
             URLS: [
                 'https://www.facebook.com/hmtheus/videos/3230852170358533',
@@ -30,7 +30,6 @@ class startup {
         this.nav_A_active = !this.devMode ? 'audio' : 'audio'; // defaults to audio, change 2nd option to audio, video, or warpstagram
         this.downloadItems = true;
         this.downloadItemsTesting = true;
-        this.autoClickPaste = false;
         this.env = {
             downloadItems: true,
             nav_A_active: !this.dev.mode ? 'audio' : 'video', // defaults to audio, change 2nd option to audio, video, or warpstagram
