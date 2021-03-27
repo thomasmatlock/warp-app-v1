@@ -89,7 +89,9 @@ ipcRenderer.on('asynchronous-reply', (event, itemURL, avType) => {
 ipcRenderer.on('Audio: File: Import Download Links', () => {});
 ipcRenderer.on('Audio: File: Export Download Links', () => {});
 // Downloads
-ipcRenderer.on('Audio: Downloads: Paste', () => {});
+ipcRenderer.on('Audio: Downloads: Paste', () => {
+    elements.testClassAudio.click(); // clicks audio paste
+});
 ipcRenderer.on('Audio: Downloads: Pause All', () => {});
 ipcRenderer.on('Audio: Downloads: Resume All', () => {});
 ipcRenderer.on('Audio: Downloads: Remove All', () => {});
@@ -102,7 +104,9 @@ ipcRenderer.on('Video: File: Export Download Links', () => {});
 ipcRenderer.on('Video: File: Import Subscriptions', () => {});
 ipcRenderer.on('Video: File: Export Subscriptions', () => {});
 // Downloads
-ipcRenderer.on('Video: Downloads: Paste', () => {});
+ipcRenderer.on('Video: Downloads: Paste', () => {
+    elements.testClassVideo.click(); // clicks audio paste
+});
 ipcRenderer.on('Video: Downloads: Pause All', () => {});
 ipcRenderer.on('Video: Downloads: Resume All', () => {});
 ipcRenderer.on('Video: Downloads: Remove All', () => {});
