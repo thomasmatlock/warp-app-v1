@@ -28,13 +28,15 @@ const fileController = new fileControllerReq();
 const startupReq = require('./system/startup');
 const startup = new startupReq();
 
+// console.log(startup.env);
+
 let mainWindow, modalWindow, displays; // Keep a global reference of the window object, if you don't, the window will be closed automatically when the JavaScript object is garbage collected.
 app.allowRendererProcessReuse = true; // not sure what this does but I added it for a reason
 
 ////////////////////////////////////////////////////////////////////
 // IPC LISTENERS FOR EVENTS FROM APP.JS
 ipcMain.on('new-item', (e, itemURL, avType) => {
-    startup.nav_A_active = avType;
+    startup.env.nav_A_active = avType;
     // download items
     e.reply('asynchronous-reply', itemURL, avType);
 });

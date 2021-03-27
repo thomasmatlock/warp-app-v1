@@ -49,6 +49,6 @@ checkURLforPattern = (url, avType) => {
 
 const mediaController = (url, type, avType) => {
     if (logging) console.log(`mediaController: ${url} ${type} ${avType} `);
-    startup.nav_A_active = avType;
+    startup.env.nav_A_active = avType;
     ipcRenderer.send('new-item', url, avType);
 };

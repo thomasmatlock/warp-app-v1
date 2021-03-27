@@ -26,22 +26,20 @@ class startup {
             ],
             URLSyoutube: urls,
         };
-
-        this.nav_A_active = !this.devMode ? 'audio' : 'audio'; // defaults to audio, change 2nd option to audio, video, or warpstagram
         this.env = {
             downloadItems: true,
-            nav_A_active: !this.dev.mode ? 'audio' : 'video', // defaults to audio, change 2nd option to audio, video, or warpstagram
+            nav_A_active: !this.devMode ? 'audio' : 'video', // defaults to audio, change 2nd option to audio, video, or warpstagram
+            // hasFFmpeg: this.checkFFmpeg(),
+            // this.loadAudioSlide = false; // set to true to load the audio portion of the content slide
+            // this.loadVideoSlide = false; // set to true to load the video portion of the content slide
+            // this.loadWarpstagramSlide = false; // set to true to load the warpstagram portion of the content slide
         };
-
-        // this.audioTabActive = false; // set to true to load the audio portion of the content slide
-        // this.videoTabActive = false; // set to true to load the video portion of the content slide
-        // this.warpstagramTabActive = false; // set to true to load the warpstagram portion of the content slide
     }
 
     isDevMode = () => {
         if (this.devMode) {
             this.env.downloadItems = false;
-            this.nav_A_active = 'audio'; // sets default to load audio if devmode isnt on
+            this.env.nav_A_active = 'audio'; // sets default to load audio if devmode isnt on
         } else {
             this.env.downloadItems = true;
             console.log(`Production mode active, downloading items`);
@@ -79,7 +77,7 @@ class startup {
                 // console.log('ffmpeg exists');
                 this.hasFFmpeg = true;
             } else if (!fs.existsSync(ffmpegPath)) {
-                // console.log('ffmpeg doesnt exist');
+                console.log('ffmpeg doesnt exist');
                 this.hasFFmpeg = false;
             }
         } catch (err) {
@@ -93,7 +91,7 @@ class startup {
     init = () => {
         this.isDevMode();
         this.isOnline();
-        this.checkFFmpeg();
+        // this.checkFFmpeg();
     };
 }
 

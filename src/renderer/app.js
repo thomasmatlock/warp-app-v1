@@ -24,29 +24,30 @@ state.nav = new Nav(); // controls active nav
 // IPCRENDERER LISTENERS
 // activates selected nav A tab on window ready
 ipcRenderer.on('window-ready', () => {
+    // console.log(startup.env.nav_A_active);
     if (logging) {
         console.log(
-            `ipcRenderer.on('window-ready', nav_A_active is ${startup.nav_A_active}`
+            `ipcRenderer.on('window-ready', nav_A_active is ${startup.env.nav_A_active}`
         );
     }
     // Set Nav A
-    if (startup.nav_A_active == 'audio') {
+    if (startup.env.nav_A_active == 'audio') {
         elements.nav_A_audio.click(); // clicks audio tab
         elements.nav_A_active = elements.nav_A_audio; // sets active Nav A
     }
-    if (startup.nav_A_active == 'video') {
+    if (startup.env.nav_A_active == 'video') {
         elements.nav_A_video.click(); // clicks video tab
         elements.nav_A_active = elements.nav_A_video; // sets active Nav A
     }
-    if (startup.nav_A_active == 'warpstagram')
+    if (startup.env.nav_A_active == 'warpstagram')
         elements.nav_A_warpstagram.click(); // clicks warpstagram tab
 
     // Autoclick paste
-    if (startup.nav_A_active == 'audio' && startup.dev.autoClickPaste) {
+    if (startup.env.nav_A_active == 'audio' && startup.dev.autoClickPaste) {
         elements.testClassAudio.click(); // clicks audio paste
         elements.nav_A_active = elements.nav_A_audio; // sets active Nav A
     }
-    if (startup.nav_A_active == 'video' && startup.dev.autoClickPaste) {
+    if (startup.env.nav_A_active == 'video' && startup.dev.autoClickPaste) {
         elements.testClassVideo.click(); // clicks video paste
         elements.nav_A_active = elements.nav_A_video; // sets active Nav A
     }
@@ -55,22 +56,22 @@ ipcRenderer.on('window-ready', () => {
 ipcRenderer.on('resize', () => {
     var clickDelay = 50;
     console.log(`window resized`);
-    if (startup.nav_A_active == 'audio') {
-        elements.nav_A_active = elements.nav_A_audio; // sets active Nav A
+    if (startup.env.nav_A_active == 'audio') {
+        elements.env.nav_A_active = elements.nav_A_audio; // sets active Nav A
         // console.log(`clicking ${elements.nav_A_active}`);
         setTimeout(() => {
             elements.nav_A_audio.click(); // clicks audio tab
         }, clickDelay);
     }
-    if (startup.nav_A_active == 'video') {
-        elements.nav_A_active = elements.nav_A_video; // sets active Nav A
-        // console.log(`clicking ${elements.nav_A_active}`);
+    if (startup.env.nav_A_active == 'video') {
+        elements.env.nav_A_active = elements.nav_A_video; // sets active Nav A
+        // console.log(`clicking ${elements.env.nav_A_active}`);
         setTimeout(() => {
             elements.nav_A_video.click(); // clicks video tab
         }, clickDelay);
     }
-    if (startup.nav_A_active == 'warpstagram') {
-        // console.log(`clicking ${elements.nav_A_active}`);
+    if (startup.env.nav_A_active == 'warpstagram') {
+        // console.log(`clicking ${elements.env.nav_A_active}`);
         setTimeout(() => {
             elements.nav_A_warpstagram.click(); // clicks warpstagram tab
         }, clickDelay);
@@ -178,25 +179,28 @@ elements.nav_A.addEventListener('click', (e) => {
 // menu-change
 elements.nav_A_audio.addEventListener('click', (e) => {
     ipcRenderer.send('menu-change', 'audio');
-    startup.nav_A_active = 'audio';
-    if (logging) console.log(`nav_A_active is now ${startup.nav_A_active}`);
+    startup.env.nav_A_active = 'audio';
+    if (logging)
+        console.log(`env.nav_A_active is now ${startup.env.nav_A_active}`);
 });
 elements.nav_A_video.addEventListener('click', (e) => {
     ipcRenderer.send('menu-change', 'video');
-    startup.nav_A_active = 'video';
-    if (logging) console.log(`nav_A_active is now ${startup.nav_A_active}`);
+    startup.env.nav_A_active = 'video';
+    if (logging)
+        console.log(`env.nav_A_active is now ${startup.env.nav_A_active}`);
 });
 elements.nav_A_warpstagram.addEventListener('click', (e) => {
     ipcRenderer.send('menu-change', 'warpstagram');
-    startup.nav_A_active = 'warpstagram';
-    if (logging) console.log(`nav_A_active is now ${startup.nav_A_active}`);
+    startup.env.nav_A_active = 'warpstagram';
+    if (logging)
+        console.log(`env.nav_A_active is now ${startup.env.nav_A_active}`);
 });
 // Nav B LISTENERS
 elements.testClassAudio.addEventListener('click', (e) => {
-    userInput.validateURL(clipboard.readText(), startup.nav_A_active);
+    userInput.validateURL(clipboard.readText(), startup.env.nav_A_active);
 });
 elements.testClassVideo.addEventListener('click', (e) => {
-    userInput.validateURL(clipboard.readText(), startup.nav_A_active);
+    userInput.validateURL(clipboard.readText(), startup.env.nav_A_active);
 });
 elements.videoSmartMode.addEventListener('click', (e) => {
     if (logging) console.log('clicked smart mode');
