@@ -50,8 +50,10 @@ class startup {
         }
     };
 
-    updateDevModeActiveTab = () => {
-        console.log(`Updating dev mode active tab`);
+    updateActiveTab = (avType) => {
+        // console.log(`Updating dev mode active tab`);
+        this.env.nav_A_active = avType;
+        // console.log(this.env.nav_A_active);
     };
     serverConnected = () => {};
     isLatestVersion = () => {};

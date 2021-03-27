@@ -18,7 +18,7 @@ const {
     shell,
     webContents,
 } = require('electron');
-const DisplayController = require('./system/displayController');
+const displayControllerReq = require('./system/displayController');
 const appMenuAudio = require('./menus/menuAudio');
 const appMenuVideo = require('./menus/menuVideo');
 const appMenuWarpstagram = require('./menus/menuWarpstagram');
@@ -27,15 +27,13 @@ const fileController = new fileControllerReq();
 const startupReq = require('./system/startup');
 const startup = new startupReq();
 
-// console.log(startup.env);
-
-let mainWindow, modalWindow, displays; // Keep a global reference of the window object, if you don't, the window will be closed automatically when the JavaScript object is garbage collected.
+let mainWindow, modalWindow, displayController; // Keep a global reference of the window object, if you don't, the window will be closed automatically when the JavaScript object is garbage collected.
 app.allowRendererProcessReuse = true; // not sure what this does but I added it for a reason
 
 ////////////////////////////////////////////////////////////////////
 // IPC LISTENERS FOR EVENTS FROM APP.JS
 ipcMain.on('new-item', (e, itemURL, avType) => {
-    startup.env.nav_A_active = avType; // sets nav A active
+    startup.updateActiveTab(avType); // sets nav A active
     e.reply('asynchronous-reply', itemURL, avType); // send message to app js
 });
 ipcMain.on('menu-change', (e, menuType) => {
@@ -53,12 +51,12 @@ ipcMain.on('quit', () => {
 // WINDOW CREATION
 function createWindow() {
     mainWindow = new BrowserWindow({
-        height: displays.height,
-        width: displays.width,
-        minWidth: displays.minWidth,
-        minHeight: displays.minHeight,
-        x: displays.x,
-        y: displays.y,
+        height: displayController.height,
+        width: displayController.width,
+        minWidth: displayController.minWidth,
+        minHeight: displayController.minHeight,
+        x: displayController.x,
+        y: displayController.y,
 
         darkTheme: false,
         // skipTaskbar: true,
@@ -118,10 +116,10 @@ function createWindow() {
 ////////////////////////////////////////////////////////////////////
 // APP LISTENERS (monitoring main node process)
 app.on('ready', () => {
-    displays = new DisplayController(); // positions output window to display depending on single/multi-monitor
+    displayController = new displayControllerReq(); // positions output window to display depending on single/multi-monitor
     fileController.init(); // checks for local directories and creates them if non existent
     startup.init(); // all startup checks, latest version, isOnline, hasFFmpeg etc
-    displays.discoverDisplay(); // discovers which display to use, 3 dev mode displays or production
+    displayController.discoverDisplay(); // discovers which display to use, 3 dev mode displayController or production
     createWindow(); // creates main app window
     if (startup.dev.backendOnly) mainWindow.hide(); // devMode only
 });
