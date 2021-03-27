@@ -8,22 +8,25 @@ const fs = require('fs');
 const urls = require('./testURLS');
 class startup {
     constructor() {
-        this.devMode = false;
-        this.devModeBackendOnly = false;
-        this.downloadSmallestFile = true;
-        this.devModeDevTools = !this.devMode ? false : false; // defaults to false, change 2nd option true for devTools
+        this.dev = {
+            backendOnly: false,
+            menuLogging: true,
+            downloadSmallestFile: true,
+            autoClickPaste: false, // autoclicks paste on window ready
+        };
+        this.env = {
+            hasFFmpeg: false,
+        };
+        this.devMode = true;
+        this.devModeDevTools = !this.devMode ? false : true; // defaults to false, change 2nd option true for devTools
         this.nav_A_active = !this.devMode ? 'audio' : 'video'; // defaults to audio, change 2nd option to audio, video, or warpstagram
-        this.devModeAutoClickPaste = false; // autoclicks paste on window ready
         this.downloadItems = true;
         this.downloadItemsTesting = true;
-        this.menuLogging = true; // logs what menu buttons you click
-        this.hasFFmpeg = false;
+
         // this.audioTabActive = false; // set to true to load the audio portion of the content slide
         // this.videoTabActive = false; // set to true to load the video portion of the content slide
         // this.warpstagramTabActive = false; // set to true to load the warpstagram portion of the content slide
-        // this.dev = {
-        //     devModeBackendOnly = false,
-        // };
+
         this.URLS = [
             'https://www.facebook.com/hmtheus/videos/3230852170358533',
             'https://www.instagram.com/p/CFmU6REA5dl/',
