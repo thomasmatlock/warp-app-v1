@@ -10,7 +10,7 @@ class startup {
     constructor() {
         this.devMode = true;
         this.dev = {
-            devTools: !this.devMode ? false : true, // defaults to false, change 2nd option true for devTools
+            devTools: !this.devMode ? false : false, // defaults to false, change 2nd option true for devTools
             backendOnly: false, // hides window
             downloadSmallestFile: true,
             autoClickPaste: false,
@@ -39,7 +39,6 @@ class startup {
     isDevMode = () => {
         if (this.devMode) {
             this.env.downloadItems = false;
-            this.env.nav_A_active = 'audio'; // sets default to load audio if devmode isnt on
         } else {
             this.env.downloadItems = true;
             console.log(`Production mode active, downloading items`);

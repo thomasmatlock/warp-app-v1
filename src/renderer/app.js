@@ -55,16 +55,16 @@ ipcRenderer.on('window-ready', () => {
 // Fire on resize window
 ipcRenderer.on('resize', () => {
     var clickDelay = 50;
-    console.log(`window resized`);
+    // console.log(`window resized`);
     if (startup.env.nav_A_active == 'audio') {
-        elements.env.nav_A_active = elements.nav_A_audio; // sets active Nav A
+        elements.nav_A_active = elements.nav_A_audio; // sets active Nav A
         // console.log(`clicking ${elements.nav_A_active}`);
         setTimeout(() => {
             elements.nav_A_audio.click(); // clicks audio tab
         }, clickDelay);
     }
     if (startup.env.nav_A_active == 'video') {
-        elements.env.nav_A_active = elements.nav_A_video; // sets active Nav A
+        elements.nav_A_active = elements.nav_A_video; // sets active Nav A
         // console.log(`clicking ${elements.env.nav_A_active}`);
         setTimeout(() => {
             elements.nav_A_video.click(); // clicks video tab
