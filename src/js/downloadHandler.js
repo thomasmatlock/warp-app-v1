@@ -59,10 +59,12 @@ class dlhandler {
     };
 
     cloneVideoDetails = (info, type) => {
-        startup.dev.downloadSmallestFile ?
+        // if (startup.downloadSmallestFile) this.selectedFormat = info.formats[0];
+        startup.downloadSmallestFile ?
             (this.selectedFormat = info.formats[0]) // sets to smallest format for easy dev downloading
             :
             (this.selectedFormat = info.formats[1]);
+        // if (this.logging) console.log(`${startup.downloadSmallestFile}`);
         this.title = info.videoDetails.title;
         this.formatLength(this.selectedFormat.approxDurationMs);
         this.height = this.selectedFormat.height;

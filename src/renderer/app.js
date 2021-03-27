@@ -42,11 +42,11 @@ ipcRenderer.on('window-ready', () => {
         elements.nav_A_warpstagram.click(); // clicks warpstagram tab
 
     // Autoclick paste
-    if (startup.nav_A_active == 'audio' && startup.dev.autoClickPaste) {
+    if (startup.nav_A_active == 'audio' && startup.devModeAutoClickPaste) {
         elements.testClassAudio.click(); // clicks audio paste
         elements.nav_A_active = elements.nav_A_audio; // sets active Nav A
     }
-    if (startup.nav_A_active == 'video' && startup.dev.autoClickPaste) {
+    if (startup.nav_A_active == 'video' && startup.devModeAutoClickPaste) {
         elements.testClassVideo.click(); // clicks video paste
         elements.nav_A_active = elements.nav_A_video; // sets active Nav A
     }
@@ -137,7 +137,7 @@ ipcRenderer.on('Warpstagram: Tools: Preferences', () => {});
 // Menu listeners, universal commands
 ipcRenderer.on('Check for update', () => {});
 ipcRenderer.on('Quit', () => {
-    if (startup.dev.menuLogging) console.log('you quit');
+    if (startup.menuLogging) console.log('you quit');
     ipcRenderer.send('quit');
 
     // app.quit();
