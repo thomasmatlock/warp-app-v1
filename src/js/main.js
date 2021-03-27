@@ -27,11 +27,8 @@ const fileControllerReq = require('./system/fileController');
 const fileController = new fileControllerReq();
 const startupReq = require('./system/startup');
 const startup = new startupReq();
-const dlhandlerReq = require('./downloadHandler');
-const items = require('../renderer/items');
-// console.log(items);
 
-console.log(startup.dev.devTools);
+// console.log(startup.dev);
 
 let mainWindow, modalWindow, displays; // Keep a global reference of the window object, if you don't, the window will be closed automatically when the JavaScript object is garbage collected.
 app.allowRendererProcessReuse = true; // not sure what this does but I added it for a reason
@@ -139,7 +136,7 @@ app.on('ready', () => {
     startup.init(); // all startup checks, latest version, isOnline, hasFFmpeg etc
     displays.discoverDisplay(); // discovers which display to use, 3 dev mode displays or production
     createWindow(); // creates main app window
-    if (startup.dev.backendOnly) mainWindow.hide(); // devMode only
+    if (startup.devModeBackendOnly) mainWindow.hide(); // devMode only
 });
 app.on('before-quit', (event) => {
     // event.preventDefault(); //

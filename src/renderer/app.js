@@ -42,11 +42,11 @@ ipcRenderer.on('window-ready', () => {
         elements.nav_A_warpstagram.click(); // clicks warpstagram tab
 
     // Autoclick paste
-    if (startup.nav_A_active == 'audio' && startup.dev.autoClickPaste) {
+    if (startup.nav_A_active == 'audio' && startup.autoClickPaste) {
         elements.testClassAudio.click(); // clicks audio paste
         elements.nav_A_active = elements.nav_A_audio; // sets active Nav A
     }
-    if (startup.nav_A_active == 'video' && startup.dev.autoClickPaste) {
+    if (startup.nav_A_active == 'video' && startup.autoClickPaste) {
         elements.testClassVideo.click(); // clicks video paste
         elements.nav_A_active = elements.nav_A_video; // sets active Nav A
     }

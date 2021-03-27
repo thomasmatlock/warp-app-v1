@@ -59,7 +59,7 @@ class dlhandler {
     };
 
     cloneVideoDetails = (info, type) => {
-        startup.dev.downloadSmallestFile ?
+        startup.downloadSmallestFile ?
             (this.selectedFormat = info.formats[0]) // sets to smallest format for easy dev downloading
             :
             (this.selectedFormat = info.formats[1]);
@@ -89,6 +89,7 @@ class dlhandler {
         // this.audioChannels = this.selectedFormat.audioChannels;
     };
     removeCharactersFromTitle = () => {
+        // console.log(this.title);
         this.title = this.title.replace('/', '');
         this.title = this.title.replace('?', '');
         this.title = this.title.replace(`\\`, '');

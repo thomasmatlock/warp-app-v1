@@ -9,26 +9,39 @@ const urls = require('./testURLS');
 class startup {
     constructor() {
         this.devMode = true;
+        this.dev = {
+            mode: true,
+            backendOnly: false,
+            downloadSmallestFile: true,
+            autoClickPaste: false,
+            downloadItemsTesting: true,
+            URLS: [
+                'https://www.facebook.com/hmtheus/videos/3230852170358533',
+                'https://www.instagram.com/p/CFmU6REA5dl/',
+                'https://soundcloud.com/themonday-morning-podcast/mmpc-11-16-20',
+                'https://www.twitch.tv/videos/805708310',
+                'https://twitter.com/LouDobbs/status/1328469195550576645',
+                'https://vimeo.com/210599507',
+                'https://www.tiktok.com/@foodies/video/6895167017570127109',
+            ],
+        };
+
         this.devModeBackendOnly = false;
         this.downloadSmallestFile = true;
-        this.devModeDevTools = !this.devMode ? false : false; // defaults to false, change 2nd option true for devTools
-        this.nav_A_active = !this.devMode ? 'audio' : 'video'; // defaults to audio, change 2nd option to audio, video, or warpstagram
+        this.devModeDevTools = !this.devMode ? false : true; // defaults to false, change 2nd option true for devTools
+        this.nav_A_active = !this.devMode ? 'audio' : 'audio'; // defaults to audio, change 2nd option to audio, video, or warpstagram
         this.downloadItems = true;
         this.downloadItemsTesting = true;
+        this.autoClickPaste = false;
+        this.env = {
+            downloadItems: true,
+            nav_A_active: !this.dev.mode ? 'audio' : 'video', // defaults to audio, change 2nd option to audio, video, or warpstagram
+        };
 
         // this.audioTabActive = false; // set to true to load the audio portion of the content slide
         // this.videoTabActive = false; // set to true to load the video portion of the content slide
         // this.warpstagramTabActive = false; // set to true to load the warpstagram portion of the content slide
 
-        this.URLS = [
-            'https://www.facebook.com/hmtheus/videos/3230852170358533',
-            'https://www.instagram.com/p/CFmU6REA5dl/',
-            'https://soundcloud.com/themonday-morning-podcast/mmpc-11-16-20',
-            'https://www.twitch.tv/videos/805708310',
-            'https://twitter.com/LouDobbs/status/1328469195550576645',
-            'https://vimeo.com/210599507',
-            'https://www.tiktok.com/@foodies/video/6895167017570127109',
-        ];
         this.URLSyoutube = urls;
         this.testURL = this.URLSyoutube[0];
         this.testURLrandom = miscFunctions.randomFromArray(this.URLSyoutube);
