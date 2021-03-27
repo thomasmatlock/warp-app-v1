@@ -36,7 +36,18 @@ class startup {
         };
     }
 
-    isDevMode = () => {};
+    isDevMode = () => {
+        if (!this.devMode) {
+            this.devTools = false;
+            this.backendOnly = false;
+            this.downloadFile = true;
+            this.downloadSmallestFile = false;
+            this.autoClickPaste = false;
+            this.useRandomMiscURL = false;
+            this.useRandomYoutubeURL = false;
+            this.env.nav_A_active = 'audio';
+        }
+    };
 
     isOnline = () => {
         // https://stackoverflow.com/questions/15270902/check-for-internet-connectivity-in-nodejs
