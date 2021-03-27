@@ -59,7 +59,7 @@ class dlhandler {
     };
 
     cloneVideoDetails = (info, type) => {
-        startup.downloadSmallestFile ?
+        startup.dev.downloadSmallestFile ?
             (this.selectedFormat = info.formats[0]) // sets to smallest format for easy dev downloading
             :
             (this.selectedFormat = info.formats[1]);

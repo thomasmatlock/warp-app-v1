@@ -27,8 +27,6 @@ class startup {
             URLSyoutube: urls,
         };
 
-        // this.devModeBackendOnly = false;
-        this.downloadSmallestFile = true;
         this.devModeDevTools = !this.devMode ? false : true; // defaults to false, change 2nd option true for devTools
         this.nav_A_active = !this.devMode ? 'audio' : 'audio'; // defaults to audio, change 2nd option to audio, video, or warpstagram
         this.downloadItems = true;
