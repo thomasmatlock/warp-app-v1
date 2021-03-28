@@ -67,6 +67,7 @@ class dlhandler {
         this.height = this.selectedFormat.height;
         // this.type = type; // audio or video
         this.thumbnail = info.videoDetails.thumbnails[3]; // (or the last thumbnail) usually seems to be highest res thumbnail. thumbn\ails are in descending order from low res to highest res
+        this.thumbnailURL = info.videoDetails.thumbnails[3].url; // (or the last thumbnail) usually seems to be highest res thumbnail. thumbn\ails are in descending order from low res to highest res
         // this.fileSize;
         this.fileType = 'MP4'; // mp4, etc
         this.itag = this.selectedFormat.itag;

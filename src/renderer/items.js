@@ -2,6 +2,7 @@
 const logging = true;
 const fs = require('fs');
 const { app, clipboard, ipcRenderer } = require('electron');
+const imageDownloader = require('image-downloader');
 const dlhandlerReq = require('../js/downloadHandler');
 let markup = require('./views/markup');
 // let dlhandler;
@@ -22,33 +23,31 @@ exports.downloadItem = (itemURL, avType, platform) => {
     // UPDATE UI
     setTimeout(() => {
         this.insertMarkup(dlhandler, avType);
-        this.addItem();
-        this.destroyDLHandler(dlhandler);
-        dlhandler.getFileSize();
+        this.addItem(avType);
+        // dlhandler.getFileSize();
     }, 1500);
 
     // PERSIST INTO STORAGE
 };
 
 // Add new item
-exports.addItem = (item, avType) => {
+exports.addItem = (avType) => {
     //////////////////////////////////////////////////////////////////// working
-    let audioDownloadList = document.querySelector('.download__list_audio');
-    let videoDownloadList = document.querySelector('.download__list_video');
-
-    // Create a new HTML Dom node
-    let itemNodeAudio = document.createElement('li');
-    let itemNodeVideo = document.createElement('li');
-
-    // Insert markup
-    itemNodeAudio.innerHTML = markup.audio;
-    itemNodeVideo.innerHTML = markup.video;
-
-    // Append item node
-    audioDownloadList.appendChild(itemNodeAudio);
-    videoDownloadList.appendChild(itemNodeVideo);
+    if (avType === 'audio') {
+        let audioDownloadList = document.querySelector('.download__list_audio');
+        let itemNodeAudio = document.createElement('li'); // Create a new HTML Dom node
+        itemNodeAudio.innerHTML = markup.audio; // Insert markup
+        audioDownloadList.appendChild(itemNodeAudio); // Append item node
+    }
+    if (avType === 'video') {
+        let videoDownloadList = document.querySelector('.download__list_video');
+        let itemNodeVideo = document.createElement('li'); // Create a new HTML Dom node
+        itemNodeVideo.innerHTML = markup.video; // Insert markup
+        videoDownloadList.appendChild(itemNodeVideo); // Append item node
+    }
 };
 exports.insertMarkup = (downloadInfo, avType) => {
+    // console.log(`avType is ${avType}`);
     // INSERT AUDIO MARKUP
     if (avType === 'audio') {
         // console.log('ITS AUDIO TIME');
@@ -61,6 +60,10 @@ exports.insertMarkup = (downloadInfo, avType) => {
     }
     // INSERT VIDEO MARKUP
     if (avType === 'video') {
+        markup.video = markup.video.replace(
+            '%{thumbnail}',
+            downloadInfo.thumbnailURL
+        );
         markup.video = markup.video.replace('%{title}', downloadInfo.title);
         markup.video = markup.video.replace('%{fps}', downloadInfo.fps);
         markup.video = markup.video.replace('%{height}', downloadInfo.height);
@@ -72,15 +75,24 @@ exports.insertMarkup = (downloadInfo, avType) => {
             '%{lengthFormatted}',
             downloadInfo.lengthFormatted
         );
-        // markup.video = markup.video.replace(
-        //     '%{thumbnail}',
-        //     downloadInfo.thumbnail
-        // );
-        console.log(downloadInfo.title);
+        // console.log(downloadInfo.thumbnailURL);
     }
 };
 exports.destroyDLHandler = (dlhandler) => {
     dlhandler = null;
+};
+exports.downloadThumbnail = (url) => {
+    options = {
+        url: 'http://someurl.com/image2.jpg',
+        dest: '/path/to/dest/photo.jpg', // will be saved to /path/to/dest/photo.jpg
+    };
+
+    imageDownloader
+        .image(options)
+        .then(({ filename }) => {
+            console.log('Saved to', filename); // saved to /path/to/dest/photo.jpg
+        })
+        .catch((err) => console.error(err));
 };
 
 // ELECTRON PROJECT addItem function

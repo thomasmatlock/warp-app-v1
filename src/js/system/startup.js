@@ -28,7 +28,7 @@ class startup {
             ],
         };
         this.env = {
-            nav_A_active: !this.devMode ? 'audio' : 'video', //  2nd option to audio, video, or warpstagram, defaults to audio
+            nav_A_active: !this.devMode ? 'audio' : 'audio', //  2nd option to audio, video, or warpstagram, defaults to audio
             // hasFFmpeg: this.checkFFmpeg(),
             // this.loadAudioSlide = false; // set to true to load the audio portion of the content slide
             // this.loadVideoSlide = false; // set to true to load the video portion of the content slide

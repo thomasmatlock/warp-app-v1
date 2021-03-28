@@ -16,7 +16,7 @@ const markup = {
                                         class="dl__item_info-pane dl__item__thumbnail"
                                     >
                                         <img
-                                            src="./img/maxresdefault0.jpg "
+                                            src="%{thumbnail}"
                                             alt="Test"
                                         />
                                     </div>
