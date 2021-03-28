@@ -11,7 +11,8 @@ class startup {
         this.dev = {
             devTools: !this.devMode ? false : true, // defaults to false, change 2nd option true for devTools
             backendOnly: false, // hides window
-            downloadFile: true, //
+            getDownloadItemInfo: false,
+            downloadFile: false,
             downloadSmallestFile: true,
             autoClickPaste: true,
             useRandomYoutubeURL: this.testingYoutubeURLS ? true : false, // uses YT URLS if testingYoutubeURLS is true

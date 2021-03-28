@@ -3,8 +3,12 @@ const logging = true;
 const fs = require('fs');
 const { app, clipboard, ipcRenderer } = require('electron');
 const imageDownloader = require('image-downloader');
-const dlhandlerReq = require('../js/downloadHandler');
+const dlhandlerReq = require('../js/downloadHandler-class');
 let markup = require('./views/markup');
+const dlhandlerObject = require('../js/downloadHandler-object');
+const startupReq = require('../js/system/startup');
+const startup = new startupReq();
+// console.log(dlhandlerObject.itemURL);
 // let dlhandler;
 
 ////////////////////////////////////////////////////////////////////
@@ -16,16 +20,16 @@ exports.downloadItem = (itemURL, avType, platform) => {
     // );
 
     // DOWNLOAD ITEM
-    let dlhandler = new dlhandlerReq(itemURL); // creates new object using url to extract and download video with details
-    dlhandler.all(itemURL, avType);
-    // console.log(dlhandler);
-
-    // UPDATE UI
-    setTimeout(() => {
-        this.insertMarkup(dlhandler, avType);
-        this.addItem(avType);
-        // dlhandler.getFileSize();
-    }, 1500);
+    if (startup.dev.getDownloadItemInfo) {
+        let dlhandler = new dlhandlerReq(itemURL); // creates new object using url to extract and download video with details
+        dlhandler.all(itemURL, avType);
+        // UPDATE UI
+        setTimeout(() => {
+            this.insertMarkup(dlhandler, avType);
+            this.addItem(avType);
+            // dlhandler.getFileSize();
+        }, 1500);
+    }
 
     // PERSIST INTO STORAGE
 };
