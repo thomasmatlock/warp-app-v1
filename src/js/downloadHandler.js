@@ -24,15 +24,15 @@ class dlhandler {
         this.fileType;
         this.format; // which of the 35 formats, from 1080p, 720p60, etc
     }
-    getInfo = (itemURL) => {
-        ytdl.getBasicInfo(itemURL).then((info) => {
+    async getInfo(itemURL) {
+        await ytdl.getBasicInfo(itemURL).then((info) => {
             this.cloneVideoDetails(info, this.type);
 
             if (logging)
                 console.log(`
                 ${this.title},${this.lengthFormatted} long,${this.type} type,${this.height} pixels tall,${this.fps} fps`);
         });
-    };
+    }
     formatLength = (approxDurationMs) => {
         this.secs = Math.round(approxDurationMs / 1000); // returns video length in this.secs, rounded
         this.mins = (this.secs / 60).toFixed(1); // returns minutes with one decimal, ie, 3.4 mins long
@@ -79,6 +79,8 @@ class dlhandler {
         this.qualityLabel = this.selectedFormat.qualityLabel;
         this.audioQuality = this.selectedFormat.audioQuality;
         this.approxDurationMs = this.selectedFormat.approxDurationMs;
+        this.filePath = '';
+        this.finishedFilePath;
         // this.url = this.selectedFormat.url;
         // this.projectionType = this.selectedFormat.projectionType;
         // this.averageBitrate = this.selectedFormat.averageBitrate;
@@ -104,24 +106,28 @@ class dlhandler {
     downloadAndWrite = (itemURL) => {
         setTimeout(() => {
             this.removeCharactersFromTitle();
-            var filepath;
+            var filePath;
             // console.log(this.type);
             if (this.type === 'audio') {
                 // console.log('its audio type');
-                filepath = path.join(
+                filePath = path.join(
                     fileController.dirAudioPath,
                     `${this.title}.mp3` // fix this, needs to be audio and mp3
                 );
+                // this.finishedFilePath = filepath;
+                // console.log(this.finishedFilePath);
             } else if (this.type === 'video') {
                 // console.log('its video type');
-                filepath = path.join(
+                filePath = path.join(
                     fileController.dirVideoPath,
                     `${this.title}.mp4`
                 );
+                // this.finishedFilePath = filepath;
+                // console.log(this.finishedFilePath);
             }
             if (startup.dev.downloadFile) {
-                ytdl(itemURL).pipe(fs.createWriteStream(filepath)); // downloads video
                 console.log('item downloaded');
+                ytdl(itemURL).pipe(fs.createWriteStream(filePath)); // downloads video
             }
             if (logging && !startup.dev.downloadFile) {
                 console.log('item info pulled, but not downloaded');
@@ -129,12 +135,17 @@ class dlhandler {
             // if (logging) console.log(this);
         }, 1000);
     };
+    // #async
+    getFileSize = () => {
+        // console.log(this.filePath);
+    };
 
     all = (itemURL, type) => {
         this.type = type;
         // console.log(type, this.type);
         this.getInfo(itemURL);
         this.downloadAndWrite(itemURL);
+        this.getFileSize();
     };
 }
 

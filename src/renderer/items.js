@@ -3,24 +3,29 @@ const logging = true;
 const fs = require('fs');
 const { app, clipboard, ipcRenderer } = require('electron');
 const dlhandlerReq = require('../js/downloadHandler');
-const markup = require('./views/markup');
-let dlhandler;
+let markup = require('./views/markup');
+// let dlhandler;
 
 ////////////////////////////////////////////////////////////////////
 exports.downloadItem = (itemURL, avType, platform) => {
     // if (logging) console.log(`items.downloadItem: ${itemURL}, ${avType}`);
-    if (logging)
-        console.log(
-            `itemsjs: url ${itemURL}, avType ${avType}, platform ${platform}`
-        );
+    // if (logging)
+    // console.log(
+    //     `itemsjs: url ${itemURL}, avType ${avType}, platform ${platform}`
+    // );
 
     // DOWNLOAD ITEM
-    dlhandler = new dlhandlerReq(itemURL); // creates new object using url to extract and download video with details
+    let dlhandler = new dlhandlerReq(itemURL); // creates new object using url to extract and download video with details
     dlhandler.all(itemURL, avType);
     // console.log(dlhandler);
 
     // UPDATE UI
-    this.addItem();
+    setTimeout(() => {
+        this.insertMarkup(dlhandler, avType);
+        this.addItem();
+        this.destroyDLHandler(dlhandler);
+        dlhandler.getFileSize();
+    }, 1500);
 
     // PERSIST INTO STORAGE
 };
@@ -43,7 +48,40 @@ exports.addItem = (item, avType) => {
     audioDownloadList.appendChild(itemNodeAudio);
     videoDownloadList.appendChild(itemNodeVideo);
 };
-exports.insertMarkup = (downloadInfo, markup) => {};
+exports.insertMarkup = (downloadInfo, avType) => {
+    // INSERT AUDIO MARKUP
+    if (avType === 'audio') {
+        // console.log('ITS AUDIO TIME');
+        // insert audio info details
+        markup.audio = markup.audio.replace('%{title}', downloadInfo.title);
+        markup.audio = markup.audio.replace(
+            '%{lengthFormatted}',
+            downloadInfo.lengthFormatted
+        );
+    }
+    // INSERT VIDEO MARKUP
+    if (avType === 'video') {
+        markup.video = markup.video.replace('%{title}', downloadInfo.title);
+        markup.video = markup.video.replace('%{fps}', downloadInfo.fps);
+        markup.video = markup.video.replace('%{height}', downloadInfo.height);
+        markup.video = markup.video.replace(
+            '%{fileType}',
+            downloadInfo.fileType
+        );
+        markup.video = markup.video.replace(
+            '%{lengthFormatted}',
+            downloadInfo.lengthFormatted
+        );
+        // markup.video = markup.video.replace(
+        //     '%{thumbnail}',
+        //     downloadInfo.thumbnail
+        // );
+        console.log(downloadInfo.title);
+    }
+};
+exports.destroyDLHandler = (dlhandler) => {
+    dlhandler = null;
+};
 
 // ELECTRON PROJECT addItem function
 // // Add new item

@@ -11,9 +11,9 @@ class startup {
         this.dev = {
             devTools: !this.devMode ? false : true, // defaults to false, change 2nd option true for devTools
             backendOnly: false, // hides window
-            downloadFile: false,
+            downloadFile: true, //
             downloadSmallestFile: true,
-            autoClickPaste: false,
+            autoClickPaste: true,
             useRandomYoutubeURL: this.testingYoutubeURLS ? true : false, // uses YT URLS if testingYoutubeURLS is true
             useRandomMiscURL: !this.testingYoutubeURLS ? true : false, // uses misc URLS if testingYoutubeURLS is false
             URLSyoutube: urls,
@@ -28,7 +28,7 @@ class startup {
             ],
         };
         this.env = {
-            nav_A_active: !this.devMode ? 'audio' : 'video', // defaults to audio, change 2nd option to audio, video, or warpstagram
+            nav_A_active: !this.devMode ? 'audio' : 'video', //  2nd option to audio, video, or warpstagram, defaults to audio
             // hasFFmpeg: this.checkFFmpeg(),
             // this.loadAudioSlide = false; // set to true to load the audio portion of the content slide
             // this.loadVideoSlide = false; // set to true to load the video portion of the content slide

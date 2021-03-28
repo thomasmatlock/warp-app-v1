@@ -2,12 +2,12 @@ const markup = {
     audio: `<a href="#slide-audio " class="dl__item-audio">
                                         <div class="dl__item-audio_info-pane__left dl__item-audio_info-pane">
                                             <h4 class="dl__item-audio__data__property dl__item-audio__data__property-title">
-                                                HK just imported their most famous SMG. The SPK5
+                                                %{title}
                                             </h4>
                                         </div>
                                         <div class="dl__item-audio_info-pane__right dl__item-audio_info-pane">
                                             <p class="dl__item-audio__data__property dl__item-audio__data__property-file-length">
-                                                0:22:19
+                                                %{lengthFormatted}
                                             </p>
                                         </div>
                                     </a>`,
@@ -27,15 +27,14 @@ const markup = {
                                             <h4
                                                 class="dl__item__data__property dl__item__data__property-title"
                                             >
-                                                HK just imported their most
-                                                famous SMG. The SPK5
+                                               %{title}
                                             </h4>
                                         </div>
                                         <div class="dl__item_info-pane__bottom">
                                             <p
                                                 class="dl__item__data__property dl__item__data__property-file-length"
                                             >
-                                                0:22:19
+                                                %{lengthFormatted}
                                             </p>
                                             <p
                                                 class="dl__item__data__property dl__item__data__property-file-size"
@@ -45,17 +44,17 @@ const markup = {
                                             <p
                                                 class="dl__item__data__property dl__item__data__property-file-format"
                                             >
-                                                MP4
+                                                %{fileType}
                                             </p>
                                             <p
                                                 class="dl__item__data__property dl__item__data__property-file-res"
                                             >
-                                                1080
+                                                %{height}p
                                             </p>
                                             <p
                                                 class="dl__item__data__property dl__item__data__property-file-fps"
                                             >
-                                                25fps
+                                                %{fps}fps
                                             </p>
                                         </div>
                                     </div>
