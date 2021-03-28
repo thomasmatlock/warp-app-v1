@@ -18,7 +18,7 @@ class startup {
         this.dev = {
             devTools: !this.devMode ? false : true, // devTools off/on
             backendOnly: false, // hides window
-            getDownloadItemInfo: false,
+            getDownloadItemInfo: true,
             downloadFile: false,
             downloadSmallestFile: true,
             autoClickPaste: true, // pastes random URL on load

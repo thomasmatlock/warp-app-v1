@@ -9,27 +9,31 @@ const dlhandlerObject = require('../js/downloadHandler-object');
 const startupReq = require('../js/system/startup');
 const startup = new startupReq();
 
-dlhandlerObject.getInfo();
-dlhandlerObject.formatLength();
-dlhandlerObject.cloneVideoDetails();
-dlhandlerObject.removeCharactersFromTitle();
-dlhandlerObject.downloadAndWrite();
-dlhandlerObject.getFileSize();
-dlhandlerObject.all();
+// dlhandlerObject.getInfo();
+// dlhandlerObject.formatLength();
+// dlhandlerObject.cloneVideoDetails();
+// dlhandlerObject.removeCharactersFromTitle();
+// dlhandlerObject.downloadAndWrite();
+// dlhandlerObject.getFileSize();
+// dlhandlerObject.all();
 
 ////////////////////////////////////////////////////////////////////
 exports.downloadItem = (itemURL, avType, platform) => {
     // DOWNLOAD ITEM
     if (startup.dev.getDownloadItemInfo) {
-        // DOWNLOAD ITEM
-        let dlhandler = new dlhandlerReq(itemURL); // creates new object using url to extract and download video with details
-        dlhandler.all(itemURL, avType);
+        // DOWNLOAD ITEM with class dlhandler
+        // let dlhandler = new dlhandlerReq(itemURL); // creates new object using url to extract and download video with details
+        // dlhandler.all(itemURL, avType);
+
+        // DOWNLOAD ITEM with object dlhandler
+        dlhandlerObject.all(itemURL, avType);
         // UPDATE UI
         setTimeout(() => {
-            this.insertMarkup(dlhandler, avType);
-            this.addItem(avType);
+            // this.insertMarkup(dlhandler, avType);
+            // this.addItem(avType);
             // dlhandler.getFileSize();
         }, 1500);
+
         // PERSIST INTO STORAGE
     }
 };
