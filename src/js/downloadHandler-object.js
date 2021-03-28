@@ -7,36 +7,34 @@ const fileController = new fileControllerReq();
 const startupReq = require('./system/startup');
 const startup = new startupReq();
 
-// exports dlhandler: {
-//     itemURL: 'hello',
-//     type, // set to either audio or video
-//     selectedFormat,
-//     thumbnail,
-//     title,
-//     secs,
-//     mins,
-//     hrs,
-//     lengthFormatted,
-//     fileSize,
-//     height,
-//     fps,
-//     fileType,
-//     format, // which of the 35 formats, from 1080p, 720p60, etc
-// };
+const dlhandler = {
+    itemURL: 'this is the dlhandler',
+    type: '', // set to either audio or video
+    selectedFormat: '',
+    thumbnail: '',
+    title: '',
+    secs: '',
+    mins: '',
+    hrs: '',
+    lengthFormatted: '',
+    fileSize: '',
+    height: '',
+    fps: '',
+    fileType: '',
+    format: '', // which of the 35 formats, from 1080p, 720p60, etc
+};
 
 exports.getInfo = async function(itemURL) {
-    console.log('getInfo');
     // await ytdl.getBasicInfo(itemURL).then((info) => {
     //     this.cloneVideoDetails(info, this.type);
-
     //     if (logging)
     //         console.log(`
-    //             ${this.title},${this.lengthFormatted} long,${this.type} type,${this.height} pixels tall,${this.fps} fps`);
+    //             ${dlhandler.title},${dlhandler.lengthFormatted} long,${dlhandler.type} type,${dlhandler.height} pixels tall,${dlhandler.fps} fps`);
     // });
 };
 
 exports.formatLength = function(approxDurationMs) {
-    console.log('formatLength');
+    // console.log('formatLength');
     // this.secs = Math.round(approxDurationMs / 1000); // returns video length in this.secs, rounded
     // this.mins = (this.secs / 60).toFixed(1); // returns minutes with one decimal, ie, 3.4 mins long
     // this.lengthFormatted = Math.floor(this.mins);
@@ -56,13 +54,11 @@ exports.formatLength = function(approxDurationMs) {
     // this.secsStr = this.secs.toString();
     // this.minsStr = this.mins.toString();
     // if ((this.minsDigitCount = 1)) this.minsStr = '0' + this.minsStr; // adds a zero to the front of the mins string
-
     // this.lengthFormatted = `${this.hrs}:${this.minsStr}:${this.secsStr}`;
 };
 
 exports.cloneVideoDetails = function(info, type) {
-    console.log('cloneVideoDetails');
-
+    // console.log('cloneVideoDetails');
     // startup.dev.downloadSmallestFile ?
     //     (this.selectedFormat = info.formats[0]) // sets to smallest format for easy dev downloading
     //     :
@@ -96,7 +92,7 @@ exports.cloneVideoDetails = function(info, type) {
     // // this.audioChannels = this.selectedFormat.audioChannels;
 };
 exports.removeCharactersFromTitle = function() {
-    console.log('removeCharactersFromTitle');
+    // console.log('removeCharactersFromTitle');
     // this.title = this.title.replace('/', '');
     // this.title = this.title.replace('?', '');
     // this.title = this.title.replace(`\\`, '');
@@ -110,7 +106,7 @@ exports.removeCharactersFromTitle = function() {
 };
 
 exports.downloadAndWrite = function(itemURL) {
-    console.log('downloadAndWrite');
+    // console.log('downloadAndWrite');
     // setTimeout(() => {
     //     this.removeCharactersFromTitle();
     //     var filePath;
@@ -144,11 +140,11 @@ exports.downloadAndWrite = function(itemURL) {
 };
 // // #async
 exports.getFileSize = function() {
-    console.log('getFileSize');
+    // console.log('getFileSize');
 };
 
 exports.all = function(itemURL, type) {
-    console.log('all');
+    // console.log('all');
     // this.type = type;
     // // console.log(type, this.type);
     // this.getInfo(itemURL);
