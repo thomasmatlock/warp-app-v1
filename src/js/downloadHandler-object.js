@@ -7,7 +7,7 @@ const fileController = new fileControllerReq();
 const startupReq = require('./system/startup');
 const startup = new startupReq();
 
-const dlhandler = {
+let dlhandler = {
     itemURL: '',
     type: '', // set to either audio or video
     selectedFormat: '',
@@ -24,7 +24,7 @@ const dlhandler = {
     format: '', // which of the 35 formats, from 1080p, 720p60, etc
 };
 
-exports.getInfo = async function(itemURL) {
+const getInfo = async function(itemURL) {
     // console.log(itemURL);
     await ytdl.getBasicInfo(itemURL).then((info) => {
         this.cloneVideoDetails(itemURL, info, this.type);
@@ -34,7 +34,7 @@ exports.getInfo = async function(itemURL) {
     });
 };
 
-exports.formatLength = function(approxDurationMs) {
+const formatLength = function(approxDurationMs) {
     dlhandler.secs = Math.round(approxDurationMs / 1000); // returns video length in dlhandler.secs, rounded
     dlhandler.mins = (dlhandler.secs / 60).toFixed(1); // returns minutes with one decimal, ie, 3.4 mins long
     dlhandler.lengthFormatted = Math.floor(dlhandler.mins);
@@ -58,8 +58,8 @@ exports.formatLength = function(approxDurationMs) {
     dlhandler.lengthFormatted = `${dlhandler.hrs}:${dlhandler.minsStr}:${dlhandler.secsStr}`;
 };
 
-exports.cloneVideoDetails = function(itemURL, info, type) {
-    console.log(itemURL);
+const cloneVideoDetails = function(itemURL, info, type) {
+    // console.log(itemURL);
 
     startup.dev.downloadSmallestFile ?
         (dlhandler.selectedFormat = info.formats[0]) // sets to smallest format for easy dev downloading
@@ -95,7 +95,36 @@ exports.cloneVideoDetails = function(itemURL, info, type) {
     // this.audioSampleRate = this.selectedFormat.audioSampleRate;
     // this.audioChannels = this.selectedFormat.audioChannels;
 };
-exports.removeCharactersFromTitle = function() {
+
+const removeVideoDetails = function() {
+    //  startup.dev.downloadSmallestFile
+    //      ? (dlhandler.selectedFormat = info.formats[0]) // sets to smallest format for easy dev downloading
+    //      : (dlhandler.selectedFormat = info.formats[1]);
+    //  dlhandler.url = '';
+    //  dlhandler.itemURL = itemURL;
+    //  dlhandler.title = info.videoDetails.title;
+    //  this.formatLength(dlhandler.selectedFormat.approxDurationMs);
+    //  dlhandler.height = dlhandler.selectedFormat.height;
+    //  // dlhandler.type = type; // audio or video
+    //  dlhandler.thumbnail = info.videoDetails.thumbnails[3]; // (or the last thumbnail) usually seems to be highest res thumbnail. thumbn\ails are in descending order from low res to highest res
+    //  dlhandler.thumbnailURL = info.videoDetails.thumbnails[3].url; // (or the last thumbnail) usually seems to be highest res thumbnail. thumbn\ails are in descending order from low res to highest res
+    //  // dlhandler.fileSize;
+    //  dlhandler.fileType = 'MP4'; // mp4, etc
+    //  dlhandler.itag = dlhandler.selectedFormat.itag;
+    //  dlhandler.mimeType = '';
+    //  dlhandler.width = '';
+    //  dlhandler.height = '';
+    //  dlhandler.contentLength = '';
+    //  dlhandler.quality = '';
+    //  dlhandler.fps = dlhandler.selectedFormat.fps;
+    //  dlhandler.qualityLabel = dlhandler.selectedFormat.qualityLabel;
+    //  dlhandler.audioQuality = dlhandler.selectedFormat.audioQuality;
+    //  dlhandler.approxDurationMs = dlhandler.selectedFormat.approxDurationMs;
+    //  dlhandler.filePath = '';
+    //  dlhandler.finishedFilePath;
+    dlhandler = {};
+};
+const removeCharactersFromTitle = function() {
     // console.log('removeCharactersFromTitle');
     dlhandler.title = dlhandler.title.replace('/', '');
     dlhandler.title = dlhandler.title.replace('?', '');
@@ -109,7 +138,7 @@ exports.removeCharactersFromTitle = function() {
     // // if (this.logging) console.log('removed characters from title');
 };
 
-exports.downloadAndWrite = function(itemURL) {
+const downloadAndWrite = function(itemURL) {
     setTimeout(() => {
         this.removeCharactersFromTitle();
         var filePath;
@@ -142,11 +171,11 @@ exports.downloadAndWrite = function(itemURL) {
     }, 1000);
 };
 // // #async
-exports.getFileSize = function() {
+const getFileSize = function() {
     // console.log('getFileSize');
 };
 
-exports.all = function(itemURL, type) {
+const all = function(itemURL, type) {
     dlhandler.type = type;
     // console.log(type, dlhandler.type);
     this.getInfo(itemURL);
@@ -156,3 +185,15 @@ exports.all = function(itemURL, type) {
 };
 
 // module.exports = dlhandler;
+
+module.exports = {
+    dlhandler: dlhandler,
+    getInfo: getInfo,
+    formatLength: formatLength,
+    cloneVideoDetails: cloneVideoDetails,
+    removeVideoDetails: removeVideoDetails,
+    removeCharactersFromTitle: removeCharactersFromTitle,
+    downloadAndWrite: downloadAndWrite,
+    getFileSize: getFileSize,
+    all: all,
+};

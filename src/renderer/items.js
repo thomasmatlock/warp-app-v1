@@ -26,12 +26,17 @@ exports.downloadItem = (itemURL, avType, platform) => {
         // dlhandler.all(itemURL, avType);
 
         // DOWNLOAD ITEM with object dlhandler
-        dlhandlerObject.all(itemURL, avType);
+        // dlhandlerObject.all(itemURL, avType); // exports without object
+        dlhandlerObject.all(itemURL, avType); // exports without object
+        // console.log(dlhandlerObject.dlhandler);
         // UPDATE UI
         setTimeout(() => {
-            // this.insertMarkup(dlhandler, avType);
-            // this.addItem(avType);
+            console.log(dlhandlerObject.dlhandler);
+            this.insertMarkup(dlhandlerObject.dlhandler, avType);
+            this.addItem(avType);
+            // dlhandlerObject.removeVideoDetails();
             // dlhandler.getFileSize();
+            // dlhandlerObject.dlhandler = {};
         }, 1500);
 
         // PERSIST INTO STORAGE
