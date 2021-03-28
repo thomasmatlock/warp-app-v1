@@ -16,7 +16,7 @@ class startup {
             // this.loadWarpstagramSlide = false; // set to true to load the warpstagram portion of the content slide
         };
         this.dev = {
-            devTools: !this.devMode ? false : true, // defaults to false, change 2nd option true for devTools
+            devTools: !this.devMode ? false : true, // devTools off/on
             backendOnly: false, // hides window
             getDownloadItemInfo: false,
             downloadFile: false,

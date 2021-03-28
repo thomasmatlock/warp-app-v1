@@ -8,8 +8,14 @@ let markup = require('./views/markup');
 const dlhandlerObject = require('../js/downloadHandler-object');
 const startupReq = require('../js/system/startup');
 const startup = new startupReq();
-// console.log(dlhandlerObject.itemURL);
-// let dlhandler;
+
+dlhandlerObject.getInfo();
+dlhandlerObject.formatLength();
+dlhandlerObject.cloneVideoDetails();
+dlhandlerObject.removeCharactersFromTitle();
+dlhandlerObject.downloadAndWrite();
+dlhandlerObject.getFileSize();
+dlhandlerObject.all();
 
 ////////////////////////////////////////////////////////////////////
 exports.downloadItem = (itemURL, avType, platform) => {
