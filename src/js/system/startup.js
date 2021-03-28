@@ -8,13 +8,20 @@ class startup {
     constructor() {
         this.devMode = true;
         this.testingYoutubeURLS = true; // true will use youtube URLS, false will use misc non youtube URLS
+        this.env = {
+            nav_A_active: !this.devMode ? 'audio' : 'video', //   audio, video, or warpstagram, defaults to audio
+            // hasFFmpeg: this.checkFFmpeg(),
+            // this.loadAudioSlide = false; // set to true to load the audio portion of the content slide
+            // this.loadVideoSlide = false; // set to true to load the video portion of the content slide
+            // this.loadWarpstagramSlide = false; // set to true to load the warpstagram portion of the content slide
+        };
         this.dev = {
             devTools: !this.devMode ? false : true, // defaults to false, change 2nd option true for devTools
             backendOnly: false, // hides window
             getDownloadItemInfo: false,
             downloadFile: false,
             downloadSmallestFile: true,
-            autoClickPaste: true,
+            autoClickPaste: true, // pastes random URL on load
             useRandomYoutubeURL: this.testingYoutubeURLS ? true : false, // uses YT URLS if testingYoutubeURLS is true
             useRandomMiscURL: !this.testingYoutubeURLS ? true : false, // uses misc URLS if testingYoutubeURLS is false
             URLSyoutube: urls,
@@ -27,13 +34,6 @@ class startup {
                 'https://vimeo.com/210599507',
                 'https://www.tiktok.com/@foodies/video/6895167017570127109',
             ],
-        };
-        this.env = {
-            nav_A_active: !this.devMode ? 'audio' : 'audio', //  2nd option to audio, video, or warpstagram, defaults to audio
-            // hasFFmpeg: this.checkFFmpeg(),
-            // this.loadAudioSlide = false; // set to true to load the audio portion of the content slide
-            // this.loadVideoSlide = false; // set to true to load the video portion of the content slide
-            // this.loadWarpstagramSlide = false; // set to true to load the warpstagram portion of the content slide
         };
     }
 

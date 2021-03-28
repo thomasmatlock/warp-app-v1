@@ -13,14 +13,9 @@ const startup = new startupReq();
 
 ////////////////////////////////////////////////////////////////////
 exports.downloadItem = (itemURL, avType, platform) => {
-    // if (logging) console.log(`items.downloadItem: ${itemURL}, ${avType}`);
-    // if (logging)
-    // console.log(
-    //     `itemsjs: url ${itemURL}, avType ${avType}, platform ${platform}`
-    // );
-
     // DOWNLOAD ITEM
     if (startup.dev.getDownloadItemInfo) {
+        // DOWNLOAD ITEM
         let dlhandler = new dlhandlerReq(itemURL); // creates new object using url to extract and download video with details
         dlhandler.all(itemURL, avType);
         // UPDATE UI
@@ -29,9 +24,8 @@ exports.downloadItem = (itemURL, avType, platform) => {
             this.addItem(avType);
             // dlhandler.getFileSize();
         }, 1500);
+        // PERSIST INTO STORAGE
     }
-
-    // PERSIST INTO STORAGE
 };
 
 // Add new item
