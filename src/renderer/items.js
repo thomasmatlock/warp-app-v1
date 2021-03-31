@@ -25,7 +25,7 @@ exports.downloadItem = (itemURL, avType, platform) => {
         // console.log(dlhandlerObject.dlhandler);
         // UPDATE UI
         setTimeout(() => {
-            console.log(dlhandlerObject.dlhandler);
+            // console.log(dlhandlerObject.dlhandler);
             this.insertMarkup(dlhandlerObject.dlhandler, avType);
             this.addItem(avType);
             // console.log();
@@ -98,7 +98,7 @@ exports.insertMarkup = (downloadInfo, avType) => {
             '%{lengthFormatted}',
             downloadInfo.lengthFormatted
         );
-        console.log(downloadInfo.title, downloadInfo.lengthFormatted);
+        // console.log(downloadInfo.title, downloadInfo.lengthFormatted);
         // console.log(downloadInfo.thumbnailURL);
     }
 };

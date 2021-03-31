@@ -28,9 +28,9 @@ const getInfo = async function(itemURL) {
     // console.log(itemURL);
     await ytdl.getBasicInfo(itemURL).then((info) => {
         this.cloneVideoDetails(itemURL, info, this.type);
-        if (logging)
-            console.log(`
-                ${dlhandler.title}, ${dlhandler.lengthFormatted} long, ${dlhandler.type} type, ${dlhandler.height} pixels tall, ${dlhandler.fps} fps`);
+        // if (logging)
+        //     console.log(`
+        //         ${dlhandler.title}, ${dlhandler.lengthFormatted} long, ${dlhandler.type} type, ${dlhandler.height} pixels tall, ${dlhandler.fps} fps`);
     });
 };
 
