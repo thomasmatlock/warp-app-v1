@@ -139,36 +139,38 @@ const removeCharactersFromTitle = function() {
 };
 
 const downloadAndWrite = function(itemURL) {
-    setTimeout(() => {
-        this.removeCharactersFromTitle();
-        var filePath;
-        // console.log(this.type);
-        if (dlhandler.type === 'audio') {
-            // console.log('its audio type');
-            filePath = path.join(
-                fileController.dirAudioPath,
-                `${dlhandler.title}.mp3` // fix this, needs to be audio and mp3
-            );
-            // this.finishedFilePath = filepath;
-            // console.log(this.finishedFilePath);
-        } else if (dlhandler.type === 'video') {
-            // console.log('its video type');
-            filePath = path.join(
-                fileController.dirVideoPath,
-                `${dlhandler.title}.mp4`
-            );
-            // this.finishedFilePath = filepath;
-            // console.log(this.finishedFilePath);
-        }
-        if (startup.dev.downloadFile) {
-            console.log('item downloaded');
-            ytdl(itemURL).pipe(fs.createWriteStream(filePath)); // downloads video
-        }
-        if (logging && !startup.dev.downloadFile) {
-            console.log('item info pulled, but not downloaded');
-        }
-        // if (logging) console.log(this);
-    }, 1000);
+    if (startup.dev.getDownloadItemInfo) {
+        setTimeout(() => {
+            this.removeCharactersFromTitle();
+            var filePath;
+            // console.log(this.type);
+            if (dlhandler.type === 'audio') {
+                // console.log('its audio type');
+                filePath = path.join(
+                    fileController.dirAudioPath,
+                    `${dlhandler.title}.mp3` // fix this, needs to be audio and mp3
+                );
+                // this.finishedFilePath = filepath;
+                // console.log(this.finishedFilePath);
+            } else if (dlhandler.type === 'video') {
+                // console.log('its video type');
+                filePath = path.join(
+                    fileController.dirVideoPath,
+                    `${dlhandler.title}.mp4`
+                );
+                // this.finishedFilePath = filepath;
+                // console.log(this.finishedFilePath);
+            }
+            if (startup.dev.downloadFile) {
+                console.log('item downloaded');
+                ytdl(itemURL).pipe(fs.createWriteStream(filePath)); // downloads video
+            }
+            if (logging && !startup.dev.downloadFile) {
+                console.log('item info pulled, but not downloaded');
+            }
+            // if (logging) console.log(this);
+        }, 1000);
+    }
 };
 // // #async
 const getFileSize = function() {

@@ -14,6 +14,7 @@ const userInput = require('../js/userInput');
 const startupReq = require('../js/system/startup');
 const startup = new startupReq();
 const items = require('./items');
+const autoClick = require('./autoClick');
 
 // console.log(items);
 
@@ -50,6 +51,7 @@ ipcRenderer.on('window-ready', () => {
     if (startup.env.nav_A_active == 'video' && startup.dev.autoClickPaste) {
         elements.testClassVideo.click(); // clicks video paste
         elements.nav_A_active = elements.nav_A_video; // sets active Nav A
+        autoClick.testCLick();
     }
 });
 // Fire on resize window
