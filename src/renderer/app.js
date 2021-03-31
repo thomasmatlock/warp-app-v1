@@ -14,26 +14,30 @@ const userInput = require('../js/userInput');
 const startupReq = require('../js/system/startup');
 const startup = new startupReq();
 const items = require('./items');
-const autoClick = require('./autoClick');
+const auto = require('./automate');
 
 // console.log(items);
 
 let state = {};
 state.nav = new Nav(); // controls active nav
+// console.log(state.nav);
 
 ////////////////////////////////////////////////////////////
 // IPCRENDERER LISTENERS
 // activates selected nav A tab on window ready
 ipcRenderer.on('window-ready', () => {
-    // SET NAV A
-    autoClick.nav_A(startup.env.nav_A_active); // clicks active tab
-    elements.nav_A_active = elements.nav_A_warpstagram; // sets active Nav A
-
-    // AUTOCLICK PASTE
-    if (startup.dev.autoClickPaste) {
-        autoClick.nav_B(startup.env.nav_A_active, 'paste'); // clicks audio paste
-    }
+    auto.click_nav_A(startup.env.nav_A_active); // auto clicks active tab if active
+    setActiveNav_A(startup.env.nav_A_active); // sets active Nav A
+    auto.click_nav_B(startup.env.nav_A_active, 'paste'); // auto clicks paste if active
 });
+
+const setActiveNav_A = (nav_A_active) => {
+    if (nav_A_active === 'audio') elements.nav_A_active = elements.nav_A_audio;
+    if (nav_A_active === 'video') elements.nav_A_active = elements.nav_A_video;
+    if (nav_A_active === 'warpstagram')
+        elements.nav_A_active = elements.nav_A_warpstagram;
+};
+
 // Fire on resize window
 ipcRenderer.on('resize', () => {
     var clickDelay = 50;

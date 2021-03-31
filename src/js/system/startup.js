@@ -9,7 +9,8 @@ class startup {
         this.devMode = true;
         this.testingYoutubeURLS = true; // true will use youtube URLS, false will use misc non youtube URLS
         this.env = {
-            nav_A_active: !this.devMode ? 'audio' : 'video', //   audio, video, or warpstagram, defaults to audio
+            nav_A_active: !this.devMode ? 'audio' : 'audio', //   audio, video, or warpstagram, defaults to audio
+            user: 'dev', // can be dev, free, or paid
             // hasFFmpeg: this.checkFFmpeg(),
             // this.loadAudioSlide = false; // set to true to load the audio portion of the content slide
             // this.loadVideoSlide = false; // set to true to load the video portion of the content slide
@@ -21,6 +22,7 @@ class startup {
             getDownloadItemInfo: false,
             downloadFile: false,
             downloadSmallestFile: true,
+            autoClickNavA_active: true, // clicks nav A tab on load
             autoClickPaste: true, // pastes random URL on load
             useRandomYoutubeURL: this.testingYoutubeURLS ? true : false, // uses YT URLS if testingYoutubeURLS is true
             useRandomMiscURL: !this.testingYoutubeURLS ? true : false, // uses misc URLS if testingYoutubeURLS is false
