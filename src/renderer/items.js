@@ -3,7 +3,6 @@ const logging = true;
 const fs = require('fs');
 const { app, clipboard, ipcRenderer } = require('electron');
 const imageDownloader = require('image-downloader');
-const dlhandlerReq = require('../js/downloadHandler-class');
 let markup = require('./views/markup');
 let dlhandlerObject = require('../js/downloadHandler-object');
 const startupReq = require('../js/system/startup');
