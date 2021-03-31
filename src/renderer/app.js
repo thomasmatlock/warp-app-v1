@@ -25,33 +25,29 @@ state.nav = new Nav(); // controls active nav
 // IPCRENDERER LISTENERS
 // activates selected nav A tab on window ready
 ipcRenderer.on('window-ready', () => {
+    // SET NAV A
     // console.log(startup.env.nav_A_active);
-    if (logging) {
-        // console.log(
-        //     `ipcRenderer.on('window-ready', nav_A_active is ${startup.env.nav_A_active}`
-        // );
-    }
-    // Set Nav A
     if (startup.env.nav_A_active == 'audio') {
-        elements.nav_A_audio.click(); // clicks audio tab
+        autoClick.nav_A(startup.env.nav_A_active); // clicks video tab
         elements.nav_A_active = elements.nav_A_audio; // sets active Nav A
     }
     if (startup.env.nav_A_active == 'video') {
-        elements.nav_A_video.click(); // clicks video tab
+        autoClick.nav_A(startup.env.nav_A_active); // clicks active tab
         elements.nav_A_active = elements.nav_A_video; // sets active Nav A
     }
-    if (startup.env.nav_A_active == 'warpstagram')
-        elements.nav_A_warpstagram.click(); // clicks warpstagram tab
+    if (startup.env.nav_A_active == 'warpstagram') {
+        autoClick.nav_A(startup.env.nav_A_active); // clicks active tab
+        elements.nav_A_active = elements.nav_A_warpstagram; // sets active Nav A
+    }
 
-    // Autoclick paste
+    // AUTOCLICK PASTE
     if (startup.env.nav_A_active == 'audio' && startup.dev.autoClickPaste) {
-        elements.testClassAudio.click(); // clicks audio paste
+        autoClick.nav_B(startup.env.nav_A_active, 'paste'); // clicks audio paste
         elements.nav_A_active = elements.nav_A_audio; // sets active Nav A
     }
     if (startup.env.nav_A_active == 'video' && startup.dev.autoClickPaste) {
-        elements.testClassVideo.click(); // clicks video paste
+        autoClick.nav_B(startup.env.nav_A_active, 'paste'); // clicks audio paste
         elements.nav_A_active = elements.nav_A_video; // sets active Nav A
-        autoClick.testCLick();
     }
 });
 // Fire on resize window
