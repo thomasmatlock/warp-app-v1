@@ -5,18 +5,12 @@ const { app, clipboard, ipcRenderer } = require('electron');
 const imageDownloader = require('image-downloader');
 const dlhandlerReq = require('../js/downloadHandler-class');
 let markup = require('./views/markup');
-const dlhandlerObject = require('../js/downloadHandler-object');
+let dlhandlerObject = require('../js/downloadHandler-object');
 const startupReq = require('../js/system/startup');
 const startup = new startupReq();
 
-// dlhandlerObject.getInfo();
-// dlhandlerObject.formatLength();
-// dlhandlerObject.cloneVideoDetails();
-// dlhandlerObject.removeCharactersFromTitle();
-// dlhandlerObject.downloadAndWrite();
-// dlhandlerObject.getFileSize();
-// dlhandlerObject.all();
-
+let markupAudio = markup.audio;
+let markupVideo = markup.video;
 ////////////////////////////////////////////////////////////////////
 exports.downloadItem = (itemURL, avType, platform) => {
     // DOWNLOAD ITEM
@@ -34,6 +28,8 @@ exports.downloadItem = (itemURL, avType, platform) => {
             console.log(dlhandlerObject.dlhandler);
             this.insertMarkup(dlhandlerObject.dlhandler, avType);
             this.addItem(avType);
+            // console.log();
+            this.resetMarkup();
             // dlhandlerObject.removeVideoDetails();
             // dlhandler.getFileSize();
             // dlhandlerObject.dlhandler = {};
@@ -45,31 +41,47 @@ exports.downloadItem = (itemURL, avType, platform) => {
 
 // Add new item
 exports.addItem = (avType) => {
+    // console.log(markupAudio);
     //////////////////////////////////////////////////////////////////// working
     if (avType === 'audio') {
         let audioDownloadList = document.querySelector('.download__list_audio');
         let itemNodeAudio = document.createElement('li'); // Create a new HTML Dom node
-        itemNodeAudio.innerHTML = markup.audio; // Insert markup
+        itemNodeAudio.innerHTML = markupAudio; // Insert markup
         audioDownloadList.appendChild(itemNodeAudio); // Append item node
     }
     if (avType === 'video') {
         let videoDownloadList = document.querySelector('.download__list_video');
         let itemNodeVideo = document.createElement('li'); // Create a new HTML Dom node
-        itemNodeVideo.innerHTML = markup.video; // Insert markup
+
+        itemNodeVideo.innerHTML = markupVideo; // Insert markup
         videoDownloadList.appendChild(itemNodeVideo); // Append item node
     }
 };
+
+exports.resetMarkup = () => {
+    markupAudio = markup.audio;
+};
+
 exports.insertMarkup = (downloadInfo, avType) => {
     // console.log(`avType is ${avType}`);
     // INSERT AUDIO MARKUP
     if (avType === 'audio') {
         // console.log('ITS AUDIO TIME');
         // insert audio info details
-        markup.audio = markup.audio.replace('%{title}', downloadInfo.title);
-        markup.audio = markup.audio.replace(
+
+        // markup.audio = markup.audio.replace('%{title}', downloadInfo.title);
+        // markup.audio = markup.audio.replace(
+        //     '%{lengthFormatted}',
+        //     downloadInfo.lengthFormatted
+        // );
+        markupAudio = markupAudio.replace('%{title}', downloadInfo.title);
+        markupAudio = markupAudio.replace(
             '%{lengthFormatted}',
             downloadInfo.lengthFormatted
         );
+        // console.log(markup.audio);
+        // console.log(markupAudio);
+        // console.log(downloadInfo.title, downloadInfo.lengthFormatted);
     }
     // INSERT VIDEO MARKUP
     if (avType === 'video') {
@@ -88,6 +100,7 @@ exports.insertMarkup = (downloadInfo, avType) => {
             '%{lengthFormatted}',
             downloadInfo.lengthFormatted
         );
+        console.log(downloadInfo.title, downloadInfo.lengthFormatted);
         // console.log(downloadInfo.thumbnailURL);
     }
 };

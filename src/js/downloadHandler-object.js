@@ -30,7 +30,7 @@ const getInfo = async function(itemURL) {
         this.cloneVideoDetails(itemURL, info, this.type);
         if (logging)
             console.log(`
-                ${dlhandler.title},${dlhandler.lengthFormatted} long,${dlhandler.type} type,${dlhandler.height} pixels tall,${dlhandler.fps} fps`);
+                ${dlhandler.title}, ${dlhandler.lengthFormatted} long, ${dlhandler.type} type, ${dlhandler.height} pixels tall, ${dlhandler.fps} fps`);
     });
 };
 
