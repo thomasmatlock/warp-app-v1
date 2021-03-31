@@ -60,6 +60,7 @@ exports.addItem = (avType) => {
 
 exports.resetMarkup = () => {
     markupAudio = markup.audio;
+    markupVideo = markup.video;
 };
 
 exports.insertMarkup = (downloadInfo, avType) => {
@@ -85,18 +86,15 @@ exports.insertMarkup = (downloadInfo, avType) => {
     }
     // INSERT VIDEO MARKUP
     if (avType === 'video') {
-        markup.video = markup.video.replace(
+        markupVideo = markupVideo.replace(
             '%{thumbnail}',
             downloadInfo.thumbnailURL
         );
-        markup.video = markup.video.replace('%{title}', downloadInfo.title);
-        markup.video = markup.video.replace('%{fps}', downloadInfo.fps);
-        markup.video = markup.video.replace('%{height}', downloadInfo.height);
-        markup.video = markup.video.replace(
-            '%{fileType}',
-            downloadInfo.fileType
-        );
-        markup.video = markup.video.replace(
+        markupVideo = markupVideo.replace('%{title}', downloadInfo.title);
+        markupVideo = markupVideo.replace('%{fps}', downloadInfo.fps);
+        markupVideo = markupVideo.replace('%{height}', downloadInfo.height);
+        markupVideo = markupVideo.replace('%{fileType}', downloadInfo.fileType);
+        markupVideo = markupVideo.replace(
             '%{lengthFormatted}',
             downloadInfo.lengthFormatted
         );
