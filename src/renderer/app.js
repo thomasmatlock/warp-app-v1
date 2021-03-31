@@ -26,28 +26,12 @@ state.nav = new Nav(); // controls active nav
 // activates selected nav A tab on window ready
 ipcRenderer.on('window-ready', () => {
     // SET NAV A
-    // console.log(startup.env.nav_A_active);
-    if (startup.env.nav_A_active == 'audio') {
-        autoClick.nav_A(startup.env.nav_A_active); // clicks video tab
-        elements.nav_A_active = elements.nav_A_audio; // sets active Nav A
-    }
-    if (startup.env.nav_A_active == 'video') {
-        autoClick.nav_A(startup.env.nav_A_active); // clicks active tab
-        elements.nav_A_active = elements.nav_A_video; // sets active Nav A
-    }
-    if (startup.env.nav_A_active == 'warpstagram') {
-        autoClick.nav_A(startup.env.nav_A_active); // clicks active tab
-        elements.nav_A_active = elements.nav_A_warpstagram; // sets active Nav A
-    }
+    autoClick.nav_A(startup.env.nav_A_active); // clicks active tab
+    elements.nav_A_active = elements.nav_A_warpstagram; // sets active Nav A
 
     // AUTOCLICK PASTE
-    if (startup.env.nav_A_active == 'audio' && startup.dev.autoClickPaste) {
+    if (startup.dev.autoClickPaste) {
         autoClick.nav_B(startup.env.nav_A_active, 'paste'); // clicks audio paste
-        elements.nav_A_active = elements.nav_A_audio; // sets active Nav A
-    }
-    if (startup.env.nav_A_active == 'video' && startup.dev.autoClickPaste) {
-        autoClick.nav_B(startup.env.nav_A_active, 'paste'); // clicks audio paste
-        elements.nav_A_active = elements.nav_A_video; // sets active Nav A
     }
 });
 // Fire on resize window
