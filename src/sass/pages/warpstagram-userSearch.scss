@@ -1,0 +1,102 @@
+.user-search {
+    display: flex;
+    flex-direction: row;
+    // border: $dev-border;
+    align-items: center;
+    align-content: center;
+    justify-content: flex-start;
+    // padding: 1vh;
+    // height: 5vh;
+    height: 72px; // 4kdl
+    width: 100%;
+    box-shadow: $shadow-light;
+    // border: 3px dotted green;
+}
+
+.user-search-input {
+    width: 100%;
+    // flex: 15;
+    // border: $dev-border;
+    // height: 4vh;
+    height: 38px; // per 4kdl
+    margin: 0 1vh 0;
+    // box-shadow: $shadow-after;
+    // border: 1px dotted green;
+}
+
+#user-search-input__field {
+    border-radius: 3px;
+    width: 100%;
+    height: 38px; // per 4kdl
+    // border: 1px dotted green;
+    // box-shadow: $shadow-after;
+    &:hover {
+        //// CONTENT
+        // color: white;
+        // background-image: $wildfire-background-blue-color-gradient-1;
+        // color: white;
+        // background: $color-tertiary-medium;
+        // background: $dark-light;
+        background-position: bottom;
+        // transform: scale(1.05);
+        transition: all 0.5s ease;
+        box-shadow: $shadow-after;
+        z-index: 20;
+    }
+}
+
+.user-search-subscribe {
+    // border: $dev-border;
+    // border: 1px dotted green;
+    border-radius: 3px;
+    // flex: 3;
+    width: 160px; // per 4kdl
+    // height: 100%;
+    height: 40px;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    // height: 4vh;
+}
+
+.user-search-subscribe__button {
+    // border: 1px dotted blue;
+    height: 100%;
+}
+
+.user-search-settings {
+    height: 40px;
+    // height: 100%;
+    border-radius: 3px;
+    // border: 1px dotted blue;
+    // width: 5%;
+    width: 40px;
+    // flex: 1;
+}
+
+#user-search-subscribe__button {
+    border: $dev-border;
+    width: 160px;
+    // height: 4vh;
+    height: 40px;
+    &:hover {
+        //// CONTENT
+        // color: white;
+        // background-image: $codepen-orange-1;
+        // background-image: $wildfire-background-blue-color-gradient-1;
+        // color: white;
+        // background: $color-tertiary-medium;
+        // background-image: $codepen-orange-1;
+        // background: $dark-light;
+        background-position: bottom;
+        // transform: scale(1.05); 
+        transition: all 0.1s ease;
+        // box-shadow: $shadow-after;
+        z-index: 20;
+    }
+}
+
+.user-search-settings img {
+    height: 24px;
+}
