@@ -16,18 +16,35 @@ const elements = {
     nav_B_video: document.querySelector('.nav_B_video'),
     nav_B__main: document.querySelector('.nav_B__main'),
     nav_B__minor: document.querySelector('.nav_B__minor'),
+
+    // Nav B audio
     nav_B_button_audio_paste: document.querySelector(
         '.nav_B_button_audio_paste'
     ),
-    nav_B_button_audio_paste: document.querySelector(
-        '.nav_B_button_audio_paste'
+    nav_B_button_audio_activate: document.querySelector(
+        '.nav_B_button_audio_activate'
     ),
+    nav_B_button_audio_preferences: document.querySelector(
+        '.nav_B_button_audio_preferences'
+    ),
+    nav_B_button_audio_help: document.querySelector('.nav_B_button_audio_help'),
+    // Nav B video
     nav_B_button_video_paste: document.querySelector(
         '.nav_B_button_video_paste'
     ),
-    videoSmartMode: document.querySelector(
-        '.nav_B_button-slide-video-SmartMode'
+    nav_B_button_video_smartMode: document.querySelector(
+        '.nav_B_button_video_smartMode'
     ),
+    nav_B_button_video_activate: document.querySelector(
+        '.nav_B_button_video_activate'
+    ),
+    nav_B_button_video_subscriptions: document.querySelector(
+        '.nav_B_button_video_subscriptions'
+    ),
+    nav_B_button_video_preferences: document.querySelector(
+        '.nav_B_button_video_preferences'
+    ),
+    nav_B_button_video_help: document.querySelector('.nav_B_button_video_help'),
 
     // Download lists
     download__list: document.querySelector('.download__list'),

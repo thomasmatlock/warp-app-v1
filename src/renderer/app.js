@@ -3,7 +3,7 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-unused-vars */
 /* eslint-disable one-var */
-const logging = false;
+const logging = true;
 const { app, clipboard, ipcRenderer } = require('electron');
 let elements = require('./views/elements');
 const navPrimaryView = require('./views/navPrimaryView.js');
@@ -28,7 +28,13 @@ state.nav = new Nav(); // controls active nav
 ipcRenderer.on('window-ready', () => {
     auto.click_nav_A(startup.env.nav_A_active); // auto clicks active tab if active
     setActiveNav_A(startup.env.nav_A_active); // sets active Nav A
+    // TURN ON BASED ON TESTING NEEDS
     auto.click_nav_B(startup.env.nav_A_active, 'paste'); // auto clicks paste if active
+    // auto.click_nav_B(startup.env.nav_A_active, 'smartMode'); // auto clicks smartMode if active
+    // auto.click_nav_B(startup.env.nav_A_active, 'activate'); // auto clicks activate if active
+    // auto.click_nav_B(startup.env.nav_A_active, 'subscriptions'); // auto clicks subscriptions if active
+    // auto.click_nav_B(startup.env.nav_A_active, 'preferences'); // auto clicks preferences if active
+    // auto.click_nav_B(startup.env.nav_A_active, 'help'); // auto clicks help if active
 });
 
 const setActiveNav_A = (nav_A_active) => {
@@ -65,7 +71,7 @@ ipcRenderer.on('resize', () => {
 });
 ipcRenderer.on('asynchronous-reply', (event, itemURL, avType, platform) => {
     if (logging)
-        console.log(`url ${itemURL}, avType ${avType}, platform ${platform}`);
+        console.log(`${itemURL}, avType ${avType}, platform ${platform}`);
     items.downloadItem(itemURL, avType, platform);
 });
 
@@ -179,13 +185,35 @@ elements.nav_A_warpstagram.addEventListener('click', (e) => {
     if (logging)
         console.log(`env.nav_A_active is now ${startup.env.nav_A_active}`);
 });
-// Nav B LISTENERS
+// Nav B audio LISTENERS
 elements.nav_B_button_audio_paste.addEventListener('click', (e) => {
     userInput.validateURL(clipboard.readText(), startup.env.nav_A_active);
 });
+elements.nav_B_button_audio_activate.addEventListener('click', (e) => {
+    if (logging) console.log('clicked activate');
+});
+elements.nav_B_button_audio_preferences.addEventListener('click', (e) => {
+    if (logging) console.log('clicked preferences');
+});
+elements.nav_B_button_audio_help.addEventListener('click', (e) => {
+    if (logging) console.log('clicked help');
+});
+// Nav B video LISTENERS
 elements.nav_B_button_video_paste.addEventListener('click', (e) => {
     userInput.validateURL(clipboard.readText(), startup.env.nav_A_active);
 });
-elements.videoSmartMode.addEventListener('click', (e) => {
+elements.nav_B_button_video_smartMode.addEventListener('click', (e) => {
     if (logging) console.log('clicked smart mode');
+});
+elements.nav_B_button_video_activate.addEventListener('click', (e) => {
+    if (logging) console.log('clicked activate');
+});
+elements.nav_B_button_video_subscriptions.addEventListener('click', (e) => {
+    if (logging) console.log('clicked subscriptions');
+});
+elements.nav_B_button_video_preferences.addEventListener('click', (e) => {
+    if (logging) console.log('clicked preferences');
+});
+elements.nav_B_button_video_help.addEventListener('click', (e) => {
+    if (logging) console.log('clicked help');
 });
