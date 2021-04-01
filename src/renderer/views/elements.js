@@ -17,6 +17,9 @@ const elements = {
     nav_B__main: document.querySelector('.nav_B__main'),
     nav_B__minor: document.querySelector('.nav_B__minor'),
     testClassAudio: document.querySelector('.testClassAudio'),
+    nav_B_button_audio_paste: document.querySelector(
+        '.nav_B_button_audio_paste'
+    ),
     testClassVideo: document.querySelector('.testClassVideo'),
     videoSmartMode: document.querySelector(
         '.nav_B-button-slide-video-SmartMode'

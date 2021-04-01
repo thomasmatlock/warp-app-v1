@@ -58,9 +58,9 @@ const formatLength = function(approxDurationMs) {
         dlhandler.minsStr = '0' + dlhandler.minsStr; // adds a zero to the front of the mins string
 
     if (dlhandler.secsStrLength === 1) {
-        console.log(`old: ${dlhandler.secsStr}`);
+        // console.log(`old: ${dlhandler.secsStr}`);
         dlhandler.secsStr = '0' + dlhandler.secsStr; // adds a zero to the front of the secs string
-        console.log(`new: ${dlhandler.secsStr}`);
+        // console.log(`new: ${dlhandler.secsStr}`);
         // console.log(typeof dlhandler.secsStr);
     }
     // console.log(
