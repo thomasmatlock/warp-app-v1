@@ -29,6 +29,7 @@ exports.downloadItem = (itemURL, avType, platform) => {
             this.addItem(avType);
             // console.log();
             this.resetMarkup();
+            this.save();
             // dlhandlerObject.removeVideoDetails();
             // dlhandler.getFileSize();
             // dlhandlerObject.dlhandler = {};
@@ -116,6 +117,11 @@ exports.downloadThumbnail = (url) => {
             console.log('Saved to', filename); // saved to /path/to/dest/photo.jpg
         })
         .catch((err) => console.error(err));
+};
+
+exports.save = () => {
+    // window.localStorage.setItem('readit-items', JSON.stringify(this.storage)); // localStorage supports strings only, use Json.stringify
+    window.localStorage.setItem('readit-items', JSON.stringify('hello')); // localStorage supports strings only, use Json.stringify
 };
 
 // ELECTRON PROJECT addItem function

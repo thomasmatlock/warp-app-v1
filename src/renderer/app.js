@@ -3,7 +3,7 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-unused-vars */
 /* eslint-disable one-var */
-const logging = true;
+const logging = false;
 const { app, clipboard, ipcRenderer } = require('electron');
 let elements = require('./views/elements');
 const navPrimaryView = require('./views/navPrimaryView.js');
