@@ -10,8 +10,8 @@ const elements = {
     nav_A_warpstagram: document.getElementById('nav_A_warpstagram'),
     // Nav B
     nav_B: document.querySelector('.nav_B'),
-    nav_B_button: document.querySelector('.nav_B-button'),
-    nav_B_buttonArr: document.querySelectorAll('.nav_B-button'),
+    nav_B_button: document.querySelector('.nav_B_button'),
+    nav_B_buttonArr: document.querySelectorAll('.nav_B_button'),
     nav_B_audio: document.querySelector('.nav_B_audio'),
     nav_B_video: document.querySelector('.nav_B_video'),
     nav_B__main: document.querySelector('.nav_B__main'),
@@ -22,7 +22,7 @@ const elements = {
     ),
     testClassVideo: document.querySelector('.testClassVideo'),
     videoSmartMode: document.querySelector(
-        '.nav_B-button-slide-video-SmartMode'
+        '.nav_B_button-slide-video-SmartMode'
     ),
 
     // Download lists

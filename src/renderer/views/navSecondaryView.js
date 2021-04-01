@@ -4,22 +4,22 @@ const elements = require('./elements');
 
 exports.clearActive = () => {
     // GET ARRAY OF NAV TABS
-    // const tabsArr = Array.from(document.querySelectorAll('.nav_B-button'));
+    // const tabsArr = Array.from(document.querySelectorAll('.nav_B_button'));
     // console.log(elements.nav_B_buttonArr);
     // REMOVE ACTIVE CLASS FROM ALL TABS
     elements.nav_B_buttonArr.forEach((el) => {
-        el.classList.remove('nav_B-button-slide--active');
+        el.classList.remove('nav_B_button-slide--active');
     });
 };
 
 // REPLACE NAVB TITLES DEPENDING ON WHICH NAV PRIMARY IS CLICKED
 exports.updateTitles = (nav_A_id) => {
     const nav_B_button_arr = [
-        Array.from(document.querySelectorAll('.nav_B-button-slide-audio')),
-        Array.from(document.querySelectorAll('.nav_B-button-slide-video')),
-        Array.from(document.querySelectorAll('.nav_B-button-slide-2')),
+        Array.from(document.querySelectorAll('.nav_B_button-slide-audio')),
+        Array.from(document.querySelectorAll('.nav_B_button-slide-video')),
+        Array.from(document.querySelectorAll('.nav_B_button-slide-2')),
         Array.from(
-            document.querySelectorAll('.nav_B-button-slide-warpstagram')
+            document.querySelectorAll('.nav_B_button-slide-warpstagram')
         ),
     ];
 
@@ -56,10 +56,10 @@ const replaceNavSecondaryTitles = (targetTabs, newTitles) => {
 exports.highlightSelected = (type, tabId) => {
     if (type === 'add') {
         let tab = document.getElementById(`${tabId}`);
-        tab.classList.add('nav_B-button--active');
+        tab.classList.add('nav_B_button--active');
     } else if (type === 'remove') {
         let tab = document.getElementById(`${tabId}`);
-        tab.classList.remove('nav_B-button--active');
+        tab.classList.remove('nav_B_button--active');
     }
 };
 
@@ -82,5 +82,5 @@ exports.checkActive = (target, classString) => {
 // exports.toggleHighlight = (id) => {
 //     console.log(`toggling highlight on ${id}`);
 //     let tab = document.getElementById(`${id}`);
-//     tab.classList.add('nav_B-button--active');
+//     tab.classList.add('nav_B_button--active');
 // };
