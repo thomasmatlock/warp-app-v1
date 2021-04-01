@@ -53,8 +53,20 @@ const formatLength = function(approxDurationMs) {
     dlhandler.secsDigitCount = (dlhandler.secs + '').replace('.', '').length;
     dlhandler.secsStr = dlhandler.secs.toString();
     dlhandler.minsStr = dlhandler.mins.toString();
+    dlhandler.secsStrLength = dlhandler.secsStr.length;
     if ((dlhandler.minsDigitCount = 1))
         dlhandler.minsStr = '0' + dlhandler.minsStr; // adds a zero to the front of the mins string
+
+    if (dlhandler.secsStrLength === 1) {
+        console.log(`old: ${dlhandler.secsStr}`);
+        dlhandler.secsStr = '0' + dlhandler.secsStr; // adds a zero to the front of the secs string
+        console.log(`new: ${dlhandler.secsStr}`);
+        // console.log(typeof dlhandler.secsStr);
+    }
+    // console.log(
+    //     `There are ${dlhandler.secsDigitCount} digits in the seconds part`
+    // );
+    // console.log(`string is ${dlhandler.secsStr.length} characters long`);
     dlhandler.lengthFormatted = `${dlhandler.hrs}:${dlhandler.minsStr}:${dlhandler.secsStr}`;
 };
 
@@ -166,7 +178,7 @@ const downloadAndWrite = function(itemURL) {
                 ytdl(itemURL).pipe(fs.createWriteStream(filePath)); // downloads video
             }
             if (logging && !startup.dev.downloadFile) {
-                console.log('item info pulled, but not downloaded');
+                // console.log('item info pulled, but not downloaded');
             }
             // if (logging) console.log(this);
         }, 1000);

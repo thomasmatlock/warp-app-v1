@@ -281,7 +281,8 @@ li {
   color: white !important; }
 
 .download__list li {
-  height: 7vh;
+  height: 57px;
+  max-height: 57px;
   border: 1px solid #eee;
   transition: all ease-out 0.05s; }
   .download__list li:hover {
@@ -292,31 +293,31 @@ li {
     z-index: 4; }
 
 .dl__item {
-  height: 7vh;
+  height: 57px;
+  max-height: 57px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: start; }
 
 .dl__item__thumbnail img {
-  height: 7vh;
-  border: dotted red 0px;
+  height: 57px;
+  max-height: 57px;
   border-radius: 3px; }
 
 .dl__item_info-pane {
   display: flex;
   flex-direction: column;
-  height: 7vh;
+  height: 57px;
   color: black;
   font-size: 1.2rem;
-  padding: 0;
-  border: dotted red 0px; }
+  padding: 0; }
 
 .dl__item_info-pane-data {
   width: 100%; }
 
 .dl__item_info-pane__top {
-  height: 3.5vh;
+  height: 28px;
   display: flex;
   border: dotted red 0px;
   align-items: center; }
@@ -327,7 +328,7 @@ li {
   flex-direction: row;
   align-items: center;
   justify-content: start;
-  height: 3.5vh; }
+  height: 28px; }
 
 .dl__item__data__property {
   border: dotted red 0px;
@@ -344,15 +345,15 @@ li {
   flex-direction: row;
   justify-content: space-evenly;
   align-content: center;
-  height: 3.5vh;
+  height: 27px;
   background-color: white; }
 
 .download__list_audio li {
-  height: 3.5vh;
+  height: 27px;
   max-height: 35px; }
 
 .dl__item-audio_info-pane {
-  height: 3.5vh;
+  height: 27px;
   display: flex;
   width: 100%;
   display: flex;
@@ -384,7 +385,7 @@ li {
   padding-right: 2vh; }
 
 .dl__item-audio__data__property {
-  height: 3.5vh;
+  height: 27px;
   color: black;
   justify-content: center;
   align-items: center;
@@ -624,8 +625,3 @@ input[type="text"] {
   color: black;
   margin-left: 15px;
   display: flex; }
-
-.container {
-  width: 100%;
-  border: 0px dotted red;
-  height: 100%; }

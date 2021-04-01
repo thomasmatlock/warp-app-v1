@@ -15,12 +15,13 @@ $nav_A-max-height: 60px;
 // Development TESTING
 $dev-border: 1px dotted rgba(255, 0, 0, 0.5);
 // Download items, audio
-$download-item-audio-height: 3.5vh; // 4k vid dl has 57px min, 71px max
+// $download-item-audio-height: 3.5vh; // 4k vid dl has 57px min, 71px max
+$download-item-audio-height: 27px; // 4k vid dl has 57px min, 71px max
 $download-item-audio-max-height: 35px; // 4k vid dl has 57px min, 71px max
 // Download items, video
 $download-item-video-height: 7vh; // 4k vid dl has 57px min, 71px max
 $download-item-video-min-height: 57px;
-$download-item-video-max-height: 71px;
+$download-item-video-max-height: 57px;
 // TESTING BORDERS
 $border-heavy: 0px dotted black;
 $border-heavy2: 0px dotted red;

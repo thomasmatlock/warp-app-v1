@@ -9,7 +9,7 @@ class startup {
         this.devMode = true;
         this.testingYoutubeURLS = true; // true will use youtube URLS, false will use misc non youtube URLS
         this.env = {
-            nav_A_active: !this.devMode ? 'audio' : 'audio', //   audio, video, or warpstagram, defaults to audio
+            nav_A_active: !this.devMode ? 'audio' : 'video', //   audio, video, or warpstagram, defaults to audio
             user: 'dev', // can be dev, free, or paid
             // hasFFmpeg: this.checkFFmpeg(),
             // this.loadAudioSlide = false; // set to true to load the audio portion of the content slide
@@ -19,7 +19,7 @@ class startup {
         this.dev = {
             devTools: !this.devMode ? false : true, // devTools off/on
             backendOnly: false, // hides window
-            getDownloadItemInfo: false,
+            getDownloadItemInfo: true,
             downloadFile: false,
             downloadSmallestFile: true,
             autoClickNavA_active: true, // clicks nav A tab on load

@@ -7,7 +7,7 @@
 @import 'base/base';
 @import 'base/typography';
 @import 'components/buttons';
-@import 'components/content-list-item';
+// @import 'components/content-list-item';
 @import 'components/content-list';
 @import 'components/nav-primary';
 @import 'components/nav-secondary';
@@ -17,8 +17,3 @@
 @import 'layouts/grid';
 @import 'pages/warpstagram';
 @import 'pages/modal-settings';
-.container {
-    width: 100%;
-    border: $border-heavy2;
-    height: 100%;
-}

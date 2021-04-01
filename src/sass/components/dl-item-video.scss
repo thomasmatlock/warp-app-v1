@@ -5,13 +5,14 @@
     // flex-direction: row;
     // justify-content: start;
     // align-items: flex-start;
-    height: $download-item-video-height;
-    // max-height: $download-item-video-max-height;
+    height: 57px;
+    max-height: $download-item-video-max-height;
     border: 1px solid #eee;
     // background-color: #eee;
     transition: all ease-out 0.05s;
     &:hover {
         background-color: $grey;
+        // background-color: black;
         // background-color: #eee;
         transform: translateY(-2px);
         transform: scale(1.005);
@@ -21,12 +22,13 @@
 }
 
 .dl__item {
-    height: $download-item-video-height;
-    // max-height: $download-item-video-max-height;
+    height: 57px;
+    max-height: $download-item-video-max-height;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: start;
+    // border: dotted blue 1px;
 }
 
 // .dl__item:link {
@@ -37,19 +39,20 @@
 //     }
 // }
 .dl__item__thumbnail img {
-    height: $download-item-video-height;
-    border: dotted red 0px;
+    height: 57px;
+    max-height: $download-item-video-max-height;
+    // border: dotted green 1px;
     border-radius: 3px;
 }
 
 .dl__item_info-pane {
     display: flex;
     flex-direction: column;
-    height: $download-item-video-height;
+    height: 57px;
     color: black;
     font-size: 1.2rem;
     padding: 0;
-    border: dotted red 0px;
+    // border: dotted red 1px;
 }
 
 .dl__item_info-pane-data {
@@ -57,7 +60,8 @@
 }
 
 .dl__item_info-pane__top {
-    height: $download-item-video-height / 2;
+    // height: 57px / 2;
+    height: 28px;
     display: flex;
     border: dotted red 0px;
     align-items: center;
@@ -69,7 +73,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: start;
-    height: $download-item-video-height / 2;
+    height: 28px;
 }
 
 .dl__item__data__property {
