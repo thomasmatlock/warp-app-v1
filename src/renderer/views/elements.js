@@ -16,7 +16,9 @@ const elements = {
     nav_B_video: document.querySelector('.nav_B_video'),
     nav_B__main: document.querySelector('.nav_B__main'),
     nav_B__minor: document.querySelector('.nav_B__minor'),
-    testClassAudio: document.querySelector('.testClassAudio'),
+    nav_B_button_audio_paste: document.querySelector(
+        '.nav_B_button_audio_paste'
+    ),
     nav_B_button_audio_paste: document.querySelector(
         '.nav_B_button_audio_paste'
     ),

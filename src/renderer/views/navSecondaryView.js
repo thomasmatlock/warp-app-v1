@@ -15,7 +15,7 @@ exports.clearActive = () => {
 // REPLACE NAVB TITLES DEPENDING ON WHICH NAV PRIMARY IS CLICKED
 exports.updateTitles = (nav_A_id) => {
     const nav_B_button_arr = [
-        Array.from(document.querySelectorAll('.nav_B_button-slide-audio')),
+        Array.from(document.querySelectorAll('.nav_B_button_audio')),
         Array.from(document.querySelectorAll('.nav_B_button-slide-video')),
         Array.from(document.querySelectorAll('.nav_B_button-slide-2')),
         Array.from(

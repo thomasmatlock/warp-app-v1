@@ -75,7 +75,7 @@ ipcRenderer.on('Audio: File: Import Download Links', () => {});
 ipcRenderer.on('Audio: File: Export Download Links', () => {});
 // Downloads
 ipcRenderer.on('Audio: Downloads: Paste', () => {
-    elements.testClassAudio.click(); // clicks audio paste
+    elements.nav_B_button_audio_paste.click(); // clicks audio paste
 });
 ipcRenderer.on('Audio: Downloads: Pause All', () => {});
 ipcRenderer.on('Audio: Downloads: Resume All', () => {});
@@ -180,7 +180,7 @@ elements.nav_A_warpstagram.addEventListener('click', (e) => {
         console.log(`env.nav_A_active is now ${startup.env.nav_A_active}`);
 });
 // Nav B LISTENERS
-elements.testClassAudio.addEventListener('click', (e) => {
+elements.nav_B_button_audio_paste.addEventListener('click', (e) => {
     userInput.validateURL(clipboard.readText(), startup.env.nav_A_active);
 });
 elements.testClassVideo.addEventListener('click', (e) => {

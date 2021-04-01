@@ -13,7 +13,7 @@ exports.click_nav_A = (tab) => {
 exports.click_nav_B = (nav_A_active, button) => {
     if (nav_A_active === 'audio') {
         if (startup.dev.autoClickPaste) {
-            elements.testClassAudio.click();
+            elements.nav_B_button_audio_paste.click();
         }
     }
     if (nav_A_active === 'video') {
