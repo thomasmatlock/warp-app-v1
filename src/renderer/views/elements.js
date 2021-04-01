@@ -22,7 +22,9 @@ const elements = {
     nav_B_button_audio_paste: document.querySelector(
         '.nav_B_button_audio_paste'
     ),
-    testClassVideo: document.querySelector('.testClassVideo'),
+    nav_B_button_video_paste: document.querySelector(
+        '.nav_B_button_video_paste'
+    ),
     videoSmartMode: document.querySelector(
         '.nav_B_button-slide-video-SmartMode'
     ),

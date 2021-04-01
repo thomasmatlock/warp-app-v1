@@ -18,7 +18,7 @@ exports.click_nav_B = (nav_A_active, button) => {
     }
     if (nav_A_active === 'video') {
         if (startup.dev.autoClickPaste) {
-            elements.testClassVideo.click();
+            elements.nav_B_button_video_paste.click();
         }
     }
 };

@@ -90,7 +90,7 @@ ipcRenderer.on('Video: File: Import Subscriptions', () => {});
 ipcRenderer.on('Video: File: Export Subscriptions', () => {});
 // Downloads
 ipcRenderer.on('Video: Downloads: Paste', () => {
-    elements.testClassVideo.click(); // clicks audio paste
+    elements.nav_B_button_video_paste.click(); // clicks audio paste
 });
 ipcRenderer.on('Video: Downloads: Pause All', () => {});
 ipcRenderer.on('Video: Downloads: Resume All', () => {});
@@ -183,7 +183,7 @@ elements.nav_A_warpstagram.addEventListener('click', (e) => {
 elements.nav_B_button_audio_paste.addEventListener('click', (e) => {
     userInput.validateURL(clipboard.readText(), startup.env.nav_A_active);
 });
-elements.testClassVideo.addEventListener('click', (e) => {
+elements.nav_B_button_video_paste.addEventListener('click', (e) => {
     userInput.validateURL(clipboard.readText(), startup.env.nav_A_active);
 });
 elements.videoSmartMode.addEventListener('click', (e) => {
