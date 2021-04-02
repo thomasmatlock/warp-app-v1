@@ -4,72 +4,76 @@ const fs = require('fs');
 const { app, clipboard, ipcRenderer } = require('electron');
 const imageDownloader = require('image-downloader');
 let markup = require('./views/markup');
+const miscArrays = require('../../library/miscArrays');
 let dlhandlerObject = require('../js/downloadHandler-object');
 const startupReq = require('../js/system/startup');
 const startup = new startupReq();
 
 let markupAudio = markup.audio;
 let markupVideo = markup.video;
+let storage = {
+    audioArr: [],
+    videoArr: [],
+    warpstagram: {
+        subscribed: [],
+        pinned: [],
+    },
+};
 ////////////////////////////////////////////////////////////////////
 exports.downloadItem = (itemURL, avType, platform) => {
     // DOWNLOAD ITEM
     if (startup.dev.getDownloadItemInfo) {
-        // DOWNLOAD ITEM with class dlhandler
-        // let dlhandler = new dlhandlerReq(itemURL); // creates new object using url to extract and download video with details
-        // dlhandler.all(itemURL, avType);
-
-        // DOWNLOAD ITEM with object dlhandler
-        // dlhandlerObject.all(itemURL, avType); // exports without object
+        // DOWNLOAD ITEM
         dlhandlerObject.all(itemURL, avType); // exports without object
-        // console.log(dlhandlerObject.dlhandler);
+
         // UPDATE UI
         setTimeout(() => {
-            // console.log(dlhandlerObject.dlhandler);
             this.insertMarkup(dlhandlerObject.dlhandler, avType);
-            this.addItem(avType);
-            // console.log();
+            this.addItem(dlhandlerObject.dlhandler, avType);
             this.resetMarkup();
-            this.save();
-            // dlhandlerObject.removeVideoDetails();
-            // dlhandler.getFileSize();
-            // dlhandlerObject.dlhandler = {};
-        }, 1500);
 
-        // PERSIST INTO STORAGE
+            // PERSIST INTO STORAGE
+            this.updateStorage(dlhandlerObject.dlhandler, avType, 'add');
+            // this.save();
+            this.load();
+        }, 1500);
     }
 };
 
 // Add new item
-exports.addItem = (avType) => {
-    // console.log(markupAudio);
-    //////////////////////////////////////////////////////////////////// working
+exports.addItem = (item, avType) => {
     if (avType === 'audio') {
+        // console.log(item);
+        this.insertMarkup(item, avType);
+
         let audioDownloadList = document.querySelector('.download__list_audio');
         let itemNodeAudio = document.createElement('li'); // Create a new HTML Dom node
         itemNodeAudio.innerHTML = markupAudio; // Insert markup
         audioDownloadList.appendChild(itemNodeAudio); // Append item node
+        // console.log(itemNodeAudio);
+        this.resetMarkup();
     }
     if (avType === 'video') {
+        this.insertMarkup(item, avType);
         let videoDownloadList = document.querySelector('.download__list_video');
         let itemNodeVideo = document.createElement('li'); // Create a new HTML Dom node
 
         itemNodeVideo.innerHTML = markupVideo; // Insert markup
         videoDownloadList.appendChild(itemNodeVideo); // Append item node
+        this.resetMarkup();
     }
 };
-
 exports.resetMarkup = () => {
     markupAudio = markup.audio;
     markupVideo = markup.video;
 };
-
 exports.insertMarkup = (downloadInfo, avType) => {
     // console.log(`avType is ${avType}`);
     // INSERT AUDIO MARKUP
     if (avType === 'audio') {
         // console.log('ITS AUDIO TIME');
         // insert audio info details
-
+        // console.log(downloadInfo.title);
         // markup.audio = markup.audio.replace('%{title}', downloadInfo.title);
         // markup.audio = markup.audio.replace(
         //     '%{lengthFormatted}',
@@ -102,9 +106,6 @@ exports.insertMarkup = (downloadInfo, avType) => {
         // console.log(downloadInfo.thumbnailURL);
     }
 };
-exports.destroyDLHandler = (dlhandler) => {
-    dlhandler = null;
-};
 exports.downloadThumbnail = (url) => {
     options = {
         url: 'http://someurl.com/image2.jpg',
@@ -120,222 +121,45 @@ exports.downloadThumbnail = (url) => {
 };
 
 exports.save = () => {
-    // window.localStorage.setItem('readit-items', JSON.stringify(this.storage)); // localStorage supports strings only, use Json.stringify
-    window.localStorage.setItem('readit-items', JSON.stringify('hello')); // localStorage supports strings only, use Json.stringify
+    window.localStorage.setItem('download-items', JSON.stringify(storage)); // localStorage supports strings only, use Json.stringify
+};
+exports.load = () => {
+    storage = JSON.parse(localStorage.getItem('download-items')); // loads this back into storage from localStorage // also JSON.parse converts strings back to array
+};
+exports.updateStorage = (item, avType, addRemoveType) => {
+    if (addRemoveType === 'add') {
+        if (avType === 'audio') {
+            // console.log(`adding ${item.title}...`);
+            storage.audioArr.push(item);
+            this.save();
+        }
+        if (avType === 'video') {
+            // console.log(`adding ${item.title}...`);
+            storage.videoArr.push(item);
+            this.save();
+        }
+    }
+    if (addRemoveType === 'remove') {
+        if (avType === 'audio') {
+            console.log(`removing audio item from storage`);
+        }
+        if (avType === 'video') {
+            console.log(`removing video item from storage`);
+        }
+    }
+};
+exports.startupAddAllItems = () => {
+    this.load();
+    // console.log('loading item titles...');
+    this.loopThroughArray(storage.audioArr, 'audio');
+    this.loopThroughArray(storage.videoArr, 'video');
 };
 
-// ELECTRON PROJECT addItem function
-// // Add new item
-// exports.addItemElectronVersion = (item, isNew = false) => {
-//     // console.log(item);
-//     // Create a new HTML Dom node
-//     let itemNode = document.createElement('div');
-
-//     // Assign "read-item" class
-//     itemNode.setAttribute('class', 'read-item');
-
-//     // Set item url as data attribute
-//     itemNode.setAttribute('data-url', item.url);
-
-//     // Add inner HTML to new node
-//     itemNode.innerHTML = `<img src="${item.screenshot}"><h2>${item.title}</h2>`;
-
-//     // Append new item to "items" container
-//     items.appendChild(itemNode);
-
-//     // Attach click handler to select
-//     itemNode.addEventListener('click', this.select); // when this element is clicked, it calls the select function
-
-//     // Attach double click handler to open
-//     itemNode.addEventListener('dblclick', this.open);
-
-//     // If this is the first item, select it
-//     if (document.getElementsByClassName('read-item').length === 1) {
-//         itemNode.classList.add('selected');
-//     }
-//     // Add item to storage array and persist
-//     if (isNew) {
-//         this.storage.push(item); // appends item to array
-//         this.save(); // saves array to local storage
-//     }
-// };
-
-////////////////////////////////////////////////////////////////////
-// ELECTRON PROJECT CODE
-// // Dom nodes
-// let items = document.getElementById('items');
-
-// // Get readerJS content
-// let readerJS;
-// fs.readFile(`${__dirname}/reader.js`, (err, data) => {
-//     readerJS = data.toString();
-// });
-
-// // Track items in storage
-// exports.storage = JSON.parse(localStorage.getItem('readit-items')) || []; // loads this back into storage from localStorage // also JSON.parse converts strings back to array
-
-// // Listen for 'done' message from reader window
-// window.addEventListener('message', (e) => {
-//     // Delete item at certain index
-//     if (e.data.action === 'delete-reader-item') {
-//         this.delete(e.data.itemIndex);
-
-//         // Close the reader window for the users
-//         // console.log(e.source);
-//         e.source.close();
-//     }
-//     // console.log(e.data);
-// });
-
-// // Delete item
-// exports.delete = (itemIndex) => {
-//     // Remove item from DOM
-//     items.removeChild(items.childNodes[itemIndex]);
-
-//     // Remove item from storage
-//     this.storage.splice(itemIndex, 1);
-
-//     // Persist storage
-//     this.save();
-
-//     // Select previous item or new top item
-//     if (this.storage.length) {
-//         // Get new selected item index
-//         let = newSelectedItemIndex = itemIndex === 0 ? 0 : itemIndex - 1;
-
-//         // Select item at new index
-//         document
-//             .getElementsByClassName('read-item')[newSelectedItemIndex].classList.add('selected');
-//     }
-// };
-
-// // Get selected item index
-// exports.getSelectedItem = () => {
-//     // Get selected node
-//     let currentItem = document.getElementsByClassName('read-item selected')[0];
-
-//     // Get item index
-//     let itemIndex = 0;
-//     let child = currentItem;
-//     while ((child = child.previousElementSibling) != null) itemIndex++;
-
-//     // Return selected item and index
-//     return { node: currentItem, index: itemIndex };
-// };
-
-// // Persist storage
-// exports.save = () => {
-//     localStorage.setItem('readit-items', JSON.stringify(this.storage)); // localStorage supports strings only, use Json.stringify
-// };
-
-// // Set item as selected
-// exports.select = (e) => {
-//     // Remove currently selected item class
-//     this.getSelectedItem().node.classList.remove('selected');
-
-//     // Add to clicked item
-//     e.currentTarget.classList.add('selected');
-// };
-
-// // Move to newly selected item
-// exports.changeSelection = (direction) => {
-//     // Get currently selected item
-//     let currentItem = this.getSelectedItem();
-
-//     // Handle up/down
-//     if (direction === 'ArrowUp' && currentItem.node.previousElementSibling) {
-//         currentItem.node.classList.remove('selected'); // remove class
-//         currentItem.node.previousElementSibling.classList.add('selected'); // add class
-//     } else if (
-//         direction === 'ArrowDown' &&
-//         currentItem.node.nextElementSibling
-//     ) {
-//         currentItem.node.classList.remove('selected'); // remove class
-//         currentItem.node.nextElementSibling.classList.add('selected'); // add class
-//     }
-// };
-
-// // Open selected item in native browser
-// exports.openNative = () => {
-//     // Check if we even have items
-//     if (!this.storage.length) return;
-
-//     // Get selected item
-//     let selectedItem = this.getSelectedItem();
-
-//     // Get items url
-//     let contentURL = selectedItem.node.dataset.url;
-
-//     // Open in user default system browser
-//     shell.openExternal(contentURL);
-// };
-
-// // Open selected item
-// exports.open = () => {
-//     // Check if we even have items
-//     if (!this.storage.length) return;
-
-//     // Get selected item
-//     let selectedItem = this.getSelectedItem();
-
-//     // Get items url
-//     let contentURL = selectedItem.node.dataset.url;
-
-//     // Open item in proxy BrowserWindow
-//     let readerWin = window.open(
-//         contentURL,
-//         '',
-//         `
-//     maxWidth=2000,
-//     maxHeight=2000,
-//     width=600,
-//     height=600,
-// backgroundColor=#DEDEDE,
-//  nodeIntegration=0,
-// contextIsolation=1
-//     `
-//     );
-
-//     // Inject JS (DOESNT WORK) with specific item index (selectedItem.index)
-//     readerWin.eval(readerJS.replace('{{index}}', selectedItem.index));
-// };
-
-// // Add new item
-// exports.addItem = (item, isNew = false) => {
-//     // console.log(item);
-//     // Create a new HTML Dom node
-//     let itemNode = document.createElement('div');
-
-//     // Assign "read-item" class
-//     itemNode.setAttribute('class', 'read-item');
-
-//     // Set item url as data attribute
-//     itemNode.setAttribute('data-url', item.url);
-
-//     // Add inner HTML to new node
-//     itemNode.innerHTML = `<img src="${item.screenshot}"><h2>${item.title}</h2>`;
-
-//     // Append new item to "items" container
-//     items.appendChild(itemNode);
-
-//     // Attach click handler to select
-//     itemNode.addEventListener('click', this.select); // when this element is clicked, it calls the select function
-
-//     // Attach double click handler to open
-//     itemNode.addEventListener('dblclick', this.open);
-
-//     // If this is the first item, select it
-//     if (document.getElementsByClassName('read-item').length === 1) {
-//         itemNode.classList.add('selected');
-//     }
-//     // Add item to storage array and persist
-//     if (isNew) {
-//         this.storage.push(item); // appends item to array
-//         this.save(); // saves array to local storage
-//     }
-// };
-
-// // Add items from storage when app loads
-// this.storage.forEach((item) => {
-//     this.addItem(item);
-// });
+exports.loopThroughArray = (arr, avType) => {
+    for (let i = 0; i < arr.length; i++) {
+        // console.log(arr[i].title);
+        // console.log(dlhandlerObject.dlhandler.title);
+        this.addItem(arr[i], avType);
+        // this.addItem('video');
+    }
+};

@@ -32,6 +32,7 @@
     "dependencies": {
         "axios": "^0.21.1",
         "electron-json-storage": "^4.3.0",
+        "electron-settings": "^4.0.2",
         "image-downloader": "^4.0.2",
         "instagram-basic-data-scraper-with-username": "^4.0.1",
         "instagram-posts": "^2.2.0",

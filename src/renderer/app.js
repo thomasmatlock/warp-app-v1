@@ -28,7 +28,10 @@ state.nav = new Nav(); // controls active nav
 ipcRenderer.on('window-ready', () => {
     auto.click_nav_A(startup.env.nav_A_active); // auto clicks active tab if active
     setActiveNav_A(startup.env.nav_A_active); // sets active Nav A
-    // TURN ON BASED ON TESTING NEEDS
+
+    items.startupAddAllItems();
+
+    // AUTOMATION
     auto.click_nav_B(startup.env.nav_A_active, 'paste'); // auto clicks paste if active
     // auto.click_nav_B(startup.env.nav_A_active, 'smartMode'); // auto clicks smartMode if active
     // auto.click_nav_B(startup.env.nav_A_active, 'activate'); // auto clicks activate if active
