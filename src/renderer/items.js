@@ -1,13 +1,14 @@
 // this is started, taken from the electron course
 const logging = true;
 const fs = require('fs');
-const { app, clipboard, ipcRenderer } = require('electron');
+const { app, clipboard, electron, ipcRenderer } = require('electron');
 const imageDownloader = require('image-downloader');
 let markup = require('./views/markup');
 const miscArrays = require('../../library/miscArrays');
-let dlhandlerObject = require('../js/downloadHandler-object');
+let downloadHandler = require('../js/downloadHandler-object');
 const startupReq = require('../js/system/startup');
 const startup = new startupReq();
+const settings = require('electron-settings');
 
 let markupAudio = markup.audio;
 let markupVideo = markup.video;
@@ -19,23 +20,50 @@ let storage = {
         pinned: [],
     },
 };
+
+////////////////////////////////////////////////////////////////////
+exports.testElectronSettings = () => {
+    console.log('hello, testing settings');
+    console.log('File used for Persisting Data - ' + settings.file());
+
+    // var sample = document.getElementById('sample');
+    // var submit = document.getElementById('submit');
+
+    // settings.get('key.data').then((value) => {
+    //     console.log('Persisted Value - ' + value);
+    // });
+
+    // settings.has('key1.data').then((bool) => {
+    //     console.log('Checking if key1.data Exists - ' + bool);
+    // });
+
+    // submit.addEventListener('click', () => {
+    //     console.log('Sample Text Entered - ' + sample.value);
+    //     console.log('Persisting Data in electron-settings');
+
+    //     settings.set('key', {
+    //         data: sample.value,
+    //     });
+    // });
+};
+
+////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////
 exports.downloadItem = (itemURL, avType, platform) => {
     // DOWNLOAD ITEM
     if (startup.dev.getDownloadItemInfo) {
         // DOWNLOAD ITEM
-        dlhandlerObject.all(itemURL, avType); // exports without object
+        downloadHandler.all(itemURL, avType); // exports without object
 
         // UPDATE UI
+        let item = downloadHandler.dlhandler;
         setTimeout(() => {
-            this.insertMarkup(dlhandlerObject.dlhandler, avType);
-            this.addItem(dlhandlerObject.dlhandler, avType);
+            this.insertMarkup(item, avType);
+            this.addItem(item, avType);
             this.resetMarkup();
 
             // PERSIST INTO STORAGE
-            this.updateStorage(dlhandlerObject.dlhandler, avType, 'add');
-            // this.save();
-            this.load();
+            this.updateStorage(item, avType, 'add');
         }, 1500);
     }
 };
@@ -131,12 +159,20 @@ exports.updateStorage = (item, avType, addRemoveType) => {
         if (avType === 'audio') {
             // console.log(`adding ${item.title}...`);
             storage.audioArr.push(item);
+            // console.log(`${storage.audioArr.length} audio items...`);
             this.save();
+            this.load();
+            console.log(`${storage.audioArr.length} audio items...`);
+            // this.loopThroughArrayLog(storage.audioArr);
         }
         if (avType === 'video') {
-            // console.log(`adding ${item.title}...`);
+            console.log(`adding ${item.title}...`);
             storage.videoArr.push(item);
             this.save();
+            this.load();
+            console.log(`${storage.videoArr.length} video items...`);
+            // console.log(`${storage.videoArr.length} video items...`);
+            // this.loopThroughArrayLog(storage.videoArr);
         }
     }
     if (addRemoveType === 'remove') {
@@ -150,16 +186,35 @@ exports.updateStorage = (item, avType, addRemoveType) => {
 };
 exports.startupAddAllItems = () => {
     this.load();
+    console.log(`${storage.audioArr.length} audio items...`);
+    console.log(`${storage.videoArr.length} video items...`);
     // console.log('loading item titles...');
+    console.log(`adding ${storage.audioArr.length} audio items...`);
     this.loopThroughArray(storage.audioArr, 'audio');
     this.loopThroughArray(storage.videoArr, 'video');
 };
 
 exports.loopThroughArray = (arr, avType) => {
     for (let i = 0; i < arr.length; i++) {
-        // console.log(arr[i].title);
-        // console.log(dlhandlerObject.dlhandler.title);
+        // console.log(`${avType}, ${arr[i].title}`);
         this.addItem(arr[i], avType);
         // this.addItem('video');
+    }
+};
+exports.clearStorage = () => {
+    storage = {
+        audioArr: [],
+        videoArr: [],
+        warpstagram: {
+            subscribed: [],
+            pinned: [],
+        },
+    };
+    this.save();
+};
+
+exports.loopThroughArrayLog = (arr) => {
+    for (let i = 0; i < arr.length; i++) {
+        console.log(`${arr[i].title}`);
     }
 };
