@@ -190,6 +190,8 @@ exports.loopThroughArrayLog = (arr) => {
     }
 };
 
-// ipcRenderer.on('notSureYet', () => {
-//     console.log('saving item');
+////////////////////////////////////////////////////////////////////////////////////
+// ipcRenderer.on('load-storage-success', (storageObj) => {
+//     storage = storageObj;
+//     console.log('load-storage-success');
 // });

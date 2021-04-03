@@ -82,6 +82,13 @@ ipcMain.on('reset-storage', (e, storageObj) => {
     console.log(`storage cleared from main.js`);
 });
 
+////////////////////////////////////////////////////////////////////////////////////
+
+// ipcMain.on('load-storage', (e) => {
+//     console.log(`loading storage`);
+//     e.reply('load-storage-success');
+// });
+
 ////////////////////////////////////////////////////////////////////
 // WINDOW CREATION
 function createWindow() {
