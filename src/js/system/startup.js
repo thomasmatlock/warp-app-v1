@@ -17,14 +17,14 @@ class startup {
             // this.loadWarpstagramSlide = false; // set to true to load the warpstagram portion of the content slide
         };
         this.dev = {
+            autoClickPaste: true, // pastes random URL on load
+            getDownloadItemInfo: true, //
             clearStorage: false, // USE THIS TO RESET STORAGE
             devTools: !this.devMode ? false : true, // devTools off/on
             backendOnly: false, // hides window
-            getDownloadItemInfo: true, //
             downloadFile: false,
             downloadSmallestFile: true,
             autoClickNavA_active: true, // clicks nav A tab on load
-            autoClickPaste: false, // pastes random URL on load
             useRandomYoutubeURL: this.testingYoutubeURLS ? true : false, // uses YT URLS if testingYoutubeURLS is true
             useRandomMiscURL: !this.testingYoutubeURLS ? true : false, // uses misc URLS if testingYoutubeURLS is false
             URLSyoutube: urls,

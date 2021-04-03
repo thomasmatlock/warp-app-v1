@@ -56,28 +56,29 @@ ipcMain.on('storage-save', (e, storageObj, avType) => {
     let storageAwaited;
     (async() => {
         storageAwaited = await load();
-        if (avType === 'audio') {
-            console.log(
-                `${
-                    storageAwaited.audioArr[storageAwaited.audioArr.length - 1]
-                        .title
-                } added...`
-            );
-        }
-        if (avType === 'video') {
-            console.log(
-                `${
-                    storageAwaited.videoArr[storageAwaited.videoArr.length - 1]
-                        .title
-                } added...${storageAwaited.videoArr.length} audio, ${
-                    storageAwaited.videoArr.length
-                } video`
-            );
-        }
-        console.log(
-            `${storageAwaited.audioArr.length} audio, ${storageAwaited.videoArr.length} video`
-        );
+        // if (avType === 'audio') {
+        //     console.log(
+        //         `${
+        //             storageAwaited.audioArr[storageAwaited.audioArr.length - 1]
+        //                 .title
+        //         } added...`
+        //     );
+        // }
+        // if (avType === 'video') {
+        //     console.log(
+        //         `${
+        //             storageAwaited.videoArr[storageAwaited.videoArr.length - 1]
+        //                 .title
+        //         } added...${storageAwaited.videoArr.length} audio, ${
+        //             storageAwaited.videoArr.length
+        //         } video`
+        //     );
+        // }
+        // console.log(
+        //     `${storageAwaited.audioArr.length} audio, ${storageAwaited.videoArr.length} video`
+        // );
         // console.log(storageAwaited);
+        // console.log('storage saved in main, sending it back ');
         e.reply('storage-save-success', storageAwaited);
     })();
 });

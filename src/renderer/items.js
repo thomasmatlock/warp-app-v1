@@ -43,6 +43,8 @@ exports.downloadItem = (itemURL, avType, platform) => {
 // Add new item
 exports.addItem = (item, avType) => {
     if (avType === 'audio') {
+        // console.log(`addItem, ${storage.audioArr.length}`);
+
         this.insertMarkup(item, avType); // splices in item info to markup
         let audioDownloadList = document.querySelector('.download__list_audio'); // selects target list to add item markup to
         let itemNodeAudio = document.createElement('li'); // Create a new HTML Dom node inside download list
@@ -118,14 +120,20 @@ exports.insertMarkup = (downloadInfo, avType) => {
 // };
 
 exports.save = (avType) => {
+    // console.log(`save, ${storage.audioArr.length}`);
+
     // window.localStorage.setItem('download-items', JSON.stringify(storage)); // localStorage supports strings only, use Json.stringify
     ipcRenderer.send('storage-save', storage, avType);
 };
 exports.load = () => {
+    // console.log(`load, ${storage.audioArr.length}`);
+
     // storage = JSON.parse(localStorage.getItem('download-items')); // loads this back into storage from localStorage // also JSON.parse converts strings back to array
     ipcRenderer.send('load-storage');
 };
 exports.updateStorage = (item, avType, addRemoveType) => {
+    // console.log(`updateStorage, ${storage.audioArr.length}`);
+
     if (addRemoveType === 'add') {
         if (avType === 'audio') {
             // console.log(`adding ${item.title}...`);
@@ -133,7 +141,7 @@ exports.updateStorage = (item, avType, addRemoveType) => {
             // console.log(`${storage.audioArr.length} audio items...`);
             this.save(avType);
             this.load();
-            console.log(`${storage.audioArr.length} audio items...`);
+            // console.log(`${storage.audioArr.length} audio items...`);
             // this.loopThroughArrayLog(storage.audioArr);
         }
         if (avType === 'video') {
@@ -142,7 +150,7 @@ exports.updateStorage = (item, avType, addRemoveType) => {
             ipcRenderer.send('storage-save', storage, avType);
             this.save(avType);
             this.load();
-            console.log(`${storage.videoArr.length} video items...`);
+            // console.log(`${storage.videoArr.length} video items...`);
             // console.log(`${storage.videoArr.length} video items...`);
             // this.loopThroughArrayLog(storage.videoArr);
         }
@@ -156,8 +164,15 @@ exports.updateStorage = (item, avType, addRemoveType) => {
         }
     }
 };
-exports.startupAddAllItems = (storage) => {
+exports.startupAddAllItems = (storageSent) => {
     // this.load();
+    storage = storageSent;
+    // console.log(
+    //     `startupAddAllItems, ${
+    //         storage.audioArr[storage.audioArr.length - 1].title
+    //     }`
+    // );
+
     // console.log(storage);
     // console.log(`${storage.audioArr.length} audio items...`);
     // console.log(`${storage.videoArr.length} video items...`);
@@ -165,9 +180,12 @@ exports.startupAddAllItems = (storage) => {
     // console.log(`adding ${storage.audioArr.length} audio items...`);
     this.loopThroughArray(storage.audioArr, 'audio');
     this.loopThroughArray(storage.videoArr, 'video');
+    // console.log(`startupAddAllItems, ${storage.audioArr.length}`);
 };
 
 exports.loopThroughArray = (arr, avType) => {
+    // console.log(`loopThroughArray, ${storage.audioArr.length}`);
+
     for (let i = 0; i < arr.length; i++) {
         // console.log(`${avType}, ${arr[i].title}`);
         this.addItem(arr[i], avType);
@@ -205,4 +223,5 @@ ipcRenderer.on('storage-save-success', (e, storageSentFromMain) => {
     // console.log(storageSentFromMain);
     storage = storageSentFromMain;
     // console.log(`storage-save-success `);
+    // console.log(`storage-save-success, ${storageSentFromMain.audioArr.length}`);
 });
