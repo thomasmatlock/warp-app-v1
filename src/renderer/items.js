@@ -12,6 +12,7 @@ const settings = require('electron-settings');
 
 let markupAudio = markup.audio;
 let markupVideo = markup.video;
+// storage empty template
 let storage = {
     audioArr: [],
     videoArr: [],
@@ -20,10 +21,7 @@ let storage = {
         pinned: [],
     },
 };
-////////////////////////////////////////////////////////////////////
 
-////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////
 exports.downloadItem = (itemURL, avType, platform) => {
     // DOWNLOAD ITEM
     if (startup.dev.getDownloadItemInfo) {
@@ -42,18 +40,14 @@ exports.downloadItem = (itemURL, avType, platform) => {
         }, 1500);
     }
 };
-
 // Add new item
 exports.addItem = (item, avType) => {
     if (avType === 'audio') {
-        // console.log(item);
-        this.insertMarkup(item, avType);
-
-        let audioDownloadList = document.querySelector('.download__list_audio');
-        let itemNodeAudio = document.createElement('li'); // Create a new HTML Dom node
-        itemNodeAudio.innerHTML = markupAudio; // Insert markup
+        this.insertMarkup(item, avType); // splices in item info to markup
+        let audioDownloadList = document.querySelector('.download__list_audio'); // selects target list to add item markup to
+        let itemNodeAudio = document.createElement('li'); // Create a new HTML Dom node inside download list
+        itemNodeAudio.innerHTML = markupAudio; // Insert markup into new DOM node inserted into list
         audioDownloadList.appendChild(itemNodeAudio); // Append item node
-        // console.log(itemNodeAudio);
         this.resetMarkup();
     }
     if (avType === 'video') {
@@ -109,19 +103,19 @@ exports.insertMarkup = (downloadInfo, avType) => {
         // console.log(downloadInfo.thumbnailURL);
     }
 };
-exports.downloadThumbnail = (url) => {
-    options = {
-        url: 'http://someurl.com/image2.jpg',
-        dest: '/path/to/dest/photo.jpg', // will be saved to /path/to/dest/photo.jpg
-    };
+// exports.downloadThumbnail = (url) => {
+//     options = {
+//         url: 'http://someurl.com/image2.jpg',
+//         dest: '/path/to/dest/photo.jpg', // will be saved to /path/to/dest/photo.jpg
+//     };
 
-    imageDownloader
-        .image(options)
-        .then(({ filename }) => {
-            console.log('Saved to', filename); // saved to /path/to/dest/photo.jpg
-        })
-        .catch((err) => console.error(err));
-};
+//     imageDownloader
+//         .image(options)
+//         .then(({ filename }) => {
+//             console.log('Saved to', filename); // saved to /path/to/dest/photo.jpg
+//         })
+//         .catch((err) => console.error(err));
+// };
 
 exports.save = () => {
     window.localStorage.setItem('download-items', JSON.stringify(storage)); // localStorage supports strings only, use Json.stringify
@@ -130,11 +124,11 @@ exports.load = () => {
     storage = JSON.parse(localStorage.getItem('download-items')); // loads this back into storage from localStorage // also JSON.parse converts strings back to array
 };
 exports.updateStorage = (item, avType, addRemoveType) => {
-    ipcRenderer.send('storage-send', storage);
     if (addRemoveType === 'add') {
         if (avType === 'audio') {
             // console.log(`adding ${item.title}...`);
             storage.audioArr.push(item);
+            ipcRenderer.send('storage-save', storage, avType);
             // console.log(`${storage.audioArr.length} audio items...`);
             this.save();
             this.load();
@@ -144,6 +138,7 @@ exports.updateStorage = (item, avType, addRemoveType) => {
         if (avType === 'video') {
             console.log(`adding ${item.title}...`);
             storage.videoArr.push(item);
+            ipcRenderer.send('storage-save', storage, avType);
             this.save();
             this.load();
             console.log(`${storage.videoArr.length} video items...`);
@@ -177,7 +172,7 @@ exports.loopThroughArray = (arr, avType) => {
         // this.addItem('video');
     }
 };
-exports.clearStorage = () => {
+exports.resetStorage = () => {
     storage = {
         audioArr: [],
         videoArr: [],
@@ -189,7 +184,6 @@ exports.clearStorage = () => {
     this.save();
     ipcRenderer.send('reset-storage', storage);
 };
-
 exports.loopThroughArrayLog = (arr) => {
     for (let i = 0; i < arr.length; i++) {
         console.log(`${arr[i].title}`);

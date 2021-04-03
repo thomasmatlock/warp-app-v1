@@ -11,12 +11,13 @@ async function load() {
         // setTimeout(() => resolve('done!'), 2000);
         // setTimeout(() => resolve(settings.get('color.name')), 500);
         // setTimeout(() => resolve(settings.get('color.code.rgb[1')), 500);
-        setTimeout(() => resolve(settings.get('idkWhattocallthis')), 500);
+        setTimeout(() => resolve(settings.get('download-items')), 500);
     });
 
     let result = await promise; // wait until the promise resolves (*)
-
-    console.log(result);
+    // console.log(result);
+    return result;
+    console.log(`logging storage...`);
 }
 const reset = () => {
     settings.reset();

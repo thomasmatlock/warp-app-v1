@@ -28,7 +28,7 @@ state.nav = new Nav(); // controls active nav
 ipcRenderer.on('window-ready', () => {
     auto.click_nav_A(startup.env.nav_A_active); // auto clicks active tab if active
     setActiveNav_A(startup.env.nav_A_active); // sets active Nav A
-    if (startup.dev.clearStorage) items.clearStorage();
+    if (startup.dev.clearStorage) items.resetStorage();
 
     items.startupAddAllItems();
     // items.testElectronSettings();

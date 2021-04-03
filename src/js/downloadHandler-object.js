@@ -8,20 +8,20 @@ const startupReq = require('./system/startup');
 const startup = new startupReq();
 
 let dlhandler = {
-    itemURL: '',
-    type: '', // set to either audio or video
-    selectedFormat: '',
-    thumbnail: '',
-    title: '',
-    secs: '',
-    mins: '',
-    hrs: '',
-    lengthFormatted: '',
     fileSize: '',
-    height: '',
-    fps: '',
     fileType: '',
     format: '', // which of the 35 formats, from 1080p, 720p60, etc
+    fps: '',
+    height: '',
+    hrs: '',
+    itemURL: '',
+    lengthFormatted: '',
+    secs: '',
+    mins: '',
+    selectedFormat: '',
+    thumbnail: '',
+    type: '', // set to either audio or video
+    title: '',
 };
 
 const getInfo = async function(itemURL) {

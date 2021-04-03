@@ -17,8 +17,8 @@ class startup {
             // this.loadWarpstagramSlide = false; // set to true to load the warpstagram portion of the content slide
         };
         this.dev = {
+            clearStorage: false, // USE THIS TO RESET STORAGE
             devTools: !this.devMode ? false : true, // devTools off/on
-            clearStorage: true, // USE THIS TO RESET STORAGE
             backendOnly: false, // hides window
             getDownloadItemInfo: true, //
             downloadFile: false,
