@@ -26,6 +26,49 @@ const fileControllerReq = require('./system/fileController');
 const fileController = new fileControllerReq();
 const startupReq = require('./system/startup');
 const startup = new startupReq();
+const storage = require('./storage');
+
+// const settings = require('electron-settings');
+// const { save } = require('../renderer/items');
+
+////////////////////////////////////////////////////////////////////
+
+// async function load() {
+//     // settings.get('color.name');
+//     // settings.get('color.code.rgb[1]');
+//     let promise = new Promise((resolve, reject) => {
+//         // setTimeout(() => resolve('done!'), 2000);
+//         // setTimeout(() => resolve(settings.get('color.name')), 500);
+//         // setTimeout(() => resolve(settings.get('color.code.rgb[1')), 500);
+//         setTimeout(() => resolve(settings.get('color')), 500);
+//     });
+
+//     let result = await promise; // wait until the promise resolves (*)
+
+//     console.log(result);
+// }
+// const save = () => {
+//     settings.set('color', {
+//         name: 'cerulean',
+//         code: {
+//             rgb: [0, 179, 230],
+//             hex: '#003BE6',
+//         },
+//     });
+// };
+// // save();
+// load();
+// let storageObj = {
+//     audioArr: [],
+//     videoArr: [],
+//     warpstagram: {
+//         subscribed: [],
+//         pinned: [],
+//     },
+// };
+// storage.save('color', storageObj);
+// storage.load();
+////////////////////////////////////////////////////////////////////
 
 let mainWindow, modalWindow, displayController; // Keep a global reference of the window object, if you don't, the window will be closed automatically when the JavaScript object is garbage collected.
 app.allowRendererProcessReuse = true; // not sure what this does but I added it for a reason
@@ -34,7 +77,8 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
 // IPC LISTENERS FOR EVENTS FROM APP.JS
 ipcMain.on('new-item', (e, itemURL, avType, platform) => {
     startup.updateActiveTab(avType); // sets nav A active
-    e.reply('asynchronous-reply', itemURL, avType, platform); // send message to app js
+    // console.log(itemURL, avType, platform);
+    e.reply('paste-new-url', itemURL, avType, platform); // send message to app js
 });
 ipcMain.on('menu-change', (e, menuType) => {
     if (menuType === 'audio') appMenuAudio(mainWindow.webContents); // sets audio menu if audio tab is clicked
@@ -45,6 +89,17 @@ ipcMain.on('quit', () => {
     console.log('you quit');
     app.quit();
     mainWindow = null;
+});
+ipcMain.on('storage-send', (e, storageObj) => {
+    // console.log(`${storageObj.audioArr}`);
+    storage.save('saveThis', storageObj);
+    storage.load();
+});
+ipcMain.on('reset-storage', (e, storageObj) => {
+    storage.reset();
+    storage.save('idkWhattocallthis', storageObj);
+    console.log(`storage cleared from main.js`);
+    // storage.settingsPath();
 });
 
 ////////////////////////////////////////////////////////////////////

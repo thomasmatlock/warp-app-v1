@@ -18,9 +18,9 @@ class startup {
         };
         this.dev = {
             devTools: !this.devMode ? false : true, // devTools off/on
-            clearStorage: false, // USE THIS TO RESET STORAGE
+            clearStorage: true, // USE THIS TO RESET STORAGE
             backendOnly: false, // hides window
-            getDownloadItemInfo: true,
+            getDownloadItemInfo: true, //
             downloadFile: false,
             downloadSmallestFile: true,
             autoClickNavA_active: true, // clicks nav A tab on load

@@ -32,7 +32,6 @@ ipcRenderer.on('window-ready', () => {
 
     items.startupAddAllItems();
     // items.testElectronSettings();
-
     // AUTOMATION
     auto.click_nav_B(startup.env.nav_A_active, 'paste'); // auto clicks paste if active
     // auto.click_nav_B(startup.env.nav_A_active, 'smartMode'); // auto clicks smartMode if active
@@ -74,10 +73,13 @@ ipcRenderer.on('resize', () => {
         }, clickDelay);
     }
 });
-ipcRenderer.on('asynchronous-reply', (event, itemURL, avType, platform) => {
+ipcRenderer.on('paste-new-url', (event, itemURL, avType, platform) => {
     if (logging)
         console.log(`${itemURL}, avType ${avType}, platform ${platform}`);
     items.downloadItem(itemURL, avType, platform);
+});
+ipcRenderer.on('notSureYet', () => {
+    console.log('saving item');
 });
 
 // MENU LISTENERS, AUDIO
