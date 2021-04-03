@@ -73,7 +73,7 @@ class fileController {
                 pinned: [],
             },
         };
-        console.log(`${this.settingsFile}`);
+        // console.log(`${this.settingsFile}`);
         // console.log('checking for settings file...');
         // create settings file
         try {
