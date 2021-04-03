@@ -49,7 +49,7 @@ ipcMain.on('quit', () => {
 });
 ipcMain.on('storage-save', (e, storageObj, avType) => {
     storage.save('download-items', storageObj);
-    console.log('saving');
+    // console.log('saving');
     let storageAwaited;
     (async() => {
         storageAwaited = await load();
@@ -125,7 +125,7 @@ function createWindow() {
     const wc = mainWindow.webContents;
     // send stuff to app.js
     wc.on('did-finish-load', () => {
-        console.log(storageMain);
+        // console.log(storageMain);
         wc.send('window-ready', storageMain);
     });
     wc.on('devtools-opened', () => {});
@@ -148,12 +148,13 @@ app.on('ready', () => {
     startup.init(); // all startup checks, latest version, isOnline, hasFFmpeg etc
     displayController.discoverDisplay(); // discovers which display to use, 3 dev mode displayController or production
     let storageAwaited;
+    // storage.initSettingsFile();
     // storage.settingsPath();
     (async() => {
         storageAwaited = await load();
-        console.log(storageAwaited);
+        // console.log(storageAwaited);
         storageMain = storageAwaited;
-        console.log(storageMain);
+        // console.log(storageMain);
         createWindow(); // creates main app window
     })();
     if (startup.dev.backendOnly) mainWindow.hide(); // devMode only

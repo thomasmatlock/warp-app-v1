@@ -108,7 +108,7 @@ class startup {
                 pinned: [],
             },
         };
-        storage.createSettingsFile('download-items', storageObj);
+        // storage.createSettingsFile('download-items', storageObj);
     };
     init = () => {
         this.isDevMode();

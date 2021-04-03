@@ -1,3 +1,4 @@
+// https://nodejs.dev/learn/writing-files-with-nodejs
 // write object to file
 let objConvertedToJSON = JSON.stringify(objectToBeConverted);
 fs.writeFile('./src/js/ytdl-video-info.json', objConvertedToJSON, (err) objectToBeConverted {
@@ -15,6 +16,32 @@ fs.stat('file.txt', (err, stats) => {
         console.log(stats);
     }
 });
+
+// WRITE FILE
+const fs = require('fs')
+
+const content = 'Some content!'
+
+fs.writeFile('/Users/joe/test.txt', content, err => {
+    if (err) {
+        console.error(err)
+        return
+    }
+    //file written successfully
+})
+
+// DELETE FILE
+const fs = require('fs');
+
+// delete a file
+fs.unlink('file.txt', (err) => {
+    if (err) {
+        throw err;
+    }
+
+    console.log("File is deleted.");
+});
+
 // details fs.stat returns
 // Stats {
 //   dev: 16777221,

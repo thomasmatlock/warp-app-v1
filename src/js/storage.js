@@ -1,18 +1,8 @@
 //  C:\Users\Tommy\AppData\Roaming\starter\settings.json
 const settings = require('electron-settings');
 
-const createSettingsFile = () => {
-    let storage = {
-        audioArr: [],
-        videoArr: [],
-        warpstagram: {
-            subscribed: [],
-            pinned: [],
-        },
-    };
-};
 const save = (name, obj) => {
-    console.log(name, obj);
+    // console.log(name, obj);
     settings.set(name, obj);
 };
 async function load() {
@@ -26,8 +16,8 @@ async function load() {
     });
 
     let result = await promise; // wait until the promise resolves (*)
-    console.log(`logging storage...`);
-    console.log(result);
+    // console.log(`logging storage...`);
+    // console.log(result);
     return result;
 }
 const reset = () => {
@@ -38,7 +28,6 @@ const settingsPath = () => {
 };
 
 module.exports = {
-    createSettingsFile: createSettingsFile,
     save: save,
     load: load,
     reset: reset,

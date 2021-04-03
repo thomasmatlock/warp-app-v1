@@ -2,6 +2,7 @@ const logging = true;
 const os = require('os');
 const fs = require('fs');
 const path = require('path');
+const storage = require('../storage');
 
 class fileController {
     constructor() {
@@ -11,6 +12,14 @@ class fileController {
         this.ffmpeg = 'ffmpeg';
         this.dirUser = os.userInfo().homedir; // 'C:\\Users\\Tommy\\'
         this.userDocumentsPath = path.join(this.dirUser, this.documents); // 'C:\\Users\\Tommy\\Documents'
+        this.settingsFileName = 'settings.json';
+        this.settingsPath = 'AppData\\Roaming\\starter\\';
+
+        this.settingsFile = path.join(
+            this.dirUser,
+            this.settingsPath,
+            this.settingsFileName
+        );
         this.dirMainPath = path.join(this.userDocumentsPath, this.dirMainName);
         this.dirAudioPath = path.join(
             this.dirUser,
@@ -55,7 +64,58 @@ class fileController {
             console.error(err);
         }
     };
-    exampleFunction = () => {};
+    initSettingsFileCreation = () => {
+        let storageObj = {
+            audioArr: [],
+            videoArr: [],
+            warpstagram: {
+                subscribed: [],
+                pinned: [],
+            },
+        };
+        // console.log(`${this.settingsFile}`);
+        // console.log('checking for settings file...');
+        // create settings file
+        try {
+            // console.log(systemInfo);
+            if (!fs.existsSync(this.settingsFile)) {
+                //  fs.mkdirSync(this.dirMainPath);
+                storage.save('download-items', storageObj);
+
+                console.log('created settings file');
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    };
+    deleteSettingsFile = () => {
+        console.log(`deleting settings file if it exists`);
+
+        try {
+            // Check if settings file exists
+            if (fs.existsSync(this.settingsFile)) {
+                console.log(`settings file exists...`);
+                fs.unlink(this.settingsFile, (err) => {
+                    if (err) {
+                        console.log(`no settings file exists`);
+                        // throw err;
+                    }
+
+                    console.log('settings file deleted.');
+                });
+            }
+        } catch (err) {
+            // console.error(err);
+        }
+
+        fs.unlink(this.settingsFile, (err) => {
+            if (err) {
+                throw err;
+            }
+
+            console.log('File is deleted.');
+        });
+    };
     initReadFiles = () => {};
     readDirFiles = (dir) => {
         // directory path
@@ -83,6 +143,8 @@ class fileController {
     readFilesWarpstagram = () => {};
     init = () => {
         this.initDirCreation();
+        this.initSettingsFileCreation();
+        // this.deleteSettingsFile();
         // this.readFilesAudio();
         // this.readFilesVideo();
     };
