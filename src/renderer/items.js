@@ -137,10 +137,10 @@ exports.updateStorage = (item, avType, addRemoveType) => {
             // this.loopThroughArrayLog(storage.audioArr);
         }
         if (avType === 'video') {
-            console.log(`adding ${item.title}...`);
+            // console.log(`adding ${item.title}...`);
             storage.videoArr.push(item);
             ipcRenderer.send('storage-save', storage, avType);
-            this.save();
+            this.save(avType);
             this.load();
             console.log(`${storage.videoArr.length} video items...`);
             // console.log(`${storage.videoArr.length} video items...`);
@@ -156,13 +156,13 @@ exports.updateStorage = (item, avType, addRemoveType) => {
         }
     }
 };
-exports.startupAddAllItems = () => {
-    this.load();
-    console.log(storage);
-    console.log(`${storage.audioArr.length} audio items...`);
-    console.log(`${storage.videoArr.length} video items...`);
+exports.startupAddAllItems = (storage) => {
+    // this.load();
+    // console.log(storage);
+    // console.log(`${storage.audioArr.length} audio items...`);
+    // console.log(`${storage.videoArr.length} video items...`);
     // console.log('loading item titles...');
-    console.log(`adding ${storage.audioArr.length} audio items...`);
+    // console.log(`adding ${storage.audioArr.length} audio items...`);
     this.loopThroughArray(storage.audioArr, 'audio');
     this.loopThroughArray(storage.videoArr, 'video');
 };
@@ -193,12 +193,13 @@ exports.loopThroughArrayLog = (arr) => {
 };
 
 ////////////////////////////////////////////////////////////////////////////////////
-ipcRenderer.on('load-storage-success', (e, storageSentFromMain) => {
-    console.log(storageSentFromMain);
-    storage = storageSentFromMain;
-    console.log(storage);
-    // console.log('load-storage-success');
-});
+// ipcRenderer.on('load-storage-success', (e, storageSentFromMain) => {
+//     console.log('load-storage-success');
+//     console.log(storageSentFromMain);
+//     storage = storageSentFromMain;
+//     console.log(storage);
+//     this.startupAddAllItems();
+// });
 ipcRenderer.on('storage-save-success', (e, storageSentFromMain) => {
     // console.log(storage);
     // console.log(storageSentFromMain);

@@ -25,12 +25,12 @@ state.nav = new Nav(); // controls active nav
 ////////////////////////////////////////////////////////////
 // IPCRENDERER LISTENERS
 // activates selected nav A tab on window ready
-ipcRenderer.on('window-ready', () => {
+ipcRenderer.on('window-ready', (e, storage) => {
     auto.click_nav_A(startup.env.nav_A_active); // auto clicks active tab if active
     setActiveNav_A(startup.env.nav_A_active); // sets active Nav A
     if (startup.dev.clearStorage) items.resetStorage();
-
-    items.startupAddAllItems();
+    // console.log(storage);
+    items.startupAddAllItems(storage);
     // items.testElectronSettings();
     // AUTOMATION
     auto.click_nav_B(startup.env.nav_A_active, 'paste'); // auto clicks paste if active

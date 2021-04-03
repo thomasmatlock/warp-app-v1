@@ -97,17 +97,7 @@ ipcMain.on('reset-storage', (e, storageObj) => {
 ////////////////////////////////////////////////////////////////////////////////////
 
 ipcMain.on('load-storage', (e) => {
-    // console.log(`loading storage`);
-    ////////////////////////////////////////////////////////////////////
-    let storageAwaited;
-    (async() => {
-        storageAwaited = await load();
-
-        e.reply('load-storage-success', storageAwaited);
-    })();
-    ////////////////////////////////////////////////////////////////////
-
-    // e.reply('load-storage-success');
+    e.reply('load-storage-success', storageMain);
 });
 
 ////////////////////////////////////////////////////////////////////
@@ -153,6 +143,8 @@ function createWindow() {
     const wc = mainWindow.webContents;
     wc.on('did-finish-load', () => {
         // console.log('ready');
+        // console.log(storageMain);
+        wc.send('window-ready', storageMain);
     });
     wc.on('devtools-opened', () => {
         // console.log('ready');
@@ -172,7 +164,7 @@ function createWindow() {
     // send stuff to app.js
     wc.on('did-finish-load', (e) => {
         // console.log();
-        wc.send('window-ready');
+        // console.log(mainStorage);
     });
 }
 
@@ -183,7 +175,14 @@ app.on('ready', () => {
     fileController.init(); // checks for local directories and creates them if non existent
     startup.init(); // all startup checks, latest version, isOnline, hasFFmpeg etc
     displayController.discoverDisplay(); // discovers which display to use, 3 dev mode displayController or production
-    createWindow(); // creates main app window
+    let storageAwaited;
+    (async() => {
+        storageAwaited = await load();
+        storageMain = storageAwaited;
+        // console.log('storage ready to load');
+        // console.log(storageAwaited);
+        createWindow(); // creates main app window
+    })();
     if (startup.dev.backendOnly) mainWindow.hide(); // devMode only
 });
 app.on('before-quit', (event) => {
