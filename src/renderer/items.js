@@ -117,8 +117,9 @@ exports.insertMarkup = (downloadInfo, avType) => {
 //         .catch((err) => console.error(err));
 // };
 
-exports.save = () => {
-    window.localStorage.setItem('download-items', JSON.stringify(storage)); // localStorage supports strings only, use Json.stringify
+exports.save = (avType) => {
+    // window.localStorage.setItem('download-items', JSON.stringify(storage)); // localStorage supports strings only, use Json.stringify
+    ipcRenderer.send('storage-save', storage, avType);
 };
 exports.load = () => {
     storage = JSON.parse(localStorage.getItem('download-items')); // loads this back into storage from localStorage // also JSON.parse converts strings back to array
@@ -128,9 +129,8 @@ exports.updateStorage = (item, avType, addRemoveType) => {
         if (avType === 'audio') {
             // console.log(`adding ${item.title}...`);
             storage.audioArr.push(item);
-            ipcRenderer.send('storage-save', storage, avType);
             // console.log(`${storage.audioArr.length} audio items...`);
-            this.save();
+            this.save(avType);
             this.load();
             console.log(`${storage.audioArr.length} audio items...`);
             // this.loopThroughArrayLog(storage.audioArr);
@@ -195,3 +195,9 @@ exports.loopThroughArrayLog = (arr) => {
 //     storage = storageObj;
 //     console.log('load-storage-success');
 // });
+ipcRenderer.on('storage-save-success', (e, storageSentFromMain) => {
+    // console.log(storage);
+    // console.log(storageSentFromMain);
+    storage = storageSentFromMain;
+    console.log(`storage-save-success `);
+});

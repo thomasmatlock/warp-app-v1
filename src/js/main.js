@@ -77,6 +77,7 @@ ipcMain.on('storage-save', (e, storageObj, avType) => {
         console.log(
             `${storageAwaited.audioArr.length} audio, ${storageAwaited.videoArr.length} video`
         );
+        // console.log(storageAwaited);
         e.reply('storage-save-success', storageAwaited);
     })();
 });
@@ -86,6 +87,8 @@ const load = async() => {
     return result;
 };
 ipcMain.on('reset-storage', (e, storageObj) => {
+    console.log('resetting storage');
+    // console.log(storageObj);
     storage.reset();
     storage.save('download-items', storageObj);
     console.log(`storage cleared from main.js`);
