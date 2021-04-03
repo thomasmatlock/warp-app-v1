@@ -125,6 +125,7 @@ function createWindow() {
     const wc = mainWindow.webContents;
     // send stuff to app.js
     wc.on('did-finish-load', () => {
+        console.log(storageMain);
         wc.send('window-ready', storageMain);
     });
     wc.on('devtools-opened', () => {});
@@ -150,6 +151,7 @@ app.on('ready', () => {
     // storage.settingsPath();
     (async() => {
         storageAwaited = await load();
+        console.log(storageAwaited);
         storageMain = storageAwaited;
         console.log(storageMain);
         createWindow(); // creates main app window

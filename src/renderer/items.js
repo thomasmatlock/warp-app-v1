@@ -22,7 +22,9 @@ let markupVideo = markup.video;
 
 exports.startupAddAllItems = (storageSent) => {
     // this.load();
+    console.log(storage);
     storage = storageSent;
+    console.log(storage);
 
     this.addItemsFromArray(storage.audioArr, 'audio');
     this.addItemsFromArray(storage.videoArr, 'video');
@@ -94,6 +96,7 @@ exports.insertMarkup = (downloadInfo, avType) => {
     }
 };
 exports.save = (avType) => {
+    console.log('storage-save commencing...');
     ipcRenderer.send('storage-save', storage, avType);
 };
 exports.load = () => {

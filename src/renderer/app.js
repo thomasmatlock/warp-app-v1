@@ -28,6 +28,7 @@ ipcRenderer.on('window-ready', (e, storage) => {
     auto.click_nav_A(startup.env.nav_A_active); // auto clicks active tab if active
     setActiveNav_A(startup.env.nav_A_active); // sets active Nav A
     if (startup.dev.clearStorage) items.resetStorage();
+    console.log(storage);
     items.startupAddAllItems(storage);
     // items.testElectronSettings();
     // AUTOMATION

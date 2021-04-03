@@ -4,6 +4,7 @@ const fileController = new fileControllerReq();
 const path = require('path');
 const fs = require('fs');
 const urls = require('./testURLS');
+const storage = require('../storage');
 class startup {
     constructor() {
         this.devMode = true;
@@ -98,9 +99,21 @@ class startup {
     readLocalFiles = () => {};
     updateFilesState = () => {};
     updateFilesUI = () => {};
+    checkSettings = () => {
+        let storageObj = {
+            audioArr: [],
+            videoArr: [],
+            warpstagram: {
+                subscribed: [],
+                pinned: [],
+            },
+        };
+        storage.createSettingsFile('download-items', storageObj);
+    };
     init = () => {
         this.isDevMode();
         this.isOnline();
+        // this.checkSettings();
         // this.checkFFmpeg();
     };
 }
