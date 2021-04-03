@@ -36,7 +36,6 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
 // IPC LISTENERS FOR EVENTS FROM APP.JS
 ipcMain.on('new-item', (e, itemURL, avType, platform) => {
     startup.updateActiveTab(avType); // sets nav A active
-    // console.log(itemURL, avType, platform);
     e.reply('paste-new-url', itemURL, avType, platform); // send message to app js
 });
 ipcMain.on('menu-change', (e, menuType) => {
@@ -45,58 +44,28 @@ ipcMain.on('menu-change', (e, menuType) => {
     if (menuType === 'warpstagram') appMenuWarpstagram(mainWindow.webContents); // sets video menu if video tab is clicked
 });
 ipcMain.on('quit', () => {
-    console.log('you quit');
     app.quit();
     mainWindow = null;
 });
 ipcMain.on('storage-save', (e, storageObj, avType) => {
-    // console.log(storageObj.audioArr.length);
     storage.save('download-items', storageObj);
 
     let storageAwaited;
     (async() => {
         storageAwaited = await load();
-        // if (avType === 'audio') {
-        //     console.log(
-        //         `${
-        //             storageAwaited.audioArr[storageAwaited.audioArr.length - 1]
-        //                 .title
-        //         } added...`
-        //     );
-        // }
-        // if (avType === 'video') {
-        //     console.log(
-        //         `${
-        //             storageAwaited.videoArr[storageAwaited.videoArr.length - 1]
-        //                 .title
-        //         } added...${storageAwaited.videoArr.length} audio, ${
-        //             storageAwaited.videoArr.length
-        //         } video`
-        //     );
-        // }
-        // console.log(
-        //     `${storageAwaited.audioArr.length} audio, ${storageAwaited.videoArr.length} video`
-        // );
-        // console.log(storageAwaited);
-        // console.log('storage saved in main, sending it back ');
         e.reply('storage-save-success', storageAwaited);
     })();
 });
-
+ipcMain.on('reset-storage', (e, storageObj) => {
+    storage.reset();
+    storage.save('download-items', storageObj);
+});
 const load = async() => {
     const result = await storage.load();
     return result;
 };
-ipcMain.on('reset-storage', (e, storageObj) => {
-    console.log('resetting storage');
-    // console.log(storageObj);
-    storage.reset();
-    storage.save('download-items', storageObj);
-    console.log(`storage cleared from main.js`);
-});
 
 ////////////////////////////////////////////////////////////////////////////////////
-
 ipcMain.on('load-storage', (e) => {
     e.reply('load-storage-success', storageMain);
 });
@@ -121,19 +90,31 @@ function createWindow() {
         // backgroundColor: '#0463db', // use the same color as your html file is, the main window will display this until html fully loads. This is a little better than making your app hang for a second until the html loads, then displaying the window
         // backgroundColor: '#ff8500', // use the same color as your html file is, the main window will display this until html fully loads. This is a little better than making your app hang for a second until the html loads, then displaying the window
     });
-    // modalWindow = new BrowserWindow({
-    //     // parent: mainWindow,
-    //     // modal: true,
-    //     show: false,
-    //     transparent: true,
-    //     frame: false,
-    // });
-    // // modalWindow.loadURL('https://warpdownload.com');
-    // modalWindow.loadURL('https://www.youtube.com');
-    // // mainWindow.loadFile('./main.html'); // Load index.html into the new BrowserWindow
-    // modalWindow.once('ready-to-show', () => {
-    //     modalWindow.show();
-    // });
+    if (startup.env.modalBrowserWindow) {
+        modalWindow = new BrowserWindow({
+            // parent: mainWindow,
+            // modal: true,
+            show: true,
+            transparent: true,
+            frame: false,
+            resizable: false,
+            movable: false,
+            minimizable: false,
+            maximizable: false,
+            alwaysOnTop: true,
+            transparent: false,
+            // setPosition;
+            // getPosition;
+            // setSize;
+            // getSize;
+        });
+        // modalWindow.loadURL('https://warpdownload.com');
+        modalWindow.loadURL('https://www.youtube.com');
+        // mainWindow.loadFile('./main.html'); // Load index.html into the new BrowserWindow
+        modalWindow.once('ready-to-show', () => {
+            modalWindow.show();
+        });
+    }
 
     mainWindow.loadFile('./src/renderer/main.html'); // Load index.html into the new BrowserWindow
     // mainWindow.loadFile('./main.html'); // Load index.html into the new BrowserWindow
@@ -142,14 +123,11 @@ function createWindow() {
     }
 
     const wc = mainWindow.webContents;
+    // send stuff to app.js
     wc.on('did-finish-load', () => {
-        // console.log('ready');
-        // console.log(storageMain);
         wc.send('window-ready', storageMain);
     });
-    wc.on('devtools-opened', () => {
-        // console.log('ready');
-    });
+    wc.on('devtools-opened', () => {});
 
     // Listen for window being closed
     mainWindow.on('closed', () => {
@@ -158,15 +136,7 @@ function createWindow() {
     mainWindow.on('resize', () => {
         wc.send('resize');
     });
-
-    mainWindow.on('maximize', () => {
-        // console.log('window maximize');
-    });
-    // send stuff to app.js
-    wc.on('did-finish-load', (e) => {
-        // console.log();
-        // console.log(mainStorage);
-    });
+    mainWindow.on('maximize', () => {});
 }
 
 ////////////////////////////////////////////////////////////////////
@@ -180,8 +150,6 @@ app.on('ready', () => {
     (async() => {
         storageAwaited = await load();
         storageMain = storageAwaited;
-        // console.log('storage ready to load');
-        // console.log(storageAwaited);
         createWindow(); // creates main app window
     })();
     if (startup.dev.backendOnly) mainWindow.hide(); // devMode only

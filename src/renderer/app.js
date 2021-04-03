@@ -20,7 +20,6 @@ const auto = require('./automate');
 
 let state = {};
 state.nav = new Nav(); // controls active nav
-// console.log(state.nav);
 
 ////////////////////////////////////////////////////////////
 // IPCRENDERER LISTENERS
@@ -29,7 +28,6 @@ ipcRenderer.on('window-ready', (e, storage) => {
     auto.click_nav_A(startup.env.nav_A_active); // auto clicks active tab if active
     setActiveNav_A(startup.env.nav_A_active); // sets active Nav A
     if (startup.dev.clearStorage) items.resetStorage();
-    // console.log(storage);
     items.startupAddAllItems(storage);
     // items.testElectronSettings();
     // AUTOMATION
@@ -51,10 +49,8 @@ const setActiveNav_A = (nav_A_active) => {
 // Fire on resize window
 ipcRenderer.on('resize', () => {
     var clickDelay = 50;
-    // console.log(`window resized`);
     if (startup.env.nav_A_active == 'audio') {
         elements.nav_A_active = elements.nav_A_audio; // sets active Nav A
-        // console.log(`clicking ${elements.nav_A_active}`);
         setTimeout(() => {
             elements.nav_A_audio.click(); // clicks audio tab
         }, clickDelay);
@@ -67,7 +63,6 @@ ipcRenderer.on('resize', () => {
         }, clickDelay);
     }
     if (startup.env.nav_A_active == 'warpstagram') {
-        // console.log(`clicking ${elements.env.nav_A_active}`);
         setTimeout(() => {
             elements.nav_A_warpstagram.click(); // clicks warpstagram tab
         }, clickDelay);
@@ -150,7 +145,6 @@ elements.nav_A.addEventListener('click', (e) => {
     const target = e.target;
     const id = target.id;
     nav_A_active = id;
-    // console.log(id);
 
     if (id) {
         state.nav.updateActiveNav_A(id);
@@ -168,7 +162,6 @@ elements.nav_A.addEventListener('click', (e) => {
 
     for (var key in nav_B_actives) {
         if (nav_B_actives.hasOwnProperty(key) && nav_B_actives[key] === true) {
-            // console.log(key + " is " + nav_B_actives[key]);
             navSecondaryView.highlightSelected('add', key);
         }
     }
@@ -183,8 +176,6 @@ elements.nav_A_audio.addEventListener('click', (e) => {
 elements.nav_A_video.addEventListener('click', (e) => {
     ipcRenderer.send('menu-change', 'video');
     startup.env.nav_A_active = 'video';
-    // if (logging)
-    //     console.log(`env.nav_A_active is now ${startup.env.nav_A_active}`);
 });
 elements.nav_A_warpstagram.addEventListener('click', (e) => {
     ipcRenderer.send('menu-change', 'warpstagram');

@@ -11,16 +11,17 @@ class startup {
         this.env = {
             nav_A_active: !this.devMode ? 'audio' : 'audio', //   audio, video, or warpstagram, defaults to audio
             user: 'dev', // can be dev, free, or paid
+            modalBrowserWindow: false, // opens youtube modal window
             // hasFFmpeg: this.checkFFmpeg(),
             // this.loadAudioSlide = false; // set to true to load the audio portion of the content slide
             // this.loadVideoSlide = false; // set to true to load the video portion of the content slide
             // this.loadWarpstagramSlide = false; // set to true to load the warpstagram portion of the content slide
         };
         this.dev = {
-            autoClickPaste: true, // pastes random URL on load
+            autoClickPaste: false, // pastes random URL on load
             getDownloadItemInfo: true, //
             clearStorage: false, // USE THIS TO RESET STORAGE
-            devTools: !this.devMode ? false : true, // devTools off/on
+            devTools: !this.devMode ? false : false, // devTools off/on
             backendOnly: false, // hides window
             downloadFile: false,
             downloadSmallestFile: true,
