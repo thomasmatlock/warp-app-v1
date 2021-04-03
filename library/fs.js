@@ -1,46 +1,46 @@
 // https://nodejs.dev/learn/writing-files-with-nodejs
 // write object to file
-let objConvertedToJSON = JSON.stringify(objectToBeConverted);
-fs.writeFile('./src/js/ytdl-video-info.json', objConvertedToJSON, (err) objectToBeConverted {
-    if (err) console.log(err);
-    else {
-        console.log('File written successfully\n');
-    }
-});
+// let objConvertedToJSON = JSON.stringify(objectToBeConverted);
+// fs.writeFile('./src/js/ytdl-video-info.json', objConvertedToJSON, (err) objectToBeConverted {
+//     if (err) console.log(err);
+//     else {
+//         console.log('File written successfully\n');
+//     }
+// });
 
 // Read file stats
-fs.stat('file.txt', (err, stats) => {
-    if (err) {
-        console.log(`File doesn't exist.`);
-    } else {
-        console.log(stats);
-    }
-});
+// fs.stat('file.txt', (err, stats) => {
+//     if (err) {
+//         console.log(`File doesn't exist.`);
+//     } else {
+//         console.log(stats);
+//     }
+// });
 
 // WRITE FILE
-const fs = require('fs')
+// const fs = require('fs')
 
-const content = 'Some content!'
+// const content = 'Some content!'
 
-fs.writeFile('/Users/joe/test.txt', content, err => {
-    if (err) {
-        console.error(err)
-        return
-    }
-    //file written successfully
-})
+// fs.writeFile('/Users/joe/test.txt', content, err => {
+//     if (err) {
+//         console.error(err)
+//         return
+//     }
+//     //file written successfully
+// })
 
 // DELETE FILE
-const fs = require('fs');
+// const fs = require('fs');
 
-// delete a file
-fs.unlink('file.txt', (err) => {
-    if (err) {
-        throw err;
-    }
+// // delete a file
+// fs.unlink('file.txt', (err) => {
+//     if (err) {
+//         throw err;
+//     }
 
-    console.log("File is deleted.");
-});
+//     console.log("File is deleted.");
+// });
 
 // details fs.stat returns
 // Stats {
