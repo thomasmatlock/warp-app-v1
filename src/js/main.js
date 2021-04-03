@@ -147,7 +147,7 @@ app.on('ready', () => {
     startup.init(); // all startup checks, latest version, isOnline, hasFFmpeg etc
     displayController.discoverDisplay(); // discovers which display to use, 3 dev mode displayController or production
     let storageAwaited;
-    storage.settingsPath();
+    // storage.settingsPath();
     (async() => {
         storageAwaited = await load();
         storageMain = storageAwaited;
