@@ -1,4 +1,4 @@
-// C: \Users\Users\Tommy\Users\Tommy\AppData\Users\Tommy\AppData\Roaming\Users\Tommy\AppData\Roaming\starter\Users\Tommy\AppData\Roaming\starter\settings.json;
+//  C:\Users\Tommy\AppData\Roaming\starter\settings.json
 const settings = require('electron-settings');
 
 const save = (name, obj) => {
