@@ -96,10 +96,19 @@ ipcMain.on('reset-storage', (e, storageObj) => {
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-// ipcMain.on('load-storage', (e) => {
-//     console.log(`loading storage`);
-//     e.reply('load-storage-success');
-// });
+ipcMain.on('load-storage', (e) => {
+    // console.log(`loading storage`);
+    ////////////////////////////////////////////////////////////////////
+    let storageAwaited;
+    (async() => {
+        storageAwaited = await load();
+
+        e.reply('load-storage-success', storageAwaited);
+    })();
+    ////////////////////////////////////////////////////////////////////
+
+    // e.reply('load-storage-success');
+});
 
 ////////////////////////////////////////////////////////////////////
 // WINDOW CREATION

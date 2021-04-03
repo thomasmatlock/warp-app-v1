@@ -24,7 +24,7 @@ class startup {
             downloadFile: false,
             downloadSmallestFile: true,
             autoClickNavA_active: true, // clicks nav A tab on load
-            autoClickPaste: true, // pastes random URL on load
+            autoClickPaste: false, // pastes random URL on load
             useRandomYoutubeURL: this.testingYoutubeURLS ? true : false, // uses YT URLS if testingYoutubeURLS is true
             useRandomMiscURL: !this.testingYoutubeURLS ? true : false, // uses misc URLS if testingYoutubeURLS is false
             URLSyoutube: urls,

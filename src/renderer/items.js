@@ -122,7 +122,8 @@ exports.save = (avType) => {
     ipcRenderer.send('storage-save', storage, avType);
 };
 exports.load = () => {
-    storage = JSON.parse(localStorage.getItem('download-items')); // loads this back into storage from localStorage // also JSON.parse converts strings back to array
+    // storage = JSON.parse(localStorage.getItem('download-items')); // loads this back into storage from localStorage // also JSON.parse converts strings back to array
+    ipcRenderer.send('load-storage');
 };
 exports.updateStorage = (item, avType, addRemoveType) => {
     if (addRemoveType === 'add') {
@@ -157,6 +158,7 @@ exports.updateStorage = (item, avType, addRemoveType) => {
 };
 exports.startupAddAllItems = () => {
     this.load();
+    console.log(storage);
     console.log(`${storage.audioArr.length} audio items...`);
     console.log(`${storage.videoArr.length} video items...`);
     // console.log('loading item titles...');
@@ -191,13 +193,15 @@ exports.loopThroughArrayLog = (arr) => {
 };
 
 ////////////////////////////////////////////////////////////////////////////////////
-// ipcRenderer.on('load-storage-success', (storageObj) => {
-//     storage = storageObj;
-//     console.log('load-storage-success');
-// });
+ipcRenderer.on('load-storage-success', (e, storageSentFromMain) => {
+    console.log(storageSentFromMain);
+    storage = storageSentFromMain;
+    console.log(storage);
+    // console.log('load-storage-success');
+});
 ipcRenderer.on('storage-save-success', (e, storageSentFromMain) => {
     // console.log(storage);
     // console.log(storageSentFromMain);
     storage = storageSentFromMain;
-    console.log(`storage-save-success `);
+    // console.log(`storage-save-success `);
 });
