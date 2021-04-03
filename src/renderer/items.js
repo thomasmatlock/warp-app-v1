@@ -126,9 +126,6 @@ exports.save = (avType) => {
     ipcRenderer.send('storage-save', storage, avType);
 };
 exports.load = () => {
-    // console.log(`load, ${storage.audioArr.length}`);
-
-    // storage = JSON.parse(localStorage.getItem('download-items')); // loads this back into storage from localStorage // also JSON.parse converts strings back to array
     ipcRenderer.send('load-storage');
 };
 exports.updateStorage = (item, avType, addRemoveType) => {
