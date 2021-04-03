@@ -49,7 +49,7 @@ ipcMain.on('quit', () => {
 });
 ipcMain.on('storage-save', (e, storageObj, avType) => {
     storage.save('download-items', storageObj);
-
+    console.log('saving');
     let storageAwaited;
     (async() => {
         storageAwaited = await load();
@@ -147,9 +147,11 @@ app.on('ready', () => {
     startup.init(); // all startup checks, latest version, isOnline, hasFFmpeg etc
     displayController.discoverDisplay(); // discovers which display to use, 3 dev mode displayController or production
     let storageAwaited;
+    storage.settingsPath();
     (async() => {
         storageAwaited = await load();
         storageMain = storageAwaited;
+        console.log(storageMain);
         createWindow(); // creates main app window
     })();
     if (startup.dev.backendOnly) mainWindow.hide(); // devMode only

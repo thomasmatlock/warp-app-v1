@@ -2,6 +2,7 @@
 const settings = require('electron-settings');
 
 const save = (name, obj) => {
+    console.log(name, obj);
     settings.set(name, obj);
 };
 async function load() {
@@ -15,9 +16,9 @@ async function load() {
     });
 
     let result = await promise; // wait until the promise resolves (*)
-    // console.log(result);
-    return result;
     console.log(`logging storage...`);
+    console.log(result);
+    return result;
 }
 const reset = () => {
     settings.reset();
