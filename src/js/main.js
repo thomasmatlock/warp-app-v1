@@ -52,30 +52,39 @@ ipcMain.on('quit', () => {
 ipcMain.on('storage-save', (e, storageObj, avType) => {
     // console.log(storageObj.audioArr.length);
     storage.save('download-items', storageObj);
-    load(avType);
+
+    let storageAwaited;
+    (async() => {
+        storageAwaited = await load();
+        if (avType === 'audio') {
+            console.log(
+                `${
+                    storageAwaited.audioArr[storageAwaited.audioArr.length - 1]
+                        .title
+                } added...`
+            );
+        }
+        if (avType === 'video') {
+            console.log(
+                `${
+                    storageAwaited.videoArr[storageAwaited.videoArr.length - 1]
+                        .title
+                } added...${storageAwaited.videoArr.length} audio, ${
+                    storageAwaited.videoArr.length
+                } video`
+            );
+        }
+        console.log(
+            `${storageAwaited.audioArr.length} audio, ${storageAwaited.videoArr.length} video`
+        );
+        e.reply('storage-save-success', storageAwaited);
+    })();
 });
-async function load(avType) {
-    storageMain = await storage.load();
-    if (avType === 'audio') {
-        console.log(
-            `${
-                storageMain.audioArr[storageMain.audioArr.length - 1].title
-            } added...`
-        );
-    }
-    if (avType === 'video') {
-        console.log(
-            `${
-                storageMain.videoArr[storageMain.videoArr.length - 1].title
-            } added...${storageMain.videoArr.length} audio, ${
-                storageMain.videoArr.length
-            } video`
-        );
-    }
-    console.log(
-        `${storageMain.audioArr.length} audio, ${storageMain.videoArr.length} video`
-    );
-}
+
+const load = async() => {
+    const result = await storage.load();
+    return result;
+};
 ipcMain.on('reset-storage', (e, storageObj) => {
     storage.reset();
     storage.save('download-items', storageObj);
