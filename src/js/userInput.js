@@ -15,7 +15,7 @@ const logging = false;
 const { clipboard, ipcRenderer } = require('electron');
 const startupReq = require('./system/startup');
 const startup = new startupReq();
-const miscFunctions = require('../../library/miscArrays');
+const miscFunctions = require('../../library/js/miscArrays');
 const pattArr = [
     /facebook/i,
     /instagram/i,
