@@ -4,7 +4,7 @@ const fs = require('fs');
 const { ipcRenderer } = require('electron');
 const imageDownloader = require('image-downloader');
 let markup = require('./views/markup');
-let downloadHandler = require('../js/downloadHandler-object');
+let downloadHandler = require('../js/downloadHandler');
 const startupReq = require('../js/system/startup');
 const startup = new startupReq();
 
@@ -21,13 +21,11 @@ let markupAudio = markup.audio;
 let markupVideo = markup.video;
 
 exports.startupAddAllItems = (storageSent) => {
-    // this.load();
-    // console.log(storage);
     storage = storageSent;
-    console.log(storage.downloadItems.audioArr);
+    // console.log(storage.downloadItems);
 
     this.addItemsFromArray(storage.downloadItems.audioArr, 'audio');
-    this.addItemsFromArray(storage.downloadItems.audioArr, 'video');
+    this.addItemsFromArray(storage.downloadItems.videoArr, 'video');
 };
 exports.downloadItem = (itemURL, avType, platform) => {
     // DOWNLOAD ITEM
@@ -97,6 +95,7 @@ exports.insertMarkup = (downloadInfo, avType) => {
 };
 exports.save = (avType) => {
     // console.log('storage-save commencing...');
+    // console.log(storage);
     ipcRenderer.send('storage-save', storage, avType);
 };
 exports.load = () => {
@@ -105,15 +104,15 @@ exports.load = () => {
 exports.updateStorage = (item, avType, addRemoveType) => {
     if (addRemoveType === 'add') {
         if (avType === 'audio') {
-            console.log('updateStorage');
-            console.log(storage);
+            // console.log('updateStorage');
+            // console.log(storage);
             storage.downloadItems.audioArr.push(item);
             this.save(avType);
             this.load();
         }
         if (avType === 'video') {
-            console.log('updateStorage');
-            console.log(storage);
+            // console.log('updateStorage');
+            // console.log(storage);
             storage.downloadItems.videoArr.push(item);
             ipcRenderer.send('storage-save', storage, avType);
             this.save(avType);
@@ -151,7 +150,9 @@ exports.resetStorage = () => {
 ////////////////////////////////////////////////////////////////////////////////////
 ipcRenderer.on('storage-save-success', (e, storageSentFromMain) => {
     // console.log('storage-save-success');
+    // console.log(storageSentFromMain);
     storage = storageSentFromMain;
+    // console.log(storage);
 });
 ////////////////////////////////////////////////////////////////////////////////////
 // exports.downloadThumbnail = (url) => {

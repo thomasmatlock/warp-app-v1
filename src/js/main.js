@@ -55,10 +55,11 @@ ipcMain.on('storage-save', (e, storageObj, avType) => {
         storageAwaited = await load();
         e.reply('storage-save-success', storageAwaited);
     })();
+    // console.log(storageAwaited);
 });
 ipcMain.on('reset-storage', (e, storageObj) => {
     storage.reset();
-    storage.save('download-items', storageObj); // #fix, wrong arg1 save name, should be 'settings'
+    storage.save('settings', storageObj); // #fix, wrong arg1 save name, should be 'settings'
 });
 const load = async() => {
     const result = await storage.load();
