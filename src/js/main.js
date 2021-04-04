@@ -69,6 +69,10 @@ const load = async() => {
 ipcMain.on('load-storage', (e) => {
     e.reply('load-storage-success', storageMain);
 });
+ipcMain.on('close-app', (e) => {
+    console.log('closing app...');
+    app.quit();
+});
 
 ////////////////////////////////////////////////////////////////////
 // WINDOW CREATION

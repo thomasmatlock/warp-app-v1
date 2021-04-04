@@ -77,10 +77,13 @@ ipcRenderer.on('paste-new-url', (event, itemURL, avType, platform) => {
 
 // MENU LISTENERS, AUDIO
 // File
-ipcRenderer.on('Audio: File: Import Download Links', () => {});
+ipcRenderer.on('Audio: File: Import Download Links', () => {
+    console.log('you want to import audio');
+});
 ipcRenderer.on('Audio: File: Export Download Links', () => {});
 // Downloads
 ipcRenderer.on('Audio: Downloads: Paste', () => {
+    console.log('you pressed paste');
     elements.nav_B_button_audio_paste.click(); // clicks audio paste
 });
 ipcRenderer.on('Audio: Downloads: Pause All', () => {});
@@ -96,6 +99,7 @@ ipcRenderer.on('Video: File: Import Subscriptions', () => {});
 ipcRenderer.on('Video: File: Export Subscriptions', () => {});
 // Downloads
 ipcRenderer.on('Video: Downloads: Paste', () => {
+    console.log('you pressed paste');
     elements.nav_B_button_video_paste.click(); // clicks audio paste
 });
 ipcRenderer.on('Video: Downloads: Pause All', () => {});

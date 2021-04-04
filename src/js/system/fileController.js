@@ -2,6 +2,7 @@ const logging = true;
 const os = require('os');
 const fs = require('fs');
 const path = require('path');
+const { app } = require('electron');
 const storage = require('../storage');
 
 class fileController {
@@ -112,7 +113,10 @@ class fileController {
 
         fs.unlink(this.settingsFile, (err) => {
             if (err) {
-                throw err;
+                // ipcRenderer.send('close-app');
+                app.quit();
+                // throw err;
+                // console.log(err);
             }
 
             console.log('File is deleted.');
