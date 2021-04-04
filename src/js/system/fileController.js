@@ -92,34 +92,10 @@ class fileController {
         }
     };
     deleteSettingsFile = () => {
-        console.log(`deleting settings file if it exists`);
-
-        try {
-            // Check if settings file exists
-            if (fs.existsSync(this.settingsFile)) {
-                console.log(`settings file exists...`);
-                fs.unlink(this.settingsFile, (err) => {
-                    if (err) {
-                        console.log(`no settings file exists`);
-                        // throw err;
-                    }
-
-                    console.log('settings file deleted.');
-                });
-            }
-        } catch (err) {
-            // console.error(err);
-        }
-
+        console.log(`Checking if settings file exists...`);
         fs.unlink(this.settingsFile, (err) => {
-            if (err) {
-                // ipcRenderer.send('close-app');
-                app.quit();
-                // throw err;
-                // console.log(err);
-            }
-
-            console.log('File is deleted.');
+            console.log('Settings file deleted, exiting app...');
+            app.quit();
         });
     };
     initReadFiles = () => {};
