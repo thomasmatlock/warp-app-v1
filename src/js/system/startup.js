@@ -4,7 +4,7 @@ const fileController = new fileControllerReq();
 const path = require('path');
 const fs = require('fs');
 const urls = require('./testURLS');
-const storage = require('../storage');
+// const storage = require('../storage');
 class startup {
     constructor() {
         this.devMode = true;
@@ -53,6 +53,9 @@ class startup {
                     subscribed: [],
                     pinned: [],
                 },
+            },
+            random: {
+                hello: 'yes',
             },
         };
     }
