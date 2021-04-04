@@ -4,13 +4,20 @@
     border: 0px;
 }
 
+.main-window {
+    border-radius: 20px;
+    /* background-color: white; */
+    height: 100vh;
+    margin-bottom: 100px
+}
+
 html,
 body {
     min-height: 100%;
 }
 
 body {
-    background: radial-gradient(#4b4b4b, #000000);
+    background: radial-gradient(#292929, #000000);
 }
 
 .loader {

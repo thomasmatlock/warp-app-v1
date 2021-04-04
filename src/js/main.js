@@ -148,9 +148,9 @@ function createWindow() {
 function createSplashWindow() {
     splash = new BrowserWindow({
         height: 300,
-        width: 300,
-        x: 100,
-        y: 100,
+        width: 400,
+        // x: 100,
+        // y: 100,
         frame: false,
         webPreferences: {},
     });
