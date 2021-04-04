@@ -82,8 +82,10 @@ function createWindow() {
         width: displayController.width,
         minWidth: displayController.minWidth,
         minHeight: displayController.minHeight,
-        x: displayController.x,
-        y: displayController.y,
+        // x: displayController.x,
+        // y: displayController.y,
+        x: 2285,
+        y: 412,
         // icon: __dirname + '/icon.ico',
         // icon: __dirname + '/icon.png',
         // icon: 'C:\\Users\\Tommy\\Documents\\GitHub\\Warp-App\\icon.png',
@@ -121,6 +123,11 @@ function createWindow() {
     });
     mainWindow.on('resize', () => {
         wc.send('resize');
+    });
+    mainWindow.on('move', () => {
+        // console.log('window moved');
+        // console.log(`Size ${mainWindow.getSize()}`);
+        // console.log(`Position ${mainWindow.getPosition()}`);
     });
     mainWindow.on('maximize', () => {});
 }

@@ -25,6 +25,9 @@ class displayController {
         this.y;
         this.minWidth = 800;
         this.minHeight = 600;
+        this.useDesktopPrimary;
+        this.useLaptop;
+        // this.useDesktopSecondary = this.useDesktopPrimary ? false : true;
     }
     discoverDisplay = () => {
         // PRODUCTION MODE
@@ -40,6 +43,7 @@ class displayController {
         ) {
             this.height = 900;
             this.width = 1600;
+            this.useLaptop = true;
             this.x = Math.round(this.displayToUse.size.width * 0); // how far to the right app appears
             this.y = Math.round(this.displayToUse.size.height * 0); // how far down the app
             if (this.logging)
@@ -53,6 +57,7 @@ class displayController {
             this.width = Math.round(this.displayToUse.size.width * 0.65); // app width
             this.x = Math.round(this.displayToUse.size.width * 0.35); // how far to the right app appears
             this.y = Math.round(this.displayToUse.size.height * 0.2); // how far down the app
+            this.useDesktopPrimary = true;
             if (this.logging)
                 console.log(
                     `Dev mode, desktop primary, height ${this.height}, width ${this.width}, x ${this.x}, y ${this.y}`
@@ -64,6 +69,10 @@ class displayController {
             this.displayToUse.size.height === 1152 &&
             this.useSecondaryDisplay
         ) {
+            this.height = Math.round(this.displayToUse.size.height * 0.6); // app height
+            this.width = Math.round(this.displayToUse.size.width * 0.65); // app width
+            this.x = Math.round(this.displayToUse.size.width * 0.35); // how far to the right app appears
+            this.y = Math.round(this.displayToUse.size.height * 0.2); // how far down the app
             if (this.logging)
                 console.log(
                     `Dev mode, desktop secondary, height ${this.height}, width ${this.width}, x ${this.x}, y ${this.y}`
