@@ -1,9 +1,0 @@
-neededDetails: {
-    thumbnail: info.videoDetails.thumbnails[3], // (or the last thumbnail) usually seems to be highest res thumbnail. thumbn\ails are in descending order from low res to highest res
-    title: info.videoDetails.title,
-    length: ,
-    file size: ,
-    format: ,
-    height: info.formats[0].height,
-    fps: info.formats[0].fps
-}
