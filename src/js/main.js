@@ -63,7 +63,7 @@ ipcMain.on('reset-storage', (e, storageObj) => {
     fileController.settingsSave('settings', storageObj); // #fix, wrong arg1 save name, should be 'settings'
 });
 const load = async() => {
-    const result = await storage.load();
+    const result = await fileController.settingsLoad();
     return result;
 };
 

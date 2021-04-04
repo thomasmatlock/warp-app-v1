@@ -24,6 +24,6 @@
 // })();
 
 // const asyncFunction = async () => {
-//     const result = await storage.load();
+//     const result = await fileController.settingsLoad();
 //     return result;
 // };
