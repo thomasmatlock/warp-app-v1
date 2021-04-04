@@ -99,30 +99,6 @@ function createWindow() {
         // backgroundColor: '#0463db', // use the same color as your html file is, the main window will display this until html fully loads. This is a little better than making your app hang for a second until the html loads, then displaying the window
         // backgroundColor: '#ff8500', // use the same color as your html file is, the main window will display this until html fully loads. This is a little better than making your app hang for a second until the html loads, then displaying the window
     });
-    // if (startup.env.modalBrowserWindow) {
-    //     modalWindow = new BrowserWindow({
-    //         // parent: mainWindow,
-    //         // modal: true,
-    //         show: true,
-    //         transparent: true,
-    //         frame: false,
-    //         resizable: false,
-    //         movable: false,
-    //         minimizable: false,
-    //         maximizable: false,
-    //         alwaysOnTop: true,
-    //         transparent: false,
-    //         // setPosition;
-    //         // getPosition;
-    //         // setSize;
-    //         // getSize;
-    //     });
-    //     // modalWindow.loadURL('https://warpdownload.com');
-    //     modalWindow.loadURL('https://www.youtube.com');
-    //     // mainWindow.loadFile('./main.html'); // Load index.html into the new BrowserWindow
-    //     modalWindow.once('ready-to-show', () => {
-    //         modalWindow.show();
-    //     });
 
     mainWindow.loadFile('./src/renderer/main.html'); // Load index.html into the new BrowserWindow
     // mainWindow.loadFile('./main.html'); // Load index.html into the new BrowserWindow
@@ -161,6 +137,32 @@ function createSplashWindow() {
     splash.loadFile('./src/renderer/splash.html'); // Load index.html into the new BrowserWindow
 }
 
+function createModalWindow() {
+    modalWindow = new BrowserWindow({
+        // parent: mainWindow,
+        // modal: true,
+        show: true,
+        transparent: true,
+        frame: false,
+        resizable: false,
+        movable: false,
+        minimizable: false,
+        maximizable: false,
+        alwaysOnTop: true,
+        transparent: false,
+        // setPosition;
+        // getPosition;
+        // setSize;
+        // getSize;
+    });
+    // modalWindow.loadURL('https://warpdownload.com');
+    modalWindow.loadURL('https://www.youtube.com');
+    // mainWindow.loadFile('./main.html'); // Load index.html into the new BrowserWindow
+    modalWindow.once('ready-to-show', () => {
+        modalWindow.show();
+    });
+}
+
 ////////////////////////////////////////////////////////////////////
 // APP LISTENERS (monitoring main node process)
 app.on('ready', () => {
@@ -170,13 +172,11 @@ app.on('ready', () => {
     startup.init(); // all startup checks, latest version, isOnline, hasFFmpeg etc
     displayController.discoverDisplay(); // discovers which display to use, 3 dev mode displayController or production
     let storageAwaited;
-    // storage.initSettingsFile();
-    // storage.settingsPath();
+
     (async() => {
         storageAwaited = await load();
         // console.log(storageAwaited);
         storageMain = storageAwaited;
-        // console.log(storageMain);
         createWindow(); // creates main app window
     })();
     if (startup.dev.backendOnly) mainWindow.hide(); // devMode only
