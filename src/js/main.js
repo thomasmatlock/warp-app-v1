@@ -26,7 +26,7 @@ const fileControllerReq = require('./system/fileController');
 const fileController = new fileControllerReq();
 const startupReq = require('./system/startup');
 const startup = new startupReq();
-const storage = require('./storage');
+// const storage = require('./storage');
 const { file } = require('electron-settings');
 
 ////////////////////////////////////////////////////////////////////

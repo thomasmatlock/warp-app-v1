@@ -6,7 +6,7 @@ const os = require('os');
 const fs = require('fs');
 const path = require('path');
 const { app } = require('electron');
-const storage = require('../storage');
+// const storage = require('../storage');
 const settings = require('electron-settings');
 let startup;
 class fileController {
@@ -95,7 +95,7 @@ class fileController {
         });
     };
     settingsSave = (name, obj) => {
-        console.log('saving settings');
+        // console.log('saving settings');
         // console.log(name, obj);
         settings.set(name, obj);
     };
