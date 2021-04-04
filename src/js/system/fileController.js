@@ -1,12 +1,13 @@
+//  C:\Users\Tommy\AppData\Roaming\starter\settings.json
+//  C:\Users\Tommy\AppData\Roaming\starter
+
 const logging = true;
 const os = require('os');
 const fs = require('fs');
 const path = require('path');
 const { app } = require('electron');
 const storage = require('../storage');
-const startupReq = require('./startup');
-console.log(typeof startupReq);
-// const startup = new startupReq();
+let startup;
 class fileController {
     constructor() {
         this.dirMainName = 'Warp Downloader'; // main download directory
@@ -69,34 +70,15 @@ class fileController {
             console.error(err);
         }
     };
-    initSettingsFileCreation = () => {
-        let storageObj = {
-            audioArr: [],
-            videoArr: [],
-            warpstagram: {
-                subscribed: [],
-                pinned: [],
-            },
-        };
-        let user = {};
-        // if (startup.devMode) {
-        //     user = {
-        //         audio: 'pro',
-        //         video: 'pro',
-        //         warpstagram: 'pro',
-        //     };
-        // }
-        // console.log(user);
-
-        // console.log(`${this.settingsFile}`);
-        // console.log('checking for settings file...');
-        // create settings file
+    initSettingsFileCreation = (settings) => {
+        // console.log('initSettingsFileCreation');
+        // console.log(settings);
         try {
             // console.log(systemInfo);
             if (!fs.existsSync(this.settingsFile)) {
                 //  fs.mkdirSync(this.dirMainPath);
-                storage.save('download-items', storageObj);
-                // storage.save('user', storageObj);
+                storage.save('settings', settings);
+                // storage.save('user', user);
 
                 console.log('created settings file');
             }
@@ -131,9 +113,10 @@ class fileController {
     };
 
     readFilesWarpstagram = () => {};
-    init = () => {
+    init = (startupObj) => {
+        // startup = startupObj;
         this.initDirCreation();
-        this.initSettingsFileCreation();
+        this.initSettingsFileCreation(startupObj.settings);
         // this.deleteSettingsFile();
     };
 }

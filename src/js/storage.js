@@ -13,7 +13,7 @@ async function load() {
         // setTimeout(() => resolve('done!'), 2000);
         // setTimeout(() => resolve(settings.get('color.name')), 500);
         // setTimeout(() => resolve(settings.get('color.code.rgb[1')), 500);
-        setTimeout(() => resolve(settings.get('download-items')), 2000);
+        setTimeout(() => resolve(settings.get('settings')), 2000);
     });
 
     let result = await promise; // wait until the promise resolves (*)

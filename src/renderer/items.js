@@ -24,10 +24,10 @@ exports.startupAddAllItems = (storageSent) => {
     // this.load();
     // console.log(storage);
     storage = storageSent;
-    // console.log(storage);
+    console.log(storage.downloadItems.audioArr);
 
-    this.addItemsFromArray(storage.audioArr, 'audio');
-    this.addItemsFromArray(storage.videoArr, 'video');
+    this.addItemsFromArray(storage.downloadItems.audioArr, 'audio');
+    this.addItemsFromArray(storage.downloadItems.audioArr, 'video');
 };
 exports.downloadItem = (itemURL, avType, platform) => {
     // DOWNLOAD ITEM
@@ -105,12 +105,16 @@ exports.load = () => {
 exports.updateStorage = (item, avType, addRemoveType) => {
     if (addRemoveType === 'add') {
         if (avType === 'audio') {
-            storage.audioArr.push(item);
+            console.log('updateStorage');
+            console.log(storage);
+            storage.downloadItems.audioArr.push(item);
             this.save(avType);
             this.load();
         }
         if (avType === 'video') {
-            storage.videoArr.push(item);
+            console.log('updateStorage');
+            console.log(storage);
+            storage.downloadItems.videoArr.push(item);
             ipcRenderer.send('storage-save', storage, avType);
             this.save(avType);
             this.load();

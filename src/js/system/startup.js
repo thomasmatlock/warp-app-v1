@@ -19,7 +19,7 @@ class startup {
             // this.loadWarpstagramSlide = false; // set to true to load the warpstagram portion of the content slide
         };
         this.dev = {
-            autoClickPaste: false, // pastes random URL on load
+            autoClickPaste: true, // pastes random URL on load
             getDownloadItemInfo: true, //
             clearStorage: false, // USE THIS TO RESET STORAGE
             devTools: !this.devMode ? false : true, // devTools off/on
@@ -40,6 +40,21 @@ class startup {
                 'https://www.tiktok.com/@foodies/video/6895167017570127109',
             ],
         };
+        this.settings = {
+            user: {
+                audio: 'free',
+                video: 'free',
+                warpstagram: 'free',
+            },
+            downloadItems: {
+                audioArr: [],
+                videoArr: [],
+                warpstagram: {
+                    subscribed: [],
+                    pinned: [],
+                },
+            },
+        };
     }
 
     isDevMode = () => {
@@ -52,6 +67,13 @@ class startup {
             this.useRandomMiscURL = false;
             this.useRandomYoutubeURL = false;
             this.env.nav_A_active = 'audio';
+        }
+        if (this.devMode) {
+            this.settings.user = {
+                audio: 'pro',
+                video: 'pro',
+                warpstagram: 'pro',
+            };
         }
     };
 

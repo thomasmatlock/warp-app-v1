@@ -48,7 +48,7 @@ ipcMain.on('quit', () => {
     mainWindow = null;
 });
 ipcMain.on('storage-save', (e, storageObj, avType) => {
-    storage.save('download-items', storageObj);
+    storage.save('settings', storageObj);
     // console.log('saving');
     let storageAwaited;
     (async() => {
@@ -58,7 +58,7 @@ ipcMain.on('storage-save', (e, storageObj, avType) => {
 });
 ipcMain.on('reset-storage', (e, storageObj) => {
     storage.reset();
-    storage.save('download-items', storageObj);
+    storage.save('download-items', storageObj); // #fix, wrong arg1 save name, should be 'settings'
 });
 const load = async() => {
     const result = await storage.load();
@@ -111,6 +111,7 @@ function createWindow() {
     const wc = mainWindow.webContents;
     // send stuff to app.js
     wc.on('did-finish-load', () => {
+        // console.log('did-finish-load');
         // console.log(storageMain);
         wc.send('window-ready', storageMain);
         splash.destroy();
@@ -126,8 +127,8 @@ function createWindow() {
     });
     mainWindow.on('move', () => {
         // console.log('window moved');
-        console.log(`Size ${mainWindow.getSize()}`);
-        console.log(`Position ${mainWindow.getPosition()}`);
+        // console.log(`Size ${mainWindow.getSize()}`);
+        // console.log(`Position ${mainWindow.getPosition()}`);
     });
     mainWindow.on('maximize', () => {});
 }
@@ -175,13 +176,14 @@ function createModalWindow() {
 app.on('ready', () => {
     createSplashWindow();
     displayController = new displayControllerReq(); // positions output window to display depending on single/multi-monitor
-    fileController.init(); // checks for local directories and creates them if non existent
     startup.init(); // all startup checks, latest version, isOnline, hasFFmpeg etc
+    fileController.init(startup); // checks for local directories and creates them if non existent
     displayController.discoverDisplay(); // discovers which display to use, 3 dev mode displayController or production
     let storageAwaited;
-
+    // console.log(startup.settings);
     (async() => {
         storageAwaited = await load();
+        // console.log('ready');
         // console.log(storageAwaited);
         storageMain = storageAwaited;
         createWindow(); // creates main app window
