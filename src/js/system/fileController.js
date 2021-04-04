@@ -116,19 +116,12 @@ class fileController {
             });
         });
     };
-    readFilesAudio = () => {
-        this.readDirFiles(this.dirAudioPath);
-    };
-    readFilesVideo = () => {
-        this.readDirFiles(this.dirVideoPath);
-    };
+
     readFilesWarpstagram = () => {};
     init = () => {
         this.initDirCreation();
         this.initSettingsFileCreation();
         // this.deleteSettingsFile();
-        // this.readFilesAudio();
-        // this.readFilesVideo();
     };
 }
 
