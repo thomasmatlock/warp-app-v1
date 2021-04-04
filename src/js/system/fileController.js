@@ -106,7 +106,7 @@ class fileController {
             if (err) {
                 throw err;
             }
-
+            // HI
             // files object contains all files names
             // log them on console
             files.forEach((file) => {
