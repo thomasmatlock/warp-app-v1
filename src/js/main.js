@@ -29,7 +29,7 @@ const startup = new startupReq();
 const storage = require('./storage');
 
 ////////////////////////////////////////////////////////////////////
-let mainWindow, modalWindow, displayController, storageMain; // Keep a global reference of the window object, if you don't, the window will be closed automatically when the JavaScript object is garbage collected.
+let mainWindow, splash, modalWindow, displayController, storageMain; // Keep a global reference of the window object, if you don't, the window will be closed automatically when the JavaScript object is garbage collected.
 app.allowRendererProcessReuse = true; // not sure what this does but I added it for a reason
 
 ////////////////////////////////////////////////////////////////////
@@ -80,8 +80,13 @@ function createWindow() {
         minHeight: displayController.minHeight,
         x: displayController.x,
         y: displayController.y,
-
-        darkTheme: false,
+        // icon: __dirname + '/icon.ico',
+        // icon: __dirname + '/icon.png',
+        // icon: 'C:\\Users\\Tommy\\Documents\\GitHub\\Warp-App\\icon.png',
+        icon: fileController.dirProjectPath + '/icon.png',
+        // icon: '../../build/icon.ico',
+        darkTheme: true,
+        vibrancy: 'dark',
         // skipTaskbar: true,
         webPreferences: {
             nodeIntegration: true,
@@ -90,31 +95,30 @@ function createWindow() {
         // backgroundColor: '#0463db', // use the same color as your html file is, the main window will display this until html fully loads. This is a little better than making your app hang for a second until the html loads, then displaying the window
         // backgroundColor: '#ff8500', // use the same color as your html file is, the main window will display this until html fully loads. This is a little better than making your app hang for a second until the html loads, then displaying the window
     });
-    if (startup.env.modalBrowserWindow) {
-        modalWindow = new BrowserWindow({
-            // parent: mainWindow,
-            // modal: true,
-            show: true,
-            transparent: true,
-            frame: false,
-            resizable: false,
-            movable: false,
-            minimizable: false,
-            maximizable: false,
-            alwaysOnTop: true,
-            transparent: false,
-            // setPosition;
-            // getPosition;
-            // setSize;
-            // getSize;
-        });
-        // modalWindow.loadURL('https://warpdownload.com');
-        modalWindow.loadURL('https://www.youtube.com');
-        // mainWindow.loadFile('./main.html'); // Load index.html into the new BrowserWindow
-        modalWindow.once('ready-to-show', () => {
-            modalWindow.show();
-        });
-    }
+    // if (startup.env.modalBrowserWindow) {
+    //     modalWindow = new BrowserWindow({
+    //         // parent: mainWindow,
+    //         // modal: true,
+    //         show: true,
+    //         transparent: true,
+    //         frame: false,
+    //         resizable: false,
+    //         movable: false,
+    //         minimizable: false,
+    //         maximizable: false,
+    //         alwaysOnTop: true,
+    //         transparent: false,
+    //         // setPosition;
+    //         // getPosition;
+    //         // setSize;
+    //         // getSize;
+    //     });
+    //     // modalWindow.loadURL('https://warpdownload.com');
+    //     modalWindow.loadURL('https://www.youtube.com');
+    //     // mainWindow.loadFile('./main.html'); // Load index.html into the new BrowserWindow
+    //     modalWindow.once('ready-to-show', () => {
+    //         modalWindow.show();
+    //     });
 
     mainWindow.loadFile('./src/renderer/main.html'); // Load index.html into the new BrowserWindow
     // mainWindow.loadFile('./main.html'); // Load index.html into the new BrowserWindow
@@ -127,6 +131,7 @@ function createWindow() {
     wc.on('did-finish-load', () => {
         // console.log(storageMain);
         wc.send('window-ready', storageMain);
+        splash.destroy();
     });
     wc.on('devtools-opened', () => {});
 
@@ -140,9 +145,19 @@ function createWindow() {
     mainWindow.on('maximize', () => {});
 }
 
+function createSplashWindow() {
+    splash = new BrowserWindow({
+        height: 300,
+        width: 300,
+        frame: false,
+        webPreferences: {},
+    });
+}
+
 ////////////////////////////////////////////////////////////////////
 // APP LISTENERS (monitoring main node process)
 app.on('ready', () => {
+    createSplashWindow();
     displayController = new displayControllerReq(); // positions output window to display depending on single/multi-monitor
     fileController.init(); // checks for local directories and creates them if non existent
     startup.init(); // all startup checks, latest version, isOnline, hasFFmpeg etc

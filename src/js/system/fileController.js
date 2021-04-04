@@ -11,6 +11,8 @@ class fileController {
         this.documents = 'Documents';
         this.ffmpeg = 'ffmpeg';
         this.dirUser = os.userInfo().homedir; // 'C:\\Users\\Tommy\\'
+        this.dirProject = 'Documents\\GitHub\\Warp-App'; // 'C:\\Users\\Tommy\\'
+        this.dirProjectPath = path.join(this.dirUser, this.dirProject);
         this.userDocumentsPath = path.join(this.dirUser, this.documents); // 'C:\\Users\\Tommy\\Documents'
         this.settingsFileName = 'settings.json';
         this.settingsPath = 'AppData\\Roaming\\starter\\';
