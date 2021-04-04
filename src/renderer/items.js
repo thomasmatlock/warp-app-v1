@@ -22,7 +22,7 @@ let markupVideo = markup.video;
 
 exports.startupAddAllItems = (storageSent) => {
     storage = storageSent;
-    // console.log(storage.downloadItems);
+    // console.log(storage);
 
     this.addItemsFromArray(storage.downloadItems.audioArr, 'audio');
     this.addItemsFromArray(storage.downloadItems.videoArr, 'video');

@@ -78,8 +78,8 @@ class fileController {
             // console.log(systemInfo);
             if (!fs.existsSync(this.settingsFile)) {
                 //  fs.mkdirSync(this.dirMainPath);
-                storage.save('settings', settings);
-                // storage.save('user', user);
+                fileController.settingsSave('settings', settings);
+                // fileController.settingsSave('user', user);
 
                 console.log('created settings file');
             }
@@ -93,6 +93,11 @@ class fileController {
             console.log('Settings file deleted, exiting app...');
             app.quit();
         });
+    };
+    settingsSave = (name, obj) => {
+        console.log('saving settings');
+        // console.log(name, obj);
+        settings.set(name, obj);
     };
     reset = () => {
         settings.reset();

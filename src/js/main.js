@@ -49,7 +49,7 @@ ipcMain.on('quit', () => {
     mainWindow = null;
 });
 ipcMain.on('storage-save', (e, storageObj, avType) => {
-    storage.save('settings', storageObj);
+    fileController.settingsSave('settings', storageObj);
     // console.log('saving');
     let storageAwaited;
     (async() => {
@@ -60,7 +60,7 @@ ipcMain.on('storage-save', (e, storageObj, avType) => {
 });
 ipcMain.on('reset-storage', (e, storageObj) => {
     fileController.reset();
-    storage.save('settings', storageObj); // #fix, wrong arg1 save name, should be 'settings'
+    fileController.settingsSave('settings', storageObj); // #fix, wrong arg1 save name, should be 'settings'
 });
 const load = async() => {
     const result = await storage.load();
