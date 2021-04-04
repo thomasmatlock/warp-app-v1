@@ -149,9 +149,12 @@ function createSplashWindow() {
     splash = new BrowserWindow({
         height: 300,
         width: 300,
+        x: 100,
+        y: 100,
         frame: false,
         webPreferences: {},
     });
+    splash.loadFile('./src/renderer/splash.html'); // Load index.html into the new BrowserWindow
 }
 
 ////////////////////////////////////////////////////////////////////

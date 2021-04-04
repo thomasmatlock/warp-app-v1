@@ -5,11 +5,12 @@
     "main": "./src/js/main.js",
     "scripts": {
         "node-sass": "node-sass src/sass/main.scss css/style.css -w",
+        "node-sass2": "node-sass src/sass/style-splash.scss css/style-splash.css -w",
         "live-server": "live-server",
         "electron": "ELECTRON_DISABLE_SECURITY_WARNINGS=true electron .",
         "watch": "nodemon --exec electron .",
         "start": "electron .",
-        "dev": "concurrently --kill-others \"npm run node-sass\" \"npm run watch\""
+        "dev": "concurrently --kill-others \"npm run node-sass\" \"npm run watch\" \"npm run node-sass2\""
     },
     "author": "",
     "license": "ISC",
