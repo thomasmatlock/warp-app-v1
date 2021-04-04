@@ -1,5 +1,3 @@
-//  C:\Users\Tommy\AppData\Roaming\starter\settings.json
-//  C:\Users\Tommy\AppData\Roaming\starter
 const settings = require('electron-settings');
 
 const save = (name, obj) => {
@@ -21,16 +19,8 @@ async function load() {
     // console.log(result);
     return result;
 }
-const reset = () => {
-    settings.reset();
-};
-const settingsPath = () => {
-    console.log(settings.file());
-};
 
 module.exports = {
     save: save,
     load: load,
-    reset: reset,
-    settingsPath: settingsPath,
 };

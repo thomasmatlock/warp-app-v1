@@ -27,6 +27,7 @@ const fileController = new fileControllerReq();
 const startupReq = require('./system/startup');
 const startup = new startupReq();
 const storage = require('./storage');
+const { file } = require('electron-settings');
 
 ////////////////////////////////////////////////////////////////////
 let mainWindow, splash, modalWindow, displayController, storageMain; // Keep a global reference of the window object, if you don't, the window will be closed automatically when the JavaScript object is garbage collected.
@@ -58,7 +59,7 @@ ipcMain.on('storage-save', (e, storageObj, avType) => {
     // console.log(storageAwaited);
 });
 ipcMain.on('reset-storage', (e, storageObj) => {
-    storage.reset();
+    fileController.reset();
     storage.save('settings', storageObj); // #fix, wrong arg1 save name, should be 'settings'
 });
 const load = async() => {

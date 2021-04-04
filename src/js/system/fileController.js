@@ -7,6 +7,7 @@ const fs = require('fs');
 const path = require('path');
 const { app } = require('electron');
 const storage = require('../storage');
+const settings = require('electron-settings');
 let startup;
 class fileController {
     constructor() {
@@ -93,7 +94,9 @@ class fileController {
             app.quit();
         });
     };
-    initReadFiles = () => {};
+    reset = () => {
+        settings.reset();
+    };
     readDirFiles = (dir) => {
         // directory path
         //  const dir = this.dirVideoPath;
