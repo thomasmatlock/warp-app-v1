@@ -112,7 +112,6 @@ class fileController {
         });
     };
 
-    readFilesWarpstagram = () => {};
     init = (startupObj) => {
         // startup = startupObj;
         this.initDirCreation();
