@@ -4,7 +4,9 @@ const fs = require('fs');
 const path = require('path');
 const { app } = require('electron');
 const storage = require('../storage');
-
+const startupReq = require('./startup');
+console.log(typeof startupReq);
+// const startup = new startupReq();
 class fileController {
     constructor() {
         this.dirMainName = 'Warp Downloader'; // main download directory
@@ -76,6 +78,16 @@ class fileController {
                 pinned: [],
             },
         };
+        let user = {};
+        // if (startup.devMode) {
+        //     user = {
+        //         audio: 'pro',
+        //         video: 'pro',
+        //         warpstagram: 'pro',
+        //     };
+        // }
+        // console.log(user);
+
         // console.log(`${this.settingsFile}`);
         // console.log('checking for settings file...');
         // create settings file
@@ -84,6 +96,7 @@ class fileController {
             if (!fs.existsSync(this.settingsFile)) {
                 //  fs.mkdirSync(this.dirMainPath);
                 storage.save('download-items', storageObj);
+                // storage.save('user', storageObj);
 
                 console.log('created settings file');
             }

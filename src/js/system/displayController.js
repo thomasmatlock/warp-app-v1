@@ -54,10 +54,11 @@ class displayController {
             // DEV MODE, DESKTOP PRIMARY
         } else if (startup.devMode && this.displayToUse.size.height > 1151) {
             this.height = Math.round(this.displayToUse.size.height * 0.6); // app height
-            this.width = Math.round(this.displayToUse.size.width * 0.65); // app width
+            // this.width = Math.round(this.displayToUse.size.width * 0.65); // app width
+            this.width = 2876; // app width
             // this.x = Math.round(this.displayToUse.size.width * 0.35); // how far to the right app appears
             // this.y = Math.round(this.displayToUse.size.height * 0.2); // how far down the app
-            this.x = 2285;
+            this.x = 1650;
             this.y = 412;
             this.useDesktopPrimary = true;
             if (this.logging)

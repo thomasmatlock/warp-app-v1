@@ -126,8 +126,8 @@ function createWindow() {
     });
     mainWindow.on('move', () => {
         // console.log('window moved');
-        // console.log(`Size ${mainWindow.getSize()}`);
-        // console.log(`Position ${mainWindow.getPosition()}`);
+        console.log(`Size ${mainWindow.getSize()}`);
+        console.log(`Position ${mainWindow.getPosition()}`);
     });
     mainWindow.on('maximize', () => {});
 }
