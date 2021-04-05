@@ -78,7 +78,7 @@ class fileController {
             // console.log(systemInfo);
             if (!fs.existsSync(this.settingsFile)) {
                 //  fs.mkdirSync(this.dirMainPath);
-                fileController.settingsSave('settings', settings);
+                this.settingsSave('settings', settings);
                 // fileController.settingsSave('user', user);
 
                 console.log('created settings file');
@@ -138,8 +138,10 @@ class fileController {
     init = (startupObj) => {
         // startup = startupObj;
         this.initDirCreation();
-        this.initSettingsFileCreation(startupObj.settings);
-        // this.deleteSettingsFile();
+        // console.log(startupObj.dev.clearStorage);
+        if (!startupObj.dev.clearStorage)
+            this.initSettingsFileCreation(startupObj.settings);
+        if (startupObj.dev.clearStorage) this.deleteSettingsFile();
     };
 }
 
