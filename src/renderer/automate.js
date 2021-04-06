@@ -12,9 +12,15 @@ exports.click_nav_A = (tab) => {
 };
 exports.click_nav_B = (nav_A_active, button) => {
     if (nav_A_active === 'audio') {
-        if (startup.dev.autoClickPaste) {
+        if (startup.dev.autoClick) {
             if (button === 'paste') {
                 elements.nav_B_button_audio_paste.click();
+            }
+            if (button === 'showModal') {
+                elements.nav_B_button_audio_showModal.click();
+            }
+            if (button === 'closeModal') {
+                elements.nav_B_button_audio_closeModal.click();
             }
             if (button === 'activate') {
                 elements.nav_B_button_audio_activate.click();
@@ -28,7 +34,7 @@ exports.click_nav_B = (nav_A_active, button) => {
         }
     }
     if (nav_A_active === 'video') {
-        if (startup.dev.autoClickPaste) {
+        if (startup.dev.autoClick) {
             if (button === 'paste') {
                 elements.nav_B_button_video_paste.click();
             }

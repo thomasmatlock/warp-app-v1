@@ -15,8 +15,9 @@ const startupReq = require('../js/system/startup');
 const startup = new startupReq();
 const items = require('./items');
 const auto = require('./automate');
+const modals = require('./modals');
 
-// console.log(items);
+// modals.testFunction();
 
 let state = {};
 state.nav = new Nav(); // controls active nav
@@ -26,6 +27,7 @@ state.nav = new Nav(); // controls active nav
 // activates selected nav A tab on window ready
 ipcRenderer.on('window-ready', (e, storage) => {
     auto.click_nav_A(startup.env.nav_A_active); // auto clicks active tab if active
+    // console.log(startup.env.nav_A_active);
     setActiveNav_A(startup.env.nav_A_active); // sets active Nav A
     if (startup.dev.clearStorage) items.resetStorage();
     // console.log('window-ready');
@@ -33,7 +35,10 @@ ipcRenderer.on('window-ready', (e, storage) => {
     items.startupAddAllItems(storage);
     // items.testElectronSettings();
     // AUTOMATION
-    auto.click_nav_B(startup.env.nav_A_active, 'paste'); // auto clicks paste if active
+    // auto.click_nav_B(startup.env.nav_A_active, 'paste'); // auto clicks paste if active
+    auto.click_nav_B(startup.env.nav_A_active, 'showModal'); // auto clicks if active
+    // auto.click_nav_B(startup.env.nav_A_active, 'closeModal'); // auto clicks if active
+    // console.log('clicking show Modal');
     // auto.click_nav_B(startup.env.nav_A_active, 'smartMode'); // auto clicks smartMode if active
     // auto.click_nav_B(startup.env.nav_A_active, 'activate'); // auto clicks activate if active
     // auto.click_nav_B(startup.env.nav_A_active, 'subscriptions'); // auto clicks subscriptions if active
@@ -90,7 +95,10 @@ ipcRenderer.on('Audio: Downloads: Paste', () => {
 ipcRenderer.on('Audio: Downloads: Pause All', () => {});
 ipcRenderer.on('Audio: Downloads: Resume All', () => {});
 ipcRenderer.on('Audio: Downloads: Remove All', () => {});
-ipcRenderer.on('Audio: Tools: Preferences', () => {});
+ipcRenderer.on('Audio: Tools: Preferences', () => {
+    console.log('opening preferences modal');
+    elements.modalTest.style.display = 'flex';
+});
 
 // MENU LISTENERS, VIDEO
 // File
@@ -110,7 +118,9 @@ ipcRenderer.on('Video: Downloads: Remove All', () => {});
 ipcRenderer.on('Video: Tools: Smart Mode', () => {});
 ipcRenderer.on('Video: Tools: Subscriptions', () => {});
 ipcRenderer.on('Video: Tools: Check for update', () => {});
-ipcRenderer.on('Video: Tools: Preferences', () => {});
+ipcRenderer.on('Video: Tools: Preferences', () => {
+    console.log('opening preferences modal');
+});
 
 // MENU LISTENERS, WARPSTAGRAM
 // File
@@ -187,6 +197,14 @@ elements.nav_A_warpstagram.addEventListener('click', (e) => {
         console.log(`env.nav_A_active is now ${startup.env.nav_A_active}`);
 });
 // Nav B audio LISTENERS
+elements.nav_B_button_audio_showModal.addEventListener('click', (e) => {
+    console.log('modal opened');
+    elements.modalTest.style.display = 'flex';
+});
+elements.nav_B_button_audio_closeModal.addEventListener('click', (e) => {
+    console.log('modal closed');
+    elements.modalTest.style.display = 'none';
+});
 elements.nav_B_button_audio_paste.addEventListener('click', (e) => {
     userInput.validateURL(clipboard.readText(), startup.env.nav_A_active);
 });

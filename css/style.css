@@ -639,3 +639,29 @@ input[type="text"] {
   border: 1px dotted purple;
   width: 20px;
   border-radius: 45px; }
+
+#modal {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+  border: 1px dotted black;
+  z-index: 10;
+  display: none; }
+
+.modalTest {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+  border: 1px dotted black;
+  z-index: 10;
+  display: none; }

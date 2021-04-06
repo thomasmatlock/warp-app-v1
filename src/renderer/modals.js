@@ -17,3 +17,6 @@
 //////////////////////////////////////////////////////////////// Welcome
 // modalWelcomeWarpstagram
 const logging = true;
+exports.testFunction = (modalName) => {
+    console.log('modal working');
+};

@@ -134,7 +134,6 @@ class fileController {
             });
         });
     };
-
     init = (startupObj) => {
         // startup = startupObj;
         this.initDirCreation();

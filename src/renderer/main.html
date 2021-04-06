@@ -11,10 +11,17 @@
     <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon" />
     <link rel="stylesheet" href="../../css/style.css" />
     <title>Warp | Download anything.</title>
-    <!-- <meta http-equiv="Content-Security-Policy" content="script-src 'self';"> -->
 </head>
 
 <body>
+    <!-- modal -->
+    <div id="modal" class="modalTest">
+        <input type="text" id="url" value="https://" autofocus />
+        <button id="add-item">Add Item</button>
+        <button id="close-modal">Cancel</button>
+    </div>
+    <!-- modal -->
+
     <div class="container">
         <!-- Primary Nav -->
         <header class="header">
@@ -35,6 +42,7 @@
         <!-- Content -->
         <div class="content">
             <!-- Audio -->
+
             <div class="content-slide" id="slide-audio">
                 <div class="content-container content-container-audio">
                     <div class="nav-container">
@@ -42,7 +50,19 @@
                             <div class="nav_B__main nav_B__child">
                                 <a id="nav_B_audioButton0 " class="nav_B_button nav_B_button_audio nav_B_button_audio_paste" href="#slide-audio ">Paste link</a
                                     >
+                                    <a
+                                        id="nav_B_audioButton1_A"
+                                        class="nav_B_button nav_B_button_audio nav_B_button_audio_showModal"
+                                        href="#slide-audio "
+                                        >Show modal</a
+                                    ><a
+                                        id="nav_B_audioButton1_B"
+                                        class="nav_B_button nav_B_button_audio nav_B_button_audio_closeModal"
+                                        href="#slide-audio "
+                                        >Close modal</a
+                                    >
                                 </div>
+
                                 <div class="nav_B__minor nav_B__child">
                                     <a
                                         id="nav_B_audioButton2 "
@@ -270,20 +290,13 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- modal -->
-                        <div id="modal">
-                            <input type="text" id="url" value="https://" autofocus />
-                            <button id="add-item">Add Item</button>
-                            <button id="close-modal">Cancel</button>
-                        </div>
-                        <!-- modal -->
 </body>
 <!-- <script type="module " src="./src/js/main.js "></script> -->
 
 <script>
     require('./app.js'); // renderer main file
     require('./items.js'); // items downloader
-    require('./automate.js'); // items downloader
+    require('./automate.js'); //
     require('./views/elements'); // dom nodes
 </script>
 

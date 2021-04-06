@@ -83,7 +83,7 @@ module.exports = (appWin) => {
                 {
                     label: 'Preferences',
                     click: () => {
-                        appWin.send('Preferences');
+                        appWin.send('Audio: Tools: Preferences');
                     },
                 },
             ],

@@ -152,22 +152,21 @@ function createModalWindow() {
         // parent: mainWindow,
         // modal: true,
         show: true,
-        transparent: true,
-        frame: false,
-        resizable: false,
-        movable: false,
-        minimizable: false,
-        maximizable: false,
-        alwaysOnTop: true,
-        transparent: false,
+        // transparent: true,
+        // frame: false,
+        // resizable: false,
+        // movable: false,
+        // minimizable: false,
+        // maximizable: false,
+        // alwaysOnTop: true,
+        // transparent: false,
         // setPosition;
         // getPosition;
         // setSize;
         // getSize;
     });
-    // modalWindow.loadURL('https://warpdownload.com');
-    modalWindow.loadURL('https://www.youtube.com');
-    // mainWindow.loadFile('./main.html'); // Load index.html into the new BrowserWindow
+    modalWindow.loadFile('./src/renderer/modal1.html'); // Load index.html into the new BrowserWindow
+
     modalWindow.once('ready-to-show', () => {
         modalWindow.show();
     });
@@ -189,6 +188,7 @@ app.on('ready', () => {
         // console.log(storageAwaited);
         storageMain = storageAwaited;
         createWindow(); // creates main app window
+        // createModalWindow();
     })();
     if (startup.dev.backendOnly) mainWindow.hide(); // devMode only
 });
