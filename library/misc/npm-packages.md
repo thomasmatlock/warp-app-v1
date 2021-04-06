@@ -3,6 +3,8 @@
 # Warp-App
 
 -   Functions
+
+    -   Tiktok https://www.npmjs.com/package/tiktok-scraper
     -   Twitch - npm mp4 streaming downloader
         -   https://www.npmjs.com/package/mp4-stream - it also uses headers, which is awesome, check the Streaggming bulletpoint below how to get headers - also it has dependancy -https://www.npmjs.com/package/mp4-box-encoding - Streaming - https://m.twitch.tv/tfue - open dev console, Network, highlight/scrub the bit of the clip you want, then under Headers tab it will be there (the Request URL, that is what downloads - https://gist.github.com/danfinlay/7357098 - Completed clips - fire, rightlick view page info, its an mp4 file that wants to be downloaded when you enter it in URL bar - eg: - https://clips-media-assets2.twitch.tv/AT-cm%7C505162477.mp4
     -   npm packages
