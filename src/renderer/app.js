@@ -198,13 +198,17 @@ elements.nav_A_warpstagram.addEventListener('click', (e) => {
 });
 // Nav B audio LISTENERS
 elements.nav_B_button_audio_showModal.addEventListener('click', (e) => {
-    console.log('modal opened');
+    // console.log('modal opened');
     elements.modalPreferences.style.display = 'flex';
 });
 elements.nav_B_button_audio_closeModal.addEventListener('click', (e) => {
-    console.log('modal closed');
+    // console.log('modal closed');
     elements.modalPreferences.style.display = 'none';
 });
+// elements.nav_B_button_audio_modalPreferences.addEventListener('click', (e) => {
+//     // console.log('modal closed');
+//     elements.modalPreferences.style.display = 'none';
+// });
 elements.nav_B_button_audio_paste.addEventListener('click', (e) => {
     userInput.validateURL(clipboard.readText(), startup.env.nav_A_active);
 });

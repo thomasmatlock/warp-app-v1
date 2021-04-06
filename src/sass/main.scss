@@ -50,7 +50,7 @@
 }
 
 // modals
-// #modal {
+// .modalPreferences {
 //     position: absolute;
 //     width: 100%;
 //     height: 100%;
@@ -63,7 +63,7 @@
 //     z-index: 10;
 //     display: none;
 // }
-.modalPreferences {
+#modal {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -75,4 +75,13 @@
     border: 1px dotted black;
     z-index: 10;
     display: none;
+}
+
+.modalPreferencesContainer {
+    width: 600px;
+    height: 780px;
+    // max-height: 780px;
+    // min-height: 550px;
+    background: white;
+    z-index: 11;
 }

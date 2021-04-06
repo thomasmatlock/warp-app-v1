@@ -24,6 +24,9 @@ const elements = {
     nav_B_button_audio_showModal: document.querySelector(
         '.nav_B_button_audio_showModal'
     ),
+    nav_B_button_audio_modalPreferences: document.querySelector(
+        '.modalPreferences'
+    ),
     nav_B_button_audio_closeModal: document.querySelector(
         '.nav_B_button_audio_closeModal'
     ),
@@ -53,6 +56,7 @@ const elements = {
     nav_B_button_video_help: document.querySelector('.nav_B_button_video_help'),
     // modalPreferences: document.getElementById('modal'),
     modalPreferences: document.querySelector('.modalPreferences'),
+    // modalPreferences: document.querySelector('.modalPreferences'),
 
     // Download lists
     download__list: document.querySelector('.download__list'),
