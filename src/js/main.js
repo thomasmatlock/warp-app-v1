@@ -155,7 +155,7 @@ function createModalWindow() {
         // modal: true,
         show: true,
         // transparent: true,
-        // frame: false,
+        frame: false,
         // resizable: false,
         // movable: false,
         // minimizable: false,

@@ -52,6 +52,9 @@ const elements = {
     nav_B_button_video_help: document.querySelector('.nav_B_button_video_help'),
     // modalPreferences: document.getElementById('modal'),
     modalPreferences: document.querySelector('.modalPreferences'),
+    modalPreferencesContainer: document.querySelector(
+        '.modalPreferencesContainer'
+    ),
     // modalPreferences: document.querySelector('.modalPreferences'),
 
     // Download lists

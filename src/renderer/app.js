@@ -139,7 +139,9 @@ ipcRenderer.on('Warpstagram: Edit: Remove all subscriptions', () => {});
 // Tools
 ipcRenderer.on('Warpstagram: Tools: Login', () => {});
 ipcRenderer.on('Warpstagram: Tools: Manage license', () => {});
-ipcRenderer.on('Warpstagram: Tools: Preferences', () => {});
+ipcRenderer.on('Warpstagram: Tools: Preferences', () => {
+    modalAdjust();
+});
 
 // Menu listeners, universal commands
 ipcRenderer.on('Check for update', () => {});
@@ -218,7 +220,7 @@ elements.nav_B_button_audio_activate.addEventListener('click', (e) => {
 });
 elements.nav_B_button_audio_preferences.addEventListener('click', (e) => {
     if (logging) console.log('clicked preferences');
-    elements.modalPreferences.style.display = 'flex';
+    modalAdjust();
 });
 elements.nav_B_button_audio_help.addEventListener('click', (e) => {
     if (logging) console.log('clicked help');
@@ -239,8 +241,17 @@ elements.nav_B_button_video_subscriptions.addEventListener('click', (e) => {
 });
 elements.nav_B_button_video_preferences.addEventListener('click', (e) => {
     if (logging) console.log('clicked preferences');
-    elements.modalPreferences.style.display = 'flex';
+    modalAdjust();
 });
 elements.nav_B_button_video_help.addEventListener('click', (e) => {
     if (logging) console.log('clicked help');
 });
+const modalAdjust = () => {
+    if (startup.env.nav_A_active === 'audio')
+        elements.modalPreferencesContainer.style.top = '0%';
+    if (startup.env.nav_A_active === 'video')
+        elements.modalPreferencesContainer.style.top = '33.5%';
+    if (startup.env.nav_A_active === 'warpstagram')
+        elements.modalPreferencesContainer.style.top = '67%';
+    elements.modalPreferences.style.display = 'flex';
+};
