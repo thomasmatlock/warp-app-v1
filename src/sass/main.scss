@@ -20,6 +20,13 @@
 @import 'pages/warpstagram-filterToolbar';
 @import 'pages/warpstagram-userInfo';
 @import 'pages/modal-settings';
+.nav_A-tab,
+.nav_B_button,
+.dl__item-audio,
+.dl__item {
+    animation: fadeIn 1s ease-out;
+}
+
 // warpstagram 
 .user-info {
     height: 230px;
@@ -50,7 +57,22 @@
 }
 
 // modals
-// .modalPreferences {
+.modalPreferences {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    // flex-wrap: wrap; // lets items wrap to next line when it gets too wide
+    border: 1px dotted black;
+    z-index: 10;
+    display: none;
+}
+
+// #modal {
 //     position: absolute;
 //     width: 100%;
 //     height: 100%;
@@ -63,25 +85,13 @@
 //     z-index: 10;
 //     display: none;
 // }
-#modal {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.85);
-    display: flex;
-    align-items: center;
-    align-content: center;
-    flex-wrap: wrap; // lets items wrap to next line when it gets too wide
-    border: 1px dotted black;
-    z-index: 10;
-    display: none;
-}
-
 .modalPreferencesContainer {
     width: 600px;
     height: 780px;
-    // max-height: 780px;
-    // min-height: 550px;
-    background: white;
+    max-height: 780px;
+    min-height: 550px;
+    background: #2A2A2A;
+    border-radius: 4px;
+    ;
     z-index: 11;
 }

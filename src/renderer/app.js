@@ -36,13 +36,13 @@ ipcRenderer.on('window-ready', (e, storage) => {
     // items.testElectronSettings();
     // AUTOMATION
     // auto.click_nav_B(startup.env.nav_A_active, 'paste'); // auto clicks paste if active
-    auto.click_nav_B(startup.env.nav_A_active, 'showModal'); // auto clicks if active
+    // auto.click_nav_B(startup.env.nav_A_active, 'showModal'); // auto clicks if active
     // auto.click_nav_B(startup.env.nav_A_active, 'closeModal'); // auto clicks if active
     // console.log('clicking show Modal');
     // auto.click_nav_B(startup.env.nav_A_active, 'smartMode'); // auto clicks smartMode if active
     // auto.click_nav_B(startup.env.nav_A_active, 'activate'); // auto clicks activate if active
     // auto.click_nav_B(startup.env.nav_A_active, 'subscriptions'); // auto clicks subscriptions if active
-    // auto.click_nav_B(startup.env.nav_A_active, 'preferences'); // auto clicks preferences if active
+    auto.click_nav_B(startup.env.nav_A_active, 'preferences'); // auto clicks preferences if active
     // auto.click_nav_B(startup.env.nav_A_active, 'help'); // auto clicks help if active
 });
 
@@ -120,6 +120,7 @@ ipcRenderer.on('Video: Tools: Subscriptions', () => {});
 ipcRenderer.on('Video: Tools: Check for update', () => {});
 ipcRenderer.on('Video: Tools: Preferences', () => {
     console.log('opening preferences modal');
+    elements.modalPreferences.style.display = 'flex';
 });
 
 // MENU LISTENERS, WARPSTAGRAM
@@ -197,14 +198,14 @@ elements.nav_A_warpstagram.addEventListener('click', (e) => {
         console.log(`env.nav_A_active is now ${startup.env.nav_A_active}`);
 });
 // Nav B audio LISTENERS
-elements.nav_B_button_audio_showModal.addEventListener('click', (e) => {
-    // console.log('modal opened');
-    elements.modalPreferences.style.display = 'flex';
-});
-elements.nav_B_button_audio_closeModal.addEventListener('click', (e) => {
-    // console.log('modal closed');
-    elements.modalPreferences.style.display = 'none';
-});
+// elements.nav_B_button_audio_showModal.addEventListener('click', (e) => {
+//     // console.log('modal opened');
+//     // elements.modalPreferences.style.display = 'flex';
+// });
+// elements.nav_B_button_audio_closeModal.addEventListener('click', (e) => {
+//     // console.log('modal closed');
+//     // elements.modalPreferences.style.display = 'none';
+// });
 // elements.nav_B_button_audio_modalPreferences.addEventListener('click', (e) => {
 //     // console.log('modal closed');
 //     elements.modalPreferences.style.display = 'none';
@@ -217,6 +218,7 @@ elements.nav_B_button_audio_activate.addEventListener('click', (e) => {
 });
 elements.nav_B_button_audio_preferences.addEventListener('click', (e) => {
     if (logging) console.log('clicked preferences');
+    elements.modalPreferences.style.display = 'flex';
 });
 elements.nav_B_button_audio_help.addEventListener('click', (e) => {
     if (logging) console.log('clicked help');
@@ -227,6 +229,7 @@ elements.nav_B_button_video_paste.addEventListener('click', (e) => {
 });
 elements.nav_B_button_video_smartMode.addEventListener('click', (e) => {
     if (logging) console.log('clicked smart mode');
+    elements.nav_B_button_video_smartMode.classList.add('nav_B_button--active');
 });
 elements.nav_B_button_video_activate.addEventListener('click', (e) => {
     if (logging) console.log('clicked activate');
@@ -236,6 +239,7 @@ elements.nav_B_button_video_subscriptions.addEventListener('click', (e) => {
 });
 elements.nav_B_button_video_preferences.addEventListener('click', (e) => {
     if (logging) console.log('clicked preferences');
+    elements.modalPreferences.style.display = 'flex';
 });
 elements.nav_B_button_video_help.addEventListener('click', (e) => {
     if (logging) console.log('clicked help');

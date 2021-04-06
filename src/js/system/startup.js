@@ -19,7 +19,7 @@ class startup {
             // this.loadWarpstagramSlide = false; // set to true to load the warpstagram portion of the content slide
         };
         this.dev = {
-            autoClick: true, // pastes random URL on load
+            autoClick: false, // pastes random URL on load
             getDownloadItemInfo: true, //
             clearStorage: false, // USE THIS TO RESET STORAGE
             devTools: !this.devMode ? false : true, // devTools off/on
@@ -45,6 +45,7 @@ class startup {
                 audio: 'free',
                 video: 'free',
                 warpstagram: 'free',
+                videoSmartMode: true,
             },
             downloadItems: {
                 audioArr: [],
@@ -54,9 +55,9 @@ class startup {
                     pinned: [],
                 },
             },
-            random: {
-                hello: 'yes',
-            },
+            // random: {
+            //     hello: 'yes',
+            // },
         };
     }
 
@@ -72,11 +73,9 @@ class startup {
             this.env.nav_A_active = 'audio';
         }
         if (this.devMode) {
-            this.settings.user = {
-                audio: 'pro',
-                video: 'pro',
-                warpstagram: 'pro',
-            };
+            this.settings.user.audio = 'pro';
+            this.settings.user.video = 'pro';
+            this.settings.user.warpstagram = 'pro';
         }
     };
 
