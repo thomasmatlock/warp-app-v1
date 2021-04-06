@@ -51,8 +51,8 @@ const elements = {
         '.nav_B_button_video_preferences'
     ),
     nav_B_button_video_help: document.querySelector('.nav_B_button_video_help'),
-    // modalTest: document.getElementById('modal'),
-    modalTest: document.querySelector('.modalTest'),
+    // modalPreferences: document.getElementById('modal'),
+    modalPreferences: document.querySelector('.modalPreferences'),
 
     // Download lists
     download__list: document.querySelector('.download__list'),

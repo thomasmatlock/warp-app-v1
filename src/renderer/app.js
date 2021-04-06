@@ -97,7 +97,7 @@ ipcRenderer.on('Audio: Downloads: Resume All', () => {});
 ipcRenderer.on('Audio: Downloads: Remove All', () => {});
 ipcRenderer.on('Audio: Tools: Preferences', () => {
     console.log('opening preferences modal');
-    elements.modalTest.style.display = 'flex';
+    elements.modalPreferences.style.display = 'flex';
 });
 
 // MENU LISTENERS, VIDEO
@@ -199,11 +199,11 @@ elements.nav_A_warpstagram.addEventListener('click', (e) => {
 // Nav B audio LISTENERS
 elements.nav_B_button_audio_showModal.addEventListener('click', (e) => {
     console.log('modal opened');
-    elements.modalTest.style.display = 'flex';
+    elements.modalPreferences.style.display = 'flex';
 });
 elements.nav_B_button_audio_closeModal.addEventListener('click', (e) => {
     console.log('modal closed');
-    elements.modalTest.style.display = 'none';
+    elements.modalPreferences.style.display = 'none';
 });
 elements.nav_B_button_audio_paste.addEventListener('click', (e) => {
     userInput.validateURL(clipboard.readText(), startup.env.nav_A_active);

@@ -23,7 +23,7 @@
     width: 60%;
     max-width: 900px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-    z-index: 10;
+    z-index: 2;
     background-color: #fff;
 }
 
@@ -65,7 +65,7 @@
         transform: scale(1.05);
         transition: all 0.1s ease;
         box-shadow: $shadow-after;
-        z-index: 20;
+        // z-index: 20;
     }
     &:active {
         // background-color: yellow;
