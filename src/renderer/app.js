@@ -17,14 +17,8 @@ const items = require('./items');
 const auto = require('./automate');
 const modalsReq = require('./modals');
 const modals = new modalsReq();
-
-console.log(modals.test);
-
-let state = {};
-state.nav = new Nav(); // controls active nav
-state.modals = {};
-state.modals.preferences = false;
-// console.log(state);
+const stateReq = require('./state');
+let state = new stateReq();
 
 ////////////////////////////////////////////////////////////
 // IPCRENDERER LISTENERS
@@ -100,7 +94,7 @@ ipcRenderer.on('Audio: Downloads: Pause All', () => {});
 ipcRenderer.on('Audio: Downloads: Resume All', () => {});
 ipcRenderer.on('Audio: Downloads: Remove All', () => {});
 ipcRenderer.on('Audio: Tools: Preferences', () => {
-    modalPreferencesAdjust();
+    modals.modalPreferencesAdjust(state, elements, startup);
 });
 
 // MENU LISTENERS, VIDEO
@@ -123,7 +117,7 @@ ipcRenderer.on('Video: Tools: Subscriptions', () => {});
 ipcRenderer.on('Video: Tools: Check for update', () => {});
 ipcRenderer.on('Video: Tools: Preferences', () => {
     // console.log('opening preferences modal');
-    modalPreferencesAdjust();
+    modals.modalPreferencesAdjust(state, elements, startup);
 });
 
 // MENU LISTENERS, WARPSTAGRAM
@@ -143,7 +137,7 @@ ipcRenderer.on('Warpstagram: Edit: Remove all subscriptions', () => {});
 ipcRenderer.on('Warpstagram: Tools: Login', () => {});
 ipcRenderer.on('Warpstagram: Tools: Manage license', () => {});
 ipcRenderer.on('Warpstagram: Tools: Preferences', () => {
-    modalPreferencesAdjust();
+    modals.modalPreferencesAdjust(state, elements, startup);
 });
 
 // Menu listeners, universal commands
@@ -223,7 +217,7 @@ elements.nav_B_button_audio_activate.addEventListener('click', (e) => {
 });
 elements.nav_B_button_audio_preferences.addEventListener('click', (e) => {
     if (logging) console.log('clicked preferences');
-    modalPreferencesAdjust();
+    modals.modalPreferencesAdjust(state, elements, startup);
 });
 elements.nav_B_button_audio_help.addEventListener('click', (e) => {
     if (logging) console.log('clicked help');
@@ -244,24 +238,8 @@ elements.nav_B_button_video_subscriptions.addEventListener('click', (e) => {
 });
 elements.nav_B_button_video_preferences.addEventListener('click', (e) => {
     if (logging) console.log('clicked preferences');
-    modalPreferencesAdjust();
+    modals.modalPreferencesAdjust(state, elements, startup);
 });
 elements.nav_B_button_video_help.addEventListener('click', (e) => {
     if (logging) console.log('clicked help');
 });
-const modalPreferencesAdjust = () => {
-    if (state.modals.preferences) {
-        elements.modalPreferences.style.display = 'none';
-    } else if (!state.modals.preferences) {
-        if (startup.env.nav_A_active === 'audio')
-            elements.modalPreferencesContainer.style.top = '0%';
-        if (startup.env.nav_A_active === 'video')
-            elements.modalPreferencesContainer.style.top = '33.5%';
-        if (startup.env.nav_A_active === 'warpstagram')
-            elements.modalPreferencesContainer.style.top = '67%';
-        elements.modalPreferences.style.display = 'flex';
-    }
-    state.modals.preferences ?
-        (state.modals.preferences = false) :
-        (state.modals.preferences = true); // toggles modals active or not
-};
