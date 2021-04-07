@@ -430,15 +430,15 @@ li {
   flex-direction: row;
   justify-content: space-evenly;
   align-content: center;
-  height: 27px;
+  height: 60px;
   background-color: white; }
 
 .download__list_audio li {
-  height: 27px;
-  max-height: 35px; }
+  height: 60px;
+  max-height: 60px; }
 
 .dl__item-audio_info-pane {
-  height: 27px;
+  height: 60px;
   display: flex;
   width: 100%;
   display: flex;
@@ -471,7 +471,7 @@ li {
   padding-right: 2vh; }
 
 .dl__item-audio__data__property {
-  height: 27px;
+  height: 60px;
   color: black;
   justify-content: center;
   align-items: center;

@@ -24,10 +24,10 @@ let dlhandler = {
     title: '',
 };
 
-const getInfo = async function(itemURL) {
+const getInfo = async function(itemURL, type) {
     // console.log(itemURL);
     await ytdl.getBasicInfo(itemURL).then((info) => {
-        this.cloneVideoDetails(itemURL, info, this.type);
+        this.cloneVideoDetails(itemURL, info, type);
         // if (logging)
         //     console.log(`
         //         ${dlhandler.title}, ${dlhandler.lengthFormatted} long, ${dlhandler.type} type, ${dlhandler.height} pixels tall, ${dlhandler.fps} fps`);
@@ -71,7 +71,7 @@ const formatLength = function(approxDurationMs) {
 };
 
 const cloneVideoDetails = function(itemURL, info, type) {
-    // console.log(itemURL);
+    // console.log(type);
 
     startup.dev.downloadSmallestFile ?
         (dlhandler.selectedFormat = info.formats[0]) // sets to smallest format for easy dev downloading
@@ -86,7 +86,7 @@ const cloneVideoDetails = function(itemURL, info, type) {
     dlhandler.thumbnail = info.videoDetails.thumbnails[3]; // (or the last thumbnail) usually seems to be highest res thumbnail. thumbn\ails are in descending order from low res to highest res
     dlhandler.thumbnailURL = info.videoDetails.thumbnails[3].url; // (or the last thumbnail) usually seems to be highest res thumbnail. thumbn\ails are in descending order from low res to highest res
     // dlhandler.fileSize;
-    dlhandler.fileType = 'MP4'; // mp4, etc
+    dlhandler.fileType = type === 'audio' ? 'MP3' : 'MP4'; // mp4, etc
     dlhandler.itag = dlhandler.selectedFormat.itag;
     dlhandler.mimeType = dlhandler.selectedFormat.mimeType;
     dlhandler.width = dlhandler.selectedFormat.width;
@@ -109,31 +109,6 @@ const cloneVideoDetails = function(itemURL, info, type) {
 };
 
 const removeVideoDetails = function() {
-    //  startup.dev.downloadSmallestFile
-    //      ? (dlhandler.selectedFormat = info.formats[0]) // sets to smallest format for easy dev downloading
-    //      : (dlhandler.selectedFormat = info.formats[1]);
-    //  dlhandler.url = '';
-    //  dlhandler.itemURL = itemURL;
-    //  dlhandler.title = info.videoDetails.title;
-    //  this.formatLength(dlhandler.selectedFormat.approxDurationMs);
-    //  dlhandler.height = dlhandler.selectedFormat.height;
-    //  // dlhandler.type = type; // audio or video
-    //  dlhandler.thumbnail = info.videoDetails.thumbnails[3]; // (or the last thumbnail) usually seems to be highest res thumbnail. thumbn\ails are in descending order from low res to highest res
-    //  dlhandler.thumbnailURL = info.videoDetails.thumbnails[3].url; // (or the last thumbnail) usually seems to be highest res thumbnail. thumbn\ails are in descending order from low res to highest res
-    //  // dlhandler.fileSize;
-    //  dlhandler.fileType = 'MP4'; // mp4, etc
-    //  dlhandler.itag = dlhandler.selectedFormat.itag;
-    //  dlhandler.mimeType = '';
-    //  dlhandler.width = '';
-    //  dlhandler.height = '';
-    //  dlhandler.contentLength = '';
-    //  dlhandler.quality = '';
-    //  dlhandler.fps = dlhandler.selectedFormat.fps;
-    //  dlhandler.qualityLabel = dlhandler.selectedFormat.qualityLabel;
-    //  dlhandler.audioQuality = dlhandler.selectedFormat.audioQuality;
-    //  dlhandler.approxDurationMs = dlhandler.selectedFormat.approxDurationMs;
-    //  dlhandler.filePath = '';
-    //  dlhandler.finishedFilePath;
     dlhandler = {};
 };
 const removeCharactersFromTitle = function() {
@@ -192,7 +167,7 @@ const getFileSize = function() {
 const all = function(itemURL, type) {
     dlhandler.type = type;
     // console.log(type, dlhandler.type);
-    this.getInfo(itemURL);
+    this.getInfo(itemURL, type);
     // console.log(dlhandler);
     this.downloadAndWrite(itemURL);
     // dlhandler.getFileSize();

@@ -38,6 +38,7 @@ exports.downloadItem = (itemURL, avType, platform) => {
         setTimeout(() => {
             this.insertMarkup(item, avType);
             this.addItem(item, avType);
+            // console.log(item.thumbnailURL);
             this.resetMarkup();
 
             // PERSIST INTO STORAGE
@@ -73,9 +74,14 @@ exports.insertMarkup = (downloadInfo, avType) => {
     if (avType === 'audio') {
         markupAudio = markupAudio.replace('%{title}', downloadInfo.title);
         markupAudio = markupAudio.replace(
+            '%{thumbnail}',
+            downloadInfo.thumbnailURL
+        );
+        markupAudio = markupAudio.replace(
             '%{lengthFormatted}',
             downloadInfo.lengthFormatted
         );
+        markupAudio = markupAudio.replace('%{fileType}', downloadInfo.fileType);
     }
     // INSERT VIDEO MARKUP
     if (avType === 'video') {
