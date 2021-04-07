@@ -1,4 +1,4 @@
-const nav = require('../js/models/Nav');
+const nav = require('../js/nav');
 class state {
     constructor() {
         this.nav = new nav(); // controls active nav
