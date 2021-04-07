@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet" />
     <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon" />
+    <script src="https://kit.fontawesome.com/ee88c53ddb.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../../css/style.css" />
     <title>Warp | Download anything.</title>
 </head>
@@ -31,15 +32,11 @@
         <header class="header">
             <div class="nav_A">
                 <!-- <input type="text" auto-focus> -->
-                <a id="nav_A_audio" class="nav_A-tab nav_A-tab--active" href="#slide-audio">Audio</a
-                    >
-                    <a id="nav_A_video" class="nav_A-tab" href="#slide-video"
-                        >Video</a
-                    >
-                    <!-- <a id="nav_A_warpstagram" class="nav_A-tab" href="#slide-2">Audio Tools</a> -->
-                <a id="nav_A_warpstagram" class="nav_A-tab" href="#slide-warpstagram">Warpstagram</a
-                    >
-                    <!-- <a id="nav_A_4" class="nav_A-tab" href="#slide-4">Postfire</a> -->
+                <a id="nav_A_audio" class="nav_A-tab nav_A-tab--active" href="#slide-audio">Audio</a>
+                <a id="nav_A_video" class="nav_A-tab" href="#slide-video">Video</a>
+                <!-- <a id="nav_A_warpstagram" class="nav_A-tab" href="#slide-2">Audio Tools</a> -->
+                <a id="nav_A_warpstagram" class="nav_A-tab" href="#slide-warpstagram">Warpstagram</a>
+                <!-- <a id="nav_A_4" class="nav_A-tab" href="#slide-4">Postfire</a> -->
             </div>
         </header>
 
@@ -52,213 +49,237 @@
                     <div class="nav-container">
                         <div class="nav_B nav_B_audio">
                             <div class="nav_B__main nav_B__child">
-                                <a id="nav_B_audioButton0 " class="nav_B_button nav_B_button_audio nav_B_button_audio_paste" href="#slide-audio ">Paste link</a
-                                    >
-                                </div>
-
-                                <div class="nav_B__minor nav_B__child">
-                                    <a
-                                        id="nav_B_audioButton2 "
-                                        class="nav_B_button nav_B_button_audio nav_B_button_audio_activate"
-                                        href="#slide-audio "
-                                        >Activate</a
-                                    >
-                                    <a
-                                        id="nav_B_audioButton4 "
-                                        class="nav_B_button nav_B_button_audio nav_B_button_audio_preferences"
-                                        href="#slide-audio "
-                                        >Preferences</a
-                                    >
-                                    <a
-                                        id="nav_B_audioButton5 "
-                                        class="nav_B_button nav_B_button_audio nav_B_button_audio_help"
-                                        href="#slide-audio "
-                                        >Help</a
-                                    >
-                                </div>
+                                <a id="nav_B_audioButton0" class="nav_B_button nav_B_button_audio nav_B_button_audio_paste" href="#slide-audio ">
+                                    <div class="nav_B_icon">
+                                        <i class="fas fa-download fa-2x"></i>
+                                    </div>
+                                    <div class="nav_B_text">
+                                        <p>
+                                            Paste link
+                                        </p>
+                                    </div>
+                                </a>
                             </div>
-                        </div>
 
-                        <ul class="download__list download__list_audio">
-                            <!-- audio downloads go here -->
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- modal -->
-                <div id="modal" class="modalPreferences">
-                    <!-- <input type="text" id="url" value="https://" autofocus /> -->
-                    <!-- <button id="add-item">Add Item</button> -->
-                    <!-- <button id="close-modal">Cancel</button> -->
-                    <div class="modalPreferencesContainer">
-                        <div class="modalPreferencesTitle">
-                            <h1>Preferences</h1>
-                        </div>
-                    </div>
-                </div>
-                <!-- modal -->
-
-                <!-- Video -->
-                <div class="content-slide" id="slide-video">
-                    <div class="content-container content-container-video">
-                        <div class="nav_B nav_B_video">
-                            <div class="nav_B__main nav_B__child">
-                                <a
-                                    id="nav_B_video-button0"
-                                    class="nav_B_button nav_B_button_video nav_B_button_video_paste"
-                                    href="#slide-video"
-                                    >Paste link</a
-                                >
-                                <a
-                                    id="nav_B_video-button1"
-                                    class="nav_B_button nav_B_button_video nav_B_button_video_smartMode"
-                                    href="#slide-video"
-                                    >Smart Mode</a
-                                >
-                            </div>
                             <div class="nav_B__minor nav_B__child">
-                                <a
-                                    id="nav_B_video-button2"
-                                    class="nav_B_button nav_B_button_video nav_B_button_video_activate"
-                                    href="#slide-video"
-                                    >Activate</a
-                                >
-                                <a
-                                    id="nav_B_video-button3"
-                                    class="nav_B_button nav_B_button_video nav_B_button_video_subscriptions"
-                                    href="#slide-video"
-                                    >Subscriptions</a
-                                >
-                                <a
-                                    id="nav_B_video-button4"
-                                    class="nav_B_button nav_B_button_video nav_B_button_video_preferences"
-                                    href="#slide-video"
-                                    >Preferences</a
-                                >
-                                <a
-                                    id="nav_B_video-button5"
-                                    class="nav_B_button nav_B_button_video nav_B_button_video_help"
-                                    href="#slide-video"
-                                    >Help</a
-                                >
+                                <a id="nav_B_audioButton1" class="nav_B_button nav_B_button_audio nav_B_button_audio_activate" href="#slide-audio ">
+                                    <div class="nav_B_icon">
+                                        <i class="fas fa-rocket fa-2x"></i>
+                                    </div>
+                                    <div class="nav_B_text">
+                                        <p>
+                                            Activate
+                                        </p>
+                                    </div>
+                                </a>
+                                <a id="nav_B_audioButton2" class="nav_B_button nav_B_button_audio nav_B_button_audio_preferences" href="#slide-audio ">
+                                    <div class="nav_B_icon">
+                                        <i class="far fa-lightbulb fa-2x"></i>
+                                    </div>
+                                    <div class="nav_B_text">
+                                        <p>
+                                            Preferences
+                                        </p>
+                                    </div>
+                                </a>
+                                <a id="nav_B_audioButton3" class="nav_B_button nav_B_button_audio nav_B_button_audio_help" href="#slide-audio ">
+                                    <div class="nav_B_icon">
+                                        <i class="far fa-question-circle fa-2x"></i>
+                                    </div>
+                                    <div class="nav_B_text">
+                                        <p>
+                                            Help
+                                        </p>
+                                    </div>
+                                </a>
                             </div>
                         </div>
+                    </div>
 
-                        <ul class="download__list download__list_video">
-                            <!-- video downloads go here -->
-                        </ul>
+                    <ul class="download__list download__list_audio">
+                        <!-- AUDIO DOWNLOADS GO HERE -->
+
+                    </ul>
+                </div>
+            </div>
+
+            <!-- modal -->
+            <div id="modal" class="modalPreferences">
+                <!-- <input type="text" id="url" value="https://" autofocus /> -->
+                <!-- <button id="add-item">Add Item</button> -->
+                <!-- <button id="close-modal">Cancel</button> -->
+                <div class="modalPreferencesContainer">
+                    <div class="modalPreferencesTitle">
+                        <h1>Preferences</h1>
                     </div>
                 </div>
+            </div>
+            <!-- modal -->
 
-                <!-- Warpstagram -->
-                <div class="content-slide" id="slide-warpstagram">
-                    <div class="content-container content-container-4">
-                        <div class="user-container">
-                            <div class="user-search">
-                                <div class="user-search-input">
-                                    <input
-                                        id="user-search-input__field"
-                                        type="text "
-                                        placeholder="Enter Instagram username, hashtag, or location "
-                                        autofocus
-                                    />
+            <!-- Video -->
+            <div class="content-slide" id="slide-video">
+                <div class="content-container content-container-video">
+                    <div class="nav_B nav_B_video">
+                        <div class="nav_B__main nav_B__child">
+                            <a id="nav_B_video-button0" class="nav_B_button nav_B_button_video nav_B_button_video_paste" href="#slide-video">
+                                <div class="nav_B_icon">
+                                    <i class="fas fa-download fa-2x"></i>
                                 </div>
-                                <div class="user-search-subscribe">
-                                    <button id="user-search-subscribe__button">
+                                <div class="nav_B_text">
+                                    <p>
+                                        Paste link
+                                    </p>
+                                </div>
+                            </a>
+                            <a id="nav_B_video-button1" class="nav_B_button nav_B_button_video nav_B_button_video_smartMode" href="#slide-video">
+                                <div class="nav_B_icon">
+                                    <i class="far fa-lightbulb fa-2x"></i>
+                                </div>
+                                <div class="nav_B_text">
+                                    <p>
+                                        Smart Mode
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="nav_B__minor nav_B__child">
+                            <a id="nav_B_video-button2" class="nav_B_button nav_B_button_video nav_B_button_video_activate" href="#slide-video">
+                                <div class="nav_B_icon">
+                                    <i class="fas fa-rocket fa-2x"></i>
+                                </div>
+                                <div class="nav_B_text">
+                                    <p>
+                                        Activate
+                                    </p>
+                                </div>
+                            </a>
+                            <a id="nav_B_video-button3" class="nav_B_button nav_B_button_video nav_B_button_video_subscriptions" href="#slide-video">
+                                <div class="nav_B_icon">
+                                    <i class="fas fa-unlock-alt fa-2x"></i>
+                                </div>
+                                <div class="nav_B_text">
+                                    <p>
+                                        Subscriptions
+                                    </p>
+                                </div>
+                            </a>
+                            <a id="nav_B_video-button4" class="nav_B_button nav_B_button_video nav_B_button_video_preferences" href="#slide-video">
+                                <div class="nav_B_icon">
+                                    <i class="far fa-lightbulb fa-2x"></i>
+                                </div>
+                                <div class="nav_B_text">
+                                    <p>
+                                        Preferences
+                                    </p>
+                                </div>
+                            </a>
+                            <a id="nav_B_video-button5" class="nav_B_button nav_B_button_video nav_B_button_video_help" href="#slide-video">
+                                <div class="nav_B_icon">
+                                    <i class="far fa-question-circle fa-2x"></i>
+                                </div>
+                                <div class="nav_B_text">
+                                    <p>
+                                        Help
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <ul class="download__list download__list_video">
+                        <!-- VIDEO DOWNLOADS GO HERE -->
+
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Warpstagram -->
+            <div class="content-slide" id="slide-warpstagram">
+                <div class="content-container content-container-4">
+                    <div class="user-container">
+                        <div class="user-search">
+                            <div class="user-search-input">
+                                <input id="user-search-input__field" type="text " placeholder="Enter Instagram username, hashtag, or location " autofocus />
+                            </div>
+                            <div class="user-search-subscribe">
+                                <button id="user-search-subscribe__button">
                                         hello
                                     </button>
+                            </div>
+                            <div class="user-search-settings">
+                                <!-- <img src="https://wallpapercave.com/wp/Rwl8nSj.jpg " alt=" " /> -->
+                            </div>
+                        </div>
+
+                        <div class="user-filterToolbar">
+                            <div class="user-filterToolbar-type">
+                                <div class="filterTabs">
+                                    <p class="filterTab">All</p>
+                                    <p class="filterTab">Users</p>
+                                    <p class="filterTab">Hashtags</p>
+                                    <p class="filterTab">Locations</p>
                                 </div>
-                                <div class="user-search-settings">
-                                    <!-- <img src="https://wallpapercave.com/wp/Rwl8nSj.jpg " alt=" " /> -->
+                            </div>
+                            <div class="user-filterToolbar-advanced-type">
+                                <div class="filterTabsAdvanced">
+                                    <p class="filterTabAdvanced">All</p>
+                                    <p class="filterTabAdvanced">Users</p>
+                                    <p class="filterTabAdvanced">
+                                        Hashtags
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="user">
+                            <div class="user-info">
+                                <div class="user-info-stats">
+                                    <img class="user-info-stats__item user-info-stats__avatar" src="./img/profile pic.jpg " alt=" " />
+                                    <p class="user-info-stats__item user-info-stats__username">
+                                        tomtacular
+                                    </p>
+                                    <p class="user-info-stats__item user-info-stats__post-count">
+                                        264 posts
+                                    </p>
+                                    <p class="user-info-stats__item user-info-stats_story-count">
+                                        23 stories
+                                    </p>
+                                </div>
+                                <div class="user-info-actions">
+                                    <p class="user-info-actions__item user-info-actions__LastUpdated">
+                                        Updated 2 hours ago
+                                    </p>
+                                    <p class="user-info-actions__item user-info-actions__UpdatePosts">
+                                        Update posts
+                                    </p>
+                                    <p class="user-info-actions__item user-info-actions__pinSubscription">
+                                        Pin Subscription
+                                    </p>
+                                    <p class="user-info-actions__item user-info-actions__More">
+                                        More
+                                    </p>
                                 </div>
                             </div>
 
-                            <div class="user-filterToolbar">
-                                <div class="user-filterToolbar-type">
-                                    <div class="filterTabs">
-                                        <p class="filterTab">All</p>
-                                        <p class="filterTab">Users</p>
-                                        <p class="filterTab">Hashtags</p>
-                                        <p class="filterTab">Locations</p>
-                                    </div>
-                                </div>
-                                <div class="user-filterToolbar-advanced-type">
-                                    <div class="filterTabsAdvanced">
-                                        <p class="filterTabAdvanced">All</p>
-                                        <p class="filterTabAdvanced">Users</p>
-                                        <p class="filterTabAdvanced">
-                                            Hashtags
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="user">
-                                <div class="user-info">
-                                    <div class="user-info-stats">
-                                        <img
-                                            class="user-info-stats__item user-info-stats__avatar"
-                                            src="./img/profile pic.jpg "
-                                            alt=" "
-                                        />
-                                        <p
-                                            class="user-info-stats__item user-info-stats__username"
-                                        >
-                                            tomtacular
-                                        </p>
-                                        <p
-                                            class="user-info-stats__item user-info-stats__post-count"
-                                        >
-                                            264 posts
-                                        </p>
-                                        <p
-                                            class="user-info-stats__item user-info-stats_story-count"
-                                        >
-                                            23 stories
-                                        </p>
-                                    </div>
-                                    <div class="user-info-actions">
-                                        <p
-                                            class="user-info-actions__item user-info-actions__LastUpdated"
-                                        >
-                                            Updated 2 hours ago
-                                        </p>
-                                        <p
-                                            class="user-info-actions__item user-info-actions__UpdatePosts"
-                                        >
-                                            Update posts
-                                        </p>
-                                        <p
-                                            class="user-info-actions__item user-info-actions__pinSubscription"
-                                        >
-                                            Pin Subscription
-                                        </p>
-                                        <p
-                                            class="user-info-actions__item user-info-actions__More"
-                                        >
-                                            More
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <!-- <div class="user-images">
+                            <!-- <div class="user-images">
                                                     <img class="user-image" src="https://wallpapercave.com/wp/Rwl8nSj.jpg " alt=" " />
                                                     <img class="user-image" src="https://wallpapercave.com/wp/Rwl8nSj.jpg " alt=" " />
                                                     <img class="user-image" src="https://wallpapercave.com/wp/Rwl8nSj.jpg " alt=" " />
                                                 </div> -->
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </body>
-    <!-- <script type="module " src="./src/js/main.js "></script> -->
+    </div>
+</body>
+<!-- <script type="module " src="./src/js/main.js "></script> -->
 
-    <script>
-        require('./app.js'); // renderer main file
-        require('./items.js'); // items downloader
-        require('./automate.js'); //
-        require('./views/elements'); // dom nodes
-    </script>
+<script>
+    require('./app.js'); // renderer main file
+    require('./items.js'); // items downloader
+    require('./automate.js'); //
+    require('./views/elements'); // dom nodes
+</script>
+
 </html>

@@ -4,13 +4,12 @@ const fileController = new fileControllerReq();
 const path = require('path');
 const fs = require('fs');
 const urls = require('./testURLS');
-// const storage = require('../storage');
 class startup {
     constructor() {
         this.devMode = true;
         this.testingYoutubeURLS = true; // true will use youtube URLS, false will use misc non youtube URLS
         this.env = {
-            nav_A_active: !this.devMode ? 'audio' : 'audio', //   audio, video, or warpstagram, defaults to audio
+            nav_A_active: !this.devMode ? 'audio' : 'video', //   audio, video, or warpstagram, defaults to audio
             user: 'dev', // can be dev, free, or paid
             modalBrowserWindow: false, // opens youtube modal window
             // hasFFmpeg: this.checkFFmpeg(),

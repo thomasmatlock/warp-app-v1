@@ -113,7 +113,7 @@ ipcRenderer.on('Warpstagram: File: Export Subscriptions', () => {});
 ipcRenderer.on('Warpstagram: File: Export Posts', () => {});
 // Edit
 ipcRenderer.on('Warpstagram: Edit: Sub to My Saved Posts', () => {});
-ipcRenderer.on('Warpstagram: Edit: Sub to Accts I Follow', () => {});
+ipcRenderer.on('Warpstagram: Edit: Sub to PAccts I Follow', () => {});
 ipcRenderer.on('Warpstagram: Edit: Sub to Stories Of Accts I Follow', () => {});
 ipcRenderer.on('Warpstagram: Edit: Update pinned subscriptions', () => {});
 ipcRenderer.on('Warpstagram: Edit: Update all subscriptions', () => {});
@@ -182,19 +182,6 @@ elements.nav_A_warpstagram.addEventListener('click', (e) => {
     if (logging)
         console.log(`env.nav_A_active is now ${startup.env.nav_A_active}`);
 });
-// Nav B audio LISTENERS
-// elements.nav_B_button_audio_showModal.addEventListener('click', (e) => {
-//     // console.log('modal opened');
-//     // elements.modalPreferences.style.display = 'flex';
-// });
-// elements.nav_B_button_audio_closeModal.addEventListener('click', (e) => {
-//     // console.log('modal closed');
-//     // elements.modalPreferences.style.display = 'none';
-// });
-// elements.nav_B_button_audio_modalPreferences.addEventListener('click', (e) => {
-//     // console.log('modal closed');
-//     elements.modalPreferences.style.display = 'none';
-// });
 elements.nav_B_button_audio_paste.addEventListener('click', (e) => {
     userInput.validateURL(clipboard.readText(), startup.env.nav_A_active);
 });

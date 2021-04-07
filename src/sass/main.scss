@@ -11,8 +11,7 @@
 @import 'components/content-list';
 @import 'components/nav-primary';
 @import 'components/nav-secondary';
-@import 'components/dl-item-video';
-@import 'components/dl-item-audio';
+@import 'components/downloadItem';
 @import 'layouts/content-slide';
 @import 'layouts/grid';
 @import 'pages/warpstagram';
@@ -27,7 +26,7 @@
     animation: fadeIn 1s ease-out;
 }
 
-// warpstagram 
+// warpstagram
 .user-info {
     height: 230px;
     border: 1px dotted purple;
@@ -98,9 +97,8 @@
     height: 780px;
     max-height: 780px;
     min-height: 550px;
-    background: #2A2A2A;
+    background: #2a2a2a;
     border-radius: 4px;
-    ;
     z-index: 11;
     box-shadow: $shadow-after;
 }

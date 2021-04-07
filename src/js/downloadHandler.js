@@ -83,8 +83,8 @@ const cloneVideoDetails = function(itemURL, info, type) {
     this.formatLength(dlhandler.selectedFormat.approxDurationMs);
     dlhandler.height = dlhandler.selectedFormat.height;
     // dlhandler.type = type; // audio or video
-    dlhandler.thumbnail = info.videoDetails.thumbnails[3]; // (or the last thumbnail) usually seems to be highest res thumbnail. thumbn\ails are in descending order from low res to highest res
-    dlhandler.thumbnailURL = info.videoDetails.thumbnails[3].url; // (or the last thumbnail) usually seems to be highest res thumbnail. thumbn\ails are in descending order from low res to highest res
+    dlhandler.thumbnail = info.videoDetails.thumbnails[0]; // (or the last thumbnail) usually seems to be highest res thumbnail. thumbn\ails are in descending order from low res to highest res
+    dlhandler.thumbnailURL = info.videoDetails.thumbnails[0].url; // (or the last thumbnail) usually seems to be highest res thumbnail. thumbn\ails are in descending order from low res to highest res
     // dlhandler.fileSize;
     dlhandler.fileType = type === 'audio' ? 'MP3' : 'MP4'; // mp4, etc
     dlhandler.itag = dlhandler.selectedFormat.itag;

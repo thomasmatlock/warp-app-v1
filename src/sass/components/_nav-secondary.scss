@@ -55,7 +55,7 @@
     margin: auto 2rem;
     //// CONTENT
     font-size: 1.2rem;
-    color: #000;
+    color: $colorTextNavB;
     font-weight: 400;
     text-align: center;
     //// POSITION
@@ -97,4 +97,31 @@
     transform: scale(1.01);
     box-shadow: $shadow-after !important;
     color: white !important;
+}
+
+#nav_B_audioButton0,
+#nav_B_audioButton1,
+#nav_B_audioButton2,
+#nav_B_audioButton3,
+#nav_B_video-button0,
+#nav_B_video-button1,
+#nav_B_video-button2,
+#nav_B_video-button3,
+#nav_B_video-button4,
+#nav_B_video-button5 {
+    display: flex;
+    flex-direction: column;
+}
+
+.nav_B_icon {
+    margin-top: 10px;
+}
+
+.nav_B_button:hover p {
+    color: #fff;
+}
+
+.nav_B_text p {
+    // border: 1px dotted red;
+    color: #000;
 }

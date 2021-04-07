@@ -1,0 +1,137 @@
+// ALL LIST ITEMS
+.download__list li {
+    height: $download-item-video-height;
+    max-height: $download-item-video-max-height;
+    border: 1px solid #eee;
+    // background-color: #eee;
+    transition: all ease-out 0.05s;
+    // border: 1px dotted purple;
+    &:hover {
+        background-color: $grey;
+        transform: translateY(-2px);
+        transform: scale(1.005);
+        box-shadow: $shadow-after;
+        z-index: 4;
+    }
+}
+
+// PARENT CONTAINER
+.dl__item {
+    height: $download-item-video-height;
+    max-height: $download-item-video-max-height;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    // justify-content: start;
+    // border: 1px dotted red;
+}
+
+.dl__item_info-pane__left {
+    height: $download-item-video-height;
+    // border: 1px dotted green;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.dl__item_info-pane__right {
+    // border: 1px dotted blue;
+    display: flex;
+    flex-direction: row;
+    height: $download-item-video-height;
+    width: 120px;
+}
+
+.dl__item_info-pane__right__openContainingFolder {
+    width: 50%;
+    height: 100%;
+    display: flex;
+}
+
+.dl__item_info-pane__right__moreActions {
+    height: 80%;
+    width: 50%;
+    margin-right: 1vw;
+}
+
+.dl__item_info-pane__right__openContainingFolder:hover .fa-folder-open,
+.dl__item_info-pane__right__moreActions:hover .fa-cogs {
+    transform: scale(1.1);
+    transition: all 0.1s ease;
+    // box-shadow: $shadow-after;
+    // z-index: 32;
+}
+
+.dl__item_info-pane__right__moreActions:hover {
+    // background: yellow;
+}
+
+.fa-folder-open,
+.fa-cogs {
+    color: $color-gray-dark;
+    margin: 0 auto;
+    margin-top: 40%;
+    visibility: hidden;
+}
+
+.dl__item:hover .fa-folder-open,
+.dl__item:hover .fa-cogs {
+    // background: $amazon-blue;
+    visibility: visible;
+}
+
+.dl__item:hover .gg-folder {
+    // background: $amazon-blue;
+    visibility: visible;
+}
+
+.dl__item__thumbnail img {
+    height: $download-item-video-height;
+    max-height: $download-item-video-max-height;
+    // border: dotted green 1px;
+    border-radius: 3px;
+}
+
+.dl__item_info-pane {
+    display: flex;
+    flex-direction: column;
+    height: $download-item-video-height;
+    color: black;
+    font-size: 1.2rem;
+    padding: 0;
+    // border: dotted red 1px;
+}
+
+.dl__item_info-pane-data {
+    width: 100%;
+}
+
+.dl__item_info-pane__top {
+    height: $download-item-video-height / 2;
+    display: flex;
+    border: dotted red 0px;
+    align-items: center;
+}
+
+.dl__item_info-pane__bottom {
+    display: flex;
+    border: dotted red 0px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    height: $download-item-video-height / 2;
+    // height: 28px;
+}
+
+.dl__item__data__property {
+    border: dotted red 0px;
+    margin-left: 1vw;
+}
+
+.dl__item__data__property {
+    color: $colorParagraph;
+}
+
+.dl__item__data__property-title {
+    color: $color-dlitem-title;
+}
