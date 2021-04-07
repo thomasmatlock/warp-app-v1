@@ -192,9 +192,9 @@ elements.nav_B_button_audio_preferences.addEventListener('click', (e) => {
     if (logging) console.log('clicked preferences');
     modals.modalPreferencesAdjust(state, elements, startup);
 });
-elements.nav_B_button_audio_help.addEventListener('click', (e) => {
-    if (logging) console.log('clicked help');
-});
+// elements.nav_B_button_audio_help.addEventListener('click', (e) => {
+//     if (logging) console.log('clicked help');
+// });
 // Nav B video LISTENERS
 elements.nav_B_button_video_paste.addEventListener('click', (e) => {
     userInput.validateURL(clipboard.readText(), startup.env.nav_A_active);
@@ -213,6 +213,6 @@ elements.nav_B_button_video_preferences.addEventListener('click', (e) => {
     if (logging) console.log('clicked preferences');
     modals.modalPreferencesAdjust(state, elements, startup);
 });
-elements.nav_B_button_video_help.addEventListener('click', (e) => {
-    if (logging) console.log('clicked help');
-});
+// elements.nav_B_button_video_help.addEventListener('click', (e) => {
+//     if (logging) console.log('clicked help');
+// });
