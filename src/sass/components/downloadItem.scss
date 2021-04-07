@@ -55,7 +55,7 @@
 }
 
 .dl__item_info-pane__right__openContainingFolder:hover .fa-folder-open,
-.dl__item_info-pane__right__moreActions:hover .fa-cogs {
+.dl__item_info-pane__right__moreActions:hover .fa-cog {
     transform: scale(1.1);
     transition: all 0.1s ease;
     // box-shadow: $shadow-after;
@@ -67,7 +67,7 @@
 }
 
 .fa-folder-open,
-.fa-cogs {
+.fa-cog {
     color: $color-gray-dark;
     margin: 0 auto;
     margin-top: 40%;
@@ -75,7 +75,7 @@
 }
 
 .dl__item:hover .fa-folder-open,
-.dl__item:hover .fa-cogs {
+.dl__item:hover .fa-cog {
     // background: $amazon-blue;
     visibility: visible;
 }

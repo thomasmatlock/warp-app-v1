@@ -30,7 +30,7 @@ const markup = {
                                         <i class="far fa-folder-open"></i>
                                     </div>
                                     <div class="dl__item_info-pane__right__moreActions">
-                                        <i class="fas fa-cogs"></i>
+                                        <i class="fas fa-cog"></i>
                                     </div>
                                 </div>
                     </div>
@@ -72,7 +72,7 @@ const markup = {
                                         <i class="far fa-folder-open"></i>
                                     </div>
                                     <div class="dl__item_info-pane__right__moreActions">
-                                        <i class="fas fa-cogs"></i>
+                                        <i class="fas fa-cog"></i>
                                     </div>
                                 </div>
                     </div>

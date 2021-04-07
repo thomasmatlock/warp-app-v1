@@ -5,6 +5,7 @@
     max-width: 1200px;
     height: 10vh;
     min-height: 100px;
+    max-height: 100px;
     //// SPACING
     margin: 1vh auto 0;
     //// FLEX
@@ -96,6 +97,10 @@
     background-image: $codepen-orange-1 !important;
     transform: scale(1.01);
     box-shadow: $shadow-after !important;
+    color: white !important;
+}
+
+.nav_B_button--active p {
     color: white !important;
 }
 

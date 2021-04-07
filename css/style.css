@@ -312,6 +312,7 @@ li {
   max-width: 1200px;
   height: 10vh;
   min-height: 100px;
+  max-height: 100px;
   margin: 1vh auto 0;
   display: flex;
   flex-direction: row;
@@ -366,6 +367,9 @@ li {
   background-image: linear-gradient(268deg, #da2c4d, #f8ab37) !important;
   transform: scale(1.01);
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2) !important;
+  color: white !important; }
+
+.nav_B_button--active p {
   color: white !important; }
 
 #nav_B_audioButton0,
@@ -432,19 +436,19 @@ li {
   margin-right: 1vw; }
 
 .dl__item_info-pane__right__openContainingFolder:hover .fa-folder-open,
-.dl__item_info-pane__right__moreActions:hover .fa-cogs {
+.dl__item_info-pane__right__moreActions:hover .fa-cog {
   transform: scale(1.1);
   transition: all 0.1s ease; }
 
 .fa-folder-open,
-.fa-cogs {
+.fa-cog {
   color: #777;
   margin: 0 auto;
   margin-top: 40%;
   visibility: hidden; }
 
 .dl__item:hover .fa-folder-open,
-.dl__item:hover .fa-cogs {
+.dl__item:hover .fa-cog {
   visibility: visible; }
 
 .dl__item:hover .gg-folder {
