@@ -15,8 +15,7 @@ const startupReq = require('../js/system/startup');
 const startup = new startupReq();
 const items = require('./items');
 const auto = require('./automate');
-const modalsReq = require('./modals');
-const modals = new modalsReq();
+const modals = require('./modals');
 const stateReq = require('./state');
 let state = new stateReq();
 
@@ -25,23 +24,10 @@ let state = new stateReq();
 // activates selected nav A tab on window ready
 ipcRenderer.on('window-ready', (e, storage) => {
     auto.click_nav_A(startup.env.nav_A_active); // auto clicks active tab if active
-    // console.log(startup.env.nav_A_active);
     setActiveNav_A(startup.env.nav_A_active); // sets active Nav A
-    if (startup.dev.clearStorage) items.resetStorage();
-    // console.log('window-ready');
-    // console.log(storage);
-    items.startupAddAllItems(storage);
-    // items.testElectronSettings();
-    // AUTOMATION
-    // auto.click_nav_B(startup.env.nav_A_active, 'paste'); // auto clicks paste if active
-    // auto.click_nav_B(startup.env.nav_A_active, 'showModal'); // auto clicks if active
-    // auto.click_nav_B(startup.env.nav_A_active, 'closeModal'); // auto clicks if active
-    // console.log('clicking show Modal');
-    // auto.click_nav_B(startup.env.nav_A_active, 'smartMode'); // auto clicks smartMode if active
-    // auto.click_nav_B(startup.env.nav_A_active, 'activate'); // auto clicks activate if active
-    // auto.click_nav_B(startup.env.nav_A_active, 'subscriptions'); // auto clicks subscriptions if active
-    auto.click_nav_B(startup.env.nav_A_active, 'preferences'); // auto clicks preferences if active
-    // auto.click_nav_B(startup.env.nav_A_active, 'help'); // auto clicks help if active
+    if (startup.dev.clearStorage) items.resetStorage(); // clears localStorage if active
+    items.startupAddAllItems(storage); // loads items stored in settings to UI
+    auto.click_nav_B(startup.env.nav_A_active, 'preferences'); // auto clicks paste, smartMode, activate, subscriptions, preferences, help
 });
 
 const setActiveNav_A = (nav_A_active) => {

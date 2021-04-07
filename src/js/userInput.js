@@ -51,7 +51,6 @@ checkURLforPattern = (url, avType) => {
     });
     // if (logging) console.log(platform);
 };
-
 const mediaController = (url, avType, platform) => {
     if (logging)
         console.log(

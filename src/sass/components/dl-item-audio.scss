@@ -8,12 +8,6 @@
     background-color: white;
 }
 
-// .dl__item-audio:link {
-//     transition: all ease-out 0.1s;
-//     &:active {
-//         transform: scale(0.995);
-//     }
-// }
 .download__list_audio li {
     height: $download-item-audio-height;
     max-height: $download-item-audio-max-height;
@@ -44,7 +38,7 @@
     padding-left: 2vh;
     padding: 0 auto;
     margin: 0 auto;
-    // background-color: yellow;
+    background-color: yellow;
 }
 
 .dl__item-audio_info-pane__right {
