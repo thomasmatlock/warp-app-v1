@@ -15,15 +15,16 @@ const startupReq = require('../js/system/startup');
 const startup = new startupReq();
 const items = require('./items');
 const auto = require('./automate');
-const modals = require('./modals');
+const modalsReq = require('./modals');
+const modals = new modalsReq();
 
-// modals.testFunction();
+console.log(modals.test);
 
 let state = {};
 state.nav = new Nav(); // controls active nav
 state.modals = {};
 state.modals.preferences = false;
-console.log(state);
+// console.log(state);
 
 ////////////////////////////////////////////////////////////
 // IPCRENDERER LISTENERS

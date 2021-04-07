@@ -17,6 +17,17 @@
 //////////////////////////////////////////////////////////////// Welcome
 // modalWelcomeWarpstagram
 const logging = true;
-exports.testFunction = (modalName) => {
-    console.log('modal working');
-};
+// exports.testFunction = (modalName) => {
+//     console.log('modal working');
+// };
+class modals {
+    constructor() {
+        this.test = 'test';
+    }
+
+    testFunction = (modalName) => {
+        console.log('modal working');
+    };
+}
+
+module.exports = modals;
