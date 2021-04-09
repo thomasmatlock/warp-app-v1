@@ -6,8 +6,9 @@ const fileControllerReq = require('./system/fileController');
 const fileController = new fileControllerReq();
 const startupReq = require('./system/startup');
 const startup = new startupReq();
+const items = require('../renderer/items');
 
-let dlhandler = {
+let itemInfo = {
     fileSize: '',
     fileType: '',
     format: '', // which of the 35 formats, from 1080p, 720p60, etc
@@ -24,81 +25,71 @@ let dlhandler = {
     title: '',
 };
 
-const getInfo = async function(itemURL, type) {
-    // console.log(itemURL);
-    await ytdl.getBasicInfo(itemURL).then((info) => {
-        this.cloneVideoDetails(itemURL, info, type);
-        // if (logging)
-        //     console.log(`
-        //         ${dlhandler.title}, ${dlhandler.lengthFormatted} long, ${dlhandler.type} type, ${dlhandler.height} pixels tall, ${dlhandler.fps} fps`);
-    });
-};
-
 const formatLength = function(approxDurationMs) {
-    dlhandler.secs = Math.round(approxDurationMs / 1000); // returns video length in dlhandler.secs, rounded
-    dlhandler.mins = (dlhandler.secs / 60).toFixed(1); // returns minutes with one decimal, ie, 3.4 mins long
-    dlhandler.lengthFormatted = Math.floor(dlhandler.mins);
-    // 1- Convert to dlhandler.secs:
-    // var dlhandler.secs = approxDurationMs / 1000;
+    itemInfo.secs = Math.round(approxDurationMs / 1000); // returns video length in itemInfo.secs, rounded
+    itemInfo.mins = (itemInfo.secs / 60).toFixed(1); // returns minutes with one decimal, ie, 3.4 mins long
+    itemInfo.lengthFormatted = Math.floor(itemInfo.mins);
+    // 1- Convert to itemInfo.secs:
+    // var itemInfo.secs = approxDurationMs / 1000;
     // 2- Extract hours:
-    dlhandler.hrs = parseInt(dlhandler.secs / 3600); // 3,600 dlhandler.secs in 1 hour
-    dlhandler.secs = dlhandler.secs % 3600; // dlhandler.secs remaining after extracting hours
+    itemInfo.hrs = parseInt(itemInfo.secs / 3600); // 3,600 itemInfo.secs in 1 hour
+    itemInfo.secs = itemInfo.secs % 3600; // itemInfo.secs remaining after extracting hours
     // 3- Extract minutes:
-    dlhandler.mins = parseInt(dlhandler.secs / 60); // 60 dlhandler.secs in 1 minute
-    // 4- Keep only dlhandler.secs not extracted to minutes:
-    dlhandler.secs = dlhandler.secs % 60;
-    // insert double zeros if the actual value is a single digit #FIX dlhandler to get a count on the character https://stackoverflow.com/questions/14879691/get-number-of-digits-with-javascript
+    itemInfo.mins = parseInt(itemInfo.secs / 60); // 60 itemInfo.secs in 1 minute
+    // 4- Keep only itemInfo.secs not extracted to minutes:
+    itemInfo.secs = itemInfo.secs % 60;
+    // insert double zeros if the actual value is a single digit #FIX itemInfo to get a count on the character https://stackoverflow.com/questions/14879691/get-number-of-digits-with-javascript
     // get digit count for mins, seconds
-    dlhandler.minsDigitCount = (dlhandler.mins + '').replace('.', '').length;
-    dlhandler.secsDigitCount = (dlhandler.secs + '').replace('.', '').length;
-    dlhandler.secsStr = dlhandler.secs.toString();
-    dlhandler.minsStr = dlhandler.mins.toString();
-    dlhandler.secsStrLength = dlhandler.secsStr.length;
-    if ((dlhandler.minsDigitCount = 1))
-        dlhandler.minsStr = '0' + dlhandler.minsStr; // adds a zero to the front of the mins string
+    itemInfo.minsDigitCount = (itemInfo.mins + '').replace('.', '').length;
+    itemInfo.secsDigitCount = (itemInfo.secs + '').replace('.', '').length;
+    itemInfo.secsStr = itemInfo.secs.toString();
+    itemInfo.minsStr = itemInfo.mins.toString();
+    itemInfo.secsStrLength = itemInfo.secsStr.length;
+    if ((itemInfo.minsDigitCount = 1))
+        itemInfo.minsStr = '0' + itemInfo.minsStr; // adds a zero to the front of the mins string
 
-    if (dlhandler.secsStrLength === 1) {
-        // console.log(`old: ${dlhandler.secsStr}`);
-        dlhandler.secsStr = '0' + dlhandler.secsStr; // adds a zero to the front of the secs string
-        // console.log(`new: ${dlhandler.secsStr}`);
-        // console.log(typeof dlhandler.secsStr);
+    if (itemInfo.secsStrLength === 1) {
+        // console.log(`old: ${itemInfo.secsStr}`);
+        itemInfo.secsStr = '0' + itemInfo.secsStr; // adds a zero to the front of the secs string
+        // console.log(`new: ${itemInfo.secsStr}`);
+        // console.log(typeof itemInfo.secsStr);
     }
     // console.log(
-    //     `There are ${dlhandler.secsDigitCount} digits in the seconds part`
+    //     `There are ${itemInfo.secsDigitCount} digits in the seconds part`
     // );
-    // console.log(`string is ${dlhandler.secsStr.length} characters long`);
-    dlhandler.lengthFormatted = `${dlhandler.hrs}:${dlhandler.minsStr}:${dlhandler.secsStr}`;
+    // console.log(`string is ${itemInfo.secsStr.length} characters long`);
+    itemInfo.lengthFormatted = `${itemInfo.hrs}:${itemInfo.minsStr}:${itemInfo.secsStr}`;
 };
 
 const cloneVideoDetails = function(itemURL, info, type) {
     // console.log(type);
 
     startup.dev.downloadSmallestFile ?
-        (dlhandler.selectedFormat = info.formats[0]) // sets to smallest format for easy dev downloading
+        (itemInfo.selectedFormat = info.formats[0]) // sets to smallest format for easy dev downloading
         :
-        (dlhandler.selectedFormat = info.formats[1]);
-    dlhandler.url = itemURL;
-    dlhandler.itemURL = itemURL;
-    dlhandler.title = info.videoDetails.title;
-    this.formatLength(dlhandler.selectedFormat.approxDurationMs);
-    dlhandler.height = dlhandler.selectedFormat.height;
-    // dlhandler.type = type; // audio or video
-    dlhandler.thumbnail = info.videoDetails.thumbnails[0]; // (or the last thumbnail) usually seems to be highest res thumbnail. thumbn\ails are in descending order from low res to highest res
-    dlhandler.thumbnailURL = info.videoDetails.thumbnails[0].url; // (or the last thumbnail) usually seems to be highest res thumbnail. thumbn\ails are in descending order from low res to highest res
-    // dlhandler.fileSize;
-    dlhandler.fileType = type === 'audio' ? 'MP3' : 'MP4'; // mp4, etc
-    dlhandler.itag = dlhandler.selectedFormat.itag;
-    dlhandler.mimeType = dlhandler.selectedFormat.mimeType;
-    dlhandler.width = dlhandler.selectedFormat.width;
-    dlhandler.height = dlhandler.selectedFormat.height;
-    dlhandler.contentLength = dlhandler.selectedFormat.contentLength;
-    dlhandler.quality = dlhandler.selectedFormat.quality;
-    dlhandler.fps = dlhandler.selectedFormat.fps;
-    dlhandler.qualityLabel = dlhandler.selectedFormat.qualityLabel;
-    dlhandler.audioQuality = dlhandler.selectedFormat.audioQuality;
-    dlhandler.approxDurationMs = dlhandler.selectedFormat.approxDurationMs;
-    dlhandler.filePath = '';
-    dlhandler.finishedFilePath;
+        (itemInfo.selectedFormat = info.formats[1]);
+    itemInfo.url = itemURL;
+    itemInfo.itemURL = itemURL;
+    itemInfo.title = info.videoDetails.title;
+    this.formatLength(itemInfo.selectedFormat.approxDurationMs);
+    itemInfo.height = itemInfo.selectedFormat.height;
+    // itemInfo.type = type; // audio or video
+    itemInfo.thumbnail = info.videoDetails.thumbnails[0]; // (or the last thumbnail) usually seems to be highest res thumbnail. thumbn\ails are in descending order from low res to highest res
+    itemInfo.thumbnailURL = info.videoDetails.thumbnails[0].url; // (or the last thumbnail) usually seems to be highest res thumbnail. thumbn\ails are in descending order from low res to highest res
+    // itemInfo.fileSize;
+    itemInfo.fileType = type === 'audio' ? 'MP3' : 'MP4'; // mp4, etc
+    itemInfo.itag = itemInfo.selectedFormat.itag;
+    itemInfo.mimeType = itemInfo.selectedFormat.mimeType;
+    itemInfo.width = itemInfo.selectedFormat.width;
+    itemInfo.height = itemInfo.selectedFormat.height;
+    itemInfo.contentLength = itemInfo.selectedFormat.contentLength;
+    itemInfo.quality = itemInfo.selectedFormat.quality;
+    itemInfo.fps = itemInfo.selectedFormat.fps;
+    itemInfo.qualityLabel = itemInfo.selectedFormat.qualityLabel;
+    itemInfo.audioQuality = itemInfo.selectedFormat.audioQuality;
+    itemInfo.approxDurationMs = itemInfo.selectedFormat.approxDurationMs;
+    itemInfo.filePath = '';
+    itemInfo.finishedFilePath;
     // this.url = this.selectedFormat.url;
     // this.projectionType = this.selectedFormat.projectionType;
     // this.averageBitrate = this.selectedFormat.averageBitrate;
@@ -109,19 +100,19 @@ const cloneVideoDetails = function(itemURL, info, type) {
 };
 
 const removeVideoDetails = function() {
-    dlhandler = {};
+    itemInfo = {};
 };
 const removeCharactersFromTitle = function() {
     // console.log('removeCharactersFromTitle');
-    dlhandler.title = dlhandler.title.replace('/', '');
-    dlhandler.title = dlhandler.title.replace('?', '');
-    dlhandler.title = dlhandler.title.replace(`\\`, '');
-    dlhandler.title = dlhandler.title.replace(':', '');
-    dlhandler.title = dlhandler.title.replace('*', '');
-    dlhandler.title = dlhandler.title.replace(`"`, '');
-    dlhandler.title = dlhandler.title.replace('<', '');
-    dlhandler.title = dlhandler.title.replace('>', '');
-    dlhandler.title = dlhandler.title.replace(`|`, '');
+    itemInfo.title = itemInfo.title.replace('/', '');
+    itemInfo.title = itemInfo.title.replace('?', '');
+    itemInfo.title = itemInfo.title.replace(`\\`, '');
+    itemInfo.title = itemInfo.title.replace(':', '');
+    itemInfo.title = itemInfo.title.replace('*', '');
+    itemInfo.title = itemInfo.title.replace(`"`, '');
+    itemInfo.title = itemInfo.title.replace('<', '');
+    itemInfo.title = itemInfo.title.replace('>', '');
+    itemInfo.title = itemInfo.title.replace(`|`, '');
     // // if (this.logging) console.log('removed characters from title');
 };
 
@@ -131,19 +122,19 @@ const downloadAndWrite = function(itemURL) {
             this.removeCharactersFromTitle();
             var filePath;
             // console.log(this.type);
-            if (dlhandler.type === 'audio') {
+            if (itemInfo.type === 'audio') {
                 // console.log('its audio type');
                 filePath = path.join(
                     fileController.dirAudioPath,
-                    `${dlhandler.title}.mp3` // fix this, needs to be audio and mp3
+                    `${itemInfo.title}.mp3` // fix this, needs to be audio and mp3
                 );
                 // this.finishedFilePath = filepath;
                 // console.log(this.finishedFilePath);
-            } else if (dlhandler.type === 'video') {
+            } else if (itemInfo.type === 'video') {
                 // console.log('its video type');
                 filePath = path.join(
                     fileController.dirVideoPath,
-                    `${dlhandler.title}.mp4`
+                    `${itemInfo.title}.mp4`
                 );
                 // this.finishedFilePath = filepath;
                 // console.log(this.finishedFilePath);
@@ -164,17 +155,28 @@ const getFileSize = function() {
     // console.log('getFileSize');
 };
 
-const all = function(itemURL, type) {
-    dlhandler.type = type;
-    this.getInfo(itemURL, type);
-    // this.downloadAndWrite(itemURL);
-    // dlhandler.getFileSize();
+const getInfo = async function(itemURL, avType) {
+    console.log(itemURL);
+    await ytdl.getBasicInfo(itemURL).then((info) => {
+        this.cloneVideoDetails(itemURL, info, avType);
+        console.log(itemInfo.title);
+        items.addItem(itemInfo, avType);
+
+        items.updateStorage(itemInfo, avType, 'add');
+    });
 };
 
-// module.exports = dlhandler;
+const all = function(itemURL, avType) {
+    itemInfo.type = avType;
+    this.getInfo(itemURL, avType);
+    // this.downloadAndWrite(itemURL);
+    // itemInfo.getFileSize();
+};
+
+// module.exports = itemInfo;
 
 module.exports = {
-    dlhandler: dlhandler,
+    itemInfo: itemInfo,
     getInfo: getInfo,
     formatLength: formatLength,
     cloneVideoDetails: cloneVideoDetails,

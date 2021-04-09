@@ -58,6 +58,10 @@ ipcMain.on('storage-save', (e, storageObj, avType) => {
 });
 ipcMain.on('reset-storage', (e, storageObj) => {
     fileController.reset();
+    setTimeout(() => {
+        mainWindow.close();
+        mainWindow = null;
+    }, 1000);
     app.relaunch();
     app.exit();
     // fileController.settingsSave('settings', storageObj); // #fix, wrong arg1 save name, should be 'settings'

@@ -28,22 +28,8 @@ exports.startupAddAllItems = (storageSent) => {
     this.addItemsFromArray(storage.downloadItems.videoArr, 'video');
 };
 exports.downloadItem = (itemURL, avType, platform) => {
-    // DOWNLOAD ITEM
     if (startup.dev.getDownloadItemInfo) {
-        // DOWNLOAD ITEM
         downloadHandler.all(itemURL, avType); // exports without object
-
-        // UPDATE UI
-        let item = downloadHandler.dlhandler;
-        setTimeout(() => {
-            this.insertMarkup(item, avType);
-            this.addItem(item, avType);
-            // console.log(item.thumbnailURL);
-            this.resetMarkup();
-
-            // PERSIST INTO STORAGE
-            this.updateStorage(item, avType, 'add');
-        }, 1500);
     }
 };
 exports.addItem = (item, avType) => {
