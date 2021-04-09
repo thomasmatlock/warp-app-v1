@@ -4,7 +4,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable one-var */
 const logging = true;
-const { app, clipboard, ipcRenderer } = require('electron');
+const { app, clipboard, ipcRenderer, shell } = require('electron');
 let elements = require('./views/elements');
 const navPrimaryView = require('./views/navPrimaryView.js');
 const navSecondaryView = require('./views/navSecondaryView.js');
@@ -17,6 +17,8 @@ const items = require('./items');
 const auto = require('./automate');
 const modals = require('./modals');
 const stateReq = require('./state');
+const fileControllerReq = require('../js/system/fileController');
+const fileController = new fileControllerReq();
 let state = new stateReq();
 ////////////////////////////////////////////////////////////
 function GetIndex(sender) {
@@ -73,8 +75,8 @@ ipcRenderer.on('resize', () => {
     }
 });
 ipcRenderer.on('paste-new-url', (event, itemURL, avType, platform) => {
-    if (logging)
-        console.log(`${itemURL}, avType ${avType}, platform ${platform}`);
+    // if (logging)
+    //     console.log(`${itemURL}, avType ${avType}, platform ${platform}`);
     items.downloadItem(itemURL, avType, platform);
 });
 
@@ -230,35 +232,45 @@ elements.nav_B_button_video_preferences.addEventListener('click', (e) => {
     if (logging) console.log('clicked preferences');
     modals.modalPreferencesAdjust(state, elements, startup);
 });
-// elements.nav_B_button_video_help.addEventListener('click', (e) => {
 
-//     if (logging) console.log('clicked help');
-// });
-
-elements.download__list_audio_ID.addEventListener('click', (e) => {});
-elements.download__list_video_ID.addEventListener('click', (e) => {
-    // if (logging) console.log('clicked video list');
-    var videoElements = document.getElementsByClassName('dl__item_video');
-    // console.log(typeof videoElements);
-    // console.log(e.target.parentElement.parentElement.nodeName);
-    // console.log(typeof e.target);
-    console.log(videoElements[0]);
-    // logObjectProperties(videoElements);
-
-    if (e.target.className === 'fas fa-cog') console.log('you clicked the cog');
-    if (e.target.className === 'far fa-folder-open')
-        console.log('you clicked the folder');
+elements.download__list_audio_ID.addEventListener('click', (e) => {
+    findIndexOfItem(elements.download__list_audio_ID, e, 'audio');
 });
-const logObjectProperties = (obj) => {
-    console.log(obj);
-    for (var key in obj) {
-        // console.log(obj[key]);
-        console.log(obj.key);
-        // console.log(key);
-        // console.log(obj.hasOwnProperty[key]);
-        if (obj.hasOwnProperty(key)) {
-            // console.log(key + ' is ' + obj[key]);
-            // obj[key] = false;
-        }
+
+elements.download__list_video_ID.addEventListener('click', (e) => {
+    findIndexOfItem(elements.download__list_video_ID, e, 'video');
+});
+
+const findIndexOfItem = (parentItemID, e, avType) => {
+    var g = parentItemID;
+    console.log(e.target.innerHTML);
+    let indexSelected;
+    for (var i = 0, len = g.children.length; i < len; i++) {
+        (function(index) {
+            g.children[i].onclick = function() {
+                // alert(index);
+                // console.log(index);
+                indexSelected = index;
+                return indexSelected;
+                // items.removeItem(index);
+                // if (e.target.className === 'fas fa-cog')
+                //     console.log(`you clicked the ${indexSelected} cog`);
+                // if (
+                //     e.target.className === 'far fa-folder-open' &&
+                //     avType == 'video'
+                // ) {
+                //     console.log(`you clicked the ${indexSelected} folder`);
+                //     // shell.showItemInFolder(fileController.dirVideoPath);
+                //     shell.openPath(fileController.dirVideoPath);
+                //     // shell.showItemInFolder(
+                //     //     `C:\\Users\\Tommy\\Documents\\Warp Downloader\\Video\\Just Go With It Meet the wife HD CLIP.mp4`
+                //     // );
+                // }
+            };
+        })(i);
     }
+};
+
+const testFunction = () => {
+    console.log('test function');
 };

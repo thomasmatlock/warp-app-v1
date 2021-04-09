@@ -18,3 +18,18 @@ for (var key in objectToLoopThrough) {
 
 //  display all properties of an object
 Object.getOwnPropertyNames(obj);
+
+// logObjectProperties
+// const logObjectProperties = (obj) => {
+//     console.log(obj);
+//     for (var key in obj) {
+//         // console.log(obj[key]);
+//         console.log(obj.key);
+//         // console.log(key);
+//         // console.log(obj.hasOwnProperty[key]);
+//         if (obj.hasOwnProperty(key)) {
+//             // console.log(key + ' is ' + obj[key]);
+//             // obj[key] = false;
+//         }
+//     }
+// };

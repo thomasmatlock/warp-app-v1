@@ -23,7 +23,7 @@ class startup {
             clearStorage: false, // USE THIS TO RESET STORAGE
             devTools: !this.devMode ? false : true, // devTools off/on
             backendOnly: false, // hides window
-            downloadFile: false, //
+            downloadFile: true, //
             downloadSmallestFile: true,
             autoClickNavA_active: true, // clicks nav A tab on load
             useRandomYoutubeURL: this.testingYoutubeURLS ? true : false, // uses YT URLS if testingYoutubeURLS is true

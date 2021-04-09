@@ -138,6 +138,9 @@ exports.resetStorage = () => {
     this.save();
     ipcRenderer.send('reset-storage', storage);
 };
+exports.removeItem = (index) => {
+    console.log(`removing item ${index}`);
+};
 
 ////////////////////////////////////////////////////////////////////////////////////
 ipcRenderer.on('storage-save-success', (e, storageSentFromMain) => {
