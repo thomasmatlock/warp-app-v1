@@ -166,10 +166,8 @@ const getFileSize = function() {
 
 const all = function(itemURL, type) {
     dlhandler.type = type;
-    // console.log(type, dlhandler.type);
     this.getInfo(itemURL, type);
-    // console.log(dlhandler);
-    this.downloadAndWrite(itemURL);
+    // this.downloadAndWrite(itemURL);
     // dlhandler.getFileSize();
 };
 
