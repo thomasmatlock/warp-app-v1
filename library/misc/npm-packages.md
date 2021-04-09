@@ -1,16 +1,5 @@
 // custom title bar https://www.npmjs.com/package/@treverix/custom-electron-titlebar
 
-packages I removed
-
--   electron-json-storage
--   youtube-dl-exec
--   youtube-dl
--   youtube-audio-server
--   instagram-save
--   instagram-posts
--   instagram-scraping
--   instagram-basic-data-scraper-with-username
-
 # Warp-App
 
 -   Functions
