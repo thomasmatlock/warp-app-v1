@@ -6,6 +6,8 @@ const imageDownloader = require('image-downloader');
 let markup = require('./views/markup');
 let downloadHandler = require('../js/downloadHandler');
 const startupReq = require('../js/system/startup');
+const elements = require('./views/elements');
+const auto = require('./automate');
 const startup = new startupReq();
 
 // storage empty template
@@ -140,6 +142,16 @@ exports.resetStorage = () => {
 };
 exports.removeItem = (index) => {
     console.log(`removing item ${index}`);
+};
+exports.clickDownloadList = (avType) => {
+    if (avType === 'audio') {
+        if (elements.dl__item_audio[0])
+            auto.clickElement(elements.dl__item_audio[0]); // auto click top audio download item if it exists to ready the itemIndexFinder
+    }
+    if (avType === 'video') {
+        if (elements.dl__item_video[0])
+            auto.clickElement(elements.dl__item_video[0]); // auto click top audio download item if it exists to ready the itemIndexFinder
+    }
 };
 
 ////////////////////////////////////////////////////////////////////////////////////

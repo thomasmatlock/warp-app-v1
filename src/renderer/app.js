@@ -43,10 +43,7 @@ ipcRenderer.on('window-ready', (e, storage) => {
     if (startup.dev.clearStorage) items.resetStorage(); // clears localStorage if active
     items.startupAddAllItems(storage); // loads items stored in settings to UI
     auto.click_nav_B(startup.env.nav_A_active, 'preferences'); // auto clicks paste, smartMode, activate, subscriptions, preferences, help
-    if (elements.dl__item_audio[0])
-        auto.clickElement(elements.dl__item_audio[0]); // auto click top audio download item if it exists to ready the itemIndexFinder
-    if (elements.dl__item_video[0])
-        auto.clickElement(elements.dl__item_video[0]); // auto click top audio download item if it exists to ready the itemIndexFinder
+    items.clickDownloadList(); // auto click top download item if it exists to ready the itemIndexFinder
 });
 
 const setActiveNav_A = (nav_A_active) => {

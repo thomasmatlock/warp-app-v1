@@ -160,6 +160,7 @@ const getInfo = async function(itemURL, avType) {
         this.cloneVideoDetails(itemURL, info, avType);
         items.addItem(itemInfo, avType);
         items.updateStorage(itemInfo, avType, 'add');
+        items.clickDownloadList(avType);
     });
 };
 
