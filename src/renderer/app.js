@@ -3,7 +3,7 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-unused-vars */
 /* eslint-disable one-var */
-const logging = false;
+const logging = true;
 const { app, clipboard, ipcRenderer } = require('electron');
 let elements = require('./views/elements');
 const navPrimaryView = require('./views/navPrimaryView.js');
@@ -18,7 +18,20 @@ const auto = require('./automate');
 const modals = require('./modals');
 const stateReq = require('./state');
 let state = new stateReq();
+////////////////////////////////////////////////////////////
+function GetIndex(sender) {
+    var aElements = sender.parentNode.parentNode.getElementsByTagName('a');
+    var aElementsLength = aElements.length;
 
+    var index;
+    for (var i = 0; i < aElementsLength; i++) {
+        if (aElements[i] == sender) {
+            //this condition is never true
+            index = i;
+            return index;
+        }
+    }
+}
 ////////////////////////////////////////////////////////////
 // IPCRENDERER LISTENERS
 // activates selected nav A tab on window ready
@@ -152,7 +165,6 @@ elements.nav_A.addEventListener('click', (e) => {
 
     if (id) {
         state.nav.updateActiveNav_A(id);
-        navSecondaryView.updateTitles(id); // updateTitles NEEDS WORK
         // changeNavB_listener(id);
     }
 
@@ -219,5 +231,34 @@ elements.nav_B_button_video_preferences.addEventListener('click', (e) => {
     modals.modalPreferencesAdjust(state, elements, startup);
 });
 // elements.nav_B_button_video_help.addEventListener('click', (e) => {
+
 //     if (logging) console.log('clicked help');
 // });
+
+elements.download__list_audio_ID.addEventListener('click', (e) => {});
+elements.download__list_video_ID.addEventListener('click', (e) => {
+    // if (logging) console.log('clicked video list');
+    var videoElements = document.getElementsByClassName('dl__item_video');
+    // console.log(typeof videoElements);
+    // console.log(e.target.parentElement.parentElement.nodeName);
+    // console.log(typeof e.target);
+    console.log(videoElements[0]);
+    // logObjectProperties(videoElements);
+
+    if (e.target.className === 'fas fa-cog') console.log('you clicked the cog');
+    if (e.target.className === 'far fa-folder-open')
+        console.log('you clicked the folder');
+});
+const logObjectProperties = (obj) => {
+    console.log(obj);
+    for (var key in obj) {
+        // console.log(obj[key]);
+        console.log(obj.key);
+        // console.log(key);
+        // console.log(obj.hasOwnProperty[key]);
+        if (obj.hasOwnProperty(key)) {
+            // console.log(key + ' is ' + obj[key]);
+            // obj[key] = false;
+        }
+    }
+};

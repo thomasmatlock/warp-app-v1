@@ -140,7 +140,7 @@ const downloadAndWrite = function(itemURL) {
                 // console.log(this.finishedFilePath);
             }
             if (startup.dev.downloadFile) {
-                console.log('item downloaded');
+                // console.log('item downloaded');
                 ytdl(itemURL).pipe(fs.createWriteStream(filePath)); // downloads video
             }
             if (logging && !startup.dev.downloadFile) {
@@ -156,12 +156,9 @@ const getFileSize = function() {
 };
 
 const getInfo = async function(itemURL, avType) {
-    console.log(itemURL);
     await ytdl.getBasicInfo(itemURL).then((info) => {
         this.cloneVideoDetails(itemURL, info, avType);
-        console.log(itemInfo.title);
         items.addItem(itemInfo, avType);
-
         items.updateStorage(itemInfo, avType, 'add');
     });
 };
@@ -169,7 +166,7 @@ const getInfo = async function(itemURL, avType) {
 const all = function(itemURL, avType) {
     itemInfo.type = avType;
     this.getInfo(itemURL, avType);
-    // this.downloadAndWrite(itemURL);
+    this.downloadAndWrite(itemURL);
     // itemInfo.getFileSize();
 };
 

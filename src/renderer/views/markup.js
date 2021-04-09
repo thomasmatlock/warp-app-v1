@@ -1,5 +1,5 @@
 const markup = {
-    audio: `<a href="#slide-video" class="dl__item">
+    audio: `<a href="#slide-audio" class="dl__item dl__item_audio">
                                 <div class="dl__item_info-pane__left">
 
                                     <div class="dl__item_info-pane dl__item__thumbnail">
@@ -36,7 +36,7 @@ const markup = {
                     </div>
                     </a>`,
 
-    video: `<a href="#slide-video" class="dl__item">
+    video: `<a href="#slide-video" class="dl__item dl__item_video">
                                 <div class="dl__item_info-pane__left">
 
                                     <div class="dl__item_info-pane dl__item__thumbnail">

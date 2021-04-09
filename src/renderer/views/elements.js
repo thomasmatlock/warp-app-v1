@@ -59,7 +59,12 @@ const elements = {
 
     // Download lists
     download__list: document.querySelector('.download__list'),
-    download__list_audio: document.querySelector('.download__list_audio'),
-    download__list_video: document.querySelector('.download__list_video'),
+    download__list_audio: document.querySelector('.download__list_audio'), // audio list selected by class
+    download__list_video: document.querySelector('.download__list_video'), // video list selected by class
+    download__list_audio_ID: document.getElementById('download__list_audio_ID'), // // ID of audio list
+    download__list_video_ID: document.getElementById('download__list_video_ID'), // ID of video list
+    // Download list items
+    dl__item_audio: document.getElementsByClassName('dl__item_audio'),
+    dl__item_video: document.getElementsByClassName('dl__item_video'),
 };
 module.exports = elements;
