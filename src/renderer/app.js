@@ -135,6 +135,11 @@ ipcRenderer.on('Quit', () => {
     // app.quit();
     // mainWindow = null;
 });
+// Menu listeners, developer commands
+ipcRenderer.on('Reset-storage', () => {
+    console.log('reset');
+    ipcRenderer.send('reset-storage');
+});
 
 ////////////////////////////////////////////////////////////
 // DOM EVENT LISTENERS

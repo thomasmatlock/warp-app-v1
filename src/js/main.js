@@ -28,6 +28,7 @@ const startupReq = require('./system/startup');
 const startup = new startupReq();
 // const storage = require('./storage');
 const { file } = require('electron-settings');
+console.log(appMenuAudio);
 
 ////////////////////////////////////////////////////////////////////
 let mainWindow, splash, modalWindow, displayController, storageMain; // Keep a global reference of the window object, if you don't, the window will be closed automatically when the JavaScript object is garbage collected.
@@ -60,7 +61,9 @@ ipcMain.on('storage-save', (e, storageObj, avType) => {
 });
 ipcMain.on('reset-storage', (e, storageObj) => {
     fileController.reset();
-    fileController.settingsSave('settings', storageObj); // #fix, wrong arg1 save name, should be 'settings'
+    app.relaunch();
+    // app.exit();
+    // fileController.settingsSave('settings', storageObj); // #fix, wrong arg1 save name, should be 'settings'
 });
 const load = async() => {
     const result = await fileController.settingsLoad();
@@ -107,6 +110,8 @@ function createWindow() {
         // backgroundColor: '#0463db', // use the same color as your html file is, the main window will display this until html fully loads. This is a little better than making your app hang for a second until the html loads, then displaying the window
         // backgroundColor: '#ff8500', // use the same color as your html file is, the main window will display this until html fully loads. This is a little better than making your app hang for a second until the html loads, then displaying the window
     });
+
+    // addDevMenu();
 
     mainWindow.loadFile('./src/renderer/main.html'); // Load index.html into the new BrowserWindow
     // mainWindow.loadFile('./main.html'); // Load index.html into the new BrowserWindow

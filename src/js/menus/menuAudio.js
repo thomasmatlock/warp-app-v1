@@ -1,4 +1,4 @@
-const { Menu, shell } = require('electron');
+const { Menu, MenuItem, shell } = require('electron');
 const startupReq = require('../system/startup');
 const startup = new startupReq();
 // Module function to create main app menu
@@ -107,7 +107,28 @@ module.exports = (appWin) => {
     // Create Mac app menu
     // 'darwin', 'linux', 'win32', 'win64'
     if (process.platform === 'darwin') template.unshift({ role: 'appMenu' }); // appMenu is a complete role solution, like editMenu, to use OS default menu
+    const devMenu = new MenuItem({
+        label: 'Developer',
+        submenu: [{
+                label: 'Reset storage',
+                click: () => {
+                    appWin.send('Reset-storage');
+                },
+            },
+            // {
+            //     label: 'Item 2',
+            //     submenu: [{
+            //             label: 'Sub-item A',
+            //         },
+            //         {
+            //             label: 'Sub-item B',
+            //         },
+            //     ],
+            // },
+        ],
+    }); // create new menu item
 
+    if (startup.devMode) template.push(devMenu);
     // Build menu
     let menu = Menu.buildFromTemplate(template); // use template array
 

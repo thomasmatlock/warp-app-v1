@@ -115,7 +115,11 @@ class fileController {
         return result;
     };
     reset = () => {
-        settings.reset();
+        // settings.reset();
+        this.deleteSettingsFile();
+        setTimeout(() => {
+            this.initSettingsFileCreation(startupObj.settings);
+        }, 2000);
     };
     readDirFiles = (dir) => {
         // directory path
