@@ -10,6 +10,9 @@ exports.click_nav_A = (tab) => {
         if (tab === 'warpstagram') elements.nav_A_warpstagram.click(); // clicks audio tab
     }
 };
+exports.clickElement = (element) => {
+    element.click();
+};
 exports.click_nav_B = (nav_A_active, button) => {
     if (nav_A_active === 'audio') {
         if (startup.dev.autoClick) {

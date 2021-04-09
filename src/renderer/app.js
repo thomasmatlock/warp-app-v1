@@ -43,6 +43,10 @@ ipcRenderer.on('window-ready', (e, storage) => {
     if (startup.dev.clearStorage) items.resetStorage(); // clears localStorage if active
     items.startupAddAllItems(storage); // loads items stored in settings to UI
     auto.click_nav_B(startup.env.nav_A_active, 'preferences'); // auto clicks paste, smartMode, activate, subscriptions, preferences, help
+    if (elements.dl__item_audio[0])
+        auto.clickElement(elements.dl__item_audio[0]); // auto click top audio download item if it exists to ready the itemIndexFinder
+    if (elements.dl__item_video[0])
+        auto.clickElement(elements.dl__item_video[0]); // auto click top audio download item if it exists to ready the itemIndexFinder
 });
 
 const setActiveNav_A = (nav_A_active) => {
@@ -188,8 +192,6 @@ elements.nav_A.addEventListener('click', (e) => {
 elements.nav_A_audio.addEventListener('click', (e) => {
     ipcRenderer.send('menu-change', 'audio');
     startup.env.nav_A_active = 'audio';
-    if (logging)
-        console.log(`env.nav_A_active is now ${startup.env.nav_A_active}`);
 });
 elements.nav_A_video.addEventListener('click', (e) => {
     ipcRenderer.send('menu-change', 'video');
@@ -232,24 +234,22 @@ elements.nav_B_button_video_preferences.addEventListener('click', (e) => {
     if (logging) console.log('clicked preferences');
     modals.modalPreferencesAdjust(state, elements, startup);
 });
-
+// Download lists listeners
 elements.download__list_audio_ID.addEventListener('click', (e) => {
     findIndexOfItem(elements.download__list_audio_ID, e, 'audio');
 });
-
 elements.download__list_video_ID.addEventListener('click', (e) => {
     findIndexOfItem(elements.download__list_video_ID, e, 'video');
 });
 
 const findIndexOfItem = (parentItemID, e, avType) => {
-    var g = parentItemID;
-    console.log(e.target.innerHTML);
     let indexSelected;
+    var g = parentItemID;
     for (var i = 0, len = g.children.length; i < len; i++) {
         (function(index) {
             g.children[i].onclick = function() {
                 // alert(index);
-                // console.log(index);
+                console.log(index);
                 indexSelected = index;
                 return indexSelected;
                 // items.removeItem(index);
@@ -269,8 +269,4 @@ const findIndexOfItem = (parentItemID, e, avType) => {
             };
         })(i);
     }
-};
-
-const testFunction = () => {
-    console.log('test function');
 };
