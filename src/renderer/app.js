@@ -197,8 +197,6 @@ elements.nav_A_video.addEventListener('click', (e) => {
 elements.nav_A_warpstagram.addEventListener('click', (e) => {
     ipcRenderer.send('menu-change', 'warpstagram');
     startup.env.nav_A_active = 'warpstagram';
-    if (logging)
-        console.log(`env.nav_A_active is now ${startup.env.nav_A_active}`);
 });
 elements.nav_B_button_audio_paste.addEventListener('click', (e) => {
     userInput.validateURL(clipboard.readText(), startup.env.nav_A_active);
