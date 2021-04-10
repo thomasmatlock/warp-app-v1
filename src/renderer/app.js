@@ -55,6 +55,7 @@ const setActiveNav_A = (nav_A_active) => {
 
 // Fire on resize window
 ipcRenderer.on('resize', () => {
+    // console.log();
     var clickDelay = 50;
     if (startup.env.nav_A_active == 'audio') {
         elements.nav_A_active = elements.nav_A_audio; // sets active Nav A

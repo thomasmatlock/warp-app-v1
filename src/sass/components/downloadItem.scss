@@ -1,24 +1,15 @@
 .download__list {
     list-style: none;
-    // height: 80vh;
     height: 100%;
     overflow: scroll;
-    padding-top: 6.5rem;
     display: flex;
-    // width: 98vw;
     width: 99.5%;
     flex-direction: column;
     justify-content: start;
     align-content: left;
-    // align-items: left;
-    // align-items: flex-start;
-    background-color: rgba(255, 255, 255, 1);
+    background-color: $colorTextDownloadItemContainerBackground;
     border: solid 2px $grey;
-    // border: solid 2px red;
-    // box-shadow: 0px 5px 5px rgb(156, 156, 156);
-    // border-radius: 3px;
     padding: 5px;
-    // margin-right: 100px;
     scrollbar-width: 0px !important;
 }
 
@@ -30,8 +21,9 @@
     // background-color: #eee;
     transition: all ease-out 0.05s;
     // border: 1px dotted purple;
+    background-color: $themeButtonBackground;
     &:hover {
-        background-color: $grey;
+        background-color: $colorTextDownloadItem_hover;
         transform: translateX(-20px);
         transform: scale(1.005);
         box-shadow: $shadow-after;
@@ -82,9 +74,6 @@
 .dl__item_info-pane__right__moreActions:hover .fa-cog {
     transform: scale(1.1);
     transition: all 0.1s ease;
-    box-shadow: $shadow-light;
-    // color: black;
-    // z-index: 32;
 }
 
 .dl__item_info-pane__right__moreActions:hover {
@@ -93,7 +82,7 @@
 
 .fa-folder-open,
 .fa-cog {
-    color: $color-gray-dark;
+    color: $colorTextDownloadItemIcon;
     margin: 0 auto;
     margin-top: 40%;
     visibility: hidden;
@@ -121,10 +110,8 @@
     display: flex;
     flex-direction: column;
     height: $download-item-video-height;
-    color: black;
     font-size: 1.2rem;
     padding: 0;
-    // border: dotted red 1px;
 }
 
 .dl__item_info-pane-data {
@@ -154,7 +141,7 @@
 }
 
 .dl__item__data__property {
-    color: $colorTextParagraph;
+    color: $colorTextDownloadItemParagraph;
 }
 
 .dl__item__data__property-title {

@@ -126,6 +126,7 @@ function createWindow() {
         // console.log('did-finish-load');
         // console.log(storageMain);
         wc.send('window-ready', storageMain);
+
         splash.destroy();
     });
     wc.on('devtools-opened', () => {});
@@ -135,6 +136,7 @@ function createWindow() {
         mainWindow = null;
     });
     mainWindow.on('resize', () => {
+        // console.log(`resized`);
         wc.send('resize');
     });
     mainWindow.on('move', () => {

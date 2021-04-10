@@ -1,33 +1,21 @@
 // PARENT CONTAINER FOR CHILDREN TABS
 .nav_B {
-    //// SIZE
     width: 60%;
     max-width: 1200px;
-    height: 10vh;
-    min-height: 100px;
-    max-height: 100px;
-    //// SPACING
+    height: 100px;
     margin: 1vh auto 0;
-    //// FLEX
+    // margin: 1vh;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     align-content: center;
-    //// DECORATION
     box-shadow: $shadow-before;
     border-radius: 4px;
     // COMMON FOR ALL CHILDREN
     &__child {
         width: 100%;
-        background-color: #fff;
+        background-color: $colorBackgroundNavBContainerBackground;
         display: flex;
-        // flex-direction: row;
-        // justify-content: center;
-        // align-content: center;
-        // border: dotted 1px #000;
-        // box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-        // border-radius: 0 0 10% 10%;
-        // border-radius: 4px 0 0;
     }
     &:active {
         // background-color: yellow;
@@ -70,7 +58,7 @@
     flex: 1 2;
     //// DECORATIVE
     // border: dotted 1px red; // test
-    background: $gray-light;
+    background: $colorBackgroundNavB;
     border-radius: 4px;
     box-shadow: $shadow-before;
     //// ANIMATION
@@ -80,7 +68,7 @@
     &:hover {
         //// CONTENT
         color: white;
-        background-image: $codepen-orange-1;
+        background-image: $colorBackgroundNavB_hover;
         //// DECORATIVE
         box-shadow: $shadow-after;
         border-radius: 4px;
@@ -94,11 +82,11 @@
 }
 
 .nav_B_button--active {
-    background-image: $codepen-orange-1 !important;
+    background-image: $colorBackgroundNavB_hover !important;
     // background-image: $hug-orange !important;
     transform: scale(1.01);
     box-shadow: $shadow-after !important;
-    color: white !important;
+    color: $colorTextNavB_active !important;
 }
 
 .nav_B_button--active p {
@@ -129,7 +117,7 @@
 
 .nav_B_text p {
     // border: 1px dotted red;
-    color: #000;
+    color: $colorTextNavB;
 }
 
 .nav_B_button {
