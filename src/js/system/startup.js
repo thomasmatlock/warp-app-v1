@@ -12,6 +12,7 @@ class startup {
             nav_A_active: !this.devMode ? 'audio' : 'audio', //   audio, video, or warpstagram, defaults to audio
             user: 'dev', // can be dev, free, or paid
             modalBrowserWindow: false, // opens youtube modal window
+            theme: 'light', // 'light' or 'dark'
             // hasFFmpeg: this.checkFFmpeg(),
             // this.loadAudioSlide = false; // set to true to load the audio portion of the content slide
             // this.loadVideoSlide = false; // set to true to load the video portion of the content slide

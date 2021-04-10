@@ -1,13 +1,3 @@
-:root {
-  --white: #ffffff;
-  --light: #f0eff3;
-  --black: #000000;
-  --dark-blue: #1f2029;
-  --dark-light: #353746;
-  --red: #da2c4d;
-  --yellow: #f8ab37;
-  --grey: #ecedf3; }
-
 @keyframes moveInLeft {
   0% {
     opacity: 0;
