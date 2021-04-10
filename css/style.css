@@ -187,28 +187,6 @@ li {
 .nav_A a {
   font-size: 1.25rem; }
 
-/*
-// CODEPEN HTML
-<div class="container">
-  <a class="btn btn-1">Hover me</a>
-  <a class="btn btn-2">Hover me</a>
-  <a class="btn btn-3">Hover me</a> 
-  <a class="btn btn-4">Hover me</a> 
-  <a class="btn btn-5">Hover me</a>
-</div>
-*/
-/*
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-    flex-wrap: wrap;
-    width: 80vw;
-    margin: 0 auto;
-    min-height: 100vh;
-}
-*/
 .btn {
   flex: 1 1 auto;
   margin: 10px;
@@ -240,21 +218,6 @@ li {
 
 .btn-5 {
   background-image: linear-gradient(to right, #ffecd2 0%, #fcb69f 51%, #ffecd2 100%); }
-
-.download__list {
-  list-style: none;
-  height: 80vh;
-  scrollbar-width: none;
-  overflow: scroll;
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  justify-content: start;
-  align-content: left;
-  background-color: white;
-  padding: 0;
-  border: solid 2px #ecedf3;
-  border-radius: 3px; }
 
 .header {
   display: flex;
@@ -306,6 +269,9 @@ li {
   transform: scale(1.025);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   color: white; }
+
+.nav_A-tab {
+  animation: fadeIn 1s ease-out; }
 
 .nav_B {
   width: 60%;
@@ -394,6 +360,77 @@ li {
 .nav_B_text p {
   color: #000; }
 
+.nav_B_button {
+  animation: fadeIn 1s ease-out; }
+
+.content-slide {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: relative;
+  background: white;
+  text-align: center;
+  padding: 0;
+  width: 100%; }
+
+.content-container {
+  border: 0px dotted black;
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  height: 90vh;
+  margin-top: 65px; }
+
+.content-container-audio {
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 500% 500%;
+  animation: gradient 10s ease infinite; }
+
+.content-container-video {
+  background: linear-gradient(-45deg, #0463db, #0b88e6, #13aff2, #19d2fc);
+  background-size: 500% 500%;
+  animation: gradient 10s ease infinite; }
+
+.content-container-warpstagram {
+  background: linear-gradient(-45deg, #e73c7e, #23a6d5, #23d5ab, #ee7752);
+  background-size: 500% 500%;
+  animation: gradient 10s ease infinite; }
+
+/*
+    You also have access to a function which can help set boundaries for otherwise flexible units.
+    For example to set a column to be 1fr, but shrink no further than 200px:
+    grid-template-columns: 1fr minmax(200px, 1fr);
+    */
+.content__panel-container {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center; }
+
+#iframe-test {
+  width: 100%;
+  height: 650px; }
+
+.download__list {
+  list-style: none;
+  height: 100%;
+  overflow: scroll;
+  padding-top: 6.5rem;
+  display: flex;
+  width: 99.5%;
+  flex-direction: column;
+  justify-content: start;
+  align-content: left;
+  background-color: white;
+  border: solid 2px #ecedf3;
+  padding: 5px;
+  scrollbar-width: 0px !important; }
+
 .download__list li {
   height: 60px;
   max-height: 60px;
@@ -401,7 +438,7 @@ li {
   transition: all ease-out 0.05s; }
   .download__list li:hover {
     background-color: #ecedf3;
-    transform: translateY(-2px);
+    transform: translateX(-20px);
     transform: scale(1.005);
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
     z-index: 4; }
@@ -438,7 +475,8 @@ li {
 .dl__item_info-pane__right__openContainingFolder:hover .fa-folder-open,
 .dl__item_info-pane__right__moreActions:hover .fa-cog {
   transform: scale(1.1);
-  transition: all 0.1s ease; }
+  transition: all 0.1s ease;
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15); }
 
 .fa-folder-open,
 .fa-cog {
@@ -494,76 +532,9 @@ li {
 .dl__item__data__property-title {
   color: black; }
 
-.content-slide {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  width: 100vw;
-  position: relative;
-  background: white;
-  text-align: center;
-  padding: 0;
-  width: 100%; }
-
-.content-container {
-  border: 0px dotted black;
-  width: 100vw;
-  margin-top: 7vh;
-  height: 90vh;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2); }
-
-.content-container-audio {
-  background: linear-gradient(-45deg, #e73c7e, #23a6d5, #23d5ab, #ee7752);
-  background-size: 500% 500%;
-  animation: gradient 10s ease infinite; }
-
-.content-container-video {
-  background: linear-gradient(-45deg, #0463db, #0b88e6, #13aff2, #19d2fc);
-  background-size: 500% 500%;
-  animation: gradient 10s ease infinite; }
-
-.content-container-video {
-  background: linear-gradient(-45deg, #23a6d5, #23d5ab, #ee7752, #e73c7e);
-  background-size: 500% 500%;
-  animation: gradient 10s ease infinite; }
-
-.content-container-warpstagram {
-  background: linear-gradient(-45deg, #e73c7e, #23a6d5, #23d5ab, #ee7752);
-  background-size: 500% 500%;
-  animation: gradient 10s ease infinite; }
-
-/*
-    You also have access to a function which can help set boundaries for otherwise flexible units.
-    For example to set a column to be 1fr, but shrink no further than 200px:
-    grid-template-columns: 1fr minmax(200px, 1fr);
-    */
-/*
-    https://css-tricks.com/snippets/css/complete-guide-grid/
-    .container {
-  display: grid;
-  grid-template-columns: 50px 50px 50px 50px;
-  grid-template-rows: auto;
-  grid-template-areas: 
-    "header header header header"
-    "main main . sidebar"
-    "footer footer footer footer";
-    }
-    */
-.content__panel-container {
-  display: flex;
-  width: 100%;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center; }
-
-#iframe-test {
-  width: 100%;
-  height: 650px; }
+.dl__item-audio,
+.dl__item {
+  animation: fadeIn 1s ease-out; }
 
 .row {
   max-width: 114rem;
@@ -598,8 +569,29 @@ li {
   .row .col-3-of-4 {
     width: calc(((100% - 3 * 6rem) / 4) * 3 + (6rem * 2)); }
 
-input[type="text"] {
+input[type='text'] {
   font-size: 24px; }
+
+.user-info {
+  height: 230px;
+  border: 1px dotted purple;
+  display: flex;
+  flex-direction: row; }
+
+.user-info-stats {
+  border: 2px dotted green; }
+
+.user-info-actions {
+  border: 5px dotted red; }
+
+.user-info-stats__item {
+  border: 1px dotted purple; }
+
+.user-info-stats__avatar {
+  height: 20px;
+  border: 1px dotted purple;
+  width: 20px;
+  border-radius: 45px; }
 
 .user-search {
   display: flex;
@@ -717,33 +709,6 @@ input[type="text"] {
   color: black;
   margin-left: 15px;
   display: flex; }
-
-.nav_A-tab,
-.nav_B_button,
-.dl__item-audio,
-.dl__item {
-  animation: fadeIn 1s ease-out; }
-
-.user-info {
-  height: 230px;
-  border: 1px dotted purple;
-  display: flex;
-  flex-direction: row; }
-
-.user-info-stats {
-  border: 2px dotted green; }
-
-.user-info-actions {
-  border: 2px dotted red; }
-
-.user-info-stats__item {
-  border: 1px dotted purple; }
-
-.user-info-stats__avatar {
-  height: 20px;
-  border: 1px dotted purple;
-  width: 20px;
-  border-radius: 45px; }
 
 .modalPreferences {
   position: absolute;

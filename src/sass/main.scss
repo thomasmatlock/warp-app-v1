@@ -1,104 +1,17 @@
 @import 'abstracts/mixins';
 @import 'abstracts/variables';
 @import 'abstracts/variables-colors';
-// @import 'backgrounds/waves';
-// @import 'components/cta-upgrade';
 @import 'base/animations';
 @import 'base/base';
 @import 'base/typography';
 @import 'components/buttons';
-// @import 'components/content-list-item';
-@import 'components/content-list';
 @import 'components/nav-primary';
 @import 'components/nav-secondary';
-@import 'components/downloadItem';
 @import 'layouts/content-slide';
+@import 'components/downloadItem';
 @import 'layouts/grid';
 @import 'pages/warpstagram';
 @import 'pages/warpstagram-userSearch';
 @import 'pages/warpstagram-filterToolbar';
 @import 'pages/warpstagram-userInfo';
 @import 'pages/modal-settings';
-.nav_A-tab,
-.nav_B_button,
-.dl__item-audio,
-.dl__item {
-    animation: fadeIn 1s ease-out;
-}
-
-// warpstagram
-.user-info {
-    height: 230px;
-    border: 1px dotted purple;
-    display: flex;
-    flex-direction: row;
-}
-
-.user-info-stats {
-    border: 2px dotted green;
-}
-
-.user-info-actions {
-    border: 2px dotted red;
-}
-
-.user-info-actions__item {}
-
-.user-info-stats__item {
-    border: 1px dotted purple;
-}
-
-.user-info-stats__avatar {
-    height: 20px;
-    border: 1px dotted purple;
-    width: 20px;
-    border-radius: 45px;
-}
-
-// modals
-.modalPreferences {
-    // position: relative;
-    // animation: fadeIn 0.55s ease-out;
-    position: absolute;
-    // left: 0;
-    // top: 1000;
-    width: 100%;
-    height: 300%;
-    background: rgba(0, 0, 0, 0.8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-    // flex-wrap: wrap; // lets items wrap to next line when it gets too wide
-    // border: 1px dotted black;
-    z-index: 10;
-    display: none;
-}
-
-// #modal {
-//     position: absolute;
-//     width: 100%;
-//     height: 100%;
-//     background: rgba(0, 0, 0, 0.85);
-//     display: flex;
-//     align-items: center;
-//     align-content: center;
-//     flex-wrap: wrap; // lets items wrap to next line when it gets too wide
-//     border: 1px dotted black;
-//     z-index: 10;
-//     display: none;
-// }
-.modalPreferencesContainer {
-    animation: moveInTop 0.5s ease-out;
-    position: absolute;
-    // left: 0;
-    top: 33.3%;
-    width: 600px;
-    height: 780px;
-    max-height: 780px;
-    min-height: 550px;
-    background: #2a2a2a;
-    border-radius: 4px;
-    z-index: 11;
-    box-shadow: $shadow-after;
-}
