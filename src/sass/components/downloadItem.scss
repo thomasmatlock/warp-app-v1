@@ -1,3 +1,30 @@
+/* width */
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+
+/* Track */
+
+::-webkit-scrollbar-track {
+    background: $colorScrollbarTrack;
+}
+
+
+/* Handle */
+
+::-webkit-scrollbar-thumb {
+    background: $colorScrollbarThumb;
+}
+
+
+/* Handle on hover */
+
+::-webkit-scrollbar-thumb:hover {
+    background: $colorScrollbarThumb_hover;
+}
+
 .download__list {
     list-style: none;
     height: 100%;
@@ -10,7 +37,6 @@
     background-color: $colorDownloadItemBackgroundContainer;
     border: solid 2px $grey;
     padding: 5px;
-    scrollbar-width: 0px !important;
 }
 
 // ALL LIST ITEMS

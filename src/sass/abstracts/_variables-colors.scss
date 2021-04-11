@@ -1,30 +1,3 @@
-// https: //www.w3schools.com/css/css3_gradients.asp
-// LIGHT THEME
-// DARK THEME
-$color-gray-dark: #777;
-$color-gray-light-1: #f7f7f7;
-$color-gray-light-2: #eee;
-$color-white: #fff;
-$color-black: #000;
-$theme-dark-primary: #1f2029;
-$theme-dark-secondary: #353746;
-// COLORS
-$color-primary: #55c57a;
-$color-primary-light: #7ed56f;
-$color-primary-dark: #28b485;
-$color-secondary-light: #ffb900;
-$color-secondary-dark: #ff7730;
-$color-tertiary-light: rgba(102, 177, 241, 0.8);
-$color-tertiary-medium: #2998ff;
-$color-tertiary-dark: #5643fa;
-$gray-light: #f0eff3;
-$dark-blue: #1f2029;
-$dark-light: #353746;
-$red: #da2c4d;
-$yellow: #f8ab37;
-$grey: #ecedf3;
-$wildfire-blue: #3275fe;
-$wildfire-red: #ff5451;
 ////////////////////////////////////////////////////////////////
 $colorThemeButtonActive: linear-gradient(268deg, #da2c4d, #f8ab37);
 $colorTheme-white: #ffffff;
@@ -86,6 +59,10 @@ $themeDownloadItemBackgroundColor_hover: $darkThemeDownloadItemBackgroundColor_h
 $themeDownloadItemTextTitleColor_hover: $darkThemeDownloadItemTextTitle_hover;
 $themeDownloadItemTextInfoColor_hover: $darkThemeDownloadItemText_hover;
 $themeDownloadItemBorder: $darkThemeDownloadItemBorder;
+// SCROLLBAR
+$themeScrollbarTrack: $darkThemePrimary;
+$themeScrollbarThumb: $darkThemeSecondary;
+$themeScrollbarThumb_hover: $darkThemeSecondary;
 //////////////////////////////////////// ^^^ CHANGE THESE ABOVE ^^^ ////////////////////////////////////////
 // BACKGROUNDS
 $themeBackground: $themePrimary;
@@ -117,6 +94,10 @@ $colorDownloadItemTextTitle_hover: $themeDownloadItemTextTitleColor_hover;
 $colorDownloadItemTextInfoColor_hover: $themeDownloadItemTextInfoColor_hover;
 // DOWNLOAD ITEMS BORDER
 $colorDownloadItemBorder: $themeDownloadItemBorder;
+// SCROLLBAR
+$colorScrollbarTrack: $themeScrollbarTrack;
+$colorScrollbarThumb: $themeScrollbarThumb;
+$colorScrollbarThumb_hover: $themeScrollbarThumb_hover;
 ////////////////////////////////////////
 //  GRADIENTS
 $color-gradient-1: linear-gradient( to right, #f6d365 0%, #fda085 51%, #f6d365 100%);
@@ -129,3 +110,27 @@ $wildfire-background-orange-color-gradient-1: linear-gradient( to right, #fd5550
 $wildfire-background-blue-color-gradient-1: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, #19d2fc 100%);
 $wildfire-button-color-gradient-1: linear-gradient( to right, #ee603c 0%, #fc8c22 51%, #ffe6a0 100%);
 $wildfire-button-color-gradient-2: linear-gradient( to right, #ef603d 0%, #f77d2a 33%, #fda849 66%, #ffe7a1 100%);
+$color-gray-dark: #777;
+$color-gray-light-1: #f7f7f7;
+$color-gray-light-2: #eee;
+$color-white: #fff;
+$color-black: #000;
+$theme-dark-primary: #1f2029;
+$theme-dark-secondary: #353746;
+// COLORS
+$color-primary: #55c57a;
+$color-primary-light: #7ed56f;
+$color-primary-dark: #28b485;
+$color-secondary-light: #ffb900;
+$color-secondary-dark: #ff7730;
+$color-tertiary-light: rgba(102, 177, 241, 0.8);
+$color-tertiary-medium: #2998ff;
+$color-tertiary-dark: #5643fa;
+$gray-light: #f0eff3;
+$dark-blue: #1f2029;
+$dark-light: #353746;
+$red: #da2c4d;
+$yellow: #f8ab37;
+$grey: #ecedf3;
+$wildfire-blue: #3275fe;
+$wildfire-red: #ff5451;

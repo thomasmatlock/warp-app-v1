@@ -407,6 +407,22 @@ li {
   width: 100%;
   height: 650px; }
 
+/* width */
+::-webkit-scrollbar {
+  width: 12px; }
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #1f2029; }
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #353746; }
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #353746; }
+
 .download__list {
   list-style: none;
   height: 100%;
@@ -418,8 +434,7 @@ li {
   align-content: left;
   background-color: #1f2029;
   border: solid 2px #ecedf3;
-  padding: 5px;
-  scrollbar-width: 0px !important; }
+  padding: 5px; }
 
 .download__list li {
   height: 60px;
