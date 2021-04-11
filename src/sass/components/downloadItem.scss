@@ -7,7 +7,7 @@
     flex-direction: column;
     justify-content: start;
     align-content: left;
-    background-color: $colorTextDownloadItemContainerBackground;
+    background-color: $colorDownloadItemBackgroundContainer;
     border: solid 2px $grey;
     padding: 5px;
     scrollbar-width: 0px !important;
@@ -17,13 +17,14 @@
 .download__list li {
     height: $download-item-video-height;
     max-height: $download-item-video-max-height;
-    border: 1px solid #eee;
+    border: 1px solid $colorDownloadItemBorder;
     // background-color: #eee;
+    border-radius: 4px;
     transition: all ease-out 0.05s;
     // border: 1px dotted purple;
-    background-color: $themeButtonBackground;
+    background-color: $colorDownloadItemBackground;
     &:hover {
-        background-color: $colorTextDownloadItem_hover;
+        background-color: $colorDownloadItemBackground_hover;
         transform: translateX(-20px);
         transform: scale(1.005);
         box-shadow: $shadow-after;
@@ -38,8 +39,6 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    // justify-content: start;
-    // border: 1px dotted red;
 }
 
 .dl__item_info-pane__left {
@@ -82,7 +81,7 @@
 
 .fa-folder-open,
 .fa-cog {
-    color: $colorTextDownloadItemIcon;
+    color: $colorDownloadItemTextIcon;
     margin: 0 auto;
     margin-top: 40%;
     visibility: hidden;
@@ -92,6 +91,16 @@
 .dl__item:hover .fa-cog {
     // background: $amazon-blue;
     visibility: visible;
+}
+
+.dl__item:hover .dl__item__data__property-title {
+    color: $colorDownloadItemTextTitle_hover;
+    // visibility: visible;
+}
+
+.dl__item:hover .dl__item__data__property {
+    color: $colorDownloadItemTextInfoColor_hover;
+    // visibility: visible;
 }
 
 .dl__item:hover .gg-folder {
@@ -141,11 +150,11 @@
 }
 
 .dl__item__data__property {
-    color: $colorTextDownloadItemParagraph;
+    color: $colorDownloadItemTextDownloadItemInfo;
 }
 
 .dl__item__data__property-title {
-    color: $colorTextDownloadItemTitle;
+    color: $colorDownloadItemTextTitle;
 }
 
 .dl__item-audio,

@@ -26,54 +26,82 @@ $grey: #ecedf3;
 $wildfire-blue: #3275fe;
 $wildfire-red: #ff5451;
 // FONT COLOR
-$colorTextNavB: black;
 ////////////////////////////////////////////////////////////////
 $colorThemeButtonActive: linear-gradient(268deg, #da2c4d, #f8ab37);
 $colorTheme-white: #ffffff;
-$colorTheme-black: #000000;
 $colorTheme-light: #f0eff3;
+$colorTheme-black: #000000;
 $colorTheme-dark-blue: #1f2029;
 $colorTheme-dark-light: #353746;
 $colorTheme-dark-gray: #777;
 $colorTheme-grey: #ecedf3;
+$colorTheme-grey2: #eee;
 ////////////////////////////////////////
-// BACKGROUNDS themes
-$lightThemeBackground: $colorTheme-white; // dont change
-$darkThemeBackground: $colorTheme-dark-blue; // dont change
+// LIGHT THEME
+$lightThemePrimary: $colorTheme-white; // dont change
+$lightThemeSecondary: $colorTheme-light; // dont change
+$lightThemeNavAButtonBackground: $colorTheme-white;
+$lightThemeTertiary: $colorTheme-white; // dont change
+$lightThemeTextPrimary: $colorTheme-black; // dont change
+$lightThemeTextSecondary: $colorTheme-dark-gray; // dont change
+$lightThemeTextDownloadItem_hover: $colorTheme-light; // dont change
+$lightThemeBackgroundDownloadItem_hover: $colorTheme-grey; // dont change
+$lightThemeDownloadItemTextTitle_hover: $colorTheme-black; // dont change
+$lightThemeDownloadItemBorder: $colorTheme-grey2;
+$lightthemeDownloadItemBackgroundColor_hover: $lightThemeBackgroundDownloadItem_hover;
+// DARK THEME
+$darkThemeDarkPrimary: $colorTheme-dark-blue; // dont change
+$darkThemeDarkSecondary: $colorTheme-dark-light; // dont change
+$darkThemeNavAButtonBackground: $colorTheme-dark-light;
+$darkThemeTertiary: $colorTheme-black; // dont change
+$darkThemeTextPrimary: $colorTheme-white; // dont change
+$darkThemeTextSecondary: $colorTheme-white; // dont change
+$darkThemeTextDownloadItem_hover: $colorTheme-black; // dont change
+$darkThemeBackgroundDownloadItem_hover: $colorTheme-light; // dont change
+$darkThemeDownloadItemBorder: $darkThemeDarkPrimary;
+//////////////////////////////////////// CHANGE THESE ////////////////////////////////////////
+$themePrimary: $lightThemePrimary; // lightThemePrimary, darkThemeDarkPrimary,
+$themeSecondary: $lightThemeSecondary; // lightThemeSecondary, darkThemeDarkSecondary
+$themeNavAButtonBackground: $lightThemeNavAButtonBackground; // lightThemeNavAButtonBackground, darkThemeNavAButtonBackground
+$themeTertiary: $lightThemeTertiary; // lightThemeTertiary, darkThemeTertiary
+$themeTextPrimary: $lightThemeTextPrimary; // lightThemeTextPrimary, darkThemeTextPrimary
+$themeTextSecondary: $lightThemeTextSecondary; // lightThemeTextSecondary, darkThemeTextSecondary
+$themeDownloadItemBackgroundColor: $lightThemePrimary; // lightThemePrimary, darkThemeDarkSecondary
+$themeDownloadItemBackgroundColor_hover: $lightThemeTextDownloadItem_hover; // lightThemeBackgroundDownloadItem_hover, darkThemeBackgroundDownloadItem_hover
+$themeDownloadItemTextTitleColor_hover: $lightThemeDownloadItemTextTitle_hover; // lightThemeDownloadItemTextTitle_hover, darkThemeTextDownloadItem_hover
+$themeDownloadItemTextInfoColor_hover: $lightThemeTextDownloadItem_hover; // lightThemeTextDownloadItem_hover, darkThemeTextDownloadItem_hover
+$themeDownloadItemBorder: $lightThemeDownloadItemBorder; // lightThemeDownloadItemBorder, darkThemeDownloadItemBorder
 ////////////////////////////////////////
 // BACKGROUNDS
-$themeBackground: $darkThemeBackground; // pick light or dark
+$themeBackground: $themePrimary;
 $themeButtonBackground: $colorTheme-dark-light;
-// BACKGROUNDS nav A
-$colorBackgroundNavA: $themeButtonBackground;
-$colorBackgroundNavA_active: $colorThemeButtonActive;
-$colorBackgroundNavA_hover: $colorThemeButtonActive;
-// BACKGROUNDS nav B
-$colorBackgroundNavBContainerBackground: $themeBackground;
-$colorBackgroundNavB: $themeButtonBackground;
-$colorBackgroundNavB_active: $colorThemeButtonActive;
-$colorBackgroundNavB_hover: $colorThemeButtonActive;
-// BACKGROUNDS download items
-$colorTextDownloadItemContainerBackground: $themeBackground;
-$colorTextDownloadItemBackground: $themeBackground;
-////////////////////////////////////////
-// TEXT
-$themeTextPrimary: $colorTheme-grey; // $colorTheme-white, $colorTheme-black
-$themeTextPrimary_hover: $colorTheme-black; // $colorTheme-black, $colorTheme-white
-$themeTextSecondary: $colorTheme-light;
-// TEXT nav A
-$colorTextNavA: $themeTextPrimary;
-$colorTextNavA_active: $lightThemeBackground;
-$colorTextNavA_hover: $lightThemeBackground;
-// TEXT nav B
-$colorTextNavB: $themeTextPrimary;
-$colorTextNavB_active: $lightThemeBackground;
-$colorTextNavB_hover: $lightThemeBackground;
-// TEXT download items
-$colorTextDownloadItemTitle: $themeTextPrimary;
-$colorTextDownloadItemParagraph: $themeTextSecondary;
-$colorTextDownloadItem_hover: $colorTheme-grey;
-$colorTextDownloadItemIcon: $colorTheme-dark-gray;
+// NAV A
+$colorNavABackground: $themeNavAButtonBackground;
+$colorNavABackground_active: $colorThemeButtonActive;
+$colorNavABackground_hover: $colorThemeButtonActive;
+$colorNavAText: $themeTextPrimary;
+$colorNavAText_active: $themePrimary;
+$colorNavAText_hover: $themePrimary;
+// NAV B
+$colorNavBBackgroundContainerBackground: $themeBackground;
+$colorNavBBackground: $themeSecondary;
+$colorNavBBackground_active: $colorThemeButtonActive;
+$colorNavBBackground_hover: $colorThemeButtonActive;
+$colorNavBText: $themeTextPrimary;
+$colorNavBText_active: $themePrimary;
+$colorNavBText_hover: $themePrimary;
+// DOWNLOAD ITEMS BACKGROUNDS
+$colorDownloadItemBackground: $themeDownloadItemBackgroundColor;
+$colorDownloadItemBackgroundContainer: $themeBackground;
+// DOWNLOAD ITEMS TEXT
+$colorDownloadItemTextTitle: $themeTextPrimary;
+$colorDownloadItemTextDownloadItemInfo: $themeTextSecondary;
+$colorDownloadItemTextIcon: $colorTheme-dark-gray;
+$colorDownloadItemBackground_hover: $themeDownloadItemBackgroundColor_hover;
+$colorDownloadItemTextTitle_hover: $themeDownloadItemTextTitleColor_hover;
+$colorDownloadItemTextInfoColor_hover: $themeDownloadItemTextInfoColor_hover;
+// DOWNLOAD ITEMS BORDER
+$colorDownloadItemBorder: $themeDownloadItemBorder;
 ////////////////////////////////////////
 //  GRADIENTS
 $color-gradient-1: linear-gradient( to right, #f6d365 0%, #fda085 51%, #f6d365 100%);

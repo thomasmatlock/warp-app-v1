@@ -14,7 +14,7 @@
     // COMMON FOR ALL CHILDREN
     &__child {
         width: 100%;
-        background-color: $colorBackgroundNavBContainerBackground;
+        background-color: $colorNavBBackgroundContainerBackground;
         display: flex;
     }
     &:active {
@@ -44,7 +44,7 @@
     margin: auto 2rem;
     //// CONTENT
     font-size: 1.2rem;
-    color: $colorTextNavB;
+    color: $colorNavBText;
     font-weight: 400;
     text-align: center;
     //// POSITION
@@ -58,7 +58,7 @@
     flex: 1 2;
     //// DECORATIVE
     // border: dotted 1px red; // test
-    background: $colorBackgroundNavB;
+    background: $colorNavBBackground;
     border-radius: 4px;
     box-shadow: $shadow-before;
     //// ANIMATION
@@ -68,7 +68,7 @@
     &:hover {
         //// CONTENT
         color: white;
-        background-image: $colorBackgroundNavB_hover;
+        background-image: $colorNavBBackground_hover;
         //// DECORATIVE
         box-shadow: $shadow-after;
         border-radius: 4px;
@@ -82,11 +82,11 @@
 }
 
 .nav_B_button--active {
-    background-image: $colorBackgroundNavB_hover !important;
+    background-image: $colorNavBBackground_hover !important;
     // background-image: $hug-orange !important;
     transform: scale(1.01);
     box-shadow: $shadow-after !important;
-    color: $colorTextNavB_active !important;
+    color: $colorNavBText_active !important;
 }
 
 .nav_B_button--active p {
@@ -117,7 +117,7 @@
 
 .nav_B_text p {
     // border: 1px dotted red;
-    color: $colorTextNavB;
+    color: $colorNavBText;
 }
 
 .nav_B_button {

@@ -21,7 +21,7 @@
     max-width: 900px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
     z-index: 2;
-    background-color: $themeButtonBackground;
+    background-color: $colorNavABackground;
 }
 
 // CHILDREN TABS
@@ -31,7 +31,7 @@
     width: 20%;
     align-items: center;
     flex: 1 2 auto;
-    color: $colorTextNavA;
+    color: $colorNavAText;
     font-size: 1.7rem;
     letter-spacing: 0.1rem;
     transition: all 0.1s ease;
@@ -40,7 +40,7 @@
     font-weight: 200;
     margin: 0 0.2rem;
     &:hover {
-        color: $colorTextNavA_hover;
+        color: $colorNavAText_hover;
         background-image: $wildfire-background-blue-color-gradient-1;
         background-position: bottom;
         transform: scale(1.05);
@@ -53,10 +53,10 @@
 }
 
 .nav_A-tab--active {
-    background-image: $colorBackgroundNavA_active;
+    background-image: $colorNavABackground_active;
     transform: scale(1.025);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    color: $colorTextNavA_active;
+    color: $colorNavAText_active;
 }
 
 .nav_A-tab {
