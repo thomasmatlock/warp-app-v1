@@ -17,7 +17,8 @@
     top: 0;
     height: $nav_A-height;
     max-height: $nav_A-max-height;
-    width: 60%;
+    width: 50%;
+    min-width: 600px;
     max-width: 900px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
     z-index: 2;
@@ -30,7 +31,9 @@
 .nav_A-tab {
     display: flex;
     justify-content: center; // PRODUCTION
-    width: 20%;
+    // width: 20%;
+    // width: 125px;
+    // width: 33.3%;
     align-items: center;
     flex: 1 2 auto;
     color: $colorNavAText;
@@ -46,7 +49,8 @@
         background-image: $wildfire-background-blue-color-gradient-1;
         background-position: bottom;
         // transform: scale(1.04);
-        transform: scale(1.025);
+        // transform: scale(1.025);
+        transform: scale(1.02);
         transition: all 0.1s ease;
         box-shadow: $shadow-after;
         z-index: 3;
@@ -58,8 +62,9 @@
 
 .nav_A-tab--active {
     background-image: $colorNavABackground_active;
-    transform: scale(1.025);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    // transform: scale(1.01);
+    transform: scale(1.02);
+    box-shadow: $shadow-after;
     color: $colorNavAText_active;
 }
 

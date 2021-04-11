@@ -1,4 +1,4 @@
-@import "compass/css3";
+@import 'compass/css3';
 $speed: 5.5s;
 * {
     margin: 0px;
@@ -27,7 +27,7 @@ body {
     span {
         display: block;
         background: #ccc;
-        width: 7px;
+        width: 17px;
         height: 10%;
         border-radius: 14px;
         margin-right: 5px;

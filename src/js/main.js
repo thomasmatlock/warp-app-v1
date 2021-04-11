@@ -188,6 +188,9 @@ function createModalWindow() {
 // APP LISTENERS (monitoring main node process)
 app.on('ready', () => {
     createSplashWindow();
+    //   let splashHandler = require('../../renderer/s');
+    //   splashHandler.initCanvasColor();
+    //   splashHandler.render();
     displayController = new displayControllerReq(); // positions output window to display depending on single/multi-monitor
     startup.init(); // all startup checks, latest version, isOnline, hasFFmpeg etc
     fileController.init(startup); // checks for local directories and creates them if non existent

@@ -1,25 +1,14 @@
-/* width */
-
 ::-webkit-scrollbar {
     width: 12px;
 }
-
-
-/* Track */
 
 ::-webkit-scrollbar-track {
     background: $colorScrollbarTrack;
 }
 
-
-/* Handle */
-
 ::-webkit-scrollbar-thumb {
     background: $colorScrollbarThumb;
 }
-
-
-/* Handle on hover */
 
 ::-webkit-scrollbar-thumb:hover {
     background: $colorScrollbarThumb_hover;
@@ -27,7 +16,7 @@
 
 .download__list {
     list-style: none;
-    height: 100%;
+    height: 100vh;
     overflow: scroll;
     display: flex;
     width: 100%;

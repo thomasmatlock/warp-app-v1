@@ -1,3 +1,5 @@
+/* waves loader */
+
 * {
     margin: 0px;
     padding: 0px;
@@ -18,6 +20,11 @@ body {
 
 body {
     background: radial-gradient(#292929, #000000);
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    /* background-color: rgba(0, 0, 0, 0.9); */
 }
 
 .loader {
@@ -34,7 +41,7 @@ body {
 .loader span {
     display: block;
     background: #ccc;
-    width: 7px;
+    width: 5px;
     height: 10%;
     border-radius: 14px;
     margin-right: 5px;
@@ -123,3 +130,6 @@ body {
         margin-top: 25%;
     }
 }
+
+
+/* black hole loader */
