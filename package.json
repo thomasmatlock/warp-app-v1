@@ -5,12 +5,12 @@
     "main": "./src/js/main.js",
     "scripts": {
         "node-sass": "node-sass src/sass/main.scss css/style.css -w",
-        "node-sass2": "node-sass src/sass/style-splash.scss css/style-splash.css -w",
+        "splash": "node-sass src/sass/style-splash.scss css/style-splash.css -w",
         "live-server": "live-server",
         "electron": "ELECTRON_DISABLE_SECURITY_WARNINGS=true electron .",
         "watch": "nodemon --exec electron .",
         "start": "electron .",
-        "dev": "concurrently --kill-others \"npm run node-sass\" \"npm run watch\" \"npm run node-sass2\""
+        "dev": "concurrently --kill-others \"npm run node-sass\" \"npm run watch\" \"npm run splash\""
     },
     "author": "",
     "license": "ISC",
@@ -32,6 +32,7 @@
     },
     "dependencies": {
         "axios": "^0.21.1",
+        "compass": "^0.1.1",
         "electron-json-storage": "^4.3.0",
         "electron-settings": "^4.0.2",
         "image-downloader": "^4.0.2",
