@@ -18,13 +18,13 @@ const {
     shell,
     webContents,
 } = require('electron');
-const displayControllerReq = require('./system/displayController');
-const appMenuAudio = require('./menus/menuAudio');
-const appMenuVideo = require('./menus/menuVideo');
-const appMenuWarpstagram = require('./menus/menuWarpstagram');
-const fileControllerReq = require('./system/fileController');
+const displayControllerReq = require('./displayController');
+const appMenuAudio = require('./menuAudio');
+const appMenuVideo = require('./menuVideo');
+const appMenuWarpstagram = require('./menuWarpstagram');
+const fileControllerReq = require('./fileController');
 const fileController = new fileControllerReq();
-const startupReq = require('./system/startup');
+const startupReq = require('./startup');
 const startup = new startupReq();
 
 ////////////////////////////////////////////////////////////////////

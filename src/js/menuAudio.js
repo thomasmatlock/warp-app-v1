@@ -1,7 +1,6 @@
 const { Menu, MenuItem, shell } = require('electron');
-const startupReq = require('../system/startup');
+const startupReq = require('./startup');
 const startup = new startupReq();
-
 // Module function to create main app menu
 module.exports = (appWin) => {
     // Menu template
@@ -9,32 +8,16 @@ module.exports = (appWin) => {
             label: 'File',
             submenu: [{
                     label: 'Import Download Links',
-                    accelerator: 'CmdOrCtrl+O',
+                    accelerator: 'CmdOrCtrl+Shift+O',
                     click: () => {
-                        appWin.send('Video: File: Import Download Links');
+                        appWin.send('Audio: File: Import Download Links');
                     },
                 },
                 {
                     label: 'Export Download Links',
-                    accelerator: 'CmdOrCtrl+S',
+                    accelerator: 'CmdOrCtrl+Shift+S',
                     click: () => {
-                        appWin.send('Video: File: Export Download Links');
-                    },
-                },
-                {
-                    label: 'separator',
-                    type: 'separator',
-                },
-                {
-                    label: 'Import Subscriptions',
-                    click: () => {
-                        appWin.send('Video: File: Import Subscriptions');
-                    },
-                },
-                {
-                    label: 'Export Subscriptions',
-                    click: () => {
-                        appWin.send('Video: File: Export Subscriptions');
+                        appWin.send('Audio: File: Export Download Links');
                     },
                 },
                 {
@@ -43,9 +26,7 @@ module.exports = (appWin) => {
                 },
                 {
                     label: 'Quit',
-
                     accelerator: 'CmdOrCtrl+Shift+Q',
-
                     click: () => {
                         appWin.send('Quit');
                     },
@@ -58,7 +39,7 @@ module.exports = (appWin) => {
                     label: 'Paste',
                     accelerator: 'CmdOrCtrl+V',
                     click: () => {
-                        appWin.send('Video: Downloads: Paste');
+                        appWin.send('Audio: Downloads: Paste');
                     },
                 },
                 {
@@ -69,14 +50,14 @@ module.exports = (appWin) => {
                     label: 'Pause All',
                     enabled: false,
                     click: () => {
-                        appWin.send('Video: Downloads: Pause All');
+                        appWin.send('Audio: Downloads: Pause All');
                     },
                 },
                 {
                     label: 'Resume All',
                     enabled: false,
                     click: () => {
-                        appWin.send('Video: Downloads: Resume All');
+                        appWin.send('Audio: Downloads: Resume All');
                     },
                 },
                 {
@@ -86,7 +67,7 @@ module.exports = (appWin) => {
                 {
                     label: 'Remove All',
                     click: () => {
-                        appWin.send('Video: Downloads: Remove All');
+                        appWin.send('Audio: Downloads: Remove All');
                     },
                 },
             ],
@@ -94,31 +75,15 @@ module.exports = (appWin) => {
         {
             label: 'Tools',
             submenu: [{
-                    label: 'Smart Mode...',
-                    click: () => {
-                        appWin.send('Video: Tools: Smart Mode');
-                    },
-                },
-                {
-                    label: 'Subscriptions...',
-                    click: () => {
-                        appWin.send('Video: Tools: Subscriptions');
-                    },
-                },
-                {
-                    label: 'separator',
-                    type: 'separator',
-                },
-                {
                     label: 'Check for updates...',
                     click: () => {
-                        appWin.send('Video: Tools: Check for update');
+                        appWin.send('Check for update');
                     },
                 },
                 {
                     label: 'Preferences',
                     click: () => {
-                        appWin.send('Video: Tools: Preferences');
+                        appWin.send('Audio: Tools: Preferences');
                     },
                 },
             ],
@@ -132,6 +97,9 @@ module.exports = (appWin) => {
                 },
             }, ],
         },
+        // {
+        //     role: 'viewMenu',
+        // },
 
         // { role: 'viewMenu' },
     ];
@@ -139,7 +107,6 @@ module.exports = (appWin) => {
     // Create Mac app menu
     // 'darwin', 'linux', 'win32', 'win64'
     if (process.platform === 'darwin') template.unshift({ role: 'appMenu' }); // appMenu is a complete role solution, like editMenu, to use OS default menu
-
     const devMenu = new MenuItem({
         label: 'Developer',
         submenu: [{
@@ -164,8 +131,6 @@ module.exports = (appWin) => {
     if (startup.devMode) template.push(devMenu);
     // Build menu
     let menu = Menu.buildFromTemplate(template); // use template array
-
-    // menu.append(devMenu); // add new menu item to newly created menu
 
     // Set as main app menu
     Menu.setApplicationMenu(menu);

@@ -13,7 +13,7 @@
 // update UI
 const logging = false;
 const { clipboard, ipcRenderer } = require('electron');
-const startupReq = require('./system/startup');
+const startupReq = require('./startup');
 const startup = new startupReq();
 const miscFunctions = require('../../library/js/miscArrays');
 const pattArr = [

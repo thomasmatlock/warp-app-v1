@@ -1,5 +1,5 @@
 const logging = false;
-const startupReq = require('../js/system/startup');
+const startupReq = require('../js/startup');
 const startup = new startupReq();
 let elements = require('./views/elements');
 

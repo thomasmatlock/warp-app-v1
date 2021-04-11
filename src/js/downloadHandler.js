@@ -2,9 +2,9 @@ const logging = true;
 const fs = require('fs');
 const path = require('path');
 const ytdl = require('ytdl-core');
-const fileControllerReq = require('./system/fileController');
+const fileControllerReq = require('./fileController');
 const fileController = new fileControllerReq();
-const startupReq = require('./system/startup');
+const startupReq = require('./startup');
 const startup = new startupReq();
 const items = require('../renderer/items');
 

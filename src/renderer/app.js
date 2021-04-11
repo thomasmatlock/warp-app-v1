@@ -11,13 +11,13 @@ const navSecondaryView = require('./views/navSecondaryView.js');
 const listView = require('./views/listView.js');
 const Nav = require('../js/nav.js');
 const userInput = require('../js/userInput');
-const startupReq = require('../js/system/startup');
+const startupReq = require('../js/startup');
 const startup = new startupReq();
 const items = require('./items');
 const auto = require('./automate');
 const modals = require('./modals');
 const stateReq = require('./state');
-const fileControllerReq = require('../js/system/fileController');
+const fileControllerReq = require('../js/fileController');
 const fileController = new fileControllerReq();
 let state = new stateReq();
 ////////////////////////////////////////////////////////////
