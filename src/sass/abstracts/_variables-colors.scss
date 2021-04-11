@@ -25,7 +25,6 @@ $yellow: #f8ab37;
 $grey: #ecedf3;
 $wildfire-blue: #3275fe;
 $wildfire-red: #ff5451;
-// FONT COLOR
 ////////////////////////////////////////////////////////////////
 $colorThemeButtonActive: linear-gradient(268deg, #da2c4d, #f8ab37);
 $colorTheme-white: #ffffff;
@@ -38,40 +37,56 @@ $colorTheme-grey: #ecedf3;
 $colorTheme-grey2: #eee;
 ////////////////////////////////////////
 // LIGHT THEME
-$lightThemePrimary: $colorTheme-white; // dont change
-$lightThemeSecondary: $colorTheme-light; // dont change
+$lightThemePrimary: $colorTheme-white;
+$lightThemeSecondary: $colorTheme-light;
 $lightThemeNavAButtonBackground: $colorTheme-white;
-$lightThemeTertiary: $colorTheme-white; // dont change
-$lightThemeTextPrimary: $colorTheme-black; // dont change
-$lightThemeTextSecondary: $colorTheme-dark-gray; // dont change
-$lightThemeTextDownloadItem_hover: $colorTheme-light; // dont change
-$lightThemeBackgroundDownloadItem_hover: $colorTheme-grey; // dont change
-$lightThemeDownloadItemTextTitle_hover: $colorTheme-black; // dont change
+$lightThemeTertiary: $colorTheme-white;
+$lightThemeTextPrimary: $colorTheme-black;
+$lightThemeTextSecondary: $colorTheme-dark-gray;
+$lightThemeDownloadItemBackgroundColor: $colorTheme-white;
+$lightThemeDownloadItemBackgroundColor_hover: $colorTheme-light;
+$lightThemeDownloadItemTextTitle_hover: $colorTheme-black;
+$lightThemeDownloadItemText_hover: $colorTheme-dark-light;
 $lightThemeDownloadItemBorder: $colorTheme-grey2;
-$lightthemeDownloadItemBackgroundColor_hover: $lightThemeBackgroundDownloadItem_hover;
+$lightThemeNavBTextColor_hover: $colorTheme-white;
+$lightThemeNavBTextColor_active: $colorTheme-white;
 // DARK THEME
-$darkThemeDarkPrimary: $colorTheme-dark-blue; // dont change
-$darkThemeDarkSecondary: $colorTheme-dark-light; // dont change
+$darkThemePrimary: $colorTheme-dark-blue;
+$darkThemeSecondary: $colorTheme-dark-light;
 $darkThemeNavAButtonBackground: $colorTheme-dark-light;
-$darkThemeTertiary: $colorTheme-black; // dont change
-$darkThemeTextPrimary: $colorTheme-white; // dont change
-$darkThemeTextSecondary: $colorTheme-white; // dont change
-$darkThemeTextDownloadItem_hover: $colorTheme-black; // dont change
-$darkThemeBackgroundDownloadItem_hover: $colorTheme-light; // dont change
-$darkThemeDownloadItemBorder: $darkThemeDarkPrimary;
-//////////////////////////////////////// CHANGE THESE ////////////////////////////////////////
-$themePrimary: $lightThemePrimary; // lightThemePrimary, darkThemeDarkPrimary,
-$themeSecondary: $lightThemeSecondary; // lightThemeSecondary, darkThemeDarkSecondary
-$themeNavAButtonBackground: $lightThemeNavAButtonBackground; // lightThemeNavAButtonBackground, darkThemeNavAButtonBackground
-$themeTertiary: $lightThemeTertiary; // lightThemeTertiary, darkThemeTertiary
-$themeTextPrimary: $lightThemeTextPrimary; // lightThemeTextPrimary, darkThemeTextPrimary
-$themeTextSecondary: $lightThemeTextSecondary; // lightThemeTextSecondary, darkThemeTextSecondary
-$themeDownloadItemBackgroundColor: $lightThemePrimary; // lightThemePrimary, darkThemeDarkSecondary
-$themeDownloadItemBackgroundColor_hover: $lightThemeTextDownloadItem_hover; // lightThemeBackgroundDownloadItem_hover, darkThemeBackgroundDownloadItem_hover
-$themeDownloadItemTextTitleColor_hover: $lightThemeDownloadItemTextTitle_hover; // lightThemeDownloadItemTextTitle_hover, darkThemeTextDownloadItem_hover
-$themeDownloadItemTextInfoColor_hover: $lightThemeTextDownloadItem_hover; // lightThemeTextDownloadItem_hover, darkThemeTextDownloadItem_hover
-$themeDownloadItemBorder: $lightThemeDownloadItemBorder; // lightThemeDownloadItemBorder, darkThemeDownloadItemBorder
+$darkThemeTertiary: $colorTheme-black;
+$darkThemeTextPrimary: $colorTheme-white;
+$darkThemeTextSecondary: $colorTheme-white;
+$darkThemeDownloadItemBackgroundColor: $colorTheme-dark-light;
+$darkThemeDownloadItemBackgroundColor_hover: $colorTheme-light;
+$darkThemeDownloadItemBorder: $colorTheme-dark-blue;
+$darkThemeDownloadItemTextTitle_hover: $colorTheme-white;
+$darkThemeDownloadItemText_hover: $colorTheme-black;
+$darkThemeNavBTextColor: $colorTheme-white;
+$darkThemeNavBTextColor_hover: $colorTheme-white;
+$darkThemeNavBTextColor_active: $colorTheme-white;
 ////////////////////////////////////////
+//////////////////////////////////////// CHANGE THESE BELOW ////////////////////////////////////////
+// THEME COLORS
+$themePrimary: $darkThemePrimary;
+$themeSecondary: $darkThemeSecondary;
+$themeTertiary: $darkThemeTertiary;
+// THEME TEXT COLORS
+$themeTextPrimary: $darkThemeTextPrimary;
+$themeTextSecondary: $darkThemeTextSecondary;
+// NAV A
+$themeNavAButtonBackground: $darkThemeNavAButtonBackground;
+// NAV B
+$themeNavBTextColor_active: $darkThemeNavBTextColor_active;
+$themeNavBTextColor_hover: $darkThemeNavBTextColor_hover;
+// DOWNLOAD ITEMS BACKGROUNDS
+$themeDownloadItemBackgroundColor: $darkThemeDownloadItemBackgroundColor;
+$themeDownloadItemBackgroundColor_hover: $darkThemeDownloadItemBackgroundColor_hover;
+// DOWNLOAD ITEMS TEXT
+$themeDownloadItemTextTitleColor_hover: $darkThemeDownloadItemTextTitle_hover;
+$themeDownloadItemTextInfoColor_hover: $darkThemeDownloadItemText_hover;
+$themeDownloadItemBorder: $darkThemeDownloadItemBorder;
+//////////////////////////////////////// ^^^ CHANGE THESE ABOVE ^^^ ////////////////////////////////////////
 // BACKGROUNDS
 $themeBackground: $themePrimary;
 $themeButtonBackground: $colorTheme-dark-light;
@@ -88,8 +103,8 @@ $colorNavBBackground: $themeSecondary;
 $colorNavBBackground_active: $colorThemeButtonActive;
 $colorNavBBackground_hover: $colorThemeButtonActive;
 $colorNavBText: $themeTextPrimary;
-$colorNavBText_active: $themePrimary;
-$colorNavBText_hover: $themePrimary;
+$colorNavBText_active: $themeNavBTextColor_active;
+$colorNavBText_hover: $themeNavBTextColor_hover;
 // DOWNLOAD ITEMS BACKGROUNDS
 $colorDownloadItemBackground: $themeDownloadItemBackgroundColor;
 $colorDownloadItemBackgroundContainer: $themeBackground;

@@ -25,10 +25,10 @@
     background-color: $colorDownloadItemBackground;
     &:hover {
         background-color: $colorDownloadItemBackground_hover;
-        transform: translateX(-20px);
+        transform: translate(20%);
         transform: scale(1.005);
         box-shadow: $shadow-after;
-        z-index: 4;
+        // z-index: 4;
     }
 }
 

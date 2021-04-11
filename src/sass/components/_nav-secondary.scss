@@ -18,7 +18,6 @@
         display: flex;
     }
     &:active {
-        // background-color: yellow;
         // border-radius: 1%;
     }
     // LEFT CHILD
@@ -90,7 +89,15 @@
 }
 
 .nav_B_button--active p {
+    color: $colorNavBText_active !important;
+}
+
+.nav_B_button--active .nav_B_icon {
     color: white !important;
+}
+
+.nav_B_button--active p {
+    color: $colorNavBText_active !important;
 }
 
 #nav_B_audioButton0,
@@ -112,7 +119,7 @@
 }
 
 .nav_B_button:hover p {
-    color: #fff;
+    color: $colorNavBText_hover;
 }
 
 .nav_B_text p {
