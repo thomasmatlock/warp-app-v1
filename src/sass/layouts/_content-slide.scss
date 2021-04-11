@@ -1,4 +1,8 @@
 // BLANK CONTAINER SLIDE HOLDING COLORED CONTENT
+.container {
+    background: $themeBackground;
+}
+
 .content-slide {
     display: flex;
     flex-direction: row;
@@ -18,22 +22,23 @@
 
 // COLORED CONTENT INSIDE SLIDE
 .content-container {
-    border: $border-medium;
+    // border: $border-medium;
     // width: 100vw;
     width: 100%;
     // padding-top: 15vh;
     position: relative;
     display: flex;
     flex-direction: column;
-    box-shadow: $shadow-after;
+    // box-shadow: $shadow-after;
     // testing top position
     // margin-top: 7vh;
-    height: 90vh;
-    margin-top: 65px;
+    height: 100%;
+    margin-top: 140px;
 }
 
 .content-container-audio {
     background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    // background: $themeBackground;
     // background: linear-gradient(-45deg, #e73c7e, #23a6d5, #23d5ab, #ee7752);
     background-size: 500% 500%;
     animation: gradient $duration-1 ease infinite;

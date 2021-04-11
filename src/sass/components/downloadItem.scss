@@ -30,13 +30,14 @@
     height: 100%;
     overflow: scroll;
     display: flex;
-    width: 99.5%;
+    width: 100%;
     flex-direction: column;
     justify-content: start;
     align-content: left;
     background-color: $colorDownloadItemBackgroundContainer;
     border: solid 2px $grey;
     padding: 5px;
+    border: solid 2px black;
 }
 
 // ALL LIST ITEMS
@@ -51,6 +52,7 @@
     background-color: $colorDownloadItemBackground;
     &:hover {
         background-color: $colorDownloadItemBackground_hover;
+        border-radius: 4px;
         transform: translate(20%);
         transform: scale(1.005);
         box-shadow: $shadow-after;

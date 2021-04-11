@@ -13,6 +13,7 @@ $colorTheme-grey2: #eee;
 $lightThemePrimary: $colorTheme-white;
 $lightThemeSecondary: $colorTheme-light;
 $lightThemeNavAButtonBackground: $colorTheme-white;
+$lightThemeNavAButtonText_active: $colorTheme-black;
 $lightThemeTertiary: $colorTheme-white;
 $lightThemeTextPrimary: $colorTheme-black;
 $lightThemeTextSecondary: $colorTheme-dark-gray;
@@ -27,6 +28,7 @@ $lightThemeNavBTextColor_active: $colorTheme-white;
 $darkThemePrimary: $colorTheme-dark-blue;
 $darkThemeSecondary: $colorTheme-dark-light;
 $darkThemeNavAButtonBackground: $colorTheme-dark-light;
+$darkThemeNavAButtonText_active: $colorTheme-white;
 $darkThemeTertiary: $colorTheme-black;
 $darkThemeTextPrimary: $colorTheme-white;
 $darkThemeTextSecondary: $colorTheme-white;
@@ -49,6 +51,7 @@ $themeTextPrimary: $darkThemeTextPrimary;
 $themeTextSecondary: $darkThemeTextSecondary;
 // NAV A
 $themeNavAButtonBackground: $darkThemeNavAButtonBackground;
+$themeNavAButtonText_active: $darkThemeNavAButtonText_active;
 // NAV B
 $themeNavBTextColor_active: $darkThemeNavBTextColor_active;
 $themeNavBTextColor_hover: $darkThemeNavBTextColor_hover;
@@ -72,7 +75,7 @@ $colorNavABackground: $themeNavAButtonBackground;
 $colorNavABackground_active: $colorThemeButtonActive;
 $colorNavABackground_hover: $colorThemeButtonActive;
 $colorNavAText: $themeTextPrimary;
-$colorNavAText_active: $themePrimary;
+$colorNavAText_active: $themeNavAButtonText_active;
 $colorNavAText_hover: $themePrimary;
 // NAV B
 $colorNavBBackgroundContainerBackground: $themeBackground;
