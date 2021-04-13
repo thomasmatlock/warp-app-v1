@@ -141,19 +141,21 @@ exports.resetStorage = () => {
     ipcRenderer.send('reset-storage', storage);
 };
 let itemIndex;
-exports.removeItem = (index) => {
-    // findIndexOfItem();
-    console.log(`removing item ${index}`);
+exports.removeItem = (parentItemID, e, avType) => {
+    findIndexOfItem(parentItemID, e, avType);
+    console.log(`removing ${avType} item ${itemIndex}`);
 };
 exports.clickDownloadList = (avType) => {
-    if (avType === 'audio') {
-        if (elements.dl__item_audio[0])
-            auto.clickElement(elements.dl__item_audio[0]); // auto click top audio download item if it exists to ready the itemIndexFinder
-    }
-    if (avType === 'video') {
-        if (elements.dl__item_video[0])
-            auto.clickElement(elements.dl__item_video[0]); // auto click top audio download item if it exists to ready the itemIndexFinder
-    }
+    auto.clickElement(elements.dl__item_audio[0]); // auto click top audio download item if it exists to ready the itemIndexFinder
+    auto.clickElement(elements.dl__item_video[0]); // auto click top audio download item if it exists to ready the itemIndexFinder
+    // if (avType === 'audio') {
+    //     if (elements.dl__item_audio[0])
+    //         auto.clickElement(elements.dl__item_audio[0]); // auto click top audio download item if it exists to ready the itemIndexFinder
+    // }
+    // if (avType === 'video') {
+    //     if (elements.dl__item_video[0])
+    //         auto.clickElement(elements.dl__item_video[0]); // auto click top audio download item if it exists to ready the itemIndexFinder
+    // }
 };
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -164,7 +166,33 @@ ipcRenderer.on('storage-save-success', (e, storageSentFromMain) => {
     // console.log(storage);
 });
 ////////////////////////////////////////////////////////////////////////////////////
+const findIndexOfItem = (parentItemID, e, avType) => {
+    var g = parentItemID;
+    for (var i = 0, len = g.children.length; i < len; i++) {
+        (function(index) {
+            g.children[i].onclick = function() {
+                // alert(index);
+                // console.log(index);
+                // indexSelected = index;
+                itemIndex = index;
 
+                // if (e.target.className === 'fas fa-cog')
+                //     console.log(`you clicked the ${indexSelected} cog`);
+                // if (
+                //     e.target.className === 'far fa-folder-open' &&
+                //     avType == 'video'
+                // ) {
+                //     console.log(`you clicked the ${indexSelected} folder`);
+                //     // shell.showItemInFolder(fileController.dirVideoPath);
+                //     shell.openPath(fileController.dirVideoPath);
+                //     // shell.showItemInFolder(
+                //     //     `C:\\Users\\Tommy\\Documents\\Warp Downloader\\Video\\Just Go With It Meet the wife HD CLIP.mp4`
+                //     // );
+                // }
+            };
+        })(i);
+    }
+};
 ////////////////////////////////////////////////////////////////////////////////////
 
 // exports.downloadThumbnail = (url) => {
