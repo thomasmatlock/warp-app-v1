@@ -61,7 +61,7 @@ const formatLength = function(approxDurationMs) {
     itemInfo.lengthFormatted = `${itemInfo.hrs}:${itemInfo.minsStr}:${itemInfo.secsStr}`;
 };
 
-const cloneVideoDetails = function(itemURL, info, type) {
+const cloneVideoDetails = function(itemURL, info, avType) {
     // console.log(type);
 
     startup.dev.downloadSmallestFile ?
@@ -77,7 +77,7 @@ const cloneVideoDetails = function(itemURL, info, type) {
     itemInfo.thumbnail = info.videoDetails.thumbnails[0]; // (or the last thumbnail) usually seems to be highest res thumbnail. thumbn\ails are in descending order from low res to highest res
     itemInfo.thumbnailURL = info.videoDetails.thumbnails[0].url; // (or the last thumbnail) usually seems to be highest res thumbnail. thumbn\ails are in descending order from low res to highest res
     // itemInfo.fileSize;
-    itemInfo.fileType = type === 'audio' ? 'MP3' : 'MP4'; // mp4, etc
+    itemInfo.fileType = avType === 'audio' ? 'MP3' : 'MP4'; // mp4, etc
     itemInfo.itag = itemInfo.selectedFormat.itag;
     itemInfo.mimeType = itemInfo.selectedFormat.mimeType;
     itemInfo.width = itemInfo.selectedFormat.width;
@@ -88,8 +88,11 @@ const cloneVideoDetails = function(itemURL, info, type) {
     itemInfo.qualityLabel = itemInfo.selectedFormat.qualityLabel;
     itemInfo.audioQuality = itemInfo.selectedFormat.audioQuality;
     itemInfo.approxDurationMs = itemInfo.selectedFormat.approxDurationMs;
-    itemInfo.filePath = '';
-    itemInfo.finishedFilePath;
+    // itemInfo.filePath = '';
+    itemInfo.filePath =
+        avType === 'audio' ?
+        path.join(fileController.dirAudioPath, `${itemInfo.title}.mp3`) :
+        path.join(fileController.dirVideoPath, `${itemInfo.title}.mp4`);
     // this.url = this.selectedFormat.url;
     // this.projectionType = this.selectedFormat.projectionType;
     // this.averageBitrate = this.selectedFormat.averageBitrate;
@@ -103,17 +106,15 @@ const removeVideoDetails = function() {
     itemInfo = {};
 };
 const removeCharactersFromTitle = function() {
-    // console.log('removeCharactersFromTitle');
-    itemInfo.title = itemInfo.title.replace('/', '');
-    itemInfo.title = itemInfo.title.replace('?', '');
+    itemInfo.title = itemInfo.title.replace(`/`, '');
+    itemInfo.title = itemInfo.title.replace(`?`, '');
     itemInfo.title = itemInfo.title.replace(`\\`, '');
-    itemInfo.title = itemInfo.title.replace(':', '');
-    itemInfo.title = itemInfo.title.replace('*', '');
+    itemInfo.title = itemInfo.title.replace(`:`, '');
+    itemInfo.title = itemInfo.title.replace(`*`, '');
     itemInfo.title = itemInfo.title.replace(`"`, '');
-    itemInfo.title = itemInfo.title.replace('<', '');
-    itemInfo.title = itemInfo.title.replace('>', '');
+    itemInfo.title = itemInfo.title.replace(`<`, '');
+    itemInfo.title = itemInfo.title.replace(`>`, '');
     itemInfo.title = itemInfo.title.replace(`|`, '');
-    // // if (this.logging) console.log('removed characters from title');
 };
 
 const downloadAndWrite = function(itemURL) {
@@ -121,32 +122,22 @@ const downloadAndWrite = function(itemURL) {
         setTimeout(() => {
             this.removeCharactersFromTitle();
             var filePath;
-            // console.log(this.type);
             if (itemInfo.type === 'audio') {
-                // console.log('its audio type');
                 filePath = path.join(
                     fileController.dirAudioPath,
                     `${itemInfo.title}.mp3` // fix this, needs to be audio and mp3
                 );
-                // this.finishedFilePath = filepath;
-                // console.log(this.finishedFilePath);
             } else if (itemInfo.type === 'video') {
                 // console.log('its video type');
                 filePath = path.join(
                     fileController.dirVideoPath,
                     `${itemInfo.title}.mp4`
                 );
-                // this.finishedFilePath = filepath;
-                // console.log(this.finishedFilePath);
+                this.finishedFilePath = filePath;
             }
             if (startup.dev.downloadFile) {
-                // console.log('item downloaded');
                 ytdl(itemURL).pipe(fs.createWriteStream(filePath)); // downloads video
             }
-            if (logging && !startup.dev.downloadFile) {
-                // console.log('item info pulled, but not downloaded');
-            }
-            // if (logging) console.log(this);
         }, 1000);
     }
 };
@@ -158,6 +149,7 @@ const getFileSize = function() {
 const getInfo = async function(itemURL, avType) {
     await ytdl.getBasicInfo(itemURL).then((info) => {
         this.cloneVideoDetails(itemURL, info, avType);
+        // console.log(itemInfo.filePath);
         items.addItem(itemInfo, avType);
         items.updateStorage(itemInfo, avType, 'add');
         items.clickDownloadList(avType);
@@ -168,6 +160,7 @@ const all = function(itemURL, avType) {
     itemInfo.type = avType;
     this.getInfo(itemURL, avType);
     this.downloadAndWrite(itemURL);
+    console.log(itemInfo);
     // itemInfo.getFileSize();
 };
 

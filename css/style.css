@@ -441,12 +441,13 @@ li {
   height: 60px;
   max-height: 60px;
   border: 1px solid #1f2029;
+  position: relative;
   border-radius: 4px;
   transition: all ease-out 0.05s;
   background-color: #353746; }
   .download__list li:hover {
     background-color: #f0eff3;
-    border-radius: 4px;
+    border-radius: 6px;
     transform: translate(20%);
     transform: scale(1.005);
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2); }
@@ -746,3 +747,80 @@ input[type='text'] {
   border-radius: 4px;
   z-index: 11;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2); }
+
+* {
+  margin: 0px;
+  padding: 0px;
+  border: 0px; }
+
+html,
+body {
+  min-height: 100%; }
+
+body {
+  background: radial-gradient(#eee, #444); }
+
+.loader {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  margin: auto;
+  width: 175px;
+  height: 100px; }
+  .loader span {
+    display: block;
+    background: #ccc;
+    width: 7px;
+    height: 10%;
+    border-radius: 14px;
+    margin-right: 5px;
+    float: left;
+    margin-top: 25%; }
+    .loader span:last-child {
+      margin-right: 0px; }
+    .loader span:nth-child(1) {
+      animation: load 2.5s 1.4s infinite linear; }
+    .loader span:nth-child(2) {
+      animation: load 2.5s 1.2s infinite linear; }
+    .loader span:nth-child(3) {
+      animation: load 2.5s 1s infinite linear; }
+    .loader span:nth-child(4) {
+      animation: load 2.5s 0.8s infinite linear; }
+    .loader span:nth-child(5) {
+      animation: load 2.5s 0.6s infinite linear; }
+    .loader span:nth-child(6) {
+      animation: load 2.5s 0.4s infinite linear; }
+    .loader span:nth-child(7) {
+      animation: load 2.5s 0.2s infinite linear; }
+    .loader span:nth-child(8) {
+      animation: load 2.5s 0s infinite linear; }
+    .loader span:nth-child(9) {
+      animation: load 2.5s 0.2s infinite linear; }
+    .loader span:nth-child(10) {
+      animation: load 2.5s 0.4s infinite linear; }
+    .loader span:nth-child(11) {
+      animation: load 2.5s 0.6s infinite linear; }
+    .loader span:nth-child(12) {
+      animation: load 2.5s 0.8s infinite linear; }
+    .loader span:nth-child(13) {
+      animation: load 2.5s 1s infinite linear; }
+    .loader span:nth-child(14) {
+      animation: load 2.5s 1.2s infinite linear; }
+    .loader span:nth-child(15) {
+      animation: load 2.5s 1.4s infinite linear; }
+
+@keyframes load {
+  0% {
+    background: #ccc;
+    margin-top: 25%;
+    height: 10%; }
+  50% {
+    background: #444;
+    height: 100%;
+    margin-top: 0%; }
+  100% {
+    background: #ccc;
+    height: 10%;
+    margin-top: 25%; } }

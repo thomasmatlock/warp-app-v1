@@ -231,8 +231,10 @@ elements.nav_B_button_video_preferences.addEventListener('click', (e) => {
     modals.modalPreferencesAdjust(state, elements, startup);
 });
 // Download lists listeners
+let itemIndex;
 elements.download__list_audio_ID.addEventListener('click', (e) => {
     findIndexOfItem(elements.download__list_audio_ID, e, 'audio');
+    items.removeItem(itemIndex);
 });
 elements.download__list_video_ID.addEventListener('click', (e) => {
     findIndexOfItem(elements.download__list_video_ID, e, 'video');
@@ -245,10 +247,10 @@ const findIndexOfItem = (parentItemID, e, avType) => {
         (function(index) {
             g.children[i].onclick = function() {
                 // alert(index);
-                console.log(index);
-                indexSelected = index;
-                return indexSelected;
-                // items.removeItem(index);
+                // console.log(index);
+                // indexSelected = index;
+                itemIndex = index;
+
                 // if (e.target.className === 'fas fa-cog')
                 //     console.log(`you clicked the ${indexSelected} cog`);
                 // if (
@@ -266,3 +268,7 @@ const findIndexOfItem = (parentItemID, e, avType) => {
         })(i);
     }
 };
+
+// const findItemInStorages = (avType, index) => {
+//     console.log();
+// }

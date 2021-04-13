@@ -45,6 +45,7 @@ exports.addItem = (item, avType) => {
     }
     if (avType === 'video') {
         this.insertMarkup(item, avType);
+        // console.log(item.finishedFilePath);
         let videoDownloadList = document.querySelector('.download__list_video');
         let itemNodeVideo = document.createElement('li'); // Create a new HTML Dom node
 
@@ -88,14 +89,13 @@ exports.insertMarkup = (downloadInfo, avType) => {
     }
 };
 exports.save = (avType) => {
-    // console.log('storage-save commencing...');
-    // console.log(storage);
     ipcRenderer.send('storage-save', storage, avType);
 };
 exports.load = () => {
     ipcRenderer.send('load-storage');
 };
 exports.updateStorage = (item, avType, addRemoveType) => {
+    // console.log(item);
     if (addRemoveType === 'add') {
         if (avType === 'audio') {
             // console.log('updateStorage');
@@ -140,7 +140,9 @@ exports.resetStorage = () => {
     this.save();
     ipcRenderer.send('reset-storage', storage);
 };
+let itemIndex;
 exports.removeItem = (index) => {
+    // findIndexOfItem();
     console.log(`removing item ${index}`);
 };
 exports.clickDownloadList = (avType) => {
@@ -162,6 +164,9 @@ ipcRenderer.on('storage-save-success', (e, storageSentFromMain) => {
     // console.log(storage);
 });
 ////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////
+
 // exports.downloadThumbnail = (url) => {
 //     options = {
 //         url: 'http://someurl.com/image2.jpg',

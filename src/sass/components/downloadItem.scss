@@ -35,13 +35,15 @@
     max-height: $download-item-video-max-height;
     border: 1px solid $colorDownloadItemBorder;
     // background-color: #eee;
+    position: relative;
     border-radius: 4px;
     transition: all ease-out 0.05s;
     // border: 1px dotted purple;
     background-color: $colorDownloadItemBackground;
+    // background-color: black;
     &:hover {
         background-color: $colorDownloadItemBackground_hover;
-        border-radius: 4px;
+        border-radius: 6px;
         transform: translate(20%);
         transform: scale(1.005);
         box-shadow: $shadow-after;
