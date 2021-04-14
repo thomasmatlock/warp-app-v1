@@ -106,15 +106,17 @@ const removeVideoDetails = function() {
     itemInfo = {};
 };
 const removeCharactersFromTitle = function() {
-    itemInfo.title = itemInfo.title.replace(`/`, '');
-    itemInfo.title = itemInfo.title.replace(`?`, '');
-    itemInfo.title = itemInfo.title.replace(`\\`, '');
-    itemInfo.title = itemInfo.title.replace(`:`, '');
-    itemInfo.title = itemInfo.title.replace(`*`, '');
-    itemInfo.title = itemInfo.title.replace(`"`, '');
-    itemInfo.title = itemInfo.title.replace(`<`, '');
-    itemInfo.title = itemInfo.title.replace(`>`, '');
-    itemInfo.title = itemInfo.title.replace(`|`, '');
+    itemInfo.title = itemInfo.title.replace(`/`, ' ');
+    itemInfo.title = itemInfo.title.replace(`?`, ' ');
+    itemInfo.title = itemInfo.title.replace(`\\`, ' ');
+    itemInfo.title = itemInfo.title.replace(`:`, ' ');
+    itemInfo.title = itemInfo.title.replace(`*`, ' ');
+    itemInfo.title = itemInfo.title.replace(`"`, ' ');
+    itemInfo.title = itemInfo.title.replace(``, '');
+    itemInfo.title = itemInfo.title.replace(`<`, ' ');
+    itemInfo.title = itemInfo.title.replace(`>`, ' ');
+    itemInfo.title = itemInfo.title.replace(`|`, ' ');
+    itemInfo.title = itemInfo.title.replace(`#`, ' ');
 };
 
 const downloadAndWrite = function(itemURL) {
@@ -152,7 +154,7 @@ const getInfo = async function(itemURL, avType) {
         // console.log(itemInfo.filePath);
         items.addItem(itemInfo, avType);
         items.updateStorage(itemInfo, avType, 'add');
-        // items.clickDownloadList(avType);
+        items.clickDownloadList(avType);
     });
 };
 

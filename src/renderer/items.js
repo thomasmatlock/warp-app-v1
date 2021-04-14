@@ -34,7 +34,7 @@ exports.downloadItem = (itemURL, avType, platform) => {
         downloadHandler.all(itemURL, avType); // exports without object
     }
 };
-exports.addItem = (item, avType) => {
+exports.addItem = (item, avType, isStartup) => {
     if (avType === 'audio') {
         this.insertMarkup(item, avType); // splices in item info to markup
         let audioDownloadList = document.querySelector('.download__list_audio'); // selects target list to add item markup to
@@ -42,6 +42,7 @@ exports.addItem = (item, avType) => {
         itemNodeAudio.innerHTML = markupAudio; // Insert markup into new DOM node inserted into list
         audioDownloadList.appendChild(itemNodeAudio); // Append item node
         this.resetMarkup();
+        // if (isStartup) auto.clickElement(elements.dl__item_audio[0]);
     }
     if (avType === 'video') {
         this.insertMarkup(item, avType);
@@ -52,6 +53,7 @@ exports.addItem = (item, avType) => {
         itemNodeVideo.innerHTML = markupVideo; // Insert markup
         videoDownloadList.appendChild(itemNodeVideo); // Append item node
         this.resetMarkup();
+        // if (!isStartup) auto.clickElement(elements.dl__item_video[0]);
     }
 };
 exports.resetMarkup = () => {
@@ -125,7 +127,7 @@ exports.updateStorage = (item, avType, addRemoveType) => {
 
 exports.addItemsFromArray = (arr, avType) => {
     for (let i = 0; i < arr.length; i++) {
-        this.addItem(arr[i], avType);
+        this.addItem(arr[i], avType, true);
     }
 };
 exports.resetStorage = () => {
@@ -142,20 +144,20 @@ exports.resetStorage = () => {
 };
 let itemIndex;
 exports.removeItem = (parentItemID, e, avType) => {
-    // findIndexOfItem(parentItemID, e, avType);
-    // console.log(`removing ${avType} item ${itemIndex}`);
+    // console.log(parentItemID.childNodes.length);
+    findIndexOfItem(parentItemID, e, avType);
+    console.log(`removing ${avType} item ${itemIndex}`);
+    itemIndex = 0;
 };
 exports.clickDownloadList = (avType) => {
-    auto.clickElement(elements.dl__item_audio[0]); // auto click top audio download item if it exists to ready the itemIndexFinder
-    auto.clickElement(elements.dl__item_video[0]); // auto click top audio download item if it exists to ready the itemIndexFinder
-    // if (avType === 'audio') {
-    //     if (elements.dl__item_audio[0])
-    //         auto.clickElement(elements.dl__item_audio[0]); // auto click top audio download item if it exists to ready the itemIndexFinder
-    // }
-    // if (avType === 'video') {
-    //     if (elements.dl__item_video[0])
-    //         auto.clickElement(elements.dl__item_video[0]); // auto click top audio download item if it exists to ready the itemIndexFinder
-    // }
+    if (avType === 'audio') {
+        if (elements.dl__item_audio[0])
+            auto.clickElement(elements.dl__item_audio[0]); // auto click top audio download item if it exists to ready the itemIndexFinder
+    }
+    if (avType === 'video') {
+        if (elements.dl__item_video[0])
+            auto.clickElement(elements.dl__item_video[0]); // auto click top audio download item if it exists to ready the itemIndexFinder
+    }
 };
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -169,6 +171,7 @@ ipcRenderer.on('storage-save-success', (e, storageSentFromMain) => {
 const findIndexOfItem = (parentItemID, e, avType) => {
     var g = parentItemID;
     for (var i = 0, len = g.children.length; i < len; i++) {
+        // console.log(i);
         (function(index) {
             g.children[i].onclick = function() {
                 // alert(index);
