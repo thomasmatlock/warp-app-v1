@@ -97,7 +97,6 @@ exports.load = () => {
     ipcRenderer.send('load-storage');
 };
 exports.updateStorage = (item, avType, addRemoveType, index) => {
-    // console.log(item);
     if (addRemoveType === 'add') {
         if (avType === 'audio') {
             // console.log('updateStorage');
@@ -117,10 +116,12 @@ exports.updateStorage = (item, avType, addRemoveType, index) => {
     }
     if (addRemoveType === 'remove') {
         if (avType === 'audio') {
-            console.log(`removing audio item from storage`);
+            storage.downloadItems.audioArr.splice(index, 1);
+            ipcRenderer.send('storage-save', storage, avType);
         }
         if (avType === 'video') {
-            console.log(`removing video item from storage`);
+            storage.downloadItems.videoArr.splice(index, 1);
+            ipcRenderer.send('storage-save', storage, avType);
         }
     }
 };
@@ -152,7 +153,7 @@ exports.removeItem = (parentItemID, e, avType, itemTitle) => {
     let index = findIndexFromTitle(avType, itemTitle);
     // console.log(itemIndex);
     parentItemID.removeChild(parentItemID.childNodes[index]);
-    console.log(index);
+    // console.log(index);
     this.updateStorage('do-not-use', avType, 'remove', index);
     // parentItemID.re;
 };
@@ -177,7 +178,7 @@ ipcRenderer.on('storage-save-success', (e, storageSentFromMain) => {
 ////////////////////////////////////////////////////////////////////////////////////
 
 const findIndexFromTitle = (avType, title) => {
-    console.log(` ${title}`);
+    // console.log(` ${title}`);
     if (avType === 'audio') {
         let arr = storage.downloadItems.audioArr;
         for (let i = 0; i < arr.length; i++) {
@@ -191,10 +192,10 @@ const findIndexFromTitle = (avType, title) => {
     if (avType === 'video') {
         let arr = storage.downloadItems.videoArr;
         for (let i = 0; i < arr.length; i++) {
-            console.log(arr[i].title);
+            // console.log(arr[i].title);
             if (arr[i].title.slice(0, 10) === title.slice(0, 10)) {
                 // itemIndex = i;
-                console.log(i);
+                // console.log(i);
                 return i;
             }
         }
