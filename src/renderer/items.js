@@ -145,17 +145,12 @@ exports.resetStorage = () => {
 };
 // let itemIndex;
 exports.removeItem = (parentItemID, e, avType, itemTitle) => {
-    // console.log(itemTitle);
-    // findIndexOfItem(parentItemID, e, avType);list.removeChild(list.childNodes[0]);
     itemIndex = 0;
     ///////////////////////////////////////////////////////////////////////
     // findIndexFromTitle(avType, itemTitle);
-    let index = findIndexFromTitle(avType, itemTitle);
-    // console.log(itemIndex);
-    parentItemID.removeChild(parentItemID.childNodes[index]);
-    // console.log(index);
-    this.updateStorage('do-not-use', avType, 'remove', index);
-    // parentItemID.re;
+    // let index = findIndexFromTitle(avType, itemTitle);
+    // parentItemID.removeChild(parentItemID.childNodes[index]); // removes item
+    // this.updateStorage('do-not-use', avType, 'remove', index); // persists storage
 };
 exports.clickDownloadList = (avType) => {
     if (avType === 'audio') {
