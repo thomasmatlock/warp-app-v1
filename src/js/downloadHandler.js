@@ -106,23 +106,26 @@ const removeVideoDetails = function() {
     itemInfo = {};
 };
 const removeCharactersFromTitle = function() {
+    itemInfo.title = itemInfo.title.replace(`|`, '');
+    itemInfo.title = itemInfo.title.replace(`"`, '');
+    itemInfo.title = itemInfo.title.replace(`"`, '');
+    itemInfo.title = itemInfo.title.replace(`'`, '');
+    itemInfo.title = itemInfo.title.replace(`?`, '');
+    itemInfo.title = itemInfo.title.replace(`!`, '');
+    itemInfo.title = itemInfo.title.replace(`\\`, '');
     itemInfo.title = itemInfo.title.replace(`/`, ' ');
-    itemInfo.title = itemInfo.title.replace(`?`, ' ');
-    itemInfo.title = itemInfo.title.replace(`\\`, ' ');
-    itemInfo.title = itemInfo.title.replace(`:`, ' ');
-    itemInfo.title = itemInfo.title.replace(`*`, ' ');
-    itemInfo.title = itemInfo.title.replace(`"`, ' ');
-    itemInfo.title = itemInfo.title.replace(``, '');
-    itemInfo.title = itemInfo.title.replace(`<`, ' ');
-    itemInfo.title = itemInfo.title.replace(`>`, ' ');
-    itemInfo.title = itemInfo.title.replace(`|`, ' ');
-    itemInfo.title = itemInfo.title.replace(`#`, ' ');
+    // itemInfo.title = itemInfo.title.replace(`:`, ' ');
+    // itemInfo.title = itemInfo.title.replace(`*`, ' ');
+    // itemInfo.title = itemInfo.title.replace(`,`, '');
+    // itemInfo.title = itemInfo.title.replace(`<`, ' ');
+    // itemInfo.title = itemInfo.title.replace(`>`, ' ');
+    // itemInfo.title = itemInfo.title.replace(`#`, ' ');
 };
 
 const downloadAndWrite = function(itemURL) {
     if (startup.dev.getDownloadItemInfo) {
         setTimeout(() => {
-            this.removeCharactersFromTitle();
+            // this.removeCharactersFromTitle();
             var filePath;
             if (itemInfo.type === 'audio') {
                 filePath = path.join(
@@ -147,14 +150,15 @@ const downloadAndWrite = function(itemURL) {
 const getFileSize = function() {
     // console.log('getFileSize');
 };
-
+[];
 const getInfo = async function(itemURL, avType) {
     await ytdl.getBasicInfo(itemURL).then((info) => {
         this.cloneVideoDetails(itemURL, info, avType);
+        this.removeCharactersFromTitle();
         // console.log(itemInfo.filePath);
         items.addItem(itemInfo, avType);
         items.updateStorage(itemInfo, avType, 'add');
-        items.clickDownloadList(avType);
+        // items.clickDownloadList(avType);
     });
 };
 

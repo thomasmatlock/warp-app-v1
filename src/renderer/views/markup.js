@@ -6,12 +6,10 @@ const markup = {
                                         <img src="%{thumbnail}" alt="Test" />
                                     </div>
                                     <div class="dl__item_info-pane dl__item_info-pane-data">
-                                        <div class="dl__item_info-pane__top">
-                                            <h4 class="dl__item__data__property dl__item__data__property-title">
-                                                %{title}
-                                            </h4>
+                                        <div class="dl__item_info-pane__top dl__item_info-pane_indexMarker">
+                                            <h4 class="dl__item__data__property dl__item__data__property-title">%{title}</h4>
                                         </div>
-                                        <div class="dl__item_info-pane__bottom">
+                                        <div class="dl__item_info-pane__bottom dl__item_info-pane_indexMarker">
                                             <p class="dl__item__data__property dl__item__data__property-file-length">
                                                 %{lengthFormatted}
                                             </p>
@@ -43,12 +41,10 @@ const markup = {
                                         <img src="%{thumbnail}" alt="Test" />
                                     </div>
                                     <div class="dl__item_info-pane dl__item_info-pane-data">
-                                        <div class="dl__item_info-pane__top">
-                                            <h4 class="dl__item__data__property dl__item__data__property-title">
-                                                %{title}
-                                            </h4>
+                                        <div class="dl__item_info-pane__top dl__item_info-pane_indexMarker">
+                                            <h4 class="dl__item__data__property dl__item__data__property-title">%{title}</h4>
                                         </div>
-                                        <div class="dl__item_info-pane__bottom">
+                                        <div class="dl__item_info-pane__bottom dl__item_info-pane_indexMarker">
                                             <p class="dl__item__data__property dl__item__data__property-file-length">
                                                 %{lengthFormatted}
                                             </p>

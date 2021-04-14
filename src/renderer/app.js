@@ -43,8 +43,8 @@ ipcRenderer.on('window-ready', (e, storage) => {
     if (startup.dev.clearStorage) items.resetStorage(); // clears localStorage if active
     items.startupAddAllItems(storage); // loads items stored in settings to UI
     auto.click_nav_B(startup.env.nav_A_active, 'preferences'); // auto clicks paste, smartMode, activate, subscriptions, preferences, help
-    items.clickDownloadList('audio'); // auto click top download item if it exists to ready the itemIndexFinder
-    items.clickDownloadList('video'); // auto click top download item if it exists to ready the itemIndexFinder
+    // items.clickDownloadList('audio'); // auto click top download item if it exists to ready the itemIndexFinder
+    // items.clickDownloadList('video'); // auto click top download item if it exists to ready the itemIndexFinder
 });
 
 const setActiveNav_A = (nav_A_active) => {
@@ -234,10 +234,75 @@ elements.nav_B_button_video_preferences.addEventListener('click', (e) => {
 // Download lists listeners
 // let itemIndex;
 elements.download__list_audio_ID.addEventListener('click', (e) => {
-    items.removeItem(elements.download__list_audio_ID, e, 'audio');
+    let itemTitle;
+    if (e.target.parentNode.classList[0] === 'dl__item') {
+        itemTitle =
+            e.target.parentNode.parentNode.childNodes[0].childNodes[1]
+            .childNodes[3].childNodes[1].childNodes[1].outerText;
+    }
+    // THUMBNAIL
+    if (e.target.parentNode.classList[0] === 'dl__item_info-pane') {
+        itemTitle =
+            e.target.parentNode.parentNode.childNodes[3].childNodes[1]
+            .childNodes[1].outerText;
+    }
+    if (e.target.parentNode.classList[1] === 'dl__item_info-pane_indexMarker') {
+        itemTitle =
+            e.target.parentNode.parentNode.childNodes[1].childNodes[1]
+            .outerText;
+    }
+    if (e.target.parentNode.parentNode.classList[0] === 'dl__item') {
+        itemTitle =
+            e.target.parentNode.parentNode.childNodes[1].childNodes[3]
+            .childNodes[1].childNodes[1].outerText;
+    }
+
+    // right actions panels
+    if (
+        e.target.parentNode.parentNode.classList[0] ===
+        'dl__item_info-pane__right'
+    ) {
+        itemTitle =
+            e.target.parentNode.parentNode.parentNode.childNodes[1]
+            .childNodes[3].childNodes[1].childNodes[1].outerText;
+    }
+    items.removeItem(elements.download__list_audio_ID, e, 'audio', itemTitle);
 });
 elements.download__list_video_ID.addEventListener('click', (e) => {
-    items.removeItem(elements.download__list_video_ID, e, 'video');
+    let itemTitle;
+    if (e.target.parentNode.classList[0] === 'dl__item') {
+        itemTitle =
+            e.target.parentNode.parentNode.childNodes[0].childNodes[1]
+            .childNodes[3].childNodes[1].childNodes[1].outerText;
+    }
+    // THUMBNAIL
+    if (e.target.parentNode.classList[0] === 'dl__item_info-pane') {
+        itemTitle =
+            e.target.parentNode.parentNode.childNodes[3].childNodes[1]
+            .childNodes[1].outerText;
+    }
+    if (e.target.parentNode.classList[1] === 'dl__item_info-pane_indexMarker') {
+        itemTitle =
+            e.target.parentNode.parentNode.childNodes[1].childNodes[1]
+            .outerText;
+    }
+    if (e.target.parentNode.parentNode.classList[0] === 'dl__item') {
+        itemTitle =
+            e.target.parentNode.parentNode.childNodes[1].childNodes[3]
+            .childNodes[1].childNodes[1].outerText;
+    }
+
+    // right actions panels
+    if (
+        e.target.parentNode.parentNode.classList[0] ===
+        'dl__item_info-pane__right'
+    ) {
+        itemTitle =
+            e.target.parentNode.parentNode.parentNode.childNodes[1]
+            .childNodes[3].childNodes[1].childNodes[1].outerText;
+    }
+
+    items.removeItem(elements.download__list_video_ID, e, 'video', itemTitle);
 });
 
 // const findIndexOfItem = (parentItemID, e, avType) => {
