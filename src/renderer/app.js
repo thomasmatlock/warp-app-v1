@@ -43,7 +43,7 @@ ipcRenderer.on('window-ready', (e, storage) => {
     if (startup.dev.clearStorage) items.resetStorage(); // clears localStorage if active
     items.startupAddAllItems(storage); // loads items stored in settings to UI
     auto.click_nav_B(startup.env.nav_A_active, 'preferences'); // auto clicks paste, smartMode, activate, subscriptions, preferences, help
-    items.clickDownloadList(); // auto click top download item if it exists to ready the itemIndexFinder
+    // items.clickDownloadList(); // auto click top download item if it exists to ready the itemIndexFinder
 });
 
 const setActiveNav_A = (nav_A_active) => {
@@ -233,9 +233,13 @@ elements.nav_B_button_video_preferences.addEventListener('click', (e) => {
 // Download lists listeners
 // let itemIndex;
 elements.download__list_audio_ID.addEventListener('click', (e) => {
+    let whatever = elements.download__list_audio_ID.childNodes.length;
+    console.log(whatever);
     items.removeItem(elements.download__list_audio_ID, e, 'audio');
 });
 elements.download__list_video_ID.addEventListener('click', (e) => {
+    let whatever = elements.download__list_video_ID.childNodes.length;
+    console.log(whatever);
     items.removeItem(elements.download__list_video_ID, e, 'video');
 });
 

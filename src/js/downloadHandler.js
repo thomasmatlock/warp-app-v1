@@ -152,7 +152,7 @@ const getInfo = async function(itemURL, avType) {
         // console.log(itemInfo.filePath);
         items.addItem(itemInfo, avType);
         items.updateStorage(itemInfo, avType, 'add');
-        items.clickDownloadList(avType);
+        // items.clickDownloadList(avType);
     });
 };
 
@@ -160,7 +160,7 @@ const all = function(itemURL, avType) {
     itemInfo.type = avType;
     this.getInfo(itemURL, avType);
     this.downloadAndWrite(itemURL);
-    console.log(itemInfo);
+    // console.log(itemInfo);
     // itemInfo.getFileSize();
 };
 

@@ -142,8 +142,8 @@ exports.resetStorage = () => {
 };
 let itemIndex;
 exports.removeItem = (parentItemID, e, avType) => {
-    findIndexOfItem(parentItemID, e, avType);
-    console.log(`removing ${avType} item ${itemIndex}`);
+    // findIndexOfItem(parentItemID, e, avType);
+    // console.log(`removing ${avType} item ${itemIndex}`);
 };
 exports.clickDownloadList = (avType) => {
     auto.clickElement(elements.dl__item_audio[0]); // auto click top audio download item if it exists to ready the itemIndexFinder
