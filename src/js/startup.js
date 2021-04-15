@@ -1,4 +1,4 @@
-const logging = true;
+const logging = false;
 const fileControllerReq = require('./fileController');
 const fileController = new fileControllerReq();
 const path = require('path');

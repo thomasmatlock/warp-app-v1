@@ -106,6 +106,7 @@ const removeVideoDetails = function() {
     itemInfo = {};
 };
 const removeCharactersFromTitle = function() {
+    console.log(itemInfo.title);
     itemInfo.title = itemInfo.title.replace(`|`, '');
     itemInfo.title = itemInfo.title.replace(`"`, '');
     itemInfo.title = itemInfo.title.replace(`"`, '');
@@ -120,6 +121,7 @@ const removeCharactersFromTitle = function() {
     // itemInfo.title = itemInfo.title.replace(`<`, ' ');
     // itemInfo.title = itemInfo.title.replace(`>`, ' ');
     // itemInfo.title = itemInfo.title.replace(`#`, ' ');
+    console.log(itemInfo.title);
 };
 
 const downloadAndWrite = function(itemURL) {
@@ -150,7 +152,7 @@ const downloadAndWrite = function(itemURL) {
 const getFileSize = function() {
     // console.log('getFileSize');
 };
-[];
+
 const getInfo = async function(itemURL, avType) {
     await ytdl.getBasicInfo(itemURL).then((info) => {
         this.cloneVideoDetails(itemURL, info, avType);
@@ -166,8 +168,10 @@ const all = function(itemURL, avType) {
     console.log(itemURL);
     itemInfo.type = avType;
     this.getInfo(itemURL, avType);
+
+
     this.downloadAndWrite(itemURL);
-    // console.log(itemInfo);
+    // console.log(itemInfo.url);
     // itemInfo.getFileSize();
 };
 

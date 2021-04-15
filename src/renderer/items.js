@@ -45,6 +45,7 @@ exports.addItem = (item, avType, isStartup) => {
         // if (isStartup) auto.clickElement(elements.dl__item_audio[0]);
     }
     if (avType === 'video') {
+        console.log(item.title);
         this.insertMarkup(item, avType);
         // console.log(item.finishedFilePath);
         let videoDownloadList = document.querySelector('.download__list_video');
@@ -145,7 +146,7 @@ exports.resetStorage = () => {
 };
 // let itemIndex;
 exports.selectItem = (parentItemID, e, avType, itemTitle) => {
-    // console.log(itemTitle);
+    console.log(itemTitle);
     // findIndexOfItem(parentItemID, e, avType);list.removeChild(list.childNodes[0]);
     itemIndex = 0;
     ///////////////////////////////////////////////////////////////////////
@@ -170,7 +171,7 @@ exports.clickDownloadList = (avType) => {
     }
 };
 const findIndexFromTitle = (avType, title) => {
-    console.log(` ${title}`);
+    console.log(`${title}`);
     if (avType === 'audio') {
         let arr = storage.downloadItems.audioArr;
         for (let i = 0; i < arr.length; i++) {
@@ -184,7 +185,7 @@ const findIndexFromTitle = (avType, title) => {
     if (avType === 'video') {
         let arr = storage.downloadItems.videoArr;
         for (let i = 0; i < arr.length; i++) {
-            console.log(arr[i].title);
+            // console.log(arr[i].title);
             if (arr[i].title.slice(0, 10) === title.slice(0, 10)) {
                 // itemIndex = i;
                 // console.log(i);
