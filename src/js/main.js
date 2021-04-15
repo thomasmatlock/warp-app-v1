@@ -38,21 +38,9 @@ ipcMain.on('new-item', (e, itemURL, avType, platform) => {
     e.reply('paste-new-url', itemURL, avType, platform); // send message to app js
 });
 ipcMain.on('menu-change', (e, menuType) => {
-    if (menuType === 'audio') {
-        appMenuAudio(mainWindow.webContents); // sets audio menu if audio tab is clicked
-        mainWindow.loadFile('./src/renderer/html/audio.html');
-    }
-    if (menuType === 'video') {
-        appMenuVideo(mainWindow.webContents); // sets audio menu if audio tab is clicked
-        mainWindow.loadFile('./src/renderer/html/video.html');
-    }
-    if (menuType === 'warpstagram') {
-        appMenuWarpstagram(mainWindow.webContents); // sets audio menu if audio tab is clicked
-        mainWindow.loadFile('./src/renderer/html/warpstagram.html');
-    }
-    // if (menuType === 'video') appMenuVideo(mainWindow.webContents); // sets video menu if video tab is clicked
-    // if (menuType === 'warpstagram') appMenuWarpstagram(mainWindow.webContents); // sets video menu if video tab is clicked
+    setMenu(menuType);
 });
+
 ipcMain.on('quit', () => {
     app.quit();
     mainWindow = null;
@@ -85,6 +73,23 @@ ipcMain.on('restart-app', () => {
     app.quit();
     // fileController.settingsSave('settings', storageObj); // #fix, wrong arg1 save name, should be 'settings'
 });
+const setMenu = (menuType) => {
+    if (menuType === 'audio') {
+        appMenuAudio(mainWindow.webContents); // sets audio menu if audio tab is clicked
+        // mainWindow.loadFile('./src/renderer/html/audio.html');
+    }
+    if (menuType === 'video') {
+        appMenuVideo(mainWindow.webContents); // sets audio menu if audio tab is clicked
+        // mainWindow.loadFile('./src/renderer/html/video.html');
+    }
+    if (menuType === 'warpstagram') {
+        appMenuWarpstagram(mainWindow.webContents); // sets audio menu if audio tab is clicked
+        // mainWindow.loadFile('./src/renderer/html/warpstagram.html');
+    }
+};
+const loadHtml = (menuType) => {
+    mainWindow.loadFile(`./src/renderer/html/${menuType}.html`);
+};
 const load = async() => {
     const result = await fileController.settingsLoad();
     return result;
@@ -131,21 +136,7 @@ function createWindow() {
         // backgroundColor: '#ff8500', // use the same color as your html file is, the main window will display this until html fully loads. This is a little better than making your app hang for a second until the html loads, then displaying the window
     });
 
-    // addDevMenu();
-
-    // mainWindow.loadFile('./src/renderer/main.html');
-    if (startup.env.nav_A_active === 'audio') {
-
-        mainWindow.loadFile('./src/renderer/html/audio.html');
-    }
-    if (startup.env.nav_A_active === 'video') {
-
-        mainWindow.loadFile('./src/renderer/html/video.html');
-    }
-    if (startup.env.nav_A_active === 'warpstagram') {
-        mainWindow.loadFile('./src/renderer/html/warpstagram.html');
-    }
-
+    loadHtml(startup.env.nav_A_active);
     if (startup.dev.devTools) {
         mainWindow.webContents.openDevTools(); // Open DevTools - Remove for PRODUCTION!
     }
@@ -230,6 +221,7 @@ app.on('ready', () => {
         // console.log(storageAwaited);
         storageMain = storageAwaited;
         createWindow(); // creates main app window
+        setMenu(startup.nav_A_active);
         // createModalWindow();
     })();
     if (startup.dev.backendOnly) mainWindow.hide(); // devMode only

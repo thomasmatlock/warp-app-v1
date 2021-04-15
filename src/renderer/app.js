@@ -40,6 +40,7 @@ function GetIndex(sender) {
 ipcRenderer.on('window-ready', (e, storage) => {
     // auto.click_nav_A(startup.env.nav_A_active); // auto clicks active tab if active
     setActiveNav_A(startup.env.nav_A_active); // sets active Nav A
+    ipcRenderer.send('menu-change', startup.env.nav_A_active);
     if (startup.dev.clearStorage) items.resetStorage(); // clears localStorage if active
     items.startupAddAllItems(storage); // loads items stored in settings to UI
     // auto.click_nav_B(startup.env.nav_A_active, 'preferences'); // auto clicks paste, smartMode, activate, subscriptions, preferences, help
@@ -197,6 +198,7 @@ elements.nav_A_audio.addEventListener('click', (e) => {
     startup.env.nav_A_active = 'audio';
 });
 elements.nav_A_video.addEventListener('click', (e) => {
+    console.log('helo');
     ipcRenderer.send('menu-change', 'video');
     startup.env.nav_A_active = 'video';
 });
@@ -204,16 +206,16 @@ elements.nav_A_warpstagram.addEventListener('click', (e) => {
     ipcRenderer.send('menu-change', 'warpstagram');
     startup.env.nav_A_active = 'warpstagram';
 });
-elements.nav_B_button_audio_paste.addEventListener('click', (e) => {
-    userInput.validateURL(clipboard.readText(), startup.env.nav_A_active);
-});
-elements.nav_B_button_audio_activate.addEventListener('click', (e) => {
-    if (logging) console.log('clicked activate');
-});
-elements.nav_B_button_audio_preferences.addEventListener('click', (e) => {
-    if (logging) console.log('clicked preferences');
-    modals.modalPreferencesAdjust(state, elements, startup);
-});
+// elements.nav_B_button_audio_paste.addEventListener('click', (e) => {
+//     userInput.validateURL(clipboard.readText(), startup.env.nav_A_active);
+// });
+// elements.nav_B_button_audio_activate.addEventListener('click', (e) => {
+//     console.log('clicked activate');
+// });
+// elements.nav_B_button_audio_preferences.addEventListener('click', (e) => {
+//     if (logging) console.log('clicked preferences');
+//     modals.modalPreferencesAdjust(state, elements, startup);
+// });
 // elements.nav_B_button_audio_help.addEventListener('click', (e) => {
 //     if (logging) console.log('clicked help');
 // });
@@ -233,57 +235,57 @@ elements.nav_B_button_video_preferences.addEventListener('click', (e) => {
 });
 // Download lists listeners
 
-elements.download__list_audio_ID.addEventListener('click', (e) => {
-    console.log(e.target.parentNode);
-    console.log(
-        e.target.parentNode.parentNode.childNodes[3].childNodes[1].childNodes[1]
-        .outerText
-    );
-    let itemTitle;
-    if (e.target.parentNode.classList[0] === 'dl__item') {
-        itemTitle =
-            e.target.parentNode.parentNode.childNodes[0].childNodes[1]
-            .childNodes[3].childNodes[1].childNodes[1].outerText;
-    }
-    // THUMBNAIL
-    if (e.target.parentNode.classList[0] === 'dl__item_info-pane') {
-        itemTitle =
-            e.target.parentNode.parentNode.childNodes[3].childNodes[1]
-            .childNodes[1].outerText;
-    }
-    if (e.target.parentNode.classList[1] === 'dl__item_info-pane_indexMarker') {
-        itemTitle =
-            e.target.parentNode.parentNode.childNodes[1].childNodes[1]
-            .outerText;
-        console.log(itemTitle);
-    }
-    if (e.target.parentNode.parentNode.classList[0] === 'dl__item') {
-        itemTitle =
-            e.target.parentNode.parentNode.childNodes[1].childNodes[3]
-            .childNodes[1].childNodes[1].outerText;
-    }
-    if (
-        e.target.parentNode.parentNode.classList[0] ===
-        'dl__item_info-pane__left'
-    ) {
-        itemTitle =
-            e.target.parentNode.parentNode.childNodes[3].childNodes[1]
-            .childNodes[1].outerText;
-        console.log(itemTitle);
-    }
+// elements.download__list_audio_ID.addEventListener('click', (e) => {
+//     console.log(e.target.parentNode);
+//     console.log(
+//         e.target.parentNode.parentNode.childNodes[3].childNodes[1].childNodes[1]
+//         .outerText
+//     );
+//     let itemTitle;
+//     if (e.target.parentNode.classList[0] === 'dl__item') {
+//         itemTitle =
+//             e.target.parentNode.parentNode.childNodes[0].childNodes[1]
+//             .childNodes[3].childNodes[1].childNodes[1].outerText;
+//     }
+//     // THUMBNAIL
+//     if (e.target.parentNode.classList[0] === 'dl__item_info-pane') {
+//         itemTitle =
+//             e.target.parentNode.parentNode.childNodes[3].childNodes[1]
+//             .childNodes[1].outerText;
+//     }
+//     if (e.target.parentNode.classList[1] === 'dl__item_info-pane_indexMarker') {
+//         itemTitle =
+//             e.target.parentNode.parentNode.childNodes[1].childNodes[1]
+//             .outerText;
+//         console.log(itemTitle);
+//     }
+//     if (e.target.parentNode.parentNode.classList[0] === 'dl__item') {
+//         itemTitle =
+//             e.target.parentNode.parentNode.childNodes[1].childNodes[3]
+//             .childNodes[1].childNodes[1].outerText;
+//     }
+//     if (
+//         e.target.parentNode.parentNode.classList[0] ===
+//         'dl__item_info-pane__left'
+//     ) {
+//         itemTitle =
+//             e.target.parentNode.parentNode.childNodes[3].childNodes[1]
+//             .childNodes[1].outerText;
+//         console.log(itemTitle);
+//     }
 
-    // right actions panels
-    if (
-        e.target.parentNode.parentNode.classList[0] ===
-        'dl__item_info-pane__right'
-    ) {
-        itemTitle =
-            e.target.parentNode.parentNode.parentNode.childNodes[1]
-            .childNodes[3].childNodes[1].childNodes[1].outerText;
-    }
-    // console.log(itemTitle);
-    items.selectItem(elements.download__list_audio_ID, e, 'audio', itemTitle);
-});
+//     // right actions panels
+//     if (
+//         e.target.parentNode.parentNode.classList[0] ===
+//         'dl__item_info-pane__right'
+//     ) {
+//         itemTitle =
+//             e.target.parentNode.parentNode.parentNode.childNodes[1]
+//             .childNodes[3].childNodes[1].childNodes[1].outerText;
+//     }
+//     // console.log(itemTitle);
+//     items.selectItem(elements.download__list_audio_ID, e, 'audio', itemTitle);
+// });
 elements.download__list_video_ID.addEventListener('click', (e) => {
     let itemTitle;
     if (e.target.parentNode.classList[0] === 'dl__item') {

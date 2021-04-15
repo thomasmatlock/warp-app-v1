@@ -47,7 +47,7 @@ module.exports = (appWin) => {
             ],
         },
         {
-            label: 'Edit',
+            label: 'Subscriptions',
             submenu: [{
                     label: 'Subscribe to ',
                     submenu: [

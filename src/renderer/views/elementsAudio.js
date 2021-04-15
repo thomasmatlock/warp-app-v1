@@ -15,7 +15,7 @@ const elementsAudio = {
     nav_B__main: document.querySelector('.nav_B__main'),
     nav_B__minor: document.querySelector('.nav_B__minor'),
 
-    // Nav B audio
+    // Nav B audio 
     nav_B_button_audio_paste: document.querySelector(
         '.nav_B_button_audio_paste'
     ),
