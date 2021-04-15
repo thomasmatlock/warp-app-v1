@@ -46,6 +46,7 @@ ipcMain.on('quit', () => {
     app.quit();
     mainWindow = null;
 });
+//delete this comment
 ipcMain.on('storage-save', (e, storageObj, avType) => {
     fileController.settingsSave('settings', storageObj);
     // console.log('saving');
