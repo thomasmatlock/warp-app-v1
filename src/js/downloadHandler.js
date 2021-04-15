@@ -163,7 +163,6 @@ const getInfo = async function(itemURL, avType) {
 };
 
 const all = function(itemURL, avType) {
-    console.log(itemURL);
     itemInfo.type = avType;
     this.getInfo(itemURL, avType);
     this.downloadAndWrite(itemURL);
