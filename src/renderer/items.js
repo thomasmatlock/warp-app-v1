@@ -45,7 +45,7 @@ exports.addItem = (item, avType, isStartup) => {
         // if (isStartup) auto.clickElement(elements.dl__item_audio[0]);
     }
     if (avType === 'video') {
-        console.log(item.title);
+        // console.log(item.title);
         this.insertMarkup(item, avType);
         // console.log(item.finishedFilePath);
         let videoDownloadList = document.querySelector('.download__list_video');
@@ -154,9 +154,15 @@ exports.selectItem = (parentItemID, e, avType, itemTitle) => {
     let index = findIndexFromTitle(avType, itemTitle);
     // console.log(itemIndex);
     if (parentItemID.childNodes.length != 0) {
-        parentItemID.removeChild(parentItemID.childNodes[index]);
+        try {
+            parentItemID.removeChild(parentItemID.childNodes[index]);
+
+        } catch (error) {
+            console.log(error);
+            // this.updateStorage('do-not-use', avType, 'remove', index);
+        }
     }
-    // console.log(index);
+    console.log(index);
     this.updateStorage('do-not-use', avType, 'remove', index);
     // parentItemID.re;
 };
@@ -171,11 +177,11 @@ exports.clickDownloadList = (avType) => {
     }
 };
 const findIndexFromTitle = (avType, title) => {
-    console.log(`${title}`);
+    // console.log(`${title}`);
     if (avType === 'audio') {
         let arr = storage.downloadItems.audioArr;
         for (let i = 0; i < arr.length; i++) {
-            console.log(arr[i].title);
+            // console.log(arr[i].title);
             if (arr[i].title === title) {
                 // itemIndex = i;
                 return i;
@@ -190,6 +196,8 @@ const findIndexFromTitle = (avType, title) => {
                 // itemIndex = i;
                 // console.log(i);
                 return i;
+            } else {
+                console.log(`no match`);
             }
         }
     }

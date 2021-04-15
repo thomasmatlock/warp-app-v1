@@ -106,7 +106,7 @@ const removeVideoDetails = function() {
     itemInfo = {};
 };
 const removeCharactersFromTitle = function() {
-    console.log(itemInfo.title);
+    // console.log(itemInfo.title);
     itemInfo.title = itemInfo.title.replace(`|`, '');
     itemInfo.title = itemInfo.title.replace(`"`, '');
     itemInfo.title = itemInfo.title.replace(`"`, '');
@@ -116,12 +116,12 @@ const removeCharactersFromTitle = function() {
     itemInfo.title = itemInfo.title.replace(`\\`, '');
     itemInfo.title = itemInfo.title.replace(`/`, ' ');
     // itemInfo.title = itemInfo.title.replace(`:`, ' ');
-    // itemInfo.title = itemInfo.title.replace(`*`, ' ');
+    itemInfo.title = itemInfo.title.replace(`*`, '');
     // itemInfo.title = itemInfo.title.replace(`,`, '');
     // itemInfo.title = itemInfo.title.replace(`<`, ' ');
     // itemInfo.title = itemInfo.title.replace(`>`, ' ');
     // itemInfo.title = itemInfo.title.replace(`#`, ' ');
-    console.log(itemInfo.title);
+    // console.log(itemInfo.title);
 };
 
 const downloadAndWrite = function(itemURL) {

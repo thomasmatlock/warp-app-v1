@@ -238,6 +238,8 @@ elements.nav_B_button_video_preferences.addEventListener('click', (e) => {
 // Download lists listeners
 
 elements.download__list_audio_ID.addEventListener('click', (e) => {
+    // console.log(e.target.parentNode.parentNode.childNodes[3].childNodes[1].innerText);
+    console.log(e.target.parentNode.parentNode.childNodes[3].childNodes[1].childNodes[1].outerText);
     let itemTitle;
     if (e.target.parentNode.classList[0] === 'dl__item') {
         itemTitle =
@@ -254,11 +256,21 @@ elements.download__list_audio_ID.addEventListener('click', (e) => {
         itemTitle =
             e.target.parentNode.parentNode.childNodes[1].childNodes[1]
             .outerText;
+        console.log(itemTitle);
     }
     if (e.target.parentNode.parentNode.classList[0] === 'dl__item') {
         itemTitle =
             e.target.parentNode.parentNode.childNodes[1].childNodes[3]
             .childNodes[1].childNodes[1].outerText;
+    }
+    if (
+        e.target.parentNode.parentNode.classList[0] ===
+        'dl__item_info-pane__left'
+    ) {
+        itemTitle =
+            e.target.parentNode.parentNode.childNodes[3].childNodes[1]
+            .childNodes[1].outerText;
+        // console.log(itemTitle);
     }
 
     // right actions panels
@@ -270,6 +282,7 @@ elements.download__list_audio_ID.addEventListener('click', (e) => {
             e.target.parentNode.parentNode.parentNode.childNodes[1]
             .childNodes[3].childNodes[1].childNodes[1].outerText;
     }
+    // console.log(itemTitle);
     items.selectItem(elements.download__list_audio_ID, e, 'audio', itemTitle);
 });
 elements.download__list_video_ID.addEventListener('click', (e) => {
