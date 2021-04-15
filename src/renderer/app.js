@@ -221,10 +221,10 @@ elements.nav_B_button_audio_preferences.addEventListener('click', (e) => {
 elements.nav_B_button_video_paste.addEventListener('click', (e) => {
     userInput.validateURL(clipboard.readText(), startup.env.nav_A_active);
 });
-elements.nav_B_button_video_smartMode.addEventListener('click', (e) => {
-    if (logging) console.log('clicked smart mode');
-    elements.nav_B_button_video_smartMode.classList.add('nav_B_button--active');
-});
+// elements.nav_B_button_video_smartMode.addEventListener('click', (e) => {
+//     if (logging) console.log('clicked smart mode');
+//     elements.nav_B_button_video_smartMode.classList.add('nav_B_button--active');
+// });
 elements.nav_B_button_video_activate.addEventListener('click', (e) => {
     if (logging) console.log('clicked activate');
 });
@@ -270,7 +270,7 @@ elements.download__list_audio_ID.addEventListener('click', (e) => {
             e.target.parentNode.parentNode.parentNode.childNodes[1]
             .childNodes[3].childNodes[1].childNodes[1].outerText;
     }
-    items.removeItem(elements.download__list_audio_ID, e, 'audio', itemTitle);
+    items.selectItem(elements.download__list_audio_ID, e, 'audio', itemTitle);
 });
 elements.download__list_video_ID.addEventListener('click', (e) => {
     let itemTitle;
@@ -306,7 +306,7 @@ elements.download__list_video_ID.addEventListener('click', (e) => {
             .childNodes[3].childNodes[1].childNodes[1].outerText;
     }
 
-    items.removeItem(elements.download__list_video_ID, e, 'video', itemTitle);
+    items.selectItem(elements.download__list_video_ID, e, 'video', itemTitle);
 });
 
 // const findIndexOfItem = (parentItemID, e, avType) => {
