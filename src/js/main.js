@@ -38,9 +38,20 @@ ipcMain.on('new-item', (e, itemURL, avType, platform) => {
     e.reply('paste-new-url', itemURL, avType, platform); // send message to app js
 });
 ipcMain.on('menu-change', (e, menuType) => {
-    if (menuType === 'audio') appMenuAudio(mainWindow.webContents); // sets audio menu if audio tab is clicked
-    if (menuType === 'video') appMenuVideo(mainWindow.webContents); // sets video menu if video tab is clicked
-    if (menuType === 'warpstagram') appMenuWarpstagram(mainWindow.webContents); // sets video menu if video tab is clicked
+    if (menuType === 'audio') {
+        appMenuAudio(mainWindow.webContents); // sets audio menu if audio tab is clicked
+        mainWindow.loadFile('./src/renderer/html/audio.html');
+    }
+    if (menuType === 'video') {
+        appMenuVideo(mainWindow.webContents); // sets audio menu if audio tab is clicked
+        mainWindow.loadFile('./src/renderer/html/video.html');
+    }
+    if (menuType === 'warpstagram') {
+        appMenuWarpstagram(mainWindow.webContents); // sets audio menu if audio tab is clicked
+        mainWindow.loadFile('./src/renderer/html/warpstagram.html');
+    }
+    // if (menuType === 'video') appMenuVideo(mainWindow.webContents); // sets video menu if video tab is clicked
+    // if (menuType === 'warpstagram') appMenuWarpstagram(mainWindow.webContents); // sets video menu if video tab is clicked
 });
 ipcMain.on('quit', () => {
     app.quit();
@@ -122,8 +133,19 @@ function createWindow() {
 
     // addDevMenu();
 
-    mainWindow.loadFile('./src/renderer/main.html'); // Load index.html into the new BrowserWindow
-    // mainWindow.loadFile('./main.html'); // Load index.html into the new BrowserWindow
+    // mainWindow.loadFile('./src/renderer/main.html');
+    if (startup.env.nav_A_active === 'audio') {
+
+        mainWindow.loadFile('./src/renderer/html/audio.html');
+    }
+    if (startup.env.nav_A_active === 'video') {
+
+        mainWindow.loadFile('./src/renderer/html/video.html');
+    }
+    if (startup.env.nav_A_active === 'warpstagram') {
+        mainWindow.loadFile('./src/renderer/html/warpstagram.html');
+    }
+
     if (startup.dev.devTools) {
         mainWindow.webContents.openDevTools(); // Open DevTools - Remove for PRODUCTION!
     }

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,600,700" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet" />
+    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon" />
+    <script src="https://kit.fontawesome.com/ee88c53ddb.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../../../css/style.css" />
+    <title>Warp | Download anything.</title>
+</head>
+
+<body>
+    <header class="header">
+        <div class="nav_A">
+            <!-- <input type="text" auto-focus> -->
+            <a id="nav_A_audio" class="nav_A-tab nav_A-tab--active" href="#slide-audio">Audio</a>
+            <a id="nav_A_video" class="nav_A-tab" href="#slide-video">Video</a>
+            <!-- <a id="nav_A_warpstagram" class="nav_A-tab" href="#slide-2">Audio Tools</a> -->
+            <a id="nav_A_warpstagram" class="nav_A-tab" href="#slide-warpstagram">Warpstagram</a>
+            <!-- <a id="nav_A_4" class="nav_A-tab" href="#slide-4">Postfire</a> -->
+        </div>
+    </header>
+
+    <div class="content-slide" id="slide-audio">
+        <div class="content-container content-container-audio">
+            <div class="nav-container">
+                <div class="nav_B nav_B_audio">
+                    <div class="nav_B__main nav_B__child">
+                        <a id="nav_B_audioButton0" class="nav_B_button nav_B_button_audio nav_B_button_audio_paste" href="#slide-audio ">
+                            <div class="nav_B_icon">
+                                <i class="fas fa-download fa-2x"></i>
+                            </div>
+                            <div class="nav_B_text">
+                                <p>
+                                    Paste link
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="nav_B__minor nav_B__child">
+                        <a id="nav_B_audioButton1" class="nav_B_button nav_B_button_audio nav_B_button_audio_activate" href="#slide-audio ">
+                            <div class="nav_B_icon">
+                                <i class="fas fa-rocket fa-2x"></i>
+                            </div>
+                            <div class="nav_B_text">
+                                <p>
+                                    Activate
+                                </p>
+                            </div>
+                        </a>
+                        <a id="nav_B_audioButton2" class="nav_B_button nav_B_button_audio nav_B_button_audio_preferences" href="#slide-audio ">
+                            <div class="nav_B_icon">
+                                <i class="far fa-lightbulb fa-2x"></i>
+                            </div>
+                            <div class="nav_B_text">
+                                <p>
+                                    Preferences
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <ul id="download__list_audio_ID" class="download__list download__list_audio"></ul>
+        </div>
+    </div>
+</body>
+<script>
+    require('../app.js'); // renderer main file
+    require('../items.js'); // items downloader
+    require('../automate.js'); //
+    require('../views/elements'); // dom nodes
+</script>
+
+</html>

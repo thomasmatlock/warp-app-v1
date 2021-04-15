@@ -38,11 +38,11 @@ function GetIndex(sender) {
 // IPCRENDERER LISTENERS
 // activates selected nav A tab on window ready
 ipcRenderer.on('window-ready', (e, storage) => {
-    auto.click_nav_A(startup.env.nav_A_active); // auto clicks active tab if active
+    // auto.click_nav_A(startup.env.nav_A_active); // auto clicks active tab if active
     setActiveNav_A(startup.env.nav_A_active); // sets active Nav A
     if (startup.dev.clearStorage) items.resetStorage(); // clears localStorage if active
     items.startupAddAllItems(storage); // loads items stored in settings to UI
-    auto.click_nav_B(startup.env.nav_A_active, 'preferences'); // auto clicks paste, smartMode, activate, subscriptions, preferences, help
+    // auto.click_nav_B(startup.env.nav_A_active, 'preferences'); // auto clicks paste, smartMode, activate, subscriptions, preferences, help
     // items.clickDownloadList('audio'); // auto click top download item if it exists to ready the itemIndexFinder
     // items.clickDownloadList('video'); // auto click top download item if it exists to ready the itemIndexFinder
 });
@@ -221,10 +221,6 @@ elements.nav_B_button_audio_preferences.addEventListener('click', (e) => {
 elements.nav_B_button_video_paste.addEventListener('click', (e) => {
     userInput.validateURL(clipboard.readText(), startup.env.nav_A_active);
 });
-// elements.nav_B_button_video_smartMode.addEventListener('click', (e) => {
-//     if (logging) console.log('clicked smart mode');
-//     elements.nav_B_button_video_smartMode.classList.add('nav_B_button--active');
-// });
 elements.nav_B_button_video_activate.addEventListener('click', (e) => {
     if (logging) console.log('clicked activate');
 });

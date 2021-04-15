@@ -26,8 +26,8 @@ exports.startupAddAllItems = (storageSent) => {
     storage = storageSent;
     // console.log(storage);
 
-    this.addItemsFromArray(storage.downloadItems.audioArr, 'audio');
-    this.addItemsFromArray(storage.downloadItems.videoArr, 'video');
+    // this.addItemsFromArray(storage.downloadItems.audioArr, 'audio');
+    // this.addItemsFromArray(storage.downloadItems.videoArr, 'video');
 };
 exports.downloadItem = (itemURL, avType, platform) => {
     if (startup.dev.getDownloadItemInfo) {
