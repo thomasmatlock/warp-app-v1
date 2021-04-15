@@ -163,6 +163,7 @@ exports.selectItem = (parentItemID, e, avType, itemTitle) => {
         }
     }
     console.log(index);
+    index = null;
     this.updateStorage('do-not-use', avType, 'remove', index);
     // parentItemID.re;
 };

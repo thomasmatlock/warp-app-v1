@@ -106,7 +106,8 @@ const removeVideoDetails = function() {
     itemInfo = {};
 };
 const removeCharactersFromTitle = function() {
-    // console.log(itemInfo.title);
+    console.log(itemInfo.title);
+    itemInfo.title = itemInfo.title.replace(`|`, '');
     itemInfo.title = itemInfo.title.replace(`|`, '');
     itemInfo.title = itemInfo.title.replace(`"`, '');
     itemInfo.title = itemInfo.title.replace(`"`, '');
@@ -120,7 +121,7 @@ const removeCharactersFromTitle = function() {
     // itemInfo.title = itemInfo.title.replace(`,`, '');
     // itemInfo.title = itemInfo.title.replace(`<`, ' ');
     // itemInfo.title = itemInfo.title.replace(`>`, ' ');
-    // itemInfo.title = itemInfo.title.replace(`#`, ' ');
+    itemInfo.title = itemInfo.title.replace(`#`, ' ');
     // console.log(itemInfo.title);
 };
 
@@ -168,7 +169,6 @@ const all = function(itemURL, avType) {
     console.log(itemURL);
     itemInfo.type = avType;
     this.getInfo(itemURL, avType);
-
 
     this.downloadAndWrite(itemURL);
     // console.log(itemInfo.url);
