@@ -30,6 +30,7 @@ const pattArr = [
 
 let pattMatchIndex, platform;
 exports.validateURL = (url, avType) => {
+    // console.log(url);
     if (startup.dev.useRandomYoutubeURL)
         url = miscFunctions.randomFromArray(startup.dev.URLSyoutube); // substitutes a random placeholder URL if dev mode active
     if (startup.dev.useRandomMiscURL) {
