@@ -63,14 +63,7 @@ ipcMain.on('reset-storage', (e, storageObj) => {
         mainWindow = null;
     }, 1000);
     app.relaunch();
-    app.quit();
-    // fileController.settingsSave('settings', storageObj); // #fix, wrong arg1 save name, should be 'settings'
-});
-ipcMain.on('restart-app', () => {
-    mainWindow.close();
-    mainWindow = null;
-    app.relaunch();
-    app.quit();
+    app.exit();
     // fileController.settingsSave('settings', storageObj); // #fix, wrong arg1 save name, should be 'settings'
 });
 const load = async() => {

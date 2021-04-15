@@ -97,6 +97,7 @@ exports.load = () => {
     ipcRenderer.send('load-storage');
 };
 exports.updateStorage = (item, avType, addRemoveType, index) => {
+    // console.log(item);
     if (addRemoveType === 'add') {
         if (avType === 'audio') {
             // console.log('updateStorage');
@@ -116,12 +117,10 @@ exports.updateStorage = (item, avType, addRemoveType, index) => {
     }
     if (addRemoveType === 'remove') {
         if (avType === 'audio') {
-            storage.downloadItems.audioArr.splice(index, 1);
-            ipcRenderer.send('storage-save', storage, avType);
+            console.log(`removing audio item from storage`);
         }
         if (avType === 'video') {
-            storage.downloadItems.videoArr.splice(index, 1);
-            ipcRenderer.send('storage-save', storage, avType);
+            console.log(`removing video item from storage`);
         }
     }
 };
@@ -148,9 +147,18 @@ exports.removeItem = (parentItemID, e, avType, itemTitle) => {
     itemIndex = 0;
     ///////////////////////////////////////////////////////////////////////
     // findIndexFromTitle(avType, itemTitle);
+<<<<<<< HEAD
     // let index = findIndexFromTitle(avType, itemTitle);
     // parentItemID.removeChild(parentItemID.childNodes[index]); // removes item
     // this.updateStorage('do-not-use', avType, 'remove', index); // persists storage
+=======
+    let index = findIndexFromTitle(avType, itemTitle);
+    // console.log(itemIndex);
+    parentItemID.removeChild(parentItemID.childNodes[index]);
+    console.log(index);
+    this.updateStorage('do-not-use', avType, 'remove', index);
+    // parentItemID.re;
+>>>>>>> parent of f6aee9a (look the thing happens now)
 };
 exports.clickDownloadList = (avType) => {
     if (avType === 'audio') {
@@ -173,7 +181,7 @@ ipcRenderer.on('storage-save-success', (e, storageSentFromMain) => {
 ////////////////////////////////////////////////////////////////////////////////////
 
 const findIndexFromTitle = (avType, title) => {
-    // console.log(` ${title}`);
+    console.log(` ${title}`);
     if (avType === 'audio') {
         let arr = storage.downloadItems.audioArr;
         for (let i = 0; i < arr.length; i++) {
@@ -187,10 +195,10 @@ const findIndexFromTitle = (avType, title) => {
     if (avType === 'video') {
         let arr = storage.downloadItems.videoArr;
         for (let i = 0; i < arr.length; i++) {
-            // console.log(arr[i].title);
+            console.log(arr[i].title);
             if (arr[i].title.slice(0, 10) === title.slice(0, 10)) {
                 // itemIndex = i;
-                // console.log(i);
+                console.log(i);
                 return i;
             }
         }

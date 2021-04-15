@@ -110,19 +110,11 @@ module.exports = (appWin) => {
     const devMenu = new MenuItem({
         label: 'Developer',
         submenu: [{
-                label: 'Restart',
-                accelerator: 'CmdOrCtrl+Shift+R',
-                click: () => {
-                    appWin.send('Restart');
-                },
-            },
-            {
                 label: 'Reset storage',
                 click: () => {
                     appWin.send('Reset-storage');
                 },
             },
-
             // {
             //     label: 'Item 2',
             //     submenu: [{

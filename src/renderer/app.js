@@ -158,10 +158,6 @@ ipcRenderer.on('Reset-storage', () => {
     console.log('reset');
     ipcRenderer.send('reset-storage');
 });
-ipcRenderer.on('Restart', () => {
-    ipcRenderer.send('restart-app');
-    console.log('restarting...');
-});
 
 ////////////////////////////////////////////////////////////
 // DOM EVENT LISTENERS
