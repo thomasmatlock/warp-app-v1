@@ -134,8 +134,7 @@ function createWindow() {
         // console.log('did-finish-load');
         // console.log(storageMain);
         wc.send('window-ready', storageMain);
-
-        splash.destroy();
+        if (startup.splashScreen) splash.destroy();
     });
     wc.on('devtools-opened', () => {});
 
@@ -195,7 +194,7 @@ function createModalWindow() {
 ////////////////////////////////////////////////////////////////////
 // APP LISTENERS (monitoring main node process)
 app.on('ready', () => {
-    createSplashWindow();
+    if (startup.splashScreen) createSplashWindow();
 
     displayController = new displayControllerReq(); // positions output window to display depending on single/multi-monitor
     startup.init(); // all startup checks, latest version, isOnline, hasFFmpeg etc

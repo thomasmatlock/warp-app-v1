@@ -236,7 +236,7 @@ elements.nav_B_button_video_preferences.addEventListener('click', (e) => {
     modals.modalPreferencesAdjust(state, elements, startup);
 });
 // Download lists listeners
-// let itemIndex;
+
 elements.download__list_audio_ID.addEventListener('click', (e) => {
     let itemTitle;
     if (e.target.parentNode.classList[0] === 'dl__item') {

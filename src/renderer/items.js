@@ -125,7 +125,7 @@ exports.updateStorage = (item, avType, addRemoveType, index) => {
         }
     }
 };
-
+// nice
 exports.addItemsFromArray = (arr, avType) => {
     for (let i = 0; i < arr.length; i++) {
         this.addItem(arr[i], avType);
@@ -170,11 +170,11 @@ exports.clickDownloadList = (avType) => {
     }
 };
 const findIndexFromTitle = (avType, title) => {
-    // console.log(` ${title}`);
+    console.log(` ${title}`);
     if (avType === 'audio') {
         let arr = storage.downloadItems.audioArr;
         for (let i = 0; i < arr.length; i++) {
-            // console.log(arr[i].title);
+            console.log(arr[i].title);
             if (arr[i].title === title) {
                 // itemIndex = i;
                 return i;
@@ -184,7 +184,7 @@ const findIndexFromTitle = (avType, title) => {
     if (avType === 'video') {
         let arr = storage.downloadItems.videoArr;
         for (let i = 0; i < arr.length; i++) {
-            // console.log(arr[i].title);
+            console.log(arr[i].title);
             if (arr[i].title.slice(0, 10) === title.slice(0, 10)) {
                 // itemIndex = i;
                 // console.log(i);
@@ -201,47 +201,3 @@ ipcRenderer.on('storage-save-success', (e, storageSentFromMain) => {
     // console.log(storage);
 });
 ////////////////////////////////////////////////////////////////////////////////////
-
-// const findIndexOfItem = (parentItemID, e, avType) => {
-//     var g = parentItemID;
-//     for (var i = 0, len = g.children.length; i < len; i++) {
-//         // console.log(i);
-//         (function(index) {
-//             g.children[i].onclick = function() {
-//                 // alert(index);
-//                 // console.log(index);
-//                 // indexSelected = index;
-//                 itemIndex = index;
-
-//                 // if (e.target.className === 'fas fa-cog')
-//                 //     console.log(`you clicked the ${indexSelected} cog`);
-//                 // if (
-//                 //     e.target.className === 'far fa-folder-open' &&
-//                 //     avType == 'video'
-//                 // ) {
-//                 //     console.log(`you clicked the ${indexSelected} folder`);
-//                 //     // shell.showItemInFolder(fileController.dirVideoPath);
-//                 //     shell.openPath(fileController.dirVideoPath);
-//                 //     // shell.showItemInFolder(
-//                 //     //     `C:\\Users\\Tommy\\Documents\\Warp Downloader\\Video\\Just Go With It Meet the wife HD CLIP.mp4`
-//                 //     // );
-//                 // }
-//             };
-//         })(i);
-//     }
-// };
-////////////////////////////////////////////////////////////////////////////////////
-
-// exports.downloadThumbnail = (url) => {
-//     options = {
-//         url: 'http://someurl.com/image2.jpg',
-//         dest: '/path/to/dest/photo.jpg', // will be saved to /path/to/dest/photo.jpg
-//     };
-
-//     imageDownloader
-//         .image(options)
-//         .then(({ filename }) => {
-//             console.log('Saved to', filename); // saved to /path/to/dest/photo.jpg
-//         })
-//         .catch((err) => console.error(err));
-// };
