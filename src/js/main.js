@@ -226,7 +226,7 @@ app.on('ready', () => {
         // console.log(storageAwaited);
         storageMain = storageAwaited;
         createWindow(); // creates main app window
-        setMenu(startup.env.nav_A_active);
+        setMenu(startup.nav_A_active);
         // createModalWindow();
     })();
     if (startup.dev.backendOnly) mainWindow.hide(); // devMode only
