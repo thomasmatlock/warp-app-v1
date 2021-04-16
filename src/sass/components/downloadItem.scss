@@ -31,15 +31,26 @@
 
 // ALL LIST ITEMS
 .download__list li {
+    // height: $download-item-video-height;
+    // max-height: $download-item-video-max-height;
+    // background-color: #eee;
+    // position: relative;
+}
+
+// PARENT CONTAINER
+.dl__item {
+    background-color: $colorDownloadItemBackground;
+    border-radius: 2px;
+    border: 1px solid $colorDownloadItemBorder;
     height: $download-item-video-height;
     max-height: $download-item-video-max-height;
-    border: 1px solid $colorDownloadItemBorder;
-    // background-color: #eee;
-    position: relative;
-    border-radius: 4px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    z-index: 1 !important;
     transition: all ease-out 0.05s;
     // border: 1px dotted purple;
-    background-color: $colorDownloadItemBackground;
     // background-color: black;
     &:hover {
         background-color: $colorDownloadItemBackground_hover;
@@ -51,13 +62,21 @@
     }
 }
 
-// PARENT CONTAINER
-.dl__item {
-    height: $download-item-video-height;
-    max-height: $download-item-video-max-height;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+.dl__item_icon {
+    padding-top: 4px;
+}
+
+.icon:hover .downloadItemMenu_container {
+    visibility: visible;
+    z-index: 999 !important;
+}
+
+// .dl__item:hover .downloadItemMenu_container {
+//     visibility: visible;
+//     z-index: 999 !important;
+// }
+.dl__item .downloadItemMenu_container {
+    visibility: hidden;
 }
 
 .dl__item_info-pane__left {

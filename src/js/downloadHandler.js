@@ -106,7 +106,6 @@ const removeVideoDetails = function() {
     itemInfo = {};
 };
 const removeCharactersFromTitle = function() {
-    console.log(itemInfo.title);
     itemInfo.title = itemInfo.title.replace(`|`, '');
     itemInfo.title = itemInfo.title.replace(`|`, '');
     itemInfo.title = itemInfo.title.replace(`"`, '');
@@ -166,7 +165,7 @@ const getInfo = async function(itemURL, avType) {
 };
 
 const all = function(itemURL, avType) {
-    console.log(itemURL);
+    // console.log(itemURL);
     itemInfo.type = avType;
     this.getInfo(itemURL, avType);
 

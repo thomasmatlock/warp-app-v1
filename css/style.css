@@ -437,27 +437,34 @@ li {
   padding: 5px;
   border: solid 2px black; }
 
-.download__list li {
+.dl__item {
+  background-color: #353746;
+  border-radius: 2px;
+  border: 1px solid #1f2029;
   height: 60px;
   max-height: 60px;
-  border: 1px solid #1f2029;
-  position: relative;
-  border-radius: 4px;
-  transition: all ease-out 0.05s;
-  background-color: #353746; }
-  .download__list li:hover {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+  z-index: 1 !important;
+  transition: all ease-out 0.05s; }
+  .dl__item:hover {
     background-color: #f0eff3;
     border-radius: 6px;
     transform: translate(20%);
     transform: scale(1.005);
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2); }
 
-.dl__item {
-  height: 60px;
-  max-height: 60px;
-  display: flex;
-  flex-direction: row;
-  align-items: center; }
+.dl__item_icon {
+  padding-top: 4px; }
+
+.icon:hover .downloadItemMenu_container {
+  visibility: visible;
+  z-index: 999 !important; }
+
+.dl__item .downloadItemMenu_container {
+  visibility: hidden; }
 
 .dl__item_info-pane__left {
   height: 60px;

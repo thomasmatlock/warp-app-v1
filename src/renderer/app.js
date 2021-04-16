@@ -29,7 +29,7 @@ ipcRenderer.on('window-ready', (e, storage) => {
     ipcRenderer.send('menu-change', startup.env.nav_A_active);
     if (startup.dev.clearStorage) items.resetStorage(); // clears localStorage if active
     items.startupAddAllItems(storage); // loads items stored in settings to UI
-    auto.click_nav_B(startup.env.nav_A_active, 'preferences'); // auto clicks paste, smartMode, activate, subscriptions, preferences, help
+    // auto.click_nav_B(startup.env.nav_A_active, 'preferences'); // auto clicks paste, smartMode, activate, subscriptions, preferences, help
     // items.clickDownloadList('audio'); // auto click top download item if it exists to ready the itemIndexFinder
     // items.clickDownloadList('video'); // auto click top download item if it exists to ready the itemIndexFinder
 });
