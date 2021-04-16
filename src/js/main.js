@@ -39,7 +39,13 @@ ipcMain.on('new-item', (e, itemURL, avType, platform) => {
 });
 ipcMain.on('menu-change', (e, menuType) => {
 <<<<<<< HEAD
+<<<<<<< HEAD
     setMenu(menuType);
+=======
+    if (menuType === 'audio') appMenuAudio(mainWindow.webContents); // sets audio menu if audio tab is clicked
+    if (menuType === 'video') appMenuVideo(mainWindow.webContents); // sets video menu if video tab is clicked
+    if (menuType === 'warpstagram') appMenuWarpstagram(mainWindow.webContents); // sets video menu if video tab is clicked
+>>>>>>> parent of a5ac5c9 (reafactoring main html into 3 html files)
 =======
     if (menuType === 'audio') appMenuAudio(mainWindow.webContents); // sets audio menu if audio tab is clicked
     if (menuType === 'video') appMenuVideo(mainWindow.webContents); // sets video menu if video tab is clicked
@@ -149,6 +155,9 @@ function createWindow() {
 
     mainWindow.loadFile('./src/renderer/main.html'); // Load index.html into the new BrowserWindow
     // mainWindow.loadFile('./main.html'); // Load index.html into the new BrowserWindow
+<<<<<<< HEAD
+>>>>>>> parent of a5ac5c9 (reafactoring main html into 3 html files)
+=======
 >>>>>>> parent of a5ac5c9 (reafactoring main html into 3 html files)
     if (startup.dev.devTools) {
         mainWindow.webContents.openDevTools(); // Open DevTools - Remove for PRODUCTION!
