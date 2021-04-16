@@ -448,6 +448,7 @@ li {
   align-items: center;
   cursor: pointer;
   z-index: 1 !important;
+  width: 100%;
   transition: all ease-out 0.05s; }
   .dl__item:hover {
     background-color: #f0eff3;

@@ -146,17 +146,17 @@ exports.resetStorage = () => {
 };
 // let itemIndex;
 exports.selectItem = (parentItemID, e, avType, itemTitle) => {
-    console.log(itemTitle);
+    // console.log(itemTitle);
     // findIndexOfItem(parentItemID, e, avType);list.removeChild(list.childNodes[0]);
     itemIndex = 0;
     ///////////////////////////////////////////////////////////////////////
     // findIndexFromTitle(avType, itemTitle);
     let index = findIndexFromTitle(avType, itemTitle);
+    console.log(index);
     // console.log(itemIndex);
     if (parentItemID.childNodes.length != 0) {
         try {
             parentItemID.removeChild(parentItemID.childNodes[index]);
-
         } catch (error) {
             console.log(error);
             // this.updateStorage('do-not-use', avType, 'remove', index);
@@ -198,7 +198,7 @@ const findIndexFromTitle = (avType, title) => {
                 // console.log(i);
                 return i;
             } else {
-                console.log(`no match`);
+                // console.log(`no match`);
             }
         }
     }

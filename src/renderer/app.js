@@ -29,7 +29,7 @@ ipcRenderer.on('window-ready', (e, storage) => {
     ipcRenderer.send('menu-change', startup.env.nav_A_active);
     if (startup.dev.clearStorage) items.resetStorage(); // clears localStorage if active
     items.startupAddAllItems(storage); // loads items stored in settings to UI
-    // auto.click_nav_B(startup.env.nav_A_active, 'preferences'); // auto clicks paste, smartMode, activate, subscriptions, preferences, help
+    auto.click_nav_B(startup.env.nav_A_active, 'paste'); // auto clicks paste, smartMode, activate, subscriptions, preferences, help
     // items.clickDownloadList('audio'); // auto click top download item if it exists to ready the itemIndexFinder
     // items.clickDownloadList('video'); // auto click top download item if it exists to ready the itemIndexFinder
 });
@@ -225,11 +225,12 @@ elements.nav_B_button_video_preferences.addEventListener('click', (e) => {
 // Download lists listeners
 
 elements.download__list_audio_ID.addEventListener('click', (e) => {
-    console.log(e.target.parentNode);
-    console.log(
-        e.target.parentNode.parentNode.childNodes[3].childNodes[1].childNodes[1]
-        .outerText
-    );
+    console.log(e.target.parentNode.parentNode.parentNode);
+    // console.log(e.target.parentElement);
+    // console.log(
+    //     e.target.parentNode.parentNode.childNodes[3].childNodes[1].childNodes[1]
+    //     .outerText
+    // );
     let itemTitle;
     if (e.target.parentNode.classList[0] === 'dl__item') {
         itemTitle =
@@ -260,7 +261,7 @@ elements.download__list_audio_ID.addEventListener('click', (e) => {
         itemTitle =
             e.target.parentNode.parentNode.childNodes[3].childNodes[1]
             .childNodes[1].outerText;
-        console.log(itemTitle);
+        // console.log(itemTitle);
     }
 
     // right actions panels
