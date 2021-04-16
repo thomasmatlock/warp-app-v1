@@ -38,12 +38,12 @@ function GetIndex(sender) {
 // IPCRENDERER LISTENERS
 // activates selected nav A tab on window ready
 ipcRenderer.on('window-ready', (e, storage) => {
-    // auto.click_nav_A(startup.env.nav_A_active); // auto clicks active tab if active
+    auto.click_nav_A(startup.env.nav_A_active); // auto clicks active tab if active
     setActiveNav_A(startup.env.nav_A_active); // sets active Nav A
     ipcRenderer.send('menu-change', startup.env.nav_A_active);
     if (startup.dev.clearStorage) items.resetStorage(); // clears localStorage if active
     items.startupAddAllItems(storage); // loads items stored in settings to UI
-    // auto.click_nav_B(startup.env.nav_A_active, 'preferences'); // auto clicks paste, smartMode, activate, subscriptions, preferences, help
+    auto.click_nav_B(startup.env.nav_A_active, 'preferences'); // auto clicks paste, smartMode, activate, subscriptions, preferences, help
     // items.clickDownloadList('audio'); // auto click top download item if it exists to ready the itemIndexFinder
     // items.clickDownloadList('video'); // auto click top download item if it exists to ready the itemIndexFinder
 });
@@ -208,4 +208,161 @@ elements.nav_A_video.addEventListener('click', (e) => {
 elements.nav_A_warpstagram.addEventListener('click', (e) => {
     ipcRenderer.send('menu-change', 'warpstagram');
     startup.env.nav_A_active = 'warpstagram';
+<<<<<<< HEAD
 });
+=======
+});
+elements.nav_B_button_audio_paste.addEventListener('click', (e) => {
+    userInput.validateURL(clipboard.readText(), startup.env.nav_A_active);
+});
+elements.nav_B_button_audio_activate.addEventListener('click', (e) => {
+    if (logging) console.log('clicked activate');
+});
+elements.nav_B_button_audio_preferences.addEventListener('click', (e) => {
+    if (logging) console.log('clicked preferences');
+    modals.modalPreferencesAdjust(state, elements, startup);
+});
+// elements.nav_B_button_audio_help.addEventListener('click', (e) => {
+//     if (logging) console.log('clicked help');
+// });
+// Nav B video LISTENERS
+elements.nav_B_button_video_paste.addEventListener('click', (e) => {
+    userInput.validateURL(clipboard.readText(), startup.env.nav_A_active);
+});
+// elements.nav_B_button_video_smartMode.addEventListener('click', (e) => {
+//     if (logging) console.log('clicked smart mode');
+//     elements.nav_B_button_video_smartMode.classList.add('nav_B_button--active');
+// });
+elements.nav_B_button_video_activate.addEventListener('click', (e) => {
+    if (logging) console.log('clicked activate');
+});
+elements.nav_B_button_video_subscriptions.addEventListener('click', (e) => {
+    if (logging) console.log('clicked subscriptions');
+});
+elements.nav_B_button_video_preferences.addEventListener('click', (e) => {
+    if (logging) console.log('clicked preferences');
+    modals.modalPreferencesAdjust(state, elements, startup);
+});
+// Download lists listeners
+
+elements.download__list_audio_ID.addEventListener('click', (e) => {
+    console.log(e.target.parentNode);
+    console.log(
+        e.target.parentNode.parentNode.childNodes[3].childNodes[1].childNodes[1]
+        .outerText
+    );
+    let itemTitle;
+    if (e.target.parentNode.classList[0] === 'dl__item') {
+        itemTitle =
+            e.target.parentNode.parentNode.childNodes[0].childNodes[1]
+            .childNodes[3].childNodes[1].childNodes[1].outerText;
+    }
+    // THUMBNAIL
+    if (e.target.parentNode.classList[0] === 'dl__item_info-pane') {
+        itemTitle =
+            e.target.parentNode.parentNode.childNodes[3].childNodes[1]
+            .childNodes[1].outerText;
+    }
+    if (e.target.parentNode.classList[1] === 'dl__item_info-pane_indexMarker') {
+        itemTitle =
+            e.target.parentNode.parentNode.childNodes[1].childNodes[1]
+            .outerText;
+        console.log(itemTitle);
+    }
+    if (e.target.parentNode.parentNode.classList[0] === 'dl__item') {
+        itemTitle =
+            e.target.parentNode.parentNode.childNodes[1].childNodes[3]
+            .childNodes[1].childNodes[1].outerText;
+    }
+    if (
+        e.target.parentNode.parentNode.classList[0] ===
+        'dl__item_info-pane__left'
+    ) {
+        itemTitle =
+            e.target.parentNode.parentNode.childNodes[3].childNodes[1]
+            .childNodes[1].outerText;
+        console.log(itemTitle);
+    }
+
+    // right actions panels
+    if (
+        e.target.parentNode.parentNode.classList[0] ===
+        'dl__item_info-pane__right'
+    ) {
+        itemTitle =
+            e.target.parentNode.parentNode.parentNode.childNodes[1]
+            .childNodes[3].childNodes[1].childNodes[1].outerText;
+    }
+    // console.log(itemTitle);
+    items.selectItem(elements.download__list_audio_ID, e, 'audio', itemTitle);
+});
+elements.download__list_video_ID.addEventListener('click', (e) => {
+    let itemTitle;
+    if (e.target.parentNode.classList[0] === 'dl__item') {
+        itemTitle =
+            e.target.parentNode.parentNode.childNodes[0].childNodes[1]
+            .childNodes[3].childNodes[1].childNodes[1].outerText;
+    }
+    // THUMBNAIL
+    if (e.target.parentNode.classList[0] === 'dl__item_info-pane') {
+        itemTitle =
+            e.target.parentNode.parentNode.childNodes[3].childNodes[1]
+            .childNodes[1].outerText;
+    }
+    if (e.target.parentNode.classList[1] === 'dl__item_info-pane_indexMarker') {
+        itemTitle =
+            e.target.parentNode.parentNode.childNodes[1].childNodes[1]
+            .outerText;
+    }
+    if (e.target.parentNode.parentNode.classList[0] === 'dl__item') {
+        itemTitle =
+            e.target.parentNode.parentNode.childNodes[1].childNodes[3]
+            .childNodes[1].childNodes[1].outerText;
+    }
+
+    // right actions panels
+    if (
+        e.target.parentNode.parentNode.classList[0] ===
+        'dl__item_info-pane__right'
+    ) {
+        itemTitle =
+            e.target.parentNode.parentNode.parentNode.childNodes[1]
+            .childNodes[3].childNodes[1].childNodes[1].outerText;
+    }
+
+    items.selectItem(elements.download__list_video_ID, e, 'video', itemTitle);
+});
+
+// const findIndexOfItem = (parentItemID, e, avType) => {
+//     let indexSelected;
+//     var g = parentItemID;
+//     for (var i = 0, len = g.children.length; i < len; i++) {
+//         (function(index) {
+//             g.children[i].onclick = function() {
+//                 // alert(index);
+//                 // console.log(index);
+//                 // indexSelected = index;
+//                 itemIndex = index;
+
+//                 // if (e.target.className === 'fas fa-cog')
+//                 //     console.log(`you clicked the ${indexSelected} cog`);
+//                 // if (
+//                 //     e.target.className === 'far fa-folder-open' &&
+//                 //     avType == 'video'
+//                 // ) {
+//                 //     console.log(`you clicked the ${indexSelected} folder`);
+//                 //     // shell.showItemInFolder(fileController.dirVideoPath);
+//                 //     shell.openPath(fileController.dirVideoPath);
+//                 //     // shell.showItemInFolder(
+//                 //     //     `C:\\Users\\Tommy\\Documents\\Warp Downloader\\Video\\Just Go With It Meet the wife HD CLIP.mp4`
+//                 //     // );
+//                 // }
+//             };
+//         })(i);
+//     }
+// };
+
+// const findItemInStorages = (avType, index) => {
+//     console.log();
+// }
+>>>>>>> parent of a5ac5c9 (reafactoring main html into 3 html files)

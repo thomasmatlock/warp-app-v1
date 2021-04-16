@@ -38,7 +38,13 @@ ipcMain.on('new-item', (e, itemURL, avType, platform) => {
     e.reply('paste-new-url', itemURL, avType, platform); // send message to app js
 });
 ipcMain.on('menu-change', (e, menuType) => {
+<<<<<<< HEAD
     setMenu(menuType);
+=======
+    if (menuType === 'audio') appMenuAudio(mainWindow.webContents); // sets audio menu if audio tab is clicked
+    if (menuType === 'video') appMenuVideo(mainWindow.webContents); // sets video menu if video tab is clicked
+    if (menuType === 'warpstagram') appMenuWarpstagram(mainWindow.webContents); // sets video menu if video tab is clicked
+>>>>>>> parent of a5ac5c9 (reafactoring main html into 3 html files)
 });
 
 ipcMain.on('quit', () => {
@@ -136,7 +142,14 @@ function createWindow() {
         // backgroundColor: '#ff8500', // use the same color as your html file is, the main window will display this until html fully loads. This is a little better than making your app hang for a second until the html loads, then displaying the window
     });
 
+<<<<<<< HEAD
     loadHtml(startup.env.nav_A_active);
+=======
+    // addDevMenu();
+
+    mainWindow.loadFile('./src/renderer/main.html'); // Load index.html into the new BrowserWindow
+    // mainWindow.loadFile('./main.html'); // Load index.html into the new BrowserWindow
+>>>>>>> parent of a5ac5c9 (reafactoring main html into 3 html files)
     if (startup.dev.devTools) {
         mainWindow.webContents.openDevTools(); // Open DevTools - Remove for PRODUCTION!
     }
