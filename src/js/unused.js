@@ -41,3 +41,36 @@
 //         })
 //         .catch((err) => console.error(err));
 // };
+////////////////////////////////////////////////////////////////////////////////////
+// const findIndexOfItem = (parentItemID, e, avType) => {
+//     let indexSelected;
+//     var g = parentItemID;
+//     for (var i = 0, len = g.children.length; i < len; i++) {
+//         (function(index) {
+//             g.children[i].onclick = function() {
+//                 // alert(index);
+//                 // console.log(index);
+//                 // indexSelected = index;
+//                 itemIndex = index;
+
+//                 // if (e.target.className === 'fas fa-cog')
+//                 //     console.log(`you clicked the ${indexSelected} cog`);
+//                 // if (
+//                 //     e.target.className === 'far fa-folder-open' &&
+//                 //     avType == 'video'
+//                 // ) {
+//                 //     console.log(`you clicked the ${indexSelected} folder`);
+//                 //     // shell.showItemInFolder(fileController.dirVideoPath);
+//                 //     shell.openPath(fileController.dirVideoPath);
+//                 //     // shell.showItemInFolder(
+//                 //     //     `C:\\Users\\Tommy\\Documents\\Warp Downloader\\Video\\Just Go With It Meet the wife HD CLIP.mp4`
+//                 //     // );
+//                 // }
+//             };
+//         })(i);
+//     }
+// };
+
+// const findItemInStorages = (avType, index) => {
+//     console.log();
+// }
