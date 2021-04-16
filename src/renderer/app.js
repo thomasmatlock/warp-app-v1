@@ -20,21 +20,7 @@ const stateReq = require('./state');
 const fileControllerReq = require('../js/fileController');
 const fileController = new fileControllerReq();
 let state = new stateReq();
-////////////////////////////////////////////////////////////
-function GetIndex(sender) {
-    var aElements = sender.parentNode.parentNode.getElementsByTagName('a');
-    var aElementsLength = aElements.length;
 
-    var index;
-    for (var i = 0; i < aElementsLength; i++) {
-        if (aElements[i] == sender) {
-            //this condition is never true
-            index = i;
-            return index;
-        }
-    }
-}
-////////////////////////////////////////////////////////////
 // IPCRENDERER LISTENERS
 // activates selected nav A tab on window ready
 ipcRenderer.on('window-ready', (e, storage) => {
@@ -198,19 +184,12 @@ elements.nav_A_audio.addEventListener('click', (e) => {
     startup.env.nav_A_active = 'audio';
 });
 elements.nav_A_video.addEventListener('click', (e) => {
-<<<<<<< HEAD
-    console.log('helo');
-=======
->>>>>>> parent of 5907dcc (working, menu had to loaded after html load completed)
     ipcRenderer.send('menu-change', 'video');
     startup.env.nav_A_active = 'video';
 });
 elements.nav_A_warpstagram.addEventListener('click', (e) => {
     ipcRenderer.send('menu-change', 'warpstagram');
     startup.env.nav_A_active = 'warpstagram';
-<<<<<<< HEAD
-});
-=======
 });
 elements.nav_B_button_audio_paste.addEventListener('click', (e) => {
     userInput.validateURL(clipboard.readText(), startup.env.nav_A_active);
@@ -332,37 +311,3 @@ elements.download__list_video_ID.addEventListener('click', (e) => {
 
     items.selectItem(elements.download__list_video_ID, e, 'video', itemTitle);
 });
-
-// const findIndexOfItem = (parentItemID, e, avType) => {
-//     let indexSelected;
-//     var g = parentItemID;
-//     for (var i = 0, len = g.children.length; i < len; i++) {
-//         (function(index) {
-//             g.children[i].onclick = function() {
-//                 // alert(index);
-//                 // console.log(index);
-//                 // indexSelected = index;
-//                 itemIndex = index;
-
-//                 // if (e.target.className === 'fas fa-cog')
-//                 //     console.log(`you clicked the ${indexSelected} cog`);
-//                 // if (
-//                 //     e.target.className === 'far fa-folder-open' &&
-//                 //     avType == 'video'
-//                 // ) {
-//                 //     console.log(`you clicked the ${indexSelected} folder`);
-//                 //     // shell.showItemInFolder(fileController.dirVideoPath);
-//                 //     shell.openPath(fileController.dirVideoPath);
-//                 //     // shell.showItemInFolder(
-//                 //     //     `C:\\Users\\Tommy\\Documents\\Warp Downloader\\Video\\Just Go With It Meet the wife HD CLIP.mp4`
-//                 //     // );
-//                 // }
-//             };
-//         })(i);
-//     }
-// };
-
-// const findItemInStorages = (avType, index) => {
-//     console.log();
-// }
->>>>>>> parent of a5ac5c9 (reafactoring main html into 3 html files)
