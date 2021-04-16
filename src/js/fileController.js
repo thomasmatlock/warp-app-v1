@@ -72,10 +72,7 @@ class fileController {
         }
     };
     initSettingsFileCreation = (settings) => {
-        // console.log('initSettingsFileCreation');
-        // console.log(settings);
         try {
-            // console.log(systemInfo);
             if (!fs.existsSync(this.settingsFile)) {
                 //  fs.mkdirSync(this.dirMainPath);
                 this.settingsSave('settings', settings);
@@ -95,8 +92,6 @@ class fileController {
         });
     };
     settingsSave = (name, obj) => {
-        // console.log('saving settings');
-        // console.log(name, obj);
         settings.set(name, obj);
     };
     settingsLoad = async() => {
@@ -110,33 +105,25 @@ class fileController {
         return result;
     };
     reset = () => {
-        // settings.reset();
         this.deleteSettingsFile();
         setTimeout(() => {
             this.initSettingsFileCreation(startupObj.settings);
         }, 2000);
     };
     readDirFiles = (dir) => {
-        // directory path
-        //  const dir = this.dirVideoPath;
-
-        // list all files in the directory
         fs.readdir(dir, (err, files) => {
             if (err) {
                 throw err;
             }
-            // HI
-            // files object contains all files names
-            // log them on console
+
             files.forEach((file) => {
                 console.log(file);
             });
         });
     };
     init = (startupObj) => {
-        // startup = startupObj;
         this.initDirCreation();
-        // console.log(startupObj.dev.clearStorage);
+
         if (!startupObj.dev.clearStorage)
             this.initSettingsFileCreation(startupObj.settings);
         if (startupObj.dev.clearStorage) this.deleteSettingsFile();

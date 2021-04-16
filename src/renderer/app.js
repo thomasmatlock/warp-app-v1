@@ -23,7 +23,9 @@ let state = new stateReq();
     ipcRenderer.on('window-ready', (e, storage) => {
         addEventListeners(); // activates DOM event listeners
         addMenuListeners(); // activates menu event listeners
-        auto.click_nav_A(startup.env.nav_A_active); // auto clicks active tab if active
+        setTimeout(() => {
+            auto.click_nav_A(startup.env.nav_A_active); // auto clicks active tab if active
+        }, 50);
         setActiveNav_A(startup.env.nav_A_active); // sets active Nav A
         ipcRenderer.send('menu-change', startup.env.nav_A_active);
         if (startup.dev.clearStorage) items.resetStorage(); // clears localStorage if active
