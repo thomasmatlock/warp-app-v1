@@ -20,6 +20,8 @@ const stateReq = require('./state');
 const fileControllerReq = require('../js/fileController');
 const fileController = new fileControllerReq();
 let state = new stateReq();
+const { v4: uuidv4 } = require('uuid');
+// var uniqueid = require('uniqueid');
 
 // IPCRENDERER LISTENERS
 // activates selected nav A tab on window ready
@@ -32,6 +34,17 @@ ipcRenderer.on('window-ready', (e, storage) => {
     auto.click_nav_B(startup.env.nav_A_active, 'paste'); // auto clicks paste, smartMode, activate, subscriptions, preferences, help
     // items.clickDownloadList('audio'); // auto click top download item if it exists to ready the itemIndexFinder
     // items.clickDownloadList('video'); // auto click top download item if it exists to ready the itemIndexFinder
+
+    // var first = uniqueid('prefix');
+    // var second = uniqueid(null, 'suffix');
+    // var regular = uniqueid();
+
+    // console.log(first()); //=> "prefix0"
+    // console.log(second()); //=> "0suffix"
+    // console.log(first()); //=> "prefix1"
+    // console.log(second()); //=> "1suffix"
+    // console.log(regular());
+    console.log(uuidv4());
 });
 
 const setActiveNav_A = (nav_A_active) => {
@@ -225,7 +238,7 @@ elements.nav_B_button_video_preferences.addEventListener('click', (e) => {
 // Download lists listeners
 
 elements.download__list_audio_ID.addEventListener('click', (e) => {
-    console.log(e.target.parentNode.parentNode.parentNode);
+    console.log(e.target.parentNode.parentNode.parentNode.childNodes);
     // console.log(e.target.parentElement);
     // console.log(
     //     e.target.parentNode.parentNode.childNodes[3].childNodes[1].childNodes[1]
