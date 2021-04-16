@@ -64,6 +64,7 @@ exports.resetMarkup = () => {
 exports.insertMarkup = (downloadInfo, avType) => {
     // INSERT AUDIO MARKUP
     if (avType === 'audio') {
+        markupAudio = markupAudio.replace('%{id}', downloadInfo.id);
         markupAudio = markupAudio.replace('%{title}', downloadInfo.title);
         markupAudio = markupAudio.replace(
             '%{thumbnail}',
@@ -81,6 +82,7 @@ exports.insertMarkup = (downloadInfo, avType) => {
             '%{thumbnail}',
             downloadInfo.thumbnailURL
         );
+        markupVideo = markupVideo.replace('%{id}', downloadInfo.id);
         markupVideo = markupVideo.replace('%{title}', downloadInfo.title);
         markupVideo = markupVideo.replace('%{fps}', downloadInfo.fps);
         markupVideo = markupVideo.replace('%{height}', downloadInfo.height);
@@ -100,15 +102,11 @@ exports.load = () => {
 exports.updateStorage = (item, avType, addRemoveType, index) => {
     if (addRemoveType === 'add') {
         if (avType === 'audio') {
-            // console.log('updateStorage');
-            // console.log(storage);
             storage.downloadItems.audioArr.push(item);
             this.save(avType);
             this.load();
         }
         if (avType === 'video') {
-            // console.log('updateStorage');
-            // console.log(storage);
             storage.downloadItems.videoArr.push(item);
             ipcRenderer.send('storage-save', storage, avType);
             this.save(avType);
@@ -126,7 +124,6 @@ exports.updateStorage = (item, avType, addRemoveType, index) => {
         }
     }
 };
-// nice
 exports.addItemsFromArray = (arr, avType) => {
     for (let i = 0; i < arr.length; i++) {
         this.addItem(arr[i], avType);
@@ -144,28 +141,29 @@ exports.resetStorage = () => {
     this.save();
     ipcRenderer.send('reset-storage', storage);
 };
-// let itemIndex;
-exports.selectItem = (parentItemID, e, avType, itemTitle) => {
-    // console.log(itemTitle);
-    // findIndexOfItem(parentItemID, e, avType);list.removeChild(list.childNodes[0]);
-    itemIndex = 0;
-    ///////////////////////////////////////////////////////////////////////
-    // findIndexFromTitle(avType, itemTitle);
-    let index = findIndexFromTitle(avType, itemTitle);
-    console.log(index);
-    // console.log(itemIndex);
-    if (parentItemID.childNodes.length != 0) {
-        try {
-            parentItemID.removeChild(parentItemID.childNodes[index]);
-        } catch (error) {
-            console.log(error);
-            // this.updateStorage('do-not-use', avType, 'remove', index);
+exports.selectItem = (e, avType, itemID) => {
+    document.getElementById(itemID).remove();
+    let itemIndex;
+
+    if (avType === 'audio') {
+        let arr = storage.downloadItems.audioArr;
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i].id === itemID) {
+                console.log(arr[i].title);
+                itemIndex = i;
+            }
         }
     }
-    console.log(index);
-    index = null;
-    this.updateStorage('do-not-use', avType, 'remove', index);
-    // parentItemID.re;
+    if (avType === 'video') {
+        let arr = storage.downloadItems.videoArr;
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i].id === itemID) {
+                console.log(arr[i].title);
+                itemIndex = i;
+            }
+        }
+    }
+    this.updateStorage('ignore', avType, 'remove', itemIndex);
 };
 exports.clickDownloadList = (avType) => {
     if (avType === 'audio') {
@@ -177,37 +175,36 @@ exports.clickDownloadList = (avType) => {
             auto.clickElement(elements.dl__item_video[0]); // auto click top audio download item if it exists to ready the itemIndexFinder
     }
 };
-const findIndexFromTitle = (avType, title) => {
-    // console.log(`${title}`);
-    if (avType === 'audio') {
-        let arr = storage.downloadItems.audioArr;
-        for (let i = 0; i < arr.length; i++) {
-            // console.log(arr[i].title);
-            if (arr[i].title === title) {
-                // itemIndex = i;
-                return i;
-            }
-        }
-    }
-    if (avType === 'video') {
-        let arr = storage.downloadItems.videoArr;
-        for (let i = 0; i < arr.length; i++) {
-            // console.log(arr[i].title);
-            if (arr[i].title.slice(0, 10) === title.slice(0, 10)) {
-                // itemIndex = i;
-                // console.log(i);
-                return i;
-            } else {
-                // console.log(`no match`);
-            }
-        }
-    }
-};
+// const findIndexFromID = (avType, id) => {
+//     // console.log(`${id}`);
+//     if (avType === 'audio') {
+//         let arr = storage.downloadItems.audioArr;
+//         for (let i = 0; i < arr.length; i++) {
+//             // console.log(arr[i].id);
+//             if (arr[i].id === id) {
+//                 // itemIndex = i;
+//                 return i;
+//             }
+//         }
+//     }
+//     if (avType === 'video') {
+//         let arr = storage.downloadItems.videoArr;
+//         for (let i = 0; i < arr.length; i++) {
+//             // console.log(arr[i].id);
+//             if (arr[i].id.slice(0, 10) === id.slice(0, 10)) {
+//                 // itemIndex = i;
+//                 // console.log(i); storage.downloadItems.videoArr
+//                 return i;
+//             } else {
+//                 // console.log(`no match`);
+//             }
+//         }
+//     }
+// };
 ////////////////////////////////////////////////////////////////////////////////////
 ipcRenderer.on('storage-save-success', (e, storageSentFromMain) => {
     // console.log('storage-save-success');
     // console.log(storageSentFromMain);
     storage = storageSentFromMain;
     // console.log(storage);
-});
-////////////////////////////////////////////////////////////////////////////////////
+}); ////////////////////////////////////////////////////////////////////////////////////

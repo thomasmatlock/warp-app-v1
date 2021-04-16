@@ -7,6 +7,7 @@ const fileController = new fileControllerReq();
 const startupReq = require('./startup');
 const startup = new startupReq();
 const items = require('../renderer/items');
+const { v4: uuidv4 } = require('uuid');
 
 let itemInfo = {
     fileSize: '',
@@ -15,6 +16,7 @@ let itemInfo = {
     fps: '',
     height: '',
     hrs: '',
+    id: '',
     itemURL: '',
     lengthFormatted: '',
     secs: '',
@@ -93,6 +95,7 @@ const cloneVideoDetails = function(itemURL, info, avType) {
         avType === 'audio' ?
         path.join(fileController.dirAudioPath, `${itemInfo.title}.mp3`) :
         path.join(fileController.dirVideoPath, `${itemInfo.title}.mp4`);
+    itemInfo.id = uuidv4();
     // this.url = this.selectedFormat.url;
     // this.projectionType = this.selectedFormat.projectionType;
     // this.averageBitrate = this.selectedFormat.averageBitrate;
@@ -157,7 +160,7 @@ const getInfo = async function(itemURL, avType) {
     await ytdl.getBasicInfo(itemURL).then((info) => {
         this.cloneVideoDetails(itemURL, info, avType);
         this.removeCharactersFromTitle();
-        // console.log(itemInfo.filePath);
+        // console.log(itemInfo.id);
         items.addItem(itemInfo, avType);
         items.updateStorage(itemInfo, avType, 'add');
         // items.clickDownloadList(avType);

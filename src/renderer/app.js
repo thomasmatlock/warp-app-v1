@@ -21,7 +21,6 @@ const fileControllerReq = require('../js/fileController');
 const fileController = new fileControllerReq();
 let state = new stateReq();
 const { v4: uuidv4 } = require('uuid');
-// var uniqueid = require('uniqueid');
 
 // IPCRENDERER LISTENERS
 // activates selected nav A tab on window ready
@@ -34,17 +33,6 @@ ipcRenderer.on('window-ready', (e, storage) => {
     auto.click_nav_B(startup.env.nav_A_active, 'paste'); // auto clicks paste, smartMode, activate, subscriptions, preferences, help
     // items.clickDownloadList('audio'); // auto click top download item if it exists to ready the itemIndexFinder
     // items.clickDownloadList('video'); // auto click top download item if it exists to ready the itemIndexFinder
-
-    // var first = uniqueid('prefix');
-    // var second = uniqueid(null, 'suffix');
-    // var regular = uniqueid();
-
-    // console.log(first()); //=> "prefix0"
-    // console.log(second()); //=> "0suffix"
-    // console.log(first()); //=> "prefix1"
-    // console.log(second()); //=> "1suffix"
-    // console.log(regular());
-    console.log(uuidv4());
 });
 
 const setActiveNav_A = (nav_A_active) => {
@@ -235,93 +223,13 @@ elements.nav_B_button_video_preferences.addEventListener('click', (e) => {
     if (logging) console.log('clicked preferences');
     modals.modalPreferencesAdjust(state, elements, startup);
 });
+
 // Download lists listeners
-
 elements.download__list_audio_ID.addEventListener('click', (e) => {
-    console.log(e.target.parentNode.parentNode.parentNode.childNodes);
-    // console.log(e.target.parentElement);
-    // console.log(
-    //     e.target.parentNode.parentNode.childNodes[3].childNodes[1].childNodes[1]
-    //     .outerText
-    // );
-    let itemTitle;
-    if (e.target.parentNode.classList[0] === 'dl__item') {
-        itemTitle =
-            e.target.parentNode.parentNode.childNodes[0].childNodes[1]
-            .childNodes[3].childNodes[1].childNodes[1].outerText;
-    }
-    // THUMBNAIL
-    if (e.target.parentNode.classList[0] === 'dl__item_info-pane') {
-        itemTitle =
-            e.target.parentNode.parentNode.childNodes[3].childNodes[1]
-            .childNodes[1].outerText;
-    }
-    if (e.target.parentNode.classList[1] === 'dl__item_info-pane_indexMarker') {
-        itemTitle =
-            e.target.parentNode.parentNode.childNodes[1].childNodes[1]
-            .outerText;
-        console.log(itemTitle);
-    }
-    if (e.target.parentNode.parentNode.classList[0] === 'dl__item') {
-        itemTitle =
-            e.target.parentNode.parentNode.childNodes[1].childNodes[3]
-            .childNodes[1].childNodes[1].outerText;
-    }
-    if (
-        e.target.parentNode.parentNode.classList[0] ===
-        'dl__item_info-pane__left'
-    ) {
-        itemTitle =
-            e.target.parentNode.parentNode.childNodes[3].childNodes[1]
-            .childNodes[1].outerText;
-        // console.log(itemTitle);
-    }
-
-    // right actions panels
-    if (
-        e.target.parentNode.parentNode.classList[0] ===
-        'dl__item_info-pane__right'
-    ) {
-        itemTitle =
-            e.target.parentNode.parentNode.parentNode.childNodes[1]
-            .childNodes[3].childNodes[1].childNodes[1].outerText;
-    }
-    // console.log(itemTitle);
-    items.selectItem(elements.download__list_audio_ID, e, 'audio', itemTitle);
+    let itemID = e.target.parentNode.parentNode.parentNode.id;
+    items.selectItem(e, 'audio', itemID);
 });
 elements.download__list_video_ID.addEventListener('click', (e) => {
-    let itemTitle;
-    if (e.target.parentNode.classList[0] === 'dl__item') {
-        itemTitle =
-            e.target.parentNode.parentNode.childNodes[0].childNodes[1]
-            .childNodes[3].childNodes[1].childNodes[1].outerText;
-    }
-    // THUMBNAIL
-    if (e.target.parentNode.classList[0] === 'dl__item_info-pane') {
-        itemTitle =
-            e.target.parentNode.parentNode.childNodes[3].childNodes[1]
-            .childNodes[1].outerText;
-    }
-    if (e.target.parentNode.classList[1] === 'dl__item_info-pane_indexMarker') {
-        itemTitle =
-            e.target.parentNode.parentNode.childNodes[1].childNodes[1]
-            .outerText;
-    }
-    if (e.target.parentNode.parentNode.classList[0] === 'dl__item') {
-        itemTitle =
-            e.target.parentNode.parentNode.childNodes[1].childNodes[3]
-            .childNodes[1].childNodes[1].outerText;
-    }
-
-    // right actions panels
-    if (
-        e.target.parentNode.parentNode.classList[0] ===
-        'dl__item_info-pane__right'
-    ) {
-        itemTitle =
-            e.target.parentNode.parentNode.parentNode.childNodes[1]
-            .childNodes[3].childNodes[1].childNodes[1].outerText;
-    }
-
-    items.selectItem(elements.download__list_video_ID, e, 'video', itemTitle);
+    let itemID = e.target.parentNode.parentNode.parentNode.id;
+    items.selectItem(e, 'video', itemID);
 });
