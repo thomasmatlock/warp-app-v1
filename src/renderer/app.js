@@ -192,16 +192,15 @@ elements.nav_A.addEventListener('click', (e) => {
         }
     }
 });
-// menu-change
 elements.nav_A_audio.addEventListener('click', (e) => {
-    ipcRenderer.send('menu-change', 'audio');
+    ipcRenderer.send('load-html-and-menu', 'audio');
     startup.env.nav_A_active = 'audio';
 });
 elements.nav_A_video.addEventListener('click', (e) => {
-    ipcRenderer.send('menu-change', 'video');
+    ipcRenderer.send('load-html-and-menu', 'video');
     startup.env.nav_A_active = 'video';
 });
 elements.nav_A_warpstagram.addEventListener('click', (e) => {
-    ipcRenderer.send('menu-change', 'warpstagram');
+    ipcRenderer.send('load-html-and-menu', 'warpstagram');
     startup.env.nav_A_active = 'warpstagram';
 });

@@ -40,6 +40,11 @@ ipcMain.on('new-item', (e, itemURL, avType, platform) => {
 ipcMain.on('menu-change', (e, menuType) => {
     setMenu(menuType);
 });
+ipcMain.on('load-html-and-menu', (e, type) => {
+    loadHtml(type);
+    setMenu(type);
+    e.reply('load-html-and-menu-success');
+});
 
 ipcMain.on('quit', () => {
     app.quit();
@@ -87,8 +92,8 @@ const setMenu = (menuType) => {
         // mainWindow.loadFile('./src/renderer/html/warpstagram.html');
     }
 };
-const loadHtml = (menuType) => {
-    mainWindow.loadFile(`./src/renderer/html/${menuType}.html`);
+const loadHtml = (htmlType) => {
+    mainWindow.loadFile(`./src/renderer/html/${htmlType}.html`);
 };
 const load = async() => {
     const result = await fileController.settingsLoad();
