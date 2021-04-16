@@ -62,37 +62,31 @@ ipcMain.on('storage-save', (e, storageObj, avType) => {
         storageAwaited = await load();
         e.reply('storage-save-success', storageAwaited);
     })();
-    // console.log(storageAwaited);
 });
 ipcMain.on('reset-storage', (e, storageObj) => {
     fileController.reset();
-    setTimeout(() => {
-        mainWindow.close();
+    (async() => {
+        mainWindow.destroy();
         mainWindow = null;
-    }, 1000);
+    })();
     app.relaunch();
     app.quit();
-    // fileController.settingsSave('settings', storageObj); // #fix, wrong arg1 save name, should be 'settings'
 });
 ipcMain.on('restart-app', () => {
-    mainWindow.close();
+    mainWindow.destroy();
     mainWindow = null;
     app.relaunch();
     app.quit();
-    // fileController.settingsSave('settings', storageObj); // #fix, wrong arg1 save name, should be 'settings'
 });
 const setMenu = (menuType) => {
     if (menuType === 'audio') {
         appMenuAudio(mainWindow.webContents); // sets audio menu if audio tab is clicked
-        // mainWindow.loadFile('./src/renderer/html/audio.html');
     }
     if (menuType === 'video') {
         appMenuVideo(mainWindow.webContents); // sets audio menu if audio tab is clicked
-        // mainWindow.loadFile('./src/renderer/html/video.html');
     }
     if (menuType === 'warpstagram') {
         appMenuWarpstagram(mainWindow.webContents); // sets audio menu if audio tab is clicked
-        // mainWindow.loadFile('./src/renderer/html/warpstagram.html');
     }
 };
 const loadHtml = (menuType) => {
@@ -145,8 +139,6 @@ function createWindow() {
     });
 
     loadHtml(startup.env.nav_A_active);
-
-    // addDevMenu();
 
     mainWindow.loadFile('./src/renderer/main.html'); // Load index.html into the new BrowserWindow
     // mainWindow.loadFile('./main.html'); // Load index.html into the new BrowserWindow
@@ -228,7 +220,6 @@ app.on('ready', () => {
     fileController.init(startup); // checks for local directories and creates them if non existent
     displayController.discoverDisplay(); // discovers which display to use, 3 dev mode displayController or production
     let storageAwaited;
-    // console.log(startup.settings);
     (async() => {
         storageAwaited = await load();
         // console.log('ready');

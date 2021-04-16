@@ -29,11 +29,6 @@ exports.startupAddAllItems = (storageSent) => {
     this.addItemsFromArray(storage.downloadItems.audioArr, 'audio');
     this.addItemsFromArray(storage.downloadItems.videoArr, 'video');
 };
-exports.downloadItem = (itemURL, avType, platform) => {
-    if (startup.dev.getDownloadItemInfo) {
-        downloadHandler.all(itemURL, avType); // exports without object
-    }
-};
 exports.addItem = (item, avType, isStartup) => {
     if (avType === 'audio') {
         this.insertMarkup(item, avType); // splices in item info to markup
@@ -57,10 +52,42 @@ exports.addItem = (item, avType, isStartup) => {
         // if (!isStartup) auto.clickElement(elements.dl__item_video[0]);
     }
 };
-exports.resetMarkup = () => {
-    markupAudio = markup.audio;
-    markupVideo = markup.video;
+exports.addItemsFromArray = (arr, avType) => {
+    for (let i = 0; i < arr.length; i++) {
+        this.addItem(arr[i], avType);
+    }
 };
+exports.downloadItem = (itemURL, avType, platform) => {
+    if (startup.dev.getDownloadItemInfo) {
+        downloadHandler.all(itemURL, avType); // exports without object
+    }
+};
+exports.selectItem = (e, avType, itemID) => {
+    document.getElementById(itemID).remove();
+    let itemIndex;
+
+    if (avType === 'audio') {
+        let arr = storage.downloadItems.audioArr;
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i].id === itemID) {
+                // console.log(arr[i].title);
+                itemIndex = i;
+            }
+        }
+    }
+    if (avType === 'video') {
+        let arr = storage.downloadItems.videoArr;
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i].id === itemID) {
+                // console.log(arr[i].title);
+                itemIndex = i;
+            }
+        }
+    }
+    this.updateStorage('ignore', avType, 'remove', itemIndex);
+};
+
+///////////////////////   MARKUP   ///////////////////////
 exports.insertMarkup = (downloadInfo, avType) => {
     // INSERT AUDIO MARKUP
     if (avType === 'audio') {
@@ -93,6 +120,12 @@ exports.insertMarkup = (downloadInfo, avType) => {
         );
     }
 };
+exports.resetMarkup = () => {
+    markupAudio = markup.audio;
+    markupVideo = markup.video;
+};
+
+///////////////////////   STORAGE   ///////////////////////
 exports.save = (avType) => {
     ipcRenderer.send('storage-save', storage, avType);
 };
@@ -124,11 +157,6 @@ exports.updateStorage = (item, avType, addRemoveType, index) => {
         }
     }
 };
-exports.addItemsFromArray = (arr, avType) => {
-    for (let i = 0; i < arr.length; i++) {
-        this.addItem(arr[i], avType);
-    }
-};
 exports.resetStorage = () => {
     storage = {
         audioArr: [],
@@ -141,70 +169,7 @@ exports.resetStorage = () => {
     this.save();
     ipcRenderer.send('reset-storage', storage);
 };
-exports.selectItem = (e, avType, itemID) => {
-    document.getElementById(itemID).remove();
-    let itemIndex;
-
-    if (avType === 'audio') {
-        let arr = storage.downloadItems.audioArr;
-        for (let i = 0; i < arr.length; i++) {
-            if (arr[i].id === itemID) {
-                console.log(arr[i].title);
-                itemIndex = i;
-            }
-        }
-    }
-    if (avType === 'video') {
-        let arr = storage.downloadItems.videoArr;
-        for (let i = 0; i < arr.length; i++) {
-            if (arr[i].id === itemID) {
-                console.log(arr[i].title);
-                itemIndex = i;
-            }
-        }
-    }
-    this.updateStorage('ignore', avType, 'remove', itemIndex);
-};
-exports.clickDownloadList = (avType) => {
-    if (avType === 'audio') {
-        if (elements.dl__item_audio[0])
-            auto.clickElement(elements.dl__item_audio[0]); // auto click top audio download item if it exists to ready the itemIndexFinder
-    }
-    if (avType === 'video') {
-        if (elements.dl__item_video[0])
-            auto.clickElement(elements.dl__item_video[0]); // auto click top audio download item if it exists to ready the itemIndexFinder
-    }
-};
-// const findIndexFromID = (avType, id) => {
-//     // console.log(`${id}`);
-//     if (avType === 'audio') {
-//         let arr = storage.downloadItems.audioArr;
-//         for (let i = 0; i < arr.length; i++) {
-//             // console.log(arr[i].id);
-//             if (arr[i].id === id) {
-//                 // itemIndex = i;
-//                 return i;
-//             }
-//         }
-//     }
-//     if (avType === 'video') {
-//         let arr = storage.downloadItems.videoArr;
-//         for (let i = 0; i < arr.length; i++) {
-//             // console.log(arr[i].id);
-//             if (arr[i].id.slice(0, 10) === id.slice(0, 10)) {
-//                 // itemIndex = i;
-//                 // console.log(i); storage.downloadItems.videoArr
-//                 return i;
-//             } else {
-//                 // console.log(`no match`);
-//             }
-//         }
-//     }
-// };
 ////////////////////////////////////////////////////////////////////////////////////
 ipcRenderer.on('storage-save-success', (e, storageSentFromMain) => {
-    // console.log('storage-save-success');
-    // console.log(storageSentFromMain);
     storage = storageSentFromMain;
-    // console.log(storage);
-}); ////////////////////////////////////////////////////////////////////////////////////
+});

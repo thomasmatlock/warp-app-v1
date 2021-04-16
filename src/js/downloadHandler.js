@@ -129,8 +129,7 @@ const removeCharactersFromTitle = function() {
 
 const downloadAndWrite = function(itemURL) {
     if (startup.dev.getDownloadItemInfo) {
-        setTimeout(() => {
-            // this.removeCharactersFromTitle();
+        (async() => {
             var filePath;
             if (itemInfo.type === 'audio') {
                 filePath = path.join(
@@ -148,7 +147,7 @@ const downloadAndWrite = function(itemURL) {
             if (startup.dev.downloadFile) {
                 ytdl(itemURL).pipe(fs.createWriteStream(filePath)); // downloads video
             }
-        }, 1000);
+        })();
     }
 };
 // // #async

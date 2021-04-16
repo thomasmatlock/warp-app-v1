@@ -100,18 +100,13 @@ class fileController {
         settings.set(name, obj);
     };
     settingsLoad = async() => {
-        // settings.get('color.name');
-        // settings.get('color.code.rgb[1]');
         let promise = new Promise((resolve, reject) => {
-            // setTimeout(() => resolve('done!'), 2000);
-            // setTimeout(() => resolve(settings.get('color.name')), 500);
-            // setTimeout(() => resolve(settings.get('color.code.rgb[1')), 500);
-            setTimeout(() => resolve(settings.get('settings')), 2000);
+            (async() => {
+                resolve(settings.get('settings'));
+            })();
         });
 
         let result = await promise; // wait until the promise resolves (*)
-        // console.log(`logging storage...`);
-        // console.log(result);
         return result;
     };
     reset = () => {
