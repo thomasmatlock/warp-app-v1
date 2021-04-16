@@ -198,7 +198,6 @@ elements.nav_A_audio.addEventListener('click', (e) => {
     startup.env.nav_A_active = 'audio';
 });
 elements.nav_A_video.addEventListener('click', (e) => {
-    console.log('helo');
     ipcRenderer.send('menu-change', 'video');
     startup.env.nav_A_active = 'video';
 });
