@@ -198,7 +198,10 @@ elements.nav_A_audio.addEventListener('click', (e) => {
     startup.env.nav_A_active = 'audio';
 });
 elements.nav_A_video.addEventListener('click', (e) => {
+<<<<<<< HEAD
     console.log('helo');
+=======
+>>>>>>> parent of 5907dcc (working, menu had to loaded after html load completed)
     ipcRenderer.send('menu-change', 'video');
     startup.env.nav_A_active = 'video';
 });
