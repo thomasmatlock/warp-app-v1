@@ -108,7 +108,7 @@ ipcMain.on('close-app', (e) => {
 
 ////////////////////////////////////////////////////////////////////
 // WINDOW CREATION
-function createWindow() {
+function createWindow(theme) {
     mainWindow = new BrowserWindow({
         // height: displayController.height,
         width: displayController.width,
@@ -134,8 +134,7 @@ function createWindow() {
             nodeIntegration: true,
             worldSafeExecuteJavaScript: true,
         },
-        // backgroundColor: '#0463db', // use the same color as your html file is, the main window will display this until html fully loads. This is a little better than making your app hang for a second until the html loads, then displaying the window
-        // backgroundColor: '#ff8500', // use the same color as your html file is, the main window will display this until html fully loads. This is a little better than making your app hang for a second until the html loads, then displaying the window
+        backgroundColor: '#1f2029',
     });
 
     loadHtml(startup.env.nav_A_active);
@@ -225,7 +224,7 @@ app.on('ready', () => {
         // console.log('ready');
         // console.log(storageAwaited);
         storageMain = storageAwaited;
-        createWindow(); // creates main app window
+        createWindow(startup.env.theme); // creates main app window
         setMenu(startup.env.nav_A_active);
         // createModalWindow();
     })();
