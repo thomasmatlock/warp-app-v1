@@ -1,13 +1,13 @@
 // PARENT CONTAINER FOR CHILDREN TABS
 .nav_B {
-    width: 60%;
-    max-width: 1200px;
+    width: 100%;
+    max-width: 1920px;
     height: 100px;
-    margin: 1vh auto 0;
-    // margin: 1vh;
+    margin: 1rem auto;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    // flex: 1 2;
     align-content: center;
     box-shadow: $shadow-before;
     border-radius: 4px;
@@ -16,6 +16,7 @@
         width: 100%;
         background-color: $colorNavBBackgroundContainerBackground;
         display: flex;
+        // border: dotted 1px red; // test
     }
     &:active {
         // border-radius: 1%;
@@ -24,12 +25,62 @@
     &__main {
         justify-content: flex-start;
         border-radius: 4px 0 0 4px;
+        width: auto;
+    }
+    // MIDDLE CHILD
+    &__search {
+        // justify-content: flex-end;
+        // border-radius: 0 4px 4px 0;
+        background-color: $colorNavBBackground;
+        // height: 7.5rem;
+        // width: 90%;
+        // display: flex;
+        // flex-direction: row;
+        // justify-content: center;
+        // align-content: center;
+        // align-items: center;
+        // color: #fff;
+        // margin: 5px auto;
+        // border: 1px solid black;
     }
     // RIGHT CHILD
     &__minor {
+        width: auto;
         justify-content: flex-end;
         border-radius: 0 4px 4px 0;
     }
+}
+
+textarea:focus,
+input:focus {
+    outline: #fff;
+}
+
+textarea,
+input {
+    background: $colorNavBBackground;
+}
+
+.nav_B__search {
+    background-image: $colorNavBBackground;
+    &__input {
+        width: 95%;
+    }
+}
+
+.nav_B__search__input:hover {
+    border: 0 4px black;
+}
+
+.nav_B__search__input {
+    background: purple;
+}
+
+#searchAudio {
+    height: 5rem;
+    background: white;
+    margin: auto;
+    border: dotted 1px red; // test
 }
 
 // CHILDREN TABS
