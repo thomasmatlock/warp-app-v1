@@ -1,23 +1,4 @@
-/* eslint-disable no-console */
-/* eslint-disable no-undef */
-/* eslint-disable no-unused-expressions */
-/* eslint-disable no-unused-vars */
-/* eslint-disable one-var */
-
-const logging = false;
-const os = require('os');
-const fs = require('fs');
-const path = require('path');
-const {
-    app,
-    BrowserView,
-    BrowserWindow,
-    ipcMain,
-    Menu,
-    MenuItem,
-    shell,
-    webContents,
-} = require('electron');
+const { app, BrowserWindow, ipcMain } = require('electron');
 const displayControllerReq = require('./displayController');
 const appMenuAudio = require('./menuAudio');
 const appMenuVideo = require('./menuVideo');
@@ -30,84 +11,63 @@ const startup = new startupReq();
 ////////////////////////////////////////////////////////////////////
 let mainWindow, splash, modalWindow, displayController, storageMain; // Keep a global reference of the window object, if you don't, the window will be closed automatically when the JavaScript object is garbage collected.
 app.allowRendererProcessReuse = true; // not sure what this does but I added it for a reason
+///////////////////////   IPC LISTENERS FOR EVENTS FROM APP.JS   ///////////////////////
+(function init() {
+    ipcMain.on('new-item', (e, itemURL, avType, platform) => {
+        startup.updateActiveTab(avType); // sets nav A active
+        e.reply('paste-new-url', itemURL, avType, platform); // send message to app js
+    });
+    ipcMain.on('menu-change', (e, menuType) => {
+        setMenu(menuType);
 
-////////////////////////////////////////////////////////////////////
-// IPC LISTENERS FOR EVENTS FROM APP.JS
-ipcMain.on('new-item', (e, itemURL, avType, platform) => {
-    startup.updateActiveTab(avType); // sets nav A active
-    e.reply('paste-new-url', itemURL, avType, platform); // send message to app js
-});
-ipcMain.on('menu-change', (e, menuType) => {
-    setMenu(menuType);
+        if (menuType === 'audio') appMenuAudio(mainWindow.webContents); // sets audio menu if audio tab is clicked
+        if (menuType === 'video') appMenuVideo(mainWindow.webContents); // sets video menu if video tab is clicked
+        if (menuType === 'warpstagram')
+            appMenuWarpstagram(mainWindow.webContents); // sets video menu if video tab is clicked
 
-    if (menuType === 'audio') appMenuAudio(mainWindow.webContents); // sets audio menu if audio tab is clicked
-    if (menuType === 'video') appMenuVideo(mainWindow.webContents); // sets video menu if video tab is clicked
-    if (menuType === 'warpstagram') appMenuWarpstagram(mainWindow.webContents); // sets video menu if video tab is clicked
-
-    if (menuType === 'audio') appMenuAudio(mainWindow.webContents); // sets audio menu if audio tab is clicked
-    if (menuType === 'video') appMenuVideo(mainWindow.webContents); // sets video menu if video tab is clicked
-    if (menuType === 'warpstagram') appMenuWarpstagram(mainWindow.webContents); // sets video menu if video tab is clicked
-});
-
-ipcMain.on('quit', () => {
-    app.quit();
-    mainWindow = null;
-});
-//delete this comment
-ipcMain.on('storage-save', (e, storageObj, avType) => {
-    fileController.settingsSave('settings', storageObj);
-    // console.log('saving');
-    let storageAwaited;
-    (async() => {
-        storageAwaited = await load();
-        e.reply('storage-save-success', storageAwaited);
-    })();
-});
-ipcMain.on('reset-storage', (e, storageObj) => {
-    fileController.reset();
-    (async() => {
+        if (menuType === 'audio') appMenuAudio(mainWindow.webContents); // sets audio menu if audio tab is clicked
+        if (menuType === 'video') appMenuVideo(mainWindow.webContents); // sets video menu if video tab is clicked
+        if (menuType === 'warpstagram')
+            appMenuWarpstagram(mainWindow.webContents); // sets video menu if video tab is clicked
+    });
+    ipcMain.on('quit', () => {
+        app.quit();
+        mainWindow = null;
+    });
+    ipcMain.on('storage-save', (e, storageObj, avType) => {
+        fileController.settingsSave('settings', storageObj);
+        // console.log('saving');
+        let storageAwaited;
+        (async() => {
+            storageAwaited = await load();
+            e.reply('storage-save-success', storageAwaited);
+        })();
+    });
+    ipcMain.on('reset-storage', (e, storageObj) => {
+        fileController.reset();
+        (async() => {
+            mainWindow.destroy();
+            mainWindow = null;
+        })();
+        app.relaunch();
+        app.quit();
+    });
+    ipcMain.on('restart-app', () => {
         mainWindow.destroy();
         mainWindow = null;
-    })();
-    app.relaunch();
-    app.quit();
-});
-ipcMain.on('restart-app', () => {
-    mainWindow.destroy();
-    mainWindow = null;
-    app.relaunch();
-    app.quit();
-});
-const setMenu = (menuType) => {
-    if (menuType === 'audio') {
-        appMenuAudio(mainWindow.webContents); // sets audio menu if audio tab is clicked
-    }
-    if (menuType === 'video') {
-        appMenuVideo(mainWindow.webContents); // sets audio menu if audio tab is clicked
-    }
-    if (menuType === 'warpstagram') {
-        appMenuWarpstagram(mainWindow.webContents); // sets audio menu if audio tab is clicked
-    }
-};
-const loadHtml = (menuType) => {
-    mainWindow.loadFile(`./src/renderer/html/${menuType}.html`);
-};
-const load = async() => {
-    const result = await fileController.settingsLoad();
-    return result;
-};
+        app.relaunch();
+        app.quit();
+    });
+    ipcMain.on('load-storage', (e) => {
+        e.reply('load-storage-success', storageMain);
+    });
+    ipcMain.on('close-app', (e) => {
+        console.log('closing app...');
+        app.quit();
+    });
+})();
 
-////////////////////////////////////////////////////////////////////////////////////
-ipcMain.on('load-storage', (e) => {
-    e.reply('load-storage-success', storageMain);
-});
-ipcMain.on('close-app', (e) => {
-    console.log('closing app...');
-    app.quit();
-});
-
-////////////////////////////////////////////////////////////////////
-// WINDOW CREATION
+///////////////////////   WINDOW CREATION   ///////////////////////
 function createWindow(theme) {
     mainWindow = new BrowserWindow({
         // height: displayController.height,
@@ -152,7 +112,7 @@ function createWindow(theme) {
         // console.log('did-finish-load');
         // console.log(storageMain);
         wc.send('window-ready', storageMain);
-        if (startup.splashScreen) splash.destroy();
+        if (startup.dev.splashScreen) splash.destroy();
     });
     wc.on('devtools-opened', () => {});
 
@@ -208,11 +168,10 @@ function createModalWindow() {
         modalWindow.show();
     });
 }
-
-////////////////////////////////////////////////////////////////////
-// APP LISTENERS (monitoring main node process)
+///////////////////////   APP LISTENERS   ///////////////////////
 app.on('ready', () => {
-    if (startup.splashScreen) createSplashWindow();
+    if (startup.dev.splashScreen) createSplashWindow();
+    // createSplashWindow();
 
     displayController = new displayControllerReq(); // positions output window to display depending on single/multi-monitor
     startup.init(); // all startup checks, latest version, isOnline, hasFFmpeg etc
@@ -239,3 +198,25 @@ app.on('window-all-closed', () => {
 app.on('activate', () => {
     if (mainWindow === null) createWindow(); // When app icon is clicked and app is running, (macOS) recreate the BrowserWindow
 });
+///////////////////////   MISC FUNCTIONS   ///////////////////////
+
+const mainFunctions = {};
+const windowController = (theme) => {};
+const setMenu = (menuType) => {
+    if (menuType === 'audio') {
+        appMenuAudio(mainWindow.webContents); // sets audio menu if audio tab is clicked
+    }
+    if (menuType === 'video') {
+        appMenuVideo(mainWindow.webContents); // sets audio menu if audio tab is clicked
+    }
+    if (menuType === 'warpstagram') {
+        appMenuWarpstagram(mainWindow.webContents); // sets audio menu if audio tab is clicked
+    }
+};
+const loadHtml = (menuType) => {
+    mainWindow.loadFile(`./src/renderer/html/${menuType}.html`);
+};
+const load = async() => {
+    const result = await fileController.settingsLoad();
+    return result;
+};

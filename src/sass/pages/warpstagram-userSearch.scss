@@ -28,17 +28,8 @@
     border-radius: 3px;
     width: 100%;
     height: 38px; // per 4kdl
-    // border: 1px dotted green;
-    // box-shadow: $shadow-after;
     &:hover {
-        //// CONTENT
-        // color: white;
-        // background-image: $wildfire-background-blue-color-gradient-1;
-        // color: white;
-        // background: $color-tertiary-medium;
-        // background: $dark-light;
         background-position: bottom;
-        // transform: scale(1.05);
         transition: all 0.5s ease;
         box-shadow: $shadow-after;
         z-index: 20;
@@ -46,8 +37,6 @@
 }
 
 .user-search-subscribe {
-    // border: $dev-border;
-    // border: 1px dotted green;
     border-radius: 3px;
     // flex: 3;
     width: 160px; // per 4kdl
@@ -80,6 +69,7 @@
     width: 160px;
     // height: 4vh;
     height: 40px;
+    cursor: pointer;
     &:hover {
         //// CONTENT
         // color: white;
@@ -90,7 +80,7 @@
         // background-image: $codepen-orange-1;
         // background: $dark-light;
         background-position: bottom;
-        // transform: scale(1.05); 
+        // transform: scale(1.05);
         transition: all 0.1s ease;
         // box-shadow: $shadow-after;
         z-index: 20;

@@ -278,6 +278,8 @@ li {
     width: 100%;
     background-color: #1f2029;
     display: flex; }
+  .nav_B:active {
+    border-radius: 0%; }
   .nav_B__main {
     justify-content: flex-start;
     border-radius: 4px 0 0 4px;
@@ -632,7 +634,7 @@ input[type='text'] {
   border: 2px dotted green; }
 
 .user-info-actions {
-  border: 5px dotted red; }
+  border: 1px dotted red; }
 
 .user-info-stats__item {
   border: 1px dotted purple; }
@@ -688,7 +690,8 @@ input[type='text'] {
 #user-search-subscribe__button {
   border: 1px dotted rgba(255, 0, 0, 0.5);
   width: 160px;
-  height: 40px; }
+  height: 40px;
+  cursor: pointer; }
   #user-search-subscribe__button:hover {
     background-position: bottom;
     transition: all 0.1s ease;
@@ -719,7 +722,8 @@ input[type='text'] {
   flex-direction: row; }
 
 .filterTab {
-  margin-left: 4vh; }
+  margin-left: 4vh;
+  cursor: pointer; }
 
 .user-filterToolbar-advanced-type {
   width: 30%;
