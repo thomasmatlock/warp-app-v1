@@ -9,7 +9,7 @@ class startup {
         this.devMode = true;
         this.testingYoutubeURLS = true; // true will use youtube URLS, false will use misc non youtube URLS
         this.env = {
-            nav_A_active: !this.devMode ? 'audio' : 'audio', //   audio, video, or warpstagram, defaults to audio
+            nav_A_active: !this.devMode ? 'audio' : 'video', //   audio, video, or warpstagram, defaults to audio
             user: 'dev', // can be dev, free, or paid
             modalBrowserWindow: false, // opens youtube modal window yes
             theme: true, // true = 'light', false = 'dark'
@@ -98,10 +98,7 @@ class startup {
         this.env.nav_A_active = avType;
         // console.log(this.env.nav_A_active);
     };
-    serverConnected = () => {};
-    isLatestVersion = () => {};
-    isUpgradedUser = () => {};
-    acceptedEULA = () => {};
+
     checkFFmpeg = () => {
         // Windows check
         var driveLetterObj = path.parse(fileController.dirUser); // saves obj containing root, etc from C:\\Users\\Tommy\\'
@@ -120,10 +117,6 @@ class startup {
             console.error(err);
         }
     };
-    // yes
-    readLocalFiles = () => {};
-    updateFilesState = () => {};
-    updateFilesUI = () => {};
 
     init = () => {
         this.isDevMode();
@@ -131,6 +124,13 @@ class startup {
         // this.checkFFmpeg();
         // delete this comment
     };
+    // readLocalFiles = () => {};
+    // updateFilesState = () => {};
+    // updateFilesUI = () => {};
+    // serverConnected = () => {};
+    // isLatestVersion = () => {};
+    // isUpgradedUser = () => {};
+    // acceptedEULA = () => {};
 }
 
 module.exports = startup;
