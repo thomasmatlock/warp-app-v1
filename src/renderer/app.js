@@ -228,7 +228,39 @@ const addEventListeners = () => {
         items.selectItem(e, 'audio', itemID);
     });
     elements.download__list_video_ID.addEventListener('click', (e) => {
-        let itemID = e.target.parentNode.parentNode.parentNode.id;
-        items.selectItem(e, 'video', itemID);
+        // WORKING
+        // thumbnail, most of list item, also folder icon works
+        // NOT WORKING
+        // title, and info panes. upper and lower panes dont work. gear icon doesnt work
+        let itemID;
+        // handles left info panes
+        // console.log(e.target.parentNode.parentNode.parentNode.childNodes[0].id);
+        if (
+            e.target.parentNode.parentNode.parentNode.parentNode.id.length ===
+            36
+        ) {
+            // console.log('scenario 1');
+            itemID = e.target.parentNode.parentNode.parentNode.parentNode.id;
+        } else if (e.target.parentNode.parentNode.parentNode.id.length === 36) {
+            // console.log('scenario 2');
+            itemID = e.target.parentNode.parentNode.parentNode.id;
+        } else if (
+            e.target.parentNode.parentNode.parentNode.childNodes[0].id
+            .length === 36
+        ) {
+            // console.log('scenario 3');
+            itemID = e.target.parentNode.parentNode.parentNode.childNodes[0].id;
+        } else if (
+            e.target.parentNode.parentNode.childNodes[0].id.length === 36
+        ) {
+            // console.log('scenario 4');
+            itemID = e.target.parentNode.parentNode.childNodes[0].id;
+        }
+
+        // console.log(e.target.parentNode.parentNode.parentNode.childNodes[0]);
+
+        console.log(itemID);
+
+        // items.selectItem(e, 'video', itemID);
     });
 };
