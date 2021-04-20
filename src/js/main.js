@@ -7,6 +7,7 @@ const fileControllerReq = require('./fileController');
 const fileController = new fileControllerReq();
 const startupReq = require('./startup');
 const startup = new startupReq();
+const settings = require('electron-settings');
 
 ////////////////////////////////////////////////////////////////////
 let mainWindow, splash, modalWindow, displayController, storageMain; // Keep a global reference of the window object, if you don't, the window will be closed automatically when the JavaScript object is garbage collected.
@@ -71,7 +72,6 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
     app.on('ready', () => {
         if (startup.dev.splashScreen) windowController.createSplashWindow();
         // windowController.createSplashWindow();
-
         displayController = new displayControllerReq(); // positions output window to display depending on single/multi-monitor
         startup.init(); // all startup checks, latest version, isOnline, hasFFmpeg etc
         fileController.init(startup); // checks for local directories and creates them if non existent

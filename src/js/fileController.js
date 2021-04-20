@@ -1,5 +1,6 @@
 //  C:\Users\Tommy\AppData\Roaming\starter\settings.json
 //  C:\Users\Tommy\AppData\Roaming\starter
+// C:\Users\Tommy\AppData\Roaming\Warp IMPORTANT, this has to MATCH the project name field in package.json
 
 const logging = true;
 const os = require('os');
@@ -20,13 +21,14 @@ class fileController {
         this.dirProjectPath = path.join(this.dirUser, this.dirProject);
         this.userDocumentsPath = path.join(this.dirUser, this.documents); // 'C:\\Users\\Tommy\\Documents'
         this.settingsFileName = 'settings.json';
-        this.settingsPath = 'AppData\\Roaming\\starter\\';
+        this.settingsPath = 'AppData\\Roaming\\Warp\\';
 
-        this.settingsFile = path.join(
-            this.dirUser,
-            this.settingsPath,
-            this.settingsFileName
-        );
+        // this.settingsFile = path.join(
+        //     this.dirUser,
+        //     this.settingsPath,
+        //     this.settingsFileName
+        // );
+        this.settingsFile;
         this.dirMainPath = path.join(this.userDocumentsPath, this.dirMainName);
         this.dirAudioPath = path.join(
             this.dirUser,
@@ -79,6 +81,7 @@ class fileController {
                 // fileController.settingsSave('user', user);
 
                 console.log('created settings file');
+                console.log(this.settingsFile);
             }
         } catch (err) {
             console.error(err);
@@ -122,8 +125,11 @@ class fileController {
         });
     };
     init = (startupObj) => {
+        this.settingsFile = settings.file();
         this.initDirCreation();
-
+        // this.settingsSave(startupObj.settings);
+        // console.log(settings.file());
+        // console.log(startupObj.dev.clearStorage);
         if (!startupObj.dev.clearStorage)
             this.initSettingsFileCreation(startupObj.settings);
         if (startupObj.dev.clearStorage) this.deleteSettingsFile();
