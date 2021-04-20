@@ -65,7 +65,7 @@ const formatLength = function(approxDurationMs) {
 
 const cloneVideoDetails = function(itemURL, info, avType) {
     // console.log(type);
-
+    // console.log(itemInfo.title);
     startup.dev.downloadSmallestFile ?
         (itemInfo.selectedFormat = info.formats[0]) // sets to smallest format for easy dev downloading
         :
@@ -96,6 +96,7 @@ const cloneVideoDetails = function(itemURL, info, avType) {
         path.join(fileController.dirAudioPath, `${itemInfo.title}.mp3`) :
         path.join(fileController.dirVideoPath, `${itemInfo.title}.mp4`);
     itemInfo.id = uuidv4();
+    console.log(itemInfo.title);
     // this.url = this.selectedFormat.url;
     // this.projectionType = this.selectedFormat.projectionType;
     // this.averageBitrate = this.selectedFormat.averageBitrate;
@@ -136,16 +137,21 @@ const downloadAndWrite = function(itemURL) {
                     fileController.dirAudioPath,
                     `${itemInfo.title}.mp3` // fix this, needs to be audio and mp3
                 );
+                console.log(filePath);
             } else if (itemInfo.type === 'video') {
                 // console.log('its video type');
                 filePath = path.join(
                     fileController.dirVideoPath,
                     `${itemInfo.title}.mp4`
                 );
+                console.log(filePath);
                 this.finishedFilePath = filePath;
             }
+            console.log(filePath);
             if (startup.dev.downloadFile) {
-                ytdl(itemURL).pipe(fs.createWriteStream(filePath)); // downloads video
+                console.log(itemURL);
+                console.log(this.itemInfo.url);
+                ytdl(this.itemInfo.url).pipe(fs.createWriteStream(filePath)); // downloads video
             }
         })();
     }
@@ -160,6 +166,7 @@ const getInfo = async function(itemURL, avType) {
         this.cloneVideoDetails(itemURL, info, avType);
         this.removeCharactersFromTitle();
         // console.log(itemInfo.id);
+        this.downloadAndWrite(itemURL);
         items.addItem(itemInfo, avType);
         items.updateStorage(itemInfo, avType, 'add');
         // items.clickDownloadList(avType);
@@ -167,12 +174,10 @@ const getInfo = async function(itemURL, avType) {
 };
 
 const all = function(itemURL, avType) {
-    // console.log(itemURL);
+    cls;
     itemInfo.type = avType;
     this.getInfo(itemURL, avType);
 
-    this.downloadAndWrite(itemURL);
-    // console.log(itemInfo.url);
     // itemInfo.getFileSize();
 };
 
