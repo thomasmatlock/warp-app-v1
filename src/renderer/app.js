@@ -82,7 +82,9 @@ const addMenuListeners = () => {
     });
     ipcRenderer.on('Audio: Downloads: Pause All', () => {});
     ipcRenderer.on('Audio: Downloads: Resume All', () => {});
-    ipcRenderer.on('Audio: Downloads: Remove All', () => {});
+    ipcRenderer.on('Audio: Downloads: Remove All', () => {
+        items.removeAllitems('audio');
+    });
     ipcRenderer.on('Audio: Tools: Preferences', () => {
         modals.modalPreferencesAdjust(state, elements, startup);
     });
@@ -99,7 +101,9 @@ const addMenuListeners = () => {
     });
     ipcRenderer.on('Video: Downloads: Pause All', () => {});
     ipcRenderer.on('Video: Downloads: Resume All', () => {});
-    ipcRenderer.on('Video: Downloads: Remove All', () => {});
+    ipcRenderer.on('Video: Downloads: Remove All', () => {
+        items.removeAllitems('video');
+    });
     // Tools
     ipcRenderer.on('Video: Tools: Smart Mode', () => {});
     ipcRenderer.on('Video: Tools: Subscriptions', () => {});
@@ -224,43 +228,47 @@ const addEventListeners = () => {
 
     // Download lists listeners
     elements.download__list_audio_ID.addEventListener('click', (e) => {
-        let itemID = e.target.parentNode.parentNode.parentNode.id;
-        items.selectItem(e, 'audio', itemID);
-    });
-    elements.download__list_video_ID.addEventListener('click', (e) => {
-        // WORKING
-        // thumbnail, most of list item, also folder icon works
-        // NOT WORKING
-        // title, and info panes. upper and lower panes dont work. gear icon doesnt work
         let itemID;
-        // handles left info panes
-        // console.log(e.target.parentNode.parentNode.parentNode.childNodes[0].id);
         if (
             e.target.parentNode.parentNode.parentNode.parentNode.id.length ===
             36
         ) {
-            // console.log('scenario 1');
             itemID = e.target.parentNode.parentNode.parentNode.parentNode.id;
         } else if (e.target.parentNode.parentNode.parentNode.id.length === 36) {
-            // console.log('scenario 2');
             itemID = e.target.parentNode.parentNode.parentNode.id;
         } else if (
             e.target.parentNode.parentNode.parentNode.childNodes[0].id
             .length === 36
         ) {
-            // console.log('scenario 3');
             itemID = e.target.parentNode.parentNode.parentNode.childNodes[0].id;
         } else if (
             e.target.parentNode.parentNode.childNodes[0].id.length === 36
         ) {
-            // console.log('scenario 4');
             itemID = e.target.parentNode.parentNode.childNodes[0].id;
         }
-
-        // console.log(e.target.parentNode.parentNode.parentNode.childNodes[0]);
-
-        console.log(itemID);
-
-        // items.selectItem(e, 'video', itemID);
+        // console.log(itemID);
+        items.selectItem(e, 'audio', itemID);
+    });
+    elements.download__list_video_ID.addEventListener('click', (e) => {
+        let itemID;
+        if (
+            e.target.parentNode.parentNode.parentNode.parentNode.id.length ===
+            36
+        ) {
+            itemID = e.target.parentNode.parentNode.parentNode.parentNode.id;
+        } else if (e.target.parentNode.parentNode.parentNode.id.length === 36) {
+            itemID = e.target.parentNode.parentNode.parentNode.id;
+        } else if (
+            e.target.parentNode.parentNode.parentNode.childNodes[0].id
+            .length === 36
+        ) {
+            itemID = e.target.parentNode.parentNode.parentNode.childNodes[0].id;
+        } else if (
+            e.target.parentNode.parentNode.childNodes[0].id.length === 36
+        ) {
+            itemID = e.target.parentNode.parentNode.childNodes[0].id;
+        }
+        // console.log(itemID);
+        items.selectItem(e, 'video', itemID);
     });
 };

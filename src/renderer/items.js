@@ -1,7 +1,7 @@
 // this is started, taken from the electron course
 const logging = true;
 const fs = require('fs');
-const { ipcRenderer } = require('electron');
+const { ipcRenderer, shell } = require('electron');
 const imageDownloader = require('image-downloader');
 let markup = require('./views/markup');
 let downloadHandler = require('../js/downloadHandler');
@@ -63,14 +63,12 @@ exports.downloadItem = (itemURL, avType, platform) => {
     }
 };
 exports.selectItem = (e, avType, itemID) => {
-    document.getElementById(itemID).remove();
     let itemIndex;
 
     if (avType === 'audio') {
         let arr = storage.downloadItems.audioArr;
         for (let i = 0; i < arr.length; i++) {
             if (arr[i].id === itemID) {
-                // console.log(arr[i].title);
                 itemIndex = i;
             }
         }
@@ -79,12 +77,40 @@ exports.selectItem = (e, avType, itemID) => {
         let arr = storage.downloadItems.videoArr;
         for (let i = 0; i < arr.length; i++) {
             if (arr[i].id === itemID) {
-                // console.log(arr[i].title);
                 itemIndex = i;
+                console.log(arr[itemIndex].filePath);
+                shell.showItemInFolder(arr[itemIndex].filePath);
             }
         }
     }
+};
+exports.showItemInFolder = (fullPath) => {
+    shell.showItemInFolder(fullPath);
+};
+
+exports.removeItemFromUI = (avType, itemID) => {
+    document.getElementById(itemID).remove();
+};
+exports.removeAllItemsFromUI = (avType) => {
+    let arr;
+    if (avType === 'audio') {
+        arr = storage.downloadItems.audioArr;
+    } else if (avType === 'video') {
+        arr = storage.downloadItems.videoArr;
+    }
+
+    for (let i = 0; i < arr.length; i++) {
+        // console.log(arr[i].id);
+        this.removeItemFromUI(avType, arr[i].id);
+    }
+};
+exports.removeItem = (avType, itemID) => {
+    this.removeItemFromUI(avType, itemID);
     this.updateStorage('ignore', avType, 'remove', itemIndex);
+};
+exports.removeAllitems = (avType, itemIndex) => {
+    this.removeAllItemsFromUI(avType);
+    this.updateStorage('ignore', avType, 'remove-all', itemIndex);
 };
 
 ///////////////////////   MARKUP   ///////////////////////
@@ -153,6 +179,16 @@ exports.updateStorage = (item, avType, addRemoveType, index) => {
         }
         if (avType === 'video') {
             storage.downloadItems.videoArr.splice(index, 1);
+            ipcRenderer.send('storage-save', storage, avType);
+        }
+    }
+    if (addRemoveType === 'remove-all') {
+        if (avType === 'audio') {
+            storage.downloadItems.audioArr = [];
+            ipcRenderer.send('storage-save', storage, avType);
+        }
+        if (avType === 'video') {
+            storage.downloadItems.videoArr = [];
             ipcRenderer.send('storage-save', storage, avType);
         }
     }
