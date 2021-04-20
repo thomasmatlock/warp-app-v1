@@ -1,4 +1,3 @@
-const logging = true;
 exports.renderItem = (nav_A_active) => {
     const markup = `
     <li>

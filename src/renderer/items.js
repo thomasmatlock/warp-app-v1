@@ -1,14 +1,12 @@
 // this is started, taken from the electron course
-const logging = true;
-const fs = require('fs');
 const { ipcRenderer, shell } = require('electron');
-const imageDownloader = require('image-downloader');
 let markup = require('./views/markup');
 let downloadHandler = require('../js/downloadHandler');
 const startupReq = require('../js/startup');
+const startup = new startupReq();
+const imageDownloader = require('image-downloader');
 const elements = require('./views/elements');
 const auto = require('./automate');
-const startup = new startupReq();
 
 // storage empty template
 let storage = {
@@ -59,7 +57,7 @@ exports.addItemsFromArray = (arr, avType) => {
 };
 exports.downloadItem = (itemURL, avType, platform) => {
     if (startup.dev.getDownloadItemInfo) {
-        downloadHandler.all(itemURL, avType); // exports without object
+        downloadHandler.all(itemURL, avType, platform); // exports without object
     }
 };
 exports.selectItem = (e, avType, itemID) => {

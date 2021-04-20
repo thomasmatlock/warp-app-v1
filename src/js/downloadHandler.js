@@ -21,6 +21,7 @@ let itemInfo = {
     lengthFormatted: '',
     secs: '',
     mins: '',
+    platform: '',
     selectedFormat: '',
     thumbnail: '',
     type: '', // set to either audio or video
@@ -162,19 +163,25 @@ const getFileSize = function() {
 };
 
 const getInfo = async function(itemURL, avType) {
-    await ytdl.getBasicInfo(itemURL).then((info) => {
-        this.cloneVideoDetails(itemURL, info, avType);
-        this.removeCharactersFromTitle();
-        // console.log(itemInfo.id);
-        this.downloadAndWrite(itemURL);
-        items.addItem(itemInfo, avType);
-        items.updateStorage(itemInfo, avType, 'add');
-        // items.clickDownloadList(avType);
-    });
+    try {
+        await ytdl.getBasicInfo(itemURL).then((info) => {
+            this.cloneVideoDetails(itemURL, info, avType);
+            this.removeCharactersFromTitle();
+            // console.log(itemInfo.id);
+            this.downloadAndWrite(itemURL);
+            items.addItem(itemInfo, avType);
+            items.updateStorage(itemInfo, avType, 'add');
+            // items.clickDownloadList(avType);
+        });
+    } catch (error) {
+        console.log(error);
+    }
 };
 
-const all = function(itemURL, avType) {
+const all = function(itemURL, avType, platform) {
+    console.log(itemURL);
     itemInfo.type = avType;
+    itemInfo.platform = platform;
     this.getInfo(itemURL, avType);
 
     // itemInfo.getFileSize();

@@ -5,6 +5,7 @@
 /* eslint-disable one-var */
 const logging = true;
 const { app, clipboard, ipcRenderer, shell } = require('electron');
+const nativeImage = require('electron').nativeImage;
 let elements = require('./views/elements');
 const navPrimaryView = require('./views/navPrimaryView.js');
 const navSecondaryView = require('./views/navSecondaryView.js');
@@ -17,6 +18,7 @@ const items = require('./items');
 const auto = require('./automate');
 const modals = require('./modals');
 const stateReq = require('./state');
+const search = require('./searchLocal');
 let state = new stateReq();
 
 (function init() {
@@ -204,17 +206,11 @@ const addEventListeners = () => {
         if (logging) console.log('clicked preferences');
         modals.modalPreferencesAdjust(state, elements, startup);
     });
-    // elements.nav_B_button_audio_help.addEventListener('click', (e) => {
-    //     if (logging) console.log('clicked help');
-    // });
+
     // Nav B video LISTENERS
     elements.nav_B_button_video_paste.addEventListener('click', (e) => {
         userInput.validateURL(clipboard.readText(), startup.env.nav_A_active);
     });
-    // elements.nav_B_button_video_smartMode.addEventListener('click', (e) => {
-    //     if (logging) console.log('clicked smart mode');
-    //     elements.nav_B_button_video_smartMode.classList.add('nav_B_button--active');
-    // });
     elements.nav_B_button_video_activate.addEventListener('click', (e) => {
         if (logging) console.log('clicked activate');
     });
@@ -225,7 +221,13 @@ const addEventListeners = () => {
         if (logging) console.log('clicked preferences');
         modals.modalPreferencesAdjust(state, elements, startup);
     });
-
+    // Nav B search listeners
+    elements.searchAudio.addEventListener('keyup', (e) => {
+        search.audioItems();
+    });
+    elements.searchVideo.addEventListener('keyup', (e) => {
+        search.videoItems();
+    });
     // Download lists listeners
     elements.download__list_audio_ID.addEventListener('click', (e) => {
         let itemID;

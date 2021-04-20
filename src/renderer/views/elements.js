@@ -56,6 +56,9 @@ const elements = {
         '.modalPreferencesContainer'
     ),
     // modalPreferences: document.querySelector('.modalPreferences'),
+    // search input
+    searchAudio: document.getElementById('searchAudio'), // ID of video list
+    searchVideo: document.getElementById('searchVideo'), // ID of video list
 
     // Download lists
     download__list: document.querySelector('.download__list'),
