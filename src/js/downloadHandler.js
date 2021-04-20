@@ -96,7 +96,7 @@ const cloneVideoDetails = function(itemURL, info, avType) {
         path.join(fileController.dirAudioPath, `${itemInfo.title}.mp3`) :
         path.join(fileController.dirVideoPath, `${itemInfo.title}.mp4`);
     itemInfo.id = uuidv4();
-    console.log(itemInfo.title);
+    // console.log(itemInfo.title);
     // this.url = this.selectedFormat.url;
     // this.projectionType = this.selectedFormat.projectionType;
     // this.averageBitrate = this.selectedFormat.averageBitrate;
@@ -137,20 +137,20 @@ const downloadAndWrite = function(itemURL) {
                     fileController.dirAudioPath,
                     `${itemInfo.title}.mp3` // fix this, needs to be audio and mp3
                 );
-                console.log(filePath);
+                // console.log(filePath);
             } else if (itemInfo.type === 'video') {
                 // console.log('its video type');
                 filePath = path.join(
                     fileController.dirVideoPath,
                     `${itemInfo.title}.mp4`
                 );
-                console.log(filePath);
+                // console.log(filePath);
                 this.finishedFilePath = filePath;
             }
-            console.log(filePath);
+            // console.log(filePath);
             if (startup.dev.downloadFile) {
-                console.log(itemURL);
-                console.log(this.itemInfo.url);
+                // console.log(itemURL);
+                // console.log(this.itemInfo.url);
                 ytdl(this.itemInfo.url).pipe(fs.createWriteStream(filePath)); // downloads video
             }
         })();
@@ -174,7 +174,6 @@ const getInfo = async function(itemURL, avType) {
 };
 
 const all = function(itemURL, avType) {
-    cls;
     itemInfo.type = avType;
     this.getInfo(itemURL, avType);
 
