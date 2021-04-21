@@ -231,46 +231,84 @@ const addEventListeners = () => {
     // Download lists listeners
     elements.download__list_audio_ID.addEventListener('click', (e) => {
         let itemID;
-        if (
+        const iconGearClassName = 'fas fa-cog';
+        const iconFolderClassName = 'far fa-folder-open';
+
+        // OPEN CONTAINER FOLDER
+        if (e.target.parentNode.parentNode.parentNode.id.length === 36) {
+            // console.log(e.target.className);
+            if (e.target.className === iconFolderClassName) {
+                itemID = e.target.parentNode.parentNode.parentNode.id;
+                items.selectItem(e, 'audio', itemID, 'openContainingFolder');
+            }
+        }
+        // OPEN MORE ACTIONS MENU
+        else if (
             e.target.parentNode.parentNode.parentNode.parentNode.id.length ===
             36
         ) {
-            itemID = e.target.parentNode.parentNode.parentNode.parentNode.id;
-        } else if (e.target.parentNode.parentNode.parentNode.id.length === 36) {
-            itemID = e.target.parentNode.parentNode.parentNode.id;
-        } else if (
+            // console.log(e.target.className);
+            if (e.target.className === iconGearClassName) {
+                itemID =
+                    e.target.parentNode.parentNode.parentNode.parentNode.id;
+                items.selectItem(e, 'audio', itemID, 'moreActions');
+            }
+        }
+        // SCENARIO 3
+        else if (
             e.target.parentNode.parentNode.parentNode.childNodes[0].id
             .length === 36
         ) {
+            console.log('scenario 3');
             itemID = e.target.parentNode.parentNode.parentNode.childNodes[0].id;
-        } else if (
+        }
+        // SCENARIO 4
+        else if (
             e.target.parentNode.parentNode.childNodes[0].id.length === 36
         ) {
+            console.log('scenario 4');
             itemID = e.target.parentNode.parentNode.childNodes[0].id;
         }
-        // console.log(itemID);
-        items.selectItem(e, 'audio', itemID);
     });
     elements.download__list_video_ID.addEventListener('click', (e) => {
         let itemID;
-        if (
+        const iconGearClassName = 'fas fa-cog';
+        const iconFolderClassName = 'far fa-folder-open';
+
+        // OPEN CONTAINER FOLDER
+        if (e.target.parentNode.parentNode.parentNode.id.length === 36) {
+            // console.log(e.target.className);
+            if (e.target.className === iconFolderClassName) {
+                itemID = e.target.parentNode.parentNode.parentNode.id;
+                items.selectItem(e, 'video', itemID, 'openContainingFolder');
+            }
+        }
+        // OPEN MORE ACTIONS MENU
+        else if (
             e.target.parentNode.parentNode.parentNode.parentNode.id.length ===
             36
         ) {
-            itemID = e.target.parentNode.parentNode.parentNode.parentNode.id;
-        } else if (e.target.parentNode.parentNode.parentNode.id.length === 36) {
-            itemID = e.target.parentNode.parentNode.parentNode.id;
-        } else if (
+            // console.log(e.target.className);
+            if (e.target.className === iconGearClassName) {
+                itemID =
+                    e.target.parentNode.parentNode.parentNode.parentNode.id;
+                items.selectItem(e, 'video', itemID, 'moreActions');
+            }
+        }
+        // SCENARIO 3
+        else if (
             e.target.parentNode.parentNode.parentNode.childNodes[0].id
             .length === 36
         ) {
+            console.log('scenario 3');
             itemID = e.target.parentNode.parentNode.parentNode.childNodes[0].id;
-        } else if (
+        }
+        // SCENARIO 4
+        else if (
             e.target.parentNode.parentNode.childNodes[0].id.length === 36
         ) {
+            console.log('scenario 4');
             itemID = e.target.parentNode.parentNode.childNodes[0].id;
         }
-        // console.log(itemID);
-        items.selectItem(e, 'video', itemID);
     });
 };

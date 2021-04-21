@@ -86,12 +86,12 @@ const markup = {
     </div>
     <div class="dl__item_info-pane__right">
         <div class="dl__item_info-pane__right__openContainingFolder">
-            <i class="far fa-folder-open dl__item_icon"></i>
+            <i class="far fa-folder-open"></i>
         </div>
         <div class="dl__item_info-pane__right__moreActions">
             <div class="icon">
 
-                <i class="fas fa-cog dl__item_icon"></i>
+                <i class="fas fa-cog"></i>
                 <div class="downloadItemMenu_container">
                     <ul class="downloadItemMenu_optionsList">
                         <li class="downloadItemMenu_option downloadItemMenu_option_firstChild">

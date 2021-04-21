@@ -488,9 +488,6 @@ input {
     transform: scale(1.005);
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2); }
 
-.dl__item_icon {
-  padding-top: 4px; }
-
 .icon:hover .downloadItemMenu_container {
   visibility: visible;
   z-index: 999 !important; }
@@ -876,7 +873,7 @@ body {
   height: 100%;
   width: 100%;
   background: #3b3b3b;
-  display: flex;
+  display: none;
   flex-direction: column;
   z-index: 21; }
 

@@ -60,7 +60,7 @@ exports.downloadItem = (itemURL, avType, platform) => {
         downloadHandler.all(itemURL, avType, platform); // exports without object
     }
 };
-exports.selectItem = (e, avType, itemID) => {
+exports.selectItem = (e, avType, itemID, action) => {
     let itemIndex;
 
     if (avType === 'audio') {
@@ -76,11 +76,10 @@ exports.selectItem = (e, avType, itemID) => {
         for (let i = 0; i < arr.length; i++) {
             if (arr[i].id === itemID) {
                 itemIndex = i;
-                console.log(arr[itemIndex].filePath);
-                shell.showItemInFolder(arr[itemIndex].filePath);
             }
         }
     }
+    console.log(avType, itemIndex, action);
 };
 exports.showItemInFolder = (fullPath) => {
     shell.showItemInFolder(fullPath);
