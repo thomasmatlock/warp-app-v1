@@ -489,7 +489,6 @@ input {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2); }
 
 .icon:hover .downloadItemMenu_container {
-  visibility: visible;
   z-index: 999 !important; }
 
 .dl__item .downloadItemMenu_container {
@@ -873,7 +872,7 @@ body {
   height: 100%;
   width: 100%;
   background: #3b3b3b;
-  display: none;
+  display: flex;
   flex-direction: column;
   z-index: 21; }
 

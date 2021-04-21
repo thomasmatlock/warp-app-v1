@@ -61,25 +61,30 @@ exports.downloadItem = (itemURL, avType, platform) => {
     }
 };
 exports.selectItem = (e, avType, itemID, action) => {
-    let itemIndex;
+    let item = returnItemFromStorage(itemID);
+    // console.log(item.id);
+    if (action.toLowerCase() === 'remove') {
+        console.log('removing');
+        this.removeItemFromUI(avType, item.id);
+    }
+    // console.log(item.id, action);
+};
 
-    if (avType === 'audio') {
-        let arr = storage.downloadItems.audioArr;
-        for (let i = 0; i < arr.length; i++) {
-            if (arr[i].id === itemID) {
-                itemIndex = i;
-            }
+const returnItemFromStorage = (itemID) => {
+    let arrAudio = storage.downloadItems.audioArr;
+    let arrVideo = storage.downloadItems.videoArr;
+    // loop audio arr
+    for (let i = 0; i < arrAudio.length; i++) {
+        if (arrAudio[i].id === itemID) {
+            return arrAudio[i];
         }
     }
-    if (avType === 'video') {
-        let arr = storage.downloadItems.videoArr;
-        for (let i = 0; i < arr.length; i++) {
-            if (arr[i].id === itemID) {
-                itemIndex = i;
-            }
+    // loop video arr
+    for (let i = 0; i < arrVideo.length; i++) {
+        if (arrVideo[i].id === itemID) {
+            return arrVideo[i];
         }
     }
-    console.log(avType, itemIndex, action);
 };
 exports.showItemInFolder = (fullPath) => {
     shell.showItemInFolder(fullPath);

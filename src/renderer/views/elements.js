@@ -69,5 +69,13 @@ const elements = {
     // Download list items
     dl__item_audio: document.getElementsByClassName('dl__item_audio'),
     dl__item_video: document.getElementsByClassName('dl__item_video'),
+
+    // action menu items
+    downloadItemMenu_optionsList: document.getElementsByClassName(
+        '.downloadItemMenu_optionsList'
+    ),
+    downloadItemMenu_container: document.getElementsByClassName(
+        '.downloadItemMenu_container'
+    ),
 };
 module.exports = elements;

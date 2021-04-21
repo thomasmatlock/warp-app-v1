@@ -230,7 +230,8 @@ const addEventListeners = () => {
     });
     // Download lists listeners
     elements.download__list_audio_ID.addEventListener('click', (e) => {
-        let itemID;
+        let itemID, action;
+        let actionMenuContainer;
         const iconGearClassName = 'fas fa-cog';
         const iconFolderClassName = 'far fa-folder-open';
 
@@ -247,31 +248,64 @@ const addEventListeners = () => {
             e.target.parentNode.parentNode.parentNode.parentNode.id.length ===
             36
         ) {
-            // console.log(e.target.className);
             if (e.target.className === iconGearClassName) {
                 itemID =
                     e.target.parentNode.parentNode.parentNode.parentNode.id;
-                items.selectItem(e, 'audio', itemID, 'moreActions');
+                actionMenuContainer =
+                    e.target.parentNode.parentNode.parentNode.parentNode
+                    .childNodes[3].childNodes[3].childNodes[1]
+                    .childNodes[3];
+                actionMenuContainer.style.visibility = 'visible';
+                Array.from(
+                    actionMenuContainer.getElementsByClassName(
+                        'downloadItemMenu_option'
+                    )
+                ).forEach((item) => {
+                    item.addEventListener('click', (e) => {
+                        if (
+                            e.target.className === 'downloadItemMenu_optionText'
+                        ) {
+                            action = e.target.outerText;
+                            actionMenuContainer.style.visibility = 'hidden';
+                            // console.log(itemID, action);
+                            items.selectItem(e, 'audio', itemID, action);
+                        } else if (e.target.tagName.toLowerCase() === 'li') {
+                            action = e.target.childNodes[1].outerText;
+
+                            actionMenuContainer.style.visibility = 'hidden';
+                            // console.log(itemID, action);
+                            items.selectItem(e, 'audio', itemID, action);
+                        }
+                    });
+                });
+                Array.from(
+                    actionMenuContainer.getElementsByClassName(
+                        'downloadItemMenu_option'
+                    )
+                ).forEach((item) => {
+                    item.removeEventListener('click', (e) => {});
+                });
             }
         }
-        // SCENARIO 3
-        else if (
-            e.target.parentNode.parentNode.parentNode.childNodes[0].id
-            .length === 36
-        ) {
-            console.log('scenario 3');
-            itemID = e.target.parentNode.parentNode.parentNode.childNodes[0].id;
-        }
-        // SCENARIO 4
-        else if (
-            e.target.parentNode.parentNode.childNodes[0].id.length === 36
-        ) {
-            console.log('scenario 4');
-            itemID = e.target.parentNode.parentNode.childNodes[0].id;
-        }
+        // // SCENARIO 3
+        // else if (
+        //     e.target.parentNode.parentNode.parentNode.childNodes[0].id
+        //     .length === 36
+        // ) {
+        //     // console.log('scenario 3');
+        //     itemID = e.target.parentNode.parentNode.parentNode.childNodes[0].id;
+        // }
+        // // SCENARIO 4
+        // else if (
+        //     e.target.parentNode.parentNode.childNodes[0].id.length === 36
+        // ) {
+        //     // console.log('scenario 4');
+        //     itemID = e.target.parentNode.parentNode.childNodes[0].id;
+        // }
     });
     elements.download__list_video_ID.addEventListener('click', (e) => {
-        let itemID;
+        let itemID, action;
+        let actionMenuContainer;
         const iconGearClassName = 'fas fa-cog';
         const iconFolderClassName = 'far fa-folder-open';
 
@@ -280,7 +314,7 @@ const addEventListeners = () => {
             // console.log(e.target.className);
             if (e.target.className === iconFolderClassName) {
                 itemID = e.target.parentNode.parentNode.parentNode.id;
-                items.selectItem(e, 'video', itemID, 'openContainingFolder');
+                items.selectItem(e, 'audio', itemID, 'openContainingFolder');
             }
         }
         // OPEN MORE ACTIONS MENU
@@ -288,27 +322,59 @@ const addEventListeners = () => {
             e.target.parentNode.parentNode.parentNode.parentNode.id.length ===
             36
         ) {
-            // console.log(e.target.className);
             if (e.target.className === iconGearClassName) {
                 itemID =
                     e.target.parentNode.parentNode.parentNode.parentNode.id;
-                items.selectItem(e, 'video', itemID, 'moreActions');
+                actionMenuContainer =
+                    e.target.parentNode.parentNode.parentNode.parentNode
+                    .childNodes[3].childNodes[3].childNodes[1]
+                    .childNodes[3];
+                actionMenuContainer.style.visibility = 'visible';
+                Array.from(
+                    actionMenuContainer.getElementsByClassName(
+                        'downloadItemMenu_option'
+                    )
+                ).forEach((item) => {
+                    item.addEventListener('click', (e) => {
+                        if (
+                            e.target.className === 'downloadItemMenu_optionText'
+                        ) {
+                            action = e.target.outerText;
+                            actionMenuContainer.style.visibility = 'hidden';
+                            // console.log(itemID, action);
+                            items.selectItem(e, 'audio', itemID, action);
+                        } else if (e.target.tagName.toLowerCase() === 'li') {
+                            action = e.target.childNodes[1].outerText;
+
+                            actionMenuContainer.style.visibility = 'hidden';
+                            // console.log(itemID, action);
+                            items.selectItem(e, 'audio', itemID, action);
+                        }
+                    });
+                });
+                Array.from(
+                    actionMenuContainer.getElementsByClassName(
+                        'downloadItemMenu_option'
+                    )
+                ).forEach((item) => {
+                    item.removeEventListener('click', (e) => {});
+                });
             }
         }
-        // SCENARIO 3
-        else if (
-            e.target.parentNode.parentNode.parentNode.childNodes[0].id
-            .length === 36
-        ) {
-            console.log('scenario 3');
-            itemID = e.target.parentNode.parentNode.parentNode.childNodes[0].id;
-        }
-        // SCENARIO 4
-        else if (
-            e.target.parentNode.parentNode.childNodes[0].id.length === 36
-        ) {
-            console.log('scenario 4');
-            itemID = e.target.parentNode.parentNode.childNodes[0].id;
-        }
+        // // SCENARIO 3
+        // else if (
+        //     e.target.parentNode.parentNode.parentNode.childNodes[0].id
+        //     .length === 36
+        // ) {
+        //     // console.log('scenario 3');
+        //     itemID = e.target.parentNode.parentNode.parentNode.childNodes[0].id;
+        // }
+        // // SCENARIO 4
+        // else if (
+        //     e.target.parentNode.parentNode.childNodes[0].id.length === 36
+        // ) {
+        //     // console.log('scenario 4');
+        //     itemID = e.target.parentNode.parentNode.childNodes[0].id;
+        // }
     });
 };
