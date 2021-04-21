@@ -240,7 +240,7 @@ const addEventListeners = () => {
             // console.log(e.target.className);
             if (e.target.className === iconFolderClassName) {
                 itemID = e.target.parentNode.parentNode.parentNode.id;
-                items.selectItem(e, 'audio', itemID, 'openContainingFolder');
+                items.selectItem('audio', itemID, 'openContainingFolder');
             }
         }
         // OPEN MORE ACTIONS MENU
@@ -268,13 +268,13 @@ const addEventListeners = () => {
                             action = e.target.outerText;
                             actionMenuContainer.style.visibility = 'hidden';
                             // console.log(itemID, action);
-                            items.selectItem(e, 'audio', itemID, action);
+                            items.selectItem('audio', itemID, action);
                         } else if (e.target.tagName.toLowerCase() === 'li') {
                             action = e.target.childNodes[1].outerText;
 
                             actionMenuContainer.style.visibility = 'hidden';
                             // console.log(itemID, action);
-                            items.selectItem(e, 'audio', itemID, action);
+                            items.selectItem('audio', itemID, action);
                         }
                     });
                 });
@@ -342,13 +342,13 @@ const addEventListeners = () => {
                             action = e.target.outerText;
                             actionMenuContainer.style.visibility = 'hidden';
                             // console.log(itemID, action);
-                            items.selectItem(e, 'video', itemID, action);
+                            items.selectItem('video', itemID, action);
                         } else if (e.target.tagName.toLowerCase() === 'li') {
                             action = e.target.childNodes[1].outerText;
 
                             actionMenuContainer.style.visibility = 'hidden';
                             // console.log(itemID, action);
-                            items.selectItem(e, 'video', itemID, action);
+                            items.selectItem('video', itemID, action);
                         }
                     });
                 });

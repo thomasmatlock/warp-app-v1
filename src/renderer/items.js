@@ -1,6 +1,6 @@
 // this is started, taken from the electron course
 const fs = require('fs');
-const { ipcRenderer, shell } = require('electron');
+const { clipboard, ipcRenderer, shell } = require('electron');
 let markup = require('./views/markup');
 let downloadHandler = require('../js/downloadHandler');
 const startupReq = require('../js/startup');
@@ -21,6 +21,7 @@ let storage = {
 let markupAudio = markup.audio;
 let markupVideo = markup.video;
 
+///////////////////////   ADD ITEM(S)   ///////////////////////
 exports.startupAddAllItems = (storageSent) => {
     storage = storageSent;
     this.addItemsFromArray(storage.downloadItems.audioArr, 'audio');
@@ -60,16 +61,19 @@ exports.downloadItem = (itemURL, avType, platform) => {
         downloadHandler.all(itemURL, avType, platform); // exports without object
     }
 };
-exports.selectItem = (e, avType, itemID, action) => {
-    let item = findItem(itemID);
+
+///////////////////////   SELECT/IDENTIFY ITEM(S)   ///////////////////////
+exports.selectItem = (avType, itemID, action) => {
+    let item = this.findItem(itemID);
     // console.log(item);
     if (action.toLowerCase() === 'show in folder') {
-        console.log('showing in folder');
+        // console.log('showing in folder');
         // console.log(item.filepath);
         this.showItemInFolder(item.filepath);
     }
     if (action.toLowerCase() === 'copy link') {
         console.log('copying link');
+        this.copyLink(item.url);
     }
     if (action.toLowerCase() === 'open in browser') {
         console.log('opening in browser');
@@ -79,18 +83,16 @@ exports.selectItem = (e, avType, itemID, action) => {
     }
     if (action.toLowerCase() === 'delete file') {
         console.log(item.filepath);
-        fs.unlink(item.filepath, (err) => {
-            console.log(`deleting ${item.filepath} now...`);
-        });
+        fs.unlink(item.filepath, (err) => console.log(err));
+        this.removeItem(avType, item.id);
     }
     if (action.toLowerCase() === 'remove all') {
         // console.log('removing all');
-        console.log('removing all is ready but ignoring for dev');
-        // this.removeAllitems(avType);
+        // console.log('removing all is ready but ignoring for dev');
+        this.removeAllitems(avType);
     }
 };
-
-const findItem = (itemID) => {
+exports.findItem = (itemID) => {
     let arrAudio = storage.downloadItems.audioArr;
     let arrVideo = storage.downloadItems.videoArr;
     // loop audio arr
@@ -106,10 +108,16 @@ const findItem = (itemID) => {
         }
     }
 };
+///////////////////////   MENU ACTIONS   ///////////////////////
+
 exports.showItemInFolder = (fullPath) => {
     shell.showItemInFolder(fullPath);
 };
+exports.copyLink = (itemURL) => {
+    clipboard.writeText(itemURL);
+};
 
+///////////////////////   REMOVE ITEM(S)   ///////////////////////
 exports.removeItemFromUI = (avType, itemID) => {
     // console.log(itemID);
     document.getElementById(itemID).remove();
@@ -121,7 +129,7 @@ exports.removeAllItemsFromUI = (avType) => {
     } else if (avType === 'video') {
         arr = storage.downloadItems.videoArr;
     }
-    console.log(arr.length);
+
     for (let i = 0; i < arr.length; i++) {
         // console.log(arr[i].id);
         this.removeItemFromUI(avType, arr[i].id);
@@ -228,7 +236,7 @@ exports.resetStorage = () => {
     this.save();
     ipcRenderer.send('reset-storage', storage);
 };
-////////////////////////////////////////////////////////////////////////////////////
+///////////////////////   IPC LISTENERS   ///////////////////////
 ipcRenderer.on('storage-save-success', (e, storageSentFromMain) => {
     storage = storageSentFromMain;
 });

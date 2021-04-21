@@ -170,15 +170,12 @@ const getInfo = async function(itemURL, avType) {
 };
 
 const all = function(itemURL, avType, platform) {
-    console.log(itemURL);
+    // console.log(itemURL);
     itemInfo.type = avType;
     itemInfo.platform = platform;
     this.getInfo(itemURL, avType);
-
     // itemInfo.getFileSize();
 };
-
-// module.exports = itemInfo;
 
 module.exports = {
     itemInfo: itemInfo,
