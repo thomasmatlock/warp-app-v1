@@ -65,8 +65,7 @@ exports.downloadItem = (itemURL, avType, platform) => {
 ///////////////////////   SELECT/IDENTIFY ITEM(S)   ///////////////////////
 exports.selectItem = (avType, itemID, action) => {
     let item = this.findItem(itemID);
-    console.log(itemID);
-    console.log(item);
+
     if (action.toLowerCase() === 'show in folder') {
         // console.log('showing in folder');
         // console.log(item.filepath);
@@ -78,6 +77,7 @@ exports.selectItem = (avType, itemID, action) => {
     }
     if (action.toLowerCase() === 'open in browser') {
         console.log('opening in browser');
+        shell.openExternal(item.url);
     }
     if (action.toLowerCase() === 'remove') {
         this.removeItemFromUI(avType, item.id);

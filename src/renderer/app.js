@@ -237,10 +237,10 @@ const addEventListeners = () => {
 
         // OPEN CONTAINER FOLDER
         if (e.target.parentNode.parentNode.parentNode.id.length === 36) {
-            console.log(e.target.className);
+            // console.log(e.target.className);
             if (e.target.className === iconFolderClassName) {
                 itemID = e.target.parentNode.parentNode.parentNode.id;
-                console.log(itemID);
+                // console.log(itemID);
                 items.selectItem('audio', itemID, 'show in folder');
             }
         }
@@ -312,10 +312,10 @@ const addEventListeners = () => {
 
         // OPEN CONTAINER FOLDER
         if (e.target.parentNode.parentNode.parentNode.id.length === 36) {
-            console.log(e.target.className);
+            // console.log(e.target.className);
             if (e.target.className === iconFolderClassName) {
                 itemID = e.target.parentNode.parentNode.parentNode.id;
-                console.log(itemID);
+                // console.log(itemID);
                 items.selectItem('video', itemID, 'show in folder');
             }
         }
