@@ -1,4 +1,5 @@
 // this is started, taken from the electron course
+const fs = require('fs');
 const { ipcRenderer, shell } = require('electron');
 let markup = require('./views/markup');
 let downloadHandler = require('../js/downloadHandler');
@@ -30,6 +31,7 @@ exports.startupAddAllItems = (storageSent) => {
 exports.addItem = (item, avType, isStartup) => {
     if (avType === 'audio') {
         this.insertMarkup(item, avType); // splices in item info to markup
+        console.log(item.filepath);
         let audioDownloadList = document.querySelector('.download__list_audio'); // selects target list to add item markup to
         let itemNodeAudio = document.createElement('li'); // Create a new HTML Dom node inside download list
         itemNodeAudio.innerHTML = markupAudio; // Insert markup into new DOM node inserted into list
@@ -62,6 +64,7 @@ exports.downloadItem = (itemURL, avType, platform) => {
 };
 exports.selectItem = (e, avType, itemID, action) => {
     let item = findItem(itemID);
+    console.log(item);
     if (action.toLowerCase() === 'show in folder') {
         console.log('showing in folder');
     }
@@ -75,7 +78,10 @@ exports.selectItem = (e, avType, itemID, action) => {
         this.removeItemFromUI(avType, item.id);
     }
     if (action.toLowerCase() === 'delete file') {
-        console.log('deleting file');
+        console.log(item.filepath);
+        fs.unlink(item.filepath, (err) => {
+            console.log(`deleting ${item.filepath} now...`);
+        });
     }
     if (action.toLowerCase() === 'remove all') {
         // console.log('removing all');

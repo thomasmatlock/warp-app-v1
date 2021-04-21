@@ -91,8 +91,8 @@ const cloneVideoDetails = function(itemURL, info, avType) {
     itemInfo.qualityLabel = itemInfo.selectedFormat.qualityLabel;
     itemInfo.audioQuality = itemInfo.selectedFormat.audioQuality;
     itemInfo.approxDurationMs = itemInfo.selectedFormat.approxDurationMs;
-    // itemInfo.filePath = '';
-    itemInfo.filePath =
+
+    itemInfo.filepath =
         avType === 'audio' ?
         path.join(fileController.dirAudioPath, `${itemInfo.title}.mp3`) :
         path.join(fileController.dirVideoPath, `${itemInfo.title}.mp4`);
@@ -126,7 +126,6 @@ const removeCharactersFromTitle = function() {
     // itemInfo.title = itemInfo.title.replace(`<`, ' ');
     // itemInfo.title = itemInfo.title.replace(`>`, ' ');
     itemInfo.title = itemInfo.title.replace(`#`, ' ');
-    // console.log(itemInfo.title);
 };
 
 const downloadAndWrite = function(itemURL) {
@@ -145,13 +144,13 @@ const downloadAndWrite = function(itemURL) {
                     fileController.dirVideoPath,
                     `${itemInfo.title}.mp4`
                 );
-                // console.log(filePath);
-                this.finishedFilePath = filePath;
             }
-            // console.log(filePath);
             if (startup.dev.downloadFile) {
                 // console.log(itemURL);
                 // console.log(this.itemInfo.url);
+                this.filepath = filePath;
+                console.log(this.filepath);
+                console.log(filePath);
                 ytdl(this.itemInfo.url).pipe(fs.createWriteStream(filePath)); // downloads video
             }
         })();
