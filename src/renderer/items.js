@@ -65,7 +65,8 @@ exports.downloadItem = (itemURL, avType, platform) => {
 ///////////////////////   SELECT/IDENTIFY ITEM(S)   ///////////////////////
 exports.selectItem = (avType, itemID, action) => {
     let item = this.findItem(itemID);
-    // console.log(item);
+    console.log(itemID);
+    console.log(item);
     if (action.toLowerCase() === 'show in folder') {
         // console.log('showing in folder');
         // console.log(item.filepath);
