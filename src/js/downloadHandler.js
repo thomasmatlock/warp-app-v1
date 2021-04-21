@@ -131,46 +131,38 @@ const removeCharactersFromTitle = function() {
 const downloadAndWrite = function(itemURL) {
     if (startup.dev.getDownloadItemInfo) {
         (async() => {
-            var filePath;
-            if (itemInfo.type === 'audio') {
-                filePath = path.join(
-                    fileController.dirAudioPath,
-                    `${itemInfo.title}.mp3` // fix this, needs to be audio and mp3
-                );
-                // console.log(filePath);
-            } else if (itemInfo.type === 'video') {
-                // console.log('its video type');
-                filePath = path.join(
-                    fileController.dirVideoPath,
-                    `${itemInfo.title}.mp4`
-                );
-            }
+            let filepath = createFilePath();
             if (startup.dev.downloadFile) {
-                // console.log(itemURL);
-                // console.log(this.itemInfo.url);
-                this.filepath = filePath;
-                console.log(this.filepath);
-                console.log(filePath);
-                ytdl(this.itemInfo.url).pipe(fs.createWriteStream(filePath)); // downloads video
+                ytdl(this.itemInfo.url).pipe(fs.createWriteStream(filepath)); // downloads video
             }
         })();
     }
 };
-// // #async
+
 const getFileSize = function() {
     // console.log('getFileSize');
 };
-
+const createFilePath = function() {
+    // var filePath;
+    if (itemInfo.type === 'audio') {
+        return path.join(
+            fileController.dirAudioPath,
+            `${itemInfo.title}.mp3` // fix this, needs to be audio and mp3
+        );
+        // console.log(filePath);
+    } else if (itemInfo.type === 'video') {
+        return path.join(fileController.dirVideoPath, `${itemInfo.title}.mp4`);
+    }
+};
 const getInfo = async function(itemURL, avType) {
     try {
         await ytdl.getBasicInfo(itemURL).then((info) => {
             this.cloneVideoDetails(itemURL, info, avType);
             this.removeCharactersFromTitle();
-            // console.log(itemInfo.id);
+            itemInfo.filepath = createFilePath();
             this.downloadAndWrite(itemURL);
             items.addItem(itemInfo, avType);
             items.updateStorage(itemInfo, avType, 'add');
-            // items.clickDownloadList(avType);
         });
     } catch (error) {
         console.log(error);

@@ -31,7 +31,7 @@ exports.startupAddAllItems = (storageSent) => {
 exports.addItem = (item, avType, isStartup) => {
     if (avType === 'audio') {
         this.insertMarkup(item, avType); // splices in item info to markup
-        console.log(item.filepath);
+        // console.log(item.filepath);
         let audioDownloadList = document.querySelector('.download__list_audio'); // selects target list to add item markup to
         let itemNodeAudio = document.createElement('li'); // Create a new HTML Dom node inside download list
         itemNodeAudio.innerHTML = markupAudio; // Insert markup into new DOM node inserted into list
