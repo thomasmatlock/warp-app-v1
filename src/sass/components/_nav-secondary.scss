@@ -76,11 +76,13 @@ input {
     background: purple;
 }
 
-#searchAudio {
+#searchAudio,
+#searchVideo {
     height: 5rem;
     background: white;
     margin: auto;
-    border: dotted 1px red; // test
+    border-radius: 2px;
+    // border: dotted 1px red; // test
 }
 
 // CHILDREN TABS

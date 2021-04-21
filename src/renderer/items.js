@@ -61,16 +61,30 @@ exports.downloadItem = (itemURL, avType, platform) => {
     }
 };
 exports.selectItem = (e, avType, itemID, action) => {
-    let item = returnItemFromStorage(itemID);
-    // console.log(item.id);
+    let item = findItem(itemID);
+    if (action.toLowerCase() === 'show in folder') {
+        console.log('showing in folder');
+    }
+    if (action.toLowerCase() === 'copy link') {
+        console.log('copying link');
+    }
+    if (action.toLowerCase() === 'open in browser') {
+        console.log('opening in browser');
+    }
     if (action.toLowerCase() === 'remove') {
-        console.log('removing');
         this.removeItemFromUI(avType, item.id);
     }
-    // console.log(item.id, action);
+    if (action.toLowerCase() === 'delete file') {
+        console.log('deleting file');
+    }
+    if (action.toLowerCase() === 'remove all') {
+        // console.log('removing all');
+        console.log('removing all is ready but ignoring for dev');
+        // this.removeAllitems(avType);
+    }
 };
 
-const returnItemFromStorage = (itemID) => {
+const findItem = (itemID) => {
     let arrAudio = storage.downloadItems.audioArr;
     let arrVideo = storage.downloadItems.videoArr;
     // loop audio arr
@@ -91,6 +105,7 @@ exports.showItemInFolder = (fullPath) => {
 };
 
 exports.removeItemFromUI = (avType, itemID) => {
+    // console.log(itemID);
     document.getElementById(itemID).remove();
 };
 exports.removeAllItemsFromUI = (avType) => {
@@ -100,7 +115,7 @@ exports.removeAllItemsFromUI = (avType) => {
     } else if (avType === 'video') {
         arr = storage.downloadItems.videoArr;
     }
-
+    console.log(arr.length);
     for (let i = 0; i < arr.length; i++) {
         // console.log(arr[i].id);
         this.removeItemFromUI(avType, arr[i].id);
@@ -110,9 +125,9 @@ exports.removeItem = (avType, itemID) => {
     this.removeItemFromUI(avType, itemID);
     this.updateStorage('ignore', avType, 'remove', itemIndex);
 };
-exports.removeAllitems = (avType, itemIndex) => {
+exports.removeAllitems = (avType) => {
     this.removeAllItemsFromUI(avType);
-    this.updateStorage('ignore', avType, 'remove-all', itemIndex);
+    this.updateStorage('ignore', avType, 'remove-all', 'ignore');
 };
 
 ///////////////////////   MARKUP   ///////////////////////

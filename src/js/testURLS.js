@@ -115,7 +115,6 @@ const urls = [
     'https://www.youtube.com/watch?v=pfdhxAMXH0Y',
     'https://www.youtube.com/watch?v=Ln81WCEpx0I',
     'https://www.youtube.com/watch?v=jK4WIU4OWsw',
-    'https://www.youtube.com/watch?v=jvrt8jFUvgo',
     'https://www.youtube.com/watch?v=I-pBMknahfY',
     'https://www.youtube.com/watch?v=H6HVyaLCFao',
     'https://www.youtube.com/watch?v=BdcyCmx6hy4',

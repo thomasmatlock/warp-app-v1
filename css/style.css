@@ -310,11 +310,12 @@ input {
 .nav_B__search__input {
   background: purple; }
 
-#searchAudio {
+#searchAudio,
+#searchVideo {
   height: 5rem;
   background: white;
   margin: auto;
-  border: dotted 1px red; }
+  border-radius: 2px; }
 
 .nav_B_button:link,
 .nav_B_button:visited {
