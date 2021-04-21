@@ -23,8 +23,6 @@ let markupVideo = markup.video;
 
 exports.startupAddAllItems = (storageSent) => {
     storage = storageSent;
-    // console.log(storage);
-
     this.addItemsFromArray(storage.downloadItems.audioArr, 'audio');
     this.addItemsFromArray(storage.downloadItems.videoArr, 'video');
 };
@@ -64,9 +62,11 @@ exports.downloadItem = (itemURL, avType, platform) => {
 };
 exports.selectItem = (e, avType, itemID, action) => {
     let item = findItem(itemID);
-    console.log(item);
+    // console.log(item);
     if (action.toLowerCase() === 'show in folder') {
         console.log('showing in folder');
+        // console.log(item.filepath);
+        this.showItemInFolder(item.filepath);
     }
     if (action.toLowerCase() === 'copy link') {
         console.log('copying link');
