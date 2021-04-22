@@ -3,7 +3,6 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-unused-vars */
 /* eslint-disable one-var */
-const logging = true;
 const { app, clipboard, ipcRenderer, shell } = require('electron');
 const nativeImage = require('electron').nativeImage;
 let elements = require('./views/elements');
@@ -25,10 +24,15 @@ let state = new stateReq();
     ipcRenderer.on('window-ready', (e, storage) => {
         addEventListeners(); // activates DOM event listeners
         addMenuListeners(); // activates menu event listeners
+        setActiveNav_A(startup.env.nav_A_active); // sets active Nav A
         setTimeout(() => {
             auto.click_nav_A(startup.env.nav_A_active); // auto clicks active tab if active
+            // auto.click_nav_A(startup.env.nav_A_active); // auto clicks active tab if active
         }, 50);
-        setActiveNav_A(startup.env.nav_A_active); // sets active Nav A
+        setTimeout(() => {
+            // auto.click_nav_A(startup.env.nav_A_active); // auto clicks active tab if active
+            auto.click_nav_A(startup.env.nav_A_active); // auto clicks active tab if active
+        }, 300);
         ipcRenderer.send('menu-change', startup.env.nav_A_active);
         if (startup.dev.clearStorage) items.resetStorage(); // clears localStorage if active
         items.startupAddAllItems(storage); // loads items stored in settings to UI
