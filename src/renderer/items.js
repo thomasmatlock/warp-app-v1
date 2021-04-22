@@ -65,6 +65,7 @@ exports.downloadItem = (itemURL, avType, platform) => {
 ///////////////////////   SELECT/IDENTIFY ITEM(S)   ///////////////////////
 exports.selectItem = (avType, itemID, action) => {
     let item = this.findItem(itemID);
+    let itemIndex = this.findItemIndex(itemID);
 
     if (action.toLowerCase() === 'show in folder') {
         // console.log('showing in folder');
@@ -72,24 +73,20 @@ exports.selectItem = (avType, itemID, action) => {
         this.showItemInFolder(item.filepath);
     }
     if (action.toLowerCase() === 'copy link') {
-        console.log('copying link');
         this.copyLink(item.url);
     }
     if (action.toLowerCase() === 'open in browser') {
-        console.log('opening in browser');
         shell.openExternal(item.url);
     }
     if (action.toLowerCase() === 'remove') {
-        this.removeItemFromUI(avType, item.id);
+        this.removeItem(avType, item.id, itemIndex);
     }
     if (action.toLowerCase() === 'delete file') {
         console.log(item.filepath);
         fs.unlink(item.filepath, (err) => console.log(err));
-        this.removeItem(avType, item.id);
+        this.removeItem(avType, item.id, itemIndex);
     }
     if (action.toLowerCase() === 'remove all') {
-        // console.log('removing all');
-        // console.log('removing all is ready but ignoring for dev');
         this.removeAllitems(avType);
     }
 };
@@ -106,6 +103,22 @@ exports.findItem = (itemID) => {
     for (let i = 0; i < arrVideo.length; i++) {
         if (arrVideo[i].id === itemID) {
             return arrVideo[i];
+        }
+    }
+};
+exports.findItemIndex = (itemID) => {
+    let arrAudio = storage.downloadItems.audioArr;
+    let arrVideo = storage.downloadItems.videoArr;
+    // loop audio arr
+    for (let i = 0; i < arrAudio.length; i++) {
+        if (arrAudio[i].id === itemID) {
+            return i;
+        }
+    }
+    // loop video arr
+    for (let i = 0; i < arrVideo.length; i++) {
+        if (arrVideo[i].id === itemID) {
+            return i;
         }
     }
 };
@@ -136,7 +149,7 @@ exports.removeAllItemsFromUI = (avType) => {
         this.removeItemFromUI(avType, arr[i].id);
     }
 };
-exports.removeItem = (avType, itemID) => {
+exports.removeItem = (avType, itemID, itemIndex) => {
     this.removeItemFromUI(avType, itemID);
     this.updateStorage('ignore', avType, 'remove', itemIndex);
 };
