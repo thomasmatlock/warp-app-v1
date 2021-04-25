@@ -56,8 +56,7 @@
                 -   Stripe
                     -   https://www.npmjs.com/package/stripe
                 -   Paypal
-                    -   https://www.npmjs.com/package/paypal-checkout
-                    -   https://www.npmjs.com/package/paypal-nvp-api
+                    -   https://www.npmjs.com/package/paypal-checkout 10k weekly dl
                     -   https://www.npmjs.com/package/@paypal/sdk-release
             -   Auth
                 -   Google
