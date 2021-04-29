@@ -92,7 +92,7 @@ const addMenuListeners = () => {
         items.removeAllitems('audio');
     });
     ipcRenderer.on('Audio: Tools: Preferences', () => {
-        modals.modalPreferencesAdjust(state, elements, startup);
+        modals.modalBackgroundAdjust(state, elements, startup);
     });
 
     // MENU LISTENERS, VIDEO
@@ -115,7 +115,7 @@ const addMenuListeners = () => {
     ipcRenderer.on('Video: Tools: Subscriptions', () => {});
     ipcRenderer.on('Video: Tools: Check for update', () => {});
     ipcRenderer.on('Video: Tools: Preferences', () => {
-        modals.modalPreferencesAdjust(state, elements, startup);
+        modals.modalBackgroundAdjust(state, elements, startup);
     });
 
     // MENU LISTENERS, WARPSTAGRAM
@@ -138,7 +138,7 @@ const addMenuListeners = () => {
     ipcRenderer.on('Warpstagram: Tools: Login', () => {});
     ipcRenderer.on('Warpstagram: Tools: Manage license', () => {});
     ipcRenderer.on('Warpstagram: Tools: Preferences', () => {
-        modals.modalPreferencesAdjust(state, elements, startup);
+        modals.modalBackgroundAdjust(state, elements, startup);
     });
 
     // Menu listeners, universal commands
@@ -207,8 +207,7 @@ const addEventListeners = () => {
         if (logging) console.log('clicked activate');
     });
     elements.nav_B_button_audio_preferences.addEventListener('click', (e) => {
-        if (logging) console.log('clicked preferences');
-        modals.modalPreferencesAdjust(state, elements, startup);
+        modals.modalBackgroundAdjust(state, elements, startup);
     });
 
     // Nav B video LISTENERS
@@ -222,8 +221,7 @@ const addEventListeners = () => {
         if (logging) console.log('clicked subscriptions');
     });
     elements.nav_B_button_video_preferences.addEventListener('click', (e) => {
-        if (logging) console.log('clicked preferences');
-        modals.modalPreferencesAdjust(state, elements, startup);
+        modals.modalBackgroundAdjust(state, elements, startup);
     });
     // Nav B search listeners
     elements.searchAudio.addEventListener('keyup', (e) => {
@@ -382,5 +380,9 @@ const addEventListeners = () => {
         //     // console.log('scenario 4');
         //     itemID = e.target.parentNode.parentNode.childNodes[0].id;
         // }
+    });
+    // Modals listeners
+    elements.modalBackground.addEventListener('click', (e) => {
+        modals.remove(state, elements);
     });
 };

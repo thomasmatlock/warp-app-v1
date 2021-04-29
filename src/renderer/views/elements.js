@@ -22,8 +22,8 @@ const elements = {
         '.nav_B_button_audio_paste'
     ),
 
-    nav_B_button_audio_modalPreferences: document.querySelector(
-        '.modalPreferences'
+    nav_B_button_audio_modalBackground: document.querySelector(
+        '.modalBackground'
     ),
 
     nav_B_button_audio_activate: document.querySelector(
@@ -50,12 +50,12 @@ const elements = {
         '.nav_B_button_video_preferences'
     ),
     nav_B_button_video_help: document.querySelector('.nav_B_button_video_help'),
-    // modalPreferences: document.getElementById('modal'),
-    modalPreferences: document.querySelector('.modalPreferences'),
-    modalPreferencesContainer: document.querySelector(
-        '.modalPreferencesContainer'
+    // modalBackground: document.getElementById('modal'),
+    modalBackground: document.querySelector('.modalBackground'),
+    modalBackgroundContainer: document.querySelector(
+        '.modalBackgroundContainer'
     ),
-    // modalPreferences: document.querySelector('.modalPreferences'),
+    modalBackground: document.querySelector('.modalBackground'),
     // search input
     searchAudio: document.getElementById('searchAudio'), // ID of video list
     searchVideo: document.getElementById('searchVideo'), // ID of video list

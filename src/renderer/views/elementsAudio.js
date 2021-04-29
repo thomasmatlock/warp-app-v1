@@ -15,12 +15,12 @@ const elementsAudio = {
     nav_B__main: document.querySelector('.nav_B__main'),
     nav_B__minor: document.querySelector('.nav_B__minor'),
 
-    // Nav B audio 
+    // Nav B audio
     nav_B_button_audio_paste: document.querySelector(
         '.nav_B_button_audio_paste'
     ),
-    nav_B_button_audio_modalPreferences: document.querySelector(
-        '.modalPreferences'
+    nav_B_button_audio_modalBackground: document.querySelector(
+        '.modalBackground'
     ),
     nav_B_button_audio_activate: document.querySelector(
         '.nav_B_button_audio_activate'
@@ -30,9 +30,9 @@ const elementsAudio = {
     ),
     nav_B_button_audio_help: document.querySelector('.nav_B_button_audio_help'),
     // Modal
-    modalPreferences: document.querySelector('.modalPreferences'),
-    modalPreferencesContainer: document.querySelector(
-        '.modalPreferencesContainer'
+    modalBackground: document.querySelector('.modalBackground'),
+    modalBackgroundContainer: document.querySelector(
+        '.modalBackgroundContainer'
     ),
 
     // Download lists
