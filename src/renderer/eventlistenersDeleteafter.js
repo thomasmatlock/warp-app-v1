@@ -6,7 +6,7 @@ elements.nav_B_button_audio_activate.addEventListener('click', (e) => {
 });
 elements.nav_B_button_audio_preferences.addEventListener('click', (e) => {
     if (logging) console.log('clicked preferences');
-    modals.modalBackgroundAdjust(state, elements, startup);
+    modals.addBackground(state, elements, startup);
 });
 elements.nav_B_button_audio_help.addEventListener('click', (e) => {
     if (logging) console.log('clicked help');
@@ -23,7 +23,7 @@ elements.nav_B_button_video_subscriptions.addEventListener('click', (e) => {
 });
 elements.nav_B_button_video_preferences.addEventListener('click', (e) => {
     if (logging) console.log('clicked preferences');
-    modals.modalBackgroundAdjust(state, elements, startup);
+    modals.addBackground(state, elements, startup);
 });
 // Download lists listeners
 

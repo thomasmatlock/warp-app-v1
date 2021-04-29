@@ -16,26 +16,16 @@
 
 //////////////////////////////////////////////////////////////// Welcome
 
-exports.modalBackgroundAdjust = (state, elements, startup) => {
-    // de-activate modal background
+exports.addBackground = (state, elements, startup) => {
     if (state.modals.preferences) {
-        elements.modalBackground.style.display = 'none';
-        // activate modal background
+        elements.modalBackground.style.display = 'none'; // de-activate modal background
     } else if (!state.modals.preferences) {
-        // if (startup.env.nav_A_active === 'audio')
-        //     elements.modalBackgroundContainer.style.top = '0%';
-        // if (startup.env.nav_A_active === 'video')
-        //     elements.modalBackgroundContainer.style.top = '33.5%';
-        // if (startup.env.nav_A_active === 'warpstagram')
-        //     elements.modalBackgroundContainer.style.top = '67%';
-        elements.modalBackground.style.display = 'flex';
+        elements.modalBackground.style.display = 'flex'; // activate modal background
     }
-    state.modals.preferences ?
-        (state.modals.preferences = false) :
-        (state.modals.preferences = true); // toggles modals active or not
+    this.toggleModalState(state);
 };
 
-exports.remove = (state, elements) => {
+exports.removeBackground = (state, elements) => {
     // console.log('removing modal');
     elements.modalBackground.style.display = 'none';
     this.toggleModalState(state);
@@ -47,3 +37,9 @@ exports.toggleModalState = (state) => {
         (state.modals.preferences = false) :
         (state.modals.preferences = true); // toggles modals active or not
 };
+// if (startup.env.nav_A_active === 'audio')
+//     elements.modalBackgroundContainer.style.top = '0%';
+// if (startup.env.nav_A_active === 'video')
+//     elements.modalBackgroundContainer.style.top = '33.5%';
+// if (startup.env.nav_A_active === 'warpstagram')
+//     elements.modalBackgroundContainer.style.top = '67%';
