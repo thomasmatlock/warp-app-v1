@@ -1,6 +1,6 @@
 // const { app, BrowserWindow } = require('electron');
 const elements = {
-    // Nav A
+    // NAV A
     nav_A: document.querySelector('.nav_A'),
     nav_A_button: document.querySelector('.nav_A-tab'),
     nav_A_buttonArr: document.querySelectorAll('.nav_A-tab'),
@@ -8,7 +8,7 @@ const elements = {
     nav_A_audio: document.getElementById('nav_A_audio'),
     nav_A_video: document.getElementById('nav_A_video'),
     nav_A_warpstagram: document.getElementById('nav_A_warpstagram'),
-    // Nav B
+    // NAV B
     nav_B: document.querySelector('.nav_B'),
     nav_B_button: document.querySelector('.nav_B_button'),
     nav_B_buttonArr: document.querySelectorAll('.nav_B_button'),
@@ -17,7 +17,7 @@ const elements = {
     nav_B__main: document.querySelector('.nav_B__main'),
     nav_B__minor: document.querySelector('.nav_B__minor'),
 
-    // Nav B audio
+    // NAV B AUDIO
     nav_B_button_audio_paste: document.querySelector(
         '.nav_B_button_audio_paste'
     ),
@@ -33,7 +33,7 @@ const elements = {
         '.nav_B_button_audio_preferences'
     ),
     nav_B_button_audio_help: document.querySelector('.nav_B_button_audio_help'),
-    // Nav B video
+    // NAV B VIDEO
     nav_B_button_video_paste: document.querySelector(
         '.nav_B_button_video_paste'
     ),
@@ -50,26 +50,25 @@ const elements = {
         '.nav_B_button_video_preferences'
     ),
     nav_B_button_video_help: document.querySelector('.nav_B_button_video_help'),
-    // modalBackground: document.getElementById('modal'),
     modalBackground: document.querySelector('.modalBackground'),
-    // modalContainer: document.querySelector('.modalContainer'),
+    modalParent: document.querySelector('.modalParent'),
     modalContainerAudio: document.querySelector('.modalContainerAudio'),
 
-    // search input
+    // SEARCH INPUT
     searchAudio: document.getElementById('searchAudio'), // ID of video list
     searchVideo: document.getElementById('searchVideo'), // ID of video list
 
-    // Download lists
+    // DOWNLOAD LISTS
     download__list: document.querySelector('.download__list'),
     download__list_audio: document.querySelector('.download__list_audio'), // audio list selected by class
     download__list_video: document.querySelector('.download__list_video'), // video list selected by class
     download__list_audio_ID: document.getElementById('download__list_audio_ID'), // // ID of audio list
     download__list_video_ID: document.getElementById('download__list_video_ID'), // ID of video list
-    // Download list items
+    // DOWNLOAD LIST ITEMS
     dl__item_audio: document.getElementsByClassName('dl__item_audio'),
     dl__item_video: document.getElementsByClassName('dl__item_video'),
 
-    // action menu items
+    // ACTION MENU ITEMS
     downloadItemMenu_optionsList: document.getElementsByClassName(
         '.downloadItemMenu_optionsList'
     ),
