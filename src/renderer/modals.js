@@ -32,7 +32,6 @@ exports.togglePreferences = (state, elements, avType) => {
             elements.modalContainerAudio.style.display = 'none'; // activate modal background
     }
 };
-
 exports.toggleModalState = (state) => {
     state.modals.preferences ?
         (state.modals.preferences = false) :
