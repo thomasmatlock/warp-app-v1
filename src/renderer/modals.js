@@ -5,7 +5,6 @@
 // modalActivationWarpstagram
 // Video Smart Mode // MODAL
 // Video Subscriptions // HTML
-
 //////////////////////////////////////////////////////////////// Preferences
 // MODAL
 // Preferences modal, 2 tabs, [Downloader, Warpstagram], both have side navs,
@@ -13,7 +12,6 @@
 // Preferences, General
 // Preferences, Connection
 // Preferences, Notifications
-
 //////////////////////////////////////////////////////////////// Welcome
 
 exports.toggleBackground = (state, elements) => {
@@ -25,11 +23,11 @@ exports.toggleBackground = (state, elements) => {
 };
 exports.togglePreferences = (state, elements, avType) => {
     if (state.modals.preferences) {
-        if (avType === 'audio')
-            elements.modalContainerAudio.style.display = 'flex'; // de-activate modal background
+        if (avType === 'audio') elements.modalParent.style.display = 'flex'; // de-activate modal background
+        elements.modalContainerAudio.style.display = 'flex'; // de-activate modal background
     } else if (!state.modals.preferences) {
-        if (avType === 'audio')
-            elements.modalContainerAudio.style.display = 'none'; // activate modal background
+        if (avType === 'audio') elements.modalParent.style.display = 'none'; // activate modal background
+        elements.modalContainerAudio.style.display = 'none'; // activate modal background
     }
 };
 exports.toggleModalState = (state) => {

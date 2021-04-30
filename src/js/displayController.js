@@ -3,7 +3,7 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-unused-vars */
 /* eslint-disable one-var */
-const logging = true;
+
 const { screen } = require('electron');
 const startupReq = require('./startup');
 const startup = new startupReq();
@@ -51,10 +51,10 @@ class displayController {
             this.useLaptop = true;
             this.x = Math.round(this.displayToUse.size.width * 0); // how far to the right app appears
             this.y = Math.round(this.displayToUse.size.height * 0); // how far down the app
-            if (this.logging)
-                console.log(
-                    `Dev mode, laptop, height ${this.height}, width ${this.width}, x ${this.x}, y ${this.y}`
-                );
+
+            console.log(
+                `Dev mode, laptop, height ${this.height}, width ${this.width}, x ${this.x}, y ${this.y}`
+            );
 
             // DEV MODE, DESKTOP PRIMARY
         } else if (

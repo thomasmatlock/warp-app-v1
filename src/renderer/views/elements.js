@@ -50,6 +50,8 @@ const elements = {
         '.nav_B_button_video_preferences'
     ),
     nav_B_button_video_help: document.querySelector('.nav_B_button_video_help'),
+
+    // MODALS
     modalBackground: document.querySelector('.modalBackground'),
     modalParent: document.querySelector('.modalParent'),
     modalContainerAudio: document.querySelector('.modalContainerAudio'),

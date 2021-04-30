@@ -770,6 +770,7 @@ input[type='text'] {
   height: 100%; }
 
 .modalContainerAudio {
+  animation: moveInTop 0.5s ease-out;
   position: relative;
   margin: 0 auto;
   width: 600px;
