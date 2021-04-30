@@ -36,7 +36,6 @@ exports.addItem = (item, avType, isStartup) => {
         itemNodeAudio.innerHTML = markupAudio; // Insert markup into new DOM node inserted into list
         audioDownloadList.appendChild(itemNodeAudio); // Append item node
         this.resetMarkup();
-        // if (isStartup) auto.clickElement(elements.dl__item_audio[0]);
     }
     if (avType === 'video') {
         // console.log(item.title);
@@ -48,7 +47,6 @@ exports.addItem = (item, avType, isStartup) => {
         itemNodeVideo.innerHTML = markupVideo; // Insert markup
         videoDownloadList.appendChild(itemNodeVideo); // Append item node
         this.resetMarkup();
-        // if (!isStartup) auto.clickElement(elements.dl__item_video[0]);
     }
 };
 exports.addItemsFromArray = (arr, avType) => {

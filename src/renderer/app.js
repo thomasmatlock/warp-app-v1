@@ -36,7 +36,7 @@ let state = new stateReq();
         ipcRenderer.send('menu-change', startup.env.nav_A_active);
         if (startup.dev.clearStorage) items.resetStorage(); // clears localStorage if active
         items.startupAddAllItems(storage); // loads items stored in settings to UI
-        modals.readMarkup();
+        // modals.insertMarkup;
         auto.click_nav_B(startup.env.nav_A_active, 'preferences'); // auto clicks paste, smartMode, activate, subscriptions, preferences, help
     });
 
@@ -57,12 +57,9 @@ let state = new stateReq();
             setTimeout(() => {
                 elements.nav_A_audio.click(); // clicks audio tab
             }, clickDelay);
-            // elements.modalContainerAudio.style.margin = '0 50%';
-            // elements.modalContainerAudio.style.left = '25%';
         }
         if (startup.env.nav_A_active == 'video') {
             elements.nav_A_active = elements.nav_A_video; // sets active Nav A
-            // console.log(`clicking ${elements.env.nav_A_active}`);
             setTimeout(() => {
                 elements.nav_A_video.click(); // clicks video tab
             }, clickDelay);
