@@ -52,7 +52,8 @@ const elements = {
     nav_B_button_video_help: document.querySelector('.nav_B_button_video_help'),
     // modalBackground: document.getElementById('modal'),
     modalBackground: document.querySelector('.modalBackground'),
-    modalContainer: document.querySelector('.modalContainer'),
+    // modalContainer: document.querySelector('.modalContainer'),
+    modalContainerAudio: document.querySelector('.modalContainerAudio'),
 
     // search input
     searchAudio: document.getElementById('searchAudio'), // ID of video list

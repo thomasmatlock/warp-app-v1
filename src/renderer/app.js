@@ -49,13 +49,15 @@ let state = new stateReq();
     };
 
     ipcRenderer.on('resize', () => {
-        // console.log('resized, click active tab');
+        // CLICK ACTIVE NAV A
         var clickDelay = 50;
         if (startup.env.nav_A_active == 'audio') {
             elements.nav_A_active = elements.nav_A_audio; // sets active Nav A
             setTimeout(() => {
                 elements.nav_A_audio.click(); // clicks audio tab
             }, clickDelay);
+            // elements.modalContainerAudio.style.margin = '0 50%';
+            // elements.modalContainerAudio.style.left = '25%';
         }
         if (startup.env.nav_A_active == 'video') {
             elements.nav_A_active = elements.nav_A_video; // sets active Nav A
@@ -92,7 +94,9 @@ const addMenuListeners = () => {
         items.removeAllitems('audio');
     });
     ipcRenderer.on('Audio: Tools: Preferences', () => {
-        modals.addBackground(state, elements, startup);
+        modals.toggleBackground(state, elements, startup);
+        modals.toggleModalState(state);
+        modals.togglePreferences(state, elements, 'audio');
     });
 
     // MENU LISTENERS, VIDEO
@@ -115,7 +119,8 @@ const addMenuListeners = () => {
     ipcRenderer.on('Video: Tools: Subscriptions', () => {});
     ipcRenderer.on('Video: Tools: Check for update', () => {});
     ipcRenderer.on('Video: Tools: Preferences', () => {
-        modals.addBackground(state, elements, startup);
+        modals.toggleBackground(state, elements, startup);
+        modals.toggleModalState(state);
     });
 
     // MENU LISTENERS, WARPSTAGRAM
@@ -210,7 +215,7 @@ const addEventListeners = () => {
     elements.nav_B_button_audio_preferences.addEventListener('click', (e) => {
         modals.toggleBackground(state, elements, startup);
         modals.toggleModalState(state);
-        modals.togglePreferences(state, elements);
+        modals.togglePreferences(state, elements, 'audio');
     });
 
     // Nav B video LISTENERS
@@ -226,7 +231,7 @@ const addEventListeners = () => {
     elements.nav_B_button_video_preferences.addEventListener('click', (e) => {
         modals.toggleBackground(state, elements, startup);
         modals.toggleModalState(state);
-        modals.togglePreferences(state, elements);
+        // modals.togglePreferences(state, elements);
     });
     // Nav B search listeners
     elements.searchAudio.addEventListener('keyup', (e) => {
@@ -390,6 +395,6 @@ const addEventListeners = () => {
     elements.modalBackground.addEventListener('click', (e) => {
         modals.toggleBackground(state, elements, startup);
         modals.toggleModalState(state);
-        modals.togglePreferences(state, elements);
+        modals.togglePreferences(state, elements, startup.env.nav_A_active);
     });
 };

@@ -18,16 +18,26 @@
     // transform: perspective();
 }
 
-.modalContainer {
-    animation: moveInTop 0.5s ease-out;
+.modalParent {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
     position: absolute;
-    left: 25%;
-    top: 25%;
-    // margin: 0 25%;
-    // width: 600px;
-    // height: 780px;
-    height: 50%;
-    width: 50%;
+    width: 100%;
+}
+
+.modalContainerAudio {
+    // animation: moveInTop 0.5s ease-out;
+    position: relative;
+    // left: 25%;
+    // top: 20%;
+    margin: 0 auto;
+    width: 600px;
+    height: 780px;
+    // height: 50%;
+    // width: 50%;
     max-height: 780px;
     min-height: 550px;
     max-width: 600px;

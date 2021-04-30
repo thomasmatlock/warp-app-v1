@@ -23,12 +23,13 @@ exports.toggleBackground = (state, elements) => {
         elements.modalBackground.style.display = 'flex'; // activate modal background
     }
 };
-exports.togglePreferences = (state, elements) => {
-    // console.log('toggling preferences');
+exports.togglePreferences = (state, elements, avType) => {
     if (state.modals.preferences) {
-        elements.modalContainer.style.display = 'inline'; // de-activate modal background
+        if (avType === 'audio')
+            elements.modalContainerAudio.style.display = 'flex'; // de-activate modal background
     } else if (!state.modals.preferences) {
-        elements.modalContainer.style.display = 'none'; // activate modal background
+        if (avType === 'audio')
+            elements.modalContainerAudio.style.display = 'none'; // activate modal background
     }
 };
 
