@@ -119,6 +119,7 @@ const addMenuListeners = () => {
     ipcRenderer.on('Video: Tools: Preferences', () => {
         modals.toggleBackground(state, elements, startup);
         modals.toggleModalState(state);
+        modals.togglePreferences(state, elements, 'video');
     });
 
     // MENU LISTENERS, WARPSTAGRAM

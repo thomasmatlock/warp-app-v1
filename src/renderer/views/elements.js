@@ -79,8 +79,10 @@ const elements = {
     modalParentVideo: document.querySelector('.modalParentVideo'),
     modalParentWarpstagram: document.querySelector('.modalParentWarpstagram'),
     modalContainerAudio: document.querySelector('.modalContainerAudio'),
-    modalContainerAudio: document.querySelector('.modalContainerAudio'),
-    modalContainerAudio: document.querySelector('.modalContainerAudio'),
+    modalContainerVideo: document.querySelector('.modalContainerVideo'),
+    modalContainerWarpstagram: document.querySelector(
+        '.modalContainerWarpstagram'
+    ),
 };
 
 module.exports = elements;

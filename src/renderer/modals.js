@@ -27,10 +27,16 @@ exports.togglePreferences = (state, elements, avType) => {
         if (avType === 'audio')
             elements.modalParentAudio.style.display = 'flex'; // de-activate modal background
         elements.modalContainerAudio.style.display = 'flex'; // de-activate modal background
+        if (avType === 'video')
+            elements.modalParentVideo.style.display = 'flex'; // de-activate modal background
+        elements.modalContainerVideo.style.display = 'flex'; // de-activate modal background
     } else if (!state.modals.preferences) {
-        if (avType === 'audio')
-            elements.modalParentAudio.style.display = 'none'; // activate modal background
+        // if (avType === 'audio')
+        elements.modalParentAudio.style.display = 'none'; // activate modal background
         elements.modalContainerAudio.style.display = 'none'; // activate modal background
+        // if (avType === 'video')
+        elements.modalParentVideo.style.display = 'none'; // activate modal background
+        elements.modalContainerVideo.style.display = 'none'; // activate modal background
     }
 };
 exports.toggleModalState = (state) => {
