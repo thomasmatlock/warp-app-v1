@@ -1,0 +1,61 @@
+.downloadItemMenu_container {
+    position: absolute;
+    right: 0;
+    width: 200px;
+}
+
+.downloadItemMenu_optionsList {
+    border-radius: 2px;
+    height: 100%;
+    width: 100%;
+    // border: 1px dotted red;
+    background: #3b3b3b;
+    display: flex;
+    flex-direction: column;
+    z-index: 21;
+}
+
+.downloadItemMenu_option {
+    // margin-top: 2px;
+    border: 1px solid #474747 !important;
+    border-radius: 0px !important;
+    width: 100%;
+    color: #ffffff;
+    display: flex;
+    transition: all ease-out 0s;
+    align-items: center;
+    align-content: center;
+    z-index: 22;
+    min-height: 35px !important;
+    // max-height: 200px !important;
+    flex: 1 !important;
+    margin-top: 0 auto;
+    // background: red;
+    background: #3b3b3b !important;
+    &:hover {
+        border-radius: 0px !important;
+        box-shadow: $shadow-none !important;
+        background: #525252 !important;
+        transform: scale(1) !important;
+        cursor: pointer;
+    }
+}
+
+.downloadItemMenu_option_firstChild {
+    // margin-top: 3px;
+    border-radius: 2px 2px 0px 0px !important;
+}
+
+.downloadItemMenu_option_lastChild {
+    // margin-bottom: 3px;
+    border-radius: 2px 2px 0px 0px !important;
+}
+
+.downloadItemMenu_optionText {
+    // border: 1px dotted red !important;
+    font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
+    font-weight: 300;
+    font-size: 1.2rem;
+    margin: 0 auto;
+    translate: -50px;
+}

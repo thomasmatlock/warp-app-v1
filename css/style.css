@@ -594,6 +594,54 @@ input {
 .dl__item__data__property-title {
   color: #ffffff; }
 
+.downloadItemMenu_container {
+  position: absolute;
+  right: 0;
+  width: 200px; }
+
+.downloadItemMenu_optionsList {
+  border-radius: 2px;
+  height: 100%;
+  width: 100%;
+  background: #3b3b3b;
+  display: flex;
+  flex-direction: column;
+  z-index: 21; }
+
+.downloadItemMenu_option {
+  border: 1px solid #474747 !important;
+  border-radius: 0px !important;
+  width: 100%;
+  color: #ffffff;
+  display: flex;
+  transition: all ease-out 0s;
+  align-items: center;
+  align-content: center;
+  z-index: 22;
+  min-height: 35px !important;
+  flex: 1 !important;
+  margin-top: 0 auto;
+  background: #3b3b3b !important; }
+  .downloadItemMenu_option:hover {
+    border-radius: 0px !important;
+    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0) !important;
+    background: #525252 !important;
+    transform: scale(1) !important;
+    cursor: pointer; }
+
+.downloadItemMenu_option_firstChild {
+  border-radius: 2px 2px 0px 0px !important; }
+
+.downloadItemMenu_option_lastChild {
+  border-radius: 2px 2px 0px 0px !important; }
+
+.downloadItemMenu_optionText {
+  font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
+  font-weight: 300;
+  font-size: 1.2rem;
+  margin: 0 auto;
+  translate: -50px; }
+
 .row {
   max-width: 114rem;
   background-color: transparent;
@@ -860,51 +908,3 @@ body {
     background: #ccc;
     height: 10%;
     margin-top: 25%; } }
-
-.downloadItemMenu_container {
-  position: absolute;
-  right: 0;
-  width: 200px; }
-
-.downloadItemMenu_optionsList {
-  border-radius: 2px;
-  height: 100%;
-  width: 100%;
-  background: #3b3b3b;
-  display: flex;
-  flex-direction: column;
-  z-index: 21; }
-
-.downloadItemMenu_option {
-  border: 1px solid #474747 !important;
-  border-radius: 0px !important;
-  width: 100%;
-  color: #ffffff;
-  display: flex;
-  transition: all ease-out 0s;
-  align-items: center;
-  align-content: center;
-  z-index: 22;
-  min-height: 35px !important;
-  flex: 1 !important;
-  margin-top: 0 auto;
-  background: #3b3b3b !important; }
-  .downloadItemMenu_option:hover {
-    border-radius: 0px !important;
-    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0) !important;
-    background: #525252 !important;
-    transform: scale(1) !important;
-    cursor: pointer; }
-
-.downloadItemMenu_option_firstChild {
-  border-radius: 2px 2px 0px 0px !important; }
-
-.downloadItemMenu_option_lastChild {
-  border-radius: 2px 2px 0px 0px !important; }
-
-.downloadItemMenu_optionText {
-  font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
-  font-weight: 300;
-  font-size: 1.2rem;
-  margin: 0 auto;
-  translate: -50px; }
