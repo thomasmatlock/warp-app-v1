@@ -31,7 +31,7 @@ const toggleModalState = (state) => {
 };
 
 const togglePreferences = (state, elements, avType) => {
-    readMarkup();
+    // readMarkup();
     if (state.modals.preferences) {
         if (avType === 'audio')
             elements.modalParentAudio.style.display = 'flex'; // de-activate modal background
