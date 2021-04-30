@@ -36,6 +36,7 @@ let state = new stateReq();
         ipcRenderer.send('menu-change', startup.env.nav_A_active);
         if (startup.dev.clearStorage) items.resetStorage(); // clears localStorage if active
         items.startupAddAllItems(storage); // loads items stored in settings to UI
+        modals.readMarkup();
         auto.click_nav_B(startup.env.nav_A_active, 'preferences'); // auto clicks paste, smartMode, activate, subscriptions, preferences, help
     });
 
