@@ -36,7 +36,7 @@ let state = new stateReq();
         ipcRenderer.send('menu-change', startup.env.nav_A_active);
         if (startup.dev.clearStorage) items.resetStorage(); // clears localStorage if active
         items.startupAddAllItems(storage); // loads items stored in settings to UI
-        auto.click_nav_B(startup.env.nav_A_active, 'paste'); // auto clicks paste, smartMode, activate, subscriptions, preferences, help
+        auto.click_nav_B(startup.env.nav_A_active, 'preferences'); // auto clicks paste, smartMode, activate, subscriptions, preferences, help
     });
 
     const setActiveNav_A = (nav_A_active) => {
@@ -138,7 +138,8 @@ const addMenuListeners = () => {
     ipcRenderer.on('Warpstagram: Tools: Login', () => {});
     ipcRenderer.on('Warpstagram: Tools: Manage license', () => {});
     ipcRenderer.on('Warpstagram: Tools: Preferences', () => {
-        modals.addBackground(state, elements, startup);
+        modals.toggleBackground(state, elements, startup);
+        modals.toggleModalState(state);
     });
 
     // Menu listeners, universal commands
@@ -207,7 +208,9 @@ const addEventListeners = () => {
         if (logging) console.log('clicked activate');
     });
     elements.nav_B_button_audio_preferences.addEventListener('click', (e) => {
-        modals.addBackground(state, elements, startup);
+        modals.toggleBackground(state, elements, startup);
+        modals.toggleModalState(state);
+        modals.togglePreferences(state, elements);
     });
 
     // Nav B video LISTENERS
@@ -221,7 +224,9 @@ const addEventListeners = () => {
         if (logging) console.log('clicked subscriptions');
     });
     elements.nav_B_button_video_preferences.addEventListener('click', (e) => {
-        modals.addBackground(state, elements, startup);
+        modals.toggleBackground(state, elements, startup);
+        modals.toggleModalState(state);
+        modals.togglePreferences(state, elements);
     });
     // Nav B search listeners
     elements.searchAudio.addEventListener('keyup', (e) => {
@@ -383,6 +388,8 @@ const addEventListeners = () => {
     });
     // Modals listeners
     elements.modalBackground.addEventListener('click', (e) => {
-        modals.removeBackground(state, elements);
+        modals.toggleBackground(state, elements, startup);
+        modals.toggleModalState(state);
+        modals.togglePreferences(state, elements);
     });
 };

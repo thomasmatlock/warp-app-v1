@@ -16,30 +16,24 @@
 
 //////////////////////////////////////////////////////////////// Welcome
 
-exports.addBackground = (state, elements, startup) => {
+exports.toggleBackground = (state, elements) => {
     if (state.modals.preferences) {
         elements.modalBackground.style.display = 'none'; // de-activate modal background
     } else if (!state.modals.preferences) {
         elements.modalBackground.style.display = 'flex'; // activate modal background
     }
-    this.toggleModalState(state);
 };
-
-exports.removeBackground = (state, elements) => {
-    // console.log('removing modal');
-    elements.modalBackground.style.display = 'none';
-    this.toggleModalState(state);
+exports.togglePreferences = (state, elements) => {
+    // console.log('toggling preferences');
+    if (state.modals.preferences) {
+        elements.modalContainer.style.display = 'inline'; // de-activate modal background
+    } else if (!state.modals.preferences) {
+        elements.modalContainer.style.display = 'none'; // activate modal background
+    }
 };
 
 exports.toggleModalState = (state) => {
-    // console.log('toggling modal state');
     state.modals.preferences ?
         (state.modals.preferences = false) :
-        (state.modals.preferences = true); // toggles modals active or not
+        (state.modals.preferences = true);
 };
-// if (startup.env.nav_A_active === 'audio')
-//     elements.modalBackgroundContainer.style.top = '0%';
-// if (startup.env.nav_A_active === 'video')
-//     elements.modalBackgroundContainer.style.top = '33.5%';
-// if (startup.env.nav_A_active === 'warpstagram')
-//     elements.modalBackgroundContainer.style.top = '67%';

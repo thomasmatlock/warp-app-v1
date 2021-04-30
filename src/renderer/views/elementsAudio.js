@@ -31,9 +31,7 @@ const elementsAudio = {
     nav_B_button_audio_help: document.querySelector('.nav_B_button_audio_help'),
     // Modal
     modalBackground: document.querySelector('.modalBackground'),
-    modalBackgroundContainer: document.querySelector(
-        '.modalBackgroundContainer'
-    ),
+    modalContainer: document.querySelector('.modalContainer'),
 
     // Download lists
     download__list: document.querySelector('.download__list'),

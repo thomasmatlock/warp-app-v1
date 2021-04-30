@@ -9,7 +9,7 @@ class startup {
         this.devMode = true;
         this.testingYoutubeURLS = true; // true will use youtube URLS, false will use misc non youtube URLS
         this.env = {
-            nav_A_active: !this.devMode ? 'audio' : 'video', //   audio, video, or warpstagram, defaults to audio
+            nav_A_active: !this.devMode ? 'audio' : 'audio', //   audio, video, or warpstagram, defaults to audio
             user: 'dev', // can be dev, free, or paid
             modalBrowserWindow: false, // opens youtube modal window yes
             theme: true, // true = 'light', false = 'dark'
@@ -19,7 +19,7 @@ class startup {
             // this.loadWarpstagramSlide = false; // set to true to load the warpstagram portion of the content slide
         };
         this.dev = {
-            autoClick: false, // pastes random URL on load
+            autoClick: true, // clicks nav B button
             getDownloadItemInfo: true, //
             clearStorage: false, // USE THIS TO RESET STORAGE
             devTools: !this.devMode ? false : true, // false, true, devTools off/on
