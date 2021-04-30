@@ -144,6 +144,7 @@ const addMenuListeners = () => {
     ipcRenderer.on('Warpstagram: Tools: Preferences', () => {
         modals.toggleBackground(state, elements, startup);
         modals.toggleModalState(state);
+        modals.togglePreferences(state, elements, 'warpstagram');
     });
 
     // Menu listeners, universal commands

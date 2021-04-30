@@ -22,7 +22,7 @@ exports.toggleBackground = (state, elements) => {
     }
 };
 exports.togglePreferences = (state, elements, avType) => {
-    console.log(avType);
+    // console.log(avType);
     if (state.modals.preferences) {
         if (avType === 'audio')
             elements.modalParentAudio.style.display = 'flex'; // de-activate modal background
@@ -30,6 +30,9 @@ exports.togglePreferences = (state, elements, avType) => {
         if (avType === 'video')
             elements.modalParentVideo.style.display = 'flex'; // de-activate modal background
         elements.modalContainerVideo.style.display = 'flex'; // de-activate modal background
+        if (avType === 'warpstagram')
+            elements.modalParentWarpstagram.style.display = 'flex'; // de-activate modal background
+        elements.modalContainerWarpstagram.style.display = 'flex'; // de-activate modal background
     } else if (!state.modals.preferences) {
         // if (avType === 'audio')
         elements.modalParentAudio.style.display = 'none'; // activate modal background
@@ -37,6 +40,9 @@ exports.togglePreferences = (state, elements, avType) => {
         // if (avType === 'video')
         elements.modalParentVideo.style.display = 'none'; // activate modal background
         elements.modalContainerVideo.style.display = 'none'; // activate modal background
+        // if (avType === 'warpstagram')
+        elements.modalParentWarpstagram.style.display = 'none'; // activate modal background
+        elements.modalContainerWarpstagram.style.display = 'none'; // activate modal background
     }
 };
 exports.toggleModalState = (state) => {
