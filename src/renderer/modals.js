@@ -22,11 +22,14 @@ exports.toggleBackground = (state, elements) => {
     }
 };
 exports.togglePreferences = (state, elements, avType) => {
+    console.log(avType);
     if (state.modals.preferences) {
-        if (avType === 'audio') elements.modalParent.style.display = 'flex'; // de-activate modal background
+        if (avType === 'audio')
+            elements.modalParentAudio.style.display = 'flex'; // de-activate modal background
         elements.modalContainerAudio.style.display = 'flex'; // de-activate modal background
     } else if (!state.modals.preferences) {
-        if (avType === 'audio') elements.modalParent.style.display = 'none'; // activate modal background
+        if (avType === 'audio')
+            elements.modalParentAudio.style.display = 'none'; // activate modal background
         elements.modalContainerAudio.style.display = 'none'; // activate modal background
     }
 };

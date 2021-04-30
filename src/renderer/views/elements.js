@@ -51,11 +51,6 @@ const elements = {
     ),
     nav_B_button_video_help: document.querySelector('.nav_B_button_video_help'),
 
-    // MODALS
-    modalBackground: document.querySelector('.modalBackground'),
-    modalParent: document.querySelector('.modalParent'),
-    modalContainerAudio: document.querySelector('.modalContainerAudio'),
-
     // SEARCH INPUT
     searchAudio: document.getElementById('searchAudio'), // ID of video list
     searchVideo: document.getElementById('searchVideo'), // ID of video list
@@ -77,5 +72,15 @@ const elements = {
     downloadItemMenu_container: document.getElementsByClassName(
         '.downloadItemMenu_container'
     ),
+    // MODALS
+    modalBackground: document.querySelector('.modalBackground'),
+    modalParent: document.querySelector('.modalParent'),
+    modalParentAudio: document.querySelector('.modalParentAudio'),
+    modalParentVideo: document.querySelector('.modalParentVideo'),
+    modalParentWarpstagram: document.querySelector('.modalParentWarpstagram'),
+    modalContainerAudio: document.querySelector('.modalContainerAudio'),
+    modalContainerAudio: document.querySelector('.modalContainerAudio'),
+    modalContainerAudio: document.querySelector('.modalContainerAudio'),
 };
+
 module.exports = elements;

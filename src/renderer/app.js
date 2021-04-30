@@ -73,8 +73,6 @@ let state = new stateReq();
         }
     });
     ipcRenderer.on('paste-new-url', (event, itemURL, avType, platform) => {
-        // if (logging)
-        //     console.log(`${itemURL}, avType ${avType}, platform ${platform}`);
         items.downloadItem(itemURL, avType, platform);
     });
 })();
@@ -231,7 +229,7 @@ const addEventListeners = () => {
     elements.nav_B_button_video_preferences.addEventListener('click', (e) => {
         modals.toggleBackground(state, elements, startup);
         modals.toggleModalState(state);
-        // modals.togglePreferences(state, elements);
+        modals.togglePreferences(state, elements, 'video');
     });
     // Nav B search listeners
     elements.searchAudio.addEventListener('keyup', (e) => {
