@@ -124,3 +124,36 @@
 //         }
 //     }
 // }
+////////////////////////// Download lists listeners///////////////////////////////////
+// audio
+// // SCENARIO 3
+// else if (
+//     e.target.parentNode.parentNode.parentNode.childNodes[0].id
+//     .length === 36
+// ) {
+//     // console.log('scenario 3');
+//     itemID = e.target.parentNode.parentNode.parentNode.childNodes[0].id;
+// }
+// // SCENARIO 4
+// else if (
+//     e.target.parentNode.parentNode.childNodes[0].id.length === 36
+// ) {
+//     // console.log('scenario 4');
+//     itemID = e.target.parentNode.parentNode.childNodes[0].id;
+// }
+// video
+// // SCENARIO 3
+// else if (
+//     e.target.parentNode.parentNode.parentNode.childNodes[0].id
+//     .length === 36
+// ) {
+//     // console.log('scenario 3');
+//     itemID = e.target.parentNode.parentNode.parentNode.childNodes[0].id;
+// }
+// // SCENARIO 4
+// else if (
+//     e.target.parentNode.parentNode.childNodes[0].id.length === 36
+// ) {
+//     // console.log('scenario 4');
+//     itemID = e.target.parentNode.parentNode.childNodes[0].id;
+// }

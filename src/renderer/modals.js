@@ -31,7 +31,6 @@ const toggleModalState = (state) => {
 };
 
 const togglePreferences = (state, elements, avType) => {
-    // readMarkup();
     if (state.modals.preferences) {
         if (avType === 'audio')
             elements.modalParentAudio.style.display = 'flex'; // de-activate modal background
@@ -59,16 +58,31 @@ async function readMarkup() {
         'binary'
     );
     modalMarkupPreferences = new Buffer(data).toString();
-    console.log(modalMarkupPreferences);
-    insertMarkup(modalMarkupPreferences);
+    // console.log(modalMarkupPreferences);
+    insertMarkupPrefs(modalMarkupPreferences);
     return modalMarkupPreferences;
 }
 
-const insertMarkup = (markup) => {
-    let modalContainer = elements.modalContainerAudio; // selects target list to add item markup to
-    let markupNode = document.createElement('div'); // Create a new HTML Dom node inside download list
-    markupNode.innerHTML = markup; // Insert markup into new DOM node inserted into list
-    modalContainer.appendChild(markupNode); // Append item node
+const insertMarkupPrefs = (markup) => {
+    let modalContainerAudio = elements.modalContainerAudio; // selects target list to add item markup to
+    let modalContainerVideo = elements.modalContainerVideo; // selects target list to add item markup to
+    let modalContainerWarpstagram = elements.modalContainerWarpstagram; // selects target list to add item markup to
+    let markupNodeAudio = document.createElement('div'); // Create a new HTML Dom node inside download list
+    let markupNodeVideo = document.createElement('div'); // Create a new HTML Dom node inside download list
+    let markupNodeWarpstagram = document.createElement('div'); // Create a new HTML Dom node inside download list
+    markupNodeAudio.className = 'contentContainer';
+    markupNodeVideo.className = 'contentContainer';
+    markupNodeWarpstagram.className = 'contentContainer';
+    markupNodeAudio.innerHTML = markup;
+    markupNodeVideo.innerHTML = markup;
+    markupNodeWarpstagram.innerHTML = markup;
+    modalContainerAudio.appendChild(markupNodeAudio); // Append item node
+    modalContainerVideo.appendChild(markupNodeVideo); // Append item node
+    modalContainerWarpstagram.appendChild(markupNodeWarpstagram); // Append item node
+};
+
+const markupPrefs = () => {
+    readMarkup();
 };
 
 module.exports = {
@@ -76,5 +90,6 @@ module.exports = {
     toggleBackground: toggleBackground,
     toggleModalState: toggleModalState,
     togglePreferences: togglePreferences,
-    insertMarkup: insertMarkup,
+    insertMarkupPrefs: insertMarkupPrefs,
+    markupPrefs: markupPrefs,
 };

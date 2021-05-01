@@ -36,4 +36,7 @@
     z-index: 11;
     box-shadow: $shadow-after;
     display: none;
+    // display: flex;
+    flex-direction: row;
+    // border: 1px dotted purple;
 }

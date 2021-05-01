@@ -36,7 +36,7 @@ let state = new stateReq();
         ipcRenderer.send('menu-change', startup.env.nav_A_active);
         if (startup.dev.clearStorage) items.resetStorage(); // clears localStorage if active
         items.startupAddAllItems(storage); // loads items stored in settings to UI
-        modals.readMarkup();
+        modals.markupPrefs();
         auto.click_nav_B(startup.env.nav_A_active, 'preferences'); // auto clicks paste, smartMode, activate, subscriptions, preferences, help
     });
 
@@ -298,21 +298,6 @@ const addEventListeners = () => {
                 });
             }
         }
-        // // SCENARIO 3
-        // else if (
-        //     e.target.parentNode.parentNode.parentNode.childNodes[0].id
-        //     .length === 36
-        // ) {
-        //     // console.log('scenario 3');
-        //     itemID = e.target.parentNode.parentNode.parentNode.childNodes[0].id;
-        // }
-        // // SCENARIO 4
-        // else if (
-        //     e.target.parentNode.parentNode.childNodes[0].id.length === 36
-        // ) {
-        //     // console.log('scenario 4');
-        //     itemID = e.target.parentNode.parentNode.childNodes[0].id;
-        // }
     });
     elements.download__list_video_ID.addEventListener('click', (e) => {
         let itemID, action;
@@ -373,21 +358,6 @@ const addEventListeners = () => {
                 });
             }
         }
-        // // SCENARIO 3
-        // else if (
-        //     e.target.parentNode.parentNode.parentNode.childNodes[0].id
-        //     .length === 36
-        // ) {
-        //     // console.log('scenario 3');
-        //     itemID = e.target.parentNode.parentNode.parentNode.childNodes[0].id;
-        // }
-        // // SCENARIO 4
-        // else if (
-        //     e.target.parentNode.parentNode.childNodes[0].id.length === 36
-        // ) {
-        //     // console.log('scenario 4');
-        //     itemID = e.target.parentNode.parentNode.childNodes[0].id;
-        // }
     });
     // Modals listeners
     elements.modalBackground.addEventListener('click', (e) => {

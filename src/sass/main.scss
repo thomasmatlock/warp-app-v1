@@ -18,3 +18,106 @@
 @import 'pages/warpstagram-userInfo';
 @import 'pages/modal-settings';
 @import 'style-splash';
+// modal prefs
+.contentContainer {
+    width: 95%;
+    height: 97%;
+    // width: 100%;
+    // height: 100%;
+    display: flex;
+    flex-direction: column;
+    // border: 1px dotted red;
+    margin: auto;
+    border-radius: 4px;
+}
+
+.panel3 {
+    width: 100%;
+    flex-grow: 1;
+    // background-color: black;
+    // border: 1px dotted white;
+}
+
+.modalPrefsTitle {
+    display: flex;
+    // border: 1px dotted white;
+    flex-direction: row;
+    height: 40px;
+    width: 100%;
+}
+
+.modalPrefsTitle_child {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    // border: 1px dotted white;
+    flex-grow: 1;
+}
+
+.modalPrefsTitle_child p {
+    color: white;
+    font-size: 1.5rem;
+    margin-left: 1rem;
+    font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
+    cursor: default;
+    letter-spacing: 0.1rem;
+}
+
+.modalPrefsTitle_child i {
+    color: white;
+    margin-right: 1rem;
+    cursor: pointer;
+}
+
+.modalPrefsTitle_child_left {
+    // background-color: rgb(226, 177, 177);
+    justify-content: flex-start;
+}
+
+.modalPrefsTitle_child_right {
+    // background-color: rgb(224, 211, 211);
+    justify-content: flex-end;
+}
+
+.modalPrefsNav {
+    height: 50px;
+    width: 100%;
+    // border: 2px dotted red;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+}
+
+.modalPrefsNav_button {
+    display: flex;
+    // border: 1px dotted white;
+    align-items: center;
+    align-content: center;
+    // background-color: purple;
+    flex-grow: 1;
+    width: 100%;
+    height: 100%;
+    flex-direction: row;
+    align-items: evenly;
+    align-content: center;
+    color: #ffffff;
+    cursor: pointer;
+    // flex: 1 2 auto;
+    // justify-content: space-around; // PRODUCTION
+    justify-content: center; // PRODUCTION
+    &:hover {
+        background-color: #eee;
+    }
+}
+
+.modalPrefsNav_button p {
+    font-size: 1.4rem;
+    margin-left: 1rem;
+    font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
+}
+
+.modalPrefsNav_button i {
+    font-size: 1.4rem;
+}
