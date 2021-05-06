@@ -83,6 +83,10 @@ const elements = {
     modalContainerWarpstagram: document.querySelector(
         '.modalContainerWarpstagram'
     ),
+    // modalToggleBtn: document.getElementById('button-1'),
+    modalToggleBtn: document.getElementById('button-ID'),
+    modalsPrefsTitle: document.querySelector('modalPrefsTitle'),
+    // modalToggleBtn: document.querySelector('.layer'),
 };
 
 module.exports = elements;

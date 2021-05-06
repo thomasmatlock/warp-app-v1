@@ -22,7 +22,7 @@ class startup {
             autoClick: true, // clicks nav B button
             getDownloadItemInfo: true, //
             clearStorage: false, // USE THIS TO RESET STORAGE
-            devTools: !this.devMode ? false : false, // false, true, devTools off/on
+            devTools: !this.devMode ? false : true, // false, true, devTools off/on
             backendOnly: false, // hides window
             downloadFile: true, //
             splashScreen: true, //

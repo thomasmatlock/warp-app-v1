@@ -38,6 +38,7 @@ let state = new stateReq();
         items.startupAddAllItems(storage); // loads items stored in settings to UI
         modals.markupPrefs();
         auto.click_nav_B(startup.env.nav_A_active, 'preferences'); // auto clicks paste, smartMode, activate, subscriptions, preferences, help
+        addModalEventListeners(); // activates modal event listeners
     });
 
     const setActiveNav_A = (nav_A_active) => {
@@ -359,10 +360,18 @@ const addEventListeners = () => {
             }
         }
     });
+};
+const addModalEventListeners = () => {
     // Modals listeners
     elements.modalBackground.addEventListener('click', (e) => {
         modals.toggleBackground(state, elements, startup);
         modals.toggleModalState(state);
         modals.togglePreferences(state, elements, startup.env.nav_A_active);
     });
+
+    setTimeout(() => {
+        document.getElementById('button-ID').addEventListener('click', (e) => {
+            console.log('hello');
+        });
+    }, 1000);
 };
