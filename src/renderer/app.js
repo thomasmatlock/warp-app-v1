@@ -22,6 +22,7 @@ let state = new stateReq();
 
 (function init() {
     ipcRenderer.on('window-ready', (e, storage) => {
+        // let elements = require('./views/elements');
         addEventListeners(); // activates DOM event listeners
         addMenuListeners(); // activates menu event listeners
         setActiveNav_A(startup.env.nav_A_active); // sets active Nav A
@@ -370,8 +371,8 @@ const addModalEventListeners = () => {
     });
 
     setTimeout(() => {
-        document.getElementById('button-ID').addEventListener('click', (e) => {
+        document.getElementById('button-1').addEventListener('click', (e) => {
             console.log('hello');
         });
-    }, 1000);
+    }, 100);
 };
