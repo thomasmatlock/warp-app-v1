@@ -113,10 +113,12 @@
     font-size: 1.4rem;
     margin-left: 1rem;
     font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
+    margin-right: 8px;
 }
 
 .modalPrefsNav_button i {
     font-size: 1.4rem;
+    margin-top: 2px;
 }
 
 // TOGGLE BUTTON
@@ -130,7 +132,7 @@
 .modalPrefsToggleButton_child {
     flex-grow: 1;
     cursor: default;
-    // border: 1px dotted white;
+    border: 1px dotted white;
 }
 
 .modalPrefsToggleButton_child_left {
