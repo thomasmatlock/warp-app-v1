@@ -915,15 +915,18 @@ body {
   height: 97%;
   display: flex;
   flex-direction: column;
+  border: 1px dotted red;
   margin: auto;
   border-radius: 4px; }
 
 .panel3 {
   width: 100%;
-  flex-grow: 1; }
+  flex-grow: 1;
+  border: 1px dotted white; }
 
 .modalPrefsTitle {
   display: flex;
+  border: 1px dotted white;
   flex-direction: row;
   height: 40px;
   width: 100%; }
@@ -957,6 +960,7 @@ body {
 .modalPrefsNav {
   height: 50px;
   width: 100%;
+  border: 1px dotted red;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -972,11 +976,12 @@ body {
   flex-direction: row;
   align-items: evenly;
   align-content: center;
-  color: #ffffff;
+  color: #ffffff60;
   cursor: pointer;
   justify-content: center; }
   .modalPrefsNav_button:hover {
-    background-color: #eee; }
+    background-color: rgba(238, 238, 238, 0.205);
+    color: #ffffff; }
 
 .modalPrefsNav_button p {
   font-size: 1.4rem;
@@ -985,3 +990,24 @@ body {
 
 .modalPrefsNav_button i {
   font-size: 1.4rem; }
+
+.modalPrefsToggleButton {
+  width: 100%;
+  height: 24px;
+  border: 1px dotted red;
+  display: flex; }
+
+.modalPrefsToggleButton_child {
+  flex-grow: 1;
+  border: 1px dotted white; }
+
+.modalPrefsToggleButton_child_left {
+  justify-content: flex-start; }
+
+.modalPrefsToggleButton_child_right {
+  justify-content: flex-end; }
+
+.modalPrefsToggleButton_child p {
+  font-size: 1.4rem;
+  color: #ffffff;
+  font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif; }
