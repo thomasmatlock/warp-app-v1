@@ -7,7 +7,6 @@ const fileControllerReq = require('./fileController');
 const fileController = new fileControllerReq();
 const startupReq = require('./startup');
 const startup = new startupReq();
-const settings = require('electron-settings');
 
 ////////////////////////////////////////////////////////////////////
 let mainWindow, splash, modalWindow, displayController, storageMain; // Keep a global reference of the window object, if you don't, the window will be closed automatically when the JavaScript object is garbage collected.

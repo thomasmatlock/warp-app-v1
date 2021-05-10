@@ -2,14 +2,12 @@
 //  C:\Users\Tommy\AppData\Roaming\starter
 // C:\Users\Tommy\AppData\Roaming\Warp IMPORTANT, this has to MATCH the project name field in package.json
 
-const logging = true;
 const os = require('os');
 const fs = require('fs');
 const path = require('path');
 const { app } = require('electron');
-// const storage = require('../storage');
 const settings = require('electron-settings');
-let startup;
+
 class fileController {
     constructor() {
         this.dirMainName = 'Warp Downloader'; // main download directory
