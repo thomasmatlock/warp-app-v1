@@ -22,106 +22,103 @@
 @import 'modals/components/modal-buttonRadioToggle';
 @import 'modals/components/modal-dropdown-list';
 @import 'modals/components/modal-nav';
-@import 'modals/components/modal-text-input';
+@import 'modals/components/modal-spacer';
+@import 'modals/components/modal-outputFolder';
 @import 'modals/components/modal-textDescription';
 @import 'modals/components/modal-textTitle';
-// modal-text-input
-.modalOutputFolder {
+.modalDropdownListContainer {
+    width: 100%;
+    // height: 300px;
+    height: auto;
+    // border: 1px dotted white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    // flex-wrap: wrap;
+    // margin-top: 1.4rem;
+}
+
+.modalDropdownListColumn {
+    height: 100%;
+    width: 50%;
+    // flex-grow: 1;
+    // border: 1px dotted white;
+}
+
+.modalDropdownListColumn_left {
+    margin-right: 1.4rem;
+}
+
+.modalDropdownListContent {
+    // height: 100%;
+    // flex-grow: 1;
+    // height: 50%;
+    height: 75px;
+    // width: 200px;
+    width: 100%;
+    // margin: 1.4rem;
+    // border: 1px dotted white;
     display: flex;
     flex-direction: column;
-    width: 100%;
-    height: 75px;
-    // border: 1px dotted red;
-    margin-top: 25px;
+    overflow: hidden;
 }
 
-.modalOutputFolder_title {
-    height: 100%;
+.modalDropdownList_child {
     width: 100%;
-    flex-direction: row;
-    // flex-grow: 1;
-    display: flex;
+    // height: 50%;
     // border: 1px dotted white;
-    justify-content: flex-start;
-    align-items: center;
+    overflow: hidden;
 }
 
-.modalOutputFolder_title p {
+.modalDropdownList_title {
+    height: auto;
+    // width: 100%;
+    // flex-direction: row;
+    // // flex-grow: 1;
+    display: flex;
+    // // border: 1px dotted white;
+    justify-content: flex-start;
+    // align-items: center;
+}
+
+.modalDropdownList_title p {
     color: #ffffff;
     font-size: 1.4rem;
-    color: #ffffff;
-    margin-left: 1rem;
+    // margin-left: 1rem;
     cursor: default;
     font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
 }
 
-.modalOutputFolder_userInput {
+.modalDropdownList_list {
     height: 40px;
     width: 100%;
     display: flex;
     flex-direction: row;
-}
-
-.modalOutputFolder_userInput__textInput,
-.modalOutputFolder_userInput__button {
-    display: flex;
-    // justify-content: flex-start;
-    align-items: center;
-    border-radius: 2px;
-}
-
-.modalOutputFolder_userInput__textInput {
-    height: 100%;
-    width: 70%;
-    margin-right: 1rem;
-    // cursor: default;
-}
-
-.modalOutputFolder_userInput__textInput input {
-    height: 100%;
-    width: 100%;
-    border: solid 1px #464646a1; // test
-    // height: 5rem;
-    background: #2a2a2a;
-    cursor: default;
-    // margin: auto 2rem;
-    // margin: auto 5px auto 5px;
-}
-
-::placeholder {
-    /* Chrome, Firefox, Opera, Safari 10.1+ */
-    font-size: 1.4rem;
-    color: white;
-    opacity: 1;
-    font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
-    /* Firefox */
-    padding-left: 1rem;
-}
-
-.modalOutputFolder_userInput__button {
-    display: flex;
-    // justify-content: flex-start;
-    align-items: center;
     justify-content: center;
-    height: 100%;
-    width: 30%;
-    background: linear-gradient(268deg, #f8ab37, #da2c4d); // bgd color, ON
-    background: #ff7700; // bgd color, ON
-    cursor: pointer;
+    align-items: center;
+    align-content: center;
+}
+
+.modalDropdownList_list select {
+    background-color: #2a2a2a;
+    line-height: 40px;
+    border: 0;
+    padding: 0;
+    border-radius: inherit;
+    height: 40px;
+    width: 120%;
+    position: relative;
+    z-index: 10;
+    color: #ffffff;
     font-size: 1.4rem;
-    color: white;
-    opacity: 1;
-    transition: all ease-out 0.1s;
+    // margin-left: 1rem;
+    cursor: pointer;
     font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
-    /* Firefox */
-    // padding-left: 1rem;
+    // font-size: 1em;
+    transition: 0.25s;
     &:hover {
-        //// CONTENT
-        color: white;
-        // background-image: $colorNavBBackground_hover;
-        //// DECORATIVE
-        box-shadow: $shadow-after;
-        //// ANIMATION
-        // transform: scale(1.01);
+        background-color: #464646a1;
     }
 }
+
+.modalDropdownList_list_select {}

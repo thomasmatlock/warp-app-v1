@@ -1061,37 +1061,19 @@ input[type='text'] {
   font-size: 1.4rem;
   margin-top: 2px; }
 
-.modalPrefsTitle {
+.modalSpacer {
+  width: 100%;
+  height: 30px;
   display: flex;
   flex-direction: row;
-  height: 40px;
-  width: 100%; }
-
-.modalPrefsTitle_child {
-  display: flex;
-  flex-direction: row;
+  justify-content: center;
   align-items: center;
-  align-content: center;
-  flex-grow: 1; }
+  align-content: center; }
 
-.modalPrefsTitle_child p {
-  color: white;
-  font-size: 1.5rem;
-  margin-left: 1rem;
-  font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
-  cursor: default;
-  letter-spacing: 0.1rem; }
-
-.modalPrefsTitle_child i {
-  color: white;
-  margin-right: 1rem;
-  cursor: pointer; }
-
-.modalPrefsTitle_child_left {
-  justify-content: flex-start; }
-
-.modalPrefsTitle_child_right {
-  justify-content: flex-end; }
+.modalSpacer_line {
+  background-color: #464646a1;
+  width: 100%;
+  height: 1px; }
 
 .modalOutputFolder {
   display: flex;
@@ -1167,3 +1149,98 @@ input[type='text'] {
   .modalOutputFolder_userInput__button:hover {
     color: white;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2); }
+
+.modalPrefsTitle {
+  display: flex;
+  flex-direction: row;
+  height: 40px;
+  width: 100%; }
+
+.modalPrefsTitle_child {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  flex-grow: 1; }
+
+.modalPrefsTitle_child p {
+  color: white;
+  font-size: 1.5rem;
+  margin-left: 1rem;
+  font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
+  cursor: default;
+  letter-spacing: 0.1rem; }
+
+.modalPrefsTitle_child i {
+  color: white;
+  margin-right: 1rem;
+  cursor: pointer; }
+
+.modalPrefsTitle_child_left {
+  justify-content: flex-start; }
+
+.modalPrefsTitle_child_right {
+  justify-content: flex-end; }
+
+.modalDropdownListContainer {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly; }
+
+.modalDropdownListColumn {
+  height: 100%;
+  width: 50%; }
+
+.modalDropdownListColumn_left {
+  margin-right: 1.4rem; }
+
+.modalDropdownListContent {
+  height: 75px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; }
+
+.modalDropdownList_child {
+  width: 100%;
+  overflow: hidden; }
+
+.modalDropdownList_title {
+  height: auto;
+  display: flex;
+  justify-content: flex-start; }
+
+.modalDropdownList_title p {
+  color: #ffffff;
+  font-size: 1.4rem;
+  cursor: default;
+  font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif; }
+
+.modalDropdownList_list {
+  height: 40px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-content: center; }
+
+.modalDropdownList_list select {
+  background-color: #2a2a2a;
+  line-height: 40px;
+  border: 0;
+  padding: 0;
+  border-radius: inherit;
+  height: 40px;
+  width: 120%;
+  position: relative;
+  z-index: 10;
+  color: #ffffff;
+  font-size: 1.4rem;
+  cursor: pointer;
+  font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
+  transition: 0.25s; }
+  .modalDropdownList_list select:hover {
+    background-color: #464646a1; }
