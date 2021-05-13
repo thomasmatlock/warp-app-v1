@@ -28,7 +28,7 @@
 @import 'modals/components/modal-textDescription';
 @import 'modals/components/modal-textTitle';
 // modal-dropdown-radioSelect
-// .modalPrefsContentPanel {
-//     height: 100%;
-//     width: 100%;
-// }
+.modalPrefsContentPanel {
+    display: flex;
+    flex-direction: column;
+}

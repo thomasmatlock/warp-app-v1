@@ -55,6 +55,9 @@ class startup {
                     warpstagram: fileController.dirWarpstagramPath,
                 },
             },
+            // modals: {
+            //     prefs: ``,
+            // }
             downloadItems: {
                 audioArr: [],
                 videoArr: [],

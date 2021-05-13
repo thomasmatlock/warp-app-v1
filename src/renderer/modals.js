@@ -84,19 +84,19 @@ const toggleComponents = (modalType, avType) => {
     if (avType === 'audio') {
         console.log(avType);
         document.getElementById('modalPrefsContentPanel_audio').style.display =
-            'none';
+            'flex';
         document.getElementById('modalPrefsContentPanel_video').style.display =
             'none';
         document.getElementById(
             'modalPrefsContentPanel_warpstagram'
-        ).style.visibility = 'visible';
+        ).style.display = 'none';
     }
     if (avType === 'video') {
         console.log(avType);
         document.getElementById('modalPrefsContentPanel_audio').style.display =
             'none';
         document.getElementById('modalPrefsContentPanel_video').style.display =
-            'none';
+            'flex';
         document.getElementById(
             'modalPrefsContentPanel_warpstagram'
         ).style.display = 'none';
@@ -110,7 +110,7 @@ const toggleComponents = (modalType, avType) => {
             'none';
         document.getElementById(
             'modalPrefsContentPanel_warpstagram'
-        ).style.visibility = 'visible';
+        ).style.display = 'flex';
     }
 };
 const toggleComponentsInit = (modalType, avType) => {
