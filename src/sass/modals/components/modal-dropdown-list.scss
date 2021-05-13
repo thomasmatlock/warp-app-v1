@@ -1,6 +1,98 @@
-.panel3 {
+// https://www.w3schools.com/howto/howto_custom_select.asp
+.modalDropdownListContainer {
     width: 100%;
-    flex-grow: 1;
-    // background-color: black;
+    // height: 300px;
+    height: auto;
+    // border: 1px dotted white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    // flex-wrap: wrap;
+    // margin-top: 1.4rem;
+}
+
+.modalDropdownListColumn {
+    height: 100%;
+    width: 50%;
+    // flex-grow: 1;
     // border: 1px dotted white;
 }
+
+.modalDropdownListColumn_left {
+    margin-right: 1.4rem;
+}
+
+.modalDropdownListContent {
+    // height: 100%;
+    // flex-grow: 1;
+    // height: 50%;
+    height: 75px;
+    // width: 200px;
+    width: 100%;
+    // margin: 1.4rem;
+    // border: 1px dotted white;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.modalDropdownList_child {
+    width: 100%;
+    // height: 50%;
+    // border: 1px dotted white;
+    overflow: hidden;
+}
+
+.modalDropdownList_title {
+    height: auto;
+    // width: 100%;
+    // flex-direction: row;
+    // // flex-grow: 1;
+    display: flex;
+    // // border: 1px dotted white;
+    justify-content: flex-start;
+    // align-items: center;
+}
+
+.modalDropdownList_title p {
+    color: #ffffff;
+    font-size: 1.4rem;
+    // margin-left: 1rem;
+    cursor: default;
+    font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
+}
+
+.modalDropdownList_list {
+    height: 40px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.modalDropdownList_list select {
+    background-color: #2a2a2a;
+    line-height: 40px;
+    border: 0;
+    padding: 0;
+    border-radius: inherit;
+    height: 40px;
+    width: 120%;
+    position: relative;
+    z-index: 10;
+    color: #ffffff;
+    font-size: 1.4rem;
+    // margin-left: 1rem;
+    cursor: pointer;
+    font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
+    // font-size: 1em;
+    // border: 1px dotted white;
+    transition: 0.25s;
+    &:hover {
+        background-color: #464646a1;
+    }
+}
+
+.modalDropdownList_list_select {}
