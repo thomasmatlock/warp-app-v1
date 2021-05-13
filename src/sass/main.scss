@@ -1,4 +1,5 @@
 // @import 'compass';
+@import 'style-splash';
 @import 'abstracts/mixins';
 @import 'abstracts/variables';
 @import 'abstracts/variables-colors';
@@ -8,237 +9,119 @@
 @import 'components/buttons';
 @import 'components/nav-primary';
 @import 'components/nav-secondary';
-@import 'layouts/content-slide';
 @import 'components/downloadItem';
 @import 'components/downloadItemOptionsMenu';
+@import 'layouts/content-slide';
 @import 'layouts/grid';
 @import 'pages/warpstagram';
 @import 'pages/warpstagram-userSearch';
 @import 'pages/warpstagram-filterToolbar';
 @import 'pages/warpstagram-userInfo';
-@import 'pages/modal-settings';
-@import 'style-splash';
-// modal prefs
-.contentContainer {
-    width: 95%;
-    height: 97%;
-    // width: 100%;
-    // height: 100%;
+@import 'modals/modal-prefs';
+@import 'modals/components/modal-button';
+@import 'modals/components/modal-buttonRadioToggle';
+@import 'modals/components/modal-dropdown-list';
+@import 'modals/components/modal-nav';
+@import 'modals/components/modal-text-input';
+@import 'modals/components/modal-textDescription';
+@import 'modals/components/modal-textTitle';
+// modal-text-input
+.modalOutputFolder {
     display: flex;
     flex-direction: column;
+    width: 100%;
+    height: 75px;
     // border: 1px dotted red;
-    margin: auto;
-    border-radius: 4px;
+    margin-top: 25px;
 }
 
-.panel3 {
-    width: 100%;
-    flex-grow: 1;
-    // background-color: black;
-    // border: 1px dotted white;
-}
-
-.modalPrefsTitle {
-    display: flex;
-    // border: 1px dotted white;
-    flex-direction: row;
-    height: 40px;
-    width: 100%;
-}
-
-.modalPrefsTitle_child {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    align-content: center;
-    // border: 1px dotted white;
-    flex-grow: 1;
-}
-
-.modalPrefsTitle_child p {
-    color: white;
-    font-size: 1.5rem;
-    margin-left: 1rem;
-    font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
-    cursor: default;
-    letter-spacing: 0.1rem;
-}
-
-.modalPrefsTitle_child i {
-    color: white;
-    margin-right: 1rem;
-    cursor: pointer;
-}
-
-.modalPrefsTitle_child_left {
-    // background-color: rgb(226, 177, 177);
-    justify-content: flex-start;
-}
-
-.modalPrefsTitle_child_right {
-    // background-color: rgb(224, 211, 211);
-    justify-content: flex-end;
-}
-
-.modalPrefsNav {
-    height: 50px;
-    width: 100%;
-    // border: 1px dotted red;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    align-content: center;
-    // box-shadow: 0 10px 20px -8px #c5d6d6;
-}
-
-.modalPrefsNav_button {
-    display: flex;
-    align-items: center;
-    align-content: center;
-    flex-grow: 1;
-    width: 100%;
+.modalOutputFolder_title {
     height: 100%;
-    flex-direction: row;
-    align-items: evenly;
-    align-content: center;
-    color: #ffffff60;
-    cursor: pointer;
-    justify-content: center; // PRODUCTION
-    &:hover {
-        background-color: rgba(238, 238, 238, 0.205);
-        color: #ffffff;
-    }
-}
-
-.modalPrefsNav_button p {
-    font-size: 1.4rem;
-    margin-left: 1rem;
-    font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
-    margin-right: 8px;
-}
-
-.modalPrefsNav_button i {
-    font-size: 1.4rem;
-    margin-top: 2px;
-}
-
-// TOGGLE BUTTON
-.modalPrefsToggleButton {
     width: 100%;
-    height: 24px;
-    // border: 1px dotted red;
+    flex-direction: row;
+    // flex-grow: 1;
     display: flex;
-}
-
-.modalPrefsToggleButton_child {
-    flex-grow: 1;
-    cursor: default;
     // border: 1px dotted white;
-}
-
-.modalPrefsToggleButton_child_left {
-    display: flex;
     justify-content: flex-start;
+    align-items: center;
 }
 
-.modalPrefsToggleButton_child_right {
-    display: flex;
-    justify-content: flex-end;
-}
-
-.modalPrefsToggleButton_child p {
-    justify-content: flex-start;
+.modalOutputFolder_title p {
+    color: #ffffff;
     font-size: 1.4rem;
     color: #ffffff;
     margin-left: 1rem;
+    cursor: default;
     font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
 }
 
-.modalPrefsToggleButton_child button {
-    justify-content: flex-end;
+.modalOutputFolder_userInput {
+    height: 40px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
 }
 
-.knobs,
-.layer {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-}
-
-.button {
-    position: absolute;
-    width: 32px;
-    height: 16px;
-    margin: 2px 0;
-    overflow: hidden;
-}
-
-.button.r,
-.button.r .layer {
-    border-radius: 100px;
-}
-
-.button.b2 {
+.modalOutputFolder_userInput__textInput,
+.modalOutputFolder_userInput__button {
+    display: flex;
+    // justify-content: flex-start;
+    align-items: center;
     border-radius: 2px;
 }
 
-.checkbox {
-    position: relative;
-    width: 100%;
+.modalOutputFolder_userInput__textInput {
     height: 100%;
-    padding: 0;
-    margin: 0;
-    opacity: 0;
-    cursor: pointer;
-    z-index: 3;
+    width: 70%;
+    margin-right: 1rem;
+    // cursor: default;
 }
 
-.knobs {
-    z-index: 2;
-}
-
-.layer {
+.modalOutputFolder_userInput__textInput input {
+    height: 100%;
     width: 100%;
-    background-color: #6d6d6d; // bgd color, OFF
-    transition: 0.1s ease all;
-    z-index: 1;
+    border: solid 1px #464646a1; // test
+    // height: 5rem;
+    background: #2a2a2a;
+    cursor: default;
+    // margin: auto 2rem;
+    // margin: auto 5px auto 5px;
 }
 
-
-/* Button 1 */
-
-// KNOB PROPERTIES
-#button-1 .knobs:before {
-    content: '';
-    position: absolute;
-    top: 1px;
-    left: 2px;
-    width: 9px;
-    height: 9px;
-    color: #fff;
-    font-size: 50px;
-    padding: 2px 2px;
-    // padding: 1px 1px;
-    background-color: #fff; // button color, OFF
-    border-radius: 50%;
-    transition: 0.1s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
+::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    font-size: 1.4rem;
+    color: white;
+    opacity: 1;
+    font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
+    /* Firefox */
+    padding-left: 1rem;
 }
 
-#button-1 .checkbox:checked+.knobs:before {
-    content: '';
-    // left: 42px; // where the knobs move to
-    left: 16px; // where the knobs move to
-    background-color: #fff; // button color, ON
-}
-
-#button-1 .checkbox:checked~.layer {
+.modalOutputFolder_userInput__button {
+    display: flex;
+    // justify-content: flex-start;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 30%;
     background: linear-gradient(268deg, #f8ab37, #da2c4d); // bgd color, ON
-}
-
-#button-1 .knobs,
-#button-1 .knobs:before,
-#button-1 .layer {
-    transition: 0.1s ease all;
+    background: #ff7700; // bgd color, ON
+    cursor: pointer;
+    font-size: 1.4rem;
+    color: white;
+    opacity: 1;
+    transition: all ease-out 0.1s;
+    font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
+    /* Firefox */
+    // padding-left: 1rem;
+    &:hover {
+        //// CONTENT
+        color: white;
+        // background-image: $colorNavBBackground_hover;
+        //// DECORATIVE
+        box-shadow: $shadow-after;
+        //// ANIMATION
+        // transform: scale(1.01);
+    }
 }

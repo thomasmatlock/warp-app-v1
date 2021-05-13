@@ -91,14 +91,15 @@ input {
 
 #searchAudio,
 #searchVideo::placeholder {
-    color: purple;
+    // color: purple;
 }
 
 ::placeholder {
     /* Chrome, Firefox, Opera, Safari 10.1+ */
-    font-size: 1rem;
-    color: red;
+    font-size: 1.4rem;
+    color: black;
     opacity: 1;
+    font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
     /* Firefox */
 }
 

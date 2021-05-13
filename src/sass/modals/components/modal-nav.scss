@@ -1,0 +1,41 @@
+.modalPrefsNav {
+    height: 50px;
+    width: 100%;
+    // border: 1px dotted red;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    // box-shadow: 0 10px 20px -8px #c5d6d6;
+}
+
+.modalPrefsNav_button {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-grow: 1;
+    width: 100%;
+    height: 100%;
+    flex-direction: row;
+    align-items: evenly;
+    align-content: center;
+    color: #ffffff60;
+    cursor: pointer;
+    justify-content: center; // PRODUCTION
+    &:hover {
+        background-color: rgba(238, 238, 238, 0.205);
+        color: #ffffff;
+    }
+}
+
+.modalPrefsNav_button p {
+    font-size: 1.4rem;
+    margin-left: 1rem;
+    font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
+    margin-right: 8px;
+}
+
+.modalPrefsNav_button i {
+    font-size: 1.4rem;
+    margin-top: 2px;
+}
