@@ -40,9 +40,12 @@ let state = new stateReq();
         items.startupAddAllItems(storage); // loads items stored in settings to UI
         let pathsObj = storage.user.paths;
         modals.markupPrefs(pathsObj);
-        modals.toggleComponents('prefs', 'video');
+
         auto.click_nav_B(startup.env.nav_A_active, 'preferences'); // auto clicks paste, smartMode, activate, subscriptions, preferences, help
         addModalEventListeners(); // activates modal event listeners
+        // setTimeout(() => {
+        modals.toggleComponentsInit('prefs', 'audio');
+        // }, 400);
     });
 
     const setActiveNav_A = (nav_A_active) => {
@@ -381,6 +384,22 @@ const addModalEventListeners = () => {
             .getElementById('modalOutputFolderBtn_audio')
             .addEventListener('click', (e) => {
                 console.log('hello');
+            });
+        // NAV LISTENERS
+        document
+            .getElementById('modalPrefsNav_button_audio_ID')
+            .addEventListener('click', (e) => {
+                modals.toggleComponents('prefs', 'audio');
+            });
+        document
+            .getElementById('modalPrefsNav_button_video_ID')
+            .addEventListener('click', (e) => {
+                modals.toggleComponents('prefs', 'video');
+            });
+        document
+            .getElementById('modalPrefsNav_button_warpstagram_ID')
+            .addEventListener('click', (e) => {
+                modals.toggleComponents('prefs', 'warpstagram');
             });
     }, 100);
 };

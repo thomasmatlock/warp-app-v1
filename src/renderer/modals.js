@@ -79,51 +79,46 @@ const insertMarkupPrefs = (markup) => {
     modalContainerVideo.appendChild(markupNodeVideo); // Append item node
     modalContainerWarpstagram.appendChild(markupNodeWarpstagram); // Append item node
 };
-const modalPrefsCompAudioIDArr = ['modalPrefsOutputFolderComponent_audio'];
-const modalPrefsCompVideoIDArr = ['modalPrefsOutputFolderComponent_video'];
-const modalPrefsCompWarpstagramIDArr = [
-    'modalPrefsOutputFolderComponent_warpstagram',
-];
-const hideComponents = (avType) => {
-    if (avType === 'audio') {
-        loopThroughArray(modalPrefsCompVideoIDArr, 'hide');
-        loopThroughArray(modalPrefsCompWarpstagramIDArr, 'hide');
-    }
-    if (avType === 'video') {
-        loopThroughArray(modalPrefsCompAudioIDArr, 'hide');
-        loopThroughArray(modalPrefsCompWarpstagramIDArr, 'hide');
-    }
-    if (avType === 'warpstagram') {
-        loopThroughArray(modalPrefsCompAudioIDArr, 'hide');
-        loopThroughArray(modalPrefsCompVideoIDArr, 'hide');
-    }
-};
-const showComponents = (avType) => {
-    if (avType === 'audio') {
-        loopThroughArray(modalPrefsCompAudioIDArr, 'show');
-    }
-    if (avType === 'video') {
-        loopThroughArray(modalPrefsCompVideoIDArr, 'show');
-        // loopThroughArray(modalPrefsCompVideoIDArr, 'show');
-    }
-    if (avType === 'warpstagram') {
-        loopThroughArray(modalPrefsCompWarpstagramIDArr, 'show');
-    }
-};
+
 const toggleComponents = (modalType, avType) => {
-    hideComponents(avType);
-    showComponents(avType);
+    if (avType === 'audio') {
+        console.log(avType);
+        document.getElementById('modalPrefsContentPanel_audio').style.display =
+            'none';
+        document.getElementById('modalPrefsContentPanel_video').style.display =
+            'none';
+        document.getElementById(
+            'modalPrefsContentPanel_warpstagram'
+        ).style.visibility = 'visible';
+    }
+    if (avType === 'video') {
+        console.log(avType);
+        document.getElementById('modalPrefsContentPanel_audio').style.display =
+            'none';
+        document.getElementById('modalPrefsContentPanel_video').style.display =
+            'none';
+        document.getElementById(
+            'modalPrefsContentPanel_warpstagram'
+        ).style.display = 'none';
+    }
+
+    if (avType === 'warpstagram') {
+        console.log(avType);
+        document.getElementById('modalPrefsContentPanel_audio').style.display =
+            'none';
+        document.getElementById('modalPrefsContentPanel_video').style.display =
+            'none';
+        document.getElementById(
+            'modalPrefsContentPanel_warpstagram'
+        ).style.visibility = 'visible';
+    }
 };
-const loopThroughArray = (arr, hideShow) => {
-    let visibility;
-    // if (hideShow === 'hide') visibility = 'none';
-    hideShow === 'hide' ? (visibility = 'none') : (visibility = 'flex');
+const toggleComponentsInit = (modalType, avType) => {
     setTimeout(() => {
-        for (let i = 0; i < arr.length; i++) {
-            document.getElementById(arr[i]).style.display = visibility;
-        }
-    }, 100);
+        toggleComponents(modalType, avType);
+    }, 200);
 };
+
 const insertOutputFolderPaths = (pathsObj) => {
     setTimeout(() => {
         document.getElementById('modalPrefsOutputFolder_audio').placeholder =
@@ -148,7 +143,8 @@ module.exports = {
     togglePreferences: togglePreferences,
     insertMarkupPrefs: insertMarkupPrefs,
     markupPrefs: markupPrefs,
-    hideComponents: hideComponents,
-    showComponents: showComponents,
+    // hideComponents: hideComponents,
+    // showComponents: showComponents,
     toggleComponents: toggleComponents,
+    toggleComponentsInit: toggleComponentsInit,
 };

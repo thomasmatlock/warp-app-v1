@@ -4,6 +4,11 @@
     output folder
     dropdown menu
  -->
+
+
+
+<!-- STATIC CONTENT -->
+<div class="modalPrefsContentPanel"></div>
 <!-- TITLE -->
 <div class="modalPrefsTitle">
     <div class="modalPrefsTitle_child modalPrefsTitle_child_left">
@@ -15,132 +20,143 @@
 </div>
 <!-- NAV -->
 <div class="modalPrefsNav">
-    <a class="modalPrefsNav_button">
+    <a id="modalPrefsNav_button_audio_ID" class="modalPrefsNav_button">
         <!-- <i class="fas fa-tools"></i> -->
         <i class="fas fa-headphones-alt"></i>
         <p>Audio</p>
     </a>
-    <div class="modalPrefsNav_button">
+    <div id="modalPrefsNav_button_video_ID" class="modalPrefsNav_button">
         <i class="fas fa-video"></i>
         <p>Video</p>
     </div>
-    <div class="modalPrefsNav_button">
+    <div id="modalPrefsNav_button_warpstagram_ID" class="modalPrefsNav_button">
         <i class="fas fa-camera"></i>
         <p>Warpstagram</p>
     </div>
 </div>
 
+<!-- DYNAMIC CONTENT -->
+<div id="modalPrefsContentPanel_audio" class="modalPrefsContentPanel">
 
-
-<!-- TOGGLE BUTTON -->
-<div class="modalPrefsToggleButton">
-    <div class="modalPrefsToggleButton_child modalPrefsToggleButton_child_left">
-        <p>Ipsum lorem</p>
-    </div>
-    <div class="modalPrefsToggleButton_child modalPrefsToggleButton_child_right">
-        <div class="button r" id="button-1">
-            <input type="checkbox" class="checkbox" id="button-ID">
-            <div class="knobs "></div>
-            <div class="layer "></div>
+    <!-- TOGGLE BUTTON -->
+    <div class="modalPrefsToggleButton">
+        <div class="modalPrefsToggleButton_child modalPrefsToggleButton_child_left">
+            <p>Ipsum lorem</p>
         </div>
-    </div>
-</div>
-
-
-
-<!-- MODAL-TEXT-INPUT -->
-<div id="modalPrefsOutputFolderComponent_audio" class="modalOutputFolder">
-    <div class="modalOutputFolder_title">
-        <p>Output Folder</p>
-    </div>
-    <div class="modalOutputFolder_userInput">
-        <div class="modalOutputFolder_userInput__textInput">
-            <input id="modalPrefsOutputFolder_audio" type="text " placeholder="C:/Users/Tommy/Documents/Warp Downloader" autofocus />
-        </div>
-        <div id="modalOutputFolderBtn_audio" class="modalOutputFolder_userInput__button">
-            <p>Browse</p>
-        </div>
-    </div>
-</div>
-<div id="modalPrefsOutputFolderComponent_video" class="modalOutputFolder">
-    <div class="modalOutputFolder_title">
-        <p>Output Folder</p>
-    </div>
-    <div class="modalOutputFolder_userInput">
-        <div class="modalOutputFolder_userInput__textInput">
-            <input id="modalPrefsOutputFolder_video" type="text " placeholder="C:/Users/Tommy/Documents/Warp Downloader" autofocus />
-        </div>
-        <div id="modalOutputFolderBtn_audio" class="modalOutputFolder_userInput__button">
-            <p>Browse</p>
-        </div>
-    </div>
-</div>
-<div id="modalPrefsOutputFolderComponent_warpstagram" class="modalOutputFolder">
-    <div class="modalOutputFolder_title">
-        <p>Output Folder</p>
-    </div>
-    <div class="modalOutputFolder_userInput">
-        <div class="modalOutputFolder_userInput__textInput">
-            <input id="modalPrefsOutputFolder_warpstagram" type="text " placeholder="C:/Users/Tommy/Documents/Warp Downloader" autofocus />
-        </div>
-        <div id="modalOutputFolderBtn_audio" class="modalOutputFolder_userInput__button">
-            <p>Browse</p>
-        </div>
-    </div>
-</div>
-
-<!-- MODAL-SPACER -->
-<div class="modalSpacer">
-    <div class="modalSpacer_line"></div>
-</div>
-
-
-
-<!-- DROPDOWN LIST -->
-<div class="modalDropdownListContainer">
-    <div class="modalDropdownListColumn modalDropdownListColumn_left">
-        <div class="modalDropdownListContent">
-            <div class="modalDropdownList_title modalDropdownList_child">
-                <p>Language</p>
-            </div>
-            <div class="modalDropdownList_list modalDropdownList_child">
-                <select name="modalDropdownList_list_select">
-                    <option value=" volvo ">System</option>
-                    <option value=" saab ">Saab</option>
-                    <option value=" mercedes ">Mercedes</option>
-                    <option value=" audi ">Audi</option>
-                </select>
-            </div>
-        </div>
-        <div class="modalDropdownListContent">
-            <div class="modalDropdownList_title modalDropdownList_child">
-                <p>Language</p>
-            </div>
-            <div class="modalDropdownList_list modalDropdownList_child">
-                <select name="modalDropdownList_list_select">
-                    <option value=" volvo ">System</option>
-                    <option value=" saab ">Saab</option>
-                    <option value=" mercedes ">Mercedes</option>
-                    <option value=" audi ">Audi</option>
-                </select>
+        <div class="modalPrefsToggleButton_child modalPrefsToggleButton_child_right">
+            <div class="button r" id="button-1">
+                <input type="checkbox" class="checkbox" id="button-ID">
+                <div class="knobs "></div>
+                <div class="layer "></div>
             </div>
         </div>
     </div>
-    <div class="modalDropdownListColumn">
-        <div class="modalDropdownListContent">
-            <div class="modalDropdownList_title modalDropdownList_child">
-                <p>Language</p>
+
+    <!-- MODAL-TEXT-INPUT -->
+    <div id="modalPrefsOutputFolderComponent_audio" class="modalOutputFolder">
+        <div class="modalOutputFolder_title">
+            <p>Output Folder</p>
+        </div>
+        <div class="modalOutputFolder_userInput">
+            <div class="modalOutputFolder_userInput__textInput">
+                <input id="modalPrefsOutputFolder_audio" type="text " placeholder="C:/Users/Tommy/Documents/Warp Downloader" autofocus />
             </div>
-            <div class="modalDropdownList_list modalDropdownList_child">
-                <select name="modalDropdownList_list_select">
-                    <option value=" volvo ">System</option>
-                    <option value=" saab ">Saab</option>
-                    <option value=" mercedes ">Mercedes</option>
-                    <option value=" audi ">Audi</option>
-                </select>
+            <div id="modalOutputFolderBtn_audio" class="modalOutputFolder_userInput__button">
+                <p>Browse</p>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- MODAL-SPACER -->
+    <div class="modalSpacer">
+        <div class="modalSpacer_line"></div>
+    </div>
+
+    <!-- DROPDOWN LIST -->
+    <div class="modalDropdownListContainer">
+        <div class="modalDropdownListColumn modalDropdownListColumn_left">
+            <div class="modalDropdownListContent">
+                <div class="modalDropdownList_title modalDropdownList_child">
+                    <p>Language</p>
+                </div>
+                <div class="modalDropdownList_list modalDropdownList_child">
+                    <select name="modalDropdownList_list_select">
+                        <option value=" volvo ">System</option>
+                        <option value=" saab ">Saab</option>
+                        <option value=" mercedes ">Mercedes</option>
+                        <option value=" audi ">Audi</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modalDropdownListContent">
+                <div class="modalDropdownList_title modalDropdownList_child">
+                    <p>Language</p>
+                </div>
+                <div class="modalDropdownList_list modalDropdownList_child">
+                    <select name="modalDropdownList_list_select">
+                        <option value=" volvo ">System</option>
+                        <option value=" saab ">Saab</option>
+                        <option value=" mercedes ">Mercedes</option>
+                        <option value=" audi ">Audi</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="modalDropdownListColumn">
+            <div class="modalDropdownListContent">
+                <div class="modalDropdownList_title modalDropdownList_child">
+                    <p>Language</p>
+                </div>
+                <div class="modalDropdownList_list modalDropdownList_child">
+                    <select name="modalDropdownList_list_select">
+                        <option value=" volvo ">System</option>
+                        <option value=" saab ">Saab</option>
+                        <option value=" mercedes ">Mercedes</option>
+                        <option value=" audi ">Audi</option>
+                    </select>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
+<div id="modalPrefsContentPanel_video" class="modalPrefsContentPanel">
+
+    <!-- MODAL-TEXT-INPUT -->
+    <div id="modalPrefsOutputFolderComponent_video" class="modalOutputFolder">
+        <div class="modalOutputFolder_title">
+            <p>Output Folder</p>
+        </div>
+        <div class="modalOutputFolder_userInput">
+            <div class="modalOutputFolder_userInput__textInput">
+                <input id="modalPrefsOutputFolder_video" type="text " placeholder="C:/Users/Tommy/Documents/Warp Downloader" autofocus />
+            </div>
+            <div id="modalOutputFolderBtn_video" class="modalOutputFolder_userInput__button">
+                <p>Browse</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div id="modalPrefsContentPanel_warpstagram" class="modalPrefsContentPanel">
+
+    <!-- MODAL-TEXT-INPUT -->
+    <div id="modalPrefsOutputFolderComponent_warpstagram" class="modalOutputFolder">
+        <div class="modalOutputFolder_title">
+            <p>Output Folder</p>
+        </div>
+        <div class="modalOutputFolder_userInput">
+            <div class="modalOutputFolder_userInput__textInput">
+                <input id="modalPrefsOutputFolder_warpstagram" type="text " placeholder="C:/Users/Tommy/Documents/Warp Downloader" autofocus />
+            </div>
+            <div id="modalOutputFolderBtn_warpstagram" class="modalOutputFolder_userInput__button">
+                <p>Browse</p>
+            </div>
+        </div>
+    </div>
+
+</div>
 <!-- MODAL-DROPDOWN-RADIOSELECT -->
