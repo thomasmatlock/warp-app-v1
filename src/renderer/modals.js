@@ -79,25 +79,60 @@ const insertMarkupPrefs = (markup) => {
     modalContainerVideo.appendChild(markupNodeVideo); // Append item node
     modalContainerWarpstagram.appendChild(markupNodeWarpstagram); // Append item node
 };
-const modalPrefsCompAudioIDArr = [];
-const modalPrefsCompVideoIDArr = [];
-const modalPrefsCompWarpstagramIDArr = [];
-const hideComponents = (arr, modalType) => {};
-const showComponents = (arr, modalType) => {};
-const toggleComponents = (hideArr, showArr, modalType) => {
-    // hideComponents();
-    // showComponents();
+const modalPrefsCompAudioIDArr = ['modalPrefsOutputFolderComponent_audio'];
+const modalPrefsCompVideoIDArr = ['modalPrefsOutputFolderComponent_video'];
+const modalPrefsCompWarpstagramIDArr = [
+    'modalPrefsOutputFolderComponent_warpstagram',
+];
+const hideComponents = (avType) => {
+    if (avType === 'audio') {
+        loopThroughArray(modalPrefsCompVideoIDArr, 'hide');
+        loopThroughArray(modalPrefsCompWarpstagramIDArr, 'hide');
+    }
+    if (avType === 'video') {
+        loopThroughArray(modalPrefsCompAudioIDArr, 'hide');
+        loopThroughArray(modalPrefsCompWarpstagramIDArr, 'hide');
+    }
+    if (avType === 'warpstagram') {
+        loopThroughArray(modalPrefsCompAudioIDArr, 'hide');
+        loopThroughArray(modalPrefsCompVideoIDArr, 'hide');
+    }
 };
-
+const showComponents = (avType) => {
+    if (avType === 'audio') {
+        loopThroughArray(modalPrefsCompAudioIDArr, 'show');
+    }
+    if (avType === 'video') {
+        loopThroughArray(modalPrefsCompVideoIDArr, 'show');
+        // loopThroughArray(modalPrefsCompVideoIDArr, 'show');
+    }
+    if (avType === 'warpstagram') {
+        loopThroughArray(modalPrefsCompWarpstagramIDArr, 'show');
+    }
+};
+const toggleComponents = (modalType, avType) => {
+    hideComponents(avType);
+    showComponents(avType);
+};
+const loopThroughArray = (arr, hideShow) => {
+    let visibility;
+    // if (hideShow === 'hide') visibility = 'none';
+    hideShow === 'hide' ? (visibility = 'none') : (visibility = 'flex');
+    setTimeout(() => {
+        for (let i = 0; i < arr.length; i++) {
+            document.getElementById(arr[i]).style.display = visibility;
+        }
+    }, 100);
+};
 const insertOutputFolderPaths = (pathsObj) => {
     setTimeout(() => {
         document.getElementById('modalPrefsOutputFolder_audio').placeholder =
             pathsObj.audio;
-        // document.getElementById('modalPrefsOutputFolder_video').placeholder =
-        //     pathsObj.video;
-        // document.getElementById(
-        //     'modalPrefsOutputFolder_warpstagram'
-        // ).placeholder = pathsObj.warpstagram;
+        document.getElementById('modalPrefsOutputFolder_video').placeholder =
+            pathsObj.video;
+        document.getElementById(
+            'modalPrefsOutputFolder_warpstagram'
+        ).placeholder = pathsObj.warpstagram;
     }, 100);
 };
 
@@ -113,4 +148,7 @@ module.exports = {
     togglePreferences: togglePreferences,
     insertMarkupPrefs: insertMarkupPrefs,
     markupPrefs: markupPrefs,
+    hideComponents: hideComponents,
+    showComponents: showComponents,
+    toggleComponents: toggleComponents,
 };

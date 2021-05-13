@@ -40,7 +40,7 @@ let state = new stateReq();
         items.startupAddAllItems(storage); // loads items stored in settings to UI
         let pathsObj = storage.user.paths;
         modals.markupPrefs(pathsObj);
-        // modals.insertOutputFolderPaths;
+        modals.toggleComponents('prefs', 'video');
         auto.click_nav_B(startup.env.nav_A_active, 'preferences'); // auto clicks paste, smartMode, activate, subscriptions, preferences, help
         addModalEventListeners(); // activates modal event listeners
     });
