@@ -82,7 +82,6 @@ const insertMarkupPrefs = (markup) => {
 
 const toggleComponents = (modalType, avType) => {
     if (avType === 'audio') {
-        // console.log(avType);
         document.getElementById('modalPrefsContentPanel_audio').style.display =
             'flex';
         document.getElementById('modalPrefsContentPanel_video').style.display =
@@ -90,9 +89,9 @@ const toggleComponents = (modalType, avType) => {
         document.getElementById(
             'modalPrefsContentPanel_warpstagram'
         ).style.display = 'none';
+        toggleActiveModalNavClass(avType);
     }
     if (avType === 'video') {
-        // console.log(avType);
         document.getElementById('modalPrefsContentPanel_audio').style.display =
             'none';
         document.getElementById('modalPrefsContentPanel_video').style.display =
@@ -100,10 +99,10 @@ const toggleComponents = (modalType, avType) => {
         document.getElementById(
             'modalPrefsContentPanel_warpstagram'
         ).style.display = 'none';
+        toggleActiveModalNavClass(avType);
     }
 
     if (avType === 'warpstagram') {
-        // console.log(avType);
         document.getElementById('modalPrefsContentPanel_audio').style.display =
             'none';
         document.getElementById('modalPrefsContentPanel_video').style.display =
@@ -111,6 +110,7 @@ const toggleComponents = (modalType, avType) => {
         document.getElementById(
             'modalPrefsContentPanel_warpstagram'
         ).style.display = 'flex';
+        toggleActiveModalNavClass(avType);
     }
 };
 const toggleComponentsInit = (modalType, avType) => {
@@ -129,6 +129,17 @@ const insertOutputFolderPaths = (pathsObj) => {
             'modalPrefsOutputFolder_warpstagram'
         ).placeholder = pathsObj.warpstagram;
     }, 100);
+};
+
+const removeActiveModalNavClass = () => {};
+const addActiveModalNavClass = () => {
+    document
+        .getElementById('modalPrefsNav_button_audio_ID')
+        .classList.add('modalPrefsNav_button_active');
+};
+const toggleActiveModalNavClass = () => {
+    removeActiveModalNavClass();
+    addActiveModalNavClass();
 };
 
 const markupPrefs = (pathsObj) => {
