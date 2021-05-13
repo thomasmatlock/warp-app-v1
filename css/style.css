@@ -921,6 +921,10 @@ input[type='text'] {
   margin: auto;
   border-radius: 4px; }
 
+.modalPrefsContentPanel {
+  display: flex;
+  flex-direction: column; }
+
 .contentContainer * {
   -webkit-user-select: none;
   /* Safari */
@@ -1246,7 +1250,3 @@ input[type='text'] {
 
 .modalPrefsTitle_child_right {
   justify-content: flex-end; }
-
-.modalPrefsContentPanel {
-  display: flex;
-  flex-direction: column; }
