@@ -131,15 +131,37 @@ const insertOutputFolderPaths = (pathsObj) => {
     }, 100);
 };
 
-const removeActiveModalNavClass = () => {};
-const addActiveModalNavClass = () => {
+const removeActiveModalNavClass = () => {
     document
         .getElementById('modalPrefsNav_button_audio_ID')
-        .classList.add('modalPrefsNav_button_active');
+        .classList.remove('modalPrefsNav_button_active');
+    document
+        .getElementById('modalPrefsNav_button_video_ID')
+        .classList.remove('modalPrefsNav_button_active');
+    document
+        .getElementById('modalPrefsNav_button_warpstagram_ID')
+        .classList.remove('modalPrefsNav_button_active');
 };
-const toggleActiveModalNavClass = () => {
+const addActiveModalNavClass = (avType) => {
+    if (avType === 'audio') {
+        document
+            .getElementById('modalPrefsNav_button_audio_ID')
+            .classList.add('modalPrefsNav_button_active');
+    }
+    if (avType === 'video') {
+        document
+            .getElementById('modalPrefsNav_button_video_ID')
+            .classList.add('modalPrefsNav_button_active');
+    }
+    if (avType === 'warpstagram') {
+        document
+            .getElementById('modalPrefsNav_button_warpstagram_ID')
+            .classList.add('modalPrefsNav_button_active');
+    }
+};
+const toggleActiveModalNavClass = (avType) => {
     removeActiveModalNavClass();
-    addActiveModalNavClass();
+    addActiveModalNavClass(avType);
 };
 
 const markupPrefs = (pathsObj) => {
