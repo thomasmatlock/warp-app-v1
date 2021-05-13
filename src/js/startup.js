@@ -48,6 +48,12 @@ class startup {
                 warpstagram: 'free',
                 videoSmartMode: true,
                 acceptedEULA: true,
+                paths: {
+                    main: fileController.dirMainPath,
+                    audio: fileController.dirAudioPath,
+                    video: fileController.dirVideoPath,
+                    warpstagram: fileController.dirWarpstagramPath,
+                },
             },
             downloadItems: {
                 audioArr: [],

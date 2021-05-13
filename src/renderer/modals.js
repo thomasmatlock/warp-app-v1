@@ -13,9 +13,9 @@
 // Preferences, Connection
 // Preferences, Notifications
 //////////////////////////////////////////////////////////////// Welcome
-// const fs = require('fs');
 const fs = require('fs').promises;
 let elements = require('./views/elements');
+
 const toggleBackground = (state, elements) => {
     if (state.modals.preferences) {
         elements.modalBackground.style.display = 'none'; // de-activate modal background
@@ -58,7 +58,6 @@ async function readMarkup() {
         'binary'
     );
     modalMarkupPreferences = new Buffer(data).toString();
-    // console.log(modalMarkupPreferences);
     insertMarkupPrefs(modalMarkupPreferences);
     return modalMarkupPreferences;
 }
@@ -80,9 +79,31 @@ const insertMarkupPrefs = (markup) => {
     modalContainerVideo.appendChild(markupNodeVideo); // Append item node
     modalContainerWarpstagram.appendChild(markupNodeWarpstagram); // Append item node
 };
+const modalPrefsCompAudioIDArr = [];
+const modalPrefsCompVideoIDArr = [];
+const modalPrefsCompWarpstagramIDArr = [];
+const hideComponents = (arr, modalType) => {};
+const showComponents = (arr, modalType) => {};
+const toggleComponents = (hideArr, showArr, modalType) => {
+    // hideComponents();
+    // showComponents();
+};
 
-const markupPrefs = () => {
+const insertOutputFolderPaths = (pathsObj) => {
+    setTimeout(() => {
+        document.getElementById('modalPrefsOutputFolder_audio').placeholder =
+            pathsObj.audio;
+        // document.getElementById('modalPrefsOutputFolder_video').placeholder =
+        //     pathsObj.video;
+        // document.getElementById(
+        //     'modalPrefsOutputFolder_warpstagram'
+        // ).placeholder = pathsObj.warpstagram;
+    }, 100);
+};
+
+const markupPrefs = (pathsObj) => {
     readMarkup();
+    insertOutputFolderPaths(pathsObj);
 };
 
 module.exports = {
