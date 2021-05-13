@@ -374,5 +374,10 @@ const addModalEventListeners = () => {
         document.getElementById('button-1').addEventListener('click', (e) => {
             console.log('hello');
         });
+        document
+            .getElementById('modalOutputFolderBtn_audio')
+            .addEventListener('click', (e) => {
+                console.log('hello');
+            });
     }, 100);
 };

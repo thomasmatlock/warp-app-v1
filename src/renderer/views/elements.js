@@ -85,6 +85,9 @@ const elements = {
     ),
     // modalToggleBtn: document.getElementById('button-1'),
     modalToggleBtn: document.getElementById('button-ID'),
+    modalOutputFolderBtn_audio: document.getElementById(
+        'modalOutputFolderBtn_audio'
+    ),
     modalsPrefsTitle: document.querySelector('modalPrefsTitle'),
     // modalToggleBtn: document.querySelector('.layer'),
 };
