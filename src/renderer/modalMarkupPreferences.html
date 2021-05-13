@@ -7,50 +7,42 @@
 
 
 
-<!-- STATIC CONTENT -->
-<div class="modalPrefsContentPanel"></div>
-<!-- TITLE -->
-<div class="modalPrefsTitle">
-    <div class="modalPrefsTitle_child modalPrefsTitle_child_left">
-        <p>Preferences</p>
-    </div>
-    <div class="modalPrefsTitle_child modalPrefsTitle_child_right">
-        <i class="fas fa-times fa-2x"></i>
-    </div>
-</div>
-<!-- NAV -->
-<div class="modalPrefsNav">
-    <a id="modalPrefsNav_button_audio_ID" class="modalPrefsNav_button">
-        <!-- <i class="fas fa-tools"></i> -->
-        <i class="fas fa-headphones-alt"></i>
-        <p>Audio</p>
-    </a>
-    <div id="modalPrefsNav_button_video_ID" class="modalPrefsNav_button">
-        <i class="fas fa-video"></i>
-        <p>Video</p>
-    </div>
-    <div id="modalPrefsNav_button_warpstagram_ID" class="modalPrefsNav_button">
-        <i class="fas fa-camera"></i>
-        <p>Warpstagram</p>
-    </div>
-</div>
+<!-- STATIC CONTENT, TOP -->
 
+<!-- TITLE -->
+<div class="modalPrefsContentPanel_top">
+
+
+    <div class="modalPrefsTitle">
+        <div class="modalPrefsTitle_child modalPrefsTitle_child_left">
+            <p>Preferences</p>
+        </div>
+        <div class="modalPrefsTitle_child modalPrefsTitle_child_right">
+            <i class="fas fa-times fa-2x"></i>
+        </div>
+    </div>
+    <!-- NAV -->
+    <div class="modalPrefsNav">
+        <a id="modalPrefsNav_button_audio_ID" class="modalPrefsNav_button">
+            <!-- <i class="fas fa-tools"></i> -->
+            <i class="fas fa-headphones-alt"></i>
+            <p>Audio</p>
+        </a>
+        <div id="modalPrefsNav_button_video_ID" class="modalPrefsNav_button">
+            <i class="fas fa-video"></i>
+            <p>Video</p>
+        </div>
+        <div id="modalPrefsNav_button_warpstagram_ID" class="modalPrefsNav_button">
+            <i class="fas fa-camera"></i>
+            <p>Warpstagram</p>
+        </div>
+    </div>
+    <!-- MODAL-UNDERLINE -->
+    <div class="modalSpacer_line">
+    </div>
+</div>
 <!-- DYNAMIC CONTENT -->
 <div id="modalPrefsContentPanel_audio" class="modalPrefsContentPanel">
-
-    <!-- TOGGLE BUTTON -->
-    <div class="modalPrefsToggleButton">
-        <div class="modalPrefsToggleButton_child modalPrefsToggleButton_child_left">
-            <p>Ipsum lorem</p>
-        </div>
-        <div class="modalPrefsToggleButton_child modalPrefsToggleButton_child_right">
-            <div class="button r" id="button-1">
-                <input type="checkbox" class="checkbox" id="button-ID">
-                <div class="knobs "></div>
-                <div class="layer "></div>
-            </div>
-        </div>
-    </div>
 
     <!-- MODAL-TEXT-INPUT -->
     <div id="modalPrefsOutputFolderComponent_audio" class="modalOutputFolder">
@@ -67,8 +59,6 @@
         </div>
     </div>
 
-
-
     <!-- MODAL-SPACER -->
     <div class="modalSpacer">
         <div class="modalSpacer_line"></div>
@@ -79,20 +69,20 @@
         <div class="modalDropdownListColumn modalDropdownListColumn_left">
             <div class="modalDropdownListContent">
                 <div class="modalDropdownList_title modalDropdownList_child">
-                    <p>Language</p>
+                    <p>Audio Quality</p>
                 </div>
                 <div class="modalDropdownList_list modalDropdownList_child">
                     <select name="modalDropdownList_list_select">
-                        <option value=" volvo ">System</option>
-                        <option value=" saab ">Saab</option>
-                        <option value=" mercedes ">Mercedes</option>
-                        <option value=" audi ">Audi</option>
+                        <option value=" volvo ">Best Available</option>
+                        <option value=" saab ">High quality (320kbps)</option>
+                        <option value=" mercedes ">Medium quality (256kbps)</option>
+                        <option value=" audi ">Low quality (128kbps)</option>
                     </select>
                 </div>
             </div>
-            <div class="modalDropdownListContent">
+            <!-- <div class="modalDropdownListContent">
                 <div class="modalDropdownList_title modalDropdownList_child">
-                    <p>Language</p>
+                    <p>Audio Format</p>
                 </div>
                 <div class="modalDropdownList_list modalDropdownList_child">
                     <select name="modalDropdownList_list_select">
@@ -102,24 +92,24 @@
                         <option value=" audi ">Audi</option>
                     </select>
                 </div>
-            </div>
+            </div> -->
         </div>
         <div class="modalDropdownListColumn">
             <div class="modalDropdownListContent">
                 <div class="modalDropdownList_title modalDropdownList_child">
-                    <p>Language</p>
+                    <p>Audio Format</p>
                 </div>
                 <div class="modalDropdownList_list modalDropdownList_child">
                     <select name="modalDropdownList_list_select">
-                        <option value=" volvo ">System</option>
-                        <option value=" saab ">Saab</option>
-                        <option value=" mercedes ">Mercedes</option>
-                        <option value=" audi ">Audi</option>
+                        <option value=" volvo ">MP3</option>
+                        <option value=" saab ">M4A</option>
+                        <option value=" mercedes ">OGG</option>
                     </select>
                 </div>
             </div>
         </div>
     </div>
+
 </div>
 
 <div id="modalPrefsContentPanel_video" class="modalPrefsContentPanel">
@@ -154,6 +144,107 @@
             </div>
             <div id="modalOutputFolderBtn_warpstagram" class="modalOutputFolder_userInput__button">
                 <p>Browse</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL-SPACER -->
+    <div class="modalSpacer">
+        <div class="modalSpacer_line"></div>
+    </div>
+
+    <!-- DROPDOWN LIST -->
+    <div class="modalDropdownListContainer">
+        <div class="modalDropdownListColumn modalDropdownListColumn_left">
+            <div class="modalDropdownListContent">
+                <div class="modalDropdownList_title modalDropdownList_child">
+                    <p>Auto update</p>
+                </div>
+                <div class="modalDropdownList_list modalDropdownList_child">
+                    <select name="modalDropdownList_list_select">
+                        <option value=" volvo ">Update All</option>
+                        <option value=" volvo ">Update Pinned</option>
+                        <option value=" volvo ">Disabled</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modalDropdownListContent">
+                <div class="modalDropdownList_title modalDropdownList_child">
+                    <p>Post sorting</p>
+                </div>
+                <div class="modalDropdownList_list modalDropdownList_child">
+                    <select name="modalDropdownList_list_select">
+                        <option value=" volvo ">Default</option>
+                        <option value=" volvo ">Newest to oldest</option>
+                        <option value=" volvo ">Oldest to newest</option>
+                        <option value=" volvo ">A to Z</option>
+                        <option value=" volvo ">Z to A</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="modalDropdownListColumn">
+            <div class="modalDropdownListContent">
+                <div class="modalDropdownList_title modalDropdownList_child">
+                    <p>Auto update frequency</p>
+                </div>
+                <div class="modalDropdownList_list modalDropdownList_child">
+                    <select name="modalDropdownList_list_select">
+                        <option value=" volvo ">6 hours</option>
+                        <option value=" saab ">12 hours</option>
+                        <option value=" saab ">Daily</option>
+                    </select>
+                </div>
+            </div>
+            <!-- <div class="modalDropdownListContent">
+                <div class="modalDropdownList_title modalDropdownList_child">
+                    <p>Post sorting</p>
+                </div>
+                <div class="modalDropdownList_list modalDropdownList_child">
+                    <select name="modalDropdownList_list_select">
+                        <option value=" volvo ">System</option>
+                        <option value=" saab ">Saab</option>
+                        <option value=" mercedes ">Mercedes</option>
+                        <option value=" audi ">Audi</option>
+                    </select>
+                </div>
+            </div> -->
+        </div>
+    </div>
+
+
+</div>
+
+<!-- STATIC CONTENT, BOTTOM -->
+<div class="modalPrefsContentPanel modalPrefsContentPanel_bottom">
+
+    <!-- MODAL-SPACER -->
+    <div class="modalSpacer">
+        <div class="modalSpacer_line"></div>
+    </div>
+
+    <!-- TOGGLE BUTTON -->
+    <div class="modalPrefsToggleButton">
+        <div class="modalPrefsToggleButton_child modalPrefsToggleButton_child_left">
+            <p>Automatically start Warp on system start</p>
+        </div>
+        <div class="modalPrefsToggleButton_child modalPrefsToggleButton_child_right">
+            <div class="button r" id="button-1">
+                <input type="checkbox" class="checkbox" id="button-ID">
+                <div class="knobs "></div>
+                <div class="layer "></div>
+            </div>
+        </div>
+    </div>
+    <div class="modalPrefsToggleButton">
+        <div class="modalPrefsToggleButton_child modalPrefsToggleButton_child_left">
+            <p>Warp will minimize to your system tray when you close it</p>
+        </div>
+        <div class="modalPrefsToggleButton_child modalPrefsToggleButton_child_right">
+            <div class="button r" id="button-1">
+                <input type="checkbox" class="checkbox" id="button-ID">
+                <div class="knobs "></div>
+                <div class="layer "></div>
             </div>
         </div>
     </div>

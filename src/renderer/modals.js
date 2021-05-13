@@ -82,7 +82,7 @@ const insertMarkupPrefs = (markup) => {
 
 const toggleComponents = (modalType, avType) => {
     if (avType === 'audio') {
-        console.log(avType);
+        // console.log(avType);
         document.getElementById('modalPrefsContentPanel_audio').style.display =
             'flex';
         document.getElementById('modalPrefsContentPanel_video').style.display =
@@ -92,7 +92,7 @@ const toggleComponents = (modalType, avType) => {
         ).style.display = 'none';
     }
     if (avType === 'video') {
-        console.log(avType);
+        // console.log(avType);
         document.getElementById('modalPrefsContentPanel_audio').style.display =
             'none';
         document.getElementById('modalPrefsContentPanel_video').style.display =
@@ -103,7 +103,7 @@ const toggleComponents = (modalType, avType) => {
     }
 
     if (avType === 'warpstagram') {
-        console.log(avType);
+        // console.log(avType);
         document.getElementById('modalPrefsContentPanel_audio').style.display =
             'none';
         document.getElementById('modalPrefsContentPanel_video').style.display =

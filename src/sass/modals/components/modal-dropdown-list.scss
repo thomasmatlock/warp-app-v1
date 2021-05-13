@@ -29,18 +29,18 @@
     height: 75px;
     // width: 200px;
     width: 100%;
-    // margin: 1.4rem;
+    // margin: 1.4rem 0;
     // border: 1px dotted white;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    // overflow: hidden;
 }
 
 .modalDropdownList_child {
     width: 100%;
     // height: 50%;
     // border: 1px dotted white;
-    overflow: hidden;
+    // overflow: hidden;
 }
 
 .modalDropdownList_title {
@@ -60,6 +60,7 @@
     // margin-left: 1rem;
     cursor: default;
     font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
+    margin-bottom: 5px;
 }
 
 .modalDropdownList_list {
@@ -70,6 +71,8 @@
     justify-content: center;
     align-items: center;
     align-content: center;
+    border-radius: 2px;
+    border: solid 1px #464646a1; // test
 }
 
 .modalDropdownList_list select {
@@ -79,7 +82,7 @@
     padding: 0;
     border-radius: inherit;
     height: 40px;
-    width: 120%;
+    width: 100%;
     position: relative;
     z-index: 10;
     color: #ffffff;
