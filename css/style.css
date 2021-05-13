@@ -1117,7 +1117,8 @@ input[type='text'] {
   justify-content: center; }
   .modalPrefsNav_button:hover {
     background-color: rgba(238, 238, 238, 0.205);
-    color: #ffffff; }
+    color: #ffffff;
+    border-radius: 2px 2px 0 0; }
 
 .modalPrefsNav_button p {
   font-size: 1.4rem;
@@ -1131,7 +1132,8 @@ input[type='text'] {
 
 .modalPrefsNav_button_active {
   background-color: rgba(238, 238, 238, 0.205);
-  color: #ffffff; }
+  color: #ffffff;
+  border-radius: 2px 2px 0 0; }
 
 .modalSpacer_space {
   width: 100%;
