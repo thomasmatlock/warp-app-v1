@@ -234,6 +234,12 @@ body {
 a {
   text-decoration: none; }
 
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none; }
+
 body {
   font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
   overflow: hidden; }

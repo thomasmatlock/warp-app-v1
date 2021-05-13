@@ -32,3 +32,11 @@ h3 {
 a {
     text-decoration: none;
 }
+
+// removes yellow border highlight artifact that keeps appearing on text selection
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
