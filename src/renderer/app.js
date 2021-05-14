@@ -15,7 +15,7 @@ const startupReq = require('../js/startup');
 const startup = new startupReq();
 const items = require('./items');
 const auto = require('./automate');
-const modals = require('./modals');
+const modalPrefsView = require('./modalPrefsView');
 const stateReq = require('./state');
 const search = require('./searchLocal');
 
@@ -39,12 +39,12 @@ let state = new stateReq();
         if (startup.dev.clearStorage) items.resetStorage(); // clears localStorage if active
         items.startupAddAllItems(storage); // loads items stored in settings to UI
         let pathsObj = storage.user.paths;
-        modals.markupPrefs(pathsObj);
+        modalPrefsView.markupPrefs(pathsObj);
 
         auto.click_nav_B(startup.env.nav_A_active, 'preferences'); // auto clicks paste, smartMode, activate, subscriptions, preferences, help
         addModalEventListeners(); // activates modal event listeners
         // setTimeout(() => {
-        modals.toggleComponentsInit('prefs', 'audio');
+        modalPrefsView.toggleComponentsInit('prefs', 'audio');
         // }, 400);
     });
 
@@ -105,9 +105,9 @@ const addMenuListeners = () => {
         items.removeAllitems('audio');
     });
     ipcRenderer.on('Audio: Tools: Preferences', () => {
-        modals.toggleBackground(state, elements, startup);
-        modals.toggleModalState(state);
-        modals.togglePreferences(state, elements, 'audio');
+        modalPrefsView.toggleBackground(state, elements, startup);
+        modalPrefsView.togglemodalPrefsViewtate(state);
+        modalPrefsView.togglePreferences(state, elements, 'audio');
     });
 
     // MENU LISTENERS, VIDEO
@@ -130,9 +130,9 @@ const addMenuListeners = () => {
     ipcRenderer.on('Video: Tools: Subscriptions', () => {});
     ipcRenderer.on('Video: Tools: Check for update', () => {});
     ipcRenderer.on('Video: Tools: Preferences', () => {
-        modals.toggleBackground(state, elements, startup);
-        modals.toggleModalState(state);
-        modals.togglePreferences(state, elements, 'video');
+        modalPrefsView.toggleBackground(state, elements, startup);
+        modalPrefsView.togglemodalPrefsViewtate(state);
+        modalPrefsView.togglePreferences(state, elements, 'video');
     });
 
     // MENU LISTENERS, WARPSTAGRAM
@@ -155,9 +155,9 @@ const addMenuListeners = () => {
     ipcRenderer.on('Warpstagram: Tools: Login', () => {});
     ipcRenderer.on('Warpstagram: Tools: Manage license', () => {});
     ipcRenderer.on('Warpstagram: Tools: Preferences', () => {
-        modals.toggleBackground(state, elements, startup);
-        modals.toggleModalState(state);
-        modals.togglePreferences(state, elements, 'warpstagram');
+        modalPrefsView.toggleBackground(state, elements, startup);
+        modalPrefsView.togglemodalPrefsViewtate(state);
+        modalPrefsView.togglePreferences(state, elements, 'warpstagram');
     });
 
     // Menu listeners, universal commands
@@ -226,9 +226,9 @@ const addEventListeners = () => {
         if (logging) console.log('clicked activate');
     });
     elements.nav_B_button_audio_preferences.addEventListener('click', (e) => {
-        modals.toggleBackground(state, elements, startup);
-        modals.toggleModalState(state);
-        modals.togglePreferences(state, elements, 'audio');
+        modalPrefsView.toggleBackground(state, elements, startup);
+        modalPrefsView.toggleModalState(state);
+        modalPrefsView.togglePreferences(state, elements, 'audio');
     });
 
     // Nav B video LISTENERS
@@ -243,9 +243,9 @@ const addEventListeners = () => {
         (e) => {}
     );
     elements.nav_B_button_video_preferences.addEventListener('click', (e) => {
-        modals.toggleBackground(state, elements, startup);
-        modals.toggleModalState(state);
-        modals.togglePreferences(state, elements, 'video');
+        modalPrefsView.toggleBackground(state, elements, startup);
+        modalPrefsView.toggleModalState(state);
+        modalPrefsView.togglePreferences(state, elements, 'video');
     });
     // Nav B search listeners
     elements.searchAudio.addEventListener('keyup', (e) => {
@@ -377,11 +377,15 @@ const addEventListeners = () => {
     });
 };
 const addModalEventListeners = () => {
-    // Modals listeners
+    // modalPrefsView listeners
     elements.modalBackground.addEventListener('click', (e) => {
-        modals.toggleBackground(state, elements, startup);
-        modals.toggleModalState(state);
-        modals.togglePreferences(state, elements, startup.env.nav_A_active);
+        modalPrefsView.toggleBackground(state, elements, startup);
+        modalPrefsView.togglemodalPrefsViewtate(state);
+        modalPrefsView.togglePreferences(
+            state,
+            elements,
+            startup.env.nav_A_active
+        );
     });
 
     setTimeout(() => {
@@ -404,27 +408,27 @@ const addModalEventListeners = () => {
         document
             .getElementById('modalPrefsNav_button_audio_ID')
             .addEventListener('click', (e) => {
-                modals.toggleComponents('prefs', 'audio');
+                modalPrefsView.toggleComponents('prefs', 'audio');
             });
         document
             .getElementById('modalPrefsNav_button_video_ID')
             .addEventListener('click', (e) => {
-                modals.toggleComponents('prefs', 'video');
+                modalPrefsView.toggleComponents('prefs', 'video');
             });
         document
             .getElementById('modalPrefsNav_button_warpstagram_ID')
             .addEventListener('click', (e) => {
-                modals.toggleComponents('prefs', 'warpstagram');
+                modalPrefsView.toggleComponents('prefs', 'warpstagram');
             });
         document
             .getElementById('modalPrefsNav_button_general_ID')
             .addEventListener('click', (e) => {
-                modals.toggleComponents('prefs', 'general');
+                modalPrefsView.toggleComponents('prefs', 'general');
             });
         document
             .getElementById('modalPrefsNav_button_license_ID')
             .addEventListener('click', (e) => {
-                modals.toggleComponents('prefs', 'license');
+                modalPrefsView.toggleComponents('prefs', 'license');
             });
     }, 100);
 };
