@@ -52,11 +52,11 @@ async function readMarkup() {
         'binary'
     );
     modalMarkupPreferences = new Buffer(data).toString();
-    insertMarkupPrefs(modalMarkupPreferences);
+    injectPrefsMarkup(modalMarkupPreferences);
     return modalMarkupPreferences;
 }
 
-const insertMarkupPrefs = (markup) => {
+const injectPrefsMarkup = (markup) => {
     let modalContainerAudio = elements.modalContainerAudio; // selects target list to add item markup to
     let modalContainerVideo = elements.modalContainerVideo; // selects target list to add item markup to
     let modalContainerWarpstagram = elements.modalContainerWarpstagram; // selects target list to add item markup to
@@ -208,13 +208,27 @@ const markupPrefs = (userPrefs) => {
     insertOutputFolderPaths(userPrefs);
 };
 
+const removeAllInjectedModals = () => {
+    // console.log('removing all prefs modals');
+};
+const injectPrefsModalToCurrentSlide = () => {
+    // console.log('injecting prefs modal into active slide');
+};
+const removeAllAndInjectToActiveSlide = () => {
+    removeAllInjectedModals();
+    injectPrefsModalToCurrentSlide();
+};
+
 module.exports = {
     readMarkup: readMarkup,
     toggleBackground: toggleBackground,
     toggleModalState: toggleModalState,
     togglePreferences: togglePreferences,
-    insertMarkupPrefs: insertMarkupPrefs,
+    injectPrefsMarkup: injectPrefsMarkup,
     markupPrefs: markupPrefs,
     showPanel: showPanel,
     showPanelInit: showPanelInit,
+    removeAllInjectedModals: removeAllInjectedModals,
+    injectPrefsModalToCurrentSlide: injectPrefsModalToCurrentSlide,
+    removeAllAndInjectToActiveSlide: removeAllAndInjectToActiveSlide,
 };

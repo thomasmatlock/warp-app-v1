@@ -169,6 +169,7 @@ const addEventListeners = () => {
         if (id) {
             state.nav.updateActiveNav_A(id);
             // changeNavB_listener(id);
+            // console.log(id);
         }
 
         // 	CLEARS ACTIVE AND ADDS IT TO SELECTED TAB

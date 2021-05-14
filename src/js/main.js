@@ -35,6 +35,7 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
         if (menuType === 'video') appMenuVideo(mainWindow.webContents); // sets video menu if video tab is clicked
         if (menuType === 'warpstagram')
             appMenuWarpstagram(mainWindow.webContents); // sets video menu if video tab is clicked
+        e.reply('slide-change', menuType);
     });
     ipcMain.on('quit', () => {
         app.quit();

@@ -1,6 +1,6 @@
 const { app, clipboard, ipcRenderer, shell } = require('electron');
 let elements = require('./views/elements');
-const view = require('./modalPrefsView');
+const prefsView = require('./modalPrefsView');
 const prefsStorage = require('./modalPrefsStorage');
 const startupReq = require('../js/startup');
 const startup = new startupReq();
@@ -8,40 +8,81 @@ const stateReq = require('./state');
 
 let state = new stateReq();
 let userPrefs;
-(function init() {
+
+(function preLoad() {
+    prefsStorage.loadMarkup();
     ipcRenderer.on('prefsMarkup-loaded', (e, data) => {
-        console.log('prefsMarkup loaded');
+        // console.log('prefsMarkup loaded');
     });
     ipcRenderer.on('prefsMarkup-saved', (e, data) => {
-        console.log('prefsMarkup saved');
-    });
-    prefsStorage.loadMarkup();
-    ipcRenderer.on('window-ready', (e, storage) => {
-        addNavEventListeners();
-        addMenuListeners();
-        addModalEventListeners();
-        view.showPanelInit('prefs', 'audio');
+        // console.log('prefsMarkup saved');
     });
 })();
 
+ipcRenderer.on('window-ready', (e, storage) => {
+    windowReady();
+});
+
+const windowReady = () => {
+    prefsView.injectPrefsModalToCurrentSlide(); // RUNS FIRST
+
+    addNavEventListeners();
+    addMenuListeners();
+    addModalEventListeners();
+    prefsView.showPanelInit('prefs', 'audio');
+    setTimeout(() => {
+        addNavAListeners();
+    }, 500);
+};
+
+const addNavAListeners = () => {
+    elements.nav_A_audio.addEventListener('click', (e) => {
+        prefsView.removeAllAndInjectToActiveSlide();
+    });
+    elements.nav_A_video.addEventListener('click', (e) => {
+        prefsView.removeAllAndInjectToActiveSlide();
+    });
+    elements.nav_A_warpstagram.addEventListener('click', (e) => {
+        prefsView.removeAllAndInjectToActiveSlide();
+    });
+};
 const addNavEventListeners = () => {
     elements.nav_B_button_audio_preferences.addEventListener('click', (e) => {
-        view.toggleBackground(state);
-        view.toggleModalState(state);
-        view.togglePreferences(state, 'audio');
+        prefsView.toggleBackground(state);
+        prefsView.toggleModalState(state);
+        prefsView.togglePreferences(state, 'audio');
     });
     elements.nav_B_button_video_preferences.addEventListener('click', (e) => {
-        view.toggleBackground(state);
-        view.toggleModalState(state);
-        view.togglePreferences(state, 'video');
+        prefsView.toggleBackground(state);
+        prefsView.toggleModalState(state);
+        prefsView.togglePreferences(state, 'video');
+    });
+};
+const addMenuListeners = () => {
+    ipcRenderer.on('Audio: Tools: Preferences', () => {
+        prefsView.toggleBackground(state);
+        prefsView.toggleModalState(state);
+        prefsView.togglePreferences(state, 'audio');
+    });
+
+    ipcRenderer.on('Video: Tools: Preferences', () => {
+        prefsView.toggleBackground(state);
+        prefsView.toggleModalState(state);
+        prefsView.togglePreferences(state, 'video');
+    });
+
+    ipcRenderer.on('Warpstagram: Tools: Preferences', () => {
+        prefsView.toggleBackground(state);
+        prefsView.toggleModalState(state);
+        prefsView.togglePreferences(state, 'warpstagram');
     });
 };
 const addModalEventListeners = () => {
-    // view listeners
+    // prefsView listeners
     elements.modalBackground.addEventListener('click', (e) => {
-        view.toggleBackground(state);
-        view.toggleModalState(state);
-        view.togglePreferences(state, 'warpstagram');
+        prefsView.toggleBackground(state);
+        prefsView.toggleModalState(state);
+        prefsView.togglePreferences(state, 'warpstagram');
     });
 
     setTimeout(() => {
@@ -64,46 +105,27 @@ const addModalEventListeners = () => {
         document
             .getElementById('modalPrefsNav_button_audio_ID')
             .addEventListener('click', (e) => {
-                view.showPanel('prefs', 'audio');
+                prefsView.showPanel('prefs', 'audio');
             });
         document
             .getElementById('modalPrefsNav_button_video_ID')
             .addEventListener('click', (e) => {
-                view.showPanel('prefs', 'video');
+                prefsView.showPanel('prefs', 'video');
             });
         document
             .getElementById('modalPrefsNav_button_warpstagram_ID')
             .addEventListener('click', (e) => {
-                view.showPanel('prefs', 'warpstagram');
+                prefsView.showPanel('prefs', 'warpstagram');
             });
         document
             .getElementById('modalPrefsNav_button_general_ID')
             .addEventListener('click', (e) => {
-                view.showPanel('prefs', 'general');
+                prefsView.showPanel('prefs', 'general');
             });
         document
             .getElementById('modalPrefsNav_button_license_ID')
             .addEventListener('click', (e) => {
-                view.showPanel('prefs', 'license');
+                prefsView.showPanel('prefs', 'license');
             });
     }, 100);
-};
-const addMenuListeners = () => {
-    ipcRenderer.on('Audio: Tools: Preferences', () => {
-        view.toggleBackground(state);
-        view.toggleModalState(state);
-        view.togglePreferences(state, 'audio');
-    });
-
-    ipcRenderer.on('Video: Tools: Preferences', () => {
-        view.toggleBackground(state);
-        view.toggleModalState(state);
-        view.togglePreferences(state, 'video');
-    });
-
-    ipcRenderer.on('Warpstagram: Tools: Preferences', () => {
-        view.toggleBackground(state);
-        view.toggleModalState(state);
-        view.togglePreferences(state, 'warpstagram');
-    });
 };

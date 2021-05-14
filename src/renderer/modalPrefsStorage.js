@@ -35,3 +35,25 @@ module.exports = {
     saveMarkup: saveMarkup,
     // testing: testing,
 };
+
+// PRE-CHECK
+// check for markup in settings
+// run scenario 1 if it doesnt exist in settings
+// run scenario 2 if it does exist in settings
+
+// SCENARIO 1 (no markup saved to load)
+// load markup directly from file
+// save markup to settings
+// inject markup
+
+// SCENARIO 2 (markup saved, and available to load)
+// load markup from settings
+// inject markup
+
+// APP RUNNING
+// need SAVE function to fire and save to settings, every time user clicks something
+// // it saves
+
+// NAV A events
+// need it un-inject ALL
+// inject markup into visible slide
