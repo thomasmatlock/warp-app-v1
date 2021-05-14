@@ -75,81 +75,57 @@ const insertMarkupPrefs = (markup) => {
 };
 
 const toggleComponents = (modalType, avType) => {
+    let modalPrefsContentPanel_audio = document.getElementById(
+        'modalPrefsContentPanel_audio'
+    );
+    let modalPrefsContentPanel_video = document.getElementById(
+        'modalPrefsContentPanel_video'
+    );
+    let modalPrefsContentPanel_warpstagram = document.getElementById(
+        'modalPrefsContentPanel_warpstagram'
+    );
+    let modalPrefsContentPanel_general = document.getElementById(
+        'modalPrefsContentPanel_general'
+    );
+    let modalPrefsContentPanel_license = document.getElementById(
+        'modalPrefsContentPanel_license'
+    );
+    let modalPrefsContentPanel_ALL = [
+        modalPrefsContentPanel_audio,
+        modalPrefsContentPanel_video,
+        modalPrefsContentPanel_warpstagram,
+        modalPrefsContentPanel_general,
+        modalPrefsContentPanel_license,
+    ];
     if (avType === 'audio') {
-        document.getElementById('modalPrefsContentPanel_audio').style.display =
-            'flex';
-        document.getElementById('modalPrefsContentPanel_video').style.display =
-            'none';
-        document.getElementById(
-            'modalPrefsContentPanel_warpstagram'
-        ).style.display = 'none';
-        document.getElementById(
-            'modalPrefsContentPanel_warpstagram'
-        ).style.display = 'none';
-        document.getElementById(
-            'modalPrefsContentPanel_warpstagram'
-        ).style.display = 'none';
+        toggleAllPrefsPanels(
+            modalPrefsContentPanel_ALL,
+            modalPrefsContentPanel_audio
+        );
     }
     if (avType === 'video') {
-        document.getElementById('modalPrefsContentPanel_audio').style.display =
-            'none';
-        document.getElementById('modalPrefsContentPanel_video').style.display =
-            'flex';
-        document.getElementById(
-            'modalPrefsContentPanel_warpstagram'
-        ).style.display = 'none';
-        document.getElementById(
-            'modalPrefsContentPanel_general'
-        ).style.display = 'none';
-        document.getElementById(
-            'modalPrefsContentPanel_license'
-        ).style.display = 'none';
+        toggleAllPrefsPanels(
+            modalPrefsContentPanel_ALL,
+            modalPrefsContentPanel_video
+        );
     }
-
     if (avType === 'warpstagram') {
-        document.getElementById('modalPrefsContentPanel_audio').style.display =
-            'none';
-        document.getElementById('modalPrefsContentPanel_video').style.display =
-            'none';
-        document.getElementById(
-            'modalPrefsContentPanel_warpstagram'
-        ).style.display = 'flex';
-        document.getElementById(
-            'modalPrefsContentPanel_general'
-        ).style.display = 'none';
-        document.getElementById(
-            'modalPrefsContentPanel_license'
-        ).style.display = 'none';
+        toggleAllPrefsPanels(
+            modalPrefsContentPanel_ALL,
+            modalPrefsContentPanel_warpstagram
+        );
     }
     if (avType === 'general') {
-        document.getElementById('modalPrefsContentPanel_audio').style.display =
-            'none';
-        document.getElementById('modalPrefsContentPanel_video').style.display =
-            'none';
-        document.getElementById(
-            'modalPrefsContentPanel_warpstagram'
-        ).style.display = 'none';
-        document.getElementById(
-            'modalPrefsContentPanel_general'
-        ).style.display = 'flex';
-        document.getElementById(
-            'modalPrefsContentPanel_license'
-        ).style.display = 'none';
+        toggleAllPrefsPanels(
+            modalPrefsContentPanel_ALL,
+            modalPrefsContentPanel_general
+        );
     }
     if (avType === 'license') {
-        document.getElementById('modalPrefsContentPanel_audio').style.display =
-            'none';
-        document.getElementById('modalPrefsContentPanel_video').style.display =
-            'none';
-        document.getElementById(
-            'modalPrefsContentPanel_warpstagram'
-        ).style.display = 'none';
-        document.getElementById(
-            'modalPrefsContentPanel_general'
-        ).style.display = 'none';
-        document.getElementById(
-            'modalPrefsContentPanel_license'
-        ).style.display = 'flex';
+        toggleAllPrefsPanels(
+            modalPrefsContentPanel_ALL,
+            modalPrefsContentPanel_license
+        );
     }
     toggleActiveModalNavClass(avType);
 };
@@ -157,6 +133,13 @@ const toggleComponentsInit = (modalType, avType) => {
     setTimeout(() => {
         toggleComponents(modalType, avType);
     }, 200);
+};
+
+const toggleAllPrefsPanels = (arr, panelToShow) => {
+    for (i = 0; i < arr.length; i++) {
+        arr[i].style.display = 'none';
+    }
+    panelToShow.style.display = 'flex';
 };
 
 const insertOutputFolderPaths = (pathsObj) => {

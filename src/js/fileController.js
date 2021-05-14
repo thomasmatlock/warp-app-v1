@@ -122,15 +122,13 @@ class fileController {
             });
         });
     };
-    init = (startupObj) => {
+    init = (settingsObj) => {
         this.settingsFile = settings.file();
         this.initDirCreation();
-        // this.settingsSave(startupObj.settings);
-        // console.log(settings.file());
-        // console.log(startupObj.dev.clearStorage);
-        if (!startupObj.dev.clearStorage)
-            this.initSettingsFileCreation(startupObj.settings);
-        if (startupObj.dev.clearStorage) this.deleteSettingsFile();
+
+        if (!settingsObj.dev.clearStorage)
+            this.initSettingsFileCreation(settingsObj.settings);
+        if (settingsObj.dev.clearStorage) this.deleteSettingsFile();
     };
 }
 
