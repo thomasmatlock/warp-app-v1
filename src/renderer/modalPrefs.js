@@ -14,6 +14,7 @@ let state = new stateReq();
         addMenuListeners();
         addModalEventListeners();
         view.showPanelInit('prefs', 'audio');
+        // https://puruvj.dev/blog/fs-promises
     });
 })();
 

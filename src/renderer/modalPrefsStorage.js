@@ -1,7 +1,7 @@
 const fs = require('fs').promises;
 let elements = require('./views/elements');
 
-async function readMarkup() {
+async function loadMarkup() {
     let modalMarkupPreferences;
     const data = await fs.readFile(
         `${__dirname}/modalPrefsMarkup.html`,
@@ -13,5 +13,5 @@ async function readMarkup() {
 }
 
 module.exports = {
-    readMarkup: readMarkup,
+    loadMarkup: loadMarkup,
 };
