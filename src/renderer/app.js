@@ -23,10 +23,10 @@ let state = new stateReq();
 
 (function init() {
     ipcRenderer.on('window-ready', (e, storage) => {
-        // let elements = require('./views/elements');
         addEventListeners(); // activates DOM event listeners
         addMenuListeners(); // activates menu event listeners
         setActiveNav_A(startup.env.nav_A_active); // sets active Nav A
+        removeNavBActivateBtn();
         setTimeout(() => {
             auto.click_nav_A(startup.env.nav_A_active); // auto clicks active tab if active
             // auto.click_nav_A(startup.env.nav_A_active); // auto clicks active tab if active
@@ -55,6 +55,11 @@ let state = new stateReq();
             elements.nav_A_active = elements.nav_A_video;
         if (nav_A_active === 'warpstagram')
             elements.nav_A_active = elements.nav_A_warpstagram;
+    };
+
+    const removeNavBActivateBtn = () => {
+        elements.nav_B_button_audio_activate.style.display = 'none';
+        elements.nav_B_button_video_activate.style.display = 'none';
     };
 
     ipcRenderer.on('resize', () => {
@@ -231,9 +236,10 @@ const addEventListeners = () => {
     elements.nav_B_button_video_activate.addEventListener('click', (e) => {
         if (logging) console.log('clicked activate');
     });
-    elements.nav_B_button_video_subscriptions.addEventListener('click', (e) => {
-        if (logging) console.log('clicked subscriptions');
-    });
+    elements.nav_B_button_video_subscriptions.addEventListener(
+        'click',
+        (e) => {}
+    );
     elements.nav_B_button_video_preferences.addEventListener('click', (e) => {
         modals.toggleBackground(state, elements, startup);
         modals.toggleModalState(state);

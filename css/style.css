@@ -317,7 +317,7 @@ li {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex: 1 2 auto;
+  flex: 1;
   color: #ffffff;
   font-size: 1.7rem;
   letter-spacing: 0.1rem;
@@ -471,7 +471,7 @@ input {
   flex-direction: column; }
 
 .nav_B_icon {
-  margin-top: 10px; }
+  margin: 5px auto; }
 
 .nav_B_button:hover p {
   color: #ffffff; }

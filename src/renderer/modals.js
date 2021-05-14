@@ -6,12 +6,6 @@
 // Video Smart Mode // MODAL
 // Video Subscriptions // HTML
 //////////////////////////////////////////////////////////////// Preferences
-// MODAL
-// Preferences modal, 2 tabs, [Downloader, Warpstagram], both have side navs,
-// Preferences,  either separate frameless window, or like in that
-// Preferences, General
-// Preferences, Connection
-// Preferences, Notifications
 //////////////////////////////////////////////////////////////// Welcome
 const fs = require('fs').promises;
 let elements = require('./views/elements');
@@ -89,6 +83,12 @@ const toggleComponents = (modalType, avType) => {
         document.getElementById(
             'modalPrefsContentPanel_warpstagram'
         ).style.display = 'none';
+        document.getElementById(
+            'modalPrefsContentPanel_warpstagram'
+        ).style.display = 'none';
+        document.getElementById(
+            'modalPrefsContentPanel_warpstagram'
+        ).style.display = 'none';
     }
     if (avType === 'video') {
         document.getElementById('modalPrefsContentPanel_audio').style.display =
@@ -97,6 +97,12 @@ const toggleComponents = (modalType, avType) => {
             'flex';
         document.getElementById(
             'modalPrefsContentPanel_warpstagram'
+        ).style.display = 'none';
+        document.getElementById(
+            'modalPrefsContentPanel_general'
+        ).style.display = 'none';
+        document.getElementById(
+            'modalPrefsContentPanel_license'
         ).style.display = 'none';
     }
 
@@ -107,6 +113,42 @@ const toggleComponents = (modalType, avType) => {
             'none';
         document.getElementById(
             'modalPrefsContentPanel_warpstagram'
+        ).style.display = 'flex';
+        document.getElementById(
+            'modalPrefsContentPanel_general'
+        ).style.display = 'none';
+        document.getElementById(
+            'modalPrefsContentPanel_license'
+        ).style.display = 'none';
+    }
+    if (avType === 'general') {
+        document.getElementById('modalPrefsContentPanel_audio').style.display =
+            'none';
+        document.getElementById('modalPrefsContentPanel_video').style.display =
+            'none';
+        document.getElementById(
+            'modalPrefsContentPanel_warpstagram'
+        ).style.display = 'none';
+        document.getElementById(
+            'modalPrefsContentPanel_general'
+        ).style.display = 'flex';
+        document.getElementById(
+            'modalPrefsContentPanel_license'
+        ).style.display = 'none';
+    }
+    if (avType === 'license') {
+        document.getElementById('modalPrefsContentPanel_audio').style.display =
+            'none';
+        document.getElementById('modalPrefsContentPanel_video').style.display =
+            'none';
+        document.getElementById(
+            'modalPrefsContentPanel_warpstagram'
+        ).style.display = 'none';
+        document.getElementById(
+            'modalPrefsContentPanel_general'
+        ).style.display = 'none';
+        document.getElementById(
+            'modalPrefsContentPanel_license'
         ).style.display = 'flex';
     }
     toggleActiveModalNavClass(avType);
@@ -147,7 +189,6 @@ const removeActiveModalNavClass = () => {
         .classList.remove('modalPrefsNav_button_active');
 };
 const addActiveModalNavClass = (avType) => {
-    console.log(avType);
     if (avType === 'audio') {
         document
             .getElementById('modalPrefsNav_button_audio_ID')
