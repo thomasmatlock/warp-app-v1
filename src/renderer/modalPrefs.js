@@ -20,22 +20,22 @@ let state = new stateReq();
 
 const addNavEventListeners = () => {
     elements.nav_B_button_audio_preferences.addEventListener('click', (e) => {
-        view.toggleBackground(state, elements, startup);
+        view.toggleBackground(state);
         view.toggleModalState(state);
-        view.togglePreferences(state, elements, 'audio');
+        view.togglePreferences(state, 'audio');
     });
     elements.nav_B_button_video_preferences.addEventListener('click', (e) => {
-        view.toggleBackground(state, elements, startup);
+        view.toggleBackground(state);
         view.toggleModalState(state);
-        view.togglePreferences(state, elements, 'video');
+        view.togglePreferences(state, 'video');
     });
 };
 const addModalEventListeners = () => {
     // view listeners
     elements.modalBackground.addEventListener('click', (e) => {
-        view.toggleBackground(state, elements, startup);
+        view.toggleBackground(state);
         view.toggleModalState(state);
-        view.togglePreferences(state, elements, startup.env.nav_A_active);
+        view.togglePreferences(state, 'warpstagram');
     });
 
     setTimeout(() => {
@@ -84,20 +84,20 @@ const addModalEventListeners = () => {
 };
 const addMenuListeners = () => {
     ipcRenderer.on('Audio: Tools: Preferences', () => {
-        view.toggleBackground(state, elements, startup);
+        view.toggleBackground(state);
         view.toggleModalState(state);
-        view.togglePreferences(state, elements, 'audio');
+        view.togglePreferences(state, 'audio');
     });
 
     ipcRenderer.on('Video: Tools: Preferences', () => {
-        view.toggleBackground(state, elements, startup);
+        view.toggleBackground(state);
         view.toggleModalState(state);
-        view.togglePreferences(state, elements, 'video');
+        view.togglePreferences(state, 'video');
     });
 
     ipcRenderer.on('Warpstagram: Tools: Preferences', () => {
-        view.toggleBackground(state, elements, startup);
+        view.toggleBackground(state);
         view.toggleModalState(state);
-        view.togglePreferences(state, elements, 'warpstagram');
+        view.togglePreferences(state, 'warpstagram');
     });
 };

@@ -12,6 +12,9 @@ async function loadMarkup() {
     return modalMarkupPreferences;
 }
 
+async function saveMarkup() {}
+
 module.exports = {
     loadMarkup: loadMarkup,
+    saveMarkup: saveMarkup,
 };

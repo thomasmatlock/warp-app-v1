@@ -10,7 +10,7 @@
 const fs = require('fs').promises;
 let elements = require('./views/elements');
 
-const toggleBackground = (state, elements) => {
+const toggleBackground = (state) => {
     if (state.modals.preferences) {
         elements.modalBackground.style.display = 'none'; // de-activate modal background
     } else if (!state.modals.preferences) {
@@ -24,7 +24,7 @@ const toggleModalState = (state) => {
         (state.modals.preferences = true);
 };
 
-const togglePreferences = (state, elements, avType) => {
+const togglePreferences = (state, avType) => {
     if (state.modals.preferences) {
         if (avType === 'audio')
             elements.modalParentAudio.style.display = 'flex'; // de-activate modal background
