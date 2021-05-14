@@ -48,7 +48,7 @@ class fileController {
         ); // C:\Users\Tommy\Documents\Warp Downloader\Warpstagram
     }
 
-    initDirCreation = () => {
+    filesInitDirCreation = () => {
         // create main directory
         try {
             // console.log(systemInfo);
@@ -71,7 +71,18 @@ class fileController {
             console.error(err);
         }
     };
-    initSettingsFileCreation = (settings) => {
+    filesLoad = (dir) => {
+        fs.readdir(dir, (err, files) => {
+            if (err) {
+                throw err;
+            }
+
+            files.forEach((file) => {
+                console.log(file);
+            });
+        });
+    };
+    settingsInitCreateFile = (settings) => {
         try {
             if (!fs.existsSync(this.settingsFile)) {
                 //  fs.mkdirSync(this.dirMainPath);
@@ -85,7 +96,13 @@ class fileController {
             console.error(err);
         }
     };
-    deleteSettingsFile = () => {
+    settingsReset = () => {
+        this.settingsDeleteFile();
+        setTimeout(() => {
+            this.settingsInitCreateFile(startupObj.settings);
+        }, 2000);
+    };
+    settingsDeleteFile = () => {
         console.log(`Checking if settings file exists...`);
         fs.unlink(this.settingsFile, (err) => {
             console.log('Settings file deleted, exiting app...');
@@ -105,30 +122,14 @@ class fileController {
         let result = await promise; // wait until the promise resolves (*)
         return result;
     };
-    reset = () => {
-        this.deleteSettingsFile();
-        setTimeout(() => {
-            this.initSettingsFileCreation(startupObj.settings);
-        }, 2000);
-    };
-    readDirFiles = (dir) => {
-        fs.readdir(dir, (err, files) => {
-            if (err) {
-                throw err;
-            }
 
-            files.forEach((file) => {
-                console.log(file);
-            });
-        });
-    };
     init = (settingsObj) => {
         this.settingsFile = settings.file();
-        this.initDirCreation();
+        this.filesInitDirCreation();
 
         if (!settingsObj.dev.clearStorage)
-            this.initSettingsFileCreation(settingsObj.settings);
-        if (settingsObj.dev.clearStorage) this.deleteSettingsFile();
+            this.settingsInitCreateFile(settingsObj.settings);
+        if (settingsObj.dev.clearStorage) this.settingsDeleteFile();
     };
 }
 

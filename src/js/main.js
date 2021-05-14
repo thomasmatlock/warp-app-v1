@@ -44,7 +44,7 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
         })();
     });
     ipcMain.on('reset-storage', (e, storageObj) => {
-        fileController.reset();
+        fileController.settingsReset();
         (async() => {
             mainWindow.destroy();
             mainWindow = null;
