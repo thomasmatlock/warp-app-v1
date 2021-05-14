@@ -16,6 +16,7 @@ const startup = new startupReq();
 const items = require('./items');
 const auto = require('./automate');
 const modalPrefsView = require('./modalPrefsView');
+const modalPrefs = require('./modalPrefs');
 const stateReq = require('./state');
 const search = require('./searchLocal');
 
@@ -42,9 +43,9 @@ let state = new stateReq();
         modalPrefsView.markupPrefs(pathsObj);
 
         auto.click_nav_B(startup.env.nav_A_active, 'preferences'); // auto clicks paste, smartMode, activate, subscriptions, preferences, help
-        addModalEventListeners(); // activates modal event listeners
+        // addModalEventListeners(); // activates modal event listeners
         // setTimeout(() => {
-        modalPrefsView.toggleComponentsInit('prefs', 'audio');
+        // modalPrefsView.toggleComponentsInit('prefs', 'audio');
         // }, 400);
     });
 
@@ -104,11 +105,6 @@ const addMenuListeners = () => {
     ipcRenderer.on('Audio: Downloads: Remove All', () => {
         items.removeAllitems('audio');
     });
-    ipcRenderer.on('Audio: Tools: Preferences', () => {
-        modalPrefsView.toggleBackground(state, elements, startup);
-        modalPrefsView.togglemodalPrefsViewtate(state);
-        modalPrefsView.togglePreferences(state, elements, 'audio');
-    });
 
     // MENU LISTENERS, VIDEO
     // File
@@ -129,11 +125,6 @@ const addMenuListeners = () => {
     ipcRenderer.on('Video: Tools: Smart Mode', () => {});
     ipcRenderer.on('Video: Tools: Subscriptions', () => {});
     ipcRenderer.on('Video: Tools: Check for update', () => {});
-    ipcRenderer.on('Video: Tools: Preferences', () => {
-        modalPrefsView.toggleBackground(state, elements, startup);
-        modalPrefsView.togglemodalPrefsViewtate(state);
-        modalPrefsView.togglePreferences(state, elements, 'video');
-    });
 
     // MENU LISTENERS, WARPSTAGRAM
     // File
@@ -154,11 +145,6 @@ const addMenuListeners = () => {
     // Tools
     ipcRenderer.on('Warpstagram: Tools: Login', () => {});
     ipcRenderer.on('Warpstagram: Tools: Manage license', () => {});
-    ipcRenderer.on('Warpstagram: Tools: Preferences', () => {
-        modalPrefsView.toggleBackground(state, elements, startup);
-        modalPrefsView.togglemodalPrefsViewtate(state);
-        modalPrefsView.togglePreferences(state, elements, 'warpstagram');
-    });
 
     // Menu listeners, universal commands
     ipcRenderer.on('Check for update', () => {});
@@ -225,11 +211,11 @@ const addEventListeners = () => {
     elements.nav_B_button_audio_activate.addEventListener('click', (e) => {
         if (logging) console.log('clicked activate');
     });
-    elements.nav_B_button_audio_preferences.addEventListener('click', (e) => {
-        modalPrefsView.toggleBackground(state, elements, startup);
-        modalPrefsView.toggleModalState(state);
-        modalPrefsView.togglePreferences(state, elements, 'audio');
-    });
+    // elements.nav_B_button_audio_preferences.addEventListener('click', (e) => {
+    //     modalPrefsView.toggleBackground(state, elements, startup);
+    //     modalPrefsView.toggleModalState(state);
+    //     modalPrefsView.togglePreferences(state, elements, 'audio');
+    // });
 
     // Nav B video LISTENERS
     elements.nav_B_button_video_paste.addEventListener('click', (e) => {
@@ -242,11 +228,12 @@ const addEventListeners = () => {
         'click',
         (e) => {}
     );
-    elements.nav_B_button_video_preferences.addEventListener('click', (e) => {
-        modalPrefsView.toggleBackground(state, elements, startup);
-        modalPrefsView.toggleModalState(state);
-        modalPrefsView.togglePreferences(state, elements, 'video');
-    });
+    // elements.nav_B_button_video_preferences.addEventListener('click', (e) => {
+    //     modalPrefs.prefs();
+    //     modalPrefsView.toggleBackground(state, elements, startup);
+    //     modalPrefsView.toggleModalState(state);
+    //     modalPrefsView.togglePreferences(state, elements, 'video');
+    // });
     // Nav B search listeners
     elements.searchAudio.addEventListener('keyup', (e) => {
         search.audioItems();
