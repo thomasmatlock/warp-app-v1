@@ -380,7 +380,7 @@ const addModalEventListeners = () => {
     // modalPrefsView listeners
     elements.modalBackground.addEventListener('click', (e) => {
         modalPrefsView.toggleBackground(state, elements, startup);
-        modalPrefsView.togglemodalPrefsViewtate(state);
+        modalPrefsView.toggleModalState(state);
         modalPrefsView.togglePreferences(
             state,
             elements,
