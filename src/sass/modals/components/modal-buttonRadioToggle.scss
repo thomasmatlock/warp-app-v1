@@ -87,7 +87,7 @@
 /* Button 1 */
 
 // KNOB PROPERTIES
-#button-1 .knobs:before {
+.modalToggleButton .knobs:before {
     content: '';
     position: absolute;
     top: 1px;
@@ -103,20 +103,20 @@
     transition: 0.1s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
 }
 
-#button-1 .checkbox:checked+.knobs:before {
+.modalToggleButton .checkbox:checked+.knobs:before {
     content: '';
     // left: 42px; // where the knobs move to
     left: 16px; // where the knobs move to
     background-color: #fff; // button color, ON
 }
 
-#button-1 .checkbox:checked~.layer {
+.modalToggleButton .checkbox:checked~.layer {
     // background: linear-gradient(268deg, #f8ab37, #da2c4d); // bgd color, ON
     background: #ff7700; // bgd color, ON
 }
 
-#button-1 .knobs,
-#button-1 .knobs:before,
-#button-1 .layer {
+.modalToggleButton .knobs,
+.modalToggleButton .knobs:before,
+.modalToggleButton .layer {
     transition: 0.1s ease all;
 }

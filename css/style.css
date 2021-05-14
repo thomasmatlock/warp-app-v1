@@ -1001,7 +1001,7 @@ input[type='text'] {
   z-index: 1; }
 
 /* Button 1 */
-#button-1 .knobs:before {
+.modalToggleButton .knobs:before {
   content: '';
   position: absolute;
   top: 1px;
@@ -1015,17 +1015,17 @@ input[type='text'] {
   border-radius: 50%;
   transition: 0.1s cubic-bezier(0.18, 0.89, 0.35, 1.15) all; }
 
-#button-1 .checkbox:checked + .knobs:before {
+.modalToggleButton .checkbox:checked + .knobs:before {
   content: '';
   left: 16px;
   background-color: #fff; }
 
-#button-1 .checkbox:checked ~ .layer {
+.modalToggleButton .checkbox:checked ~ .layer {
   background: #ff7700; }
 
-#button-1 .knobs,
-#button-1 .knobs:before,
-#button-1 .layer {
+.modalToggleButton .knobs,
+.modalToggleButton .knobs:before,
+.modalToggleButton .layer {
   transition: 0.1s ease all; }
 
 .modalDropdownListContainer {

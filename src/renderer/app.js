@@ -385,9 +385,16 @@ const addModalEventListeners = () => {
     });
 
     setTimeout(() => {
-        document.getElementById('button-1').addEventListener('click', (e) => {
-            console.log('hello');
-        });
+        document
+            .getElementById('modalPrefsToggleButton_autostartWarp')
+            .addEventListener('click', (e) => {
+                console.log('hello');
+            });
+        document
+            .getElementById('modalPrefsToggleButton_minimizeToTrayOnClose')
+            .addEventListener('click', (e) => {
+                console.log('hello');
+            });
         document
             .getElementById('modalOutputFolderBtn_audio')
             .addEventListener('click', (e) => {

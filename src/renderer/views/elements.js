@@ -83,7 +83,7 @@ const elements = {
     modalContainerWarpstagram: document.querySelector(
         '.modalContainerWarpstagram'
     ),
-    // modalToggleBtn: document.getElementById('button-1'),
+    // modalToggleBtn: document.getElementById('modalPrefsToggleButton_autostartWarp'),
     modalToggleBtn: document.getElementById('button-ID'),
     modalOutputFolderBtn_audio: document.getElementById(
         'modalOutputFolderBtn_audio'
