@@ -5,6 +5,7 @@ const appMenuVideo = require('./menuVideo');
 const appMenuWarpstagram = require('./menuWarpstagram');
 const fileControllerReq = require('./fileController');
 const fileController = new fileControllerReq();
+const modalPrefsStorage = require('../renderer/modalPrefsStorage');
 const startupReq = require('./startup');
 const startup = new startupReq();
 
@@ -82,13 +83,17 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
         startup.init(); // all startup checks, latest version, isOnline, hasFFmpeg etc
         fileController.init(startup); // checks for local directories and creates them if non existent
         displayController.discoverDisplay(); // discovers which display to use, 3 dev mode displayController or production
-        let storageAwaited;
+        let storageAwaited, modalPrefsMarkup;
         (async() => {
             storageAwaited = await mainFunctions.load();
-            // console.log('ready');
-            // console.log(storageAwaited);
             storageMain = storageAwaited;
-            windowController.createWindow(startup.env.theme); // creates main app window
+
+            if (storageAwaited.user.prefs.prefsMarkup === '') {
+                console.log(`no markup present`);
+                modalPrefsMarkup = await mainFunctions.loadModalPrefsMarkupSource();
+            }
+
+            windowController.createWindow(startup.env.theme, modalPrefsMarkup); // creates main app window
             mainFunctions.setMenu(startup.env.nav_A_active);
             // windowController.createModalWindow();
         })();
@@ -124,10 +129,14 @@ const mainFunctions = {
         const result = await fileController.settingsLoad();
         return result;
     },
+    loadModalPrefsMarkupSource: async function() {
+        const result = await modalPrefsStorage.loadMarkupSource();
+        return result;
+    },
 };
 ///////////////////////   WINDOW HANDLER   ///////////////////////
 const windowController = {
-    createWindow: function(theme) {
+    createWindow: function(theme, modalPrefsMarkup) {
         mainWindow = new BrowserWindow({
             // height: displayController.height,
             width: displayController.width,
@@ -170,7 +179,7 @@ const windowController = {
         wc.on('did-finish-load', () => {
             // console.log('did-finish-load');
             // console.log(storageMain);
-            wc.send('window-ready', storageMain);
+            wc.send('window-ready', storageMain, modalPrefsMarkup);
             if (startup.dev.splashScreen) splash.destroy();
         });
         wc.on('devtools-opened', () => {});

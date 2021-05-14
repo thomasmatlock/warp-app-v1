@@ -5,14 +5,15 @@ const { promisify } = require('util');
 const writeFile = promisify(fs.writeFile);
 const readFile = promisify(fs.readFile);
 
-async function loadMarkup() {
+async function loadMarkupSource() {
     // // https://puruvj.dev/blog/fs-promises
     try {
         const data = await readFile(
             `${__dirname}/modalPrefsMarkup.html`,
             'binary'
         );
-        ipcRenderer.send('prefsMarkup-loaded', data);
+        // ipcRenderer.send('prefsMarkup-loaded', data);
+        return data;
     } catch (e) {
         console.error(e);
     }
@@ -31,7 +32,7 @@ async function saveMarkup() {
 }
 
 module.exports = {
-    loadMarkup: loadMarkup,
+    loadMarkupSource: loadMarkupSource,
     saveMarkup: saveMarkup,
     // testing: testing,
 };

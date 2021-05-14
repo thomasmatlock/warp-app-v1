@@ -7,23 +7,24 @@ const startup = new startupReq();
 const stateReq = require('./state');
 
 let state = new stateReq();
-let userPrefs;
-
-(function preLoad() {
-    prefsStorage.loadMarkup();
-    ipcRenderer.on('prefsMarkup-loaded', (e, data) => {
-        // console.log('prefsMarkup loaded');
-    });
-    ipcRenderer.on('prefsMarkup-saved', (e, data) => {
-        // console.log('prefsMarkup saved');
-    });
+let userPrefs, prefsMarkup;
+let storage;
+prefsStorage.loadMarkupSource();
+(function init() {
+    ipcRenderer.on(
+        'window-ready',
+        (e, storageSentFromMain, modalPrefsMarkup) => {
+            storage = storageSentFromMain;
+            prefsMarkup = modalPrefsMarkup;
+            // console.log(prefsMarkup);
+            windowReady();
+        }
+    );
 })();
 
-ipcRenderer.on('window-ready', (e, storage) => {
-    windowReady();
-});
-
 const windowReady = () => {
+    prefsView.markupPrefs(storage.user);
+    // console.log('marking prefs');
     prefsView.injectPrefsModalToCurrentSlide(); // RUNS FIRST
 
     addNavEventListeners();

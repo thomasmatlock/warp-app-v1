@@ -45,24 +45,26 @@ const togglePreferences = (state, avType) => {
     }
 };
 
-async function readMarkup() {
+async function readMarkup(avType) {
     let modalMarkupPreferences;
     const data = await fs.readFile(
         `${__dirname}/modalPrefsMarkup.html`,
         'binary'
     );
     modalMarkupPreferences = new Buffer(data).toString();
-    injectPrefsMarkup(modalMarkupPreferences);
+    injectPrefsMarkup(modalMarkupPreferences, avType);
+    // console.log(modalMarkupPreferences);
     return modalMarkupPreferences;
 }
 
-const injectPrefsMarkup = (markup) => {
+const injectPrefsMarkup = (markup, avType) => {
     let modalContainerAudio = elements.modalContainerAudio; // selects target list to add item markup to
     let modalContainerVideo = elements.modalContainerVideo; // selects target list to add item markup to
     let modalContainerWarpstagram = elements.modalContainerWarpstagram; // selects target list to add item markup to
     let markupNodeAudio = document.createElement('div'); // Create a new HTML Dom node inside download list
     let markupNodeVideo = document.createElement('div'); // Create a new HTML Dom node inside download list
     let markupNodeWarpstagram = document.createElement('div'); // Create a new HTML Dom node inside download list
+    markupNodeAudio.id = 'modalPrefsID';
     markupNodeAudio.className = 'contentContainer';
     markupNodeVideo.className = 'contentContainer';
     markupNodeWarpstagram.className = 'contentContainer';
@@ -209,7 +211,15 @@ const markupPrefs = (userPrefs) => {
 };
 
 const removeAllInjectedModals = () => {
-    // console.log('removing all prefs modals');
+    console.log('removing all prefs modals');
+    var el = document.getElementById('modalPrefsID');
+    // var el = document.getElementsByClassName('contentContainer');
+    el.remove();
+    // el.remove();
+    // el.remove();
+    // modalContainerAudio.appendChild(markupNodeAudio); // Append item node
+    // modalContainerVideo.appendChild(markupNodeVideo); // Append item node
+    // modalContainerWarpstagram.appendChild(markupNodeWarpstagram); // Append item node
 };
 const injectPrefsModalToCurrentSlide = () => {
     // console.log('injecting prefs modal into active slide');
