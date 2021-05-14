@@ -26,7 +26,7 @@ let state = new stateReq();
         addEventListeners(); // activates DOM event listeners
         addMenuListeners(); // activates menu event listeners
         setActiveNav_A(startup.env.nav_A_active); // sets active Nav A
-        removeNavBActivateBtn();
+        removeNavBActivateBtn(storage);
         setTimeout(() => {
             auto.click_nav_A(startup.env.nav_A_active); // auto clicks active tab if active
             // auto.click_nav_A(startup.env.nav_A_active); // auto clicks active tab if active
@@ -57,9 +57,11 @@ let state = new stateReq();
             elements.nav_A_active = elements.nav_A_warpstagram;
     };
 
-    const removeNavBActivateBtn = () => {
-        elements.nav_B_button_audio_activate.style.display = 'none';
-        elements.nav_B_button_video_activate.style.display = 'none';
+    const removeNavBActivateBtn = (storage) => {
+        if (storage.user.audio === 'pro')
+            elements.nav_B_button_audio_activate.style.display = 'none';
+        if (storage.user.video === 'pro')
+            elements.nav_B_button_video_activate.style.display = 'none';
     };
 
     ipcRenderer.on('resize', () => {
