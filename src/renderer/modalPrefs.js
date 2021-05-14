@@ -1,6 +1,6 @@
 const { app, clipboard, ipcRenderer, shell } = require('electron');
 let elements = require('./views/elements');
-const modalPrefsView = require('./modalPrefsView');
+const view = require('./modalPrefsView');
 const startupReq = require('../js/startup');
 const startup = new startupReq();
 const stateReq = require('./state');
@@ -12,32 +12,28 @@ let state = new stateReq();
         addNavEventListeners();
         addMenuListeners();
         addModalEventListeners();
-        modalPrefsView.toggleComponentsInit('prefs', 'audio');
+        view.showPanelInit('prefs', 'audio');
     });
 })();
 
 const addNavEventListeners = () => {
     elements.nav_B_button_audio_preferences.addEventListener('click', (e) => {
-        modalPrefsView.toggleBackground(state, elements, startup);
-        modalPrefsView.toggleModalState(state);
-        modalPrefsView.togglePreferences(state, elements, 'audio');
+        view.toggleBackground(state, elements, startup);
+        view.toggleModalState(state);
+        view.togglePreferences(state, elements, 'audio');
     });
     elements.nav_B_button_video_preferences.addEventListener('click', (e) => {
-        modalPrefsView.toggleBackground(state, elements, startup);
-        modalPrefsView.toggleModalState(state);
-        modalPrefsView.togglePreferences(state, elements, 'video');
+        view.toggleBackground(state, elements, startup);
+        view.toggleModalState(state);
+        view.togglePreferences(state, elements, 'video');
     });
 };
 const addModalEventListeners = () => {
-    // modalPrefsView listeners
+    // view listeners
     elements.modalBackground.addEventListener('click', (e) => {
-        modalPrefsView.toggleBackground(state, elements, startup);
-        modalPrefsView.toggleModalState(state);
-        modalPrefsView.togglePreferences(
-            state,
-            elements,
-            startup.env.nav_A_active
-        );
+        view.toggleBackground(state, elements, startup);
+        view.toggleModalState(state);
+        view.togglePreferences(state, elements, startup.env.nav_A_active);
     });
 
     setTimeout(() => {
@@ -60,46 +56,46 @@ const addModalEventListeners = () => {
         document
             .getElementById('modalPrefsNav_button_audio_ID')
             .addEventListener('click', (e) => {
-                modalPrefsView.toggleComponents('prefs', 'audio');
+                view.showPanel('prefs', 'audio');
             });
         document
             .getElementById('modalPrefsNav_button_video_ID')
             .addEventListener('click', (e) => {
-                modalPrefsView.toggleComponents('prefs', 'video');
+                view.showPanel('prefs', 'video');
             });
         document
             .getElementById('modalPrefsNav_button_warpstagram_ID')
             .addEventListener('click', (e) => {
-                modalPrefsView.toggleComponents('prefs', 'warpstagram');
+                view.showPanel('prefs', 'warpstagram');
             });
         document
             .getElementById('modalPrefsNav_button_general_ID')
             .addEventListener('click', (e) => {
-                modalPrefsView.toggleComponents('prefs', 'general');
+                view.showPanel('prefs', 'general');
             });
         document
             .getElementById('modalPrefsNav_button_license_ID')
             .addEventListener('click', (e) => {
-                modalPrefsView.toggleComponents('prefs', 'license');
+                view.showPanel('prefs', 'license');
             });
     }, 100);
 };
 const addMenuListeners = () => {
     ipcRenderer.on('Audio: Tools: Preferences', () => {
-        modalPrefsView.toggleBackground(state, elements, startup);
-        modalPrefsView.toggleModalState(state);
-        modalPrefsView.togglePreferences(state, elements, 'audio');
+        view.toggleBackground(state, elements, startup);
+        view.toggleModalState(state);
+        view.togglePreferences(state, elements, 'audio');
     });
 
     ipcRenderer.on('Video: Tools: Preferences', () => {
-        modalPrefsView.toggleBackground(state, elements, startup);
-        modalPrefsView.toggleModalState(state);
-        modalPrefsView.togglePreferences(state, elements, 'video');
+        view.toggleBackground(state, elements, startup);
+        view.toggleModalState(state);
+        view.togglePreferences(state, elements, 'video');
     });
 
     ipcRenderer.on('Warpstagram: Tools: Preferences', () => {
-        modalPrefsView.toggleBackground(state, elements, startup);
-        modalPrefsView.toggleModalState(state);
-        modalPrefsView.togglePreferences(state, elements, 'warpstagram');
+        view.toggleBackground(state, elements, startup);
+        view.toggleModalState(state);
+        view.togglePreferences(state, elements, 'warpstagram');
     });
 };

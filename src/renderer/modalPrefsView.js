@@ -74,7 +74,7 @@ const insertMarkupPrefs = (markup) => {
     modalContainerWarpstagram.appendChild(markupNodeWarpstagram); // Append item node
 };
 
-const toggleComponents = (modalType, avType) => {
+const showPanel = (modalType, avType) => {
     let modalPrefsContentPanel_audio = document.getElementById(
         'modalPrefsContentPanel_audio'
     );
@@ -129,9 +129,9 @@ const toggleComponents = (modalType, avType) => {
     }
     toggleActiveModalNavClass(avType);
 };
-const toggleComponentsInit = (modalType, avType) => {
+const showPanelInit = (modalType, avType) => {
     setTimeout(() => {
-        toggleComponents(modalType, avType);
+        showPanel(modalType, avType);
     }, 200);
 };
 
@@ -215,6 +215,6 @@ module.exports = {
     togglePreferences: togglePreferences,
     insertMarkupPrefs: insertMarkupPrefs,
     markupPrefs: markupPrefs,
-    toggleComponents: toggleComponents,
-    toggleComponentsInit: toggleComponentsInit,
+    showPanel: showPanel,
+    showPanelInit: showPanelInit,
 };

@@ -43,10 +43,6 @@ let state = new stateReq();
         modalPrefsView.markupPrefs(pathsObj);
 
         auto.click_nav_B(startup.env.nav_A_active, 'preferences'); // auto clicks paste, smartMode, activate, subscriptions, preferences, help
-        // addModalEventListeners(); // activates modal event listeners
-        // setTimeout(() => {
-        // modalPrefsView.toggleComponentsInit('prefs', 'audio');
-        // }, 400);
     });
 
     const setActiveNav_A = (nav_A_active) => {
@@ -362,60 +358,4 @@ const addEventListeners = () => {
             }
         }
     });
-};
-const addModalEventListeners = () => {
-    // modalPrefsView listeners
-    elements.modalBackground.addEventListener('click', (e) => {
-        modalPrefsView.toggleBackground(state, elements, startup);
-        modalPrefsView.toggleModalState(state);
-        modalPrefsView.togglePreferences(
-            state,
-            elements,
-            startup.env.nav_A_active
-        );
-    });
-
-    setTimeout(() => {
-        document
-            .getElementById('modalPrefsToggleButton_autostartWarp')
-            .addEventListener('click', (e) => {
-                console.log('hello');
-            });
-        document
-            .getElementById('modalPrefsToggleButton_minimizeToTrayOnClose')
-            .addEventListener('click', (e) => {
-                console.log('hello');
-            });
-        document
-            .getElementById('modalOutputFolderBtn_audio')
-            .addEventListener('click', (e) => {
-                console.log('hello');
-            });
-        // NAV LISTENERS
-        document
-            .getElementById('modalPrefsNav_button_audio_ID')
-            .addEventListener('click', (e) => {
-                modalPrefsView.toggleComponents('prefs', 'audio');
-            });
-        document
-            .getElementById('modalPrefsNav_button_video_ID')
-            .addEventListener('click', (e) => {
-                modalPrefsView.toggleComponents('prefs', 'video');
-            });
-        document
-            .getElementById('modalPrefsNav_button_warpstagram_ID')
-            .addEventListener('click', (e) => {
-                modalPrefsView.toggleComponents('prefs', 'warpstagram');
-            });
-        document
-            .getElementById('modalPrefsNav_button_general_ID')
-            .addEventListener('click', (e) => {
-                modalPrefsView.toggleComponents('prefs', 'general');
-            });
-        document
-            .getElementById('modalPrefsNav_button_license_ID')
-            .addEventListener('click', (e) => {
-                modalPrefsView.toggleComponents('prefs', 'license');
-            });
-    }, 100);
 };
