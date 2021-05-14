@@ -9,27 +9,32 @@ const stateReq = require('./state');
 let state = new stateReq();
 let userPrefs, prefsMarkup;
 let storage;
-prefsStorage.loadMarkupSource();
+
 (function init() {
     ipcRenderer.on(
         'window-ready',
         (e, storageSentFromMain, modalPrefsMarkup) => {
             storage = storageSentFromMain;
+            console.log(storage);
             prefsMarkup = modalPrefsMarkup;
             // console.log(prefsMarkup);
-            windowReady();
+            windowReady(prefsMarkup);
         }
     );
 })();
 
-const windowReady = () => {
-    prefsView.markupPrefs(storage.user);
-    // console.log('marking prefs');
-    prefsView.injectPrefsModalToCurrentSlide(); // RUNS FIRST
+const windowReady = (prefsMarkup) => {
+    // prefsView.markupPrefs(prefsMarkup, storage.user.prefs.paths);
+    prefsView.injectPrefsModalToCurrentSlide(
+        prefsMarkup,
+        storage.user.prefs.paths,
+        storage.user.prefs.startupTab
+    );
+    // prefsView.injectPrefsModalToCurrentSlide(); // RUNS FIRST
 
-    addNavEventListeners();
-    addMenuListeners();
-    addModalEventListeners();
+    addNavBListeners();
+    addAppMenuListeners();
+    addModalListeners();
     prefsView.showPanelInit('prefs', 'audio');
     setTimeout(() => {
         addNavAListeners();
@@ -38,16 +43,25 @@ const windowReady = () => {
 
 const addNavAListeners = () => {
     elements.nav_A_audio.addEventListener('click', (e) => {
-        prefsView.removeAllAndInjectToActiveSlide();
+        prefsView.removeAllAndInjectToActiveSlide(
+            prefsMarkup,
+            storage.user.prefs.paths
+        );
     });
     elements.nav_A_video.addEventListener('click', (e) => {
-        prefsView.removeAllAndInjectToActiveSlide();
+        prefsView.removeAllAndInjectToActiveSlide(
+            prefsMarkup,
+            storage.user.prefs.paths
+        );
     });
     elements.nav_A_warpstagram.addEventListener('click', (e) => {
-        prefsView.removeAllAndInjectToActiveSlide();
+        prefsView.removeAllAndInjectToActiveSlide(
+            prefsMarkup,
+            storage.user.prefs.paths
+        );
     });
 };
-const addNavEventListeners = () => {
+const addNavBListeners = () => {
     elements.nav_B_button_audio_preferences.addEventListener('click', (e) => {
         prefsView.toggleBackground(state);
         prefsView.toggleModalState(state);
@@ -59,7 +73,7 @@ const addNavEventListeners = () => {
         prefsView.togglePreferences(state, 'video');
     });
 };
-const addMenuListeners = () => {
+const addAppMenuListeners = () => {
     ipcRenderer.on('Audio: Tools: Preferences', () => {
         prefsView.toggleBackground(state);
         prefsView.toggleModalState(state);
@@ -78,7 +92,7 @@ const addMenuListeners = () => {
         prefsView.togglePreferences(state, 'warpstagram');
     });
 };
-const addModalEventListeners = () => {
+const addModalListeners = () => {
     // prefsView listeners
     elements.modalBackground.addEventListener('click', (e) => {
         prefsView.toggleBackground(state);

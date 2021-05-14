@@ -144,15 +144,15 @@ const toggleAllPrefsPanels = (arr, panelToShow) => {
     panelToShow.style.display = 'flex';
 };
 
-const insertOutputFolderPaths = (userPrefs) => {
+const insertOutputFolderPaths = (outputFolderPaths) => {
     setTimeout(() => {
         document.getElementById('modalPrefsOutputFolder_audio').placeholder =
-            userPrefs.prefs.paths.audio;
+            outputFolderPaths.audio;
         document.getElementById('modalPrefsOutputFolder_video').placeholder =
-            userPrefs.prefs.paths.video;
+            outputFolderPaths.video;
         document.getElementById(
             'modalPrefsOutputFolder_warpstagram'
-        ).placeholder = userPrefs.prefs.paths.warpstagram;
+        ).placeholder = outputFolderPaths.warpstagram;
     }, 100);
 };
 
@@ -205,24 +205,21 @@ const toggleActiveModalNavClass = (avType) => {
     addActiveModalNavClass(avType);
 };
 
-const markupPrefs = (userPrefs) => {
-    readMarkup();
-    insertOutputFolderPaths(userPrefs);
-};
-
 const removeAllInjectedModals = () => {
     console.log('removing all prefs modals');
     var el = document.getElementById('modalPrefsID');
     // var el = document.getElementsByClassName('contentContainer');
-    el.remove();
     // el.remove();
-    // el.remove();
-    // modalContainerAudio.appendChild(markupNodeAudio); // Append item node
-    // modalContainerVideo.appendChild(markupNodeVideo); // Append item node
-    // modalContainerWarpstagram.appendChild(markupNodeWarpstagram); // Append item node
 };
-const injectPrefsModalToCurrentSlide = () => {
-    // console.log('injecting prefs modal into active slide');
+const injectPrefsModalToCurrentSlide = (
+    prefsMarkup,
+    outputFolderPaths,
+    startupTab
+) => {
+    console.log('injecting prefs modal into active slide');
+    console.log(startupTab);
+    insertOutputFolderPaths(outputFolderPaths);
+    injectPrefsMarkup(prefsMarkup);
 };
 const removeAllAndInjectToActiveSlide = () => {
     removeAllInjectedModals();
@@ -235,7 +232,6 @@ module.exports = {
     toggleModalState: toggleModalState,
     togglePreferences: togglePreferences,
     injectPrefsMarkup: injectPrefsMarkup,
-    markupPrefs: markupPrefs,
     showPanel: showPanel,
     showPanelInit: showPanelInit,
     removeAllInjectedModals: removeAllInjectedModals,

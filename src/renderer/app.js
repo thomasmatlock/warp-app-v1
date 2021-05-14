@@ -24,6 +24,8 @@ let state = new stateReq();
 
 (function init() {
     ipcRenderer.on('window-ready', (e, storage) => {
+        // console.log(storage.user.prefs.startupTab);
+        // storage.user.prefs.startupTab;
         addEventListeners(); // activates DOM event listeners
         addMenuListeners(); // activates menu event listeners
         setActiveNav_A(startup.env.nav_A_active); // sets active Nav A
