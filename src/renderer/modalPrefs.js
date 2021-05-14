@@ -9,12 +9,23 @@ const stateReq = require('./state');
 let state = new stateReq();
 
 (function init() {
+    ipcRenderer.on('prefsMarkup-loaded', (e, data) => {
+        console.log('prefsMarkup loaded');
+    });
+    ipcRenderer.on('prefsMarkup-saved', (e, data) => {
+        console.log('prefsMarkup saved');
+    });
+    // try {
+    //     prefsStorage.loadMarkup();
+    // } catch (e) {
+    //     console.error(e);
+    // }
+    prefsStorage.loadMarkup();
     ipcRenderer.on('window-ready', (e, storage) => {
         addNavEventListeners();
         addMenuListeners();
         addModalEventListeners();
         view.showPanelInit('prefs', 'audio');
-        // https://puruvj.dev/blog/fs-promises
     });
 })();
 

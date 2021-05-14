@@ -17,6 +17,12 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
         startup.updateActiveTab(avType); // sets nav A active
         e.reply('paste-new-url', itemURL, avType, platform); // send message to app js
     });
+    ipcMain.on('prefsMarkup-loaded', (e, data) => {
+        e.reply('prefsMarkup-loaded', data); // send message to app js
+    });
+    ipcMain.on('prefsMarkup-saved', (e, data) => {
+        e.reply('prefsMarkup-saved', data); // send message to app js
+    });
     ipcMain.on('menu-change', (e, menuType) => {
         mainFunctions.setMenu(menuType);
 
