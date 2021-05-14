@@ -89,7 +89,6 @@ const toggleComponents = (modalType, avType) => {
         document.getElementById(
             'modalPrefsContentPanel_warpstagram'
         ).style.display = 'none';
-        toggleActiveModalNavClass(avType);
     }
     if (avType === 'video') {
         document.getElementById('modalPrefsContentPanel_audio').style.display =
@@ -99,7 +98,6 @@ const toggleComponents = (modalType, avType) => {
         document.getElementById(
             'modalPrefsContentPanel_warpstagram'
         ).style.display = 'none';
-        toggleActiveModalNavClass(avType);
     }
 
     if (avType === 'warpstagram') {
@@ -110,8 +108,8 @@ const toggleComponents = (modalType, avType) => {
         document.getElementById(
             'modalPrefsContentPanel_warpstagram'
         ).style.display = 'flex';
-        toggleActiveModalNavClass(avType);
     }
+    toggleActiveModalNavClass(avType);
 };
 const toggleComponentsInit = (modalType, avType) => {
     setTimeout(() => {
@@ -141,8 +139,15 @@ const removeActiveModalNavClass = () => {
     document
         .getElementById('modalPrefsNav_button_warpstagram_ID')
         .classList.remove('modalPrefsNav_button_active');
+    document
+        .getElementById('modalPrefsNav_button_general_ID')
+        .classList.remove('modalPrefsNav_button_active');
+    document
+        .getElementById('modalPrefsNav_button_license_ID')
+        .classList.remove('modalPrefsNav_button_active');
 };
 const addActiveModalNavClass = (avType) => {
+    console.log(avType);
     if (avType === 'audio') {
         document
             .getElementById('modalPrefsNav_button_audio_ID')
@@ -156,6 +161,16 @@ const addActiveModalNavClass = (avType) => {
     if (avType === 'warpstagram') {
         document
             .getElementById('modalPrefsNav_button_warpstagram_ID')
+            .classList.add('modalPrefsNav_button_active');
+    }
+    if (avType === 'general') {
+        document
+            .getElementById('modalPrefsNav_button_general_ID')
+            .classList.add('modalPrefsNav_button_active');
+    }
+    if (avType === 'license') {
+        document
+            .getElementById('modalPrefsNav_button_license_ID')
             .classList.add('modalPrefsNav_button_active');
     }
 };
@@ -176,8 +191,6 @@ module.exports = {
     togglePreferences: togglePreferences,
     insertMarkupPrefs: insertMarkupPrefs,
     markupPrefs: markupPrefs,
-    // hideComponents: hideComponents,
-    // showComponents: showComponents,
     toggleComponents: toggleComponents,
     toggleComponentsInit: toggleComponentsInit,
 };

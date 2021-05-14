@@ -401,5 +401,15 @@ const addModalEventListeners = () => {
             .addEventListener('click', (e) => {
                 modals.toggleComponents('prefs', 'warpstagram');
             });
+        document
+            .getElementById('modalPrefsNav_button_general_ID')
+            .addEventListener('click', (e) => {
+                modals.toggleComponents('prefs', 'general');
+            });
+        document
+            .getElementById('modalPrefsNav_button_license_ID')
+            .addEventListener('click', (e) => {
+                modals.toggleComponents('prefs', 'license');
+            });
     }, 100);
 };

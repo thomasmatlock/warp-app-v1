@@ -901,9 +901,8 @@ input[type='text'] {
   animation: moveInTop 0.5s ease-out;
   position: relative;
   margin: 0 auto;
-  width: 600px;
+  width: 800px;
   max-height: 780px;
-  max-width: 600px;
   background: #2a2a2a;
   border-radius: 4px;
   z-index: 11;
