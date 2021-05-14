@@ -1,6 +1,7 @@
 const { app, clipboard, ipcRenderer, shell } = require('electron');
 let elements = require('./views/elements');
 const view = require('./modalPrefsView');
+const prefsStorage = require('./modalPrefsStorage');
 const startupReq = require('../js/startup');
 const startup = new startupReq();
 const stateReq = require('./state');
