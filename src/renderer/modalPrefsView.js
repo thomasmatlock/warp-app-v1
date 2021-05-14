@@ -48,7 +48,7 @@ const togglePreferences = (state, elements, avType) => {
 async function readMarkup() {
     let modalMarkupPreferences;
     const data = await fs.readFile(
-        `${__dirname}/modalMarkupPreferences.html`,
+        `${__dirname}/modalPrefsMarkup.html`,
         'binary'
     );
     modalMarkupPreferences = new Buffer(data).toString();
