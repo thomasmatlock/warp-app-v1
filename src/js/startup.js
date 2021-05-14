@@ -47,13 +47,13 @@ class startup {
                 warpstagram: 'free',
                 videoSmartMode: true,
                 acceptedEULA: true,
-                paths: {
-                    main: fileController.dirMainPath,
-                    audio: fileController.dirAudioPath,
-                    video: fileController.dirVideoPath,
-                    warpstagram: fileController.dirWarpstagramPath,
-                },
                 prefs: {
+                    paths: {
+                        main: fileController.dirMainPath,
+                        audio: fileController.dirAudioPath,
+                        video: fileController.dirVideoPath,
+                        warpstagram: fileController.dirWarpstagramPath,
+                    },
                     audio: {
                         quality: 'best',
                         format: 'mp3',
@@ -82,9 +82,6 @@ class startup {
                     pinned: [],
                 },
             },
-            // random: {
-            //     hello: 'yes',
-            // },
         };
     }
 

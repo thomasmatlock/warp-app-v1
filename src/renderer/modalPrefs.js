@@ -7,7 +7,7 @@ const startup = new startupReq();
 const stateReq = require('./state');
 
 let state = new stateReq();
-
+let userPrefs;
 (function init() {
     ipcRenderer.on('prefsMarkup-loaded', (e, data) => {
         console.log('prefsMarkup loaded');
@@ -15,11 +15,6 @@ let state = new stateReq();
     ipcRenderer.on('prefsMarkup-saved', (e, data) => {
         console.log('prefsMarkup saved');
     });
-    // try {
-    //     prefsStorage.loadMarkup();
-    // } catch (e) {
-    //     console.error(e);
-    // }
     prefsStorage.loadMarkup();
     ipcRenderer.on('window-ready', (e, storage) => {
         addNavEventListeners();

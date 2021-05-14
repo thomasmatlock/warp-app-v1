@@ -142,15 +142,15 @@ const toggleAllPrefsPanels = (arr, panelToShow) => {
     panelToShow.style.display = 'flex';
 };
 
-const insertOutputFolderPaths = (pathsObj) => {
+const insertOutputFolderPaths = (userPrefs) => {
     setTimeout(() => {
         document.getElementById('modalPrefsOutputFolder_audio').placeholder =
-            pathsObj.audio;
+            userPrefs.prefs.paths.audio;
         document.getElementById('modalPrefsOutputFolder_video').placeholder =
-            pathsObj.video;
+            userPrefs.prefs.paths.video;
         document.getElementById(
             'modalPrefsOutputFolder_warpstagram'
-        ).placeholder = pathsObj.warpstagram;
+        ).placeholder = userPrefs.prefs.paths.warpstagram;
     }, 100);
 };
 
@@ -203,9 +203,9 @@ const toggleActiveModalNavClass = (avType) => {
     addActiveModalNavClass(avType);
 };
 
-const markupPrefs = (pathsObj) => {
+const markupPrefs = (userPrefs) => {
     readMarkup();
-    insertOutputFolderPaths(pathsObj);
+    insertOutputFolderPaths(userPrefs);
 };
 
 module.exports = {
