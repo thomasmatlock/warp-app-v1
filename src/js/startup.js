@@ -71,6 +71,7 @@ class startup {
                         autoStart: true,
                         minimizeOnClose: true,
                     },
+                    prefsMarkup: ``,
                 },
             },
 
