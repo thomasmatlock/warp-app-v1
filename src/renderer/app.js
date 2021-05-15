@@ -43,7 +43,7 @@ let state = new stateReq();
         items.startupAddAllItems(storage); // loads items stored in settings to UI
 
         setTimeout(() => {
-            auto.click_nav_B(startup.env.nav_A_active, 'preferences'); // auto clicks paste, smartMode, activate, subscriptions, preferences, help
+            // auto.click_nav_B(startup.env.nav_A_active, 'preferences'); // auto clicks paste, smartMode, activate, subscriptions, preferences, help
         }, 400);
     });
 

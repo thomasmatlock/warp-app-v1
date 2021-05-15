@@ -185,7 +185,7 @@ const refreshModalBackgroundListeners = (type) => {
     document
         .getElementById('modalBackgroundID')
         .addEventListener('click', (e) => {
-            console.log('added');
+            // console.log('added');
             prefsView.toggleBackground(state);
             prefsView.toggleModalState(state);
             prefsView.togglePreferences(state, 'warpstagram');
