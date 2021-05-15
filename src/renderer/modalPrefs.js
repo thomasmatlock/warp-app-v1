@@ -33,8 +33,8 @@ const windowReady = (prefsMarkup) => {
 
     addNavBListeners();
     addAppMenuListeners();
-    addModalListeners();
     prefsView.showPanelInit('prefs', 'audio');
+    refreshModalListeners('refresh');
     setTimeout(() => {
         addNavAListeners();
     }, 500);
@@ -51,7 +51,7 @@ const addNavAListeners = () => {
                 state.activeTab
             );
         }, 100);
-        addModalListeners();
+        refreshModalListeners('refresh');
         prefsView.showPanelInit('prefs', 'audio');
     });
     elements.nav_A_video.addEventListener('click', (e) => {
@@ -65,7 +65,7 @@ const addNavAListeners = () => {
             );
             // prefsView.togglePreferences(state, 'audio');
         }, 100);
-        addModalListeners();
+        refreshModalListeners('refresh');
         prefsView.showPanelInit('prefs', state.activeTab);
     });
     elements.nav_A_warpstagram.addEventListener('click', (e) => {
@@ -78,7 +78,7 @@ const addNavAListeners = () => {
                 state.activeTab
             );
         }, 100);
-        addModalListeners();
+        refreshModalListeners('refresh');
         prefsView.showPanelInit('prefs', state.activeTab);
     });
 };
@@ -113,30 +113,13 @@ const addAppMenuListeners = () => {
         prefsView.togglePreferences(state, 'warpstagram');
     });
 };
-const addModalListeners = () => {
-    // prefsView listeners
-    elements.modalBackground.addEventListener('click', (e) => {
-        prefsView.toggleBackground(state);
-        prefsView.toggleModalState(state);
-        prefsView.togglePreferences(state, 'warpstagram');
-    });
+const refreshModalListeners = (type) => {
+    refreshModalBackgroundListeners(type);
+    refreshPrefsNavListeners();
+};
 
+const refreshPrefsNavListeners = () => {
     setTimeout(() => {
-        document
-            .getElementById('modalPrefsToggleButton_autostartWarp')
-            .addEventListener('click', (e) => {
-                console.log('hello');
-            });
-        document
-            .getElementById('modalPrefsToggleButton_minimizeToTrayOnClose')
-            .addEventListener('click', (e) => {
-                console.log('hello');
-            });
-        document
-            .getElementById('modalOutputFolderBtn_audio')
-            .addEventListener('click', (e) => {
-                console.log('hello');
-            });
         // NAV LISTENERS
         document
             .getElementById('modalPrefsNav_button_audio_ID')
@@ -163,7 +146,65 @@ const addModalListeners = () => {
             .addEventListener('click', (e) => {
                 prefsView.showPanel('prefs', 'license');
             });
+        document
+            .getElementById('modalPrefsToggleButton_autostartWarp')
+            .addEventListener('click', (e) => {
+                console.log('hello');
+            });
+        document
+            .getElementById('modalPrefsToggleButton_minimizeToTrayOnClose')
+            .addEventListener('click', (e) => {
+                console.log('hello');
+            });
+        document
+            .getElementById('modalOutputFolderBtn_audio')
+            .addEventListener('click', (e) => {
+                console.log('hello');
+            });
     }, 100);
 };
-
-// const refreshPrefsNavListeners = () => {}
+const refreshModalBackgroundListeners = (type) => {
+    // type = 'add' 'remove' 'refresh'
+    if (type === 'remove') {
+        document
+            .getElementById('modalBackgroundID')
+            .removeEventListener('click', (e) => {
+                console.log('removed');
+            });
+    }
+    if (type === 'refresh') {
+        document
+            .getElementById('modalBackgroundID')
+            .removeEventListener('click', (e) => {
+                console.log('removed');
+            });
+        document
+            .getElementById('modalBackgroundID')
+            .addEventListener('click', (e) => {
+                console.log('added');
+                prefsView.toggleBackground(state);
+                prefsView.toggleModalState(state);
+                prefsView.togglePreferences(state, 'warpstagram');
+            });
+    }
+    // document
+    //     .getElementById('modalBackgroundID')
+    //     .removeEventListener('click', (e) => {
+    //         console.log('removed');
+    //     });
+    if (type === 'add') {
+        document
+            .getElementById('modalBackgroundID')
+            .addEventListener('click', (e) => {
+                console.log('added');
+                prefsView.toggleBackground(state);
+                prefsView.toggleModalState(state);
+                prefsView.togglePreferences(state, 'warpstagram');
+            });
+    }
+    // elements.modalBackground.addEventListener('click', (e) => {
+    //     prefsView.toggleBackground(state);
+    //     prefsView.toggleModalState(state);
+    //     prefsView.togglePreferences(state, 'warpstagram');
+    // });
+};

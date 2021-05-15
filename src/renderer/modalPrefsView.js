@@ -86,7 +86,7 @@ const injectPrefsMarkup = (markup, activeTab) => {
 };
 // const getPrefsNavIDs = () => {}
 const showPanel = (modalType, avType) => {
-    console.log('hello');
+    // console.log('hello');
     let modalPrefsContentPanel_audio = document.getElementById(
         'modalPrefsContentPanel_audio'
     );
@@ -216,7 +216,7 @@ const toggleActiveModalNavClass = (avType) => {
 };
 
 const removeAllInjectedModals = () => {
-    console.log('removing all prefs modals');
+    // console.log('removing all prefs modals');
 
     let modals = document.getElementsByClassName('contentContainer');
 
@@ -231,7 +231,7 @@ const injectPrefsModalToCurrentSlide = (
     outputFolderPaths,
     activeTab
 ) => {
-    console.log(`injecting prefs modal into ${activeTab} slide`);
+    // console.log(`injecting prefs modal into ${activeTab} slide`);
     // console.log(activeTab);
     insertOutputFolderPaths(outputFolderPaths);
     injectPrefsMarkup(prefsMarkup, activeTab);
