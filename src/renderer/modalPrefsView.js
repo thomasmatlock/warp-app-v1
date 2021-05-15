@@ -13,8 +13,12 @@ let elements = require('./views/elements');
 const toggleBackground = (state) => {
     if (state.modals.preferences) {
         elements.modalBackground.style.display = 'none'; // de-activate modal background
+        // elements.modalBackground.style.zIndex = '-10'; // activate modal background
+        // elements.modalBackground.style.width = '0%'; // de-activate modal background
     } else if (!state.modals.preferences) {
         elements.modalBackground.style.display = 'flex'; // activate modal background
+        // elements.modalBackground.style.zIndex = '10'; // activate modal background
+        // elements.modalBackground.style.width = '100%'; // de-activate modal backgroundflex'; // activate modal background
     }
 };
 

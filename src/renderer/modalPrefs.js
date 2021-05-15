@@ -37,7 +37,7 @@ const windowReady = (prefsMarkup) => {
     refreshModalListeners('refresh');
     setTimeout(() => {
         addNavAListeners();
-    }, 500);
+    }, 100);
 };
 
 const addNavAListeners = () => {
@@ -51,8 +51,9 @@ const addNavAListeners = () => {
                 state.activeTab
             );
         }, 100);
-        refreshModalListeners('refresh');
+        // removeModalBackgroundListeners();
         prefsView.showPanelInit('prefs', 'audio');
+        refreshPrefsNavListeners();
     });
     elements.nav_A_video.addEventListener('click', (e) => {
         state.activeTab = 'video';
@@ -65,8 +66,9 @@ const addNavAListeners = () => {
             );
             // prefsView.togglePreferences(state, 'audio');
         }, 100);
-        refreshModalListeners('refresh');
+        // refreshModalListeners('refresh');
         prefsView.showPanelInit('prefs', state.activeTab);
+        refreshPrefsNavListeners();
     });
     elements.nav_A_warpstagram.addEventListener('click', (e) => {
         state.activeTab = 'warpstagram';
@@ -78,8 +80,9 @@ const addNavAListeners = () => {
                 state.activeTab
             );
         }, 100);
-        refreshModalListeners('refresh');
+        // refreshModalListeners('refresh');
         prefsView.showPanelInit('prefs', state.activeTab);
+        refreshPrefsNavListeners();
     });
 };
 const addNavBListeners = () => {
@@ -163,48 +166,28 @@ const refreshPrefsNavListeners = () => {
             });
     }, 100);
 };
+
+const removeModalBackgroundListeners = (type) => {
+    let backgrounds = document.getElementsByClassName('modalBackground');
+
+    for (var key in backgrounds) {
+        if (backgrounds.hasOwnProperty(key)) {
+            backgrounds[key].remove();
+        }
+    }
+    document
+        .getElementById('modalBackgroundID')
+        .removeEventListener('click', (e) => {
+            console.log('removed');
+        });
+};
 const refreshModalBackgroundListeners = (type) => {
-    // type = 'add' 'remove' 'refresh'
-    if (type === 'remove') {
-        document
-            .getElementById('modalBackgroundID')
-            .removeEventListener('click', (e) => {
-                console.log('removed');
-            });
-    }
-    if (type === 'refresh') {
-        document
-            .getElementById('modalBackgroundID')
-            .removeEventListener('click', (e) => {
-                console.log('removed');
-            });
-        document
-            .getElementById('modalBackgroundID')
-            .addEventListener('click', (e) => {
-                console.log('added');
-                prefsView.toggleBackground(state);
-                prefsView.toggleModalState(state);
-                prefsView.togglePreferences(state, 'warpstagram');
-            });
-    }
-    // document
-    //     .getElementById('modalBackgroundID')
-    //     .removeEventListener('click', (e) => {
-    //         console.log('removed');
-    //     });
-    if (type === 'add') {
-        document
-            .getElementById('modalBackgroundID')
-            .addEventListener('click', (e) => {
-                console.log('added');
-                prefsView.toggleBackground(state);
-                prefsView.toggleModalState(state);
-                prefsView.togglePreferences(state, 'warpstagram');
-            });
-    }
-    // elements.modalBackground.addEventListener('click', (e) => {
-    //     prefsView.toggleBackground(state);
-    //     prefsView.toggleModalState(state);
-    //     prefsView.togglePreferences(state, 'warpstagram');
-    // });
+    document
+        .getElementById('modalBackgroundID')
+        .addEventListener('click', (e) => {
+            console.log('added');
+            prefsView.toggleBackground(state);
+            prefsView.toggleModalState(state);
+            prefsView.togglePreferences(state, 'warpstagram');
+        });
 };
