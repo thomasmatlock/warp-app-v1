@@ -9,15 +9,13 @@ const stateReq = require('./state');
 let state = new stateReq();
 let userPrefs, prefsMarkup;
 let storage;
-
+// console.log(state);
 (function init() {
     ipcRenderer.on(
         'window-ready',
         (e, storageSentFromMain, modalPrefsMarkup) => {
             storage = storageSentFromMain;
-            console.log(storage);
             prefsMarkup = modalPrefsMarkup;
-            // console.log(prefsMarkup);
             windowReady(prefsMarkup);
         }
     );
@@ -25,12 +23,13 @@ let storage;
 
 const windowReady = (prefsMarkup) => {
     // prefsView.markupPrefs(prefsMarkup, storage.user.prefs.paths);
+    // prefsView.turnOffBackground(state);
+    state.activeTab = storage.user.prefs.startupTab;
     prefsView.injectPrefsModalToCurrentSlide(
         prefsMarkup,
         storage.user.prefs.paths,
         storage.user.prefs.startupTab
     );
-    // prefsView.injectPrefsModalToCurrentSlide(); // RUNS FIRST
 
     addNavBListeners();
     addAppMenuListeners();
@@ -43,22 +42,38 @@ const windowReady = (prefsMarkup) => {
 
 const addNavAListeners = () => {
     elements.nav_A_audio.addEventListener('click', (e) => {
-        prefsView.removeAllAndInjectToActiveSlide(
-            prefsMarkup,
-            storage.user.prefs.paths
-        );
+        state.activeTab = 'audio';
+        prefsView.removeAllInjectedModals();
+        setTimeout(() => {
+            prefsView.injectPrefsModalToCurrentSlide(
+                prefsMarkup,
+                storage.user.prefs.paths,
+                state.activeTab
+            );
+        }, 100);
+        // addModalListeners();
     });
     elements.nav_A_video.addEventListener('click', (e) => {
-        prefsView.removeAllAndInjectToActiveSlide(
-            prefsMarkup,
-            storage.user.prefs.paths
-        );
+        state.activeTab = 'video';
+        prefsView.removeAllInjectedModals();
+        setTimeout(() => {
+            prefsView.injectPrefsModalToCurrentSlide(
+                prefsMarkup,
+                storage.user.prefs.paths,
+                state.activeTab
+            );
+        }, 100);
     });
     elements.nav_A_warpstagram.addEventListener('click', (e) => {
-        prefsView.removeAllAndInjectToActiveSlide(
-            prefsMarkup,
-            storage.user.prefs.paths
-        );
+        state.activeTab = 'warpstagram';
+        prefsView.removeAllInjectedModals();
+        setTimeout(() => {
+            prefsView.injectPrefsModalToCurrentSlide(
+                prefsMarkup,
+                storage.user.prefs.paths,
+                state.activeTab
+            );
+        }, 100);
     });
 };
 const addNavBListeners = () => {

@@ -41,10 +41,10 @@ let state = new stateReq();
         ipcRenderer.send('menu-change', startup.env.nav_A_active);
         if (startup.dev.clearStorage) items.resetStorage(); // clears localStorage if active
         items.startupAddAllItems(storage); // loads items stored in settings to UI
-        // let pathsObj = storage.user.paths;
-        // modalPrefsView.markupPrefs(storage.user);
 
-        auto.click_nav_B(startup.env.nav_A_active, 'preferences'); // auto clicks paste, smartMode, activate, subscriptions, preferences, help
+        setTimeout(() => {
+            auto.click_nav_B(startup.env.nav_A_active, 'preferences'); // auto clicks paste, smartMode, activate, subscriptions, preferences, help
+        }, 400);
     });
 
     const setActiveNav_A = (nav_A_active) => {
@@ -210,11 +210,6 @@ const addEventListeners = () => {
     elements.nav_B_button_audio_activate.addEventListener('click', (e) => {
         if (logging) console.log('clicked activate');
     });
-    // elements.nav_B_button_audio_preferences.addEventListener('click', (e) => {
-    //     modalPrefsView.toggleBackground(state, elements, startup);
-    //     modalPrefsView.toggleModalState(state);
-    //     modalPrefsView.togglePreferences(state, elements, 'audio');
-    // });
 
     // Nav B video LISTENERS
     elements.nav_B_button_video_paste.addEventListener('click', (e) => {
@@ -227,12 +222,7 @@ const addEventListeners = () => {
         'click',
         (e) => {}
     );
-    // elements.nav_B_button_video_preferences.addEventListener('click', (e) => {
-    //     modalPrefs.prefs();
-    //     modalPrefsView.toggleBackground(state, elements, startup);
-    //     modalPrefsView.toggleModalState(state);
-    //     modalPrefsView.togglePreferences(state, elements, 'video');
-    // });
+
     // Nav B search listeners
     elements.searchAudio.addEventListener('keyup', (e) => {
         search.audioItems();

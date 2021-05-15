@@ -23,6 +23,10 @@ const toggleModalState = (state) => {
         (state.modals.preferences = false) :
         (state.modals.preferences = true);
 };
+const turnOffBackground = (state) => {
+    toggleModalState(state);
+    elements.modalBackground.style.display = 'none'; // de-activate modal background
+};
 
 const togglePreferences = (state, avType) => {
     if (state.modals.preferences) {
@@ -57,23 +61,32 @@ async function readMarkup(avType) {
     return modalMarkupPreferences;
 }
 
-const injectPrefsMarkup = (markup, avType) => {
+const injectPrefsMarkup = (markup, activeTab) => {
     let modalContainerAudio = elements.modalContainerAudio; // selects target list to add item markup to
     let modalContainerVideo = elements.modalContainerVideo; // selects target list to add item markup to
     let modalContainerWarpstagram = elements.modalContainerWarpstagram; // selects target list to add item markup to
-    let markupNodeAudio = document.createElement('div'); // Create a new HTML Dom node inside download list
-    let markupNodeVideo = document.createElement('div'); // Create a new HTML Dom node inside download list
-    let markupNodeWarpstagram = document.createElement('div'); // Create a new HTML Dom node inside download list
-    markupNodeAudio.id = 'modalPrefsID';
-    markupNodeAudio.className = 'contentContainer';
-    markupNodeVideo.className = 'contentContainer';
-    markupNodeWarpstagram.className = 'contentContainer';
-    markupNodeAudio.innerHTML = markup;
-    markupNodeVideo.innerHTML = markup;
-    markupNodeWarpstagram.innerHTML = markup;
-    modalContainerAudio.appendChild(markupNodeAudio); // Append item node
-    modalContainerVideo.appendChild(markupNodeVideo); // Append item node
-    modalContainerWarpstagram.appendChild(markupNodeWarpstagram); // Append item node
+    let markupNodeAudio, markupNodeVideo, markupNodeWarpstagram;
+    if (activeTab === 'audio') {
+        markupNodeAudio = document.createElement('div'); // Create a new HTML Dom node inside download list
+        markupNodeAudio.className = 'contentContainer';
+        markupNodeAudio.innerHTML = markup;
+        modalContainerAudio.appendChild(markupNodeAudio); // Append item node
+        // markupNodeAudio.id = 'modalPrefsID';
+    }
+    if (activeTab === 'video') {
+        markupNodeVideo = document.createElement('div'); // Create a new HTML Dom node inside download list
+        markupNodeVideo.className = 'contentContainer';
+        markupNodeVideo.innerHTML = markup;
+        modalContainerVideo.appendChild(markupNodeVideo); // Append item node
+        // markupNodeVideo.id = 'modalPrefsID';
+    }
+    if (activeTab === 'warpstagram') {
+        markupNodeWarpstagram = document.createElement('div'); // Create a new HTML Dom node inside download list
+        markupNodeWarpstagram.className = 'contentContainer';
+        markupNodeWarpstagram.innerHTML = markup;
+        modalContainerWarpstagram.appendChild(markupNodeWarpstagram); // Append item node
+        // markupNodeWarpstagram.id = 'modalPrefsID';
+    }
 };
 
 const showPanel = (modalType, avType) => {
@@ -207,24 +220,33 @@ const toggleActiveModalNavClass = (avType) => {
 
 const removeAllInjectedModals = () => {
     console.log('removing all prefs modals');
-    var el = document.getElementById('modalPrefsID');
-    // var el = document.getElementsByClassName('contentContainer');
-    // el.remove();
+
+    let modals = document.getElementsByClassName('contentContainer');
+
+    for (var key in modals) {
+        if (modals.hasOwnProperty(key)) {
+            modals[key].remove();
+        }
+    }
 };
 const injectPrefsModalToCurrentSlide = (
     prefsMarkup,
     outputFolderPaths,
-    startupTab
+    activeTab
 ) => {
-    console.log('injecting prefs modal into active slide');
-    console.log(startupTab);
+    console.log(`injecting prefs modal into ${activeTab} slide`);
+    // console.log(activeTab);
     insertOutputFolderPaths(outputFolderPaths);
-    injectPrefsMarkup(prefsMarkup);
+    injectPrefsMarkup(prefsMarkup, activeTab);
 };
-const removeAllAndInjectToActiveSlide = () => {
-    removeAllInjectedModals();
-    injectPrefsModalToCurrentSlide();
-};
+// const removeAllAndInjectToActiveSlide = (
+//     prefsMarkup,
+//     outputFolderPaths,
+//     activeTab
+// ) => {
+//     removeAllInjectedModals();
+//     injectPrefsModalToCurrentSlide(prefsMarkup, outputFolderPaths, activeTab);
+// };
 
 module.exports = {
     readMarkup: readMarkup,
@@ -236,5 +258,6 @@ module.exports = {
     showPanelInit: showPanelInit,
     removeAllInjectedModals: removeAllInjectedModals,
     injectPrefsModalToCurrentSlide: injectPrefsModalToCurrentSlide,
-    removeAllAndInjectToActiveSlide: removeAllAndInjectToActiveSlide,
+    turnOffBackground: turnOffBackground,
+    // removeAllAndInjectToActiveSlide: removeAllAndInjectToActiveSlide,
 };
