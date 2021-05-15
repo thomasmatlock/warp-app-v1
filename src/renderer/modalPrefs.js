@@ -51,7 +51,8 @@ const addNavAListeners = () => {
                 state.activeTab
             );
         }, 100);
-        // addModalListeners();
+        addModalListeners();
+        prefsView.showPanelInit('prefs', 'audio');
     });
     elements.nav_A_video.addEventListener('click', (e) => {
         state.activeTab = 'video';
@@ -62,7 +63,10 @@ const addNavAListeners = () => {
                 storage.user.prefs.paths,
                 state.activeTab
             );
+            // prefsView.togglePreferences(state, 'audio');
         }, 100);
+        addModalListeners();
+        prefsView.showPanelInit('prefs', state.activeTab);
     });
     elements.nav_A_warpstagram.addEventListener('click', (e) => {
         state.activeTab = 'warpstagram';
@@ -74,6 +78,8 @@ const addNavAListeners = () => {
                 state.activeTab
             );
         }, 100);
+        addModalListeners();
+        prefsView.showPanelInit('prefs', state.activeTab);
     });
 };
 const addNavBListeners = () => {
@@ -159,3 +165,5 @@ const addModalListeners = () => {
             });
     }, 100);
 };
+
+// const refreshPrefsNavListeners = () => {}

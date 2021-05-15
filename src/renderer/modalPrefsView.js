@@ -23,10 +23,6 @@ const toggleModalState = (state) => {
         (state.modals.preferences = false) :
         (state.modals.preferences = true);
 };
-const turnOffBackground = (state) => {
-    toggleModalState(state);
-    elements.modalBackground.style.display = 'none'; // de-activate modal background
-};
 
 const togglePreferences = (state, avType) => {
     if (state.modals.preferences) {
@@ -88,8 +84,9 @@ const injectPrefsMarkup = (markup, activeTab) => {
         // markupNodeWarpstagram.id = 'modalPrefsID';
     }
 };
-
+// const getPrefsNavIDs = () => {}
 const showPanel = (modalType, avType) => {
+    console.log('hello');
     let modalPrefsContentPanel_audio = document.getElementById(
         'modalPrefsContentPanel_audio'
     );
@@ -258,6 +255,6 @@ module.exports = {
     showPanelInit: showPanelInit,
     removeAllInjectedModals: removeAllInjectedModals,
     injectPrefsModalToCurrentSlide: injectPrefsModalToCurrentSlide,
-    turnOffBackground: turnOffBackground,
+    // turnOffBackground: turnOffBackground,
     // removeAllAndInjectToActiveSlide: removeAllAndInjectToActiveSlide,
 };
