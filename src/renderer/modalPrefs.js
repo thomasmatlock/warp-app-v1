@@ -125,6 +125,8 @@ const refreshPrefsNavListeners = () => {
         document
             .getElementById('closePrefsModal')
             .addEventListener('click', (e) => {
+                console.log('toggling and saving');
+                console.log(storage.user.prefs);
                 prefsView.toggleModal(state, 'warpstagram');
             });
         // NAV LISTENERS
@@ -228,15 +230,15 @@ const refreshModalBackgroundListeners = (type) => {
         .getElementById('modalBackgroundID')
         .addEventListener('click', (e) => {
             console.log('toggling and saving');
+            console.log(storage.user.prefs);
             prefsView.toggleModal(state, 'warpstagram');
         });
     // CLOSE MODAL
-    document
-        .getElementById('closePrefsModal')
-        .addEventListener('click', (e) => {
-            console.log('toggling and saving');
-            prefsView.toggleModal(state, 'warpstagram');
-        });
+    // document
+    //     .getElementById('closePrefsModal')
+    //     .addEventListener('click', (e) => {
+    //         prefsView.toggleModal(state, 'warpstagram');
+    //     });
 };
 
 const updatePrefsState = (eventTitle) => {
