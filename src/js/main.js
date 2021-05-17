@@ -89,7 +89,7 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
             storageMain = storageAwaited;
 
             if (storageAwaited.user.prefs.prefsMarkup === '') {
-                console.log(`no markup present`);
+                // console.log(`no markup present`);
                 modalPrefsMarkup = await mainFunctions.loadModalPrefsMarkupSource();
             }
 

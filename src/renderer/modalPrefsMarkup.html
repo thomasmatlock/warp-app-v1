@@ -18,7 +18,7 @@
             <p>Preferences</p>
         </div>
         <div class="modalPrefsTitle_child modalPrefsTitle_child_right">
-            <i class="fas fa-times fa-2x"></i>
+            <i id="closePrefsModal" class="fas fa-times fa-2x"></i>
         </div>
     </div>
 
@@ -62,7 +62,7 @@
     <!-- MODAL-TEXT-INPUT -->
     <div id="modalPrefsOutputFolderComponent_audio" class="modalOutputFolder">
         <div class="modalOutputFolder_title">
-            <p>Output Folder</p>
+            <p>Audio Output Folder</p>
         </div>
         <div class="modalOutputFolder_userInput">
             <div class="modalOutputFolder_userInput__textInput">
@@ -86,11 +86,15 @@
                     <p>Audio Quality</p>
                 </div>
                 <div class="modalDropdownList_list modalDropdownList_child">
-                    <select name="modalDropdownList_list_select">
-                        <option value=" volvo ">Best Available</option>
-                        <option value=" saab ">High quality (320kbps)</option>
-                        <option value=" mercedes ">Medium quality (256kbps)</option>
-                        <option value=" audi ">Low quality (128kbps)</option>
+                    <select id="modalDropdownList_list_audio_Quality" name="modalDropdownList_list_select">
+                        <option id="modalDropdownList_list_audio_bestQuality" value="best">Best Available</option>
+                        <option id="modalDropdownList_list_audio_highQuality" value="high">High quality (320kbps)
+                        </option>
+                        <option id="modalDropdownList_list_audio_mediumQuality" value="medium">Medium quality
+                            (256kbps)
+                        </option>
+                        <option id="modalDropdownList_list_audio_lowQuality" value="low">Low quality (128kbps)
+                        </option>
                     </select>
                 </div>
             </div>
@@ -101,10 +105,10 @@
                     <p>Audio Format</p>
                 </div>
                 <div class="modalDropdownList_list modalDropdownList_child">
-                    <select name="modalDropdownList_list_select">
-                        <option value=" volvo ">MP3</option>
-                        <option value=" saab ">M4A</option>
-                        <option value=" mercedes ">OGG</option>
+                    <select id="modalDropdownList_list_audio_Format" name="modalDropdownList_list_select">
+                        <option id="modalDropdownList_list_audio_Format_MP3" value="MP3">MP3</option>
+                        <option id="modalDropdownList_list_audio_Format_M4A" value="M4A">M4A</option>
+                        <option id="modalDropdownList_list_audio_Format_OGG" value="OGG">OGG</option>
                     </select>
                 </div>
             </div>
@@ -119,7 +123,7 @@
     <!-- MODAL-TEXT-INPUT -->
     <div id="modalPrefsOutputFolderComponent_video" class="modalOutputFolder">
         <div class="modalOutputFolder_title">
-            <p>Output Folder</p>
+            <p>Video Output Folder</p>
         </div>
         <div class="modalOutputFolder_userInput">
             <div class="modalOutputFolder_userInput__textInput">
@@ -143,11 +147,11 @@
                     <p>Video Quality</p>
                 </div>
                 <div class="modalDropdownList_list modalDropdownList_child">
-                    <select name="modalDropdownList_list_select">
-                        <option value=" volvo ">Best Available</option>
-                        <option value=" saab ">High quality (320kbps)</option>
-                        <option value=" mercedes ">Medium quality (256kbps)</option>
-                        <option value=" audi ">Low quality (128kbps)</option>
+                    <select ID="modalDropdownList_list_video_quality" name="modalDropdownList_list_select">
+                        <option value="best">Best Available</option>
+                        <option value="high">High quality (320kbps)</option>
+                        <option value="medium">Medium quality (256kbps)</option>
+                        <option value="low">Low quality (128kbps)</option>
                     </select>
                 </div>
             </div>
@@ -171,10 +175,9 @@
                     <p>Video Format</p>
                 </div>
                 <div class="modalDropdownList_list modalDropdownList_child">
-                    <select name="modalDropdownList_list_select">
-                        <option value=" volvo ">MP4</option>
-                        <option value=" saab ">M4A</option>
-                        <option value=" mercedes ">OGG</option>
+                    <select id="modalDropdownList_list_video_Format" name="modalDropdownList_list_select">
+                        <option value="MP4">MP4</option>
+                        <option value="MKV">MKV</option>
                     </select>
                 </div>
             </div>
@@ -212,10 +215,10 @@
                     <p>Auto update</p>
                 </div>
                 <div class="modalDropdownList_list modalDropdownList_child">
-                    <select name="modalDropdownList_list_select">
-                        <option value=" volvo ">Update All</option>
-                        <option value=" volvo ">Update Pinned</option>
-                        <option value=" volvo ">Disabled</option>
+                    <select ID="modalDropdownList_list_warpstagram_updateSelected" name="modalDropdownList_list_select">
+                        <option value="update-all">Update All</option>
+                        <option value="update-pinned">Update Pinned</option>
+                        <option value="update-disabled">Disabled</option>
                     </select>
                 </div>
             </div>
@@ -224,12 +227,12 @@
                     <p>Post sorting</p>
                 </div>
                 <div class="modalDropdownList_list modalDropdownList_child">
-                    <select name="modalDropdownList_list_select">
-                        <option value=" volvo ">Default</option>
-                        <option value=" volvo ">Newest to oldest</option>
-                        <option value=" volvo ">Oldest to newest</option>
-                        <option value=" volvo ">A to Z</option>
-                        <option value=" volvo ">Z to A</option>
+                    <select id="modalDropdownList_list_warpstagram_postSorting" name="modalDropdownList_list_select">
+                        <option value="default">Default</option>
+                        <option value="new-to-old">Newest to oldest</option>
+                        <option value="old-to-new">Oldest to newest</option>
+                        <option value="a-z">A to Z</option>
+                        <option value="z-a">Z to A</option>
                     </select>
                 </div>
             </div>
@@ -240,10 +243,10 @@
                     <p>Auto update frequency</p>
                 </div>
                 <div class="modalDropdownList_list modalDropdownList_child">
-                    <select name="modalDropdownList_list_select">
-                        <option value=" volvo ">6 hours</option>
-                        <option value=" saab ">12 hours</option>
-                        <option value=" saab ">Daily</option>
+                    <select id="modalDropdownList_list_warpstagram_autoUpdateFrequency" name="modalDropdownList_list_select">
+                        <option value="6">6 hours</option>
+                        <option value="12">12 hours</option>
+                        <option value="24">Daily</option>
                     </select>
                 </div>
             </div>
