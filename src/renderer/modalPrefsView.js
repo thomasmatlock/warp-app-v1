@@ -17,13 +17,11 @@ const toggleBackground = (state) => {
         elements.modalBackground.style.display = 'flex'; // activate modal background
     }
 };
-
 const toggleModalState = (state) => {
     state.modals.preferences ?
         (state.modals.preferences = false) :
         (state.modals.preferences = true);
 };
-
 const togglePreferences = (state, avType) => {
     if (state.modals.preferences) {
         if (avType === 'audio')
@@ -44,7 +42,6 @@ const togglePreferences = (state, avType) => {
         elements.modalContainerWarpstagram.style.display = 'none';
     }
 };
-
 async function readMarkup(avType) {
     let modalMarkupPreferences;
     const data = await fs.readFile(
@@ -56,7 +53,6 @@ async function readMarkup(avType) {
     // console.log(modalMarkupPreferences);
     return modalMarkupPreferences;
 }
-
 const injectPrefsMarkup = (markup, activeTab) => {
     let modalContainerAudio = elements.modalContainerAudio; // selects target list to add item markup to
     let modalContainerVideo = elements.modalContainerVideo; // selects target list to add item markup to
@@ -84,7 +80,6 @@ const injectPrefsMarkup = (markup, activeTab) => {
         // markupNodeWarpstagram.id = 'modalPrefsID';
     }
 };
-// const getPrefsNavIDs = () => {}
 const showPanel = (modalType, avType) => {
     // console.log('hello');
     let modalPrefsContentPanel_audio = document.getElementById(
@@ -146,14 +141,12 @@ const showPanelInit = (modalType, avType) => {
         showPanel(modalType, avType);
     }, 200);
 };
-
 const toggleAllPrefsPanels = (arr, panelToShow) => {
     for (i = 0; i < arr.length; i++) {
         arr[i].style.display = 'none';
     }
     panelToShow.style.display = 'flex';
 };
-
 const insertOutputFolderPaths = (outputFolderPaths) => {
     setTimeout(() => {
         document.getElementById('modalPrefsOutputFolder_audio').placeholder =
@@ -165,7 +158,6 @@ const insertOutputFolderPaths = (outputFolderPaths) => {
         ).placeholder = outputFolderPaths.warpstagram;
     }, 100);
 };
-
 const removeActiveModalNavClass = () => {
     document
         .getElementById('modalPrefsNav_button_audio_ID')
@@ -214,7 +206,6 @@ const toggleActiveModalNavClass = (avType) => {
     removeActiveModalNavClass();
     addActiveModalNavClass(avType);
 };
-
 const removeAllInjectedModals = () => {
     let modals = document.getElementsByClassName('contentContainer');
 

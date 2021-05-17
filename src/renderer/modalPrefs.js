@@ -95,37 +95,23 @@ const addNavAListeners = () => {
 };
 const addNavBListeners = () => {
     elements.nav_B_button_audio_preferences.addEventListener('click', (e) => {
-        // prefsView.toggleBackground(state);
-        // prefsView.toggleModalState(state);
-        // prefsView.togglePreferences(state, 'audio');
         prefsView.toggleModal(state, 'audio');
     });
     elements.nav_B_button_video_preferences.addEventListener('click', (e) => {
-        // prefsView.toggleBackground(state);
-        // prefsView.toggleModalState(state);
-        // prefsView.togglePreferences(state, 'video');
         prefsView.toggleModal(state, 'video');
     });
 };
 const addAppMenuListeners = () => {
     ipcRenderer.on('Audio: Tools: Preferences', () => {
-        // prefsView.toggleBackground(state);
-        // prefsView.toggleModalState(state);
-        // prefsView.togglePreferences(state, 'audio');
         prefsView.toggleModal(state, 'audio');
     });
 
     ipcRenderer.on('Video: Tools: Preferences', () => {
-        // prefsView.toggleBackground(state);
-        // prefsView.toggleModalState(state);
-        // prefsView.togglePreferences(state, 'video');
         prefsView.toggleModal(state, 'video');
     });
 
     ipcRenderer.on('Warpstagram: Tools: Preferences', () => {
-        prefsView.toggleBackground(state);
-        prefsView.toggleModalState(state);
-        prefsView.togglePreferences(state, 'warpstagram');
+        prefsView.toggleModal(state, 'warpstagram');
     });
 };
 const refreshModalListeners = (type) => {
@@ -139,10 +125,7 @@ const refreshPrefsNavListeners = () => {
         document
             .getElementById('closePrefsModal')
             .addEventListener('click', (e) => {
-                console.log('closing modal');
-                prefsView.toggleBackground(state);
-                prefsView.toggleModalState(state);
-                prefsView.togglePreferences(state, 'warpstagram');
+                prefsView.toggleModal(state, 'warpstagram');
             });
         // NAV LISTENERS
         document
@@ -240,36 +223,17 @@ const refreshPrefsNavListeners = () => {
     }, 100);
 };
 
-const removeModalBackgroundListeners = (type) => {
-    let backgrounds = document.getElementsByClassName('modalBackground');
-
-    for (var key in backgrounds) {
-        if (backgrounds.hasOwnProperty(key)) {
-            backgrounds[key].remove();
-        }
-    }
-    document
-        .getElementById('modalBackgroundID')
-        .removeEventListener('click', (e) => {
-            console.log('removed');
-        });
-};
 const refreshModalBackgroundListeners = (type) => {
     document
         .getElementById('modalBackgroundID')
         .addEventListener('click', (e) => {
-            prefsView.toggleBackground(state);
-            prefsView.toggleModalState(state);
-            prefsView.togglePreferences(state, 'warpstagram');
+            prefsView.toggleModal(state, 'warpstagram');
         });
     // CLOSE MODAL
     document
         .getElementById('closePrefsModal')
         .addEventListener('click', (e) => {
-            console.log('closing modal');
-            prefsView.toggleBackground(state);
-            prefsView.toggleModalState(state);
-            prefsView.togglePreferences(state, 'warpstagram');
+            prefsView.toggleModal(state, 'warpstagram');
         });
 };
 
