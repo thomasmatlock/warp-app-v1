@@ -227,16 +227,26 @@ const refreshModalBackgroundListeners = (type) => {
     document
         .getElementById('modalBackgroundID')
         .addEventListener('click', (e) => {
+            console.log('toggling and saving');
             prefsView.toggleModal(state, 'warpstagram');
         });
     // CLOSE MODAL
     document
         .getElementById('closePrefsModal')
         .addEventListener('click', (e) => {
+            console.log('toggling and saving');
             prefsView.toggleModal(state, 'warpstagram');
         });
 };
 
 const updatePrefsState = (eventTitle) => {
-    console.log('updatePrefsState:', eventTitle);
+    // console.log('updatePrefsState:', eventTitle);
+
+    // console.log(storage.user.prefs[eventTitle]);
+    // console.log(eventTitleTransformed);
+    storage.user.prefs[eventTitle] = storage.user.prefs[eventTitle] ?
+        false :
+        true;
+    // console.log(storage.user.prefs[eventTitle]);
+    console.log(storage.user.prefs);
 };

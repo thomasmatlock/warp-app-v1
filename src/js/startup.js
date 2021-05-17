@@ -48,6 +48,7 @@ class startup {
                 videoSmartMode: true,
                 acceptedEULA: true,
                 prefs: {
+                    autostartWarp: false,
                     startupTab: 'audio', //   audio, video, or warpstagram, defaults to audio
                     paths: {
                         main: fileController.dirMainPath,
