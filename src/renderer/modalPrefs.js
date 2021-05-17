@@ -95,27 +95,31 @@ const addNavAListeners = () => {
 };
 const addNavBListeners = () => {
     elements.nav_B_button_audio_preferences.addEventListener('click', (e) => {
-        prefsView.toggleBackground(state);
-        prefsView.toggleModalState(state);
-        prefsView.togglePreferences(state, 'audio');
+        // prefsView.toggleBackground(state);
+        // prefsView.toggleModalState(state);
+        // prefsView.togglePreferences(state, 'audio');
+        prefsView.toggleModal(state, 'audio');
     });
     elements.nav_B_button_video_preferences.addEventListener('click', (e) => {
-        prefsView.toggleBackground(state);
-        prefsView.toggleModalState(state);
-        prefsView.togglePreferences(state, 'video');
+        // prefsView.toggleBackground(state);
+        // prefsView.toggleModalState(state);
+        // prefsView.togglePreferences(state, 'video');
+        prefsView.toggleModal(state, 'video');
     });
 };
 const addAppMenuListeners = () => {
     ipcRenderer.on('Audio: Tools: Preferences', () => {
-        prefsView.toggleBackground(state);
-        prefsView.toggleModalState(state);
-        prefsView.togglePreferences(state, 'audio');
+        // prefsView.toggleBackground(state);
+        // prefsView.toggleModalState(state);
+        // prefsView.togglePreferences(state, 'audio');
+        prefsView.toggleModal(state, 'audio');
     });
 
     ipcRenderer.on('Video: Tools: Preferences', () => {
-        prefsView.toggleBackground(state);
-        prefsView.toggleModalState(state);
-        prefsView.togglePreferences(state, 'video');
+        // prefsView.toggleBackground(state);
+        // prefsView.toggleModalState(state);
+        // prefsView.togglePreferences(state, 'video');
+        prefsView.toggleModal(state, 'video');
     });
 
     ipcRenderer.on('Warpstagram: Tools: Preferences', () => {
@@ -149,7 +153,6 @@ const refreshPrefsNavListeners = () => {
         document
             .getElementById('modalPrefsNav_button_video_ID')
             .addEventListener('click', (e) => {
-                // console.log('this is it');
                 prefsView.showPanel('prefs', 'video');
             });
         document
@@ -170,118 +173,53 @@ const refreshPrefsNavListeners = () => {
         document
             .getElementById('modalPrefsToggleButton_autostartWarp')
             .addEventListener('click', (e) => {
-                console.log('autostartWarp');
+                updatePrefsState('autostartWarp');
             });
         document
             .getElementById('modalPrefsToggleButton_minimizeToTrayOnClose')
             .addEventListener('click', (e) => {
-                console.log('minimizeToTrayOnClose');
+                updatePrefsState('minimizeToTrayOnClose');
             });
         // AUDIO QUALITY
         document
             .getElementById('modalDropdownList_list_audio_Quality')
             .addEventListener('change', function() {
-                if (this.value == 'best') {
-                    console.log('you selected best audio quality');
-                }
-                if (this.value == 'high') {
-                    console.log('you selected high audio quality');
-                }
-                if (this.value == 'medium') {
-                    console.log('you selected medium audio quality');
-                }
-                if (this.value == 'low') {
-                    console.log('you selected low audio quality');
-                }
+                updatePrefsState(this.value);
             });
         // AUDIO FORMAT
         document
             .getElementById('modalDropdownList_list_audio_Format')
             .addEventListener('change', function() {
-                if (this.value == 'MP3') {
-                    console.log('you selected MP3 audio format');
-                }
-                if (this.value == 'M4A') {
-                    console.log('you selected M4A audio format');
-                }
-                if (this.value == 'OGG') {
-                    console.log('you selected OGG audio format');
-                }
+                updatePrefsState(this.value);
             });
         // VIDEO QUALITY
         document
             .getElementById('modalDropdownList_list_video_quality')
             .addEventListener('change', function() {
-                if (this.value == 'best') {
-                    console.log('you selected best video quality');
-                }
-                if (this.value == 'high') {
-                    console.log('you selected high video quality');
-                }
-                if (this.value == 'medium') {
-                    console.log('you selected medium video quality');
-                }
-                if (this.value == 'low') {
-                    console.log('you selected low video quality');
-                }
+                updatePrefsState(this.value);
             });
         // VIDEO FORMAT
         document
             .getElementById('modalDropdownList_list_video_Format')
             .addEventListener('change', function() {
-                if (this.value == 'MP4') {
-                    console.log('you selected MP4 video format');
-                }
-                if (this.value == 'MKV') {
-                    console.log('you selected MKV video format');
-                }
+                updatePrefsState(this.value);
             });
         document
             .getElementById('modalDropdownList_list_warpstagram_updateSelected')
             .addEventListener('change', function() {
-                if (this.value == 'update-all') {
-                    console.log('warpstagram update-all');
-                }
-                if (this.value == 'update-pinned') {
-                    console.log('warpstagram update-pinned');
-                }
-                if (this.value == 'update-disabled') {
-                    console.log('warpstagram update-disabled');
-                }
+                updatePrefsState(this.value);
             });
         document
             .getElementById(
                 'modalDropdownList_list_warpstagram_autoUpdateFrequency'
             )
             .addEventListener('change', function() {
-                if (this.value == '6') {
-                    console.log('warpstagram autoUpdateFrequency every 6 hrs');
-                }
-                if (this.value == '12') {
-                    console.log('warpstagram autoUpdateFrequency every 12 hrs');
-                }
-                if (this.value == '24') {
-                    console.log('warpstagram autoUpdateFrequency every 24 hrs');
-                }
+                updatePrefsState(this.value);
             });
         document
             .getElementById('modalDropdownList_list_warpstagram_postSorting')
             .addEventListener('change', function() {
-                if (this.value == 'default') {
-                    console.log('warpstagram default post sorting');
-                }
-                if (this.value == 'new-to-old') {
-                    console.log('warpstagram new-to-old post sorting');
-                }
-                if (this.value == 'old-to-new') {
-                    console.log('warpstagram old-to-new post sorting');
-                }
-                if (this.value == 'a-z') {
-                    console.log('warpstagram a-z post sorting');
-                }
-                if (this.value == 'z-a') {
-                    console.log('warpstagram z-a post sorting');
-                }
+                updatePrefsState(this.value);
             });
         // OUTPUT FOLDERS
         document
@@ -333,4 +271,8 @@ const refreshModalBackgroundListeners = (type) => {
             prefsView.toggleModalState(state);
             prefsView.togglePreferences(state, 'warpstagram');
         });
+};
+
+const updatePrefsState = (eventTitle) => {
+    console.log('updatePrefsState:', eventTitle);
 };

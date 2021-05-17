@@ -13,12 +13,8 @@ let elements = require('./views/elements');
 const toggleBackground = (state) => {
     if (state.modals.preferences) {
         elements.modalBackground.style.display = 'none'; // de-activate modal background
-        // elements.modalBackground.style.zIndex = '-10'; // activate modal background
-        // elements.modalBackground.style.width = '0%'; // de-activate modal background
     } else if (!state.modals.preferences) {
         elements.modalBackground.style.display = 'flex'; // activate modal background
-        // elements.modalBackground.style.zIndex = '10'; // activate modal background
-        // elements.modalBackground.style.width = '100%'; // de-activate modal backgroundflex'; // activate modal background
     }
 };
 
@@ -220,8 +216,6 @@ const toggleActiveModalNavClass = (avType) => {
 };
 
 const removeAllInjectedModals = () => {
-    // console.log('removing all prefs modals');
-
     let modals = document.getElementsByClassName('contentContainer');
 
     for (var key in modals) {
@@ -235,20 +229,14 @@ const injectPrefsModalToCurrentSlide = (
     outputFolderPaths,
     activeTab
 ) => {
-    // console.log(`injecting prefs modal into ${activeTab} slide`);
-    // console.log(activeTab);
     insertOutputFolderPaths(outputFolderPaths);
     injectPrefsMarkup(prefsMarkup, activeTab);
 };
-// const removeAllAndInjectToActiveSlide = (
-//     prefsMarkup,
-//     outputFolderPaths,
-//     activeTab
-// ) => {
-//     removeAllInjectedModals();
-//     injectPrefsModalToCurrentSlide(prefsMarkup, outputFolderPaths, activeTab);
-// };
-
+const toggleModal = (state, avType) => {
+    toggleBackground(state);
+    toggleModalState(state);
+    togglePreferences(state, avType);
+};
 module.exports = {
     readMarkup: readMarkup,
     toggleBackground: toggleBackground,
@@ -259,6 +247,5 @@ module.exports = {
     showPanelInit: showPanelInit,
     removeAllInjectedModals: removeAllInjectedModals,
     injectPrefsModalToCurrentSlide: injectPrefsModalToCurrentSlide,
-    // turnOffBackground: turnOffBackground,
-    // removeAllAndInjectToActiveSlide: removeAllAndInjectToActiveSlide,
+    toggleModal: toggleModal,
 };
