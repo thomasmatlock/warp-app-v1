@@ -70,8 +70,8 @@ class startup {
                         postSort: 'default',
                     },
 
-                    minimizeToTrayOnClose: false,
                     autostartWarp: false,
+                    minimizeToTrayOnClose: false,
                     prefsMarkup: ``,
                 },
             },

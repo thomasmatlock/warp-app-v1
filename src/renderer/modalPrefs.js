@@ -137,7 +137,7 @@ const refreshPrefsNavListeners = () => {
             .addEventListener('click', (e) => {
                 console.log(storage.user.prefs);
                 prefsView.toggleModal(state, 'warpstagram');
-                settingsSync();
+                prefsSettingsSync();
             });
         // NAV LISTENERS
         document
@@ -241,7 +241,7 @@ const refreshModalBackgroundListeners = (type) => {
         .addEventListener('click', (e) => {
             // console.log(storage.user.prefs);
             prefsView.toggleModal(state, 'warpstagram');
-            settingsSync();
+            prefsSettingsSync();
         });
     // CLOSE MODAL
     // document
@@ -262,6 +262,6 @@ const updatePrefsState = (eventTitle) => {
 
     console.log(eventTitle, storage.user.prefs[eventTitle]);
 };
-const settingsSync = () => {
+const prefsSettingsSync = () => {
     ipcRenderer.send('storage-save', storage);
 };

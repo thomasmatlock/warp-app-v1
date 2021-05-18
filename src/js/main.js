@@ -15,10 +15,8 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
 ///////////////////////   STARTUP   ///////////////////////
 (function init() {
     ipcMain.on('eula-agreement-accepted', (e) => {
-        console.log(storageMain);
-        console.log('eula-agreement-accepted');
+        // console.log(storageMain);
         storageMain.user.acceptedEULA = true;
-        console.log(storageMain);
         modalEULAwindow.destroy();
         modalEULAwindow = null;
         fileController.settingsSave('settings', storageMain);
@@ -73,10 +71,10 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
             splash.destroy();
             splash = null;
         })();
-        mainWindow.destroy();
-        mainWindow = null;
-        splash.destroy();
-        splash = null;
+        // mainWindow.destroy();
+        // mainWindow = null;
+        // splash.destroy();
+        // splash = null;
         app.relaunch();
         app.quit();
     });
@@ -107,7 +105,8 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
         (async() => {
             storageAwaited = await mainFunctions.load();
             storageMain = storageAwaited;
-            // console.log(storageMain);
+            console.log('storageAwaited', storageAwaited.user.prefs);
+            console.log('storageMain', storageMain.user.prefs);
             if (storageAwaited.user.prefs.prefsMarkup === '') {
                 // console.log(`no markup present`);
                 modalPrefsMarkup = await mainFunctions.loadModalPrefsMarkupSource();
@@ -146,7 +145,6 @@ const mainFunctions = {
     },
     load: async function() {
         const result = await fileController.settingsLoad();
-        // console.log(result);
         return result;
     },
     loadModalPrefsMarkupSource: async function() {
