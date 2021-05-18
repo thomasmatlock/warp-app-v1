@@ -33,7 +33,6 @@ async function saveMarkup() {
         console.error(e);
     }
 }
-
 async function settingsSave() {
     console.log('saving settings...');
     // try {

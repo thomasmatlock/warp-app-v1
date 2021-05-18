@@ -71,23 +71,22 @@ class fileController {
             console.error(err);
         }
     };
-    filesLoad = (dir) => {
-        fs.readdir(dir, (err, files) => {
-            if (err) {
-                throw err;
-            }
+    // filesLoad = (dir) => {
+    //     fs.readdir(dir, (err, files) => {
+    //         if (err) {
+    //             throw err;
+    //         }
 
-            files.forEach((file) => {
-                console.log(file);
-            });
-        });
-    };
+    //         files.forEach((file) => {
+    //             console.log(file);
+    //         });
+    //     });
+    // };
     settingsInitCreateFile = (settings) => {
         try {
             if (!fs.existsSync(this.settingsFile)) {
                 //  fs.mkdirSync(this.dirMainPath);
                 this.settingsSave('settings', settings);
-                // fileController.settingsSave('user', user);
 
                 console.log('created settings file');
                 console.log(this.settingsFile);
@@ -109,6 +108,7 @@ class fileController {
             app.quit();
         });
     };
+
     settingsSave = (name, obj) => {
         settings.set(name, obj);
     };
