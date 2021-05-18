@@ -25,19 +25,13 @@ let storage;
             windowReady(prefsMarkup);
         }
     );
-    ipcRenderer.on('storage-save-success', (e, storageReceived) => {
+    ipcRenderer.on('storage-save-successv2', (e, storageReceived) => {
         storage = storageReceived;
-        // console.log(storage.user.prefs);
+        console.log(storage.user.prefs);
     });
-    // ipcRenderer.on('storage-loadedv2', (storageReceived) => {
-    //     storage = storageReceived;
-    //     console.log(storage.user.prefs);
-    // });
 })();
 
 const windowReady = (prefsMarkup) => {
-    // prefsView.markupPrefs(prefsMarkup, storage.user.prefs.paths);
-    // prefsView.turnOffBackground(state);
     state.activeTab = storage.user.prefs.startupTab;
 
     prefsView.injectPrefsModalToCurrentSlide(
@@ -263,5 +257,5 @@ const updatePrefsState = (eventTitle) => {
     console.log(eventTitle, storage.user.prefs[eventTitle]);
 };
 const prefsSettingsSync = () => {
-    ipcRenderer.send('storage-save', storage);
+    ipcRenderer.send('storage-savev2', storage);
 };

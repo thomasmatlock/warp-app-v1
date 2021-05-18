@@ -1,6 +1,7 @@
 const { ipcRenderer } = require('electron');
 const fs = require('fs').promises;
 const { promisify } = require('util');
+const settings = require('electron-settings');
 
 const writeFile = promisify(fs.writeFile);
 const readFile = promisify(fs.readFile);
@@ -31,9 +32,30 @@ async function saveMarkup() {
     }
 }
 
+async function settingsSave() {
+    console.log('saving settings...');
+    // try {
+    //     const data = await settings.get('settings');
+    //     return data;
+    // } catch (e) {
+    //     console.error(e);
+    // }
+}
+async function settingsLoad() {
+    console.log('loading settings...');
+    try {
+        const data = await settings.get('settings');
+        return data;
+    } catch (e) {
+        console.error(e);
+    }
+}
+
 module.exports = {
     loadMarkupSource: loadMarkupSource,
     saveMarkup: saveMarkup,
+    settingsSave: settingsSave,
+    settingsLoad: settingsLoad,
     // testing: testing,
 };
 
