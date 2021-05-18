@@ -57,11 +57,12 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
     });
     ipcMain.on('storage-save', (e, storageObj, avType) => {
         fileController.settingsSave('settings', storageObj);
-        // console.log('saving');
+
         let storageAwaited;
         (async() => {
             storageAwaited = await mainFunctions.load();
             e.reply('storage-save-success', storageAwaited);
+            // console.log(storageAwaited);
         })();
     });
     ipcMain.on('reset-storage', (e, storageObj) => {
@@ -106,7 +107,7 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
         (async() => {
             storageAwaited = await mainFunctions.load();
             storageMain = storageAwaited;
-
+            // console.log(storageMain);
             if (storageAwaited.user.prefs.prefsMarkup === '') {
                 // console.log(`no markup present`);
                 modalPrefsMarkup = await mainFunctions.loadModalPrefsMarkupSource();
@@ -115,7 +116,7 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
             windowController.createWindow(startup.env.theme, modalPrefsMarkup); // creates main app window
             mainFunctions.setMenu(startup.env.nav_A_active);
         })();
-        if (startup.dev.backendOnly) mainWindow.hide(); // devMode only
+        // if (startup.dev.backendOnly) mainWindow.hide(); // devMode only
     });
     app.on('before-quit', (event) => {
         // event.preventDefault(); //
@@ -145,6 +146,7 @@ const mainFunctions = {
     },
     load: async function() {
         const result = await fileController.settingsLoad();
+        // console.log(result);
         return result;
     },
     loadModalPrefsMarkupSource: async function() {
@@ -195,8 +197,6 @@ const windowController = {
         const wc = mainWindow.webContents;
         // send stuff to app.js
         wc.on('did-finish-load', () => {
-            // console.log('did-finish-load');
-            // console.log(storageMain);
             wc.send('window-ready', storageMain, modalPrefsMarkup);
             if (startup.dev.splashScreen) splash.destroy();
         });
@@ -207,14 +207,9 @@ const windowController = {
             mainWindow = null;
         });
         mainWindow.on('resize', () => {
-            // console.log(`resized`);
             wc.send('resize');
         });
-        mainWindow.on('move', () => {
-            // console.log('window moved');
-            // console.log(`Size ${mainWindow.getSize()}`);
-            // console.log(`Position ${mainWindow.getPosition()}`);
-        });
+        mainWindow.on('move', () => {});
         mainWindow.on('maximize', () => {});
     },
     createSplashWindow: function() {
@@ -277,7 +272,7 @@ const windowController = {
         modalEULAwindow.loadFile('./src/renderer/modalEULA.html');
         // modalEULAwindow.webContents.openDevTools(); // Open DevTools - Remove for PRODUCTION!
         modalEULAwindow.once('ready-to-show', () => {
-            console.log('showing modal');
+            // console.log('showing modal');
             modalEULAwindow.show();
         });
         const md = modalEULAwindow.webContents;

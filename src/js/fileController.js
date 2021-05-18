@@ -5,7 +5,7 @@
 const os = require('os');
 const fs = require('fs');
 const path = require('path');
-const { app } = require('electron');
+const { app, ipcRenderer } = require('electron');
 const settings = require('electron-settings');
 
 class fileController {
@@ -113,6 +113,15 @@ class fileController {
         settings.set(name, obj);
     };
     settingsLoad = async() => {
+        // try {
+        //     const data = await settings.get('settings');
+        //     );
+        //     // ipcRenderer.send('prefsMarkup-loaded', data);
+        //     return data;
+        // } catch (e) {
+        //     console.error(e);
+        // }
+
         let promise = new Promise((resolve, reject) => {
             (async() => {
                 resolve(settings.get('settings'));

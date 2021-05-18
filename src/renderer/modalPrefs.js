@@ -25,10 +25,14 @@ let storage;
             windowReady(prefsMarkup);
         }
     );
-    ipcRenderer.on('storage-save-success', (e, storageSentFromMain) => {
-        storage = storageSentFromMain;
-        console.log(storage.user.prefs);
+    ipcRenderer.on('storage-save-success', (e, storageReceived) => {
+        storage = storageReceived;
+        // console.log(storage.user.prefs);
     });
+    // ipcRenderer.on('storage-loadedv2', (storageReceived) => {
+    //     storage = storageReceived;
+    //     console.log(storage.user.prefs);
+    // });
 })();
 
 const windowReady = (prefsMarkup) => {
@@ -131,9 +135,9 @@ const refreshPrefsNavListeners = () => {
         document
             .getElementById('closePrefsModal')
             .addEventListener('click', (e) => {
-                console.log('toggling and saving');
                 console.log(storage.user.prefs);
                 prefsView.toggleModal(state, 'warpstagram');
+                settingsSync();
             });
         // NAV LISTENERS
         document
@@ -235,8 +239,7 @@ const refreshModalBackgroundListeners = (type) => {
     document
         .getElementById('modalBackgroundID')
         .addEventListener('click', (e) => {
-            console.log('toggling and saving');
-            console.log(storage.user.prefs);
+            // console.log(storage.user.prefs);
             prefsView.toggleModal(state, 'warpstagram');
             settingsSync();
         });
