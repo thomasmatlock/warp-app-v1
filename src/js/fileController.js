@@ -122,7 +122,10 @@ class fileController {
         let result = await promise; // wait until the promise resolves (*)
         return result;
     };
-
+    settingsSync = async(name, obj) => {
+        this.settingsSave(name, obj);
+        // this.settingsLoad();
+    };
     init = (settingsObj) => {
         this.settingsFile = settings.file();
         this.filesInitDirCreation();

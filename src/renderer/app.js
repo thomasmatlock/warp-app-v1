@@ -41,6 +41,11 @@ let state = new stateReq();
         ipcRenderer.send('menu-change', startup.env.nav_A_active);
         if (startup.dev.clearStorage) items.resetStorage(); // clears localStorage if active
         items.startupAddAllItems(storage); // loads items stored in settings to UI
+        console.log();
+        ipcRenderer.send('mainWindow-ready');
+        ipcRenderer.on('modal-window-ready', () => {
+            console.log('attaching event listeners');
+        });
     });
 
     const setActiveNav_A = (nav_A_active) => {

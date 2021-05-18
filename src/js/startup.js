@@ -46,7 +46,7 @@ class startup {
                 video: 'free',
                 warpstagram: 'free',
                 videoSmartMode: true,
-                acceptedEULA: true,
+                acceptedEULA: false,
                 prefs: {
                     // autostartWarp: false,
                     startupTab: 'audio', //   audio, video, or warpstagram, defaults to audio
@@ -69,10 +69,9 @@ class startup {
                         autoUpdateFrequency: 6,
                         postSort: 'default',
                     },
-                    system: {
-                        autoStart: true,
-                        minimizeOnClose: true,
-                    },
+
+                    minimizeToTrayOnClose: false,
+                    autostartWarp: false,
                     prefsMarkup: ``,
                 },
             },

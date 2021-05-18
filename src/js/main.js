@@ -14,6 +14,15 @@ let mainWindow, splash, modalWindow, displayController, storageMain; // Keep a g
 app.allowRendererProcessReuse = true; // not sure what this does but I added it for a reason
 ///////////////////////   STARTUP   ///////////////////////
 (function init() {
+    ipcMain.on('eula-agreement-accepted', (e) => {
+        console.log(storageMain);
+        console.log('eula-agreement-accepted');
+        storageMain.user.acceptedEULA = true;
+        console.log(storageMain);
+        modalEULAwindow.destroy();
+        modalEULAwindow = null;
+        fileController.settingsSave('settings', storageMain);
+    });
     ipcMain.on('new-item', (e, itemURL, avType, platform) => {
         startup.updateActiveTab(avType); // sets nav A active
         e.reply('paste-new-url', itemURL, avType, platform); // send message to app js
@@ -38,6 +47,10 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
             appMenuWarpstagram(mainWindow.webContents); // sets video menu if video tab is clicked
         e.reply('slide-change', menuType);
     });
+    ipcMain.on('mainWindow-ready', () => {
+        if (!storageMain.user.acceptedEULA)
+            windowController.createModalEULAWindow();
+    });
     ipcMain.on('quit', () => {
         app.quit();
         mainWindow = null;
@@ -56,7 +69,13 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
         (async() => {
             mainWindow.destroy();
             mainWindow = null;
+            splash.destroy();
+            splash = null;
         })();
+        mainWindow.destroy();
+        mainWindow = null;
+        splash.destroy();
+        splash = null;
         app.relaunch();
         app.quit();
     });
@@ -78,7 +97,7 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
 (function appListeners() {
     app.on('ready', () => {
         if (startup.dev.splashScreen) windowController.createSplashWindow();
-        // windowController.createSplashWindow();
+
         displayController = new displayControllerReq(); // positions output window to display depending on single/multi-monitor
         startup.init(); // all startup checks, latest version, isOnline, hasFFmpeg etc
         fileController.init(startup); // checks for local directories and creates them if non existent
@@ -95,7 +114,6 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
 
             windowController.createWindow(startup.env.theme, modalPrefsMarkup); // creates main app window
             mainFunctions.setMenu(startup.env.nav_A_active);
-            // windowController.createModalWindow();
         })();
         if (startup.dev.backendOnly) mainWindow.hide(); // devMode only
     });
@@ -210,28 +228,62 @@ const windowController = {
         });
         splash.loadFile('./src/renderer/splash.html'); // Load index.html into the new BrowserWindow
     },
-    createModalWindow: function() {
-        modalWindow = new BrowserWindow({
-            // parent: mainWindow,
-            // modal: true,
+    // createModalWindow: function() {
+    //     modalWindow = new BrowserWindow({
+    //         // parent: mainWindow,
+    //         // modal: true,
+    //         show: true,
+    //         // transparent: true,
+    //         frame: false,
+    //         // resizable: false,
+    //         // movable: false,
+    //         // minimizable: false,
+    //         // maximizable: false,
+    //         // alwaysOnTop: true,
+    //         // transparent: false,
+    //         // setPosition;
+    //         // getPosition;
+    //         // setSize;
+    //         // getSize;
+    //     });
+    //     modalWindow.loadFile('./src/renderer/modal1.html'); // Load index.html into the new BrowserWindow
+
+    //     modalWindow.once('ready-to-show', () => {
+    //         modalWindow.show();
+    //     });
+    // },
+    createModalEULAWindow: function() {
+        modalEULAwindow = new BrowserWindow({
+            parent: mainWindow,
+            modal: true,
             show: true,
             // transparent: true,
             frame: false,
-            // resizable: false,
-            // movable: false,
-            // minimizable: false,
-            // maximizable: false,
-            // alwaysOnTop: true,
+            resizable: false,
+            movable: false,
+            minimizable: false,
+            maximizable: false,
+            alwaysOnTop: true,
             // transparent: false,
             // setPosition;
             // getPosition;
             // setSize;
             // getSize;
+            webPreferences: {
+                nodeIntegration: true,
+                worldSafeExecuteJavaScript: true,
+            },
         });
-        modalWindow.loadFile('./src/renderer/modal1.html'); // Load index.html into the new BrowserWindow
-
-        modalWindow.once('ready-to-show', () => {
-            modalWindow.show();
+        modalEULAwindow.loadFile('./src/renderer/modalEULA.html');
+        // modalEULAwindow.webContents.openDevTools(); // Open DevTools - Remove for PRODUCTION!
+        modalEULAwindow.once('ready-to-show', () => {
+            console.log('showing modal');
+            modalEULAwindow.show();
+        });
+        const md = modalEULAwindow.webContents;
+        // send stuff to app.js
+        md.on('did-finish-load', () => {
+            // md.send('modal-window-ready');
         });
     },
 };

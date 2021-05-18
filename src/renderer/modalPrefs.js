@@ -7,6 +7,8 @@ const startupReq = require('../js/startup');
 const startup = new startupReq();
 const stateReq = require('./state');
 const auto = require('./automate');
+const fileControllerReq = require('../js/fileController');
+const fileController = new fileControllerReq();
 
 // dialog.showOpenDialog({ properties: ['openDirectory'] });
 let state = new stateReq();
@@ -23,6 +25,10 @@ let storage;
             windowReady(prefsMarkup);
         }
     );
+    ipcRenderer.on('storage-save-success', (e, storageSentFromMain) => {
+        storage = storageSentFromMain;
+        console.log(storage.user.prefs);
+    });
 })();
 
 const windowReady = (prefsMarkup) => {
@@ -232,6 +238,7 @@ const refreshModalBackgroundListeners = (type) => {
             console.log('toggling and saving');
             console.log(storage.user.prefs);
             prefsView.toggleModal(state, 'warpstagram');
+            settingsSync();
         });
     // CLOSE MODAL
     // document
@@ -249,6 +256,9 @@ const updatePrefsState = (eventTitle) => {
     storage.user.prefs[eventTitle] = storage.user.prefs[eventTitle] ?
         false :
         true;
-    // console.log(storage.user.prefs[eventTitle]);
-    console.log(storage.user.prefs);
+
+    console.log(eventTitle, storage.user.prefs[eventTitle]);
+};
+const settingsSync = () => {
+    ipcRenderer.send('storage-save', storage);
 };
