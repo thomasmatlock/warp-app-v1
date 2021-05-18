@@ -1,4 +1,6 @@
+const os = require('os');
 const { ipcRenderer } = require('electron');
+const path = require('path');
 const fs = require('fs').promises;
 const { promisify } = require('util');
 const settings = require('electron-settings');
@@ -42,7 +44,6 @@ async function settingsSave() {
     // }
 }
 async function settingsLoad() {
-    console.log('loading settings...');
     try {
         const data = await settings.get('settings');
         return data;
@@ -52,6 +53,7 @@ async function settingsLoad() {
 }
 
 module.exports = {
+    // systemInfo: systemInfo,
     loadMarkupSource: loadMarkupSource,
     saveMarkup: saveMarkup,
     settingsSave: settingsSave,

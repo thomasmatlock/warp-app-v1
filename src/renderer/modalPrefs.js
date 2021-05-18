@@ -27,7 +27,7 @@ let storage;
     );
     ipcRenderer.on('storage-save-successv2', (e, storageReceived) => {
         storage = storageReceived;
-        console.log(storage.user.prefs);
+        // console.log(storage.user.prefs);
     });
 })();
 
