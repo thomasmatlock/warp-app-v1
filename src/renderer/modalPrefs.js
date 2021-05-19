@@ -2,7 +2,7 @@ const { app, clipboard, ipcRenderer, shell } = require('electron');
 const dialog = require('electron');
 let elements = require('./views/elements');
 const prefsView = require('./modalPrefsView');
-const prefsStorage = require('./modalPrefsStorage');
+const prefsStorage = require('./settings');
 const startupReq = require('../js/startup');
 const startup = new startupReq();
 const stateReq = require('./state');
@@ -27,7 +27,7 @@ let storage;
     );
     ipcRenderer.on('storage-save-successv2', (e, storageReceived) => {
         storage = storageReceived;
-        // console.log(storage.user.prefs);
+        console.log(storage.user.prefs);
     });
 })();
 

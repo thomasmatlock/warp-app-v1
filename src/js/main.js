@@ -5,7 +5,7 @@ const appMenuVideo = require('./menuVideo');
 const appMenuWarpstagram = require('./menuWarpstagram');
 const fileControllerReq = require('./fileController');
 const fileController = new fileControllerReq();
-const modalPrefsStorage = require('../renderer/modalPrefsStorage');
+const settings = require('../renderer/settings');
 const startupReq = require('./startup');
 const startup = new startupReq();
 
@@ -161,11 +161,11 @@ const mainFunctions = {
         return result;
     },
     loadPrefs: async function() {
-        const result = await modalPrefsStorage.settingsLoad();
+        const result = await settings.settingsLoad();
         return result;
     },
     loadModalPrefsMarkupSource: async function() {
-        const result = await modalPrefsStorage.loadMarkupSource();
+        const result = await settings.loadMarkupSource();
         return result;
     },
 };
