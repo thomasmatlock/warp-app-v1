@@ -53,28 +53,20 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
         app.quit();
         mainWindow = null;
     });
-    ipcMain.on('storage-save', (e, storageObj, avType) => {
-        fileController.settingsSave('settings', storageObj);
 
-        let storageAwaited;
-        (async() => {
-            storageAwaited = await mainFunctions.load();
-            // console.log('storageAwaited', storageAwaited);
-            e.reply('storage-save-successv2', storageAwaited);
-            // console.log(storageAwaited);
-        })();
-    });
-    ipcMain.on('storage-savev2', (e, storageObj, avType) => {
+    ipcMain.on('storage-sync-request', (e, storageObj, avType) => {
         fileController.settingsSave('settings', storageObj);
+        // console.log(storageObj);
+        e.reply('storage-sync-success', storageObj);
 
-        let storageAwaited;
-        setTimeout(() => {
-            (async() => {
-                storageAwaited = await mainFunctions.loadPrefs();
-                console.log(storageAwaited);
-                e.reply('storage-save-successv2', storageAwaited);
-            })();
-        }, 1000);
+        // let storageAwaited;
+        // setTimeout(() => {
+        //     (async() => {
+        //         storageAwaited = await mainFunctions.loadPrefs();
+        //         console.log(storageAwaited);
+        //         e.reply('storage-synced', storageAwaited);
+        //     })();
+        // }, 1000);
     });
     ipcMain.on('reset-storage', (e, storageObj) => {
         fileController.settingsReset();
@@ -123,6 +115,7 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
             if (storageAwaited.user.prefs.prefsMarkup === '') {
                 // console.log(`no markup present`);
                 modalPrefsMarkup = await mainFunctions.loadModalPrefsMarkupSource();
+                // console.log(modalPrefsMarkup);
             }
 
             windowController.createWindow(startup.env.theme, modalPrefsMarkup); // creates main app window

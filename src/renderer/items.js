@@ -196,7 +196,7 @@ exports.resetMarkup = () => {
 
 ///////////////////////   STORAGE   ///////////////////////
 exports.save = (avType) => {
-    ipcRenderer.send('storage-save', storage, avType);
+    ipcRenderer.send('storage-sync-request', storage, avType);
 };
 exports.load = () => {
     ipcRenderer.send('load-storage');
@@ -210,7 +210,7 @@ exports.updateStorage = (item, avType, addRemoveType, index) => {
         }
         if (avType === 'video') {
             storage.downloadItems.videoArr.push(item);
-            ipcRenderer.send('storage-save', storage, avType);
+            ipcRenderer.send('storage-sync-request', storage, avType);
             this.save(avType);
             this.load();
         }
@@ -218,21 +218,21 @@ exports.updateStorage = (item, avType, addRemoveType, index) => {
     if (addRemoveType === 'remove') {
         if (avType === 'audio') {
             storage.downloadItems.audioArr.splice(index, 1);
-            ipcRenderer.send('storage-save', storage, avType);
+            ipcRenderer.send('storage-sync-request', storage, avType);
         }
         if (avType === 'video') {
             storage.downloadItems.videoArr.splice(index, 1);
-            ipcRenderer.send('storage-save', storage, avType);
+            ipcRenderer.send('storage-sync-request', storage, avType);
         }
     }
     if (addRemoveType === 'remove-all') {
         if (avType === 'audio') {
             storage.downloadItems.audioArr = [];
-            ipcRenderer.send('storage-save', storage, avType);
+            ipcRenderer.send('storage-sync-request', storage, avType);
         }
         if (avType === 'video') {
             storage.downloadItems.videoArr = [];
-            ipcRenderer.send('storage-save', storage, avType);
+            ipcRenderer.send('storage-sync-request', storage, avType);
         }
     }
 };
@@ -249,6 +249,13 @@ exports.resetStorage = () => {
     ipcRenderer.send('reset-storage', storage);
 };
 ///////////////////////   IPC LISTENERS   ///////////////////////
-ipcRenderer.on('storage-save-success', (e, storageSentFromMain) => {
-    storage = storageSentFromMain;
+ipcRenderer.on('storage-sync-success', (e, storageReceived) => {
+    storage = storageReceived;
+    // console.log('audio', storage.downloadItems.audioArr.length);
+    console.log(
+        'audio',
+        storage.downloadItems.audioArr.length,
+        'video',
+        storage.downloadItems.videoArr.length
+    );
 });

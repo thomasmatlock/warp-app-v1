@@ -8,6 +8,19 @@ const settings = require('electron-settings');
 const writeFile = promisify(fs.writeFile);
 const readFile = promisify(fs.readFile);
 
+// async function saveMarkup() {
+//     // // https://puruvj.dev/blog/fs-promises
+//     try {
+//         //  const data = await readFile(
+//         //      `${__dirname}/modalPrefsMarkup.html`,
+//         //      'binary'
+//         //  );
+//         ipcRenderer.send('prefsMarkup-saved', data);
+//     } catch (e) {
+//         console.error(e);
+//     }
+// }
+
 async function loadMarkupSource() {
     // // https://puruvj.dev/blog/fs-promises
     try {
@@ -15,24 +28,14 @@ async function loadMarkupSource() {
             `${__dirname}/modalPrefsMarkup.html`,
             'binary'
         );
+
         // ipcRenderer.send('prefsMarkup-loaded', data);
         return data;
     } catch (e) {
         console.error(e);
     }
 }
-async function saveMarkup() {
-    // // https://puruvj.dev/blog/fs-promises
-    try {
-        //  const data = await readFile(
-        //      `${__dirname}/modalPrefsMarkup.html`,
-        //      'binary'
-        //  );
-        ipcRenderer.send('prefsMarkup-saved', data);
-    } catch (e) {
-        console.error(e);
-    }
-}
+
 async function settingsSave() {
     console.log('saving settings...');
     // try {
@@ -54,7 +57,7 @@ async function settingsLoad() {
 module.exports = {
     // systemInfo: systemInfo,
     loadMarkupSource: loadMarkupSource,
-    saveMarkup: saveMarkup,
+    // saveMarkup: saveMarkup,
     settingsSave: settingsSave,
     settingsLoad: settingsLoad,
     // testing: testing,

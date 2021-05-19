@@ -71,17 +71,7 @@ class fileController {
             console.error(err);
         }
     };
-    // filesLoad = (dir) => {
-    //     fs.readdir(dir, (err, files) => {
-    //         if (err) {
-    //             throw err;
-    //         }
 
-    //         files.forEach((file) => {
-    //             console.log(file);
-    //         });
-    //     });
-    // };
     settingsInitCreateFile = (settings) => {
         try {
             if (!fs.existsSync(this.settingsFile)) {
@@ -110,7 +100,11 @@ class fileController {
     };
 
     settingsSave = (name, obj) => {
-        settings.set(name, obj);
+        try {
+            settings.set(name, obj);
+        } catch (error) {
+            console.log(error);
+        }
     };
     settingsLoad = async() => {
         // console.log('settingsLoad');

@@ -25,9 +25,9 @@ let storage;
             windowReady(prefsMarkup);
         }
     );
-    ipcRenderer.on('storage-save-successv2', (e, storageReceived) => {
+    ipcRenderer.on('storage-sync-success', (e, storageReceived) => {
         storage = storageReceived;
-        console.log(storage.user.prefs);
+        // console.log(storage.user.prefs);
     });
 })();
 
@@ -254,8 +254,8 @@ const updatePrefsState = (eventTitle) => {
         false :
         true;
 
-    console.log(eventTitle, storage.user.prefs[eventTitle]);
+    // console.log(eventTitle, storage.user.prefs[eventTitle]);
 };
 const prefsSettingsSync = () => {
-    ipcRenderer.send('storage-savev2', storage);
+    ipcRenderer.send('storage-sync-request', storage);
 };

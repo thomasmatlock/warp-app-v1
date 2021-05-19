@@ -47,7 +47,10 @@ let state = new stateReq();
             console.log('attaching event listeners');
         });
     });
-
+    ipcRenderer.on('storage-sync-success', (e, storageReceived) => {
+        storage = storageReceived;
+        // console.log(storage.user.prefs);
+    });
     const setActiveNav_A = (nav_A_active) => {
         if (nav_A_active === 'audio')
             elements.nav_A_active = elements.nav_A_audio;

@@ -63,3 +63,15 @@
 //   ctime: 2020-11-22T19:40:10.041Z,
 //   birthtime: 2020-11-15T07:01:24.000Z
 // }
+// loop through files in a dir
+// filesLoad = (dir) => {
+//     fs.readdir(dir, (err, files) => {
+//         if (err) {
+//             throw err;
+//         }
+
+//         files.forEach((file) => {
+//             console.log(file);
+//         });
+//     });
+// };
