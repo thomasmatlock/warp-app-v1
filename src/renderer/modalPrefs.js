@@ -27,7 +27,7 @@ let storage;
     );
     ipcRenderer.on('storage-sync-success', (e, storageReceived) => {
         storage = storageReceived;
-        // console.log(storage.user.prefs);
+        console.log(storage.user.prefs);
     });
 })();
 
@@ -246,15 +246,10 @@ const refreshModalBackgroundListeners = (type) => {
 };
 
 const updatePrefsState = (eventTitle) => {
-    // console.log('updatePrefsState:', eventTitle);
-
-    // console.log(storage.user.prefs[eventTitle]);
-    // console.log(eventTitleTransformed);
     storage.user.prefs[eventTitle] = storage.user.prefs[eventTitle] ?
         false :
         true;
-
-    // console.log(eventTitle, storage.user.prefs[eventTitle]);
+    console.log(eventTitle, storage.user.prefs[eventTitle]);
 };
 const prefsSettingsSync = () => {
     ipcRenderer.send('storage-sync-request', storage);
