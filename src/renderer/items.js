@@ -251,11 +251,10 @@ exports.resetStorage = () => {
 ///////////////////////   IPC LISTENERS   ///////////////////////
 ipcRenderer.on('storage-sync-success', (e, storageReceived) => {
     storage = storageReceived;
-    // console.log('audio', storage.downloadItems.audioArr.length);
-    console.log(
-        'audio',
-        storage.downloadItems.audioArr.length,
-        'video',
-        storage.downloadItems.videoArr.length
-    );
+    // console.log(
+    //     'audio',
+    //     storage.downloadItems.audioArr.length,
+    //     'video',
+    //     storage.downloadItems.videoArr.length
+    // );
 });
