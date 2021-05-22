@@ -56,19 +56,6 @@ class startup {
                         video: fileController.dirVideoPath,
                         warpstagram: fileController.dirWarpstagramPath,
                     },
-                    audio: {
-                        quality: 'best',
-                        format: 'mp3',
-                    },
-                    video: {
-                        quality: 'best',
-                        format: 'mp4',
-                    },
-                    warpstagram: {
-                        autoUpdate: 'all',
-                        autoUpdateFrequency: 6,
-                        postSort: 'default',
-                    },
 
                     autostartWarp: false,
                     minimizeToTrayOnClose: false,

@@ -27,7 +27,7 @@ let storage;
     );
     ipcRenderer.on('storage-sync-success', (e, storageReceived) => {
         storage = storageReceived;
-        console.log(storage.user.prefs);
+        // console.log(storage.user.prefs);
     });
 })();
 
@@ -237,12 +237,6 @@ const refreshModalBackgroundListeners = (type) => {
             prefsView.toggleModal(state, 'warpstagram');
             prefsSettingsSync();
         });
-    // CLOSE MODAL
-    // document
-    //     .getElementById('closePrefsModal')
-    //     .addEventListener('click', (e) => {
-    //         prefsView.toggleModal(state, 'warpstagram');
-    //     });
 };
 
 const updatePrefsState = (eventTitle) => {
@@ -250,6 +244,9 @@ const updatePrefsState = (eventTitle) => {
         false :
         true;
     console.log(eventTitle, storage.user.prefs[eventTitle]);
+    console.log(eventTitle);
+
+    // prefsSettingsSync();
 };
 const prefsSettingsSync = () => {
     ipcRenderer.send('storage-sync-request', storage);
