@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow, dialog, ipcMain } = require('electron');
 const displayControllerReq = require('./displayController');
 const appMenuAudio = require('./menuAudio');
 const appMenuVideo = require('./menuVideo');
@@ -50,7 +50,62 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
             windowController.createModalEULAWindow();
     });
     ipcMain.on('dialog-showOutputFolder', (e, outputFolderBtnID) => {
-        console.log(outputFolderBtnID);
+        let outputFolderSelected;
+        if (outputFolderBtnID.includes('audio')) outputFolderSelected = 'audio';
+        if (outputFolderBtnID.includes('video')) outputFolderSelected = 'video';
+        if (outputFolderBtnID.includes('warpstagram'))
+            outputFolderSelected = 'Warpstagram';
+        console.log(outputFolderSelected);
+        // DIALOG
+        // // to make a dialog window as its own standalone window, simply specify the window as arg1. otherwise, its a child to the parent window
+        // // IMPORTANT, course has a callback? but its a then/catch block
+        // // please note all the stuff in course DOES NOT  work without then/catch blocks. he uses callbacks, but none of them worked
+        //
+        //////////////////////////CHOOSE FILE DIALOG ////////////////////////////////
+        dialog
+            .showOpenDialog(
+                // mainWindow, // attached to window/app
+                {
+                    defaultPath: app.getPath('desktop'),
+                    buttonLabel: `Choose ${outputFolderSelected} destination folder`,
+                    properties: [
+                        'multiSelections',
+                        'createDirectory',
+                        'openFile',
+                        // 'openDirectory'
+                    ],
+                }
+            )
+            .then((result) => {
+                if (result.canceled) {
+                    console.log('Dialog canceled');
+                } else {
+                    console.log(result.filePaths);
+                    // console.log(result.canceled);
+                }
+            })
+            .catch((err) => console.log(err));
+
+        //////////////////////////////////////////////////////////
+        // dialog.showSaveDialog({}, (filename) => {
+        //     console.log(filename);
+        // });
+        //////////////////////////////////////////////////////////
+        //
+        // const answers = ['Yeah', 'Naw', 'Maybe'];
+        // dialog
+        //     .showMessageBox({
+        //         title: 'The Big Message Box Title',
+        //         message: 'This is a message',
+        //         detail: 'Message details',
+        //         buttons: answers,
+        //     })
+        //     .then((response) => {
+        //         const res = answers[response.response];
+        //         console.log(res);
+        //     })
+        //     .catch((err) => console.log(err));
+        //////////////////////////////////////////////////////////
     });
     ipcMain.on('quit', () => {
         app.quit();
@@ -59,17 +114,7 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
 
     ipcMain.on('storage-sync-request', (e, storageObj, avType) => {
         fileController.settingsSave('settings', storageObj);
-        // console.log(storageObj);
         e.reply('storage-sync-success', storageObj);
-
-        // let storageAwaited;
-        // setTimeout(() => {
-        //     (async() => {
-        //         storageAwaited = await mainFunctions.loadPrefs();
-        //         console.log(storageAwaited);
-        //         e.reply('storage-synced', storageAwaited);
-        //     })();
-        // }, 1000);
     });
     ipcMain.on('reset-storage', (e, storageObj) => {
         fileController.settingsReset();
