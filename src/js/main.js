@@ -49,6 +49,9 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
         if (!storageMain.user.acceptedEULA)
             windowController.createModalEULAWindow();
     });
+    ipcMain.on('dialog-showOutputFolder', (e, outputFolderBtnID) => {
+        console.log(outputFolderBtnID);
+    });
     ipcMain.on('quit', () => {
         app.quit();
         mainWindow = null;

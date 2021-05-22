@@ -214,17 +214,17 @@ const refreshPrefsNavListeners = () => {
         document
             .getElementById('modalOutputFolderBtn_audio')
             .addEventListener('click', (e) => {
-                console.log('You want to change the audio output folder');
+                dialogShowOutputFolder('modalOutputFolderBtn_audio');
             });
         document
             .getElementById('modalOutputFolderBtn_video')
             .addEventListener('click', (e) => {
-                console.log('You want to change the video output folder');
+                dialogShowOutputFolder('modalOutputFolderBtn_video');
             });
         document
             .getElementById('modalOutputFolderBtn_warpstagram')
             .addEventListener('click', (e) => {
-                console.log('You want to change the warpstagram output folder');
+                dialogShowOutputFolder('modalOutputFolderBtn_warpstagram');
             });
     }, 100);
 };
@@ -258,4 +258,8 @@ const setPrefOptionsToFalse = (optionSubstring) => {
             }
         }
     }
+};
+
+const dialogShowOutputFolder = (outputFolderBtnID) => {
+    ipcRenderer.send('dialog-showOutputFolder', outputFolderBtnID);
 };
