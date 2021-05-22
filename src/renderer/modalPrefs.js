@@ -240,14 +240,22 @@ const refreshModalBackgroundListeners = (type) => {
 };
 
 const updatePrefsState = (eventTitle) => {
+    var optionSubstring = eventTitle.substr(0, 12);
+    setPrefOptionsToFalse(optionSubstring);
     storage.user.prefs[eventTitle] = storage.user.prefs[eventTitle] ?
         false :
         true;
-    console.log(eventTitle, storage.user.prefs[eventTitle]);
-    console.log(eventTitle);
-
-    // prefsSettingsSync();
 };
 const prefsSettingsSync = () => {
     ipcRenderer.send('storage-sync-request', storage);
+};
+const setPrefOptionsToFalse = (optionSubstring) => {
+    for (var key in storage.user.prefs) {
+        if (storage.user.prefs.hasOwnProperty(key)) {
+            if (key.substr(0, 12) === optionSubstring) {
+                console.log(key);
+                storage.user.prefs[key] = false;
+            }
+        }
+    }
 };
