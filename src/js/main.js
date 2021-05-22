@@ -52,14 +52,20 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
     ipcMain.on(
         'dialog-showOutputFolder',
         (e, outputFolderBtnID, storageReceived) => {
-            let outputFolderSelected;
-            if (outputFolderBtnID.includes('audio'))
-                outputFolderSelected = 'audio';
-            if (outputFolderBtnID.includes('video'))
-                outputFolderSelected = 'video';
-            if (outputFolderBtnID.includes('warpstagram'))
-                outputFolderSelected = 'Warpstagram';
-            console.log(outputFolderSelected);
+            let outputFolderSelectedType, outputFolderSelectedPath;
+            if (outputFolderBtnID.includes('audio')) {
+                outputFolderSelectedType = 'audio';
+                outputFolderSelectedPath = app.getPath('music');
+            }
+            if (outputFolderBtnID.includes('video')) {
+                outputFolderSelectedType = 'video';
+                outputFolderSelectedPath = app.getPath('videos');
+            }
+            if (outputFolderBtnID.includes('warpstagram')) {
+                outputFolderSelectedType = 'Warpstagram';
+                outputFolderSelectedPath = app.getPath('pictures');
+            }
+
             // DIALOG
             // // to make a dialog window as its own standalone window, simply specify the window as arg1. otherwise, its a child to the parent window
             // // IMPORTANT, course has a callback? but its a then/catch block
@@ -71,10 +77,12 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
                     mainWindow, // attached to window/app
                     {
                         // defaultPath: app.getPath('desktop'),
-                        buttonLabel: `Choose ${outputFolderSelected} destination folder`,
+                        defaultPath: outputFolderSelectedPath,
+                        // defaultPath: app.getPath(`${userDocumentsPath}`),
+                        buttonLabel: `Choose ${outputFolderSelectedType} destination folder`,
                         properties: [
-                            'multiSelections',
-                            'createDirectory',
+                            // 'multiSelections',
+                            // 'createDirectory',
                             // 'openFile',
                             'openDirectory',
                         ],
@@ -85,6 +93,11 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
                         console.log('Dialog canceled');
                     } else {
                         console.log(result.filePaths);
+                        e.reply(
+                            'dialog-outputFolderSelected',
+                            result.filePaths,
+                            outputFolderSelectedType
+                        );
                         // console.log(result.canceled);
                     }
                 })

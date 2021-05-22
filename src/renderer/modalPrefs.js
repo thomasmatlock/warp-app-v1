@@ -262,3 +262,32 @@ const setPrefOptionsToFalse = (optionSubstring) => {
 const dialogShowOutputFolder = (outputFolderBtnID, storage) => {
     ipcRenderer.send('dialog-showOutputFolder', outputFolderBtnID, storage);
 };
+
+ipcRenderer.on(
+    'dialog-outputFolderSelected',
+    (e, outputFolderSelected, outputFolderSelectedType) => {
+        // console.log(outputFolderSelected, outputFolderSelectedType);
+        // outputFolderSelectedType = outputFolderSelectedType;
+        outputFolderSelectedType = outputFolderSelectedType.replace(
+            /^\w/,
+            (c) => c.toUpperCase()
+        );
+        console.log(outputFolderSelectedType);
+        // storage.
+
+        for (var key in storage.user.prefs) {
+            // console.log(key);
+            if (storage.user.prefs.hasOwnProperty(key)) {
+                // if (key.substr(0, 6) === `path${outputFolderSelectedType}`) {
+                // if (key.substr(0, 8) === `path${outputFolderSelectedType}`) {
+                let joined = `path${outputFolderSelectedType}`;
+                console.log(joined);
+                console.log(key);
+                if (key.substr(0, 5) === 'path') {
+                    // console.log(key);
+                    //  storage.user.prefs[key] = false;
+                }
+            }
+        }
+    }
+);
