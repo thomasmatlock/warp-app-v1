@@ -253,7 +253,7 @@ const setPrefOptionsToFalse = (optionSubstring) => {
     for (var key in storage.user.prefs) {
         if (storage.user.prefs.hasOwnProperty(key)) {
             if (key.substr(0, 12) === optionSubstring) {
-                console.log(key);
+                // console.log(key);
                 storage.user.prefs[key] = false;
             }
         }
