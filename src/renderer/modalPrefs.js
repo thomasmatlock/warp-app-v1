@@ -233,7 +233,6 @@ const refreshModalBackgroundListeners = (type) => {
     document
         .getElementById('modalBackgroundID')
         .addEventListener('click', (e) => {
-            // console.log(storage.user.prefs);
             prefsView.toggleModal(state, 'warpstagram');
             prefsSettingsSync();
         });
@@ -260,6 +259,6 @@ const setPrefOptionsToFalse = (optionSubstring) => {
     }
 };
 
-const dialogShowOutputFolder = (outputFolderBtnID) => {
-    ipcRenderer.send('dialog-showOutputFolder', outputFolderBtnID);
+const dialogShowOutputFolder = (outputFolderBtnID, storage) => {
+    ipcRenderer.send('dialog-showOutputFolder', outputFolderBtnID, storage);
 };
