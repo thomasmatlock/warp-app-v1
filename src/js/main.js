@@ -180,7 +180,12 @@ const windowController = {
             // icon: __dirname + '/icon.png',
             // icon: 'C:\\Users\\Tommy\\Documents\\GitHub\\Warp-App\\icon.png',
             // icon: fileController.dirProjectPath + '/icon_black_hole.png',
-            icon: fileController.dirProjectPath + '/icon_black_gradient.png',
+            // icon: fileController.dirProjectPath + '/icon_black_gradient.png',
+            // icon: fileController.dirProjectPath + '/22968-200.png',
+            icon: fileController.dirProjectPath + '/build/22971-200.png',
+            // icon: fileController.dirProjectPath + '/vortex.png',
+            // icon: fileController.dirProjectPath +
+            // '/vortex-clipart-transparent-1.png',
             // icon: fileController.dirProjectPath + '/icon_black_to_white_gradient.png',
             // icon: '../../build/icon.ico',
             darkTheme: true,
