@@ -52,18 +52,23 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
     ipcMain.on(
         'dialog-showOutputFolder',
         (e, outputFolderBtnID, storageReceived) => {
+            console.log(storageReceived);
             let outputFolderSelectedType, outputFolderSelectedPath;
             if (outputFolderBtnID.includes('audio')) {
                 outputFolderSelectedType = 'audio';
-                outputFolderSelectedPath = app.getPath('music');
+                // outputFolderSelectedPath = app.getPath('music');
+                outputFolderSelectedPath = storageReceived.user.prefs.pathAudio;
             }
             if (outputFolderBtnID.includes('video')) {
                 outputFolderSelectedType = 'video';
-                outputFolderSelectedPath = app.getPath('videos');
+                // outputFolderSelectedPath = app.getPath('videos');
+                outputFolderSelectedPath = storageReceived.user.prefs.pathVideo;
             }
             if (outputFolderBtnID.includes('warpstagram')) {
                 outputFolderSelectedType = 'Warpstagram';
-                outputFolderSelectedPath = app.getPath('pictures');
+                // outputFolderSelectedPath = app.getPath('pictures');
+                outputFolderSelectedPath =
+                    storageReceived.user.prefs.pathWarpstagram;
             }
 
             // DIALOG

@@ -261,7 +261,7 @@ const setPrefOptionsToFalse = (optionSubstring) => {
     }
 };
 
-const dialogShowOutputFolder = (outputFolderBtnID, storage) => {
+const dialogShowOutputFolder = (outputFolderBtnID) => {
     ipcRenderer.send('dialog-showOutputFolder', outputFolderBtnID, storage);
 };
 
