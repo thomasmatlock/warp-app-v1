@@ -1,29 +1,28 @@
 const urls = [
-    'https://www.youtube.com/watch?v=-FTNbqxCfhA', // shortest video ever, 1 sec long
-    'https://www.youtube.com/watch?v=gYO1uk7vIcc', // 8k hong kong video
-    'https://www.youtube.com/watch?v=3sL0omwElxw&t=24s', // Rain & Thunderstorm Sounds | Crackling Fireplace | 3 Hours
-    'https://www.youtube.com/watch?v=TeBSVS3FwRY', // Covid affecting 1%
+    'https://www.youtube.com/watch?v=-FTNbqxCfhA',
+    'https://www.youtube.com/watch?v=gYO1uk7vIcc',
+    'https://www.youtube.com/watch?v=3sL0omwElxw&t=24s',
+    'https://www.youtube.com/watch?v=TeBSVS3FwRY',
     'https://www.youtube.com/watch?v=WT3TwF8oVis',
     'https://www.youtube.com/watch?v=LoD9RlPr51k',
     'https://www.youtube.com/watch?v=LOPsIByPn48',
     'https://www.youtube.com/watch?v=YExiDiVPbzw',
     'https://www.youtube.com/watch?v=GyB6ffmXsZo',
     'https://www.youtube.com/watch?v=WARfyYsb3dw',
-    'https://www.youtube.com/watch?v=Bgmdw4E7gE4', //Shut up, baby dick
-    'https://www.youtube.com/watch?v=JvvqKKcd4vQ',
+    'https://www.youtube.com/watch?v=Bgmdw4E7gE4',
     'https://www.youtube.com/watch?v=kfUROAaKaxc',
     'https://www.youtube.com/watch?v=9NtiT1Fnrjs',
     'https://www.youtube.com/watch?v=DyQuSuyCuLg',
     'https://www.youtube.com/watch?v=TVyPF9STsHU',
     'https://www.youtube.com/watch?v=51HjuUDK-5w',
-    'https://www.youtube.com/watch?v=fZR_MVDldxU', //AK  FULL AUTO :)
+    'https://www.youtube.com/watch?v=fZR_MVDldxU',
     'https://www.youtube.com/watch?v=Af7Pv86RR0Y',
     'https://www.youtube.com/watch?v=GAxWyaSWwcg',
     'https://www.youtube.com/watch?v=AbiTODVXMro',
     'https://www.youtube.com/watch?v=VpPyytsTxkU',
     'https://www.youtube.com/watch?v=FuxoqOkjiBo',
-    'https://www.youtube.com/watch?v=l34boCGuYZU', // lets game it out
-    'https://www.youtube.com/watch?v=abgZRFbsYz8', //pewds
+    'https://www.youtube.com/watch?v=l34boCGuYZU',
+    'https://www.youtube.com/watch?v=abgZRFbsYz8',
     'https://www.youtube.com/watch?v=0SCkclNmhgo',
     'https://www.youtube.com/watch?v=uJIVuAlbxxQ',
     'https://www.youtube.com/watch?v=XUAYFEQu8T0',
