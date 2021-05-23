@@ -19,7 +19,7 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
         storageMain.user.acceptedEULA = true;
         modalEULAwindow.destroy();
         modalEULAwindow = null;
-        fileController.settingsSave('settings', storageMain);
+
         mainFunctions.syncStorage();
     });
     ipcMain.on('new-item', (e, itemURL, avType, platform) => {
@@ -237,6 +237,7 @@ const mainFunctions = {
         return result;
     },
     syncStorage: function() {
+        fileController.settingsSave('settings', storageMain);
         mainWindow.webContents.send('storage-sync-success', storageMain);
     },
 };
