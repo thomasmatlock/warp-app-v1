@@ -147,7 +147,7 @@ const toggleAllPrefsPanels = (arr, panelToShow) => {
     }
     panelToShow.style.display = 'flex';
 };
-const insertOutputFolderPaths = (outputFolderPathsDEP, storage) => {
+const insertOutputFolderPaths = (storage) => {
     // console.log(storage.user.prefs);
     let outputFolderPaths = {
         audio: storage.user.prefs.pathAudio,
@@ -170,7 +170,7 @@ const injectPrefsModalToCurrentSlide = (
     activeTab,
     storage
 ) => {
-    insertOutputFolderPaths(outputFolderPaths, storage);
+    insertOutputFolderPaths(storage);
     injectPrefsMarkup(prefsMarkup, activeTab);
 };
 const removeActiveModalNavClass = () => {
