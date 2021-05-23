@@ -264,6 +264,7 @@ const setPrefOptionsToFalse = (optionSubstring) => {
 };
 
 const dialogShowOutputFolder = (outputFolderBtnID) => {
+    // console.log(`acceptedEULA is ${storage.user.acceptedEULA}`);
     ipcRenderer.send('dialog-showOutputFolder', outputFolderBtnID, storage);
 };
 
@@ -285,8 +286,8 @@ ipcRenderer.on(
                     storage.user.prefs[key] = storage.user.prefs[key][0];
                     // console.log(storage.user.prefs[key]);
                     prefsView.insertOutputFolderPaths(storage);
+                    // console.log(`acceptedEULA is ${storage.user.acceptedEULA}`);
                     prefsSettingsSync();
-                    // console.log(prefsMarkup);
                 }
             }
         }

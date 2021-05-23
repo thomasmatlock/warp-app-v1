@@ -84,7 +84,7 @@ class fileController {
         this.settingsDeleteFile();
         setTimeout(() => {
             this.settingsInitCreateFile(startupObj.settings);
-        }, 2000);
+        }, 1000);
     };
     settingsDeleteFile = () => {
         console.log(`Checking if settings file exists...`);

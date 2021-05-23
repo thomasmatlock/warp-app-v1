@@ -45,23 +45,15 @@ class startup {
                 audio: 'free',
                 video: 'free',
                 warpstagram: 'free',
-                videoSmartMode: true,
                 acceptedEULA: false,
                 prefs: {
-                    // autostartWarp: false,
-                    startupTab: 'audio', //   audio, video, or warpstagram, defaults to audio
-                    // paths: {
-                    //     main: fileController.dirMainPath,
-                    //     audio: fileController.dirAudioPath,
-                    //     video: fileController.dirVideoPath,
-                    //     warpstagram: fileController.dirWarpstagramPath,
-                    // },
                     pathMain: fileController.dirMainPath,
                     pathAudio: fileController.dirAudioPath,
                     pathVideo: fileController.dirVideoPath,
                     pathWarpstagram: fileController.dirWarpstagramPath,
                     autostartWarp: false,
                     minimizeToTrayOnClose: false,
+                    startupTab: 'audio', //   audio, video, or warpstagram, defaults to audio
                     prefsMarkup: '',
                     audioQuality_best: true,
                     audioQuality_high: false,

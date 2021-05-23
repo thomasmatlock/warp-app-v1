@@ -20,6 +20,8 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
         modalEULAwindow.destroy();
         modalEULAwindow = null;
         fileController.settingsSave('settings', storageMain);
+        console.log(storageMain);
+        mainWindow.webContents.send('storage-sync-success', storageMain);
     });
     ipcMain.on('new-item', (e, itemURL, avType, platform) => {
         startup.updateActiveTab(avType); // sets nav A active
@@ -70,7 +72,7 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
                 outputFolderSelectedPath =
                     storageReceived.user.prefs.pathWarpstagram;
             }
-
+            storageMain = storageReceived;
             // DIALOG
             // // to make a dialog window as its own standalone window, simply specify the window as arg1. otherwise, its a child to the parent window
             // // IMPORTANT, course has a callback? but its a then/catch block
@@ -95,7 +97,7 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
                 )
                 .then((result) => {
                     if (result.canceled) {
-                        console.log('Dialog canceled');
+                        // console.log('Dialog canceled');
                     } else {
                         // console.log(result.filePaths);
                         e.reply(

@@ -226,6 +226,10 @@ const removeAllInjectedModals = () => {
     }
 };
 
+const toggleToggleBtn = () => {
+    console.log('toggling btn');
+};
+
 // const insertOut
 const toggleModal = (state, avType) => {
     toggleBackground(state);

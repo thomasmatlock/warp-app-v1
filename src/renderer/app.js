@@ -21,7 +21,8 @@ const stateReq = require('./state');
 const search = require('./searchLocal');
 
 let state = new stateReq();
-
+let storage;
+// console.log(storage);
 (function init() {
     ipcRenderer.on('window-ready', (e, storage) => {
         // console.log(storage.user.prefs.startupTab);
@@ -41,15 +42,16 @@ let state = new stateReq();
         ipcRenderer.send('menu-change', startup.env.nav_A_active);
         if (startup.dev.clearStorage) items.resetStorage(); // clears localStorage if active
         items.startupAddAllItems(storage); // loads items stored in settings to UI
-        console.log();
+
         ipcRenderer.send('mainWindow-ready');
+        // console.log(`acceptedEULA is ${storage.user.acceptedEULA}`);
         ipcRenderer.on('modal-window-ready', () => {
             console.log('attaching event listeners');
         });
     });
     ipcRenderer.on('storage-sync-success', (e, storageReceived) => {
         storage = storageReceived;
-        // console.log(storage.user.prefs);
+        // console.log(storage);
     });
     const setActiveNav_A = (nav_A_active) => {
         if (nav_A_active === 'audio')
