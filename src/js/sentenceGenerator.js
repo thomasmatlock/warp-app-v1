@@ -999,7 +999,6 @@ const nounArr = [
     'spots',
     'summers',
     'tastes',
-    'themes',
     'tracks',
     'wings',
     'brains',

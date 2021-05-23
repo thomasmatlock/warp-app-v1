@@ -5,8 +5,8 @@
 /* eslint-disable one-var */
 
 const { screen } = require('electron');
-const startupReq = require('./startup');
-const startup = new startupReq();
+const defaultsReq = require('./defaults');
+const defaults = new defaultsReq();
 class displayController {
     constructor() {
         // 34 inch display bounds = 2752 x 1152, workArea = 2752, 1112
@@ -36,13 +36,13 @@ class displayController {
     }
     discoverDisplay = () => {
         // PRODUCTION MODE
-        if (!startup.devMode) {
+        if (!defaults.devMode) {
             this.height = 900;
             this.width = 1600;
 
             // DEV MODE, LAPTOP
         } else if (
-            startup.devMode &&
+            defaults.devMode &&
             this.displayToUse.size.height > 863 &&
             this.displayToUse.size.height < 1151
         ) {
@@ -58,7 +58,7 @@ class displayController {
 
             // DEV MODE, DESKTOP PRIMARY
         } else if (
-            startup.devMode &&
+            defaults.devMode &&
             // this.displayToUse.size.height === 1152 &&
             this.useSecondaryDisplayPortraitMode
         ) {
@@ -67,7 +67,7 @@ class displayController {
             this.x = 3432; // how far to the right app appears
             this.y = -337; // how far down the app
         }
-        // else if (startup.devMode && this.displayToUse.size.height > 1151) {
+        // else if (defaults.devMode && this.displayToUse.size.height > 1151) {
         //     this.height = Math.round(this.displayToUse.size.height * 0.6); // app height
         //     // this.width = Math.round(this.displayToUse.size.width * 0.65); // app width
         //     this.width = 2876; // app width
@@ -85,7 +85,7 @@ class displayController {
         // }
 
         // else if (
-        //     startup.devMode &&
+        //     defaults.devMode &&
         //     this.displayToUse.size.height === 1152 &&
         //     this.useSecondaryDisplay
         // ) {

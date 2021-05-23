@@ -3,8 +3,8 @@ const fs = require('fs');
 const { clipboard, ipcRenderer, shell } = require('electron');
 let markup = require('./views/markup');
 let downloadHandler = require('../js/downloadHandler');
-const startupReq = require('../js/startup');
-const startup = new startupReq();
+const defaultsReq = require('../js/defaults');
+const defaults = new defaultsReq();
 const imageDownloader = require('image-downloader');
 const elements = require('./views/elements');
 const auto = require('./automate');
@@ -22,12 +22,12 @@ let markupAudio = markup.audio;
 let markupVideo = markup.video;
 
 ///////////////////////   ADD ITEM(S)   ///////////////////////
-exports.startupAddAllItems = (storageSent) => {
+exports.defaultsAddAllItems = (storageSent) => {
     storage = storageSent;
     this.addItemsFromArray(storage.downloadItems.audioArr, 'audio');
     this.addItemsFromArray(storage.downloadItems.videoArr, 'video');
 };
-exports.addItem = (item, avType, isStartup) => {
+exports.addItem = (item, avType, isdefaults) => {
     if (avType === 'audio') {
         this.insertMarkup(item, avType); // splices in item info to markup
         // console.log(item.filepath);
@@ -55,7 +55,7 @@ exports.addItemsFromArray = (arr, avType) => {
     }
 };
 exports.downloadItem = (itemURL, avType, platform) => {
-    if (startup.dev.getDownloadItemInfo) {
+    if (defaults.dev.getDownloadItemInfo) {
         downloadHandler.all(itemURL, avType, platform); // exports without object
     }
 };

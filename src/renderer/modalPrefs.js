@@ -3,8 +3,8 @@ const dialog = require('electron');
 let elements = require('./views/elements');
 const prefsView = require('./modalPrefsView');
 const prefsStorage = require('./settings');
-const startupReq = require('../js/startup');
-const startup = new startupReq();
+const defaultsReq = require('../js/defaults');
+const defaults = new defaultsReq();
 const stateReq = require('./state');
 const auto = require('./automate');
 const fileControllerReq = require('../js/fileController');
@@ -24,7 +24,7 @@ let storage;
             prefsMarkupSrc = modalPrefsMarkup;
             prefsMarkup = modalPrefsMarkup;
             // console.log(prefsMarkup);
-            state.activeTab = storage.user.prefs.startupTab;
+            state.activeTab = storage.user.prefs.defaultsTab;
             windowReady(prefsMarkup);
         }
     );
@@ -36,7 +36,7 @@ let storage;
 const windowReady = (prefsMarkup) => {
     prefsView.injectPrefsModalToCurrentSlide(
         prefsMarkup,
-        storage.user.prefs.startupTab,
+        storage.user.prefs.defaultsTab,
         storage
     );
 
@@ -44,7 +44,7 @@ const windowReady = (prefsMarkup) => {
     addAppMenuListeners();
     prefsView.showPanelInit('prefs', 'audio');
     setTimeout(() => {
-        auto.click_nav_B(startup.env.nav_A_active, 'preferences'); // auto clicks paste, smartMode, activate, subscriptions, preferences, help
+        auto.click_nav_B(defaults.env.nav_A_active, 'preferences'); // auto clicks paste, smartMode, activate, subscriptions, preferences, help
     }, 400);
     refreshModalListeners('refresh'); // THIS IS CHANGING BEHAVIOR OF BACKGROUND
     setTimeout(() => {

@@ -11,8 +11,8 @@ const navSecondaryView = require('./views/navSecondaryView.js');
 const listView = require('./views/listView.js');
 const Nav = require('../js/nav.js');
 const userInput = require('../js/userInput');
-const startupReq = require('../js/startup');
-const startup = new startupReq();
+const defaultsReq = require('../js/defaults');
+const defaults = new defaultsReq();
 const items = require('./items');
 const auto = require('./automate');
 const modalPrefsView = require('./modalPrefsView');
@@ -25,23 +25,23 @@ let storage;
 // console.log(storage);
 (function init() {
     ipcRenderer.on('window-ready', (e, storage) => {
-        // console.log(storage.user.prefs.startupTab);
-        // storage.user.prefs.startupTab;
+        // console.log(storage.user.prefs.defaultsTab);
+        // storage.user.prefs.defaultsTab;
         addEventListeners(); // activates DOM event listeners
         addMenuListeners(); // activates menu event listeners
-        setActiveNav_A(startup.env.nav_A_active); // sets active Nav A
+        setActiveNav_A(defaults.env.nav_A_active); // sets active Nav A
         removeNavBActivateBtn(storage);
         setTimeout(() => {
-            auto.click_nav_A(startup.env.nav_A_active); // auto clicks active tab if active
-            // auto.click_nav_A(startup.env.nav_A_active); // auto clicks active tab if active
+            auto.click_nav_A(defaults.env.nav_A_active); // auto clicks active tab if active
+            // auto.click_nav_A(defaults.env.nav_A_active); // auto clicks active tab if active
         }, 50);
         setTimeout(() => {
-            // auto.click_nav_A(startup.env.nav_A_active); // auto clicks active tab if active
-            auto.click_nav_A(startup.env.nav_A_active); // auto clicks active tab if active
+            // auto.click_nav_A(defaults.env.nav_A_active); // auto clicks active tab if active
+            auto.click_nav_A(defaults.env.nav_A_active); // auto clicks active tab if active
         }, 300);
-        ipcRenderer.send('menu-change', startup.env.nav_A_active);
-        if (startup.dev.clearStorage) items.resetStorage(); // clears localStorage if active
-        items.startupAddAllItems(storage); // loads items stored in settings to UI
+        ipcRenderer.send('menu-change', defaults.env.nav_A_active);
+        if (defaults.dev.clearStorage) items.resetStorage(); // clears localStorage if active
+        items.defaultsAddAllItems(storage); // loads items stored in settings to UI
 
         ipcRenderer.send('mainWindow-ready');
         // console.log(`acceptedEULA is ${storage.user.acceptedEULA}`);
@@ -72,19 +72,19 @@ let storage;
     ipcRenderer.on('resize', () => {
         // CLICK ACTIVE NAV A
         var clickDelay = 50;
-        if (startup.env.nav_A_active == 'audio') {
+        if (defaults.env.nav_A_active == 'audio') {
             elements.nav_A_active = elements.nav_A_audio; // sets active Nav A
             setTimeout(() => {
                 elements.nav_A_audio.click(); // clicks audio tab
             }, clickDelay);
         }
-        if (startup.env.nav_A_active == 'video') {
+        if (defaults.env.nav_A_active == 'video') {
             elements.nav_A_active = elements.nav_A_video; // sets active Nav A
             setTimeout(() => {
                 elements.nav_A_video.click(); // clicks video tab
             }, clickDelay);
         }
-        if (startup.env.nav_A_active == 'warpstagram') {
+        if (defaults.env.nav_A_active == 'warpstagram') {
             setTimeout(() => {
                 elements.nav_A_warpstagram.click(); // clicks warpstagram tab
             }, clickDelay);
@@ -153,7 +153,7 @@ const addMenuListeners = () => {
     // Menu listeners, universal commands
     ipcRenderer.on('Check for update', () => {});
     ipcRenderer.on('Quit', () => {
-        if (startup.dev.menuLogging) console.log('you quit');
+        if (defaults.dev.menuLogging) console.log('you quit');
         ipcRenderer.send('quit');
     });
     // Menu listeners, developer commands
@@ -200,18 +200,18 @@ const addEventListeners = () => {
     // menu-change
     elements.nav_A_audio.addEventListener('click', (e) => {
         ipcRenderer.send('menu-change', 'audio');
-        startup.env.nav_A_active = 'audio';
+        defaults.env.nav_A_active = 'audio';
     });
     elements.nav_A_video.addEventListener('click', (e) => {
         ipcRenderer.send('menu-change', 'video');
-        startup.env.nav_A_active = 'video';
+        defaults.env.nav_A_active = 'video';
     });
     elements.nav_A_warpstagram.addEventListener('click', (e) => {
         ipcRenderer.send('menu-change', 'warpstagram');
-        startup.env.nav_A_active = 'warpstagram';
+        defaults.env.nav_A_active = 'warpstagram';
     });
     elements.nav_B_button_audio_paste.addEventListener('click', (e) => {
-        userInput.validateURL(clipboard.readText(), startup.env.nav_A_active);
+        userInput.validateURL(clipboard.readText(), defaults.env.nav_A_active);
     });
     elements.nav_B_button_audio_activate.addEventListener('click', (e) => {
         if (logging) console.log('clicked activate');
@@ -219,7 +219,7 @@ const addEventListeners = () => {
 
     // Nav B video LISTENERS
     elements.nav_B_button_video_paste.addEventListener('click', (e) => {
-        userInput.validateURL(clipboard.readText(), startup.env.nav_A_active);
+        userInput.validateURL(clipboard.readText(), defaults.env.nav_A_active);
     });
     elements.nav_B_button_video_activate.addEventListener('click', (e) => {
         if (logging) console.log('clicked activate');

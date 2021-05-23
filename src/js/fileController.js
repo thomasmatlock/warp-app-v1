@@ -83,7 +83,7 @@ class fileController {
     settingsReset = () => {
         this.settingsDeleteFile();
         setTimeout(() => {
-            this.settingsInitCreateFile(startupObj.settings);
+            this.settingsInitCreateFile(defaultsObj.settings);
         }, 1000);
     };
     settingsDeleteFile = () => {

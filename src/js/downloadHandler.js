@@ -4,8 +4,8 @@ const path = require('path');
 const ytdl = require('ytdl-core');
 const fileControllerReq = require('./fileController');
 const fileController = new fileControllerReq();
-const startupReq = require('./startup');
-const startup = new startupReq();
+const defaultsReq = require('./defaults');
+const defaults = new defaultsReq();
 const items = require('../renderer/items');
 const { v4: uuidv4 } = require('uuid');
 
@@ -67,7 +67,7 @@ const formatLength = function(approxDurationMs) {
 const cloneVideoDetails = function(itemURL, info, avType) {
     // console.log(type);
     // console.log(itemInfo.title);
-    startup.dev.downloadSmallestFile ?
+    defaults.dev.downloadSmallestFile ?
         (itemInfo.selectedFormat = info.formats[0]) // sets to smallest format for easy dev downloading
         :
         (itemInfo.selectedFormat = info.formats[1]);
@@ -129,10 +129,10 @@ const removeCharactersFromTitle = function() {
 };
 
 const downloadAndWrite = function(itemURL) {
-    if (startup.dev.getDownloadItemInfo) {
+    if (defaults.dev.getDownloadItemInfo) {
         (async() => {
             let filepath = createFilePath();
-            if (startup.dev.downloadFile) {
+            if (defaults.dev.downloadFile) {
                 ytdl(this.itemInfo.url).pipe(fs.createWriteStream(filepath)); // downloads video
             }
         })();

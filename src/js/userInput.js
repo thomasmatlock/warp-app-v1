@@ -13,8 +13,8 @@
 // update UI
 const logging = false;
 const { clipboard, ipcRenderer } = require('electron');
-const startupReq = require('./startup');
-const startup = new startupReq();
+const defaultsReq = require('./defaults');
+const defaults = new defaultsReq();
 const miscFunctions = require('../../library/js/miscArrays');
 const pattArr = [
     /facebook/i,
@@ -31,10 +31,10 @@ const pattArr = [
 let pattMatchIndex, platform;
 exports.validateURL = (url, avType) => {
     // console.log(url);
-    if (startup.dev.useRandomYoutubeURL)
-        url = miscFunctions.randomFromArray(startup.dev.URLSyoutube); // substitutes a random placeholder URL if dev mode active
-    if (startup.dev.useRandomMiscURL) {
-        url = miscFunctions.randomFromArray(startup.dev.URLSmisc); // substitutes a random placeholder URL if dev mode active
+    if (defaults.dev.useRandomYoutubeURL)
+        url = miscFunctions.randomFromArray(defaults.dev.URLSyoutube); // substitutes a random placeholder URL if dev mode active
+    if (defaults.dev.useRandomMiscURL) {
+        url = miscFunctions.randomFromArray(defaults.dev.URLSmisc); // substitutes a random placeholder URL if dev mode active
     }
     checkURLforPattern(url, avType);
     if (platform === 'youtube') {
@@ -57,6 +57,6 @@ const mediaController = (url, avType, platform) => {
         console.log(
             `mediaController: url ${url} platform ${platform} avType ${avType} `
         );
-    startup.env.nav_A_active = avType;
+    defaults.env.nav_A_active = avType;
     ipcRenderer.send('new-item', url, avType, platform);
 };

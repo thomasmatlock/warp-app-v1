@@ -1,6 +1,6 @@
 const { Menu, MenuItem, shell } = require('electron');
-const startupReq = require('./startup');
-const startup = new startupReq();
+const defaultsReq = require('./defaults');
+const defaults = new defaultsReq();
 
 // Module function to create main app menu
 module.exports = (appWin) => {
@@ -169,7 +169,7 @@ module.exports = (appWin) => {
         ],
     }); // create new menu item
 
-    if (startup.devMode) template.push(devMenu);
+    if (defaults.devMode) template.push(devMenu);
     // Build menu
     let menu = Menu.buildFromTemplate(template); // use template array
 

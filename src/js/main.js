@@ -6,13 +6,13 @@ const appMenuWarpstagram = require('./menuWarpstagram');
 const fileControllerReq = require('./fileController');
 const fileController = new fileControllerReq();
 const settings = require('../renderer/settings');
-const startupReq = require('./startup');
-const startup = new startupReq();
+const defaultsReq = require('./defaults');
+const defaults = new defaultsReq();
 
 ////////////////////////////////////////////////////////////////////
 let mainWindow, splash, modalWindow, displayController, storageMain; // Keep a global reference of the window object, if you don't, the window will be closed automatically when the JavaScript object is garbage collected.
 app.allowRendererProcessReuse = true; // not sure what this does but I added it for a reason
-///////////////////////   STARTUP   ///////////////////////
+///////////////////////   defaults   ///////////////////////
 (function init() {
     ipcMain.on('eula-agreement-accepted', (e) => {
         // console.log(storageMain);
@@ -23,7 +23,7 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
         mainFunctions.syncStorage();
     });
     ipcMain.on('new-item', (e, itemURL, avType, platform) => {
-        startup.updateActiveTab(avType); // sets nav A active
+        defaults.updateActiveTab(avType); // sets nav A active
         e.reply('paste-new-url', itemURL, avType, platform); // send message to app js
     });
     ipcMain.on('prefsMarkup-loaded', (e, data) => {
@@ -175,11 +175,11 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
 ///////////////////////   IPC LISTENERS FOR EVENTS FROM APP.JS   ///////////////////////
 (function appListeners() {
     app.on('ready', () => {
-        if (startup.dev.splashScreen) windowController.createSplashWindow();
+        if (defaults.dev.splashScreen) windowController.createSplashWindow();
 
         displayController = new displayControllerReq(); // positions output window to display depending on single/multi-monitor
-        startup.init(); // all startup checks, latest version, isOnline, hasFFmpeg etc
-        fileController.init(startup); // checks for local directories and creates them if non existent
+        defaults.init(); // all defaults checks, latest version, isOnline, hasFFmpeg etc
+        fileController.init(defaults); // checks for local directories and creates them if non existent
         displayController.discoverDisplay(); // discovers which display to use, 3 dev mode displayController or production
         let storageAwaited, modalPrefsMarkup;
         (async() => {
@@ -193,10 +193,10 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
                 // console.log(modalPrefsMarkup);
             }
 
-            windowController.createWindow(startup.env.theme, modalPrefsMarkup); // creates main app window
-            mainFunctions.setMenu(startup.env.nav_A_active);
+            windowController.createWindow(defaults.env.theme, modalPrefsMarkup); // creates main app window
+            mainFunctions.setMenu(defaults.env.nav_A_active);
         })();
-        // if (startup.dev.backendOnly) mainWindow.hide(); // devMode only
+        // if (defaults.dev.backendOnly) mainWindow.hide(); // devMode only
     });
     app.on('before-quit', (event) => {
         // event.preventDefault(); //
@@ -277,12 +277,12 @@ const windowController = {
             backgroundColor: '#1f2029',
         });
 
-        mainFunctions.loadHtml(startup.env.nav_A_active);
+        mainFunctions.loadHtml(defaults.env.nav_A_active);
 
         mainWindow.loadFile('./src/renderer/main.html'); // Load index.html into the new BrowserWindow
         // mainWindow.loadFile('./main.html'); // Load index.html into the new BrowserWindow
 
-        if (startup.dev.devTools) {
+        if (defaults.dev.devTools) {
             mainWindow.webContents.openDevTools(); // Open DevTools - Remove for PRODUCTION!
         }
 
@@ -290,7 +290,7 @@ const windowController = {
         // send stuff to app.js
         wc.on('did-finish-load', () => {
             wc.send('window-ready', storageMain, modalPrefsMarkup);
-            if (startup.dev.splashScreen) splash.destroy();
+            if (defaults.dev.splashScreen) splash.destroy();
         });
         wc.on('devtools-opened', () => {});
 

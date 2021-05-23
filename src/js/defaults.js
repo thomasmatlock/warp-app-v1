@@ -3,7 +3,7 @@ const fileController = new fileControllerReq();
 const path = require('path');
 const fs = require('fs');
 const urls = require('./testURLS');
-class startup {
+class defaults {
     constructor() {
         this.devMode = true;
         this.testingYoutubeURLS = true; // true will use youtube URLS, false will use misc non youtube URLS
@@ -11,7 +11,7 @@ class startup {
             nav_A_active: !this.devMode ? 'audio' : 'audio', //   audio, video, or warpstagram, defaults to audio
             user: 'dev', // can be dev, free, or paid
             modalBrowserWindow: false, // opens youtube modal window yes
-            theme: true, // true = 'light', false = 'dark'
+            theme: 'dark', // true = 'light', false = 'dark'
             // hasFFmpeg: this.checkFFmpeg(),
             // this.loadAudioSlide = false; // set to true to load the audio portion of the content slide
             // this.loadVideoSlide = false; // set to true to load the video portion of the content slide
@@ -53,7 +53,7 @@ class startup {
                     pathWarpstagram: fileController.dirWarpstagramPath,
                     autostartWarp: false,
                     minimizeToTrayOnClose: false,
-                    startupTab: 'audio', //   audio, video, or warpstagram, defaults to audio
+                    defaultsTab: 'audio', //   audio, video, or warpstagram, defaults to audio
                     prefsMarkup: '',
                     audioQuality_best: true,
                     audioQuality_high: false,
@@ -172,4 +172,4 @@ class startup {
     // acceptedEULA = () => {};
 }
 
-module.exports = startup;
+module.exports = defaults;
