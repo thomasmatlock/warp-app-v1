@@ -10,12 +10,7 @@ class defaults {
         this.env = {
             nav_A_active: !this.devMode ? 'audio' : 'audio', //   audio, video, or warpstagram, defaults to audio
             user: 'dev', // can be dev, free, or paid
-            modalBrowserWindow: false, // opens youtube modal window yes
             theme: 'dark', // true = 'light', false = 'dark'
-            // hasFFmpeg: this.checkFFmpeg(),
-            // this.loadAudioSlide = false; // set to true to load the audio portion of the content slide
-            // this.loadVideoSlide = false; // set to true to load the video portion of the content slide
-            // this.loadWarpstagramSlide = false; // set to true to load the warpstagram portion of the content slide
         };
         this.dev = {
             autoClick: true, // clicks nav B button
@@ -29,16 +24,8 @@ class defaults {
             autoClickNavA_active: true, // clicks nav A tab on load
             useRandomYoutubeURL: this.testingYoutubeURLS ? true : false, // uses YT URLS if testingYoutubeURLS is true
             useRandomMiscURL: !this.testingYoutubeURLS ? true : false, // uses misc URLS if testingYoutubeURLS is false
-            URLSyoutube: urls,
-            URLSmisc: [
-                'https://www.facebook.com/hmtheus/videos/3230852170358533',
-                'https://www.instagram.com/p/CFmU6REA5dl/',
-                'https://soundcloud.com/themonday-morning-podcast/mmpc-11-16-20',
-                'https://www.twitch.tv/videos/805708310',
-                'https://twitter.com/LouDobbs/status/1328469195550576645',
-                'https://vimeo.com/210599507',
-                'https://www.tiktok.com/@foodies/video/6895167017570127109',
-            ],
+            URLSyoutube: urls.youtube,
+            URLSmisc: urls.misc,
         };
         this.settings = {
             user: {
