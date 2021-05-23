@@ -166,7 +166,7 @@ const insertOutputFolderPaths = (storage) => {
 };
 const injectPrefsModalToCurrentSlide = (
     prefsMarkup,
-    outputFolderPaths,
+
     activeTab,
     storage
 ) => {

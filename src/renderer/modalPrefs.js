@@ -38,7 +38,6 @@ const windowReady = (prefsMarkup) => {
 
     prefsView.injectPrefsModalToCurrentSlide(
         prefsMarkup,
-        storage.user.prefs.paths,
         storage.user.prefs.startupTab,
         storage
     );
@@ -62,7 +61,6 @@ const addNavAListeners = () => {
         setTimeout(() => {
             prefsView.injectPrefsModalToCurrentSlide(
                 prefsMarkup,
-                storage.user.prefs.paths,
                 state.activeTab,
                 storage
             );
@@ -77,7 +75,6 @@ const addNavAListeners = () => {
         setTimeout(() => {
             prefsView.injectPrefsModalToCurrentSlide(
                 prefsMarkup,
-                storage.user.prefs.paths,
                 state.activeTab,
                 storage
             );
@@ -93,7 +90,6 @@ const addNavAListeners = () => {
         setTimeout(() => {
             prefsView.injectPrefsModalToCurrentSlide(
                 prefsMarkup,
-                storage.user.prefs.paths,
                 state.activeTab,
                 storage
             );
