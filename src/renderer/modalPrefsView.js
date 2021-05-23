@@ -164,12 +164,7 @@ const insertOutputFolderPaths = (storage) => {
         ).placeholder = outputPaths.warpstagram;
     }, 100);
 };
-const injectPrefsModalToCurrentSlide = (
-    prefsMarkup,
-
-    activeTab,
-    storage
-) => {
+const injectPrefsModalToCurrentSlide = (prefsMarkup, activeTab, storage) => {
     insertOutputFolderPaths(storage);
     injectPrefsMarkup(prefsMarkup, activeTab);
 };
@@ -243,6 +238,7 @@ module.exports = {
     toggleModalState: toggleModalState,
     togglePreferences: togglePreferences,
     injectPrefsMarkup: injectPrefsMarkup,
+    insertOutputFolderPaths: insertOutputFolderPaths,
     showPanel: showPanel,
     showPanelInit: showPanelInit,
     removeAllInjectedModals: removeAllInjectedModals,

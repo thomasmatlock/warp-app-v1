@@ -282,6 +282,7 @@ ipcRenderer.on(
                     // console.log(storage.user.prefs[key]);
                     storage.user.prefs[key] = storage.user.prefs[key][0];
                     // console.log(storage.user.prefs[key]);
+                    prefsView.insertOutputFolderPaths(storage);
                     prefsSettingsSync();
                 }
             }
