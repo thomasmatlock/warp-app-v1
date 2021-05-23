@@ -287,7 +287,7 @@ ipcRenderer.on(
                     // console.log(storage.user.prefs[key]);
                     prefsView.insertOutputFolderPaths(storage);
                     // console.log(`acceptedEULA is ${storage.user.acceptedEULA}`);
-                    prefsSettingsSync();
+                    // prefsSettingsSync();
                 }
             }
         }
