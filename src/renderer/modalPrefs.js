@@ -72,7 +72,7 @@ const addNavAListeners = () => {
     elements.nav_A_video.addEventListener('click', (e) => {
         state.activeTab = 'video';
         prefsView.removeAllInjectedModals();
-        console.log(prefsMarkup);
+        // console.log(prefsMarkup);
 
         setTimeout(() => {
             prefsView.injectPrefsModalToCurrentSlide(
