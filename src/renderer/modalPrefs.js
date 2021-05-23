@@ -56,7 +56,7 @@ const addNavAListeners = () => {
     elements.nav_A_audio.addEventListener('click', (e) => {
         state.activeTab = 'audio';
         prefsView.removeAllInjectedModals();
-        console.log(prefsMarkup);
+        // console.log(prefsMarkup);
 
         setTimeout(() => {
             prefsView.injectPrefsModalToCurrentSlide(
@@ -286,7 +286,7 @@ ipcRenderer.on(
                     // console.log(storage.user.prefs[key]);
                     prefsView.insertOutputFolderPaths(storage);
                     prefsSettingsSync();
-                    console.log(prefsMarkup);
+                    // console.log(prefsMarkup);
                 }
             }
         }
