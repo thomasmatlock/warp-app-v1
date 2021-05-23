@@ -20,8 +20,7 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
         modalEULAwindow.destroy();
         modalEULAwindow = null;
         fileController.settingsSave('settings', storageMain);
-        console.log(storageMain);
-        mainWindow.webContents.send('storage-sync-success', storageMain);
+        mainFunctions.syncStorage();
     });
     ipcMain.on('new-item', (e, itemURL, avType, platform) => {
         startup.updateActiveTab(avType); // sets nav A active
@@ -236,6 +235,9 @@ const mainFunctions = {
     loadModalPrefsMarkupSource: async function() {
         const result = await settings.loadMarkupSource();
         return result;
+    },
+    syncStorage: function() {
+        mainWindow.webContents.send('storage-sync-success', storageMain);
     },
 };
 ///////////////////////   WINDOW HANDLER   ///////////////////////
