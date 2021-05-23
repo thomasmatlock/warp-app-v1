@@ -52,7 +52,7 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
     ipcMain.on(
         'dialog-showOutputFolder',
         (e, outputFolderBtnID, storageReceived) => {
-            console.log(storageReceived);
+            // console.log(storageReceived);
             let outputFolderSelectedType, outputFolderSelectedPath;
             if (outputFolderBtnID.includes('audio')) {
                 outputFolderSelectedType = 'audio';
