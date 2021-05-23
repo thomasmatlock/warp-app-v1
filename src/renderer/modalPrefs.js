@@ -12,7 +12,7 @@ const fileController = new fileControllerReq();
 
 // dialog.showOpenDialog({ properties: ['openDirectory'] });
 let state = new stateReq();
-let userPrefs, prefsMarkup;
+let userPrefs, prefsMarkup, prefsMarkupSrc;
 let storage;
 // console.log(state);
 (function init() {
@@ -21,21 +21,19 @@ let storage;
         (e, storageSentFromMain, modalPrefsMarkup) => {
             storage = storageSentFromMain;
             // console.log(storage);
+            prefsMarkupSrc = modalPrefsMarkup;
             prefsMarkup = modalPrefsMarkup;
+            // console.log(prefsMarkup);
             state.activeTab = storage.user.prefs.startupTab;
             windowReady(prefsMarkup);
         }
     );
     ipcRenderer.on('storage-sync-success', (e, storageReceived) => {
         storage = storageReceived;
-        // console.log(storage.user.prefs);
     });
 })();
 
 const windowReady = (prefsMarkup) => {
-    // console.log(storage);
-    // state.activeTab = storage.user.prefs.startupTab;
-
     prefsView.injectPrefsModalToCurrentSlide(
         prefsMarkup,
         storage.user.prefs.startupTab,
@@ -58,6 +56,8 @@ const addNavAListeners = () => {
     elements.nav_A_audio.addEventListener('click', (e) => {
         state.activeTab = 'audio';
         prefsView.removeAllInjectedModals();
+        console.log(prefsMarkup);
+
         setTimeout(() => {
             prefsView.injectPrefsModalToCurrentSlide(
                 prefsMarkup,
@@ -72,6 +72,8 @@ const addNavAListeners = () => {
     elements.nav_A_video.addEventListener('click', (e) => {
         state.activeTab = 'video';
         prefsView.removeAllInjectedModals();
+        console.log(prefsMarkup);
+
         setTimeout(() => {
             prefsView.injectPrefsModalToCurrentSlide(
                 prefsMarkup,
@@ -284,6 +286,7 @@ ipcRenderer.on(
                     // console.log(storage.user.prefs[key]);
                     prefsView.insertOutputFolderPaths(storage);
                     prefsSettingsSync();
+                    console.log(prefsMarkup);
                 }
             }
         }

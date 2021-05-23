@@ -97,7 +97,7 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
                     if (result.canceled) {
                         console.log('Dialog canceled');
                     } else {
-                        console.log(result.filePaths);
+                        // console.log(result.filePaths);
                         e.reply(
                             'dialog-outputFolderSelected',
                             result.filePaths,

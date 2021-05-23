@@ -50,12 +50,12 @@ class startup {
                 prefs: {
                     // autostartWarp: false,
                     startupTab: 'audio', //   audio, video, or warpstagram, defaults to audio
-                    paths: {
-                        main: fileController.dirMainPath,
-                        audio: fileController.dirAudioPath,
-                        video: fileController.dirVideoPath,
-                        warpstagram: fileController.dirWarpstagramPath,
-                    },
+                    // paths: {
+                    //     main: fileController.dirMainPath,
+                    //     audio: fileController.dirAudioPath,
+                    //     video: fileController.dirVideoPath,
+                    //     warpstagram: fileController.dirWarpstagramPath,
+                    // },
                     pathMain: fileController.dirMainPath,
                     pathAudio: fileController.dirAudioPath,
                     pathVideo: fileController.dirVideoPath,
