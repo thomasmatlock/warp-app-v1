@@ -24,7 +24,7 @@ let storage;
             prefsMarkupSrc = modalPrefsMarkup;
             prefsMarkup = modalPrefsMarkup;
             // console.log(prefsMarkup);
-            state.activeTab = storage.user.prefs.defaultsTab;
+            state.activeTab = storage.user.prefs.startupTab;
             windowReady(prefsMarkup);
         }
     );
@@ -36,7 +36,7 @@ let storage;
 const windowReady = (prefsMarkup) => {
     prefsView.injectPrefsModalToCurrentSlide(
         prefsMarkup,
-        storage.user.prefs.defaultsTab,
+        storage.user.prefs.startupTab,
         storage
     );
 
