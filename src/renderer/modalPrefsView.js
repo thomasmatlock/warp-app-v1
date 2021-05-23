@@ -149,19 +149,19 @@ const toggleAllPrefsPanels = (arr, panelToShow) => {
 };
 const insertOutputFolderPaths = (storage) => {
     // console.log(storage.user.prefs);
-    let outputFolderPaths = {
+    let outputPaths = {
         audio: storage.user.prefs.pathAudio,
         video: storage.user.prefs.pathVideo,
         warpstagram: storage.user.prefs.pathWarpstagram,
     };
     setTimeout(() => {
         document.getElementById('modalPrefsOutputFolder_audio').placeholder =
-            outputFolderPaths.audio;
+            outputPaths.audio;
         document.getElementById('modalPrefsOutputFolder_video').placeholder =
-            outputFolderPaths.video;
+            outputPaths.video;
         document.getElementById(
             'modalPrefsOutputFolder_warpstagram'
-        ).placeholder = outputFolderPaths.warpstagram;
+        ).placeholder = outputPaths.warpstagram;
     }, 100);
 };
 const injectPrefsModalToCurrentSlide = (
