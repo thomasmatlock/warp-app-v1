@@ -22,6 +22,7 @@ let storage;
             storage = storageSentFromMain;
             // console.log(storage);
             prefsMarkup = modalPrefsMarkup;
+            state.activeTab = storage.user.prefs.startupTab;
             windowReady(prefsMarkup);
         }
     );
@@ -32,12 +33,14 @@ let storage;
 })();
 
 const windowReady = (prefsMarkup) => {
-    state.activeTab = storage.user.prefs.startupTab;
+    // console.log(storage);
+    // state.activeTab = storage.user.prefs.startupTab;
 
     prefsView.injectPrefsModalToCurrentSlide(
         prefsMarkup,
         storage.user.prefs.paths,
-        storage.user.prefs.startupTab
+        storage.user.prefs.startupTab,
+        storage
     );
 
     addNavBListeners();
@@ -60,7 +63,8 @@ const addNavAListeners = () => {
             prefsView.injectPrefsModalToCurrentSlide(
                 prefsMarkup,
                 storage.user.prefs.paths,
-                state.activeTab
+                state.activeTab,
+                storage
             );
         }, 100);
         // removeModalBackgroundListeners();
@@ -74,7 +78,8 @@ const addNavAListeners = () => {
             prefsView.injectPrefsModalToCurrentSlide(
                 prefsMarkup,
                 storage.user.prefs.paths,
-                state.activeTab
+                state.activeTab,
+                storage
             );
             // prefsView.togglePreferences(state, 'audio');
         }, 100);
@@ -89,7 +94,8 @@ const addNavAListeners = () => {
             prefsView.injectPrefsModalToCurrentSlide(
                 prefsMarkup,
                 storage.user.prefs.paths,
-                state.activeTab
+                state.activeTab,
+                storage
             );
         }, 100);
         // refreshModalListeners('refresh');

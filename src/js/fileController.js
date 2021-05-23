@@ -21,11 +21,6 @@ class fileController {
         this.settingsFileName = 'settings.json';
         this.settingsPath = 'AppData\\Roaming\\Warp\\';
 
-        // this.settingsFile = path.join(
-        //     this.dirUser,
-        //     this.settingsPath,
-        //     this.settingsFileName
-        // );
         this.settingsFile;
         this.dirMainPath = path.join(this.userDocumentsPath, this.dirMainName);
         this.dirAudioPath = path.join(

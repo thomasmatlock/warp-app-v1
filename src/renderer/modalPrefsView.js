@@ -147,7 +147,13 @@ const toggleAllPrefsPanels = (arr, panelToShow) => {
     }
     panelToShow.style.display = 'flex';
 };
-const insertOutputFolderPaths = (outputFolderPaths) => {
+const insertOutputFolderPaths = (outputFolderPathsDEP, storage) => {
+    // console.log(storage.user.prefs);
+    let outputFolderPaths = {
+        audio: storage.user.prefs.pathAudio,
+        video: storage.user.prefs.pathVideo,
+        warpstagram: storage.user.prefs.pathWarpstagram,
+    };
     setTimeout(() => {
         document.getElementById('modalPrefsOutputFolder_audio').placeholder =
             outputFolderPaths.audio;
@@ -157,6 +163,15 @@ const insertOutputFolderPaths = (outputFolderPaths) => {
             'modalPrefsOutputFolder_warpstagram'
         ).placeholder = outputFolderPaths.warpstagram;
     }, 100);
+};
+const injectPrefsModalToCurrentSlide = (
+    prefsMarkup,
+    outputFolderPaths,
+    activeTab,
+    storage
+) => {
+    insertOutputFolderPaths(outputFolderPaths, storage);
+    injectPrefsMarkup(prefsMarkup, activeTab);
 };
 const removeActiveModalNavClass = () => {
     document
@@ -215,14 +230,8 @@ const removeAllInjectedModals = () => {
         }
     }
 };
-const injectPrefsModalToCurrentSlide = (
-    prefsMarkup,
-    outputFolderPaths,
-    activeTab
-) => {
-    insertOutputFolderPaths(outputFolderPaths);
-    injectPrefsMarkup(prefsMarkup, activeTab);
-};
+
+// const insertOut
 const toggleModal = (state, avType) => {
     toggleBackground(state);
     toggleModalState(state);

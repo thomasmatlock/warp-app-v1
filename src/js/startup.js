@@ -56,7 +56,10 @@ class startup {
                         video: fileController.dirVideoPath,
                         warpstagram: fileController.dirWarpstagramPath,
                     },
-
+                    pathMain: fileController.dirMainPath,
+                    pathAudio: fileController.dirAudioPath,
+                    pathVideo: fileController.dirVideoPath,
+                    pathWarpstagram: fileController.dirWarpstagramPath,
                     autostartWarp: false,
                     minimizeToTrayOnClose: false,
                     prefsMarkup: '',
