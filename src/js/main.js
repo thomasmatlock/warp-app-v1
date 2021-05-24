@@ -262,6 +262,7 @@ const windowController = {
             // icon: fileController.dirProjectPath + '/icon_black_gradient.png',
             // icon: fileController.dirProjectPath + '/22968-200.png',
             icon: fileController.dirProjectPath + '/build/22971-200.png',
+            // icon: fileController.dirProjectPath + '/build/149360.png',
             // icon: fileController.dirProjectPath + '/vortex.png',
             // icon: fileController.dirProjectPath +
             // '/vortex-clipart-transparent-1.png',

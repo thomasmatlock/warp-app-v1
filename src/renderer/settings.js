@@ -55,12 +55,9 @@ async function settingsLoad() {
 }
 
 module.exports = {
-    // systemInfo: systemInfo,
     loadMarkupSource: loadMarkupSource,
-    // saveMarkup: saveMarkup,
     settingsSave: settingsSave,
     settingsLoad: settingsLoad,
-    // testing: testing,
 };
 
 // PRE-CHECK
