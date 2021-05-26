@@ -24,6 +24,7 @@ let markupVideo = markup.video;
 ///////////////////////   ADD ITEM(S)   ///////////////////////
 exports.defaultsAddAllItems = (storageSent) => {
     storage = storageSent;
+    // console.log(storage);
     this.addItemsFromArray(storage.downloadItems.audioArr, 'audio');
     this.addItemsFromArray(storage.downloadItems.videoArr, 'video');
 };
@@ -56,7 +57,7 @@ exports.addItemsFromArray = (arr, avType) => {
 };
 exports.downloadItem = (itemURL, avType, platform) => {
     if (defaults.dev.getDownloadItemInfo) {
-        downloadHandler.all(itemURL, avType, platform); // exports without object
+        downloadHandler.all(itemURL, avType, platform, storage); // exports without object
     }
 };
 

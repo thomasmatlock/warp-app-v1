@@ -28,6 +28,9 @@ let itemInfo = {
     title: '',
 };
 
+let pathAudio;
+let pathVideo;
+
 const formatLength = function(approxDurationMs) {
     itemInfo.secs = Math.round(approxDurationMs / 1000); // returns video length in itemInfo.secs, rounded
     itemInfo.mins = (itemInfo.secs / 60).toFixed(1); // returns minutes with one decimal, ie, 3.4 mins long
@@ -132,6 +135,7 @@ const downloadAndWrite = function(itemURL) {
     if (defaults.dev.getDownloadItemInfo) {
         (async() => {
             let filepath = createFilePath();
+            console.log(filepath);
             if (defaults.dev.downloadFile) {
                 ytdl(this.itemInfo.url).pipe(fs.createWriteStream(filepath)); // downloads video
             }
@@ -142,24 +146,35 @@ const downloadAndWrite = function(itemURL) {
 const getFileSize = function() {
     // console.log('getFileSize');
 };
-const createFilePath = function() {
-    // var filePath;
+const createFilePath = function(itemURL, avType, platform, storage) {
+    // console.log(storage);
     if (itemInfo.type === 'audio') {
+        // let test = path.join(
+        //     storage.user.prefs.pathAudio,
+        //     `${itemInfo.title}.mp3` // fix this, needs to be audio and mp3
+        // );
+        // console.log(`test, ${test}`);
         return path.join(
-            fileController.dirAudioPath,
+            pathAudio,
             `${itemInfo.title}.mp3` // fix this, needs to be audio and mp3
         );
-        // console.log(filePath);
     } else if (itemInfo.type === 'video') {
-        return path.join(fileController.dirVideoPath, `${itemInfo.title}.mp4`);
+        return path.join(pathVideo, `${itemInfo.title}.mp4`);
+        // return path.join(s.dirVideoPath, `${itemInfo.title}.mp4`);
     }
 };
-const getInfo = async function(itemURL, avType) {
+const getInfo = async function(itemURL, avType, platform, storage) {
     try {
         await ytdl.getBasicInfo(itemURL).then((info) => {
             this.cloneVideoDetails(itemURL, info, avType);
             this.removeCharactersFromTitle();
-            itemInfo.filepath = createFilePath();
+            itemInfo.filepath = createFilePath(
+                itemURL,
+                avType,
+                platform,
+                storage
+            );
+            console.log(itemInfo.filepath);
             this.downloadAndWrite(itemURL);
             items.addItem(itemInfo, avType);
             items.updateStorage(itemInfo, avType, 'add');
@@ -168,12 +183,23 @@ const getInfo = async function(itemURL, avType) {
         console.log(error);
     }
 };
-
-const all = function(itemURL, avType, platform) {
+const getFormat = function(avType, storage) {
+    // if(avType === 'audio')
+    // if (avType === 'video') {
+    // console.log(storage.);
+    // }
+    // console.log(storage.user.prefs.pathAudio);
+    // console.log(storage.user.prefs.pathVideo);
+};
+const all = function(itemURL, avType, platform, storage) {
+    // console.log(avType);
+    pathAudio = storage.user.prefs.pathAudio;
+    pathVideo = storage.user.prefs.pathVideo;
+    getFormat(avType, storage);
     // console.log(itemURL);
     itemInfo.type = avType;
     itemInfo.platform = platform;
-    this.getInfo(itemURL, avType);
+    this.getInfo(itemURL, avType, platform, storage);
     // itemInfo.getFileSize();
 };
 
