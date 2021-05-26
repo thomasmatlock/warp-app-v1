@@ -68,8 +68,6 @@ const formatLength = function(approxDurationMs) {
 };
 
 const cloneVideoDetails = function(itemURL, info, avType) {
-    // console.log(type);
-    // console.log(itemInfo.title);
     defaults.dev.downloadSmallestFile ?
         (itemInfo.selectedFormat = info.formats[0]) // sets to smallest format for easy dev downloading
         :
@@ -96,9 +94,10 @@ const cloneVideoDetails = function(itemURL, info, avType) {
     itemInfo.approxDurationMs = itemInfo.selectedFormat.approxDurationMs;
 
     itemInfo.filepath =
-        avType === 'audio' ?
-        path.join(fileController.dirAudioPath, `${itemInfo.title}.mp3`) :
-        path.join(fileController.dirVideoPath, `${itemInfo.title}.mp4`);
+        avType === 'audio' // path.join(fileController.dirAudioPath, `${itemInfo.title}.mp3`) :
+        ? // path.join(fileController.dirVideoPath, `${itemInfo.title}.mp4`);
+        path.join(pathAudio, `${itemInfo.title}.mp3`) :
+        path.join(pathVideo, `${itemInfo.title}.mp4`);
     itemInfo.id = uuidv4();
     // console.log(itemInfo.title);
     // this.url = this.selectedFormat.url;
