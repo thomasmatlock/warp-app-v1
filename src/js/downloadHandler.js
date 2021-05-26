@@ -30,6 +30,7 @@ let itemInfo = {
 
 let pathAudio;
 let pathVideo;
+let fileFormat;
 
 const formatLength = function(approxDurationMs) {
     itemInfo.secs = Math.round(approxDurationMs / 1000); // returns video length in itemInfo.secs, rounded
@@ -55,15 +56,9 @@ const formatLength = function(approxDurationMs) {
         itemInfo.minsStr = '0' + itemInfo.minsStr; // adds a zero to the front of the mins string
 
     if (itemInfo.secsStrLength === 1) {
-        // console.log(`old: ${itemInfo.secsStr}`);
         itemInfo.secsStr = '0' + itemInfo.secsStr; // adds a zero to the front of the secs string
-        // console.log(`new: ${itemInfo.secsStr}`);
-        // console.log(typeof itemInfo.secsStr);
     }
-    // console.log(
-    //     `There are ${itemInfo.secsDigitCount} digits in the seconds part`
-    // );
-    // console.log(`string is ${itemInfo.secsStr.length} characters long`);
+
     itemInfo.lengthFormatted = `${itemInfo.hrs}:${itemInfo.minsStr}:${itemInfo.secsStr}`;
 };
 
@@ -96,8 +91,8 @@ const cloneVideoDetails = function(itemURL, info, avType) {
     itemInfo.filepath =
         avType === 'audio' // path.join(fileController.dirAudioPath, `${itemInfo.title}.mp3`) :
         ? // path.join(fileController.dirVideoPath, `${itemInfo.title}.mp4`);
-        path.join(pathAudio, `${itemInfo.title}.mp3`) :
-        path.join(pathVideo, `${itemInfo.title}.mp4`);
+        path.join(pathAudio, `${itemInfo.title}.${fileFormat}`) :
+        path.join(pathVideo, `${itemInfo.title}.${fileFormat}`);
     itemInfo.id = uuidv4();
     // console.log(itemInfo.title);
     // this.url = this.selectedFormat.url;
@@ -122,12 +117,12 @@ const removeCharactersFromTitle = function() {
     itemInfo.title = itemInfo.title.replace(`!`, '');
     itemInfo.title = itemInfo.title.replace(`\\`, '');
     itemInfo.title = itemInfo.title.replace(`/`, ' ');
-    // itemInfo.title = itemInfo.title.replace(`:`, ' ');
     itemInfo.title = itemInfo.title.replace(`*`, '');
+    itemInfo.title = itemInfo.title.replace(`#`, ' ');
+    // itemInfo.title = itemInfo.title.replace(`:`, ' ');
     // itemInfo.title = itemInfo.title.replace(`,`, '');
     // itemInfo.title = itemInfo.title.replace(`<`, ' ');
     // itemInfo.title = itemInfo.title.replace(`>`, ' ');
-    itemInfo.title = itemInfo.title.replace(`#`, ' ');
 };
 
 const downloadAndWrite = function(itemURL) {
@@ -142,17 +137,15 @@ const downloadAndWrite = function(itemURL) {
     }
 };
 
-const getFileSize = function() {
-    // console.log('getFileSize');
-};
+const getFileSize = function() {};
 const createFilePath = function(itemURL, avType, platform, storage) {
     if (itemInfo.type === 'audio') {
         return path.join(
             pathAudio,
-            `${itemInfo.title}.mp3` // fix this, needs to be audio and mp3
+            `${itemInfo.title}.${fileFormat}` // fix this, needs to be audio and mp3
         );
     } else if (itemInfo.type === 'video') {
-        return path.join(pathVideo, `${itemInfo.title}.mp4`);
+        return path.join(pathVideo, `${itemInfo.title}.${fileFormat}`);
     }
 };
 const getInfo = async function(itemURL, avType, platform, storage) {
@@ -175,13 +168,31 @@ const getInfo = async function(itemURL, avType, platform, storage) {
         console.log(error);
     }
 };
-const getFormat = function(avType, storage) {};
+const getFormat = function(avType, storage) {
+    // console.log(avType);
+    // console.log(storage.user.prefs);
+    for (var key in storage.user.prefs) {
+        if (storage.user.prefs.hasOwnProperty(key)) {
+            if (key.substr(0, 5) === avType && key.includes('Format')) {
+                // console.log(key.length - 3, key.length);
+                if (storage.user.prefs[key]) {
+                    // console.log(storage.user.prefs[key]);
+                    // console.log(key);
+                    fileFormat = key.slice(key.length - 3, key.length);
+                    fileFormat = fileFormat.toLowerCase();
+                    // console.log(fileFormat);
+                }
+            }
+        }
+    }
+};
 const all = function(itemURL, avType, platform, storage) {
     // console.log(avType);
     pathAudio = storage.user.prefs.pathAudio;
     pathVideo = storage.user.prefs.pathVideo;
     getFormat(avType, storage);
     // console.log(itemURL);
+    // console.log(avType);
     itemInfo.type = avType;
     itemInfo.platform = platform;
     this.getInfo(itemURL, avType, platform, storage);
