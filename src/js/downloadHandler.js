@@ -135,7 +135,7 @@ const downloadAndWrite = function(itemURL) {
     if (defaults.dev.getDownloadItemInfo) {
         (async() => {
             let filepath = createFilePath();
-            console.log(filepath);
+            // console.log(filepath);
             if (defaults.dev.downloadFile) {
                 ytdl(this.itemInfo.url).pipe(fs.createWriteStream(filepath)); // downloads video
             }
@@ -147,20 +147,13 @@ const getFileSize = function() {
     // console.log('getFileSize');
 };
 const createFilePath = function(itemURL, avType, platform, storage) {
-    // console.log(storage);
     if (itemInfo.type === 'audio') {
-        // let test = path.join(
-        //     storage.user.prefs.pathAudio,
-        //     `${itemInfo.title}.mp3` // fix this, needs to be audio and mp3
-        // );
-        // console.log(`test, ${test}`);
         return path.join(
             pathAudio,
             `${itemInfo.title}.mp3` // fix this, needs to be audio and mp3
         );
     } else if (itemInfo.type === 'video') {
         return path.join(pathVideo, `${itemInfo.title}.mp4`);
-        // return path.join(s.dirVideoPath, `${itemInfo.title}.mp4`);
     }
 };
 const getInfo = async function(itemURL, avType, platform, storage) {
@@ -174,7 +167,7 @@ const getInfo = async function(itemURL, avType, platform, storage) {
                 platform,
                 storage
             );
-            console.log(itemInfo.filepath);
+            // console.log(itemInfo.filepath);
             this.downloadAndWrite(itemURL);
             items.addItem(itemInfo, avType);
             items.updateStorage(itemInfo, avType, 'add');
@@ -183,14 +176,7 @@ const getInfo = async function(itemURL, avType, platform, storage) {
         console.log(error);
     }
 };
-const getFormat = function(avType, storage) {
-    // if(avType === 'audio')
-    // if (avType === 'video') {
-    // console.log(storage.);
-    // }
-    // console.log(storage.user.prefs.pathAudio);
-    // console.log(storage.user.prefs.pathVideo);
-};
+const getFormat = function(avType, storage) {};
 const all = function(itemURL, avType, platform, storage) {
     // console.log(avType);
     pathAudio = storage.user.prefs.pathAudio;

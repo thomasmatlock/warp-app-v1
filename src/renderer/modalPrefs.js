@@ -282,7 +282,7 @@ ipcRenderer.on(
 
                 if (key === joined) {
                     storage.user.prefs[key] = outputFolderSelected;
-                    // console.log(storage.user.prefs[key]);
+                    console.log(storage.user.prefs[key]);
                     storage.user.prefs[key] = storage.user.prefs[key][0];
                     // console.log(storage.user.prefs[key]);
                     prefsView.insertOutputFolderPaths(storage);
