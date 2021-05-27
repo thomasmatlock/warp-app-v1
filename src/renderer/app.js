@@ -22,7 +22,6 @@ const search = require('./searchLocal');
 
 let state = new stateReq();
 let storage;
-// console.log(storage);
 (function init() {
     ipcRenderer.on('window-ready', (e, storage) => {
         addEventListeners(); // activates DOM event listeners
@@ -42,14 +41,12 @@ let storage;
         items.defaultsAddAllItems(storage); // loads items stored in settings to UI
 
         ipcRenderer.send('mainWindow-ready');
-        // console.log(`acceptedEULA is ${storage.user.acceptedEULA}`);
         ipcRenderer.on('modal-window-ready', () => {
             console.log('attaching event listeners');
         });
     });
     ipcRenderer.on('storage-sync-success', (e, storageReceived) => {
         storage = storageReceived;
-        // console.log(storage);
     });
     const setActiveNav_A = (nav_A_active) => {
         if (nav_A_active === 'audio')

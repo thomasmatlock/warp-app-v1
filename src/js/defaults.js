@@ -38,8 +38,8 @@ class defaults {
                     pathAudio: fileController.dirAudioPath,
                     pathVideo: fileController.dirVideoPath,
                     pathWarpstagram: fileController.dirWarpstagramPath,
-                    autostartWarp: false,
-                    minimizeToTrayOnClose: false,
+                    toggle_autostartWarp: false,
+                    toggle_minimizeToTrayOnClose: false,
                     startupTab: 'audio', //   audio, video, or warpstagram, defaults to audio
                     prefsMarkup: '',
                     audioQuality_best: true,

@@ -137,6 +137,7 @@ const showPanel = (modalType, avType) => {
     toggleActiveModalNavClass(avType);
 };
 const showPanelInit = (modalType, avType) => {
+    // console.log(avType);
     setTimeout(() => {
         showPanel(modalType, avType);
     }, 200);
@@ -226,8 +227,17 @@ const removeAllInjectedModals = () => {
     }
 };
 
-const toggleToggleBtn = () => {
-    console.log('toggling btn');
+const toggleToggleBtn = (storage) => {
+    for (var key in storage.user.prefs) {
+        if (storage.user.prefs.hasOwnProperty(key)) {
+            if (key.substr(0, 7) === 'toggle_') {
+                if (storage.user.prefs[key]) {
+                    // console.log(storage.user.prefs[key]);
+                    console.log(`${key} is ${storage.user.prefs[key]}`);
+                }
+            }
+        }
+    }
 };
 
 // const insertOut
@@ -248,4 +258,5 @@ module.exports = {
     removeAllInjectedModals: removeAllInjectedModals,
     injectPrefsModalToCurrentSlide: injectPrefsModalToCurrentSlide,
     toggleModal: toggleModal,
+    toggleToggleBtn: toggleToggleBtn,
 };

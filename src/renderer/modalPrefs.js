@@ -20,7 +20,7 @@ let storage;
         'window-ready',
         (e, storageSentFromMain, modalPrefsMarkup) => {
             storage = storageSentFromMain;
-            // console.log(storage);
+            // console.log(storage.user.prefs);
             prefsMarkupSrc = modalPrefsMarkup;
             prefsMarkup = modalPrefsMarkup;
             // console.log(prefsMarkup);
@@ -46,7 +46,9 @@ const windowReady = (prefsMarkup) => {
     setTimeout(() => {
         auto.click_nav_B(defaults.env.nav_A_active, 'preferences'); // auto clicks paste, smartMode, activate, subscriptions, preferences, help
     }, 400);
+    // prefsView.toggleToggleBtn(storage);
     refreshModalListeners('refresh'); // THIS IS CHANGING BEHAVIOR OF BACKGROUND
+    prefsView.toggleToggleBtn(storage);
     setTimeout(() => {
         addNavAListeners();
     }, 100);
@@ -65,6 +67,7 @@ const addNavAListeners = () => {
                 storage
             );
         }, 100);
+
         // removeModalBackgroundListeners();
         prefsView.showPanelInit('prefs', 'audio');
         refreshPrefsNavListeners();
@@ -105,6 +108,7 @@ const addNavBListeners = () => {
     elements.nav_B_button_audio_preferences.addEventListener('click', (e) => {
         prefsView.toggleModal(state, 'audio');
     });
+
     elements.nav_B_button_video_preferences.addEventListener('click', (e) => {
         prefsView.toggleModal(state, 'video');
     });
@@ -166,12 +170,12 @@ const refreshPrefsNavListeners = () => {
         document
             .getElementById('modalPrefsToggleButton_autostartWarp')
             .addEventListener('click', (e) => {
-                updatePrefsState('autostartWarp');
+                updatePrefsState('toggle_autostartWarp');
             });
         document
             .getElementById('modalPrefsToggleButton_minimizeToTrayOnClose')
             .addEventListener('click', (e) => {
-                updatePrefsState('minimizeToTrayOnClose');
+                updatePrefsState('toggle_minimizeToTrayOnClose');
             });
         // AUDIO QUALITY
         document
@@ -195,6 +199,7 @@ const refreshPrefsNavListeners = () => {
         document
             .getElementById('modalDropdownList_list_video_Format')
             .addEventListener('change', function() {
+                console.log(this.value);
                 updatePrefsState(this.value);
             });
         document
@@ -238,16 +243,29 @@ const refreshModalBackgroundListeners = (type) => {
         .getElementById('modalBackgroundID')
         .addEventListener('click', (e) => {
             prefsView.toggleModal(state, 'warpstagram');
+            // console.log(storage.user.prefs);
             prefsSettingsSync();
         });
 };
 
 const updatePrefsState = (eventTitle) => {
+    // console.log(eventTitle);
     var optionSubstring = eventTitle.substr(0, 12);
-    setPrefOptionsToFalse(optionSubstring);
-    storage.user.prefs[eventTitle] = storage.user.prefs[eventTitle] ?
-        false :
-        true;
+    // HANDLES non toggle options
+    if (eventTitle.substr(0, 7) != 'toggle_') {
+        setPrefOptionsToFalse(optionSubstring);
+        storage.user.prefs[eventTitle] = storage.user.prefs[eventTitle] ?
+            false :
+            true;
+    }
+    // HANDLES TOGGLE BUTTONS
+    if (eventTitle.substr(0, 7) === 'toggle_') {
+        storage.user.prefs[eventTitle] = storage.user.prefs[eventTitle] ?
+            false :
+            true;
+        prefsView.toggleToggleBtn(storage);
+    }
+    // console.log(storage.user.prefs[eventTitle]);
 };
 const prefsSettingsSync = () => {
     ipcRenderer.send('storage-sync-request', storage);
@@ -256,7 +274,6 @@ const setPrefOptionsToFalse = (optionSubstring) => {
     for (var key in storage.user.prefs) {
         if (storage.user.prefs.hasOwnProperty(key)) {
             if (key.substr(0, 12) === optionSubstring) {
-                // console.log(key);
                 storage.user.prefs[key] = false;
             }
         }
@@ -264,7 +281,6 @@ const setPrefOptionsToFalse = (optionSubstring) => {
 };
 
 const dialogShowOutputFolder = (outputFolderBtnID) => {
-    // console.log(`acceptedEULA is ${storage.user.acceptedEULA}`);
     ipcRenderer.send('dialog-showOutputFolder', outputFolderBtnID, storage);
 };
 
@@ -282,12 +298,10 @@ ipcRenderer.on(
 
                 if (key === joined) {
                     storage.user.prefs[key] = outputFolderSelected;
-                    console.log(storage.user.prefs[key]);
+
                     storage.user.prefs[key] = storage.user.prefs[key][0];
-                    // console.log(storage.user.prefs[key]);
+
                     prefsView.insertOutputFolderPaths(storage);
-                    // console.log(`acceptedEULA is ${storage.user.acceptedEULA}`);
-                    // prefsSettingsSync();
                 }
             }
         }

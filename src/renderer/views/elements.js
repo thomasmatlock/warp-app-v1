@@ -84,7 +84,12 @@ const elements = {
         '.modalContainerWarpstagram'
     ),
     // modalToggleBtn: document.getElementById('modalPrefsToggleButton_autostartWarp'),
-    modalToggleBtn: document.getElementById('button-ID'),
+    modalPrefsToggleButton_minimizeToTrayOnClose_checkbox: document.getElementById(
+        'modalPrefsToggleButton_minimizeToTrayOnClose_checkbox'
+    ),
+    modalPrefsToggleButton_autostartWarp_checkbox: document.getElementById(
+        'modalPrefsToggleButton_autostartWarp_checkbox'
+    ),
     modalOutputFolderBtn_audio: document.getElementById(
         'modalOutputFolderBtn_audio'
     ),
