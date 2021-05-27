@@ -226,14 +226,22 @@ const removeAllInjectedModals = () => {
         }
     }
 };
-
+// WWW.JAVASCRIPTTUTORIAL.NET/JAVASCRIPT-DOM/JAVASCRIPT-CHECKBOX/
 const toggleToggleBtn = (storage) => {
+    const cb = document.getElementById(
+        'modalPrefsToggleButton_autostartWarp_checkbox'
+    );
+    console.log(cb.checked);
+    // console.log(cb.value);
     for (var key in storage.user.prefs) {
         if (storage.user.prefs.hasOwnProperty(key)) {
             if (key.substr(0, 7) === 'toggle_') {
                 if (storage.user.prefs[key]) {
                     // console.log(storage.user.prefs[key]);
                     console.log(`${key} is ${storage.user.prefs[key]}`);
+                    // document.getElementById(
+                    //     'modalPrefsToggleButton_autostartWarp_checkbox'
+                    // );
                 }
             }
         }
