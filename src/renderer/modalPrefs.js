@@ -46,11 +46,13 @@ const windowReady = (prefsMarkup) => {
     setTimeout(() => {
         auto.click_nav_B(defaults.env.nav_A_active, 'preferences'); // auto clicks paste, smartMode, activate, subscriptions, preferences, help
     }, 400);
-    // prefsView.toggleToggleBtn(storage);
     refreshModalListeners('refresh'); // THIS IS CHANGING BEHAVIOR OF BACKGROUND
     prefsView.toggleToggleBtn(storage);
+
+    // auto.clickElement(cb);
     setTimeout(() => {
         addNavAListeners();
+        prefsView.setDropdown(storage);
     }, 100);
 };
 
@@ -182,6 +184,7 @@ const refreshPrefsNavListeners = () => {
             .getElementById('modalDropdownList_list_audio_Quality')
             .addEventListener('change', function() {
                 updatePrefsState(this.value);
+                prefsView.setDropdown(storage);
             });
         // AUDIO FORMAT
         document

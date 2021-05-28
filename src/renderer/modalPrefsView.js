@@ -228,24 +228,34 @@ const removeAllInjectedModals = () => {
 };
 // WWW.JAVASCRIPTTUTORIAL.NET/JAVASCRIPT-DOM/JAVASCRIPT-CHECKBOX/
 const toggleToggleBtn = (storage) => {
-    const cb = document.getElementById(
-        'modalPrefsToggleButton_autostartWarp_checkbox'
-    );
-    console.log(cb.checked);
-    // console.log(cb.value);
     for (var key in storage.user.prefs) {
         if (storage.user.prefs.hasOwnProperty(key)) {
             if (key.substr(0, 7) === 'toggle_') {
                 if (storage.user.prefs[key]) {
-                    // console.log(storage.user.prefs[key]);
                     console.log(`${key} is ${storage.user.prefs[key]}`);
-                    // document.getElementById(
-                    //     'modalPrefsToggleButton_autostartWarp_checkbox'
-                    // );
+                    // key.style.display = 'none';
                 }
             }
         }
     }
+};
+const setDropdown = (storage) => {
+    // console.log(storage.user.prefs);
+    // console.log('setting dropdown');
+    // document.getElementById(
+    //     'modalDropdownList_list_audio_Quality'
+    // ).selectedIndex = 2;
+    let options = document.getElementById(
+        'modalDropdownList_list_audio_Quality'
+    ).options;
+    console.log(options);
+    // optionObject.text = text;
+    console.log(elements);
+    var e = document.getElementById('modalDropdownList_list_audio_Quality');
+    var resultText = e.options[e.selectedIndex].text; // use this for what user sees
+    var resultValue = e.options[e.selectedIndex].value; // use this
+    console.log(resultText);
+    console.log(resultValue);
 };
 
 // const insertOut
@@ -267,4 +277,5 @@ module.exports = {
     injectPrefsModalToCurrentSlide: injectPrefsModalToCurrentSlide,
     toggleModal: toggleModal,
     toggleToggleBtn: toggleToggleBtn,
+    setDropdown: setDropdown,
 };
