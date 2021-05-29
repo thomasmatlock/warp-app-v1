@@ -26,8 +26,8 @@ let storage;
     ipcRenderer.on('window-ready', (e, storage) => {
         addEventListeners(); // activates DOM event listeners
         addMenuListeners(); // activates menu event listeners
-        console.log(defaults.env.nav_A_active);
-        console.log(storage.user.prefs.startupTab);
+        // console.log(defaults.env.nav_A_active);
+        // console.log(storage.user.prefs.startupTab);
 
         setActiveNav_A(storage.user.prefs.startupTab); // sets active Nav A
         removeNavBActivateBtn(storage);
