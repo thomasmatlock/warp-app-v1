@@ -240,22 +240,75 @@ const toggleToggleBtn = (storage) => {
     }
 };
 const setDropdown = (storage) => {
-    // console.log(storage.user.prefs);
-    // console.log('setting dropdown');
-    // document.getElementById(
-    //     'modalDropdownList_list_audio_Quality'
-    // ).selectedIndex = 2;
-    let options = document.getElementById(
+    // let optionSubstring = 'audioQuality';
+    // let i = -1;
+    // let index;
+    // for (var key in storage.user.prefs) {
+    //     if (storage.user.prefs.hasOwnProperty(key)) {
+    //         if (key.substr(0, 12) === optionSubstring) {
+    //             // console.log(key);
+    //             i++;
+    //             if (storage.user.prefs[key]) {
+    //                 // console.log(`${key} is ${storage.user.prefs[key]}`);
+
+    //                 index = i;
+    //                 // console.log(i);
+    //             }
+    //             //    storage.user.prefs[key] = false;
+    //         }
+    //     }
+    // }
+
+    var dropdown = document.getElementById(
         'modalDropdownList_list_audio_Quality'
-    ).options;
-    console.log(options);
-    // optionObject.text = text;
-    console.log(elements);
-    var e = document.getElementById('modalDropdownList_list_audio_Quality');
-    var resultText = e.options[e.selectedIndex].text; // use this for what user sees
-    var resultValue = e.options[e.selectedIndex].value; // use this
-    console.log(resultText);
-    console.log(resultValue);
+    );
+    let index = 1;
+
+    dropdown.options[index].selected = true;
+
+    // var resultText = dropdown.options[index].text; // use this for what user sees
+    // var resultValue = dropdown.options[index].value; // use this
+    // console.log(`text is "${resultText}"`);
+    // console.log(`value is "${resultValue}"`);
+    ///////////////////////////////// OLD /////////////////////////////////////
+    // // console.log(index);
+    // // console.log('setting dropdown');
+    // // document.getElementById(
+    // //     'modalDropdownList_list_audio_Quality'
+    // // ).selectedIndex = 2;
+    // // let options = document.getElementById(
+    // //     'modalDropdownList_list_audio_Quality'
+    // // ).options;
+    // // console.log(options);
+    // // optionObject.text = text;
+    // // console.log(elements);
+    // var dropdown = document.getElementById(
+    //     'modalDropdownList_list_audio_Quality'
+    // );
+    // var element = document.getElementById(
+    //     'modalDropdownList_list_audio_lowQuality'
+    // );
+    // // element.selected = true;
+    // // document
+    // //     .getElementsByTagName('H1')[0]
+    // //     .setAttribute('selected', 'democlass');
+    // // dropdown.options[index].setAttribute(null, 'selected');
+    // // console.log(dropdown.options[index]);
+    // // dropdown.options[index].setAttribute('selected', 'selected');
+    // console.log(dropdown.options[index]);
+    // // dropdown.options[1].selected = true;
+    // // console.log(dropdown.options[index].selected);
+    // // dropdown.options[index].selected = true;
+    // // console.log(dropdown.options[index].selected);
+    // // console.log(dropdown.options[dropdown.selectedIndex]);
+    // // dropdown.options[dropdown.selectedIndex].innerHTML = 'hello';
+    // // dropdown.options[0].innerHTML = 'hello';
+    // // console.log(dropdown.options[dropdown.selectedIndex].innerHTML);
+    // var resultText = dropdown.options[index].text; // use this for what user sees
+    // var resultValue = dropdown.options[index].value; // use this
+    // console.log(`text is "${resultText}"`);
+    // console.log(resultValue);
+    ///////////////////////////////// OLD /////////////////////////////////////
 };
 
 // const insertOut

@@ -39,6 +39,7 @@ const windowReady = (prefsMarkup) => {
         storage.user.prefs.startupTab,
         storage
     );
+    prefsView.setDropdown(storage);
 
     addNavBListeners();
     addAppMenuListeners();
@@ -52,7 +53,6 @@ const windowReady = (prefsMarkup) => {
     // auto.clickElement(cb);
     setTimeout(() => {
         addNavAListeners();
-        prefsView.setDropdown(storage);
     }, 100);
 };
 
