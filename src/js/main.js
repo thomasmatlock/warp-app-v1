@@ -1,4 +1,4 @@
-const { app, BrowserWindow, dialog, ipcMain } = require('electron');
+const { app, BrowserWindow, dialog, ipcMain, Menu, Tray } = require('electron');
 const displayControllerReq = require('./displayController');
 const appMenuAudio = require('./menuAudio');
 const appMenuVideo = require('./menuVideo');
@@ -9,6 +9,18 @@ const settings = require('../renderer/settings');
 const defaultsReq = require('./defaults');
 const defaults = new defaultsReq();
 
+///////////////////////////////////   TRAY   /////////////////////////////////
+let tray = null;
+app.whenReady().then(() => {
+    tray = new Tray(fileController.dirProjectPath + '/build/22971-200.png');
+    const contextMenu = Menu.buildFromTemplate([
+        { label: 'Open Warp' },
+        { label: 'Quit Warp' },
+    ]);
+    tray.setToolTip('Warp Downloader');
+    tray.setContextMenu(contextMenu);
+});
+///////////////////////////////////   TRAY   /////////////////////////////////
 ////////////////////////////////////////////////////////////////////
 let mainWindow, splash, modalWindow, displayController, storageMain; // Keep a global reference of the window object, if you don't, the window will be closed automatically when the JavaScript object is garbage collected.
 app.allowRendererProcessReuse = true; // not sure what this does but I added it for a reason
