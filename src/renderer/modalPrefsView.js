@@ -248,9 +248,11 @@ const setDropdown = (storage, dropdownID, valueStartingSubstr) => {
                 valueStartingSubstr
             ) {
                 i++;
-                console.log(key);
+                // console.log(key);
                 if (storage.user.prefs[key]) {
+                    // console.log(`${key} is ${storage.user.prefs[key]}`);
                     index = i;
+                    // console.log(i);
                 }
             }
         }
@@ -274,17 +276,16 @@ const setDropdownsAll = (storage) => {
         warpstagram_update: document.getElementById(
             'modalDropdownList_list_warpstagram_updateSelected'
         ),
-        // warpstagram_autoUpdateFreq: document.getElementById(
-        //     'modalDropdownList_list_warpstagram_autoUpdateFrequency'
-        // ),
-        // warpstagram_postSorting: document.getElementById(
-        //     'modalDropdownList_list_warpstagram_postSorting'
-        // ),
+        warpstagram_autoUpdateFreq: document.getElementById(
+            'modalDropdownList_list_warpstagram_autoUpdateFrequency'
+        ),
+        warpstagram_postSorting: document.getElementById(
+            'modalDropdownList_list_warpstagram_postSorting'
+        ),
     };
 
     for (var key in dropdownsObj) {
         setDropdown(storage, dropdownsObj[key], key);
-        // console.log(key);
     }
 };
 const toggleModal = (state, avType) => {

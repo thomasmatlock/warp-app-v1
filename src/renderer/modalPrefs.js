@@ -206,16 +206,26 @@ const refreshModalBackgroundListeners = (type) => {
         .getElementById('modalBackgroundID')
         .addEventListener('click', (e) => {
             prefsView.toggleModal(state, 'warpstagram');
-            // console.log(storage.user.prefs);
+            console.log(storage.user.prefs);
             prefsSettingsSync();
         });
 };
 
 const updatePrefsState = (eventTitle) => {
     // console.log(eventTitle);
+    // 12, 20 below excludes warpstagram
+    if (eventTitle.substr(12, 20) && eventTitle.includes('warpstagram')) {
+        // console.log('it includes warpstagram');
+        // console.log(eventTitle.substr(12, 20));
+        setPrefOptionsToFalseINCLUDES(eventTitle);
+        storage.user.prefs[eventTitle] = true;
+    }
     var optionSubstring = eventTitle.substr(0, 12);
     // HANDLES non toggle options
-    if (eventTitle.substr(0, 7) != 'toggle_') {
+    if (
+        eventTitle.substr(0, 7) != 'toggle_' &&
+        !eventTitle.includes('warpstagram')
+    ) {
         setPrefOptionsToFalse(optionSubstring);
         storage.user.prefs[eventTitle] = storage.user.prefs[eventTitle] ?
             false :
@@ -237,6 +247,20 @@ const setPrefOptionsToFalse = (optionSubstring) => {
     for (var key in storage.user.prefs) {
         if (storage.user.prefs.hasOwnProperty(key)) {
             if (key.substr(0, 12) === optionSubstring) {
+                storage.user.prefs[key] = false;
+            }
+        }
+    }
+};
+const setPrefOptionsToFalseINCLUDES = (optionSubstring) => {
+    // console.log(optionSubstring);
+    let stringSlice = optionSubstring.substr(12, 7);
+    // console.log(stringSlice);
+    for (var key in storage.user.prefs) {
+        if (storage.user.prefs.hasOwnProperty(key)) {
+            if (key.includes(stringSlice)) {
+                // console.log(key);
+                // console.log(storage.user.prefs[key]);
                 storage.user.prefs[key] = false;
             }
         }
