@@ -39,7 +39,6 @@ const windowReady = (prefsMarkup) => {
         storage.user.prefs.startupTab,
         storage
     );
-
     addNavBListeners();
     addAppMenuListeners();
     prefsView.showPanelInit('prefs', 'audio');
@@ -48,62 +47,24 @@ const windowReady = (prefsMarkup) => {
     }, 400);
     refreshModalListeners('refresh'); // THIS IS CHANGING BEHAVIOR OF BACKGROUND
     prefsView.toggleToggleBtn(storage);
-
-    // auto.clickElement(cb);
     setTimeout(() => {
         addNavAListeners();
-        prefsView.setDropdown(storage);
-    }, 400);
+        prefsView.setDropdownsAll(storage);
+    }, 100);
 };
 
 const addNavAListeners = () => {
     elements.nav_A_audio.addEventListener('click', (e) => {
         state.activeTab = 'audio';
-        prefsView.removeAllInjectedModals();
-        // console.log(prefsMarkup);
-
-        setTimeout(() => {
-            prefsView.injectPrefsModalToCurrentSlide(
-                prefsMarkup,
-                state.activeTab,
-                storage
-            );
-        }, 100);
-
-        // removeModalBackgroundListeners();
-        prefsView.showPanelInit('prefs', 'audio');
-        refreshPrefsNavListeners();
+        tabSwitch();
     });
     elements.nav_A_video.addEventListener('click', (e) => {
         state.activeTab = 'video';
-        prefsView.removeAllInjectedModals();
-        // console.log(prefsMarkup);
-
-        setTimeout(() => {
-            prefsView.injectPrefsModalToCurrentSlide(
-                prefsMarkup,
-                state.activeTab,
-                storage
-            );
-            // prefsView.togglePreferences(state, 'audio');
-        }, 100);
-        // refreshModalListeners('refresh');
-        prefsView.showPanelInit('prefs', state.activeTab);
-        refreshPrefsNavListeners();
+        tabSwitch();
     });
     elements.nav_A_warpstagram.addEventListener('click', (e) => {
         state.activeTab = 'warpstagram';
-        prefsView.removeAllInjectedModals();
-        setTimeout(() => {
-            prefsView.injectPrefsModalToCurrentSlide(
-                prefsMarkup,
-                state.activeTab,
-                storage
-            );
-        }, 100);
-        // refreshModalListeners('refresh');
-        prefsView.showPanelInit('prefs', state.activeTab);
-        refreshPrefsNavListeners();
+        tabSwitch();
     });
 };
 const addNavBListeners = () => {
@@ -184,7 +145,7 @@ const refreshPrefsNavListeners = () => {
             .getElementById('modalDropdownList_list_audio_Quality')
             .addEventListener('change', function() {
                 updatePrefsState(this.value);
-                prefsView.setDropdown(storage);
+                prefsView.setDropdownsAll(storage);
             });
         // AUDIO FORMAT
         document
@@ -310,3 +271,18 @@ ipcRenderer.on(
         }
     }
 );
+
+const tabSwitch = () => {
+    prefsView.removeAllInjectedModals();
+    setTimeout(() => {
+        prefsView.injectPrefsModalToCurrentSlide(
+            prefsMarkup,
+            state.activeTab,
+            storage
+        );
+        prefsView.setDropdownsAll(storage);
+    }, 100);
+    // refreshModalListeners('refresh');
+    prefsView.showPanelInit('prefs', state.activeTab);
+    refreshPrefsNavListeners();
+};
