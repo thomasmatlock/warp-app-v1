@@ -239,7 +239,6 @@ const toggleToggleBtn = (storage) => {
     }
 };
 const setDropdown = (storage, dropdownID, valueStartingSubstr) => {
-    // console.log(valueStartingSubstr);
     let i = -1;
     let index;
     for (var key in storage.user.prefs) {
@@ -259,15 +258,34 @@ const setDropdown = (storage, dropdownID, valueStartingSubstr) => {
     dropdownID.options[index].selected = true;
 };
 const setDropdownsAll = (storage) => {
-    let dropdownID = document.getElementById(
-        'modalDropdownList_list_audio_Quality'
-    );
-    let dropdownID2 = document.getElementById(
-        'modalDropdownList_list_audio_Format'
-    );
+    const dropdownsObj = {
+        audioQuality: document.getElementById(
+            'modalDropdownList_list_audio_Quality'
+        ),
+        audioFormat: document.getElementById(
+            'modalDropdownList_list_audio_Format'
+        ),
+        videoQuality: document.getElementById(
+            'modalDropdownList_list_video_quality'
+        ),
+        videoFormat: document.getElementById(
+            'modalDropdownList_list_video_Format'
+        ),
+        warpstagram_update: document.getElementById(
+            'modalDropdownList_list_warpstagram_updateSelected'
+        ),
+        // warpstagram_autoUpdateFreq: document.getElementById(
+        //     'modalDropdownList_list_warpstagram_autoUpdateFrequency'
+        // ),
+        // warpstagram_postSorting: document.getElementById(
+        //     'modalDropdownList_list_warpstagram_postSorting'
+        // ),
+    };
 
-    setDropdown(storage, dropdownID, 'audioQuality');
-    setDropdown(storage, dropdownID2, 'audioFormat');
+    for (var key in dropdownsObj) {
+        setDropdown(storage, dropdownsObj[key], key);
+        // console.log(key);
+    }
 };
 const toggleModal = (state, avType) => {
     toggleBackground(state);

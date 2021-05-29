@@ -163,7 +163,6 @@ const refreshPrefsNavListeners = () => {
         document
             .getElementById('modalDropdownList_list_video_Format')
             .addEventListener('change', function() {
-                console.log(this.value);
                 updatePrefsState(this.value);
             });
         document
