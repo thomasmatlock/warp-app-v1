@@ -82,7 +82,7 @@ module.exports = (appWin) => {
                 },
                 {
                     label: 'Preferences',
-                    accelerator: 'CmdOrCtrl+P',
+                    accelerator: 'P',
                     click: () => {
                         appWin.send('Audio: Tools: Preferences');
                     },
