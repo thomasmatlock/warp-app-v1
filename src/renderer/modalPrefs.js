@@ -39,7 +39,6 @@ const windowReady = (prefsMarkup) => {
         storage.user.prefs.startupTab,
         storage
     );
-    prefsView.setDropdown(storage);
 
     addNavBListeners();
     addAppMenuListeners();
@@ -53,7 +52,8 @@ const windowReady = (prefsMarkup) => {
     // auto.clickElement(cb);
     setTimeout(() => {
         addNavAListeners();
-    }, 100);
+        prefsView.setDropdown(storage);
+    }, 400);
 };
 
 const addNavAListeners = () => {
@@ -139,7 +139,7 @@ const refreshPrefsNavListeners = () => {
         document
             .getElementById('closePrefsModal')
             .addEventListener('click', (e) => {
-                console.log(storage.user.prefs);
+                // console.log(storage.user.prefs);
                 prefsView.toggleModal(state, 'warpstagram');
                 prefsSettingsSync();
             });

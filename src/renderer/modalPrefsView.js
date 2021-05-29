@@ -240,29 +240,29 @@ const toggleToggleBtn = (storage) => {
     }
 };
 const setDropdown = (storage) => {
-    // let optionSubstring = 'audioQuality';
-    // let i = -1;
-    // let index;
-    // for (var key in storage.user.prefs) {
-    //     if (storage.user.prefs.hasOwnProperty(key)) {
-    //         if (key.substr(0, 12) === optionSubstring) {
-    //             // console.log(key);
-    //             i++;
-    //             if (storage.user.prefs[key]) {
-    //                 // console.log(`${key} is ${storage.user.prefs[key]}`);
+    let optionSubstring = 'audioQuality';
+    let i = -1;
+    let index;
+    for (var key in storage.user.prefs) {
+        if (storage.user.prefs.hasOwnProperty(key)) {
+            if (key.substr(0, 12) === optionSubstring) {
+                // console.log(key);
+                i++;
+                if (storage.user.prefs[key]) {
+                    // console.log(`${key} is ${storage.user.prefs[key]}`);
 
-    //                 index = i;
-    //                 // console.log(i);
-    //             }
-    //             //    storage.user.prefs[key] = false;
-    //         }
-    //     }
-    // }
+                    index = i;
+                    // console.log(i);
+                }
+                //    storage.user.prefs[key] = false;
+            }
+        }
+    }
 
     var dropdown = document.getElementById(
         'modalDropdownList_list_audio_Quality'
     );
-    let index = 1;
+    // let index = 1;
 
     dropdown.options[index].selected = true;
 
