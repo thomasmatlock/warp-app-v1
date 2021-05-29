@@ -43,7 +43,7 @@ const windowReady = (prefsMarkup) => {
     addAppMenuListeners();
     prefsView.showPanelInit('prefs', 'audio');
     setTimeout(() => {
-        auto.click_nav_B(defaults.env.nav_A_active, 'preferences'); // auto clicks paste, smartMode, activate, subscriptions, preferences, help
+        auto.click_nav_B(storage.user.prefs.startupTab, 'preferences'); // auto clicks paste, smartMode, activate, subscriptions, preferences, help
     }, 400);
     refreshModalListeners('refresh'); // THIS IS CHANGING BEHAVIOR OF BACKGROUND
     prefsView.toggleToggleBtn(storage);

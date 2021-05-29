@@ -26,7 +26,10 @@ let storage;
     ipcRenderer.on('window-ready', (e, storage) => {
         addEventListeners(); // activates DOM event listeners
         addMenuListeners(); // activates menu event listeners
-        setActiveNav_A(defaults.env.nav_A_active); // sets active Nav A
+        console.log(defaults.env.nav_A_active);
+        console.log(storage.user.prefs.startupTab);
+
+        setActiveNav_A(storage.user.prefs.startupTab); // sets active Nav A
         removeNavBActivateBtn(storage);
         setTimeout(() => {
             auto.click_nav_A(defaults.env.nav_A_active); // auto clicks active tab if active
@@ -34,9 +37,9 @@ let storage;
         }, 50);
         setTimeout(() => {
             // auto.click_nav_A(defaults.env.nav_A_active); // auto clicks active tab if active
-            auto.click_nav_A(defaults.env.nav_A_active); // auto clicks active tab if active
+            auto.click_nav_A(storage.user.prefs.startupTab); // auto clicks active tab if active
         }, 300);
-        ipcRenderer.send('menu-change', defaults.env.nav_A_active);
+        ipcRenderer.send('menu-change', storage.user.prefs.startupTab);
         if (defaults.dev.clearStorage) items.resetStorage(); // clears localStorage if active
         items.defaultsAddAllItems(storage); // loads items stored in settings to UI
 
