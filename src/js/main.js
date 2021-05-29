@@ -34,16 +34,6 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
     });
     ipcMain.on('menu-change', (e, menuType) => {
         mainFunctions.setMenu(menuType);
-
-        if (menuType === 'audio') appMenuAudio(mainWindow.webContents); // sets audio menu if audio tab is clicked
-        if (menuType === 'video') appMenuVideo(mainWindow.webContents); // sets video menu if video tab is clicked
-        if (menuType === 'warpstagram')
-            appMenuWarpstagram(mainWindow.webContents); // sets video menu if video tab is clicked
-
-        if (menuType === 'audio') appMenuAudio(mainWindow.webContents); // sets audio menu if audio tab is clicked
-        if (menuType === 'video') appMenuVideo(mainWindow.webContents); // sets video menu if video tab is clicked
-        if (menuType === 'warpstagram')
-            appMenuWarpstagram(mainWindow.webContents); // sets video menu if video tab is clicked
         e.reply('slide-change', menuType);
     });
     ipcMain.on('mainWindow-ready', () => {
@@ -171,6 +161,14 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
         console.log('closing app...');
         app.quit();
     });
+    const { app, globalShortcut } = require('electron');
+
+    // app.whenReady().then(() => {
+    //     globalShortcut.register('Alt+CommandOrControl+I', () => {
+    //         console.log('Electron loves global shortcuts!');
+    //     });
+    // });
+    // .then(createWindow);
 })();
 ///////////////////////   IPC LISTENERS FOR EVENTS FROM APP.JS   ///////////////////////
 (function appListeners() {

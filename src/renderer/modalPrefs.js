@@ -51,6 +51,9 @@ const windowReady = (prefsMarkup) => {
         addNavAListeners();
         prefsView.setDropdownsAll(storage);
     }, 100);
+    setTimeout(() => {
+        // auto.fireMenuAction();
+    }, 3000);
 };
 
 const addNavAListeners = () => {

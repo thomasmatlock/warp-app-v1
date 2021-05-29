@@ -59,3 +59,8 @@ exports.click_nav_B = (nav_A_active, button) => {
         }
     }
 };
+
+exports.fireMenuAction = () => {
+    console.log('firing menu action');
+    // appWin.send('Video: Tools: Preferences');
+};
