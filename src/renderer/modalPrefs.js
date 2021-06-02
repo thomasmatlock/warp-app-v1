@@ -12,7 +12,7 @@ const fileController = new fileControllerReq();
 
 // dialog.showOpenDialog({ properties: ['openDirectory'] });
 let state = new stateReq();
-let userPrefs, prefsMarkup, prefsMarkupSrc;
+let prefsMarkup, prefsMarkupSrc;
 let storage;
 // console.log(state);
 (function init() {

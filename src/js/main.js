@@ -12,7 +12,7 @@ const defaults = new defaultsReq();
 ///////////////////////////////////   TRAY   /////////////////////////////////
 let tray = null;
 app.whenReady().then(() => {
-    tray = new Tray(fileController.dirProjectPath + '/build/22971-200.png');
+    tray = new Tray(fileController.dirProjectPath + '/build/icon_tray.png');
     const contextMenu = Menu.buildFromTemplate([
         { label: 'Open Warp' },
         { label: 'Quit Warp' },
@@ -272,7 +272,7 @@ const windowController = {
             // icon: fileController.dirProjectPath + '/icon_black_hole.png',
             // icon: fileController.dirProjectPath + '/icon_black_gradient.png',
             // icon: fileController.dirProjectPath + '/22968-200.png',
-            icon: fileController.dirProjectPath + '/build/22971-200.png',
+            icon: fileController.dirProjectPath + '/build/icon_taskbar.png',
             // icon: fileController.dirProjectPath + '/build/149360.png',
             // icon: fileController.dirProjectPath + '/vortex.png',
             // icon: fileController.dirProjectPath +
