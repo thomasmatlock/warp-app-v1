@@ -46,16 +46,12 @@ const windowReady = (prefsMarkup) => {
         auto.click_nav_B(storage.user.prefs.startupTab, 'preferences'); // auto clicks paste, smartMode, activate, subscriptions, preferences, help
     }, 400);
     refreshModalListeners('refresh'); // THIS IS CHANGING BEHAVIOR OF BACKGROUND
-    prefsView.toggleToggleBtn(storage);
+    // prefsView.toggleToggleBtn(storage);
     setTimeout(() => {
         addNavAListeners();
         prefsView.setDropdownsAll(storage);
-        // prefsView.setCheckbox(storage);
-    }, 100);
-    setTimeout(() => {
-        prefsView.setCheckbox(storage);
-        // auto.fireMenuAction();
-    }, 500);
+        prefsView.setCheckboxes(storage);
+    }, 400);
 };
 
 const addNavAListeners = () => {
@@ -241,7 +237,7 @@ const updatePrefsState = (eventTitle) => {
         storage.user.prefs[eventTitle] = storage.user.prefs[eventTitle] ?
             false :
             true;
-        prefsView.toggleToggleBtn(storage);
+        // prefsView.toggleToggleBtn(storage);
     }
     // console.log(storage.user.prefs[eventTitle]);
 };
@@ -309,6 +305,7 @@ const tabSwitch = () => {
             storage
         );
         prefsView.setDropdownsAll(storage);
+        prefsView.setCheckboxes(storage);
     }, 100);
     // refreshModalListeners('refresh');
     prefsView.showPanelInit('prefs', state.activeTab);

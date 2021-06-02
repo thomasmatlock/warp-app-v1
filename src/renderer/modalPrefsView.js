@@ -238,15 +238,12 @@ const toggleToggleBtn = (storage) => {
         }
     }
 };
-const setDropdown = (storage, dropdownID, valueStartingSubstr) => {
+const setDropdown = (storage, dropdownID, startingSubstr) => {
     let i = -1;
     let index;
     for (var key in storage.user.prefs) {
         if (storage.user.prefs.hasOwnProperty(key)) {
-            if (
-                key.substr(0, valueStartingSubstr.length) ===
-                valueStartingSubstr
-            ) {
+            if (key.substr(0, startingSubstr.length) === startingSubstr) {
                 i++;
                 // console.log(key);
                 if (storage.user.prefs[key]) {
@@ -285,21 +282,29 @@ const setDropdownsAll = (storage) => {
     };
 
     for (var key in dropdownsObj) {
+        // console.log(key);
         setDropdown(storage, dropdownsObj[key], key);
     }
 };
 
-const setCheckbox = (storage) => {
-    console.log(storage.user.prefs);
-    let toggle_autostartWarp = document.getElementById(
-        'modalPrefsToggleButton_autostartWarp_checkbox'
-    );
-    let toggle_minimizeToTrayOnClose = document.getElementById(
-        'modalPrefsToggleButton_minimizeToTrayOnClose_checkbox'
-    );
+const setCheckboxes = (storage) => {
+    // console.log(storage.user.prefs);
 
-    toggle_autostartWarp.checked = true;
-    toggle_minimizeToTrayOnClose.checked = true;
+    const checkboxObj = {
+        toggle_autostartWarp: document.getElementById(
+            'modalPrefsToggleButton_autostartWarp_checkbox'
+        ),
+        toggle_minimizeToTrayOnClose: document.getElementById(
+            'modalPrefsToggleButton_minimizeToTrayOnClose_checkbox'
+        ),
+    };
+    for (var key in checkboxObj) {
+        // console.log(key);
+        if (storage.user.prefs[key]) {
+            // console.log(storage.user.prefs[key]);
+            checkboxObj[key].checked = true;
+        }
+    }
 };
 
 const toggleModal = (state, avType) => {
@@ -322,5 +327,5 @@ module.exports = {
     toggleToggleBtn: toggleToggleBtn,
     setDropdown: setDropdown,
     setDropdownsAll: setDropdownsAll,
-    setCheckbox: setCheckbox,
+    setCheckboxes: setCheckboxes,
 };
