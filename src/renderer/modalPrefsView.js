@@ -299,6 +299,9 @@ const setCheckboxes = (storage) => {
         toggle_minimizeToTrayOnClose: document.getElementById(
             'modalPrefsToggleButton_minimizeToTrayOnClose_checkbox'
         ),
+        toggle_themeDark: document.getElementById(
+            'modalPrefsToggleButton_themeDark_checkbox'
+        ),
     };
     for (var key in checkboxObj) {
         // console.log(key);
