@@ -254,7 +254,9 @@ const setDropdown = (storage, dropdownID, startingSubstr) => {
             }
         }
     }
-    dropdownID.options[index].selected = true;
+    if (dropdownID.options[index]) {
+        dropdownID.options[index].selected = true;
+    }
 };
 const setDropdownsAll = (storage) => {
     const dropdownsObj = {
