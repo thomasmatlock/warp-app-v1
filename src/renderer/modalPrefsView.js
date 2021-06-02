@@ -288,6 +288,20 @@ const setDropdownsAll = (storage) => {
         setDropdown(storage, dropdownsObj[key], key);
     }
 };
+
+const setCheckbox = (storage) => {
+    console.log(storage.user.prefs);
+    let toggle_autostartWarp = document.getElementById(
+        'modalPrefsToggleButton_autostartWarp_checkbox'
+    );
+    let toggle_minimizeToTrayOnClose = document.getElementById(
+        'modalPrefsToggleButton_minimizeToTrayOnClose_checkbox'
+    );
+
+    toggle_autostartWarp.checked = true;
+    toggle_minimizeToTrayOnClose.checked = true;
+};
+
 const toggleModal = (state, avType) => {
     toggleBackground(state);
     toggleModalState(state);
@@ -308,4 +322,5 @@ module.exports = {
     toggleToggleBtn: toggleToggleBtn,
     setDropdown: setDropdown,
     setDropdownsAll: setDropdownsAll,
+    setCheckbox: setCheckbox,
 };

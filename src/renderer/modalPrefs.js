@@ -50,10 +50,12 @@ const windowReady = (prefsMarkup) => {
     setTimeout(() => {
         addNavAListeners();
         prefsView.setDropdownsAll(storage);
+        // prefsView.setCheckbox(storage);
     }, 100);
     setTimeout(() => {
+        prefsView.setCheckbox(storage);
         // auto.fireMenuAction();
-    }, 3000);
+    }, 500);
 };
 
 const addNavAListeners = () => {
