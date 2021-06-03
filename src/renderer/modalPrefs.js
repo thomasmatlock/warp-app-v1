@@ -141,11 +141,11 @@ const refreshPrefsNavListeners = () => {
             .addEventListener('click', (e) => {
                 updatePrefsState('toggle_minimizeToTrayOnClose');
             });
-        document
-            .getElementById('modalPrefsToggleButton_themeDark')
-            .addEventListener('click', (e) => {
-                updatePrefsState('toggle_themeDark');
-            });
+        // document
+        //     .getElementById('modalPrefsToggleButton_themeDark')
+        //     .addEventListener('click', (e) => {
+        //         updatePrefsState('toggle_themeDark');
+        //     });
         // AUDIO QUALITY
         document
             .getElementById('modalDropdownList_list_audio_Quality')

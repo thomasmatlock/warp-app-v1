@@ -40,7 +40,7 @@ class defaults {
                     pathWarpstagram: fileController.dirWarpstagramPath,
                     toggle_autostartWarp: false,
                     toggle_minimizeToTrayOnClose: false,
-                    toggle_themeDark: false,
+                    // toggle_themeDark: false,
                     startupTab: 'audio', //   audio, video, or warpstagram, defaults to audio
                     prefsMarkup: '',
                     audioQuality_best: true,
