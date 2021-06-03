@@ -41,7 +41,7 @@ const windowReady = (prefsMarkup) => {
     );
     addNavBListeners();
     addAppMenuListeners();
-    prefsView.showPanelInit('prefs', 'audio');
+    prefsView.showPanelInit('prefs', 'general');
     setTimeout(() => {
         auto.click_nav_B(storage.user.prefs.startupTab, 'preferences'); // auto clicks paste, smartMode, activate, subscriptions, preferences, help
     }, 400);

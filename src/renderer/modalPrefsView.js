@@ -290,8 +290,6 @@ const setDropdownsAll = (storage) => {
 };
 
 const setCheckboxes = (storage) => {
-    // console.log(storage.user.prefs);
-
     const checkboxObj = {
         toggle_autostartWarp: document.getElementById(
             'modalPrefsToggleButton_autostartWarp_checkbox'
