@@ -50,7 +50,7 @@ class defaults {
                     audioFormat_MP3: true,
                     audioFormat_M4A: false,
                     audioFormat_OGG: false,
-                    generalSettings_theme_dark: false,
+                    generalSettings_theme_dark: true,
                     generalSettings_theme_light: false,
                     generalSettings_startupTab_audio: true,
                     generalSettings_startupTab_video: false,
