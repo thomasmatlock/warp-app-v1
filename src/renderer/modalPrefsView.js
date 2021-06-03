@@ -281,10 +281,16 @@ const setDropdownsAll = (storage) => {
         warpstagram_postSorting: document.getElementById(
             'modalDropdownList_list_warpstagram_postSorting'
         ),
+        generalSettings_theme: document.getElementById(
+            'modalDropdownList_list_generalSettings_theme'
+        ),
+        generalSettings_startupTab: document.getElementById(
+            'modalDropdownList_list_generalSettings_startupTab'
+        ),
     };
 
     for (var key in dropdownsObj) {
-        // console.log(key);
+        console.log(key);
         setDropdown(storage, dropdownsObj[key], key);
     }
 };

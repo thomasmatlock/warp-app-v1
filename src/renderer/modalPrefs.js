@@ -141,11 +141,6 @@ const refreshPrefsNavListeners = () => {
             .addEventListener('click', (e) => {
                 updatePrefsState('toggle_minimizeToTrayOnClose');
             });
-        // document
-        //     .getElementById('modalPrefsToggleButton_themeDark')
-        //     .addEventListener('click', (e) => {
-        //         updatePrefsState('toggle_themeDark');
-        //     });
         // AUDIO QUALITY
         document
             .getElementById('modalDropdownList_list_audio_Quality')
@@ -204,6 +199,17 @@ const refreshPrefsNavListeners = () => {
             .addEventListener('click', (e) => {
                 dialogShowOutputFolder('modalOutputFolderBtn_warpstagram');
             });
+        // GENERAL SETTINGS
+        document
+            .getElementById('modalDropdownList_list_generalSettings_startupTab')
+            .addEventListener('change', function() {
+                updatePrefsState(this.value);
+            });
+        document
+            .getElementById('modalDropdownList_list_generalSettings_theme')
+            .addEventListener('change', function() {
+                updatePrefsState(this.value);
+            });
     }, 100);
 };
 
@@ -218,7 +224,7 @@ const refreshModalBackgroundListeners = (type) => {
 };
 
 const updatePrefsState = (eventTitle) => {
-    // console.log(eventTitle);
+    console.log(eventTitle);
     // 12, 20 below excludes warpstagram
     if (eventTitle.substr(12, 20) && eventTitle.includes('warpstagram')) {
         // console.log('it includes warpstagram');
