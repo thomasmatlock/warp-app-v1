@@ -41,7 +41,7 @@ class defaults {
                     toggle_autostartWarp: false,
                     toggle_minimizeToTrayOnClose: false,
                     // toggle_themeDark: false,
-                    startupTab: 'audio', //   audio, video, or warpstagram, defaults to audio
+                    // startupTab: 'audio', //   audio, video, or warpstagram, defaults to audio
                     prefsMarkup: '',
                     audioQuality_best: true,
                     audioQuality_high: false,

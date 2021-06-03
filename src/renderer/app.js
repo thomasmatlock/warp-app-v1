@@ -47,14 +47,18 @@ let storage;
         storage = storageReceived;
     });
     const setActiveNav_A = (storage) => {
-        if (storage.user.prefs.generalSettings_startupTab_audio) {
-            elements.nav_A_active = elements.nav_A_audio;
-        }
-        if (storage.user.prefs.generalSettings_startupTab_video) {
-            elements.nav_A_active = elements.nav_A_video;
-        }
-        if (storage.user.prefs.generalSettings_startupTab_warpstagram) {
-            elements.nav_A_active = elements.nav_A_warpstagram;
+        for (var key in storage.user.prefs) {
+            if (key.includes('startupTab')) {
+                if (key && key.includes('audio')) {
+                    elements.nav_A_active = elements.nav_A_audio;
+                }
+                if (key && key.includes('video')) {
+                    elements.nav_A_active = elements.nav_A_video;
+                }
+                if (key && key.includes('warpstagram')) {
+                    elements.nav_A_active = elements.nav_A_warpstagram;
+                }
+            }
         }
     };
     const discoverStartupTab = function(storage) {

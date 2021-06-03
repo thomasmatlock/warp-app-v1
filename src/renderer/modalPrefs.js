@@ -20,13 +20,10 @@ let storage;
         'window-ready',
         (e, storageSentFromMain, modalPrefsMarkup) => {
             storage = storageSentFromMain;
-            // console.log(storage.user.prefs);
             prefsMarkupSrc = modalPrefsMarkup;
             prefsMarkup = modalPrefsMarkup;
-            // console.log(prefsMarkup);
             startupTab = discoverStartupTab(storage);
             state.activeTab = startupTab;
-            // console.log(state.activeTab);
             windowReady(prefsMarkup);
         }
     );
@@ -216,17 +213,12 @@ const refreshModalBackgroundListeners = (type) => {
         .getElementById('modalBackgroundID')
         .addEventListener('click', (e) => {
             prefsView.toggleModal(state, 'warpstagram');
-            // console.log(storage.user.prefs);
             prefsSettingsSync();
         });
 };
 
 const updatePrefsState = (eventTitle) => {
-    console.log(eventTitle);
-    // 12, 20 below excludes warpstagram
     if (eventTitle.substr(12, 20) && eventTitle.includes('warpstagram')) {
-        // console.log('it includes warpstagram');
-        // console.log(eventTitle.substr(12, 20));
         setPrefOptionsToFalseINCLUDES(eventTitle);
         storage.user.prefs[eventTitle] = true;
     }
