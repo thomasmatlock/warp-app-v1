@@ -12,7 +12,7 @@ const fileController = new fileControllerReq();
 
 // dialog.showOpenDialog({ properties: ['openDirectory'] });
 let state = new stateReq();
-let prefsMarkup, prefsMarkupSrc;
+let startupTab, prefsMarkup, prefsMarkupSrc;
 let storage;
 // console.log(state);
 (function init() {
@@ -24,7 +24,9 @@ let storage;
             prefsMarkupSrc = modalPrefsMarkup;
             prefsMarkup = modalPrefsMarkup;
             // console.log(prefsMarkup);
-            state.activeTab = storage.user.prefs.startupTab;
+            startupTab = discoverStartupTab(storage);
+            state.activeTab = startupTab;
+            // console.log(state.activeTab);
             windowReady(prefsMarkup);
         }
     );
@@ -34,16 +36,12 @@ let storage;
 })();
 
 const windowReady = (prefsMarkup) => {
-    prefsView.injectPrefsModalToCurrentSlide(
-        prefsMarkup,
-        storage.user.prefs.startupTab,
-        storage
-    );
+    prefsView.injectPrefsModalToCurrentSlide(prefsMarkup, startupTab, storage);
     addNavBListeners();
     addAppMenuListeners();
     prefsView.showPanelInit('prefs', 'general');
     setTimeout(() => {
-        auto.click_nav_B(storage.user.prefs.startupTab, 'preferences'); // auto clicks paste, smartMode, activate, subscriptions, preferences, help
+        auto.click_nav_B(startupTab, 'preferences'); // auto clicks paste, smartMode, activate, subscriptions, preferences, help
     }, 400);
     refreshModalListeners('refresh'); // THIS IS CHANGING BEHAVIOR OF BACKGROUND
     // prefsView.toggleToggleBtn(storage);
@@ -276,6 +274,21 @@ const setPrefOptionsToFalseINCLUDES = (optionSubstring) => {
                 storage.user.prefs[key] = false;
             }
         }
+    }
+};
+
+const discoverStartupTab = function(storage) {
+    if (storage.user.prefs.generalSettings_startupTab_audio) {
+        // return storage.user.prefs.generalSettings_startupTab_audio;
+        return 'audio';
+    }
+    if (storage.user.prefs.generalSettings_startupTab_video) {
+        // return storage.user.prefs.generalSettings_startupTab_video;
+        return 'video';
+    }
+    if (storage.user.prefs.generalSettings_startupTab_warpstagram) {
+        // return storage.user.prefs.generalSettings_startupTab_warpstagram;
+        return 'warpstagram';
     }
 };
 

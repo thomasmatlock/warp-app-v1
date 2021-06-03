@@ -254,8 +254,8 @@ const setDropdown = (storage, dropdownID, startingSubstr) => {
             }
         }
     }
-    console.log(dropdownID.options[index]);
-    console.log(dropdownID.options);
+    // console.log(dropdownID.options[index]);
+    // console.log(dropdownID.options);
     if (dropdownID.options[index]) {
         dropdownID.options[index].selected = true;
     }

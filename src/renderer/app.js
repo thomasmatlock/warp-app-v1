@@ -24,17 +24,7 @@ let storage;
     ipcRenderer.on('window-ready', (e, storage) => {
         addEventListeners(); // activates DOM event listeners
         addMenuListeners(); // activates menu event listeners
-        let startupTab = discoverStartup(storage);
-        // console.log(test);
-        if (storage.user.prefs.generalSettings_startupTab_audio) {
-            startupTab = 'audio';
-        }
-        if (storage.user.prefs.generalSettings_startupTab_video) {
-            startupTab = 'video';
-        }
-        if (storage.user.prefs.generalSettings_startupTab_warpstagram) {
-            startupTab = 'warpstagram';
-        }
+        let startupTab = discoverStartupTab(storage);
         setActiveNav_A(storage); // sets active Nav A
         removeNavBActivateBtn(storage);
         setTimeout(() => {
@@ -67,7 +57,7 @@ let storage;
             elements.nav_A_active = elements.nav_A_warpstagram;
         }
     };
-    const discoverStartup = function(storage) {
+    const discoverStartupTab = function(storage) {
         if (storage.user.prefs.generalSettings_startupTab_audio) {
             // return storage.user.prefs.generalSettings_startupTab_audio;
             return 'audio';
