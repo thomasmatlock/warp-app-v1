@@ -52,7 +52,7 @@ class defaults {
                     audioFormat_OGG: false,
                     generalSettings_theme_dark: false,
                     generalSettings_theme_light: false,
-                    generalSettings_startupTab_audio: false,
+                    generalSettings_startupTab_audio: true,
                     generalSettings_startupTab_video: false,
                     generalSettings_startupTab_warpstagram: false,
                     videoQuality_best: true,

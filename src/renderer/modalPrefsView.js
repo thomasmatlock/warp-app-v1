@@ -254,6 +254,8 @@ const setDropdown = (storage, dropdownID, startingSubstr) => {
             }
         }
     }
+    console.log(dropdownID.options[index]);
+    console.log(dropdownID.options);
     if (dropdownID.options[index]) {
         dropdownID.options[index].selected = true;
     }
@@ -290,7 +292,7 @@ const setDropdownsAll = (storage) => {
     };
 
     for (var key in dropdownsObj) {
-        console.log(key);
+        // console.log(key);
         setDropdown(storage, dropdownsObj[key], key);
     }
 };

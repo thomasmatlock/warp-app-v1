@@ -15,8 +15,6 @@ const defaultsReq = require('../js/defaults');
 const defaults = new defaultsReq();
 const items = require('./items');
 const auto = require('./automate');
-const modalPrefsView = require('./modalPrefsView');
-const modalPrefs = require('./modalPrefs');
 const stateReq = require('./state');
 const search = require('./searchLocal');
 
@@ -26,20 +24,27 @@ let storage;
     ipcRenderer.on('window-ready', (e, storage) => {
         addEventListeners(); // activates DOM event listeners
         addMenuListeners(); // activates menu event listeners
-        // console.log(defaults.env.nav_A_active);
-        // console.log(storage.user.prefs.startupTab);
-
-        setActiveNav_A(storage.user.prefs.startupTab); // sets active Nav A
+        let startupTab = discoverStartup(storage);
+        // console.log(test);
+        if (storage.user.prefs.generalSettings_startupTab_audio) {
+            startupTab = 'audio';
+        }
+        if (storage.user.prefs.generalSettings_startupTab_video) {
+            startupTab = 'video';
+        }
+        if (storage.user.prefs.generalSettings_startupTab_warpstagram) {
+            startupTab = 'warpstagram';
+        }
+        setActiveNav_A(storage); // sets active Nav A
         removeNavBActivateBtn(storage);
         setTimeout(() => {
-            auto.click_nav_A(defaults.env.nav_A_active); // auto clicks active tab if active
-            // auto.click_nav_A(defaults.env.nav_A_active); // auto clicks active tab if active
+            auto.click_nav_A(startupTab); // auto clicks active tab if active
         }, 50);
         setTimeout(() => {
             // auto.click_nav_A(defaults.env.nav_A_active); // auto clicks active tab if active
-            auto.click_nav_A(storage.user.prefs.startupTab); // auto clicks active tab if active
+            auto.click_nav_A(startupTab); // auto clicks active tab if active
         }, 300);
-        ipcRenderer.send('menu-change', storage.user.prefs.startupTab);
+        ipcRenderer.send('menu-change', startupTab);
         if (defaults.dev.clearStorage) items.resetStorage(); // clears localStorage if active
         items.defaultsAddAllItems(storage); // loads items stored in settings to UI
 
@@ -51,15 +56,31 @@ let storage;
     ipcRenderer.on('storage-sync-success', (e, storageReceived) => {
         storage = storageReceived;
     });
-    const setActiveNav_A = (nav_A_active) => {
-        if (nav_A_active === 'audio')
+    const setActiveNav_A = (storage) => {
+        if (storage.user.prefs.generalSettings_startupTab_audio) {
             elements.nav_A_active = elements.nav_A_audio;
-        if (nav_A_active === 'video')
+        }
+        if (storage.user.prefs.generalSettings_startupTab_video) {
             elements.nav_A_active = elements.nav_A_video;
-        if (nav_A_active === 'warpstagram')
+        }
+        if (storage.user.prefs.generalSettings_startupTab_warpstagram) {
             elements.nav_A_active = elements.nav_A_warpstagram;
+        }
     };
-
+    const discoverStartup = function(storage) {
+        if (storage.user.prefs.generalSettings_startupTab_audio) {
+            // return storage.user.prefs.generalSettings_startupTab_audio;
+            return 'audio';
+        }
+        if (storage.user.prefs.generalSettings_startupTab_video) {
+            // return storage.user.prefs.generalSettings_startupTab_video;
+            return 'video';
+        }
+        if (storage.user.prefs.generalSettings_startupTab_warpstagram) {
+            // return storage.user.prefs.generalSettings_startupTab_warpstagram;
+            return 'warpstagram';
+        }
+    };
     const removeNavBActivateBtn = (storage) => {
         if (storage.user.audio === 'pro')
             elements.nav_B_button_audio_activate.style.display = 'none';
