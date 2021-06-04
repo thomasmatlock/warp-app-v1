@@ -18,7 +18,7 @@
     margin-right: 1.4rem;
 }
 
-.modalDropdownListContent {
+.modalDropdownContent {
     height: 75px;
     width: 100%;
     display: flex;
@@ -31,13 +31,13 @@
     width: 100%;
 }
 
-.modalDropdownList_title {
+.modalDropdown_title {
     height: auto;
     display: flex;
     justify-content: flex-start;
 }
 
-.modalDropdownList_title p {
+.modalDropdown_title p {
     color: #ffffff;
     font-size: 1.4rem;
     cursor: default;
