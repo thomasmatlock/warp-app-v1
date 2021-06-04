@@ -1035,7 +1035,7 @@ input[type='text'] {
   flex-direction: row;
   justify-content: space-evenly; }
 
-.modalDropdownListColumn {
+.modalDropdownColumn {
   height: 100%;
   width: 50%; }
 
