@@ -151,13 +151,13 @@ const refreshPrefsNavListeners = () => {
             });
         // VIDEO QUALITY
         document
-            .getElementById('modalDropdownList_list_videoQuality')
+            .getElementById('modalDropdownList_videoQuality')
             .addEventListener('change', function() {
                 updatePrefsState(this.value);
             });
         // VIDEO FORMAT
         document
-            .getElementById('modalDropdownList_list_videoFormat')
+            .getElementById('modalDropdownList_videoFormat')
             .addEventListener('change', function() {
                 updatePrefsState(this.value);
             });
