@@ -156,6 +156,8 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
         })();
         // mainWindow.destroy();
         // mainWindow = null;
+        tray.destroy();
+        tray = null;
         app.relaunch();
         app.quit();
         setTimeout(() => {
@@ -168,6 +170,8 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
         mainWindow = null;
         splash.destroy();
         splash = null;
+        tray.destroy();
+        tray = null;
         app.relaunch();
         app.quit();
     });
