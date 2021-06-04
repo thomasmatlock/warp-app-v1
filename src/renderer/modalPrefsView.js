@@ -254,7 +254,7 @@ const setDropdown = (storage, dropdownID, startingSubstr) => {
             }
         }
     }
-    console.log(dropdownID);
+    // console.log(dropdownID);
     console.log(dropdownID.options[index]);
     // console.log(dropdownID.options);
     if (dropdownID.options[index]) {
@@ -273,7 +273,7 @@ const setDropdownsAll = (storage) => {
             'modalDropdownList_list_video_quality'
         ),
         videoFormat: document.getElementById(
-            'modalDropdownList_list_video_Format'
+            'modalDropdownList_list_videoFormat'
         ),
         warpstagram_update: document.getElementById(
             'modalDropdownList_list_warpstagram_updateSelected'
