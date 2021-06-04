@@ -20,6 +20,7 @@ let storage;
         'window-ready',
         (e, storageSentFromMain, modalPrefsMarkup) => {
             storage = storageSentFromMain;
+            // console.log(storage.user.prefs);
             prefsMarkupSrc = modalPrefsMarkup;
             prefsMarkup = modalPrefsMarkup;
             startupTab = discoverStartupTab(storage);
@@ -216,29 +217,34 @@ const refreshModalBackgroundListeners = (type) => {
 };
 
 const updatePrefsState = (eventTitle) => {
+    console.log(eventTitle);
     if (eventTitle.substr(12, 20) && eventTitle.includes('warpstagram')) {
         setPrefOptionsToFalseINCLUDES(eventTitle);
         storage.user.prefs[eventTitle] = true;
     }
     var optionSubstring = eventTitle.substr(0, 12);
-    // HANDLES non toggle options
-    if (
+    console.log(optionSubstring);
+    // HANDLES GENERAL
+    if (eventTitle.includes('general')) {
+        // console.log(eventTitle);
+    }
+    // HANDLES DROPDOWNS
+    else if (
         eventTitle.substr(0, 7) != 'toggle_' &&
         !eventTitle.includes('warpstagram')
     ) {
+        // console.log(optionSubstring);
         setPrefOptionsToFalse(optionSubstring);
         storage.user.prefs[eventTitle] = storage.user.prefs[eventTitle] ?
             false :
             true;
     }
-    // HANDLES TOGGLE BUTTONS
-    if (eventTitle.substr(0, 7) === 'toggle_') {
+    // TOGGLES CHECKBOX STATE
+    else if (eventTitle.substr(0, 7) === 'toggle_') {
         storage.user.prefs[eventTitle] = storage.user.prefs[eventTitle] ?
             false :
             true;
-        // prefsView.toggleToggleBtn(storage);
     }
-    // console.log(storage.user.prefs[eventTitle]);
 };
 const prefsSettingsSync = () => {
     ipcRenderer.send('storage-sync-request', storage);
@@ -247,16 +253,18 @@ const setPrefOptionsToFalse = (optionSubstring) => {
     for (var key in storage.user.prefs) {
         if (storage.user.prefs.hasOwnProperty(key)) {
             if (key.substr(0, 12) === optionSubstring) {
+                console.log(storage.user.prefs[key]);
                 storage.user.prefs[key] = false;
             }
         }
     }
 };
 const setPrefOptionsToFalseINCLUDES = (optionSubstring) => {
-    // console.log(optionSubstring);
+    console.log(optionSubstring);
     let stringSlice = optionSubstring.substr(12, 7);
     // console.log(stringSlice);
     for (var key in storage.user.prefs) {
+        // console.log(key);
         if (storage.user.prefs.hasOwnProperty(key)) {
             if (key.includes(stringSlice)) {
                 // console.log(key);
@@ -266,6 +274,21 @@ const setPrefOptionsToFalseINCLUDES = (optionSubstring) => {
         }
     }
 };
+// const setPrefDropdownsToFalse = (optionSubstring) => {
+//     console.log(optionSubstring);
+//     let stringSlice = optionSubstring.substr(12, 7);
+//     // console.log(stringSlice);
+//     for (var key in storage.user.prefs) {
+//         // console.log(key);
+//         if (storage.user.prefs.hasOwnProperty(key)) {
+//             if (key.includes(stringSlice)) {
+//                 // console.log(key);
+//                 // console.log(storage.user.prefs[key]);
+//                 storage.user.prefs[key] = false;
+//             }
+//         }
+//     }
+// };
 
 const discoverStartupTab = function(storage) {
     if (storage.user.prefs.generalSettings_startupTab_audio) {

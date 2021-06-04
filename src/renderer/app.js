@@ -22,6 +22,7 @@ let state = new stateReq();
 let storage;
 (function init() {
     ipcRenderer.on('window-ready', (e, storage) => {
+        // console.log(storage.user.prefs);
         addEventListeners(); // activates DOM event listeners
         addMenuListeners(); // activates menu event listeners
         let startupTab = discoverStartupTab(storage);
