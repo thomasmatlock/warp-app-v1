@@ -264,13 +264,13 @@ const setDropdown = (storage, dropdownID, startingSubstr) => {
 const setDropdownsAll = (storage) => {
     const dropdownsObj = {
         audioQuality: document.getElementById(
-            'modalDropdownList_list_audio_Quality'
+            'modalDropdownList_list_audioQuality'
         ),
         audioFormat: document.getElementById(
-            'modalDropdownList_list_audio_Format'
+            'modalDropdownList_list_audioFormat'
         ),
         videoQuality: document.getElementById(
-            'modalDropdownList_list_video_quality'
+            'modalDropdownList_list_videoQuality'
         ),
         videoFormat: document.getElementById(
             'modalDropdownList_list_videoFormat'

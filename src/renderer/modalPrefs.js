@@ -138,20 +138,20 @@ const refreshPrefsNavListeners = () => {
             });
         // AUDIO QUALITY
         document
-            .getElementById('modalDropdownList_list_audio_Quality')
+            .getElementById('modalDropdownList_list_audioQuality')
             .addEventListener('change', function() {
                 updatePrefsState(this.value);
                 prefsView.setDropdownsAll(storage);
             });
         // AUDIO FORMAT
         document
-            .getElementById('modalDropdownList_list_audio_Format')
+            .getElementById('modalDropdownList_list_audioFormat')
             .addEventListener('change', function() {
                 updatePrefsState(this.value);
             });
         // VIDEO QUALITY
         document
-            .getElementById('modalDropdownList_list_video_quality')
+            .getElementById('modalDropdownList_list_videoQuality')
             .addEventListener('change', function() {
                 updatePrefsState(this.value);
             });
