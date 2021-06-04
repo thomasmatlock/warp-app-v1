@@ -263,12 +263,8 @@ const setDropdown = (storage, dropdownID, startingSubstr) => {
 };
 const setDropdownsAll = (storage) => {
     const dropdownsObj = {
-        audioQuality: document.getElementById(
-            'modalDropdownList_list_audioQuality'
-        ),
-        audioFormat: document.getElementById(
-            'modalDropdownList_list_audioFormat'
-        ),
+        audioQuality: document.getElementById('modalDropdownList_audioQuality'),
+        audioFormat: document.getElementById('modalDropdownList_audioFormat'),
         videoQuality: document.getElementById(
             'modalDropdownList_list_videoQuality'
         ),
@@ -285,10 +281,10 @@ const setDropdownsAll = (storage) => {
             'modalDropdownList_list_warpstagram_postSorting'
         ),
         generalSettings_theme: document.getElementById(
-            'modalDropdownList_list_generalSettings_theme'
+            'modalDropdownList_generalSettings_theme'
         ),
         generalSettings_startupTab: document.getElementById(
-            'modalDropdownList_list_generalSettings_startupTab'
+            'modalDropdownList_generalSettings_startupTab'
         ),
     };
 

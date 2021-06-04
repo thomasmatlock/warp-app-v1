@@ -138,14 +138,14 @@ const refreshPrefsNavListeners = () => {
             });
         // AUDIO QUALITY
         document
-            .getElementById('modalDropdownList_list_audioQuality')
+            .getElementById('modalDropdownList_audioQuality')
             .addEventListener('change', function() {
                 updatePrefsState(this.value);
                 prefsView.setDropdownsAll(storage);
             });
         // AUDIO FORMAT
         document
-            .getElementById('modalDropdownList_list_audioFormat')
+            .getElementById('modalDropdownList_audioFormat')
             .addEventListener('change', function() {
                 updatePrefsState(this.value);
             });
@@ -196,12 +196,12 @@ const refreshPrefsNavListeners = () => {
             });
         // GENERAL SETTINGS
         document
-            .getElementById('modalDropdownList_list_generalSettings_startupTab')
+            .getElementById('modalDropdownList_generalSettings_startupTab')
             .addEventListener('change', function() {
                 updatePrefsState(this.value);
             });
         document
-            .getElementById('modalDropdownList_list_generalSettings_theme')
+            .getElementById('modalDropdownList_generalSettings_theme')
             .addEventListener('change', function() {
                 updatePrefsState(this.value);
             });
