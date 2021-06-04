@@ -45,7 +45,7 @@ class defaults {
                     generalSettings_startupTab_audio: true,
                     generalSettings_startupTab_video: false,
                     generalSettings_startupTab_warpstagram: false,
-                    generalSettings_startupTab_recent: false,
+                    // generalSettings_startupTab_recent: false,
                     prefsMarkup: '',
                     audioQuality_best: true,
                     audioQuality_high: false,
