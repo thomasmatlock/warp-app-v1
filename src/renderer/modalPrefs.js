@@ -172,7 +172,7 @@ const refreshPrefsNavListeners = () => {
                 updatePrefsState(this.value);
             });
         document
-            .getElementById('modalDropdownList_list_warpstagram_postSorting')
+            .getElementById('modalDropdown_warpstagram_postSorting')
             .addEventListener('change', function() {
                 updatePrefsState(this.value);
             });
