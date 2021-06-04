@@ -44,7 +44,7 @@ module.exports = (appWin) => {
                 {
                     label: 'Quit',
 
-                    accelerator: 'CmdOrCtrl+Shift+Q',
+                    accelerator: 'CmdOrCtrl+Q',
 
                     click: () => {
                         appWin.send('Quit');
@@ -145,7 +145,7 @@ module.exports = (appWin) => {
         label: 'Developer',
         submenu: [{
                 label: 'Restart',
-                accelerator: 'CmdOrCtrl+Shift+R',
+                accelerator: 'CmdOrCtrl+R',
 
                 click: () => {
                     appWin.send('Restart');

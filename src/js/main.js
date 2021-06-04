@@ -151,19 +151,23 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
         (async() => {
             mainWindow.destroy();
             mainWindow = null;
-            splash.destroy();
-            splash = null;
+            // splash.destroy();
+            // splash = null;
         })();
         // mainWindow.destroy();
         // mainWindow = null;
-        // splash.destroy();
-        // splash = null;
         app.relaunch();
         app.quit();
+        setTimeout(() => {
+            splash.destroy();
+            splash = null;
+        }, 1000);
     });
     ipcMain.on('restart-app', () => {
         mainWindow.destroy();
         mainWindow = null;
+        splash.destroy();
+        splash = null;
         app.relaunch();
         app.quit();
     });

@@ -55,6 +55,7 @@ class defaults {
                     generalSettings_startupTab_audio: true,
                     generalSettings_startupTab_video: false,
                     generalSettings_startupTab_warpstagram: false,
+                    generalSettings_startupTab_recent: false,
                     videoQuality_best: true,
                     videoQuality_8k_60fps: false,
                     videoQuality_8k: false,
