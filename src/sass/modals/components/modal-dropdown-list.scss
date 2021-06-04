@@ -45,7 +45,7 @@
     margin-bottom: 5px;
 }
 
-.modalDropdownList_list {
+.modalDropdown {
     height: 40px;
     width: 100%;
     display: flex;
@@ -57,7 +57,7 @@
     border: solid 1px #464646a1; // test
 }
 
-.modalDropdownList_list select {
+.modalDropdown select {
     background-color: #2a2a2a;
     line-height: 40px;
     border: 0;
@@ -78,4 +78,4 @@
     }
 }
 
-.modalDropdownList_list_select {}
+.modalDropdown_select {}

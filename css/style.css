@@ -1064,7 +1064,7 @@ input[type='text'] {
   font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
   margin-bottom: 5px; }
 
-.modalDropdownList_list {
+.modalDropdown {
   height: 40px;
   width: 100%;
   display: flex;
@@ -1075,7 +1075,7 @@ input[type='text'] {
   border-radius: 2px;
   border: solid 1px #464646a1; }
 
-.modalDropdownList_list select {
+.modalDropdown select {
   background-color: #2a2a2a;
   line-height: 40px;
   border: 0;
@@ -1090,7 +1090,7 @@ input[type='text'] {
   cursor: pointer;
   font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
   transition: 0.25s; }
-  .modalDropdownList_list select:hover {
+  .modalDropdown select:hover {
     background-color: #464646a1; }
 
 .modalPrefsNav {
