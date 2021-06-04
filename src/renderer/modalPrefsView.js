@@ -271,16 +271,16 @@ const setDropdownsAll = (storage) => {
             'modalDropdown_warpstagram_updateSelected'
         ),
         warpstagram_autoUpdateFreq: document.getElementById(
-            'modalDropdownList_list_warpstagram_autoUpdateFrequency'
+            'modalDropdown_warpstagram_autoUpdateFrequency'
         ),
         warpstagram_postSorting: document.getElementById(
             'modalDropdownList_list_warpstagram_postSorting'
         ),
         generalSettings_theme: document.getElementById(
-            'modalDropdown_generalSettings_theme'
+            'modalDropdown_general_theme'
         ),
         generalSettings_startupTab: document.getElementById(
-            'modalDropdown_generalSettings_startupTab'
+            'modalDropdown_general_startupTab'
         ),
     };
 

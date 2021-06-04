@@ -167,9 +167,7 @@ const refreshPrefsNavListeners = () => {
                 updatePrefsState(this.value);
             });
         document
-            .getElementById(
-                'modalDropdownList_list_warpstagram_autoUpdateFrequency'
-            )
+            .getElementById('modalDropdown_warpstagram_autoUpdateFrequency')
             .addEventListener('change', function() {
                 updatePrefsState(this.value);
             });
@@ -196,12 +194,12 @@ const refreshPrefsNavListeners = () => {
             });
         // GENERAL SETTINGS
         document
-            .getElementById('modalDropdown_generalSettings_startupTab')
+            .getElementById('modalDropdown_general_startupTab')
             .addEventListener('change', function() {
                 updatePrefsState(this.value);
             });
         document
-            .getElementById('modalDropdown_generalSettings_theme')
+            .getElementById('modalDropdown_general_theme')
             .addEventListener('change', function() {
                 updatePrefsState(this.value);
             });
