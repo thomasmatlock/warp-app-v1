@@ -1028,7 +1028,7 @@ input[type='text'] {
 .modalToggleButton .layer {
   transition: 0.1s ease all; }
 
-.modalDropdownListContainer {
+.modalDropdownContainer {
   width: 100%;
   height: auto;
   display: flex;
