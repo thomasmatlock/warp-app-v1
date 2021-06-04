@@ -8,5 +8,6 @@
         "container",
         "modal",
         "warpstagram"
-    ]
+    ],
+    "html.format.wrapLineLength": 0
 }
