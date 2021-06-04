@@ -67,7 +67,7 @@ class defaults {
                     videoQuality_480p: false,
                     videoQuality_360p: false,
                     videoQuality_240p: false,
-                    videoFormat_MP4: false,
+                    videoFormat_MP4: true,
                     videoFormat_MKV: false,
                     warpstagram_update_all: true,
                     warpstagram_update_pinned: false,

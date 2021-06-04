@@ -138,20 +138,20 @@ const refreshPrefsNavListeners = () => {
             });
         // AUDIO QUALITY
         document
-            .getElementById('modalDropdownList_audioQuality')
+            .getElementById('modalDropdown_audioQuality')
             .addEventListener('change', function() {
                 updatePrefsState(this.value);
                 prefsView.setDropdownsAll(storage);
             });
         // AUDIO FORMAT
         document
-            .getElementById('modalDropdownList_audioFormat')
+            .getElementById('modalDropdown_audioFormat')
             .addEventListener('change', function() {
                 updatePrefsState(this.value);
             });
         // VIDEO QUALITY
         document
-            .getElementById('modalDropdownList_videoQuality')
+            .getElementById('modalDropdown_videoQuality')
             .addEventListener('change', function() {
                 updatePrefsState(this.value);
             });
@@ -162,7 +162,7 @@ const refreshPrefsNavListeners = () => {
                 updatePrefsState(this.value);
             });
         document
-            .getElementById('modalDropdownList_list_warpstagram_updateSelected')
+            .getElementById('modalDropdown_warpstagram_updateSelected')
             .addEventListener('change', function() {
                 updatePrefsState(this.value);
             });
@@ -196,12 +196,12 @@ const refreshPrefsNavListeners = () => {
             });
         // GENERAL SETTINGS
         document
-            .getElementById('modalDropdownList_generalSettings_startupTab')
+            .getElementById('modalDropdown_generalSettings_startupTab')
             .addEventListener('change', function() {
                 updatePrefsState(this.value);
             });
         document
-            .getElementById('modalDropdownList_generalSettings_theme')
+            .getElementById('modalDropdown_generalSettings_theme')
             .addEventListener('change', function() {
                 updatePrefsState(this.value);
             });

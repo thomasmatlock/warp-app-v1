@@ -263,12 +263,12 @@ const setDropdown = (storage, dropdownID, startingSubstr) => {
 };
 const setDropdownsAll = (storage) => {
     const dropdownsObj = {
-        audioQuality: document.getElementById('modalDropdownList_audioQuality'),
-        audioFormat: document.getElementById('modalDropdownList_audioFormat'),
-        videoQuality: document.getElementById('modalDropdownList_videoQuality'),
+        audioQuality: document.getElementById('modalDropdown_audioQuality'),
+        audioFormat: document.getElementById('modalDropdown_audioFormat'),
+        videoQuality: document.getElementById('modalDropdown_videoQuality'),
         videoFormat: document.getElementById('modalDropdownList_videoFormat'),
         warpstagram_update: document.getElementById(
-            'modalDropdownList_list_warpstagram_updateSelected'
+            'modalDropdown_warpstagram_updateSelected'
         ),
         warpstagram_autoUpdateFreq: document.getElementById(
             'modalDropdownList_list_warpstagram_autoUpdateFrequency'
@@ -277,10 +277,10 @@ const setDropdownsAll = (storage) => {
             'modalDropdownList_list_warpstagram_postSorting'
         ),
         generalSettings_theme: document.getElementById(
-            'modalDropdownList_generalSettings_theme'
+            'modalDropdown_generalSettings_theme'
         ),
         generalSettings_startupTab: document.getElementById(
-            'modalDropdownList_generalSettings_startupTab'
+            'modalDropdown_generalSettings_startupTab'
         ),
     };
 
