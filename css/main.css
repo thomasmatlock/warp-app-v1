@@ -1195,14 +1195,23 @@ input[type='text'] {
 .modalPrefsTitle_child_right {
   justify-content: flex-end; }
 
+.modalActionComponent_Container {
+  height: 500px;
+  width: 100%;
+  display: flex;
+  border: dotted #555555a1 1px;
+  flex-direction: column; }
+
+.modalActionComponent {
+  margin-top: 1rem; }
+
 .modalActionComponent_licenseActivation {
   display: flex;
-  background: green;
   flex-direction: column;
   align-items: center;
   align-content: center;
   width: 100%;
-  height: 100%;
+  height: 75px;
   justify-content: center;
   background: #464646a1;
   border-radius: 2px;
@@ -1210,22 +1219,17 @@ input[type='text'] {
   overflow: hidden; }
   .modalActionComponent_licenseActivation:hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-    height: 100%; }
+    height: auto; }
 
 .modalActionComponent_panel {
   width: 100%;
   border: 1px dotted #5a5a5aa1;
+  border-radius: 2px;
   display: flex; }
 
-#modalActionComponent_panel_top_audio {
-  height: 75px;
-  display: flex;
-  transition: height 0.5s; }
+.modalActionComponent_panel_primary {
+  height: 75px; }
 
-#modalActionComponent_panel_top_audio:hover + #modalActionComponent_panel_middle_audio {
-  transition: height 0.5s;
-  height: 75; }
-
-#modalActionComponent_panel_middle_audio:hover + #modalActionComponent_panel_top_audio {
-  transition: height 0.5s;
-  height: 75; }
+.modalActionComponent_child_title,
+.modalActionComponent_child_btn {
+  color: #ffffff; }

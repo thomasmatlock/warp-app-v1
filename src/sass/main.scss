@@ -28,145 +28,50 @@
 @import 'modals/components/modal-textDescription';
 @import 'modals/components/modal-textTitle';
 // modal-text-input
+.modalActionComponent_Container {
+    height: 500px;
+    width: 100%;
+    display: flex;
+    border: dotted #555555a1 1px;
+    flex-direction: column;
+}
+
+.modalActionComponent {
+    margin-top: 1rem;
+}
+
 .modalActionComponent_licenseActivation {
     display: flex;
-    background: green;
+    // background: green;
     flex-direction: column;
     align-items: center;
     align-content: center;
     width: 100%;
-    height: 100%;
-    // height: 500px;
-    // height: 75px;
-    // opacity: 0;
-    // z-index: 999;
     // height: 100%;
-    // border: 1px dotted red;
+    height: 75px;
     justify-content: center;
-    // margin: 1rem auto;
     background: #464646a1; // test
     border-radius: 2px;
-    // transition: all 1s ease-in-out;
     transition: height 0.5s;
-    // border: 1px dotted white;
     overflow: hidden;
     &:hover {
         box-shadow: $shadow-after;
-        height: 100%;
+        height: auto;
     }
 }
 
 .modalActionComponent_panel {
-    // height: 0px;
     width: 100%;
     border: 1px dotted #5a5a5aa1;
+    border-radius: 2px;
     display: flex;
-    // mouseover-transition: all 2s ease;
-    // display: none;
 }
 
-#modalActionComponent_panel_top_audio {
+.modalActionComponent_panel_primary {
     height: 75px;
-    display: flex;
-    transition: height 0.5s;
-    // background: yellow;
 }
 
-#modalActionComponent_panel_top_audio:hover+#modalActionComponent_panel_middle_audio {
-    transition: height 0.5s;
-    height: 75;
+.modalActionComponent_child_title,
+.modalActionComponent_child_btn {
+    color: #ffffff;
 }
-
-#modalActionComponent_panel_middle_audio:hover+#modalActionComponent_panel_top_audio {
-    transition: height 0.5s;
-    height: 75;
-}
-
-// #modalActionComponent_panel_bottom_audio:hover+.modalActionComponent_panel {
-//     transition: height 0.5s;
-//     height: 100px;
-// }
-// #modalActionComponent_panel_middle_audio {
-//     background: red;
-// }
-// #modalActionComponent_panel_bottom_audio {
-//     background: purple;
-// }
-// .modalActionComponent_panel {
-//     display: flex;
-//     flex-direction: column;
-// }
-// .modalActionComponent_LicenseActivation_bundle {
-//     height: 150px;
-// }
-// .modalActionComponent_child {
-//     // border: 1px dotted white;
-//     height: 100%;
-//     display: flex;
-//     align-items: center;
-//     align-content: center;
-// }
-// .modalActionComponent_child_title {
-//     height: 100%;
-//     width: 70%;
-//     flex-direction: row;
-//     flex: 3;
-//     display: flex;
-//     // border: 1px dotted white;
-//     justify-content: flex-start;
-//     align-items: center;
-//     margin-left: 3rem;
-// }
-// .modalActionComponent_child p {
-//     font-size: 1.4rem;
-//     color: #ffffff;
-//     // margin-left: 1rem;
-//     cursor: default;
-//     font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
-// }
-// .modalActionComponent_child_btn {
-//     // border: 1px dotted white;
-//     height: 100%;
-//     // height: 40px;
-//     // width: 80px;
-//     width: 20%;
-//     display: flex;
-//     flex-direction: row;
-//     justify-content: center;
-//     align-items: center;
-//     align-content: center;
-//     margin-right: 3rem;
-// }
-// .modalActionComponent_child_btn p {
-//     // border: 1px dotted white;
-//     // height: 100%;
-//     height: 40px;
-//     width: 100%;
-//     // width: 30%;
-//     display: flex;
-//     flex-direction: row;
-//     justify-content: center;
-//     align-items: center;
-//     align-content: center;
-//     cursor: pointer;
-//     background: linear-gradient(268deg, #f8ab37, #da2c4d); // bgd color, ON
-//     // background: #ff7700; // bgd color, ON
-//     cursor: pointer;
-//     font-size: 1.4rem;
-//     color: white;
-//     opacity: 1;
-//     transition: all ease-out 0.1s;
-//     border-radius: 2px;
-//     font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
-//     /* Firefox */
-//     // padding-left: 1rem;
-//     &:hover {
-//         //// CONTENT
-//         color: white;
-//         // background-image: $colorNavBBackground_hover;
-//         //// DECORATIVE
-//         box-shadow: $shadow-after;
-//         //// ANIMATION
-//         // transform: scale(1.01);
-//     }
-// }

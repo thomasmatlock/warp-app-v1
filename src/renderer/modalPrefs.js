@@ -222,6 +222,36 @@ const refreshPrefsNavListeners = () => {
             .addEventListener('mouseout', function() {
                 collapseLicensePanels(collapsibleLicensePanels, collapsibleLicensePanelsHeightMin);
             });
+        document
+            .getElementById('modalActionComponent_video')
+            .addEventListener('mouseover', function() {
+                expandLicensePanels(collapsibleLicensePanels, collapsibleLicensePanelsHeightMax);
+            });
+        document
+            .getElementById('modalActionComponent_video')
+            .addEventListener('mouseout', function() {
+                collapseLicensePanels(collapsibleLicensePanels, collapsibleLicensePanelsHeightMin);
+            });
+        document
+            .getElementById('modalActionComponent_warpstagram')
+            .addEventListener('mouseover', function() {
+                expandLicensePanels(collapsibleLicensePanels, collapsibleLicensePanelsHeightMax);
+            });
+        document
+            .getElementById('modalActionComponent_warpstagram')
+            .addEventListener('mouseout', function() {
+                collapseLicensePanels(collapsibleLicensePanels, collapsibleLicensePanelsHeightMin);
+            });
+        document
+            .getElementById('modalActionComponent_bundle')
+            .addEventListener('mouseover', function() {
+                expandLicensePanels(collapsibleLicensePanels, collapsibleLicensePanelsHeightMax);
+            });
+        document
+            .getElementById('modalActionComponent_bundle')
+            .addEventListener('mouseout', function() {
+                collapseLicensePanels(collapsibleLicensePanels, collapsibleLicensePanelsHeightMin);
+            });
     }, 100);
 };
 
@@ -375,13 +405,11 @@ const tabSwitch = () => {
     refreshPrefsNavListeners();
 };
 const expandLicensePanels = (arr, height) => {
-    // console.log(height);
     for (let i = 0; i < arr.length; i++) {
         arr[i].style.height = height;
     }
 }
 const collapseLicensePanels = (arr, height) => {
-    // console.log(height);
     for (let i = 0; i < arr.length; i++) {
         arr[i].style.height = height;
     }
