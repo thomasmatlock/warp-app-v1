@@ -40,10 +40,11 @@
     margin: 1rem auto;
     background: #464646a1; // test
     border-radius: 2px;
-    transition: all 0.1s ease-in-out;
+    transition: all 0.15s ease-in-out;
     // transition: all 1s ease-in-out;
     &:hover {
         height: 150px;
+        box-shadow: $shadow-after;
     }
 }
 

@@ -25,7 +25,9 @@
     &:hover {
         background-color: rgba(238, 238, 238, 0.205);
         color: #ffffff;
-        border-radius: 2px 2px 0 0;
+        // border-radius: 2px 2px 0 0;
+        border-radius: 2px;
+        box-shadow: $shadow-after;
     }
 }
 
@@ -45,4 +47,5 @@
     background-color: rgba(238, 238, 238, 0.205);
     color: #ffffff;
     border-radius: 2px 2px 0 0;
+    // box-shadow: $shadow-after;
 }

@@ -1050,7 +1050,8 @@ input[type='text'] {
   .modalPrefsNav_button:hover {
     background-color: rgba(238, 238, 238, 0.205);
     color: #ffffff;
-    border-radius: 2px 2px 0 0; }
+    border-radius: 2px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2); }
 
 .modalPrefsNav_button p {
   font-size: 1.4rem;
@@ -1195,9 +1196,10 @@ input[type='text'] {
   margin: 1rem auto;
   background: #464646a1;
   border-radius: 2px;
-  transition: all 0.1s ease-in-out; }
+  transition: all 0.15s ease-in-out; }
   .modalActivation:hover {
-    height: 150px; }
+    height: 150px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2); }
 
 .modalActivation_child {
   height: 100%;
