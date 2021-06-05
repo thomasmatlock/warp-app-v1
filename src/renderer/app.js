@@ -63,17 +63,14 @@ let storage;
         }
     };
     const discoverStartupTab = function(storage) {
-        if (storage.user.prefs.general_startupTab_audio) {
-            // return storage.user.prefs.general_startupTab_audio;
-            return 'audio';
-        }
-        if (storage.user.prefs.general_startupTab_video) {
-            // return storage.user.prefs.general_startupTab_video;
-            return 'video';
-        }
-        if (storage.user.prefs.general_startupTab_warpstagram) {
-            // return storage.user.prefs.general_startupTab_warpstagram;
-            return 'warpstagram';
+        for (var key in storage.user.prefs) {
+            if (storage.user.prefs[key]) {
+                if (key.toLowerCase().includes('startuptab')) {
+                    let startupTab = key.toLowerCase().slice(19, key.length)
+                    console.log(startupTab);
+                    return startupTab;
+                }
+            }
         }
     };
     const removeNavBActivateBtn = (storage) => {
