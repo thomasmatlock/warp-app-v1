@@ -218,12 +218,26 @@ const refreshModalBackgroundListeners = (type) => {
 
 const updatePrefsState = (eventTitle) => {
     console.log(eventTitle);
-    if (eventTitle.substr(12, 20) && eventTitle.includes('warpstagram')) {
+    // TOGGLES CHECKBOX STATE
+    if (eventTitle.includes('toggle')) {
+        storage.user.prefs[eventTitle] = storage.user.prefs[eventTitle] ?
+            false :
+            true;
+    } else if (
+        // eventTitle.substr(12, 20) &&
+        eventTitle.includes('warpstagram')
+    ) {
         setPrefOptionsToFalseINCLUDES(eventTitle);
         storage.user.prefs[eventTitle] = true;
+    } else if (eventTitle.includes('general')) {
+        if (eventTitle.includes('startupTab')) {
+            console.log('change startup tab');
+        } else if (eventTitle.includes('theme')) {
+            console.log('change theme');
+        }
     }
     var optionSubstring = eventTitle.substr(0, 12);
-    console.log(optionSubstring);
+    // console.log(optionSubstring);
     // HANDLES GENERAL
     if (eventTitle.includes('general')) {
         // console.log(eventTitle);
@@ -239,12 +253,6 @@ const updatePrefsState = (eventTitle) => {
             false :
             true;
     }
-    // TOGGLES CHECKBOX STATE
-    else if (eventTitle.substr(0, 7) === 'toggle_') {
-        storage.user.prefs[eventTitle] = storage.user.prefs[eventTitle] ?
-            false :
-            true;
-    }
 };
 const prefsSettingsSync = () => {
     ipcRenderer.send('storage-sync-request', storage);
@@ -253,7 +261,7 @@ const setPrefOptionsToFalse = (optionSubstring) => {
     for (var key in storage.user.prefs) {
         if (storage.user.prefs.hasOwnProperty(key)) {
             if (key.substr(0, 12) === optionSubstring) {
-                console.log(storage.user.prefs[key]);
+                // console.log(storage.user.prefs[key]);
                 storage.user.prefs[key] = false;
             }
         }

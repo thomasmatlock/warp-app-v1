@@ -151,11 +151,7 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
         (async() => {
             mainWindow.destroy();
             mainWindow = null;
-            // splash.destroy();
-            // splash = null;
         })();
-        // mainWindow.destroy();
-        // mainWindow = null;
         tray.destroy();
         tray = null;
         app.relaunch();
