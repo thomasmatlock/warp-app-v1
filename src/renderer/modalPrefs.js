@@ -14,9 +14,15 @@ const fileController = new fileControllerReq();
 let state = new stateReq();
 let startupTab, prefsMarkup, prefsMarkupSrc;
 let storage;
-let collapsibleLicensePanels;
-let collapsibleLicensePanelsHeightMax = '75px';
+// let collapsibleLicensePanels, collapsibleLicensePanelsVideo, collapsibleLicensePanelsWarpstagram, collapsibleLicensePanelsBundle;
+let collapsibleLicensePanels = [];
+let collapsibleLicensePanelsAudio = [];
+let collapsibleLicensePanelsVideo = [];
+let collapsibleLicensePanelsWarpstagram = [];
+let collapsibleLicensePanelsBundle = [];
+let collapsibleLicensePanelsHeightMax = '180px';
 let collapsibleLicensePanelsHeightMin = '0px';
+let panelTransitionSpeed = 'height 1s';
 // console.log(state);
 (function init() {
     ipcRenderer.on(
@@ -52,10 +58,25 @@ const windowReady = (prefsMarkup) => {
         setLicenseActivationTransitions();
         collapsibleLicensePanels = document.getElementsByClassName('modalActionComponent_panel_collapsible');
         // console.log(collapsibleLicensePanels);
-        expandLicensePanels(collapsibleLicensePanels, collapsibleLicensePanelsHeightMax)
-        collapseLicensePanels(collapsibleLicensePanels, collapsibleLicensePanelsHeightMin)
+        expandLicensePanels(collapsibleLicensePanels, collapsibleLicensePanelsHeightMax);
+        collapseLicensePanels(collapsibleLicensePanels, collapsibleLicensePanelsHeightMin);
+        createCollapsiblePanelsArray(collapsibleLicensePanels, 'audio', collapsibleLicensePanelsAudio)
+        createCollapsiblePanelsArray(collapsibleLicensePanels, 'video', collapsibleLicensePanelsVideo)
+        createCollapsiblePanelsArray(collapsibleLicensePanels, 'warpstagram', collapsibleLicensePanelsWarpstagram)
+        createCollapsiblePanelsArray(collapsibleLicensePanels, 'bundle', collapsibleLicensePanelsBundle)
     }, 400);
 };
+
+function createCollapsiblePanelsArray(arr, subStr, newArr) {
+    // console.log(newArr);
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i].id.includes(subStr)) {
+            // console.log(arr[i].id);
+            newArr.push(arr[i]);
+        }
+    }
+    // console.log(newArr);
+}
 
 const addNavAListeners = () => {
     elements.nav_A_audio.addEventListener('click', (e) => {
@@ -215,42 +236,51 @@ const refreshPrefsNavListeners = () => {
         document
             .getElementById('modalActionComponent_audio')
             .addEventListener('mouseover', function() {
-                expandLicensePanels(collapsibleLicensePanels, collapsibleLicensePanelsHeightMax);
+                setLicenseActivationTransitions();
+                expandLicensePanels(collapsibleLicensePanelsAudio, collapsibleLicensePanelsHeightMax);
             });
+
         document
             .getElementById('modalActionComponent_audio')
             .addEventListener('mouseout', function() {
-                collapseLicensePanels(collapsibleLicensePanels, collapsibleLicensePanelsHeightMin);
+                setLicenseActivationTransitions();
+                collapseLicensePanels(collapsibleLicensePanelsAudio, collapsibleLicensePanelsHeightMin);
             });
         document
             .getElementById('modalActionComponent_video')
             .addEventListener('mouseover', function() {
-                expandLicensePanels(collapsibleLicensePanels, collapsibleLicensePanelsHeightMax);
+                setLicenseActivationTransitions();
+                expandLicensePanels(collapsibleLicensePanelsVideo, collapsibleLicensePanelsHeightMax);
             });
         document
             .getElementById('modalActionComponent_video')
             .addEventListener('mouseout', function() {
-                collapseLicensePanels(collapsibleLicensePanels, collapsibleLicensePanelsHeightMin);
+                setLicenseActivationTransitions();
+                collapseLicensePanels(collapsibleLicensePanelsVideo, collapsibleLicensePanelsHeightMin);
             });
         document
             .getElementById('modalActionComponent_warpstagram')
             .addEventListener('mouseover', function() {
-                expandLicensePanels(collapsibleLicensePanels, collapsibleLicensePanelsHeightMax);
+                setLicenseActivationTransitions();
+                expandLicensePanels(collapsibleLicensePanelsWarpstagram, collapsibleLicensePanelsHeightMax);
             });
         document
             .getElementById('modalActionComponent_warpstagram')
             .addEventListener('mouseout', function() {
-                collapseLicensePanels(collapsibleLicensePanels, collapsibleLicensePanelsHeightMin);
+                setLicenseActivationTransitions();
+                collapseLicensePanels(collapsibleLicensePanelsWarpstagram, collapsibleLicensePanelsHeightMin);
             });
         document
             .getElementById('modalActionComponent_bundle')
             .addEventListener('mouseover', function() {
-                expandLicensePanels(collapsibleLicensePanels, collapsibleLicensePanelsHeightMax);
+                setLicenseActivationTransitions();
+                expandLicensePanels(collapsibleLicensePanelsBundle, collapsibleLicensePanelsHeightMax);
             });
         document
             .getElementById('modalActionComponent_bundle')
             .addEventListener('mouseout', function() {
-                collapseLicensePanels(collapsibleLicensePanels, collapsibleLicensePanelsHeightMin);
+                setLicenseActivationTransitions();
+                collapseLicensePanels(collapsibleLicensePanelsBundle, collapsibleLicensePanelsHeightMin);
             });
     }, 100);
 };
@@ -415,9 +445,20 @@ const collapseLicensePanels = (arr, height) => {
     }
 }
 const setLicenseActivationTransitions = () => {
-    // console.log('setting transition');
-    document.getElementById('modalActionComponent_audio').style.WebkitTransition = 'height 0.5s';
-    document.getElementById('modalActionComponent_panel_top_audio').style.WebkitTransition = 'height 0.5s';
-    document.getElementById('modalActionComponent_panel_middle_audio').style.WebkitTransition = 'height 0.5s';
-    document.getElementById('modalActionComponent_panel_bottom_audio').style.WebkitTransition = 'height 0.5s';
+    document.getElementById('modalActionComponent_audio').style.WebkitTransition = panelTransitionSpeed;
+    document.getElementById('modalActionComponent_video').style.WebkitTransition = panelTransitionSpeed;
+    document.getElementById('modalActionComponent_warpstagram').style.WebkitTransition = panelTransitionSpeed;
+    document.getElementById('modalActionComponent_bundle').style.WebkitTransition = panelTransitionSpeed;
+    document.getElementById('modalActionComponent_panel_top_audio').style.WebkitTransition = panelTransitionSpeed;
+    document.getElementById('modalActionComponent_panel_middle_audio').style.WebkitTransition = panelTransitionSpeed;
+    document.getElementById('modalActionComponent_panel_bottom_audio').style.WebkitTransition = panelTransitionSpeed;
+    document.getElementById('modalActionComponent_panel_top_video').style.WebkitTransition = panelTransitionSpeed;
+    document.getElementById('modalActionComponent_panel_middle_video').style.WebkitTransition = panelTransitionSpeed;
+    document.getElementById('modalActionComponent_panel_bottom_video').style.WebkitTransition = panelTransitionSpeed;
+    document.getElementById('modalActionComponent_panel_top_audio').style.WebkitTransition = panelTransitionSpeed;
+    document.getElementById('modalActionComponent_panel_middle_audio').style.WebkitTransition = panelTransitionSpeed;
+    document.getElementById('modalActionComponent_panel_bottom_audio').style.WebkitTransition = panelTransitionSpeed;
+    document.getElementById('modalActionComponent_panel_top_audio').style.WebkitTransition = panelTransitionSpeed;
+    document.getElementById('modalActionComponent_panel_middle_audio').style.WebkitTransition = panelTransitionSpeed;
+    document.getElementById('modalActionComponent_panel_bottom_audio').style.WebkitTransition = panelTransitionSpeed;
 }
