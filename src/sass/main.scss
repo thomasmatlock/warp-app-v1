@@ -48,7 +48,7 @@
     border-radius: 2px;
     // transition: all 1s ease-in-out;
     transition: height 0.5s;
-    border: 1px dotted white;
+    // border: 1px dotted white;
     overflow: hidden;
     &:hover {
         box-shadow: $shadow-after;
@@ -59,7 +59,7 @@
 .modalActionComponent_panel {
     // height: 0px;
     width: 100%;
-    border: 1px dotted white;
+    border: 1px dotted #5a5a5aa1;
     display: flex;
     // mouseover-transition: all 2s ease;
     // display: none;

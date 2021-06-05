@@ -15,6 +15,8 @@ let state = new stateReq();
 let startupTab, prefsMarkup, prefsMarkupSrc;
 let storage;
 let collapsibleLicensePanels;
+let collapsibleLicensePanelsHeightMax = '75px';
+let collapsibleLicensePanelsHeightMin = '0px';
 // console.log(state);
 (function init() {
     ipcRenderer.on(
@@ -50,6 +52,8 @@ const windowReady = (prefsMarkup) => {
         setLicenseActivationTransitions();
         collapsibleLicensePanels = document.getElementsByClassName('modalActionComponent_panel_collapsible');
         // console.log(collapsibleLicensePanels);
+        expandLicensePanels(collapsibleLicensePanels, collapsibleLicensePanelsHeightMax)
+        collapseLicensePanels(collapsibleLicensePanels, collapsibleLicensePanelsHeightMin)
     }, 400);
 };
 
@@ -211,12 +215,12 @@ const refreshPrefsNavListeners = () => {
         document
             .getElementById('modalActionComponent_audio')
             .addEventListener('mouseover', function() {
-                expandLicensePanels(collapsibleLicensePanels);
+                expandLicensePanels(collapsibleLicensePanels, collapsibleLicensePanelsHeightMax);
             });
         document
             .getElementById('modalActionComponent_audio')
             .addEventListener('mouseout', function() {
-                collapseLicensePanels(collapsibleLicensePanels);
+                collapseLicensePanels(collapsibleLicensePanels, collapsibleLicensePanelsHeightMin);
             });
     }, 100);
 };
@@ -370,19 +374,20 @@ const tabSwitch = () => {
     prefsView.showPanelInit('prefs', state.activeTab);
     refreshPrefsNavListeners();
 };
-const expandLicensePanels = (arr) => {
-    // console.log('expanding panels');
-    document.getElementById('modalActionComponent_panel_middle_audio').style.height = '75px';
-    document.getElementById('modalActionComponent_panel_bottom_audio').style.height = '75px';
-    // console.log(arr);
+const expandLicensePanels = (arr, height) => {
+    // console.log(height);
+    for (let i = 0; i < arr.length; i++) {
+        arr[i].style.height = height;
+    }
 }
-const collapseLicensePanels = (arr) => {
-    // console.log('collapsing panels');
-    document.getElementById('modalActionComponent_panel_middle_audio').style.height = '0px';
-    document.getElementById('modalActionComponent_panel_bottom_audio').style.height = '0px';
-    // console.log(arr);
+const collapseLicensePanels = (arr, height) => {
+    // console.log(height);
+    for (let i = 0; i < arr.length; i++) {
+        arr[i].style.height = height;
+    }
 }
 const setLicenseActivationTransitions = () => {
+    // console.log('setting transition');
     document.getElementById('modalActionComponent_audio').style.WebkitTransition = 'height 0.5s';
     document.getElementById('modalActionComponent_panel_top_audio').style.WebkitTransition = 'height 0.5s';
     document.getElementById('modalActionComponent_panel_middle_audio').style.WebkitTransition = 'height 0.5s';

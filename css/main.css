@@ -1207,7 +1207,6 @@ input[type='text'] {
   background: #464646a1;
   border-radius: 2px;
   transition: height 0.5s;
-  border: 1px dotted white;
   overflow: hidden; }
   .modalActionComponent_licenseActivation:hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
@@ -1215,7 +1214,7 @@ input[type='text'] {
 
 .modalActionComponent_panel {
   width: 100%;
-  border: 1px dotted white;
+  border: 1px dotted #5a5a5aa1;
   display: flex; }
 
 #modalActionComponent_panel_top_audio {
