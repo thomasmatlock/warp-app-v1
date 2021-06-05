@@ -14,6 +14,7 @@ const fileController = new fileControllerReq();
 let state = new stateReq();
 let startupTab, prefsMarkup, prefsMarkupSrc;
 let storage;
+let collapsibleLicensePanels;
 // console.log(state);
 (function init() {
     ipcRenderer.on(
@@ -46,6 +47,9 @@ const windowReady = (prefsMarkup) => {
         addNavAListeners();
         prefsView.setDropdownsAll(storage);
         prefsView.setCheckboxes(storage);
+        setLicenseActivationTransitions();
+        collapsibleLicensePanels = document.getElementsByClassName('modalActionComponent_panel_collapsible');
+        // console.log(collapsibleLicensePanels);
     }, 400);
 };
 
@@ -203,6 +207,17 @@ const refreshPrefsNavListeners = () => {
             .addEventListener('change', function() {
                 updatePrefsState(this.value);
             });
+        // LICENSE SETTINGS
+        document
+            .getElementById('modalActionComponent_audio')
+            .addEventListener('mouseover', function() {
+                expandLicensePanels(collapsibleLicensePanels);
+            });
+        document
+            .getElementById('modalActionComponent_audio')
+            .addEventListener('mouseout', function() {
+                collapseLicensePanels(collapsibleLicensePanels);
+            });
     }, 100);
 };
 
@@ -355,3 +370,21 @@ const tabSwitch = () => {
     prefsView.showPanelInit('prefs', state.activeTab);
     refreshPrefsNavListeners();
 };
+const expandLicensePanels = (arr) => {
+    // console.log('expanding panels');
+    document.getElementById('modalActionComponent_panel_middle_audio').style.height = '75px';
+    document.getElementById('modalActionComponent_panel_bottom_audio').style.height = '75px';
+    // console.log(arr);
+}
+const collapseLicensePanels = (arr) => {
+    // console.log('collapsing panels');
+    document.getElementById('modalActionComponent_panel_middle_audio').style.height = '0px';
+    document.getElementById('modalActionComponent_panel_bottom_audio').style.height = '0px';
+    // console.log(arr);
+}
+const setLicenseActivationTransitions = () => {
+    document.getElementById('modalActionComponent_audio').style.WebkitTransition = 'height 0.5s';
+    document.getElementById('modalActionComponent_panel_top_audio').style.WebkitTransition = 'height 0.5s';
+    document.getElementById('modalActionComponent_panel_middle_audio').style.WebkitTransition = 'height 0.5s';
+    document.getElementById('modalActionComponent_panel_bottom_audio').style.WebkitTransition = 'height 0.5s';
+}

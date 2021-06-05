@@ -1195,74 +1195,38 @@ input[type='text'] {
 .modalPrefsTitle_child_right {
   justify-content: flex-end; }
 
-.modalActionComponent {
+.modalActionComponent_licenseActivation {
   display: flex;
-  flex-direction: row;
+  background: green;
+  flex-direction: column;
   align-items: center;
   align-content: center;
   width: 100%;
-  height: 75px;
+  height: 100%;
   justify-content: center;
-  margin: 1rem auto;
   background: #464646a1;
   border-radius: 2px;
-  transition: all 0.15s ease-in-out; }
-  .modalActionComponent:hover {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2); }
+  transition: height 0.5s;
+  border: 1px dotted white;
+  overflow: hidden; }
+  .modalActionComponent_licenseActivation:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    height: 100%; }
 
-.modalActionComponent_LicenseActivation_bundle {
-  height: 150px; }
-
-.modalActionComponent_child {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  align-content: center; }
-
-.modalActionComponent_child_title {
-  height: 100%;
-  width: 70%;
-  flex-direction: row;
-  flex: 3;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  margin-left: 3rem; }
-
-.modalActionComponent_child p {
-  font-size: 1.4rem;
-  color: #ffffff;
-  cursor: default;
-  font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif; }
-
-.modalActionComponent_child_btn {
-  height: 100%;
-  width: 20%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  margin-right: 3rem; }
-
-.modalActionComponent_child_btn p {
-  height: 40px;
+.modalActionComponent_panel {
   width: 100%;
+  border: 1px dotted white;
+  display: flex; }
+
+#modalActionComponent_panel_top_audio {
+  height: 75px;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  cursor: pointer;
-  background: linear-gradient(268deg, #f8ab37, #da2c4d);
-  cursor: pointer;
-  font-size: 1.4rem;
-  color: white;
-  opacity: 1;
-  transition: all ease-out 0.1s;
-  border-radius: 2px;
-  font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
-  /* Firefox */ }
-  .modalActionComponent_child_btn p:hover {
-    color: white;
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2); }
+  transition: height 0.5s; }
+
+#modalActionComponent_panel_top_audio:hover + #modalActionComponent_panel_middle_audio {
+  transition: height 0.5s;
+  height: 75; }
+
+#modalActionComponent_panel_middle_audio:hover + #modalActionComponent_panel_top_audio {
+  transition: height 0.5s;
+  height: 75; }
