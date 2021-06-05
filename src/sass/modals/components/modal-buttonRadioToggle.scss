@@ -7,7 +7,7 @@
     margin-top: 1.4rem;
 }
 
-.modalPrefsToggleButton_child {
+.modalPrefsCheckbox_child {
     flex-grow: 1;
     cursor: default;
     // border: 1px dotted white;
@@ -23,7 +23,7 @@
     justify-content: flex-end;
 }
 
-.modalPrefsToggleButton_child p {
+.modalPrefsCheckbox_child p {
     justify-content: flex-start;
     font-size: 1.4rem;
     color: #ffffff;
@@ -31,7 +31,7 @@
     font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
 }
 
-.modalPrefsToggleButton_child button {
+.modalPrefsCheckbox_child button {
     justify-content: flex-end;
 }
 
