@@ -37,7 +37,7 @@ const windowReady = (prefsMarkup) => {
     prefsView.injectPrefsModalToCurrentSlide(prefsMarkup, startupTab, storage);
     addNavBListeners();
     addAppMenuListeners();
-    prefsView.showPanelInit('prefs', 'general');
+    prefsView.showPanelInit('prefs', 'license');
     setTimeout(() => {
         auto.click_nav_B(startupTab, 'preferences'); // auto clicks paste, smartMode, activate, subscriptions, preferences, help
     }, 400);
