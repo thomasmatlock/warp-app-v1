@@ -4,13 +4,14 @@
     "description": "wip",
     "main": "./src/js/main.js",
     "scripts": {
-        "node-sass": "node-sass src/sass/main.scss css/main.css -w",
+        "main": "node-sass src/sass/main.scss css/main.css -w",
         "splash": "node-sass src/sass/splash.scss css/splash.css -w",
+        "eula": "node-sass src/sass/eula.scss css/eula.css -w",
         "live-server": "live-server",
         "electron": "ELECTRON_DISABLE_SECURITY_WARNINGS=true electron .",
         "watch": "nodemon --exec electron .",
         "start": "electron .",
-        "dev": "concurrently --kill-others \"npm run node-sass\" \"npm run watch\" \"npm run splash\""
+        "dev": "concurrently --kill-others \"npm run main\" \"npm run splash\" \"npm run eula\"  \"npm run watch\""
     },
     "author": "",
     "license": "ISC",
