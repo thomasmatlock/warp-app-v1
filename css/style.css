@@ -922,6 +922,12 @@ input[type='text'] {
   display: flex;
   flex-direction: column; }
 
+.modalPrefsContentPanel_bottom {
+  margin-bottom: 2rem; }
+
+.modalPrefsContentPanel_top {
+  margin-top: 1rem; }
+
 .contentContainer * {
   -webkit-user-select: none;
   /* Safari */
@@ -1250,9 +1256,3 @@ input[type='text'] {
 
 .modalPrefsTitle_child_right {
   justify-content: flex-end; }
-
-.modalPrefsContentPanel_bottom {
-  margin-bottom: 2rem; }
-
-.modalPrefsContentPanel_top {
-  margin-top: 1rem; }

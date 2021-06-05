@@ -27,13 +27,3 @@
 @import 'modals/components/modal-outputFolder';
 @import 'modals/components/modal-textDescription';
 @import 'modals/components/modal-textTitle';
-// modal-dropdown-radioSelect
-.modalPrefsContentPanel_bottom {
-    // position: absolute;
-    // bottom: 0;
-    margin-bottom: 2rem; // pushes away from bottom
-}
-
-.modalPrefsContentPanel_top {
-    margin-top: 1rem; // pushes away from top
-}
