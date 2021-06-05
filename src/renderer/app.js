@@ -63,16 +63,16 @@ let storage;
         }
     };
     const discoverStartupTab = function(storage) {
-        if (storage.user.prefs.generalSettings_startupTab_audio) {
-            // return storage.user.prefs.generalSettings_startupTab_audio;
+        if (storage.user.prefs.general_startupTab_audio) {
+            // return storage.user.prefs.general_startupTab_audio;
             return 'audio';
         }
-        if (storage.user.prefs.generalSettings_startupTab_video) {
-            // return storage.user.prefs.generalSettings_startupTab_video;
+        if (storage.user.prefs.general_startupTab_video) {
+            // return storage.user.prefs.general_startupTab_video;
             return 'video';
         }
-        if (storage.user.prefs.generalSettings_startupTab_warpstagram) {
-            // return storage.user.prefs.generalSettings_startupTab_warpstagram;
+        if (storage.user.prefs.general_startupTab_warpstagram) {
+            // return storage.user.prefs.general_startupTab_warpstagram;
             return 'warpstagram';
         }
     };
