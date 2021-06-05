@@ -42,7 +42,6 @@ const windowReady = (prefsMarkup) => {
         auto.click_nav_B(startupTab, 'preferences'); // auto clicks paste, smartMode, activate, subscriptions, preferences, help
     }, 400);
     refreshModalListeners('refresh'); // THIS IS CHANGING BEHAVIOR OF BACKGROUND
-    // prefsView.toggleToggleBtn(storage);
     setTimeout(() => {
         addNavAListeners();
         prefsView.setDropdownsAll(storage);
@@ -225,8 +224,8 @@ const updatePrefsState = (eventTitle) => {
         warpstagram_updateSelected,
         warpstagram_autoUpdateFrequency,
         warpstagram_postSorting,
-        generalSettings_theme,
-        generalSettings_startupTab,
+        general_theme,
+        general_startupTab,
     ] = [
         'audioQuality',
         'audioFormat',
@@ -235,8 +234,8 @@ const updatePrefsState = (eventTitle) => {
         'warpstagram_updateSelected',
         'warpstagram_autoUpdateFrequency',
         'warpstagram_postSorting',
-        'generalSettings_theme',
-        'generalSettings_startupTab',
+        'general_theme',
+        'general_startupTab',
     ];
     // TOGGLES CHECKBOXES STATE
     if (eventTitle.includes('checkbox')) {
@@ -277,11 +276,11 @@ const updatePrefsState = (eventTitle) => {
     }
 
     //  GENERAL DROPDOWNS
-    else if (eventTitle.includes(generalSettings_theme)) {
-        setPrefDropdownsToFalse(generalSettings_theme);
+    else if (eventTitle.includes(general_theme)) {
+        setPrefDropdownsToFalse(general_theme);
         storage.user.prefs[eventTitle] = true;
-    } else if (eventTitle.includes(generalSettings_startupTab)) {
-        setPrefDropdownsToFalse(generalSettings_startupTab);
+    } else if (eventTitle.includes(general_startupTab)) {
+        setPrefDropdownsToFalse(general_startupTab);
         storage.user.prefs[eventTitle] = true;
     }
 };
@@ -299,16 +298,16 @@ const prefsSettingsSync = () => {
 };
 
 const discoverStartupTab = function(storage) {
-    if (storage.user.prefs.generalSettings_startupTab_audio) {
-        // return storage.user.prefs.generalSettings_startupTab_audio;
+    if (storage.user.prefs.general_startupTab_audio) {
+        // return storage.user.prefs.general_startupTab_audio;
         return 'audio';
     }
-    if (storage.user.prefs.generalSettings_startupTab_video) {
-        // return storage.user.prefs.generalSettings_startupTab_video;
+    if (storage.user.prefs.general_startupTab_video) {
+        // return storage.user.prefs.general_startupTab_video;
         return 'video';
     }
-    if (storage.user.prefs.generalSettings_startupTab_warpstagram) {
-        // return storage.user.prefs.generalSettings_startupTab_warpstagram;
+    if (storage.user.prefs.general_startupTab_warpstagram) {
+        // return storage.user.prefs.general_startupTab_warpstagram;
         return 'warpstagram';
     }
 };
