@@ -50,8 +50,8 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
         e.reply('slide-change', menuType);
     });
     ipcMain.on('mainWindow-ready', () => {
-        // if (!storageMain.user.acceptedEULA)
-        windowController.createModalEULAWindow();
+        if (!storageMain.user.acceptedEULA)
+            windowController.createModalEULAWindow();
     });
     ipcMain.on(
         'dialog-showOutputFolder',
