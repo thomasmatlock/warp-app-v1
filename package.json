@@ -5,7 +5,7 @@
     "main": "./src/js/main.js",
     "scripts": {
         "node-sass": "node-sass src/sass/main.scss css/style.css -w",
-        "splash": "node-sass src/sass/style-splash.scss css/style-splash.css -w",
+        "splash": "node-sass src/sass/splash.scss css/splash.css -w",
         "live-server": "live-server",
         "electron": "ELECTRON_DISABLE_SECURITY_WARNINGS=true electron .",
         "watch": "nodemon --exec electron .",

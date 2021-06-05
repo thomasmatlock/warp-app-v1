@@ -277,13 +277,13 @@ const windowController = {
             // icon: fileController.dirProjectPath + '/icon_black_gradient.png',
             // icon: fileController.dirProjectPath + '/22968-200.png',
             icon: fileController.dirProjectPath + '/build/icon_taskbar.png',
-            // icon: fileController.dirProjectPath + '/build/149360.png',
-            // icon: fileController.dirProjectPath + '/vortex.png',
-            // icon: fileController.dirProjectPath +
-            // '/vortex-clipart-transparent-1.png',
-            // icon: fileController.dirProjectPath + '/icon_black_to_white_gradient.png',
-            // icon: '../../build/icon.ico',
-            darkTheme: true,
+            _darkTheme: true,
+            // get darkTheme() {
+            //     return this._darkTheme;
+            // },
+            // set darkTheme(value) {
+            //     this._darkTheme = value;
+            // },
             vibrancy: 'dark',
             // skipTaskbar: true,
             webPreferences: {
