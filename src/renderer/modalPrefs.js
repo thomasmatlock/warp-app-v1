@@ -218,63 +218,81 @@ const refreshModalBackgroundListeners = (type) => {
 
 const updatePrefsState = (eventTitle) => {
     console.log(eventTitle);
-    // TOGGLES CHECKBOX STATE
+    var [
+        audioQuality,
+        audioFormat,
+        videoQuality,
+        videoFormat,
+        warpstagram_updateSelected,
+        warpstagram_autoUpdateFrequency,
+        warpstagram_postSorting,
+        generalSettings_theme,
+        generalSettings_startupTab,
+    ] = [
+        'audioQuality',
+        'audioFormat',
+        'videoQuality',
+        'videoFormat',
+        'warpstagram_updateSelected',
+        'warpstagram_autoUpdateFrequency',
+        'warpstagram_postSorting',
+        'generalSettings_theme',
+        'generalSettings_startupTab',
+    ];
+    // TOGGLES CHECKBOXES STATE
     if (eventTitle.includes('toggle')) {
         storage.user.prefs[eventTitle] = storage.user.prefs[eventTitle] ?
             false :
             true;
-    } else if (
-        // eventTitle.substr(12, 20) &&
-        eventTitle.includes('warpstagram')
-    ) {
-        setPrefOptionsToFalseINCLUDES(eventTitle);
+    }
+
+    //  AUDIO DROPDOWNS
+    else if (eventTitle.includes(audioQuality)) {
+        setPrefDropdownsToFalse(audioQuality);
         storage.user.prefs[eventTitle] = true;
-    } else if (eventTitle.includes('general')) {
-        if (eventTitle.includes('startupTab')) {
-            console.log('change startup tab');
-        } else if (eventTitle.includes('theme')) {
-            console.log('change theme');
-        }
+    } else if (eventTitle.includes(audioFormat)) {
+        setPrefDropdownsToFalse(audioFormat);
+        storage.user.prefs[eventTitle] = true;
     }
-    var optionSubstring = eventTitle.substr(0, 12);
-    // console.log(optionSubstring);
-    // HANDLES GENERAL
-    if (eventTitle.includes('general')) {
-        // console.log(eventTitle);
+
+    //  VIDEO DROPDOWNS
+    else if (eventTitle.includes(videoQuality)) {
+        setPrefDropdownsToFalse(videoQuality);
+        storage.user.prefs[eventTitle] = true;
+    } else if (eventTitle.includes(videoFormat)) {
+        setPrefDropdownsToFalse(videoFormat);
+        storage.user.prefs[eventTitle] = true;
     }
-    // HANDLES DROPDOWNS
-    else if (
-        eventTitle.substr(0, 7) != 'toggle_' &&
-        !eventTitle.includes('warpstagram')
-    ) {
-        // console.log(optionSubstring);
-        setPrefOptionsToFalse(optionSubstring);
-        storage.user.prefs[eventTitle] = storage.user.prefs[eventTitle] ?
-            false :
-            true;
+
+    //  WARPSTAGRAM DROPDOWNS
+    else if (eventTitle.includes(warpstagram_updateSelected)) {
+        setPrefDropdownsToFalse(warpstagram_updateSelected);
+        storage.user.prefs[eventTitle] = true;
+    } else if (eventTitle.includes(warpstagram_autoUpdateFrequency)) {
+        setPrefDropdownsToFalse(warpstagram_autoUpdateFrequency);
+        storage.user.prefs[eventTitle] = true;
+    } else if (eventTitle.includes(warpstagram_postSorting)) {
+        setPrefDropdownsToFalse(warpstagram_postSorting);
+        storage.user.prefs[eventTitle] = true;
     }
-};
-const prefsSettingsSync = () => {
-    ipcRenderer.send('storage-sync-request', storage);
-};
-const setPrefOptionsToFalse = (optionSubstring) => {
-    for (var key in storage.user.prefs) {
-        if (storage.user.prefs.hasOwnProperty(key)) {
-            if (key.substr(0, 12) === optionSubstring) {
-                // console.log(storage.user.prefs[key]);
-                storage.user.prefs[key] = false;
-            }
-        }
+
+    //  GENERAL DROPDOWNS
+    else if (eventTitle.includes(generalSettings_theme)) {
+        setPrefDropdownsToFalse(generalSettings_theme);
+        storage.user.prefs[eventTitle] = true;
+    } else if (eventTitle.includes(generalSettings_startupTab)) {
+        setPrefDropdownsToFalse(generalSettings_startupTab);
+        storage.user.prefs[eventTitle] = true;
     }
 };
-const setPrefOptionsToFalseINCLUDES = (optionSubstring) => {
+const setPrefDropdownsToFalse = (optionSubstring) => {
     console.log(optionSubstring);
-    let stringSlice = optionSubstring.substr(12, 7);
+    // let stringSlice = optionSubstring.substr(12, 7);
     // console.log(stringSlice);
     for (var key in storage.user.prefs) {
         // console.log(key);
         if (storage.user.prefs.hasOwnProperty(key)) {
-            if (key.includes(stringSlice)) {
+            if (key.includes(optionSubstring)) {
                 // console.log(key);
                 // console.log(storage.user.prefs[key]);
                 storage.user.prefs[key] = false;
@@ -282,21 +300,9 @@ const setPrefOptionsToFalseINCLUDES = (optionSubstring) => {
         }
     }
 };
-// const setPrefDropdownsToFalse = (optionSubstring) => {
-//     console.log(optionSubstring);
-//     let stringSlice = optionSubstring.substr(12, 7);
-//     // console.log(stringSlice);
-//     for (var key in storage.user.prefs) {
-//         // console.log(key);
-//         if (storage.user.prefs.hasOwnProperty(key)) {
-//             if (key.includes(stringSlice)) {
-//                 // console.log(key);
-//                 // console.log(storage.user.prefs[key]);
-//                 storage.user.prefs[key] = false;
-//             }
-//         }
-//     }
-// };
+const prefsSettingsSync = () => {
+    ipcRenderer.send('storage-sync-request', storage);
+};
 
 const discoverStartupTab = function(storage) {
     if (storage.user.prefs.generalSettings_startupTab_audio) {
