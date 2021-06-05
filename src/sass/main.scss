@@ -27,3 +27,97 @@
 @import 'modals/components/modal-outputFolder';
 @import 'modals/components/modal-textDescription';
 @import 'modals/components/modal-textTitle';
+// modal-text-input
+.modalActivation {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    width: 100%;
+    height: 75px;
+    // border: 1px dotted red;
+    justify-content: center;
+    margin: 1rem auto;
+    background: #464646a1; // test
+    border-radius: 2px;
+    transition: all 0.25s ease-in-out;
+    &:hover {
+        height: 100px;
+    }
+}
+
+.modalActivation_child {
+    // border: 1px dotted white;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    align-content: center;
+}
+
+.modalActivation_title {
+    height: 100%;
+    width: 70%;
+    flex-direction: row;
+    flex: 3;
+    display: flex;
+    // border: 1px dotted white;
+    justify-content: flex-start;
+    align-items: center;
+    margin-left: 3rem;
+}
+
+.modalActivation_title p {
+    font-size: 1.4rem;
+    color: #ffffff;
+    // margin-left: 1rem;
+    cursor: default;
+    font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
+}
+
+.modalActivation_btn {
+    // border: 1px dotted white;
+    height: 100%;
+    // height: 40px;
+    // width: 80px;
+    width: 20%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    margin-right: 3rem;
+}
+
+.modalActivation_btn p {
+    // border: 1px dotted white;
+    // height: 100%;
+    height: 40px;
+    width: 100%;
+    // width: 30%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    cursor: pointer;
+    background: linear-gradient(268deg, #f8ab37, #da2c4d); // bgd color, ON
+    // background: #ff7700; // bgd color, ON
+    cursor: pointer;
+    font-size: 1.4rem;
+    color: white;
+    opacity: 1;
+    transition: all ease-out 0.1s;
+    border-radius: 2px;
+    font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
+    /* Firefox */
+    // padding-left: 1rem;
+    &:hover {
+        //// CONTENT
+        color: white;
+        // background-image: $colorNavBBackground_hover;
+        //// DECORATIVE
+        box-shadow: $shadow-after;
+        //// ANIMATION
+        // transform: scale(1.01);
+    }
+}
