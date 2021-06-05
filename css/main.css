@@ -979,6 +979,8 @@ input[type='text'] {
   display: flex;
   flex-direction: column;
   margin-top: 1.4rem; }
+  .modalDropdownContent:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2); }
 
 .modalDropdown_child {
   width: 100%; }

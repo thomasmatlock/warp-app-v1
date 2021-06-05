@@ -25,6 +25,9 @@
     flex-direction: column;
     margin-top: 1.4rem;
     // border: 1px dotted white;
+    &:hover {
+        box-shadow: $shadow-after;
+    }
 }
 
 .modalDropdown_child {
