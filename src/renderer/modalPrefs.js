@@ -128,12 +128,12 @@ const refreshPrefsNavListeners = () => {
                 prefsView.showPanel('prefs', 'license');
             });
         document
-            .getElementById('modalPrefsToggleButton_autostartWarp')
+            .getElementById('modalPrefsCheckbox_autostartWarp')
             .addEventListener('click', (e) => {
                 updatePrefsState('checkbox_autostartWarp');
             });
         document
-            .getElementById('modalPrefsToggleButton_minimizeToTrayOnClose')
+            .getElementById('modalPrefsCheckbox_minimizeToTrayOnClose')
             .addEventListener('click', (e) => {
                 updatePrefsState('checkbox_minimizeToTrayOnClose');
             });

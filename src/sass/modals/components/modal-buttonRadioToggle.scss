@@ -1,5 +1,5 @@
 // TOGGLE BUTTON
-.modalPrefsToggleButton {
+.modalPrefsCheckbox {
     width: 100%;
     height: 24px;
     // border: 1px dotted red;
@@ -87,7 +87,7 @@
 /* Button 1 */
 
 // KNOB PROPERTIES
-.modalToggleButton .knobs:before {
+.modalCheckbox .knobs:before {
     content: '';
     position: absolute;
     top: 1px;
@@ -103,19 +103,19 @@
     transition: 0.1s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
 }
 
-.modalToggleButton .checkbox:checked+.knobs:before {
+.modalCheckbox .checkbox:checked+.knobs:before {
     content: '';
     // left: 42px; // where the knobs move to
     left: 16px; // where the knobs move to
     background-color: #fff; // button color, ON
 }
 
-.modalToggleButton .checkbox:checked~.layer {
+.modalCheckbox .checkbox:checked~.layer {
     background: #ff7700; // bgd color, ON
 }
 
-.modalToggleButton .knobs,
-.modalToggleButton .knobs:before,
-.modalToggleButton .layer {
+.modalCheckbox .knobs,
+.modalCheckbox .knobs:before,
+.modalCheckbox .layer {
     transition: 0.1s ease all;
 }

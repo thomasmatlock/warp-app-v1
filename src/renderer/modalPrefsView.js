@@ -292,10 +292,10 @@ const setDropdownsAll = (storage) => {
 const setCheckboxes = (storage) => {
     const checkboxObj = {
         checkbox_autostartWarp: document.getElementById(
-            'modalPrefsToggleButton_autostartWarp_checkbox'
+            'modalPrefsCheckbox_autostartWarp_checkbox'
         ),
         checkbox_minimizeToTrayOnClose: document.getElementById(
-            'modalPrefsToggleButton_minimizeToTrayOnClose_checkbox'
+            'modalPrefsCheckbox_minimizeToTrayOnClose_checkbox'
         ),
     };
     for (var key in checkboxObj) {
