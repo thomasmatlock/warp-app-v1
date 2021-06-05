@@ -20,7 +20,7 @@ let collapsibleLicensePanelsAudio = [];
 let collapsibleLicensePanelsVideo = [];
 let collapsibleLicensePanelsWarpstagram = [];
 let collapsibleLicensePanelsBundle = [];
-let collapsibleLicensePanelsHeightMax = '125px';
+let collapsibleLicensePanelsHeightMax = '300px';
 let collapsibleLicensePanelsHeightMin = '0px';
 let panelTransitionSpeed = 'height 1s';
 // console.log(state);
@@ -274,6 +274,8 @@ const refreshPrefsNavListeners = () => {
             .getElementById('modalActionComponent_bundle')
             .addEventListener('mouseover', function() {
                 setLicenseActivationTransitions();
+                // document
+                //     .getElementById('modalActionComponent_bundle').style.height = '500px;'
                 expandLicensePanels(collapsibleLicensePanelsBundle, collapsibleLicensePanelsHeightMax);
             });
         document
@@ -460,5 +462,5 @@ const setLicenseActivationTransitions = () => {
     document.getElementById('modalActionComponent_panel_bottom_warpstagram').style.WebkitTransition = panelTransitionSpeed;
     document.getElementById('modalActionComponent_panel_top_bundle').style.WebkitTransition = panelTransitionSpeed;
     document.getElementById('modalActionComponent_panel_middle_bundle').style.WebkitTransition = panelTransitionSpeed;
-    document.getElementById('modalActionComponent_panel_bottom_bundle').style.WebkitTransition = panelTransitionSpeed;
+    // document.getElementById('modalActionComponent_panel_bottom_bundle').style.WebkitTransition = panelTransitionSpeed;
 }
