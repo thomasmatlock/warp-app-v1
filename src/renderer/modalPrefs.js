@@ -20,7 +20,7 @@ let collapsibleLicensePanelsAudio = [];
 let collapsibleLicensePanelsVideo = [];
 let collapsibleLicensePanelsWarpstagram = [];
 let collapsibleLicensePanelsBundle = [];
-let collapsibleLicensePanelsHeightMax = '180px';
+let collapsibleLicensePanelsHeightMax = '125px';
 let collapsibleLicensePanelsHeightMin = '0px';
 let panelTransitionSpeed = 'height 1s';
 // console.log(state);
@@ -455,10 +455,10 @@ const setLicenseActivationTransitions = () => {
     document.getElementById('modalActionComponent_panel_top_video').style.WebkitTransition = panelTransitionSpeed;
     document.getElementById('modalActionComponent_panel_middle_video').style.WebkitTransition = panelTransitionSpeed;
     document.getElementById('modalActionComponent_panel_bottom_video').style.WebkitTransition = panelTransitionSpeed;
-    document.getElementById('modalActionComponent_panel_top_audio').style.WebkitTransition = panelTransitionSpeed;
-    document.getElementById('modalActionComponent_panel_middle_audio').style.WebkitTransition = panelTransitionSpeed;
-    document.getElementById('modalActionComponent_panel_bottom_audio').style.WebkitTransition = panelTransitionSpeed;
-    document.getElementById('modalActionComponent_panel_top_audio').style.WebkitTransition = panelTransitionSpeed;
-    document.getElementById('modalActionComponent_panel_middle_audio').style.WebkitTransition = panelTransitionSpeed;
-    document.getElementById('modalActionComponent_panel_bottom_audio').style.WebkitTransition = panelTransitionSpeed;
+    document.getElementById('modalActionComponent_panel_top_warpstagram').style.WebkitTransition = panelTransitionSpeed;
+    document.getElementById('modalActionComponent_panel_middle_warpstagram').style.WebkitTransition = panelTransitionSpeed;
+    document.getElementById('modalActionComponent_panel_bottom_warpstagram').style.WebkitTransition = panelTransitionSpeed;
+    document.getElementById('modalActionComponent_panel_top_bundle').style.WebkitTransition = panelTransitionSpeed;
+    document.getElementById('modalActionComponent_panel_middle_bundle').style.WebkitTransition = panelTransitionSpeed;
+    document.getElementById('modalActionComponent_panel_bottom_bundle').style.WebkitTransition = panelTransitionSpeed;
 }
