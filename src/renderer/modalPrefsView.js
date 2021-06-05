@@ -224,18 +224,7 @@ const removeAllInjectedModals = () => {
         }
     }
 };
-// WWW.JAVASCRIPTTUTORIAL.NET/JAVASCRIPT-DOM/JAVASCRIPT-CHECKBOX/
-const toggleToggleBtn = (storage) => {
-    for (var key in storage.user.prefs) {
-        if (storage.user.prefs.hasOwnProperty(key)) {
-            if (key.substr(0, 7) === 'toggle_') {
-                if (storage.user.prefs[key]) {
-                    console.log(`${key} is ${storage.user.prefs[key]}`);
-                }
-            }
-        }
-    }
-};
+
 const setDropdown = (storage, dropdownID, startingSubstr) => {
     let i = -1;
     let index;
@@ -247,7 +236,6 @@ const setDropdown = (storage, dropdownID, startingSubstr) => {
                 if (storage.user.prefs[key]) {
                     // console.log(`${key} is ${storage.user.prefs[key]}`);
                     index = i;
-                    // console.log(i);
                 }
             }
         }
@@ -320,7 +308,6 @@ module.exports = {
     removeAllInjectedModals: removeAllInjectedModals,
     injectPrefsModalToCurrentSlide: injectPrefsModalToCurrentSlide,
     toggleModal: toggleModal,
-    toggleToggleBtn: toggleToggleBtn,
     setDropdown: setDropdown,
     setDropdownsAll: setDropdownsAll,
     setCheckboxes: setCheckboxes,
