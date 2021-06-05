@@ -818,10 +818,11 @@ input[type='text'] {
   align-items: center;
   position: absolute;
   width: 100%;
-  height: 100%; }
+  height: 100%;
+  transition: all 1s ease-in-out; }
 
 .modalContainer {
-  animation: moveInTop 0.5s ease-out;
+  animation: moveInTop 0.4s ease-out;
   position: relative;
   margin: 0 auto;
   width: 800px;
@@ -831,7 +832,8 @@ input[type='text'] {
   z-index: 11;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   display: none;
-  flex-direction: row; }
+  flex-direction: row;
+  transition: all 0.5s ease-in-out; }
 
 .contentContainer {
   width: 93%;
@@ -839,10 +841,12 @@ input[type='text'] {
   display: flex;
   flex-direction: column;
   margin: auto;
-  border-radius: 4px; }
+  border-radius: 4px;
+  transition: all 0.1s ease-in-out; }
 
 .modalPrefsContentPanel {
   display: flex;
+  transition: all 0.1s ease-in-out;
   flex-direction: column; }
 
 .modalPrefsContentPanel_bottom {
@@ -979,8 +983,6 @@ input[type='text'] {
   display: flex;
   flex-direction: column;
   margin-top: 1.4rem; }
-  .modalDropdownContent:hover {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2); }
 
 .modalDropdown_child {
   width: 100%; }
@@ -1007,6 +1009,8 @@ input[type='text'] {
   align-content: center;
   border-radius: 2px;
   border: solid 1px #464646a1; }
+  .modalDropdown:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2); }
 
 .modalDropdown select {
   background-color: #2a2a2a;
@@ -1046,12 +1050,16 @@ input[type='text'] {
   align-content: center;
   color: #ffffff60;
   cursor: pointer;
-  justify-content: center; }
+  justify-content: center;
+  z-index: 20; }
   .modalPrefsNav_button:hover {
     background-color: rgba(238, 238, 238, 0.205);
     color: #ffffff;
     border-radius: 2px;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2); }
+
+.modalPrefsNav_button_background {
+  z-index: 1; }
 
 .modalPrefsNav_button p {
   font-size: 1.4rem;
@@ -1107,7 +1115,8 @@ input[type='text'] {
   height: 40px;
   width: 100%;
   display: flex;
-  flex-direction: row; }
+  flex-direction: row;
+  cursor: pointer; }
 
 .modalOutputFolder_userInput__textInput,
 .modalOutputFolder_userInput__button {
@@ -1118,14 +1127,15 @@ input[type='text'] {
 .modalOutputFolder_userInput__textInput {
   height: 100%;
   width: 70%;
-  margin-right: 1rem; }
+  margin-right: 1rem;
+  cursor: default; }
 
 .modalOutputFolder_userInput__textInput input {
   height: 100%;
   width: 100%;
   border: solid 1px #464646a1;
-  background: #2a2a2a;
-  cursor: default; }
+  cursor: pointer;
+  background: #2a2a2a; }
 
 ::placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
@@ -1185,7 +1195,7 @@ input[type='text'] {
 .modalPrefsTitle_child_right {
   justify-content: flex-end; }
 
-.modalActivation {
+.modalActionComponent {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -1197,17 +1207,19 @@ input[type='text'] {
   background: #464646a1;
   border-radius: 2px;
   transition: all 0.15s ease-in-out; }
-  .modalActivation:hover {
-    height: 150px;
+  .modalActionComponent:hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2); }
 
-.modalActivation_child {
+.modalActionComponent_LicenseActivation_bundle {
+  height: 150px; }
+
+.modalActionComponent_child {
   height: 100%;
   display: flex;
   align-items: center;
   align-content: center; }
 
-.modalActivation_title {
+.modalActionComponent_child_title {
   height: 100%;
   width: 70%;
   flex-direction: row;
@@ -1217,13 +1229,13 @@ input[type='text'] {
   align-items: center;
   margin-left: 3rem; }
 
-.modalActivation_title p {
+.modalActionComponent_child p {
   font-size: 1.4rem;
   color: #ffffff;
   cursor: default;
   font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif; }
 
-.modalActivation_btn {
+.modalActionComponent_child_btn {
   height: 100%;
   width: 20%;
   display: flex;
@@ -1233,7 +1245,7 @@ input[type='text'] {
   align-content: center;
   margin-right: 3rem; }
 
-.modalActivation_btn p {
+.modalActionComponent_child_btn p {
   height: 40px;
   width: 100%;
   display: flex;
@@ -1251,6 +1263,6 @@ input[type='text'] {
   border-radius: 2px;
   font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
   /* Firefox */ }
-  .modalActivation_btn p:hover {
+  .modalActionComponent_child_btn p:hover {
     color: white;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2); }

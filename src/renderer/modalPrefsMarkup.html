@@ -18,24 +18,24 @@
 
     <!-- NAV -->
     <div class="modalPrefsNav">
-        <div id="modalPrefsNav_button_audio_ID" class="modalPrefsNav_button">
+        <div id="modalPrefsNav_button_audio_ID" class="modalPrefsNav_button modalPrefsNav_button_background">
             <!-- <i class="fas fa-tools"></i> -->
             <i class="fas fa-headphones-alt"></i>
             <p>Audio</p>
         </div>
-        <div id="modalPrefsNav_button_video_ID" class="modalPrefsNav_button">
+        <div id="modalPrefsNav_button_video_ID" class="modalPrefsNav_button modalPrefsNav_button_background">
             <i class="fas fa-video"></i>
             <p>Video</p>
         </div>
-        <div id="modalPrefsNav_button_warpstagram_ID" class="modalPrefsNav_button">
+        <div id="modalPrefsNav_button_warpstagram_ID" class="modalPrefsNav_button modalPrefsNav_button_background">
             <i class="fas fa-camera"></i>
             <p>Warpstagram</p>
         </div>
-        <div id="modalPrefsNav_button_general_ID" class="modalPrefsNav_button">
+        <div id="modalPrefsNav_button_general_ID" class="modalPrefsNav_button modalPrefsNav_button_background">
             <i class="fas fa-sliders-h"></i>
             <p>General</p>
         </div>
-        <div id="modalPrefsNav_button_license_ID" class="modalPrefsNav_button">
+        <div id="modalPrefsNav_button_license_ID" class="modalPrefsNav_button modalPrefsNav_button_background">
             <i class="fas fa-rocket"></i>
             <p>License</p>
         </div>
@@ -193,7 +193,22 @@
             </div>
         </div>
     </div>
+    <!-- MODAL-SPACER -->
+    <div class="modalSpacer_space"></div>
+    <div class="modalSpacer_space"></div>
+    <div class="modalSpacer_line"></div>
+    <div class="modalSpacer_space"></div>
 
+    <!-- MODAL-ACTION -->
+    <div class="modalActionComponent modalLicenseActivation">
+        <div class="modalActionComponent_child  modalActionComponent_child_title">
+            <p>Youtube</p>
+        </div>
+        <div class="modalActionComponent_child  modalActionComponent_child_btn">
+            <p>Login</p>
+        </div>
+    </div>
+</div>
 </div>
 
 <div id="modalPrefsContentPanel_warpstagram" class="modalPrefsContentPanel">
@@ -266,7 +281,21 @@
         </div>
     </div>
 
+    <!-- MODAL-SPACER -->
+    <div class="modalSpacer_space"></div>
+    <div class="modalSpacer_space"></div>
+    <div class="modalSpacer_line"></div>
+    <div class="modalSpacer_space"></div>
 
+    <!-- MODAL-ACTION -->
+    <div class="modalActionComponent modalLicenseActivation">
+        <div class="modalActionComponent_child  modalActionComponent_child_title">
+            <p>Instagram</p>
+        </div>
+        <div class="modalActionComponent_child  modalActionComponent_child_btn">
+            <p>Login</p>
+        </div>
+    </div>
 </div>
 
 <div id="modalPrefsContentPanel_general" class="modalPrefsContentPanel">
@@ -325,56 +354,38 @@
             </div>
         </div>
     </div>
-
-
-
-    <!-- CHECKBOX -->
-    <!-- <div class="modalPrefsCheckbox">
-        <div class="modalPrefsCheckbox_child modalPrefsCheckbox_child_left">
-            <p>Dark theme</p>
+    <!-- MODAL-SPACER -->
+    <div class="modalSpacer_space"></div>
+    <div class="modalSpacer_space"></div>
+    <div class="modalSpacer_line"></div>
+    <div class="modalSpacer_space"></div>
+    <!-- MODAL-ACTION -->
+    <div class="modalActionComponent modalLicenseActivation">
+        <div class="modalActionComponent_child  modalActionComponent_child_title">
+            <p>Youtube</p>
         </div>
-        <div class="modalPrefsCheckbox_child modalPrefsCheckbox_child_right">
-            <div class="button r modalCheckbox" id="modalPrefsCheckbox_themeDark">
-                <input type="checkbox" class="checkbox" id="modalPrefsCheckbox_themeDark_checkbox">
-                <div class="knobs "></div>
-                <div class="layer "></div>
-            </div>
+        <div class="modalActionComponent_child  modalActionComponent_child_btn">
+            <p>Login</p>
         </div>
-    </div> -->
-    <!-- starting tab on app launch -->
-    <!-- notifications-->
+    </div>
+    <!-- MODAL-ACTION -->
+    <div class="modalActionComponent modalLicenseActivation">
+        <div class="modalActionComponent_child  modalActionComponent_child_title">
+            <p>Instagram</p>
+        </div>
+        <div class="modalActionComponent_child  modalActionComponent_child_btn">
+            <p>Login</p>
+        </div>
+    </div>
 </div>
+
 <div id="modalPrefsContentPanel_license" class="modalPrefsContentPanel">
-    <!-- MODAL-ACTIVATE -->
-    <div id="modalPrefsActivationComponent_audio" class="modalActivation">
-        <div id="modalActivation_title_audio" class="modalActivation_child modalActivation_title">
+    <!-- MODAL-ACTION -->
+    <div class="modalActionComponent modalLicenseActivation">
+        <div class="modalActionComponent_child  modalActionComponent_child_title">
             <p>Audio Downloader</p>
         </div>
-        <div id="modalActivation_btn_audio" class="modalActivation_child modalActivation_btn">
-            <p>Activate</p>
-        </div>
-    </div>
-    <div id="modalPrefsActivationComponent_audio" class="modalActivation">
-        <div id="modalActivation_title_audio" class="modalActivation_child modalActivation_title">
-            <p>Video Downloader</p>
-        </div>
-        <div id="modalActivation_btn_audio" class="modalActivation_child modalActivation_btn">
-            <p>Activate</p>
-        </div>
-    </div>
-    <div id="modalPrefsActivationComponent_audio" class="modalActivation">
-        <div id="modalActivation_title_audio" class="modalActivation_child modalActivation_title">
-            <p>Warpstagram</p>
-        </div>
-        <div id="modalActivation_btn_audio" class="modalActivation_child modalActivation_btn">
-            <p>Activate</p>
-        </div>
-    </div>
-    <div id="modalPrefsActivationComponent_audio" class="modalActivation">
-        <div id="modalActivation_title_audio" class="modalActivation_child modalActivation_title">
-            <p>Bundle (All 3 downloaders)</p>
-        </div>
-        <div id="modalActivation_btn_audio" class="modalActivation_child modalActivation_btn">
+        <div class="modalActionComponent_child  modalActionComponent_child_btn">
             <p>Activate</p>
         </div>
     </div>

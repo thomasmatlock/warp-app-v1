@@ -28,7 +28,7 @@
 @import 'modals/components/modal-textDescription';
 @import 'modals/components/modal-textTitle';
 // modal-text-input
-.modalActivation {
+.modalActionComponent {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -41,14 +41,22 @@
     background: #464646a1; // test
     border-radius: 2px;
     transition: all 0.15s ease-in-out;
-    // transition: all 1s ease-in-out;
     &:hover {
-        height: 150px;
         box-shadow: $shadow-after;
     }
 }
 
-.modalActivation_child {
+.modalLicenseActivation {
+    // &:hover {
+    //     height: 150px;
+    // }
+}
+
+.modalActionComponent_LicenseActivation_bundle {
+    height: 150px;
+}
+
+.modalActionComponent_child {
     // border: 1px dotted white;
     height: 100%;
     display: flex;
@@ -56,7 +64,7 @@
     align-content: center;
 }
 
-.modalActivation_title {
+.modalActionComponent_child_title {
     height: 100%;
     width: 70%;
     flex-direction: row;
@@ -68,7 +76,7 @@
     margin-left: 3rem;
 }
 
-.modalActivation_title p {
+.modalActionComponent_child p {
     font-size: 1.4rem;
     color: #ffffff;
     // margin-left: 1rem;
@@ -76,7 +84,7 @@
     font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
 }
 
-.modalActivation_btn {
+.modalActionComponent_child_btn {
     // border: 1px dotted white;
     height: 100%;
     // height: 40px;
@@ -90,7 +98,7 @@
     margin-right: 3rem;
 }
 
-.modalActivation_btn p {
+.modalActionComponent_child_btn p {
     // border: 1px dotted white;
     // height: 100%;
     height: 40px;

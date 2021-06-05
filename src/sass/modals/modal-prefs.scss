@@ -21,12 +21,14 @@
     position: absolute;
     width: 100%;
     height: 100%;
+    // animation: moveInBottom 0.25s ease-out;
+    transition: all 1s ease-in-out;
     // border: 1px dotted red;
 }
 
 // exterior panel containing the content panel
 .modalContainer {
-    animation: moveInTop 0.5s ease-out;
+    animation: moveInTop 0.4s ease-out;
     position: relative;
     // top: 0;
     margin: 0 auto;
@@ -43,11 +45,13 @@
     display: none;
     // display: flex;
     flex-direction: row;
+    transition: all 0.5s ease-in-out;
     // border: 1px dotted red;
 }
 
 // interior panel to contain all content within modal
 .contentContainer {
+    // animation: moveInBottom 0.25s ease-out;
     width: 93%;
     height: 97%;
     // width: 100%;
@@ -57,10 +61,12 @@
     // border: 1px dotted red;
     margin: auto;
     border-radius: 4px;
+    transition: all 0.1s ease-in-out;
 }
 
 .modalPrefsContentPanel {
     display: flex;
+    transition: all 0.1s ease-in-out;
     flex-direction: column;
 }
 
