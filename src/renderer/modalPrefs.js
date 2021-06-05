@@ -286,15 +286,9 @@ const updatePrefsState = (eventTitle) => {
     }
 };
 const setPrefDropdownsToFalse = (optionSubstring) => {
-    console.log(optionSubstring);
-    // let stringSlice = optionSubstring.substr(12, 7);
-    // console.log(stringSlice);
     for (var key in storage.user.prefs) {
-        // console.log(key);
         if (storage.user.prefs.hasOwnProperty(key)) {
             if (key.includes(optionSubstring)) {
-                // console.log(key);
-                // console.log(storage.user.prefs[key]);
                 storage.user.prefs[key] = false;
             }
         }
