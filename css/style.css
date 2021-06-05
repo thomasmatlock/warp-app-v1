@@ -942,7 +942,7 @@ input[type='text'] {
   flex-grow: 1;
   cursor: default; }
 
-.modalPrefsToggleButton_child_left {
+.modalPrefsCheckbox_child_left {
   display: flex;
   justify-content: flex-start; }
 

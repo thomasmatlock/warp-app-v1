@@ -254,7 +254,7 @@ const setDropdown = (storage, dropdownID, startingSubstr) => {
             }
         }
     }
-    console.log(dropdownID);
+    // console.log(dropdownID);
     // console.log(dropdownID.options[index]);
     // console.log(dropdownID.options);
     if (dropdownID.options[index]) {
@@ -285,7 +285,6 @@ const setDropdownsAll = (storage) => {
     };
 
     for (var key in dropdownsObj) {
-        // console.log(key);
         setDropdown(storage, dropdownsObj[key], key);
     }
 };
@@ -298,14 +297,9 @@ const setCheckboxes = (storage) => {
         checkbox_minimizeToTrayOnClose: document.getElementById(
             'modalPrefsToggleButton_minimizeToTrayOnClose_checkbox'
         ),
-        // toggle_themeDark: document.getElementById(
-        //     'modalPrefsToggleButton_themeDark_checkbox'
-        // ),
     };
     for (var key in checkboxObj) {
-        // console.log(key);
         if (storage.user.prefs[key]) {
-            // console.log(storage.user.prefs[key]);
             checkboxObj[key].checked = true;
         }
     }
