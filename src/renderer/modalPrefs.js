@@ -158,7 +158,7 @@ const refreshPrefsNavListeners = () => {
             });
         // VIDEO FORMAT
         document
-            .getElementById('modalDropdownList_videoFormat')
+            .getElementById('modalDropdown_videoFormat')
             .addEventListener('change', function() {
                 updatePrefsState(this.value);
             });

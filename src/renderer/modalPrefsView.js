@@ -266,7 +266,7 @@ const setDropdownsAll = (storage) => {
         audioQuality: document.getElementById('modalDropdown_audioQuality'),
         audioFormat: document.getElementById('modalDropdown_audioFormat'),
         videoQuality: document.getElementById('modalDropdown_videoQuality'),
-        videoFormat: document.getElementById('modalDropdownList_videoFormat'),
+        videoFormat: document.getElementById('modalDropdown_videoFormat'),
         warpstagram_update: document.getElementById(
             'modalDropdown_warpstagram_updateSelected'
         ),
