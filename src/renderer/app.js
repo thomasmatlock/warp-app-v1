@@ -67,6 +67,7 @@ let storage;
             // return storage.user.prefs.generalSettings_startupTab_audio;
 
             //NICE
+            //commit this
             return 'audio';
         }
         if (storage.user.prefs.generalSettings_startupTab_video) {
