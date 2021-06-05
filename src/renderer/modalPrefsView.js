@@ -254,7 +254,7 @@ const setDropdown = (storage, dropdownID, startingSubstr) => {
             }
         }
     }
-    // console.log(dropdownID);
+    console.log(dropdownID);
     // console.log(dropdownID.options[index]);
     // console.log(dropdownID.options);
     if (dropdownID.options[index]) {
@@ -292,10 +292,10 @@ const setDropdownsAll = (storage) => {
 
 const setCheckboxes = (storage) => {
     const checkboxObj = {
-        toggle_autostartWarp: document.getElementById(
+        checkbox_autostartWarp: document.getElementById(
             'modalPrefsToggleButton_autostartWarp_checkbox'
         ),
-        toggle_minimizeToTrayOnClose: document.getElementById(
+        checkbox_minimizeToTrayOnClose: document.getElementById(
             'modalPrefsToggleButton_minimizeToTrayOnClose_checkbox'
         ),
         // toggle_themeDark: document.getElementById(

@@ -130,12 +130,12 @@ const refreshPrefsNavListeners = () => {
         document
             .getElementById('modalPrefsToggleButton_autostartWarp')
             .addEventListener('click', (e) => {
-                updatePrefsState('toggle_autostartWarp');
+                updatePrefsState('checkbox_autostartWarp');
             });
         document
             .getElementById('modalPrefsToggleButton_minimizeToTrayOnClose')
             .addEventListener('click', (e) => {
-                updatePrefsState('toggle_minimizeToTrayOnClose');
+                updatePrefsState('checkbox_minimizeToTrayOnClose');
             });
         // AUDIO QUALITY
         document
@@ -217,8 +217,7 @@ const refreshModalBackgroundListeners = (type) => {
 };
 
 const updatePrefsState = (eventTitle) => {
-    console.log(eventTitle);
-    var [
+    let [
         audioQuality,
         audioFormat,
         videoQuality,
@@ -240,7 +239,8 @@ const updatePrefsState = (eventTitle) => {
         'generalSettings_startupTab',
     ];
     // TOGGLES CHECKBOXES STATE
-    if (eventTitle.includes('toggle')) {
+    if (eventTitle.includes('checkbox')) {
+        console.log(eventTitle);
         storage.user.prefs[eventTitle] = storage.user.prefs[eventTitle] ?
             false :
             true;
