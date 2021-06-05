@@ -65,6 +65,7 @@ let storage;
     const discoverStartupTab = function(storage) {
         if (storage.user.prefs.generalSettings_startupTab_audio) {
             // return storage.user.prefs.generalSettings_startupTab_audio;
+            // delete
             return 'audio';
         }
         if (storage.user.prefs.generalSettings_startupTab_video) {
