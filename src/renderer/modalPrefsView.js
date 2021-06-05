@@ -262,10 +262,10 @@ const setDropdownsAll = (storage) => {
         warpstagram_postSorting: document.getElementById(
             'modalDropdown_warpstagram_postSorting'
         ),
-        general_theme: document.getElementById(
+        generalSettings_theme: document.getElementById(
             'modalDropdown_general_theme'
         ),
-        general_startupTab: document.getElementById(
+        generalSettings_startupTab: document.getElementById(
             'modalDropdown_general_startupTab'
         ),
     };
