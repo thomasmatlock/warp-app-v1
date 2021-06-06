@@ -60,7 +60,24 @@
     &:hover {
         box-shadow: $shadow-after;
         height: auto;
+        // background-color: rgba(238, 238, 238, 0.205);
+        background: #EEE;
     }
+}
+
+.modalActionComponent_licenseActivation:hover .modalActionComponent_child_title {
+    // transition: all 1s;
+    color: black;
+    //    color: white;
+    font-size: 1.5rem;
+    // margin-left: 1rem;
+    // font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
+    cursor: default;
+    letter-spacing: 0.1rem;
+}
+
+.modalActionComponent_licenseActivation:hover .modalActionComponent_child_btn {
+    background-image: $colorThemeButtonActive;
 }
 
 .modalActionComponent_bundle {
@@ -77,10 +94,13 @@
     display: flex;
     align-items: center;
     height: auto;
+    &:hover {}
 }
 
-.modalActionComponent_panel_primary {
-    min-height: 40px;
+.modalActionComponent_panel_primary,
+.modalActionComponent_panel_secondary {
+    // min-height: 40px;
+    max-height: 50px;
 }
 
 .modalActionComponent_child_title,
@@ -89,6 +109,7 @@
     font-size: 1.4rem;
     color: #ffffff;
     cursor: default;
+    // border: 1px dotted purple;
     font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
 }
 
@@ -100,7 +121,7 @@
 .modalActionComponent_child_activated {
     &:hover {
         color: #ff8700;
-        content: "Thanks!";
+        // content: "Thanks!";
     }
 }
 
@@ -127,7 +148,8 @@
 .modalActionComponent_child_btn {
     border-radius: 2px;
     height: 40px;
-    background-image: $colorThemeButtonActive;
+    background-color: #ff8700;
+    // background-image: $colorThemeButtonActive;
 }
 
 .modalActionComponent_child {
@@ -137,4 +159,19 @@
     align-content: center;
     flex: 1;
     // border: 1px dotted #5a5a5aa1;
+}
+
+// .modalActionComponent_active>* {
+//     height: 100px;
+// }
+// .modalActionComponent_active:not(:first-child)>* {
+//     height: 200px;
+// }
+.modalActionComponent_active>*:not(:first-child) {
+    height: 200px;
+}
+
+.modalActionComponent_panel_collapsible {
+    // background: #fff;
+    // background-color: rgba(238, 238, 238, 0.205);
 }

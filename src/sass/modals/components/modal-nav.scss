@@ -23,12 +23,25 @@
     cursor: pointer;
     justify-content: center; // PRODUCTION
     z-index: 20;
+    transition: all ease-out 0.2s;
     &:hover {
-        background-color: rgba(238, 238, 238, 0.205);
+        // background-color: rgba(238, 238, 238, 0.205);
+        background-image: linear-gradient( to left, rgba(238, 238, 238, 0.205) 0%, rgba(102, 102, 102, 0.205) 100%);
         color: #ffffff;
         // border-radius: 2px 2px 0 0;
-        border-radius: 2px;
+        // border-radius: 4px;
+        border-radius: 4px 4px 0 0;
         box-shadow: $shadow-after;
+        transform: translateY(-0.2rem);
+        &::after {
+            transform: scaleX(1.4) scaleY(1.6);
+        }
+    }
+    &:active {
+        /*heres what happens when it's active by user, aka a click lol*/
+        transform: translateY(-0.2rem);
+        /*this value is in relation to initial state, not hover state*/
+        // box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
     }
 }
 
@@ -50,9 +63,11 @@
 }
 
 .modalPrefsNav_button_active {
-    background-color: rgba(238, 238, 238, 0.205);
+    // background-color: rgba(238, 238, 238, 0.205);
+    // background-image: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, #19d2fc 100%);
+    background-image: linear-gradient( to left, rgba(238, 238, 238, 0.205) 0%, rgba(102, 102, 102, 0.205) 100%);
     color: #ffffff;
-    border-radius: 2px 2px 0 0;
+    border-radius: 4px 4px 0 0;
     // box-shadow: $shadow-after;
     // border-bottom: 2px solid linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, #19d2fc 100%);
     // border-bottom: 1px solid #0463db;

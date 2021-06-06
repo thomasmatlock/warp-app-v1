@@ -20,7 +20,7 @@ let collapsibleLicensePanelsAudio = [];
 let collapsibleLicensePanelsVideo = [];
 let collapsibleLicensePanelsWarpstagram = [];
 let collapsibleLicensePanelsBundle = [];
-let collapsibleLicensePanelsHeightMax = '180px';
+let collapsibleLicensePanelsHeightMax = '400px';
 let collapsibleLicensePanelsHeightMin = '0px';
 let panelTransitionSpeed = 'height 1s';
 // console.log(state);
@@ -42,6 +42,8 @@ let panelTransitionSpeed = 'height 1s';
     });
     ipcRenderer.on('mainWindow-resized', (e, storageReceived) => {
         console.log('mainWindow-resized');
+        // prefsView.showPanelInit('prefs', 'license');
+        // refreshModalListeners('refresh');
     });
 })();
 
@@ -241,6 +243,7 @@ const refreshPrefsNavListeners = () => {
             .addEventListener('mouseover', function() {
                 setLicenseActivationTransitions();
                 expandLicensePanels(collapsibleLicensePanelsAudio, collapsibleLicensePanelsHeightMax);
+                document.getElementById('modalActionComponent_audio').classList.add('modalActionComponent_active')
             });
 
         document
@@ -438,6 +441,13 @@ const tabSwitch = () => {
     // refreshModalListeners('refresh');
     prefsView.showPanelInit('prefs', state.activeTab);
     refreshPrefsNavListeners();
+    // setLicenseActivationTransitions();
+    // expandLicensePanels(collapsibleLicensePanels, collapsibleLicensePanelsHeightMax);
+    // collapseLicensePanels(collapsibleLicensePanels, collapsibleLicensePanelsHeightMin);
+    // createCollapsiblePanelsArray(collapsibleLicensePanels, 'audio', collapsibleLicensePanelsAudio)
+    // createCollapsiblePanelsArray(collapsibleLicensePanels, 'video', collapsibleLicensePanelsVideo)
+    // createCollapsiblePanelsArray(collapsibleLicensePanels, 'warpstagram', collapsibleLicensePanelsWarpstagram)
+    // createCollapsiblePanelsArray(collapsibleLicensePanels, 'bundle', collapsibleLicensePanelsBundle)
 };
 const expandLicensePanels = (arr, height) => {
     for (let i = 0; i < arr.length; i++) {

@@ -302,7 +302,7 @@ const windowController = {
         // mainWindow.loadFile('./main.html'); // Load index.html into the new BrowserWindow
 
         if (defaults.dev.devTools) {
-            mainWindow.webContents.openDevTools(); // Open DevTools - Remove for PRODUCTION!
+            // mainWindow.webContents.openDevTools(); // Open DevTools - Remove for PRODUCTION!
         }
 
         const wc = mainWindow.webContents;
