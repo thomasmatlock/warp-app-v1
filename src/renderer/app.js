@@ -81,6 +81,7 @@ let storage;
     };
 
     ipcRenderer.on('resize', () => {
+        ipcRenderer.send('mainWindow-resized');
         // CLICK ACTIVE NAV A
         var clickDelay = 50;
         if (defaults.env.nav_A_active == 'audio') {

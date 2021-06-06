@@ -53,6 +53,9 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
         if (!storageMain.user.acceptedEULA)
             windowController.createModalEULAWindow();
     });
+    ipcMain.on('mainWindow-resized', () => {
+        mainWindow.webContents.send('mainWindow-resized');
+    });
     ipcMain.on(
         'dialog-showOutputFolder',
         (e, outputFolderBtnID, storageReceived) => {
@@ -299,7 +302,7 @@ const windowController = {
         // mainWindow.loadFile('./main.html'); // Load index.html into the new BrowserWindow
 
         if (defaults.dev.devTools) {
-            // mainWindow.webContents.openDevTools(); // Open DevTools - Remove for PRODUCTION!
+            mainWindow.webContents.openDevTools(); // Open DevTools - Remove for PRODUCTION!
         }
 
         const wc = mainWindow.webContents;

@@ -84,7 +84,8 @@
 }
 
 .modalActionComponent_child_title,
-.modalActionComponent_child_btn {
+.modalActionComponent_child_btn,
+.modalActionComponent_child_activated {
     font-size: 1.4rem;
     color: #ffffff;
     cursor: default;
@@ -92,22 +93,41 @@
 }
 
 .modalActionComponent_child_title {
-    margin-left: 2rem;
+    margin: 0 2rem;
     width: auto;
 }
 
+.modalActionComponent_child_activated {
+    &:hover {
+        color: #ff8700;
+        content: "Thanks!";
+    }
+}
+
+.modalActionComponent_child_activated {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.modalActionComponent_child_activated,
+.modalActionComponent_child_btn {
+    margin-right: 0.5rem;
+}
+
+.modalActionComponent_child_activated,
 .modalActionComponent_child_btn {
     max-width: 20%;
     display: flex;
     align-items: center;
     align-content: flex-end;
     justify-content: center;
-    // border: 1px dotted white;
+    cursor: pointer;
+}
+
+.modalActionComponent_child_btn {
     border-radius: 2px;
     height: 40px;
     background-image: $colorThemeButtonActive;
-    cursor: pointer;
-    margin-right: 0.5rem;
 }
 
 .modalActionComponent_child {
@@ -116,4 +136,5 @@
     align-items: center;
     align-content: center;
     flex: 1;
+    // border: 1px dotted #5a5a5aa1;
 }

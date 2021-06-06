@@ -1235,27 +1235,42 @@ input[type='text'] {
   min-height: 40px; }
 
 .modalActionComponent_child_title,
-.modalActionComponent_child_btn {
+.modalActionComponent_child_btn,
+.modalActionComponent_child_activated {
   font-size: 1.4rem;
   color: #ffffff;
   cursor: default;
   font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif; }
 
 .modalActionComponent_child_title {
-  margin-left: 2rem;
+  margin: 0 2rem;
   width: auto; }
 
+.modalActionComponent_child_activated:hover {
+  color: #ff8700;
+  content: "Thanks!"; }
+
+.modalActionComponent_child_activated {
+  display: flex;
+  justify-content: flex-end; }
+
+.modalActionComponent_child_activated,
+.modalActionComponent_child_btn {
+  margin-right: 0.5rem; }
+
+.modalActionComponent_child_activated,
 .modalActionComponent_child_btn {
   max-width: 20%;
   display: flex;
   align-items: center;
   align-content: flex-end;
   justify-content: center;
+  cursor: pointer; }
+
+.modalActionComponent_child_btn {
   border-radius: 2px;
   height: 40px;
-  background-image: linear-gradient(268deg, #da2c4d, #f8ab37);
-  cursor: pointer;
-  margin-right: 0.5rem; }
+  background-image: linear-gradient(268deg, #da2c4d, #f8ab37); }
 
 .modalActionComponent_child {
   display: flex;

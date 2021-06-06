@@ -20,7 +20,7 @@ let collapsibleLicensePanelsAudio = [];
 let collapsibleLicensePanelsVideo = [];
 let collapsibleLicensePanelsWarpstagram = [];
 let collapsibleLicensePanelsBundle = [];
-let collapsibleLicensePanelsHeightMax = '300px';
+let collapsibleLicensePanelsHeightMax = '180px';
 let collapsibleLicensePanelsHeightMin = '0px';
 let panelTransitionSpeed = 'height 1s';
 // console.log(state);
@@ -39,6 +39,9 @@ let panelTransitionSpeed = 'height 1s';
     );
     ipcRenderer.on('storage-sync-success', (e, storageReceived) => {
         storage = storageReceived;
+    });
+    ipcRenderer.on('mainWindow-resized', (e, storageReceived) => {
+        console.log('mainWindow-resized');
     });
 })();
 
