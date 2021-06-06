@@ -63,6 +63,7 @@ const formatLength = function(approxDurationMs) {
 };
 
 const cloneVideoDetails = function(itemURL, info, avType) {
+    console.log(avType);
     defaults.dev.downloadSmallestFile ?
         (itemInfo.selectedFormat = info.formats[0]) // sets to smallest format for easy dev downloading
         :
@@ -76,7 +77,8 @@ const cloneVideoDetails = function(itemURL, info, avType) {
     itemInfo.thumbnail = info.videoDetails.thumbnails[0]; // (or the last thumbnail) usually seems to be highest res thumbnail. thumbn\ails are in descending order from low res to highest res
     itemInfo.thumbnailURL = info.videoDetails.thumbnails[0].url; // (or the last thumbnail) usually seems to be highest res thumbnail. thumbn\ails are in descending order from low res to highest res
     // itemInfo.fileSize;
-    itemInfo.fileType = avType === 'audio' ? 'MP3' : 'MP4'; // mp4, etc
+    // itemInfo.fileType = avType === 'audio' ? 'MP3' : 'MP4'; // mp4, etc
+    itemInfo.fileType = fileFormat.toUpperCase(); // mp4, etc
     itemInfo.itag = itemInfo.selectedFormat.itag;
     itemInfo.mimeType = itemInfo.selectedFormat.mimeType;
     itemInfo.width = itemInfo.selectedFormat.width;
@@ -180,7 +182,7 @@ const getFormat = function(avType, storage) {
                     // console.log(key);
                     fileFormat = key.slice(key.length - 3, key.length);
                     fileFormat = fileFormat.toLowerCase();
-                    // console.log(fileFormat);
+                    console.log(fileFormat);
                 }
             }
         }
@@ -188,6 +190,7 @@ const getFormat = function(avType, storage) {
 };
 const all = function(itemURL, avType, platform, storage) {
     // console.log(avType);
+    console.log(storage.user.prefs);
     pathAudio = storage.user.prefs.pathAudio;
     pathVideo = storage.user.prefs.pathVideo;
     getFormat(avType, storage);
