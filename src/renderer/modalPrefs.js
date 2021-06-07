@@ -280,8 +280,6 @@ const refreshPrefsNavListeners = () => {
             .getElementById('modalActionComponent_bundle')
             .addEventListener('mouseover', function() {
                 setLicenseActivationTransitions();
-                // document
-                //     .getElementById('modalActionComponent_bundle').style.height = '500px;'
                 expandLicensePanels(collapsibleLicensePanelsBundle, collapsibleLicensePanelsHeightMax);
             });
         document
@@ -326,7 +324,7 @@ const updatePrefsState = (eventTitle) => {
     ];
     // TOGGLES CHECKBOXES STATE
     if (eventTitle.includes('checkbox')) {
-        console.log(eventTitle);
+        // console.log(eventTitle);
         storage.user.prefs[eventTitle] = storage.user.prefs[eventTitle] ?
             false :
             true;
@@ -426,7 +424,7 @@ ipcRenderer.on(
         }
     }
 );
-
+const collapseAllLicensePanels = () => {}
 const tabSwitch = () => {
     prefsView.removeAllInjectedModals();
     setTimeout(() => {

@@ -63,7 +63,7 @@ const formatLength = function(approxDurationMs) {
 };
 
 const cloneVideoDetails = function(itemURL, info, avType) {
-    console.log(avType);
+    // console.log(avType);
     defaults.dev.downloadSmallestFile ?
         (itemInfo.selectedFormat = info.formats[0]) // sets to smallest format for easy dev downloading
         :
@@ -182,7 +182,7 @@ const getFormat = function(avType, storage) {
                     // console.log(key);
                     fileFormat = key.slice(key.length - 3, key.length);
                     fileFormat = fileFormat.toLowerCase();
-                    console.log(fileFormat);
+                    // console.log(fileFormat);
                 }
             }
         }
@@ -190,7 +190,7 @@ const getFormat = function(avType, storage) {
 };
 const all = function(itemURL, avType, platform, storage) {
     // console.log(avType);
-    console.log(storage.user.prefs);
+    // console.log(storage.user.prefs);
     pathAudio = storage.user.prefs.pathAudio;
     pathVideo = storage.user.prefs.pathVideo;
     getFormat(avType, storage);
