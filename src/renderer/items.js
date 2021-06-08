@@ -29,6 +29,7 @@ exports.defaultsAddAllItems = (storageSent) => {
     this.addItemsFromArray(storage.downloadItems.videoArr, 'video');
 };
 exports.addItem = (item, avType, isdefaults) => {
+    // console.log(item);
     if (avType === 'audio') {
         this.insertMarkup(item, avType); // splices in item info to markup
         // console.log(item.filepath);
@@ -50,6 +51,51 @@ exports.addItem = (item, avType, isdefaults) => {
         this.resetMarkup();
     }
 };
+let string = `<p class="dl__item__data__property dl__item__data__property-file-percentDownloaded">
+                    %{percentDownloaded}percentDownloaded
+                </p>`
+let percentRounded;
+let textnode;
+let itemNode;
+let node;
+let lastChildNode
+exports.insertPercentDownloaded = (item, percent, statusType) => {
+    percentRounded = `${(percent * 100).toFixed(0)}%`;
+    if (statusType === 'add') {
+        node = document.createElement("p"); // Create a <p> node
+        textnode = document.createTextNode(`         ${percentRounded} downloaded`); // Create a text node
+        node.appendChild(textnode);
+        node.className = 'dl__item__data__data'
+        node.className = 'dl__item__data__property-file-percentDownloaded'
+        lastChildNode = document.getElementById(item.id).childNodes[1].childNodes[3].childNodes[3].childNodes[9]
+        itemNode = document.getElementById(item.id).childNodes[1].childNodes[3].childNodes[3]
+        console.log(itemNode);
+        // itemNode.appendChild(textnode)
+        node.style.color = 'white';
+        node.style.marginLeft = '1rem';
+        itemNode.appendChild(node)
+            // itemNode.insertBefore(node, lastChildNode)
+            // textnode.innerHTML = 'hello'
+            // node.innerHTML = 'hello'
+    }
+    if (statusType === 'complete') {
+        // this.removePercentDownloaded(item, itemNode, textnode)
+        try {
+            itemNode.removeChild(node)
+
+        } catch (error) {
+
+        }
+    }
+}
+exports.updatePercentDownloaded = (item, percent) => {}
+
+exports.removePercentDownloaded = (item, itemNode, textnode) => {
+    // console.log(`removing percentage from ${item.id}`);
+    // let itemNode = document.getElementById(item.id).childNodes[1].childNodes[3].childNodes[3].childNodes[9]
+    itemNode.removeChild(textnode)
+
+}
 exports.addItemsFromArray = (arr, avType) => {
     for (let i = 0; i < arr.length; i++) {
         this.addItem(arr[i], avType);
