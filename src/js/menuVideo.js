@@ -127,6 +127,12 @@ module.exports = (appWin) => {
         {
             label: 'Help',
             submenu: [{
+                label: 'Restart Warp',
+                accelerator: 'CmdOrCtrl+R',
+                click: () => {
+                    appWin.send('Restart');
+                },
+            }, {
                 label: 'Learn More',
                 click: () => {
                     shell.openExternal('https://warpdownload.com');

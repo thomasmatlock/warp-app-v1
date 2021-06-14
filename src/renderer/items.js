@@ -69,8 +69,8 @@ exports.insertPercentDownloaded = (item, percent, statusType) => {
         node.className = 'dl__item__data__property-file-percentDownloaded'
         lastChildNode = document.getElementById(item.id).childNodes[1].childNodes[3].childNodes[3].childNodes[9]
         itemNode = document.getElementById(item.id).childNodes[1].childNodes[3].childNodes[3]
-        console.log(itemNode);
-        // itemNode.appendChild(textnode)
+            // console.log(itemNode);
+            // itemNode.appendChild(textnode)
         node.style.color = 'white';
         node.style.marginLeft = '1rem';
         itemNode.appendChild(node)

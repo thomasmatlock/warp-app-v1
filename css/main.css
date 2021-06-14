@@ -1057,13 +1057,9 @@ input[type='text'] {
     background-image: linear-gradient(to left, rgba(238, 238, 238, 0.205) 0%, rgba(102, 102, 102, 0.205) 100%);
     color: #ffffff;
     border-radius: 4px 4px 0 0;
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-    transform: translateY(-0.2rem); }
-    .modalPrefsNav_button:hover::after {
-      transform: scaleX(1.4) scaleY(1.6); }
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2); }
   .modalPrefsNav_button:active {
     /*heres what happens when it's active by user, aka a click lol*/
-    transform: translateY(-0.2rem);
     /*this value is in relation to initial state, not hover state*/ }
 
 .modalPrefsNav_button_background {

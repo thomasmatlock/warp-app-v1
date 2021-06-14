@@ -92,11 +92,19 @@ module.exports = (appWin) => {
         {
             label: 'Help',
             submenu: [{
-                label: 'Learn More',
-                click: () => {
-                    shell.openExternal('https://warpdownload.com');
+                    label: 'Restart Warp',
+                    accelerator: 'CmdOrCtrl+R',
+                    click: () => {
+                        appWin.send('Restart');
+                    },
                 },
-            }, ],
+                {
+                    label: 'Learn More',
+                    click: () => {
+                        shell.openExternal('https://warpdownload.com');
+                    },
+                },
+            ],
         },
         // {
         //     role: 'viewMenu',
@@ -111,30 +119,11 @@ module.exports = (appWin) => {
     const devMenu = new MenuItem({
         label: 'Developer',
         submenu: [{
-                label: 'Restart',
-                accelerator: 'CmdOrCtrl+R',
-                click: () => {
-                    appWin.send('Restart');
-                },
+            label: 'Reset storage',
+            click: () => {
+                appWin.send('Reset-storage');
             },
-            {
-                label: 'Reset storage',
-                click: () => {
-                    appWin.send('Reset-storage');
-                },
-            },
-
-            // {
-            //     label: 'Item 2',
-            //     submenu: [{
-            //             label: 'Sub-item A',
-            //         },
-            //         {
-            //             label: 'Sub-item B',
-            //         },
-            //     ],
-            // },
-        ],
+        }, ],
     }); // create new menu item
 
     if (defaults.devMode) template.push(devMenu);
