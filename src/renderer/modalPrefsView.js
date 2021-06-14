@@ -291,7 +291,7 @@ const setCheckboxes = (storage) => {
     }
 };
 
-const toggleModal = (state, avType) => {
+const toggleModalPrefsVisibility = (state, avType) => {
     toggleBackground(state);
     toggleModalState(state);
     togglePreferences(state, avType);
@@ -307,7 +307,7 @@ module.exports = {
     showPanelInit: showPanelInit,
     removeAllInjectedModals: removeAllInjectedModals,
     injectPrefsModalToCurrentSlide: injectPrefsModalToCurrentSlide,
-    toggleModal: toggleModal,
+    toggleModalPrefsVisibility: toggleModalPrefsVisibility,
     setDropdown: setDropdown,
     setDropdownsAll: setDropdownsAll,
     setCheckboxes: setCheckboxes,

@@ -2,6 +2,7 @@ const { app, clipboard, ipcRenderer, shell } = require('electron');
 const dialog = require('electron');
 let elements = require('./views/elements');
 const prefsView = require('./modalPrefsView');
+const theme = require('./themeController');
 const prefsStorage = require('./settings');
 const defaultsReq = require('../js/defaults');
 const defaults = new defaultsReq();
@@ -48,12 +49,18 @@ let panelTransitionSpeed = 'height 1s';
 })();
 
 const windowReady = (prefsMarkup) => {
+    theme.setTheme(storage);
     prefsView.injectPrefsModalToCurrentSlide(prefsMarkup, startupTab, storage);
     addNavBListeners();
     addAppMenuListeners();
     prefsView.showPanelInit('prefs', 'license');
     setTimeout(() => {
-        // auto.click_nav_B(startupTab, 'preferences'); // auto clicks paste, smartMode, activate, subscriptions, preferences, help
+        if (!defaults.dev.autoOpenModalPrefs) {
+            prefsView.toggleModalPrefsVisibility(state, 'warpstagram');
+            auto.click_nav_B(startupTab, 'preferences');
+        }
+        if (defaults.dev.autoOpenModalPrefs)
+            auto.click_nav_B(startupTab, 'preferences');
     }, 400);
     refreshModalListeners('refresh'); // THIS IS CHANGING BEHAVIOR OF BACKGROUND
     setTimeout(() => {
@@ -62,7 +69,6 @@ const windowReady = (prefsMarkup) => {
         prefsView.setCheckboxes(storage);
         setLicenseActivationTransitionsSpeed();
         collapsibleLicensePanels = document.getElementsByClassName('modalActionComponent_panel_collapsible');
-        // console.log(collapsibleLicensePanels);
         expandLicensePanels(collapsibleLicensePanels, collapsibleLicensePanelsHeightMax);
         collapseLicensePanels(collapsibleLicensePanels, collapsibleLicensePanelsHeightMin);
         createCollapsiblePanelsArray(collapsibleLicensePanels, 'audio', collapsibleLicensePanelsAudio)
@@ -73,14 +79,12 @@ const windowReady = (prefsMarkup) => {
 };
 
 function createCollapsiblePanelsArray(arr, subStr, newArr) {
-    // console.log(newArr);
+
     for (let i = 0; i < arr.length; i++) {
         if (arr[i].id.includes(subStr)) {
-            // console.log(arr[i].id);
             newArr.push(arr[i]);
         }
     }
-    // console.log(newArr);
 }
 
 const addNavAListeners = () => {
@@ -99,24 +103,24 @@ const addNavAListeners = () => {
 };
 const addNavBListeners = () => {
     elements.nav_B_button_audio_preferences.addEventListener('click', (e) => {
-        prefsView.toggleModal(state, 'audio');
+        prefsView.toggleModalPrefsVisibility(state, 'audio');
     });
 
     elements.nav_B_button_video_preferences.addEventListener('click', (e) => {
-        prefsView.toggleModal(state, 'video');
+        prefsView.toggleModalPrefsVisibility(state, 'video');
     });
 };
 const addAppMenuListeners = () => {
     ipcRenderer.on('Audio: Tools: Preferences', () => {
-        prefsView.toggleModal(state, 'audio');
+        prefsView.toggleModalPrefsVisibility(state, 'audio');
     });
 
     ipcRenderer.on('Video: Tools: Preferences', () => {
-        prefsView.toggleModal(state, 'video');
+        prefsView.toggleModalPrefsVisibility(state, 'video');
     });
 
     ipcRenderer.on('Warpstagram: Tools: Preferences', () => {
-        prefsView.toggleModal(state, 'warpstagram');
+        prefsView.toggleModalPrefsVisibility(state, 'warpstagram');
     });
 };
 const refreshModalListeners = (type) => {
@@ -131,7 +135,7 @@ const refreshPrefsNavListeners = () => {
             .getElementById('closePrefsModal')
             .addEventListener('click', (e) => {
                 // console.log(storage.user.prefs);
-                prefsView.toggleModal(state, 'warpstagram');
+                prefsView.toggleModalPrefsVisibility(state, 'warpstagram');
                 prefsSettingsSync();
             });
         // NAV LISTENERS
@@ -236,6 +240,7 @@ const refreshPrefsNavListeners = () => {
             .getElementById('modalDropdown_general_theme')
             .addEventListener('change', function() {
                 updatePrefsState(this.value);
+                theme.setTheme(storage);
             });
         // LICENSE SETTINGS
         document
@@ -295,7 +300,7 @@ const refreshModalBackgroundListeners = (type) => {
     document
         .getElementById('modalBackgroundID')
         .addEventListener('click', (e) => {
-            prefsView.toggleModal(state, 'warpstagram');
+            prefsView.toggleModalPrefsVisibility(state, 'warpstagram');
             prefsSettingsSync();
         });
 };
