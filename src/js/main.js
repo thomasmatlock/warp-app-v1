@@ -263,13 +263,13 @@ const mainFunctions = {
 const windowController = {
     createWindow: function(theme, modalPrefsMarkup) {
         mainWindow = new BrowserWindow({
-            // height: displayController.height,
+            height: displayController.height,
             width: displayController.width,
             minWidth: displayController.minWidth,
             minHeight: displayController.minHeight,
             x: displayController.x,
             y: displayController.y,
-            height: 2200,
+            // height: 2200,
             // width: 1900,
             // x: 0,
             // y: 0,

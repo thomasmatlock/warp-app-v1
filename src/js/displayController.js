@@ -11,7 +11,7 @@ class displayController {
     constructor() {
         // 34 inch display bounds = 2752 x 1152, workArea = 2752, 1112
         // laptop display bounds = 1536, 864, workArea = 1536, 824
-        this.logging = false;
+
         this.all = screen.getAllDisplays(); // array of available displays
         this.total = this.all.length; // number of displays
         this.useSecondaryDisplay = false;
@@ -25,7 +25,7 @@ class displayController {
         this.y;
         this.minWidth = 800;
         this.minHeight = 600;
-        this.useDesktopPrimary;
+        this.useDesktopPrimary = true;
         this.useLaptop;
         this.desktopSecondaryWidth = 1096;
         this.desktopSecondaryHeight = 2536;
@@ -59,6 +59,17 @@ class displayController {
             // DEV MODE, DESKTOP PRIMARY
         } else if (
             defaults.devMode &&
+            this.useDesktopPrimary
+        ) {
+            this.height = 1440; // app height
+            this.width = 3440; // app width
+            this.x = 0; // how far to the right app appears
+            this.y = -0; // how far down the app
+        }
+
+        // DEV MODE, DESKTOP SECONDARY
+        else if (
+            defaults.devMode &&
             // this.displayToUse.size.height === 1152 &&
             this.useSecondaryDisplayPortraitMode
         ) {
@@ -67,37 +78,6 @@ class displayController {
             this.x = 3432; // how far to the right app appears
             this.y = -337; // how far down the app
         }
-        // else if (defaults.devMode && this.displayToUse.size.height > 1151) {
-        //     this.height = Math.round(this.displayToUse.size.height * 0.6); // app height
-        //     // this.width = Math.round(this.displayToUse.size.width * 0.65); // app width
-        //     this.width = 2876; // app width
-        //     // this.x = Math.round(this.displayToUse.size.width * 0.35); // how far to the right app appears
-        //     // this.y = Math.round(this.displayToUse.size.height * 0.2); // how far down the app
-        //     this.x = 1650;
-        //     this.y = 412;
-        //     this.useDesktopPrimary = true;
-        //     if (this.logging)
-        //         console.log(
-        //             `Dev mode, desktop primary, height ${this.height}, width ${this.width}, x ${this.x}, y ${this.y}`
-        //         );
-
-        //     // DEV MODE, DESKTOP SECONDARY PORTRAIT MODE
-        // }
-
-        // else if (
-        //     defaults.devMode &&
-        //     this.displayToUse.size.height === 1152 &&
-        //     this.useSecondaryDisplay
-        // ) {
-        //     this.height = Math.round(this.displayToUse.size.height * 0.6); // app height
-        //     this.width = Math.round(this.displayToUse.size.width * 0.65); // app width
-        //     this.x = Math.round(this.displayToUse.size.width * 0.35); // how far to the right app appears
-        //     this.y = Math.round(this.displayToUse.size.height * 0.2); // how far down the app
-        //     if (this.logging)
-        //         console.log(
-        //             `Dev mode, desktop secondary, height ${this.height}, width ${this.width}, x ${this.x}, y ${this.y}`
-        //         );
-        // }
     };
 }
 
