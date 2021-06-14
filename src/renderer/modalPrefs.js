@@ -53,14 +53,14 @@ const windowReady = (prefsMarkup) => {
     addAppMenuListeners();
     prefsView.showPanelInit('prefs', 'license');
     setTimeout(() => {
-        auto.click_nav_B(startupTab, 'preferences'); // auto clicks paste, smartMode, activate, subscriptions, preferences, help
+        // auto.click_nav_B(startupTab, 'preferences'); // auto clicks paste, smartMode, activate, subscriptions, preferences, help
     }, 400);
     refreshModalListeners('refresh'); // THIS IS CHANGING BEHAVIOR OF BACKGROUND
     setTimeout(() => {
         addNavAListeners();
         prefsView.setDropdownsAll(storage);
         prefsView.setCheckboxes(storage);
-        setLicenseActivationTransitions();
+        setLicenseActivationTransitionsSpeed();
         collapsibleLicensePanels = document.getElementsByClassName('modalActionComponent_panel_collapsible');
         // console.log(collapsibleLicensePanels);
         expandLicensePanels(collapsibleLicensePanels, collapsibleLicensePanelsHeightMax);
@@ -241,7 +241,7 @@ const refreshPrefsNavListeners = () => {
         document
             .getElementById('modalActionComponent_audio')
             .addEventListener('mouseover', function() {
-                setLicenseActivationTransitions();
+                setLicenseActivationTransitionsSpeed();
                 expandLicensePanels(collapsibleLicensePanelsAudio, collapsibleLicensePanelsHeightMax);
                 document.getElementById('modalActionComponent_audio').classList.add('modalActionComponent_active')
             });
@@ -249,43 +249,43 @@ const refreshPrefsNavListeners = () => {
         document
             .getElementById('modalActionComponent_audio')
             .addEventListener('mouseout', function() {
-                setLicenseActivationTransitions();
+                setLicenseActivationTransitionsSpeed();
                 collapseLicensePanels(collapsibleLicensePanelsAudio, collapsibleLicensePanelsHeightMin);
             });
         document
             .getElementById('modalActionComponent_video')
             .addEventListener('mouseover', function() {
-                setLicenseActivationTransitions();
+                setLicenseActivationTransitionsSpeed();
                 expandLicensePanels(collapsibleLicensePanelsVideo, collapsibleLicensePanelsHeightMax);
             });
         document
             .getElementById('modalActionComponent_video')
             .addEventListener('mouseout', function() {
-                setLicenseActivationTransitions();
+                setLicenseActivationTransitionsSpeed();
                 collapseLicensePanels(collapsibleLicensePanelsVideo, collapsibleLicensePanelsHeightMin);
             });
         document
             .getElementById('modalActionComponent_warpstagram')
             .addEventListener('mouseover', function() {
-                setLicenseActivationTransitions();
+                setLicenseActivationTransitionsSpeed();
                 expandLicensePanels(collapsibleLicensePanelsWarpstagram, collapsibleLicensePanelsHeightMax);
             });
         document
             .getElementById('modalActionComponent_warpstagram')
             .addEventListener('mouseout', function() {
-                setLicenseActivationTransitions();
+                setLicenseActivationTransitionsSpeed();
                 collapseLicensePanels(collapsibleLicensePanelsWarpstagram, collapsibleLicensePanelsHeightMin);
             });
         document
             .getElementById('modalActionComponent_bundle')
             .addEventListener('mouseover', function() {
-                setLicenseActivationTransitions();
+                setLicenseActivationTransitionsSpeed();
                 expandLicensePanels(collapsibleLicensePanelsBundle, collapsibleLicensePanelsHeightMax);
             });
         document
             .getElementById('modalActionComponent_bundle')
             .addEventListener('mouseout', function() {
-                setLicenseActivationTransitions();
+                setLicenseActivationTransitionsSpeed();
                 collapseLicensePanels(collapsibleLicensePanelsBundle, collapsibleLicensePanelsHeightMin);
             });
     }, 100);
@@ -439,7 +439,7 @@ const tabSwitch = () => {
     // refreshModalListeners('refresh');
     prefsView.showPanelInit('prefs', state.activeTab);
     refreshPrefsNavListeners();
-    // setLicenseActivationTransitions();
+    // setLicenseActivationTransitionsSpeed();
     // expandLicensePanels(collapsibleLicensePanels, collapsibleLicensePanelsHeightMax);
     // collapseLicensePanels(collapsibleLicensePanels, collapsibleLicensePanelsHeightMin);
     // createCollapsiblePanelsArray(collapsibleLicensePanels, 'audio', collapsibleLicensePanelsAudio)
@@ -457,7 +457,7 @@ const collapseLicensePanels = (arr, height) => {
         arr[i].style.height = height;
     }
 }
-const setLicenseActivationTransitions = () => {
+const setLicenseActivationTransitionsSpeed = () => {
     document.getElementById('modalActionComponent_audio').style.WebkitTransition = panelTransitionSpeed;
     document.getElementById('modalActionComponent_video').style.WebkitTransition = panelTransitionSpeed;
     document.getElementById('modalActionComponent_warpstagram').style.WebkitTransition = panelTransitionSpeed;
