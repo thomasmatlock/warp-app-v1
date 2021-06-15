@@ -8,6 +8,7 @@ const defaults = new defaultsReq();
 const imageDownloader = require('image-downloader');
 const elements = require('./views/elements');
 const auto = require('./automate');
+const theme = require('./themeController');
 
 // storage empty template
 let storage = {
@@ -38,6 +39,7 @@ exports.addItem = (item, avType, isdefaults) => {
         itemNodeAudio.innerHTML = markupAudio; // Insert markup into new DOM node inserted into list
         audioDownloadList.appendChild(itemNodeAudio); // Append item node
         this.resetMarkup();
+        theme.setTheme(storage)
     }
     if (avType === 'video') {
         // console.log(item.title);
@@ -49,7 +51,7 @@ exports.addItem = (item, avType, isdefaults) => {
         itemNodeVideo.innerHTML = markupVideo; // Insert markup
         videoDownloadList.appendChild(itemNodeVideo); // Append item node
         this.resetMarkup();
-
+        theme.setTheme(storage)
     }
 };
 let string = `<p class="dl__item__data__property dl__item__data__property-file-percentDownloaded">
