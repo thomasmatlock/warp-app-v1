@@ -26,6 +26,7 @@ const setTheme = (storage) => {
     let nav_B__child = document.getElementsByClassName("nav_B__child");
     let background = document.getElementsByClassName("themeSecondary");
     let nav_A_tabArr = document.getElementsByClassName("nav_A_tab");
+    let nav_A_tab__active = document.getElementsByClassName("nav_A_tab__active");
     let nav_B_buttonArr = document.getElementsByClassName("nav_B_button");
     let nav_B_icon = document.getElementsByClassName("nav_B_icon");
     let nav_B_text = document.getElementsByClassName("navBTextColor");
@@ -35,6 +36,7 @@ const setTheme = (storage) => {
     // setBackgroundColor(content_container, themeColors[theme].primary);
     setBackgroundColor(nav_A_tabArr, themeColors[theme].navBbackground);
     setColor(nav_A_tabArr, themeColors[theme].navBTextColor);
+    setBackgroundImage(nav_A_tab__active, themeColors[theme].navAButton_active);
 
     setBackgroundColor(content_slide, themeColors[theme].primary);
     setBackgroundColor(background, themeColors[theme].secondary);
@@ -54,6 +56,11 @@ const setTheme = (storage) => {
 const setBackgroundColor = (arr, color) => {
     for (let i = 0; i < arr.length; i++) {
         arr[i].style.background = color;
+    }
+};
+const setBackgroundImage = (arr, color) => {
+    for (let i = 0; i < arr.length; i++) {
+        arr[i].style.backgroundImage = color;
     }
 };
 const setColor = (arr, color) => {

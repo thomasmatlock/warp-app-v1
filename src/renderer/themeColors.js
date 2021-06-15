@@ -30,6 +30,7 @@ const themeColors = {
         primary: 'white',
         secondary: 'white',
         tertiary: 'white',
+        navAButton_active: 'linear-gradient(268deg, #da2c4d, #f8ab37)',
         navAButtonBackground: 'white',
         navAButtonText_active: 'black',
         textPrimary: 'black',

@@ -215,14 +215,48 @@ const addEventListeners = () => {
         ipcRenderer.send('menu-change', 'audio');
         defaults.env.nav_A_active = 'audio';
     });
+    elements.nav_A_audio.addEventListener('mouseenter', (e) => {
+        elements.nav_A_audio.style.backgroundImage = 'linear-gradient(268deg, #da2c4d, #f8ab37)';
+        // ipcRenderer.send('menu-change', 'audio');
+        // defaults.env.nav_A_active = 'audio';
+    });
+    elements.nav_A_audio.addEventListener('mouseleave', (e) => {
+        // elements.nav_A_audio.style.background = 'gray';
+        // ipcRenderer.send('menu-change', 'audio');
+        theme.setTheme(storage);
+        // defaults.env.nav_A_active = 'audio';
+    });
     elements.nav_A_video.addEventListener('click', (e) => {
         ipcRenderer.send('menu-change', 'video');
         defaults.env.nav_A_active = 'video';
+    });
+    elements.nav_A_video.addEventListener('mouseenter', (e) => {
+        elements.nav_A_video.style.backgroundImage = 'linear-gradient(268deg, #da2c4d, #f8ab37)';
+        // ipcRenderer.send('menu-change', 'audio');
+        // defaults.env.nav_A_active = 'audio';
+    });
+    elements.nav_A_video.addEventListener('mouseleave', (e) => {
+        // elements.nav_A_audio.style.background = 'gray';
+        // ipcRenderer.send('menu-change', 'audio');
+        theme.setTheme(storage);
+        // defaults.env.nav_A_active = 'audio';
     });
     elements.nav_A_warpstagram.addEventListener('click', (e) => {
         ipcRenderer.send('menu-change', 'warpstagram');
         defaults.env.nav_A_active = 'warpstagram';
     });
+    elements.nav_A_warpstagram.addEventListener('mouseenter', (e) => {
+        elements.nav_A_warpstagram.style.backgroundImage = 'linear-gradient(268deg, #da2c4d, #f8ab37)';
+        // ipcRenderer.send('menu-change', 'audio');
+        // defaults.env.nav_A_active = 'audio';
+    });
+    elements.nav_A_warpstagram.addEventListener('mouseleave', (e) => {
+        // elements.nav_A_audio.style.background = 'gray';
+        // ipcRenderer.send('menu-change', 'audio');
+        theme.setTheme(storage);
+        // defaults.env.nav_A_active = 'audio';
+    });
+    // Nav B audio LISTENERS
     elements.nav_B_button_audio_paste.addEventListener('click', (e) => {
         userInput.validateURL(clipboard.readText(), defaults.env.nav_A_active);
     });

@@ -138,7 +138,7 @@ input {
     &:hover {
         //// CONTENT
         color: white;
-        background-image: $colorNavBBackground_hover;
+        background-image: linear-gradient(268deg, #da2c4d, #f8ab37);
         //// DECORATIVE
         box-shadow: $shadow-after;
         border-radius: 4px;
