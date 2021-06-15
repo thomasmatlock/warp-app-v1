@@ -22,7 +22,8 @@
     max-width: 900px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
     z-index: 2;
-    background-color: $colorNavABackground;
+    // background-color: $colorNavABackground;
+    background-color: transparent;
     border-radius: 4px;
     margin-top: 5px;
 }
@@ -61,7 +62,7 @@
     }
 }
 
-.nav_A_tab--active {
+.nav_A_tab__active {
     background-image: $colorNavABackground_active;
     // transform: scale(1.01);
     transform: scale(1.02);

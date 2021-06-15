@@ -210,51 +210,46 @@ const addEventListeners = () => {
             }
         }
     });
+    let orangeGradient = 'linear-gradient(268deg, #da2c4d, #f8ab37)';
+    let blueGradient = 'linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, #19d2fc 100%)';
     // menu-change
     elements.nav_A_audio.addEventListener('click', (e) => {
         ipcRenderer.send('menu-change', 'audio');
         defaults.env.nav_A_active = 'audio';
+        elements.nav_A_audio.style.backgroundImage = blueGradient;
+
     });
     elements.nav_A_audio.addEventListener('mouseenter', (e) => {
-        elements.nav_A_audio.style.backgroundImage = 'linear-gradient(268deg, #da2c4d, #f8ab37)';
-        // ipcRenderer.send('menu-change', 'audio');
-        // defaults.env.nav_A_active = 'audio';
+        elements.nav_A_audio.style.backgroundImage = orangeGradient;
+
     });
     elements.nav_A_audio.addEventListener('mouseleave', (e) => {
-        // elements.nav_A_audio.style.background = 'gray';
-        // ipcRenderer.send('menu-change', 'audio');
         theme.setTheme(storage);
         // defaults.env.nav_A_active = 'audio';
     });
     elements.nav_A_video.addEventListener('click', (e) => {
         ipcRenderer.send('menu-change', 'video');
         defaults.env.nav_A_active = 'video';
+        elements.nav_A_video.style.backgroundImage = blueGradient;
     });
     elements.nav_A_video.addEventListener('mouseenter', (e) => {
-        elements.nav_A_video.style.backgroundImage = 'linear-gradient(268deg, #da2c4d, #f8ab37)';
-        // ipcRenderer.send('menu-change', 'audio');
-        // defaults.env.nav_A_active = 'audio';
+        elements.nav_A_video.style.backgroundImage = orangeGradient;
+
     });
     elements.nav_A_video.addEventListener('mouseleave', (e) => {
-        // elements.nav_A_audio.style.background = 'gray';
-        // ipcRenderer.send('menu-change', 'audio');
         theme.setTheme(storage);
-        // defaults.env.nav_A_active = 'audio';
     });
     elements.nav_A_warpstagram.addEventListener('click', (e) => {
         ipcRenderer.send('menu-change', 'warpstagram');
         defaults.env.nav_A_active = 'warpstagram';
+        elements.nav_A_warpstagram.style.backgroundImage = blueGradient;
     });
     elements.nav_A_warpstagram.addEventListener('mouseenter', (e) => {
-        elements.nav_A_warpstagram.style.backgroundImage = 'linear-gradient(268deg, #da2c4d, #f8ab37)';
-        // ipcRenderer.send('menu-change', 'audio');
-        // defaults.env.nav_A_active = 'audio';
+        elements.nav_A_warpstagram.style.backgroundImage = orangeGradient;
+
     });
     elements.nav_A_warpstagram.addEventListener('mouseleave', (e) => {
-        // elements.nav_A_audio.style.background = 'gray';
-        // ipcRenderer.send('menu-change', 'audio');
         theme.setTheme(storage);
-        // defaults.env.nav_A_active = 'audio';
     });
     // Nav B audio LISTENERS
     elements.nav_B_button_audio_paste.addEventListener('click', (e) => {
@@ -292,10 +287,8 @@ const addEventListeners = () => {
 
         // OPEN CONTAINER FOLDER
         if (e.target.parentNode.parentNode.parentNode.id.length === 36) {
-            // console.log(e.target.className);
             if (e.target.className === iconFolderClassName) {
                 itemID = e.target.parentNode.parentNode.parentNode.id;
-                // console.log(itemID);
                 items.selectItem('audio', itemID, 'show in folder');
             }
         }

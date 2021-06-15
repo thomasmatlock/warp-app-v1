@@ -33,7 +33,7 @@ const setTheme = (storage) => {
     let dl__item__data__property_titleArr = document.getElementsByClassName("dl__item__data__property_title");
     let dl__item__data__propertyArr = document.getElementsByClassName("dl__item__data__property");
 
-    // setBackgroundColor(content_container, themeColors[theme].primary);
+
     setBackgroundColor(nav_A_tabArr, themeColors[theme].navBbackground);
     setColor(nav_A_tabArr, themeColors[theme].navBTextColor);
     setBackgroundImage(nav_A_tab__active, themeColors[theme].navAButton_active);
