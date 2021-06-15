@@ -1,6 +1,3 @@
-const os = require('os');
-const { ipcRenderer } = require('electron');
-const path = require('path');
 const fs = require('fs').promises;
 const { promisify } = require('util');
 const settings = require('electron-settings');

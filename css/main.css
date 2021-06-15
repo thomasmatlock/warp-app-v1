@@ -818,12 +818,11 @@ input[type='text'] {
   align-items: center;
   position: absolute;
   width: 100%;
-  height: 100%;
+  height: 85%;
   transition: all 1s ease-in-out; }
 
 .modalContainer {
-  animation: moveInTop 0.4s ease-out;
-  position: relative;
+  animation: moveInTop 0.25s ease-out;
   margin: 0 auto;
   width: 900px;
   max-height: 900px;
@@ -855,6 +854,7 @@ input[type='text'] {
 .modalPrefsContentPanel_top {
   margin-top: 1rem; }
 
+.modalContainer,
 .contentContainer * {
   -webkit-user-select: none;
   /* Safari */

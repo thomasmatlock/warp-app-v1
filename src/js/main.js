@@ -211,7 +211,7 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
                 // console.log(modalPrefsMarkup);
             }
 
-            windowController.createWindow(defaults.env.theme, modalPrefsMarkup); // creates main app window
+            windowController.createWindow(modalPrefsMarkup); // creates main app window
             mainFunctions.setMenu(defaults.env.nav_A_active);
         })();
         // if (defaults.dev.backendOnly) mainWindow.hide(); // devMode only
@@ -251,7 +251,7 @@ const mainFunctions = {
         return result;
     },
     loadModalPrefsMarkupSource: async function() {
-        const result = await settings.loadMarkupSource();
+        const result = await settings.loadMarkupSource();;
         return result;
     },
     syncStorage: function() {
@@ -261,7 +261,7 @@ const mainFunctions = {
 };
 ///////////////////////   WINDOW HANDLER   ///////////////////////
 const windowController = {
-    createWindow: function(theme, modalPrefsMarkup) {
+    createWindow: function(modalPrefsMarkup) {
         mainWindow = new BrowserWindow({
             height: displayController.height,
             width: displayController.width,
