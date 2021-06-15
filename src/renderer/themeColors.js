@@ -19,7 +19,7 @@ const themeColors = {
         downloadItemBackgroundColor: '#353746',
         downloadItemBackgroundColor_hover: '#f0eff3',
         downloadItemTextTitle_hover: 'white',
-        downloadItemText_hover: 'black',
+        downloadItemText_hover: 'white',
         downloadItemBorder: '#1f2029',
         navBTextColor: 'white',
         navBTextColor_hover: 'white',

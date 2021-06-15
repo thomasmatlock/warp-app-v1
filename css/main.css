@@ -424,17 +424,15 @@ input {
   display: flex;
   width: 100%;
   flex-direction: column;
-  justify-content: start;
-  align-content: left;
+  justify-content: flex-start;
+  align-content: center;
   background-color: #1f2029;
-  border: solid 2px #ecedf3;
-  padding: 5px;
-  border: solid 2px black; }
+  padding: 5px; }
 
 .dl__item {
   background-color: #353746;
   border-radius: 2px;
-  border: 1px solid #1f2029;
+  border-bottom: 1px #eee;
   height: 60px;
   max-height: 60px;
   display: flex;
@@ -443,7 +441,9 @@ input {
   cursor: pointer;
   z-index: 1 !important;
   width: 100%;
-  transition: all ease-out 0.05s; }
+  transition: all ease-out 0.05s;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  margin-top: 1px; }
   .dl__item:hover {
     background-color: #f0eff3;
     border-radius: 6px;

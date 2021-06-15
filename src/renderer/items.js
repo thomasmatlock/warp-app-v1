@@ -49,6 +49,7 @@ exports.addItem = (item, avType, isdefaults) => {
         itemNodeVideo.innerHTML = markupVideo; // Insert markup
         videoDownloadList.appendChild(itemNodeVideo); // Append item node
         this.resetMarkup();
+
     }
 };
 let string = `<p class="dl__item__data__property dl__item__data__property-file-percentDownloaded">

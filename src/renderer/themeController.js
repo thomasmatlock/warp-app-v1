@@ -29,6 +29,7 @@ const setTheme = (storage) => {
     let nav_B_buttonArr = document.getElementsByClassName("nav_B_button");
     let nav_B_icon = document.getElementsByClassName("nav_B_icon");
     let nav_B_text = document.getElementsByClassName("navBTextColor");
+    let dl__item__data__property_titleArr = document.getElementsByClassName("dl__item__data__property_title");
     let dl__item__data__propertyArr = document.getElementsByClassName("dl__item__data__property");
 
     // setBackgroundColor(content_container, themeColors[theme].primary);
@@ -45,7 +46,8 @@ const setTheme = (storage) => {
 
     setBackgroundColor(download__list, themeColors[theme].primary);
 
-    setColor(dl__item__data__propertyArr, themeColors[theme].navBTextColor);
+    setColor(dl__item__data__property_titleArr, themeColors[theme].navBTextColor);
+    setColor(dl__item__data__propertyArr, themeColors[theme].downloadItemText_hover);
 };
 
 

@@ -21,12 +21,14 @@
     display: flex;
     width: 100%;
     flex-direction: column;
-    justify-content: start;
-    align-content: left;
+    justify-content: flex-start;
+    // justify-content: center;
+    align-content: center;
+    // align-items: center;
     background-color: $colorDownloadItemBackgroundContainer;
-    border: solid 2px $grey;
+    // border: solid 2px $grey;
     padding: 5px;
-    border: solid 2px black;
+    // border: solid 2px black;
 }
 
 // ALL LIST ITEMS
@@ -41,7 +43,7 @@
 .dl__item {
     background-color: $colorDownloadItemBackground;
     border-radius: 2px;
-    border: 1px solid $colorDownloadItemBorder;
+    border-bottom: 1px #eee;
     height: $download-item-video-height;
     max-height: $download-item-video-max-height;
     display: flex;
@@ -51,8 +53,8 @@
     z-index: 1 !important;
     width: 100%;
     transition: all ease-out 0.05s;
-    // border: 1px dotted purple;
-    // background-color: black;
+    box-shadow: $shadow-before;
+    margin-top: 1px;
     &:hover {
         background-color: $colorDownloadItemBackground_hover;
         border-radius: 6px;
