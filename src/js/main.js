@@ -210,7 +210,7 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
                 modalPrefsMarkup = await mainFunctions.loadModalPrefsMarkupSource();
                 // console.log(modalPrefsMarkup);
             }
-
+            // console.log(modalPrefsMarkup);
             windowController.createWindow(modalPrefsMarkup); // creates main app window
             mainFunctions.setMenu(defaults.env.nav_A_active);
         })();
@@ -252,6 +252,14 @@ const mainFunctions = {
     },
     loadModalPrefsMarkupSource: async function() {
         const result = await settings.loadMarkupSource();;
+        return result;
+    },
+    loadDownloadItemAudioMarkup: async function() {
+        const result = await settings.loadDownloadItemAudioMarkup();;
+        return result;
+    },
+    loadDownloadItemVideoMarkup: async function() {
+        const result = await settings.loadDownloadItemVideoMarkup();;
         return result;
     },
     syncStorage: function() {

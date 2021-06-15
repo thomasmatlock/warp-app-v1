@@ -32,6 +32,34 @@ async function loadMarkupSource() {
         console.error(e);
     }
 }
+async function loadDownloadItemAudioMarkup() {
+    // // https://puruvj.dev/blog/fs-promises
+    try {
+        const data = await readFile(
+            `${__dirname}/markupDownloadItemAudio.html`,
+            'binary'
+        );
+
+        // ipcRenderer.send('prefsMarkup-loaded', data);
+        return data;
+    } catch (e) {
+        console.error(e);
+    }
+}
+async function loadDownloadItemVideoMarkup() {
+    // // https://puruvj.dev/blog/fs-promises
+    try {
+        const data = await readFile(
+            `${__dirname}/markupDownloadItemVideo.html`,
+            'binary'
+        );
+
+        // ipcRenderer.send('prefsMarkup-loaded', data);
+        return data;
+    } catch (e) {
+        console.error(e);
+    }
+}
 
 async function settingsSave() {
     console.log('saving settings...');
@@ -55,6 +83,8 @@ module.exports = {
     loadMarkupSource: loadMarkupSource,
     settingsSave: settingsSave,
     settingsLoad: settingsLoad,
+    loadDownloadItemAudioMarkup: loadDownloadItemAudioMarkup,
+    loadDownloadItemVideoMarkup: loadDownloadItemVideoMarkup,
 };
 
 // PRE-CHECK
