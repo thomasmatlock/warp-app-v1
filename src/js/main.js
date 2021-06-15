@@ -199,7 +199,7 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
         defaults.init(); // all defaults checks, latest version, isOnline, hasFFmpeg etc
         fileController.init(defaults); // checks for local directories and creates them if non existent
         displayController.discoverDisplay(); // discovers which display to use, 3 dev mode displayController or production
-        let storageAwaited, modalPrefsMarkup;
+        let storageAwaited, modalPrefsMarkup, markupDownloadItemAudio, markupDownloadItemVideo;
         (async() => {
             storageAwaited = await mainFunctions.load();
             storageMain = storageAwaited;
@@ -208,6 +208,10 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
             if (storageAwaited.user.prefs.prefsMarkup === '') {
                 // console.log(`no markup present`);
                 modalPrefsMarkup = await mainFunctions.loadModalPrefsMarkupSource();
+                markupDownloadItemAudio = await mainFunctions.loadDownloadItemAudioMarkup();
+                markupDownloadItemVideo = await mainFunctions.loadDownloadItemVideoMarkup();
+
+                // modalPrefsMarkup = await mainFunctions.loadModalPrefsMarkupSource();
                 // console.log(modalPrefsMarkup);
             }
             // console.log(modalPrefsMarkup);
