@@ -594,7 +594,7 @@ input {
 .container {
   background: #1f2029; }
 
-.content-slide {
+.content_slide {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -606,7 +606,7 @@ input {
   padding: 0;
   width: 100%; }
 
-.content-container {
+.content_container {
   width: 100%;
   position: relative;
   display: flex;

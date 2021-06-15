@@ -3,7 +3,7 @@
     background: $themeBackground;
 }
 
-.content-slide {
+.content_slide {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -21,7 +21,7 @@
 }
 
 // COLORED CONTENT INSIDE SLIDE
-.content-container {
+.content_container {
     // border: $border-medium;
     // width: 100vw;
     width: 100%;

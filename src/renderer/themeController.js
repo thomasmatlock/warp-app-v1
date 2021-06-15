@@ -1,4 +1,5 @@
 let elements = require('./views/elements');
+let themeColors = require('./themeColors');
 const discoverTheme = (storage) => {
     // general_theme_dark
     // general_theme_light
@@ -19,21 +20,34 @@ const discoverTheme = (storage) => {
 // #353746
 const setTheme = (storage) => {
     let theme = discoverTheme(storage);
-    let backgroundColors = document.getElementsByClassName("themeBackground");
-    console.log(theme);
-    if (theme === 'light') {
-        loopThroughArray(backgroundColors, 'white');
-    }
-    if (theme === 'dark') {
-        loopThroughArray(backgroundColors, '#1f2029');
-    }
+    let content_container = document.getElementsByClassName("content_container");
+    let content_slide = document.getElementsByClassName("content_slide");
+    let download__list = document.getElementsByClassName("download__list");
+    let nav_B__child = document.getElementsByClassName("nav_B__child");
+    let background = document.getElementsByClassName("themeSecondary");
+    let nav_B_buttonArr = document.getElementsByClassName("nav_B_button");
+    let nav_B_icon = document.getElementsByClassName("nav_B_icon");
+    let nav_B_text = document.getElementsByClassName("navBTextColor");
+
+    setBackgroundColor(content_container, themeColors[theme].primary);
+    setBackgroundColor(content_slide, themeColors[theme].primary);
+    setBackgroundColor(download__list, themeColors[theme].primary);
+    setBackgroundColor(nav_B__child, themeColors[theme].primary);
+    setBackgroundColor(background, themeColors[theme].secondary);
+    setBackgroundColor(nav_B_buttonArr, themeColors[theme].navBbackground);
+    setColor(nav_B_icon, themeColors[theme].navBTextColor);
+    setColor(nav_B_text, themeColors[theme].navBTextColor);
 };
 
 
-const loopThroughArray = (arr, color) => {
-    console.log(color);
+const setBackgroundColor = (arr, color) => {
     for (let i = 0; i < arr.length; i++) {
         arr[i].style.background = color;
+    }
+};
+const setColor = (arr, color) => {
+    for (let i = 0; i < arr.length; i++) {
+        arr[i].style.color = color;
     }
 };
 

@@ -53,7 +53,7 @@ const windowReady = (prefsMarkup) => {
     prefsView.injectPrefsModalToCurrentSlide(prefsMarkup, startupTab, storage);
     addNavBListeners();
     addAppMenuListeners();
-    prefsView.showPanelInit('prefs', 'license');
+    prefsView.showPanelInit('prefs', 'general');
     setTimeout(() => {
         if (!defaults.dev.autoOpenModalPrefs) {
             prefsView.toggleModalPrefsVisibility(state, 'warpstagram');
