@@ -49,7 +49,7 @@ let panelTransitionSpeed = 'height 1s';
 })();
 
 const windowReady = (prefsMarkup) => {
-    theme.setTheme(storage);
+    theme.setTheme(storage)
     prefsView.injectPrefsModalToCurrentSlide(prefsMarkup, startupTab, storage);
     addNavBListeners();
     addAppMenuListeners();

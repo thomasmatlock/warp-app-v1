@@ -2,8 +2,8 @@
 const elements = {
     // NAV A
     nav_A: document.querySelector('.nav_A'),
-    nav_A_button: document.querySelector('.nav_A-tab'),
-    nav_A_buttonArr: document.querySelectorAll('.nav_A-tab'),
+    nav_A_button: document.querySelector('.nav_A_tab'),
+    nav_A_buttonArr: document.querySelectorAll('.nav_A_tab'),
     nav_A_active: document.getElementById('nav_A_audio'),
     nav_A_audio: document.getElementById('nav_A_audio'),
     nav_A_video: document.getElementById('nav_A_video'),

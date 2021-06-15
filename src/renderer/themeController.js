@@ -25,18 +25,27 @@ const setTheme = (storage) => {
     let download__list = document.getElementsByClassName("download__list");
     let nav_B__child = document.getElementsByClassName("nav_B__child");
     let background = document.getElementsByClassName("themeSecondary");
+    let nav_A_tabArr = document.getElementsByClassName("nav_A_tab");
     let nav_B_buttonArr = document.getElementsByClassName("nav_B_button");
     let nav_B_icon = document.getElementsByClassName("nav_B_icon");
     let nav_B_text = document.getElementsByClassName("navBTextColor");
+    let dl__item__data__propertyArr = document.getElementsByClassName("dl__item__data__property");
 
-    setBackgroundColor(content_container, themeColors[theme].primary);
+    // setBackgroundColor(content_container, themeColors[theme].primary);
+    setBackgroundColor(nav_A_tabArr, themeColors[theme].navBbackground);
+    setColor(nav_A_tabArr, themeColors[theme].navBTextColor);
+
     setBackgroundColor(content_slide, themeColors[theme].primary);
-    setBackgroundColor(download__list, themeColors[theme].primary);
-    setBackgroundColor(nav_B__child, themeColors[theme].primary);
     setBackgroundColor(background, themeColors[theme].secondary);
+
     setBackgroundColor(nav_B_buttonArr, themeColors[theme].navBbackground);
+    setBackgroundColor(nav_B__child, themeColors[theme].primary);
     setColor(nav_B_icon, themeColors[theme].navBTextColor);
     setColor(nav_B_text, themeColors[theme].navBTextColor);
+
+    setBackgroundColor(download__list, themeColors[theme].primary);
+
+    setColor(dl__item__data__propertyArr, themeColors[theme].navBTextColor);
 };
 
 

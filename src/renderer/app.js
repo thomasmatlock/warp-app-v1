@@ -17,6 +17,7 @@ const items = require('./items');
 const auto = require('./automate');
 const stateReq = require('./state');
 const search = require('./searchLocal');
+const theme = require('./themeController');
 
 let state = new stateReq();
 let storage;

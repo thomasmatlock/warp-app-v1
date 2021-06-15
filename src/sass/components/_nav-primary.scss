@@ -28,7 +28,7 @@
 }
 
 // CHILDREN TABS
-.nav_A-tab {
+.nav_A_tab {
     display: flex;
     justify-content: center; // PRODUCTION
     // width: 20%;
@@ -61,7 +61,7 @@
     }
 }
 
-.nav_A-tab--active {
+.nav_A_tab--active {
     background-image: $colorNavABackground_active;
     // transform: scale(1.01);
     transform: scale(1.02);
@@ -69,6 +69,6 @@
     color: $colorNavAText_active;
 }
 
-.nav_A-tab {
+.nav_A_tab {
     animation: fadeIn 1s ease-out;
 }
