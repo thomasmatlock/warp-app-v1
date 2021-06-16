@@ -5,7 +5,7 @@
 // Video Subscriptions // HTML
 //////////////////////////////////////////////////////////////// Preferences
 //////////////////////////////////////////////////////////////// Welcome
-const fs = require('fs').promises;
+// const fs = require('fs').promises;
 let elements = require('./views/elements');
 
 const toggleBackground = (state) => {
@@ -286,11 +286,12 @@ const toggleModalPrefsVisibility = (state, avType) => {
     toggleState(state);
     toggleVisibility(state, avType);
 };
+
+const updateInputOptions = (storage) => {
+    setDropdownsAll(storage);
+    setCheckboxes(storage);
+}
 module.exports = {
-    toggleBackground: toggleBackground,
-    toggleState: toggleState,
-    toggleVisibility: toggleVisibility,
-    injectPrefsMarkup: injectPrefsMarkup,
     insertOutputFolderPaths: insertOutputFolderPaths,
     showPanel: showPanel,
     showPanelInit: showPanelInit,
@@ -299,5 +300,6 @@ module.exports = {
     toggleModalPrefsVisibility: toggleModalPrefsVisibility,
     setDropdown: setDropdown,
     setDropdownsAll: setDropdownsAll,
-    setCheckboxes: setCheckboxes,
+    updateInputOptions: updateInputOptions,
+    // setCheckboxes: setCheckboxes,
 };

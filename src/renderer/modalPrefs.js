@@ -62,8 +62,8 @@ const windowReady = (prefsMarkup) => {
     refreshModalListeners('refresh'); // THIS IS CHANGING BEHAVIOR OF BACKGROUND
     setTimeout(() => {
         addNavAListeners();
-        prefsView.setDropdownsAll(storage);
-        prefsView.setCheckboxes(storage);
+        prefsView.updateInputOptions(storage);
+
         setLicenseActivationTransitionsSpeed();
         collapsibleLicensePanels = document.getElementsByClassName('modalActionComponent_panel_collapsible');
         expandLicensePanels(collapsibleLicensePanels, collapsibleLicensePanelsHeightMax);
@@ -176,7 +176,7 @@ const refreshPrefsNavListeners = () => {
             .getElementById('modalDropdown_audioQuality')
             .addEventListener('change', function() {
                 updatePrefsState(this.value);
-                prefsView.setDropdownsAll(storage);
+                prefsView.updateInputOptions(storage);
             });
         // AUDIO FORMAT
         document
@@ -440,8 +440,9 @@ const tabSwitch = () => {
             state.activeTab,
             storage
         );
-        prefsView.setDropdownsAll(storage);
-        prefsView.setCheckboxes(storage);
+        prefsView.updateInputOptions(storage);
+
+
     }, 100);
     // refreshModalListeners('refresh');
     prefsView.showPanelInit('prefs', state.activeTab);
