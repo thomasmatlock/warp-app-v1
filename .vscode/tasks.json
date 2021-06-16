@@ -6,7 +6,11 @@
 			"script": "dev",
 			"problemMatcher": [],
 			"label": "npm: dev",
-			"detail": "concurrently --kill-others \"npm run node-sass\" \"npm run watch\" \"npm run splash\""
+			"detail": "concurrently --kill-others \"npm run node-sass\" \"npm run watch\" \"npm run splash\"",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
 		}
 	]
 }
