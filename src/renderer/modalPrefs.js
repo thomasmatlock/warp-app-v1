@@ -11,7 +11,6 @@ const auto = require('./automate');
 const fileControllerReq = require('../js/fileController');
 const fileController = new fileControllerReq();
 
-// dialog.showOpenDialog({ properties: ['openDirectory'] });
 let state = new stateReq();
 let startupTab, prefsMarkup, prefsMarkupSrc;
 let storage;
@@ -29,14 +28,11 @@ let panelTransitionSpeed = 'height 1s';
     ipcRenderer.on(
         'window-ready',
         (e, storageSentFromMain, modalPrefsMarkup, markupDownloadItemAudio, markupDownloadItemVideo) => {
-            // console.log(markupDownloadItemAudio);
             storage = storageSentFromMain;
-            // console.log(storage.user.prefs);
             prefsMarkupSrc = modalPrefsMarkup;
             prefsMarkup = modalPrefsMarkup;
             startupTab = discoverStartupTab(storage);
             state.activeTab = startupTab;
-            // console.log(modalPrefsMarkup);
             windowReady(prefsMarkup);
         }
     );
@@ -45,8 +41,6 @@ let panelTransitionSpeed = 'height 1s';
     });
     ipcRenderer.on('mainWindow-resized', (e, storageReceived) => {
         console.log('mainWindow-resized');
-        // prefsView.showPanelInit('prefs', 'license');
-        // refreshModalListeners('refresh');
     });
 })();
 
@@ -431,7 +425,7 @@ ipcRenderer.on(
         }
     }
 );
-const collapseAllLicensePanels = () => {}
+
 const tabSwitch = () => {
     prefsView.removeAllInjectedModals();
     setTimeout(() => {
@@ -482,3 +476,8 @@ const setLicenseActivationTransitionsSpeed = () => {
     document.getElementById('modalActionComponent_panel_middle_bundle').style.WebkitTransition = panelTransitionSpeed;
     // document.getElementById('modalActionComponent_panel_bottom_bundle').style.WebkitTransition = panelTransitionSpeed;
 }
+
+module.exports = {
+    // toggleBackground: toggleBackground,
+
+};

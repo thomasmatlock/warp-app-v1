@@ -40,17 +40,7 @@ const togglePreferences = (state, avType) => {
         elements.modalContainerWarpstagram.style.display = 'none';
     }
 };
-async function readMarkup(avType) {
-    let modalMarkupPreferences;
-    const data = await fs.readFile(
-        `${__dirname}/modalPrefsMarkup.html`,
-        'binary'
-    );
-    modalMarkupPreferences = new Buffer(data).toString();
-    injectPrefsMarkup(modalMarkupPreferences, avType);
-    // console.log(modalMarkupPreferences);
-    return modalMarkupPreferences;
-}
+
 const injectPrefsMarkup = (markup, activeTab) => {
     let modalContainerAudio = elements.modalContainerAudio; // selects target list to add item markup to
     let modalContainerVideo = elements.modalContainerVideo; // selects target list to add item markup to
@@ -239,9 +229,6 @@ const setDropdown = (storage, dropdownID, startingSubstr) => {
             }
         }
     }
-    // console.log(dropdownID);
-    // console.log(dropdownID.options[index]);
-    // console.log(dropdownID.options);
     if (dropdownID.options[index]) {
         dropdownID.options[index].selected = true;
     }
@@ -296,7 +283,6 @@ const toggleModalPrefsVisibility = (state, avType) => {
     togglePreferences(state, avType);
 };
 module.exports = {
-    readMarkup: readMarkup,
     toggleBackground: toggleBackground,
     toggleModalState: toggleModalState,
     togglePreferences: togglePreferences,
