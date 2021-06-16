@@ -20,7 +20,7 @@ const toggleModalState = (state) => {
         (state.modals.preferences = false) :
         (state.modals.preferences = true);
 };
-const togglePreferences = (state, avType) => {
+const togglePrefsModalVisibility = (state, avType) => {
     if (state.modals.preferences) {
         if (avType === 'audio')
             elements.modalParentAudio.style.display = 'flex'; // de-activate modal background
@@ -280,12 +280,12 @@ const setCheckboxes = (storage) => {
 const toggleModalPrefsVisibility = (state, avType) => {
     toggleBackground(state);
     toggleModalState(state);
-    togglePreferences(state, avType);
+    togglePrefsModalVisibility(state, avType);
 };
 module.exports = {
     toggleBackground: toggleBackground,
     toggleModalState: toggleModalState,
-    togglePreferences: togglePreferences,
+    togglePrefsModalVisibility: togglePrefsModalVisibility,
     injectPrefsMarkup: injectPrefsMarkup,
     insertOutputFolderPaths: insertOutputFolderPaths,
     showPanel: showPanel,

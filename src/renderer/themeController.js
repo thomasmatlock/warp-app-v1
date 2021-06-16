@@ -3,7 +3,7 @@ let themeColors = require('./themeColors');
 const discoverTheme = (storage) => {
     // general_theme_dark
     // general_theme_light
-    let prefs = storage.user.prefs
+    let prefs = storage.user.prefs;
     let theme;
     for (var key in prefs) {
         if (prefs.hasOwnProperty(key)) {

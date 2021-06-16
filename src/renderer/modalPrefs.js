@@ -483,6 +483,6 @@ const setLicenseActivationTransitionsSpeed = () => {
 }
 
 module.exports = {
-    // toggleBackground: toggleBackground,
-
+    discoverStartupTab: discoverStartupTab,
+    refreshModalListeners: refreshModalListeners,
 };
