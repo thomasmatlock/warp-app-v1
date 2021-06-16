@@ -21,15 +21,15 @@ let storage = {
 };
 // let markupAudio = markup.audio;
 // let markupVideo = markup.video;
-let markupAudio, markupVideo, markupAudioOriginal, markupVideoOriginal;
+let markupAudio, markupVideo, markupAudioSrc, markupVideoSrc;
 
 ///////////////////////   ADD ITEM(S)   ///////////////////////
 exports.defaultsAddAllItems = (storageSent, markupDownloadItemAudio, markupDownloadItemVideo) => {
     storage = storageSent;
     markupAudio = markupDownloadItemAudio;
-    markupAudioOriginal = markupDownloadItemAudio;
+    markupAudioSrc = markupDownloadItemAudio;
     markupVideo = markupDownloadItemVideo;
-    markupVideoOriginal = markupDownloadItemVideo;
+    markupVideoSrc = markupDownloadItemVideo;
     // console.log(storage);
     this.addItemsFromArray(storage.downloadItems.audioArr, 'audio');
     this.addItemsFromArray(storage.downloadItems.videoArr, 'video');
@@ -245,10 +245,8 @@ exports.insertMarkup = (downloadInfo, avType) => {
     }
 };
 exports.resetMarkup = () => {
-    // markupAudio = markup.audio;
-    // markupVideo = markup.video;
-    markupAudio = markupAudioOriginal;
-    markupVideo = markupVideoOriginal;
+    markupAudio = markupAudioSrc;
+    markupVideo = markupVideoSrc;
 };
 
 ///////////////////////   STORAGE   ///////////////////////
