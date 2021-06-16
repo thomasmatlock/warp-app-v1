@@ -290,16 +290,13 @@ const toggleModalPrefsVisibility = (state, avType) => {
 const updateInputOptions = (storage) => {
     setDropdownsAll(storage);
     setCheckboxes(storage);
+    insertOutputFolderPaths(storage);
 }
 module.exports = {
-    insertOutputFolderPaths: insertOutputFolderPaths,
     showPanel: showPanel,
     showPanelInit: showPanelInit,
     removeAllInjectedModals: removeAllInjectedModals,
     injectPrefsModalToCurrentSlide: injectPrefsModalToCurrentSlide,
     toggleModalPrefsVisibility: toggleModalPrefsVisibility,
-    setDropdown: setDropdown,
-    setDropdownsAll: setDropdownsAll,
     updateInputOptions: updateInputOptions,
-    // setCheckboxes: setCheckboxes,
 };

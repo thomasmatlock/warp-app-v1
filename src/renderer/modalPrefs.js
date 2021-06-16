@@ -391,15 +391,12 @@ const prefsSettingsSync = () => {
 
 const discoverStartupTab = function(storage) {
     if (storage.user.prefs.general_startupTab_audio) {
-        // return storage.user.prefs.general_startupTab_audio;
         return 'audio';
     }
     if (storage.user.prefs.general_startupTab_video) {
-        // return storage.user.prefs.general_startupTab_video;
         return 'video';
     }
     if (storage.user.prefs.general_startupTab_warpstagram) {
-        // return storage.user.prefs.general_startupTab_warpstagram;
         return 'warpstagram';
     }
 };
@@ -424,8 +421,7 @@ ipcRenderer.on(
                     storage.user.prefs[key] = outputFolderSelected;
 
                     storage.user.prefs[key] = storage.user.prefs[key][0];
-
-                    prefsView.insertOutputFolderPaths(storage);
+                    prefsView.updateInputOptions(storage);
                 }
             }
         }
