@@ -208,7 +208,6 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
                 markupModalLogin = await mainFunctions.loadMarkupModalLogin();
                 markupDownloadItemAudio = await mainFunctions.loadMarkupDownloadItemAudio();
                 markupDownloadItemVideo = await mainFunctions.loadMarkupDownloadItemVideo();
-                console.log(markupModalLogin);
             }
             windowController.createWindow(markupModalPrefs, markupDownloadItemAudio, markupDownloadItemVideo); // creates main app window
             mainFunctions.setMenu(defaults.env.nav_A_active);
@@ -255,7 +254,6 @@ const mainFunctions = {
     },
     loadMarkupModalLogin: async function() {
         const result = await settings.loadMarkupModalLogin();
-        console.log(result);
         return result;
     },
     loadMarkupDownloadItemAudio: async function() {

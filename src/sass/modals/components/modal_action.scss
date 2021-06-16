@@ -1,0 +1,144 @@
+// modal-text-input
+.modalActionComponent_Container {
+    height: 600px;
+    width: 100%;
+    display: flex;
+    // border: dotted #555555a1 1px;
+    flex-direction: column;
+    transition: all 0.5s ease-in-out;
+}
+
+.modalActionComponent {
+    margin-top: 1rem;
+}
+
+// #modalActionComponent_audio {
+//     transition: height 0.5s;
+// }
+.modalActionComponent_licenseActivation {
+    display: flex;
+    // background: green;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    width: 100%;
+    // height: 100%;
+    min-height: 50px;
+    justify-content: center;
+    background: #464646a1; // test
+    border-radius: 2px;
+    transition: height 0.5s;
+    overflow: hidden;
+    &:hover {
+        box-shadow: $shadow-after;
+        height: auto;
+        // background-color: rgba(238, 238, 238, 0.205);
+        background: #EEE;
+    }
+}
+
+.modalActionComponent_licenseActivation:hover .modalActionComponent_child_title {
+    // transition: all 1s;
+    color: black;
+    //    color: white;
+    font-size: 1.5rem;
+    // margin-left: 1rem;
+    // font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
+    cursor: default;
+    letter-spacing: 0.1rem;
+}
+
+.modalActionComponent_licenseActivation:hover .modalActionComponent_child_btn {
+    background-image: $colorThemeButtonActive;
+}
+
+.modalActionComponent_bundle {
+    &:hover {
+        height: 500px;
+    }
+}
+
+.modalActionComponent_panel {
+    transition: height 0.5s;
+    width: 100%;
+    // border: 1px dotted #5a5a5aa1;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    height: auto;
+    &:hover {}
+}
+
+.modalActionComponent_panel_primary,
+.modalActionComponent_panel_secondary {
+    // min-height: 40px;
+    max-height: 50px;
+}
+
+.modalActionComponent_child_title,
+.modalActionComponent_child_btn,
+.modalActionComponent_child_activated {
+    font-size: 1.4rem;
+    color: #ffffff;
+    cursor: default;
+    // border: 1px dotted purple;
+    transition: all 0.5s ease-in-out;
+    font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
+}
+
+.modalActionComponent_child_title {
+    margin: 0 2rem;
+    width: auto;
+}
+
+.modalActionComponent_child_activated {
+    &:hover {
+        color: #ff8700;
+        // content: "Thanks!";
+    }
+}
+
+.modalActionComponent_child_activated {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.modalActionComponent_child_activated,
+.modalActionComponent_child_btn {
+    margin-right: 0.5rem;
+}
+
+.modalActionComponent_child_activated,
+.modalActionComponent_child_btn {
+    max-width: 20%;
+    display: flex;
+    align-items: center;
+    align-content: flex-end;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.modalActionComponent_child_btn {
+    border-radius: 2px;
+    height: 40px;
+    background-color: #ff8700;
+    // background-image: $colorThemeButtonActive;
+}
+
+.modalActionComponent_child {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    flex: 1;
+    // border: 1px dotted #5a5a5aa1;
+}
+
+.modalActionComponent_active>*:not(:first-child) {
+    height: 200px;
+}
+
+.modalActionComponent_panel_collapsible {
+    // background: #fff;
+    // background-color: rgba(238, 238, 238, 0.205);
+}

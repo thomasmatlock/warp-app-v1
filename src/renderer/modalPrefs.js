@@ -49,7 +49,7 @@ const windowReady = (prefsMarkup) => {
     prefsView.injectPrefsModalToCurrentSlide(prefsMarkup, startupTab, storage);
     addNavBListeners();
     addAppMenuListeners();
-    prefsView.showPanelInit('prefs', 'license');
+    prefsView.showPanelInit('prefs', 'warpstagram');
     setTimeout(() => {
         if (!defaults.dev.autoOpenModalPrefs) {
             prefsView.toggleModalPrefsVisibility(state, 'warpstagram');
@@ -288,6 +288,11 @@ const refreshPrefsNavListeners = () => {
             .addEventListener('mouseout', function() {
                 setLicenseActivationTransitionsSpeed();
                 collapseLicensePanels(collapsibleLicensePanelsBundle, collapsibleLicensePanelsHeightMin);
+            });
+        document
+            .getElementById('loginButton')
+            .addEventListener('click', function() {
+                console.log('log in...');
             });
     }, 100);
 };
