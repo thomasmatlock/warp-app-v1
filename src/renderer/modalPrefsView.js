@@ -9,18 +9,22 @@ const fs = require('fs').promises;
 let elements = require('./views/elements');
 
 const toggleBackground = (state) => {
-    if (state.modals.preferences) {
+    // console.log(state.modals);
+    if (state.modals.background) {
         elements.modalBackground.style.display = 'none'; // de-activate modal background
-    } else if (!state.modals.preferences) {
+    } else if (!state.modals.background) {
         elements.modalBackground.style.display = 'flex'; // activate modal background
     }
 };
-const toggleModalState = (state) => {
+const toggleState = (state) => {
     state.modals.preferences ?
         (state.modals.preferences = false) :
         (state.modals.preferences = true);
+    state.modals.background ?
+        (state.modals.background = false) :
+        (state.modals.background = true);
 };
-const togglePrefsModalVisibility = (state, avType) => {
+const toggleVisibility = (state, avType) => {
     if (state.modals.preferences) {
         if (avType === 'audio')
             elements.modalParentAudio.style.display = 'flex'; // de-activate modal background
@@ -279,13 +283,13 @@ const setCheckboxes = (storage) => {
 
 const toggleModalPrefsVisibility = (state, avType) => {
     toggleBackground(state);
-    toggleModalState(state);
-    togglePrefsModalVisibility(state, avType);
+    toggleState(state);
+    toggleVisibility(state, avType);
 };
 module.exports = {
     toggleBackground: toggleBackground,
-    toggleModalState: toggleModalState,
-    togglePrefsModalVisibility: togglePrefsModalVisibility,
+    toggleState: toggleState,
+    toggleVisibility: toggleVisibility,
     injectPrefsMarkup: injectPrefsMarkup,
     insertOutputFolderPaths: insertOutputFolderPaths,
     showPanel: showPanel,

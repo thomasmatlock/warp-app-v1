@@ -33,6 +33,7 @@ let panelTransitionSpeed = 'height 1s';
             prefsMarkup = modalPrefsMarkup;
             startupTab = discoverStartupTab(storage);
             state.activeTab = startupTab;
+            console.log(state);
             windowReady(prefsMarkup);
         }
     );

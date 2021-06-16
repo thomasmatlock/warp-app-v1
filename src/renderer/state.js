@@ -4,6 +4,7 @@ class state {
         this.nav = new nav(); // controls active nav
         this.modals = {};
         this.modals.preferences = false;
+        this.modals.background = false;
         this.activeTab = '';
     }
 
