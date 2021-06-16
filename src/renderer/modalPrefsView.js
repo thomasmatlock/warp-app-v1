@@ -217,7 +217,6 @@ const toggleActiveModalNavClass = (avType) => {
 };
 const removeAllInjectedModals = () => {
     let modals = document.getElementsByClassName('contentContainer');
-    console.log(modals);
     for (var key in modals) {
         if (modals.hasOwnProperty(key)) {
             modals[key].remove();

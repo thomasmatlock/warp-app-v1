@@ -1,7 +1,7 @@
 // this is started, taken from the electron course
 const fs = require('fs');
 const { clipboard, ipcRenderer, shell } = require('electron');
-let markup = require('./views/markup');
+// let markup = require('./views/markup');
 let downloadHandler = require('../js/downloadHandler');
 const defaultsReq = require('../js/defaults');
 const defaults = new defaultsReq();
@@ -21,13 +21,15 @@ let storage = {
 };
 // let markupAudio = markup.audio;
 // let markupVideo = markup.video;
-let markupAudio, markupVideo;
+let markupAudio, markupVideo, markupAudioOriginal, markupVideoOriginal;
 
 ///////////////////////   ADD ITEM(S)   ///////////////////////
 exports.defaultsAddAllItems = (storageSent, markupDownloadItemAudio, markupDownloadItemVideo) => {
     storage = storageSent;
     markupAudio = markupDownloadItemAudio;
+    markupAudioOriginal = markupDownloadItemAudio;
     markupVideo = markupDownloadItemVideo;
+    markupVideoOriginal = markupDownloadItemVideo;
     // console.log(storage);
     this.addItemsFromArray(storage.downloadItems.audioArr, 'audio');
     this.addItemsFromArray(storage.downloadItems.videoArr, 'video');
@@ -243,8 +245,10 @@ exports.insertMarkup = (downloadInfo, avType) => {
     }
 };
 exports.resetMarkup = () => {
-    markupAudio = markup.audio;
-    markupVideo = markup.video;
+    // markupAudio = markup.audio;
+    // markupVideo = markup.video;
+    markupAudio = markupAudioOriginal;
+    markupVideo = markupVideoOriginal;
 };
 
 ///////////////////////   STORAGE   ///////////////////////
