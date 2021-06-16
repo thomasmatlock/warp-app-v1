@@ -19,12 +19,15 @@ let storage = {
         pinned: [],
     },
 };
-let markupAudio = markup.audio;
-let markupVideo = markup.video;
+// let markupAudio = markup.audio;
+// let markupVideo = markup.video;
+let markupAudio, markupVideo;
 
 ///////////////////////   ADD ITEM(S)   ///////////////////////
-exports.defaultsAddAllItems = (storageSent) => {
+exports.defaultsAddAllItems = (storageSent, markupDownloadItemAudio, markupDownloadItemVideo) => {
     storage = storageSent;
+    markupAudio = markupDownloadItemAudio;
+    markupVideo = markupDownloadItemVideo;
     // console.log(storage);
     this.addItemsFromArray(storage.downloadItems.audioArr, 'audio');
     this.addItemsFromArray(storage.downloadItems.videoArr, 'video');

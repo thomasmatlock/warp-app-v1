@@ -22,8 +22,9 @@ const theme = require('./themeController');
 let state = new stateReq();
 let storage;
 (function init() {
-    ipcRenderer.on('window-ready', (e, storage, markupDownloadItemAudio, markupDownloadItemVideo) => {
+    ipcRenderer.on('window-ready', (e, storage, modalPrefsMarkup, markupDownloadItemAudio, markupDownloadItemVideo) => {
         // console.log(storage.user.prefs);
+        // console.log(markupDownloadItemVideo);
         addEventListeners(); // activates DOM event listeners
         addMenuListeners(); // activates menu event listeners
         let startupTab = discoverStartupTab(storage);
@@ -38,7 +39,7 @@ let storage;
         }, 300);
         ipcRenderer.send('menu-change', startupTab);
         if (defaults.dev.clearStorage) items.resetStorage(); // clears localStorage if active
-        items.defaultsAddAllItems(storage); // loads items stored in settings to UI
+        items.defaultsAddAllItems(storage, markupDownloadItemAudio, markupDownloadItemVideo); // loads items stored in settings to UI
 
         ipcRenderer.send('mainWindow-ready');
         ipcRenderer.on('modal-window-ready', () => {
