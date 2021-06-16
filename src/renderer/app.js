@@ -218,6 +218,7 @@ const addEventListeners = () => {
         ipcRenderer.send('menu-change', 'audio');
         defaults.env.nav_A_active = 'audio';
         elements.nav_A_audio.style.backgroundImage = blueGradient;
+        items.removeActionMenus();
 
     });
     elements.nav_A_audio.addEventListener('mouseenter', (e) => {
@@ -232,6 +233,8 @@ const addEventListeners = () => {
         ipcRenderer.send('menu-change', 'video');
         defaults.env.nav_A_active = 'video';
         elements.nav_A_video.style.backgroundImage = blueGradient;
+        items.removeActionMenus();
+
     });
     elements.nav_A_video.addEventListener('mouseenter', (e) => {
         elements.nav_A_video.style.backgroundImage = orangeGradient;
@@ -244,6 +247,8 @@ const addEventListeners = () => {
         ipcRenderer.send('menu-change', 'warpstagram');
         defaults.env.nav_A_active = 'warpstagram';
         elements.nav_A_warpstagram.style.backgroundImage = blueGradient;
+        items.removeActionMenus();
+
     });
     elements.nav_A_warpstagram.addEventListener('mouseenter', (e) => {
         elements.nav_A_warpstagram.style.backgroundImage = orangeGradient;

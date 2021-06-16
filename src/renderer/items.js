@@ -303,13 +303,14 @@ exports.resetStorage = () => {
     this.save();
     ipcRenderer.send('reset-storage', storage);
 };
-///////////////////////   IPC LISTENERS   ///////////////////////
+exports.removeActionMenus = () => {
+        let actionMenus = document.getElementsByClassName("downloadItemMenu_optionsList");
+        console.log(actionMenus.length);
+        for (let i = 0; i < actionMenus.length; i++) {
+            // actionMenus[i].style.visibility = 'hidden';
+        }
+    }
+    ///////////////////////   IPC LISTENERS   ///////////////////////
 ipcRenderer.on('storage-sync-success', (e, storageReceived) => {
     storage = storageReceived;
-    // console.log(
-    //     'audio',
-    //     storage.downloadItems.audioArr.length,
-    //     'video',
-    //     storage.downloadItems.videoArr.length
-    // );
 });

@@ -2,6 +2,7 @@
     position: absolute;
     right: 0;
     width: 200px;
+    animation: moveInTop 1s ease-out;
 }
 
 .downloadItemMenu_optionsList {
@@ -12,12 +13,15 @@
     background: #3b3b3b;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    align-content: center;
     z-index: 21;
+    animation: moveInTop 1s ease-out;
 }
 
 .downloadItemMenu_option {
     // margin-top: 2px;
-    border: 1px solid #474747 !important;
+    border-top: 1px solid #474747 !important;
     border-radius: 0px !important;
     width: 100%;
     color: #ffffff;
@@ -26,12 +30,14 @@
     align-items: center;
     align-content: center;
     z-index: 22;
+    animation: moveInTop 1s ease-out;
     min-height: 35px !important;
     // max-height: 200px !important;
     flex: 1 !important;
     margin-top: 0 auto;
-    // background: red;
+    margin: 0;
     background: #3b3b3b !important;
+    // background: red;
     &:hover {
         border-radius: 0px !important;
         box-shadow: $shadow-none !important;
