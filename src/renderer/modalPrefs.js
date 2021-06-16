@@ -28,7 +28,8 @@ let panelTransitionSpeed = 'height 1s';
 (function init() {
     ipcRenderer.on(
         'window-ready',
-        (e, storageSentFromMain, modalPrefsMarkup) => {
+        (e, storageSentFromMain, modalPrefsMarkup, markupDownloadItemAudio, markupDownloadItemVideo) => {
+            console.log(markupDownloadItemAudio);
             storage = storageSentFromMain;
             // console.log(storage.user.prefs);
             prefsMarkupSrc = modalPrefsMarkup;

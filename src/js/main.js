@@ -212,10 +212,10 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
                 markupDownloadItemVideo = await mainFunctions.loadDownloadItemVideoMarkup();
 
                 // modalPrefsMarkup = await mainFunctions.loadModalPrefsMarkupSource();
-                // console.log(modalPrefsMarkup);
+                // console.log(markupDownloadItemAudio);
             }
             // console.log(modalPrefsMarkup);
-            windowController.createWindow(modalPrefsMarkup); // creates main app window
+            windowController.createWindow(modalPrefsMarkup, markupDownloadItemAudio, markupDownloadItemVideo); // creates main app window
             mainFunctions.setMenu(defaults.env.nav_A_active);
         })();
         // if (defaults.dev.backendOnly) mainWindow.hide(); // devMode only
@@ -273,7 +273,7 @@ const mainFunctions = {
 };
 ///////////////////////   WINDOW HANDLER   ///////////////////////
 const windowController = {
-    createWindow: function(modalPrefsMarkup) {
+    createWindow: function(modalPrefsMarkup, markupDownloadItemAudio, markupDownloadItemVideo) {
         mainWindow = new BrowserWindow({
             height: displayController.height,
             width: displayController.width,
@@ -320,7 +320,8 @@ const windowController = {
         const wc = mainWindow.webContents;
         // send stuff to app.js
         wc.on('did-finish-load', () => {
-            wc.send('window-ready', storageMain, modalPrefsMarkup);
+            // wc.send('window-ready', storageMain, modalPrefsMarkup);
+            wc.send('window-ready', storageMain, modalPrefsMarkup, markupDownloadItemAudio, markupDownloadItemVideo);
             if (defaults.dev.splashScreen) splash.destroy();
         });
         wc.on('devtools-opened', () => {});
