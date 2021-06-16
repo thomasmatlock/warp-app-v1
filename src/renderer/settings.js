@@ -18,43 +18,49 @@ const readFile = promisify(fs.readFile);
 //     }
 // }
 
-async function loadMarkupSource() {
+async function loadMarkupModalPrefs() {
     // // https://puruvj.dev/blog/fs-promises
     try {
         const data = await readFile(
-            `${__dirname}/modalPrefsMarkup.html`,
+            `${__dirname}/markupModalPrefs.html`,
             'binary'
         );
-
-        // ipcRenderer.send('prefsMarkup-loaded', data);
         return data;
     } catch (e) {
         console.error(e);
     }
 }
-async function loadDownloadItemAudioMarkup() {
+async function loadMarkupModalLogin() {
+    // // https://puruvj.dev/blog/fs-promises
+    try {
+        const data = await readFile(
+            `${__dirname}/markupModalLogin.html`,
+            'binary'
+        );
+        return data;
+    } catch (e) {
+        console.error(e);
+    }
+}
+async function loadMarkupDownloadItemAudio() {
     // // https://puruvj.dev/blog/fs-promises
     try {
         const data = await readFile(
             `${__dirname}/markupDownloadItemAudio.html`,
             'binary'
         );
-
-        // ipcRenderer.send('prefsMarkup-loaded', data);
         return data;
     } catch (e) {
         console.error(e);
     }
 }
-async function loadDownloadItemVideoMarkup() {
+async function loadMarkupDownloadItemVideo() {
     // // https://puruvj.dev/blog/fs-promises
     try {
         const data = await readFile(
             `${__dirname}/markupDownloadItemVideo.html`,
             'binary'
         );
-
-        // ipcRenderer.send('prefsMarkup-loaded', data);
         return data;
     } catch (e) {
         console.error(e);
@@ -80,11 +86,12 @@ async function settingsLoad() {
 }
 
 module.exports = {
-    loadMarkupSource: loadMarkupSource,
+    loadMarkupModalPrefs: loadMarkupModalPrefs,
+    loadMarkupModalLogin: loadMarkupModalLogin,
     settingsSave: settingsSave,
     settingsLoad: settingsLoad,
-    loadDownloadItemAudioMarkup: loadDownloadItemAudioMarkup,
-    loadDownloadItemVideoMarkup: loadDownloadItemVideoMarkup,
+    loadMarkupDownloadItemAudio: loadMarkupDownloadItemAudio,
+    loadMarkupDownloadItemVideo: loadMarkupDownloadItemVideo,
 };
 
 // PRE-CHECK

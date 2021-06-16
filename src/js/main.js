@@ -194,28 +194,23 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
 (function appListeners() {
     app.on('ready', () => {
         if (defaults.dev.splashScreen) windowController.createSplashWindow();
-
         displayController = new displayControllerReq(); // positions output window to display depending on single/multi-monitor
         defaults.init(); // all defaults checks, latest version, isOnline, hasFFmpeg etc
         fileController.init(defaults); // checks for local directories and creates them if non existent
         displayController.discoverDisplay(); // discovers which display to use, 3 dev mode displayController or production
-        let storageAwaited, modalPrefsMarkup, markupDownloadItemAudio, markupDownloadItemVideo;
+        let storageAwaited, markupModalPrefs, markupDownloadItemAudio, markupDownloadItemVideo;
         (async() => {
             storageAwaited = await mainFunctions.load();
             storageMain = storageAwaited;
-            // console.log('storageAwaited', storageAwaited.user.prefs);
-            // console.log('storageMain', storageMain.user.prefs);
             if (storageAwaited.user.prefs.prefsMarkup === '') {
                 // console.log(`no markup present`);
-                modalPrefsMarkup = await mainFunctions.loadModalPrefsMarkupSource();
-                markupDownloadItemAudio = await mainFunctions.loadDownloadItemAudioMarkup();
-                markupDownloadItemVideo = await mainFunctions.loadDownloadItemVideoMarkup();
-
-                // modalPrefsMarkup = await mainFunctions.loadModalPrefsMarkupSource();
-                // console.log(markupDownloadItemAudio);
+                markupModalPrefs = await mainFunctions.loadMarkupModalPrefs();
+                markupModalLogin = await mainFunctions.loadMarkupModalLogin();
+                markupDownloadItemAudio = await mainFunctions.loadMarkupDownloadItemAudio();
+                markupDownloadItemVideo = await mainFunctions.loadMarkupDownloadItemVideo();
+                console.log(markupModalLogin);
             }
-            // console.log(modalPrefsMarkup);
-            windowController.createWindow(modalPrefsMarkup, markupDownloadItemAudio, markupDownloadItemVideo); // creates main app window
+            windowController.createWindow(markupModalPrefs, markupDownloadItemAudio, markupDownloadItemVideo); // creates main app window
             mainFunctions.setMenu(defaults.env.nav_A_active);
         })();
         // if (defaults.dev.backendOnly) mainWindow.hide(); // devMode only
@@ -254,16 +249,21 @@ const mainFunctions = {
         const result = await settings.settingsLoad();
         return result;
     },
-    loadModalPrefsMarkupSource: async function() {
-        const result = await settings.loadMarkupSource();;
+    loadMarkupModalPrefs: async function() {
+        const result = await settings.loadMarkupModalPrefs();;
         return result;
     },
-    loadDownloadItemAudioMarkup: async function() {
-        const result = await settings.loadDownloadItemAudioMarkup();;
+    loadMarkupModalLogin: async function() {
+        const result = await settings.loadMarkupModalLogin();
+        console.log(result);
         return result;
     },
-    loadDownloadItemVideoMarkup: async function() {
-        const result = await settings.loadDownloadItemVideoMarkup();;
+    loadMarkupDownloadItemAudio: async function() {
+        const result = await settings.loadMarkupDownloadItemAudio();;
+        return result;
+    },
+    loadMarkupDownloadItemVideo: async function() {
+        const result = await settings.loadMarkupDownloadItemVideo();;
         return result;
     },
     syncStorage: function() {
@@ -273,7 +273,7 @@ const mainFunctions = {
 };
 ///////////////////////   WINDOW HANDLER   ///////////////////////
 const windowController = {
-    createWindow: function(modalPrefsMarkup, markupDownloadItemAudio, markupDownloadItemVideo) {
+    createWindow: function(markupModalPrefs, markupDownloadItemAudio, markupDownloadItemVideo) {
         mainWindow = new BrowserWindow({
             height: displayController.height,
             width: displayController.width,
@@ -320,8 +320,8 @@ const windowController = {
         const wc = mainWindow.webContents;
         // send stuff to app.js
         wc.on('did-finish-load', () => {
-            // wc.send('window-ready', storageMain, modalPrefsMarkup);
-            wc.send('window-ready', storageMain, modalPrefsMarkup, markupDownloadItemAudio, markupDownloadItemVideo);
+            // wc.send('window-ready', storageMain, markupModalPrefs);
+            wc.send('window-ready', storageMain, markupModalPrefs, markupDownloadItemAudio, markupDownloadItemVideo);
             if (defaults.dev.splashScreen) splash.destroy();
         });
         wc.on('devtools-opened', () => {});
