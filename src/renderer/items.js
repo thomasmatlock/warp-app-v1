@@ -305,7 +305,7 @@ exports.resetStorage = () => {
 };
 exports.removeActionMenus = () => {
         let actionMenus = document.getElementsByClassName("downloadItemMenu_optionsList");
-        console.log(actionMenus.length);
+        // console.log(actionMenus.length);
         for (let i = 0; i < actionMenus.length; i++) {
             // actionMenus[i].style.visibility = 'hidden';
         }

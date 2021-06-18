@@ -14,7 +14,7 @@ class defaults {
         };
         this.dev = {
             autoClick: true, // clicks nav B button
-            autoOpenModalPrefs: true, //
+            autoOpenModalPrefs: false, //
             getDownloadItemInfo: true, //
             clearStorage: false, // USE THIS TO RESET STORAGE
             devTools: !this.devMode ? false : true, // false, true, devTools off/on
