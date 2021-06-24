@@ -12,6 +12,7 @@ class defaults {
             user: 'dev', // can be dev, free, or paid
             theme: 'dark', // true = 'light', false = 'dark'
         };
+
         this.dev = {
             autoClick: true, // clicks nav B button
             autoOpenModalPrefs: false, //
