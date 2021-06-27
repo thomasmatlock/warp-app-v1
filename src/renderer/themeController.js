@@ -4,6 +4,7 @@ const discoverTheme = (storage) => {
     // general_theme_dark
     // general_theme_light
     let prefs = storage.user.prefs;
+    // console.log(prefs);
     let theme;
     for (var key in prefs) {
         if (prefs.hasOwnProperty(key)) {
