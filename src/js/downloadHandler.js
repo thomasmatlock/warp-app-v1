@@ -61,7 +61,6 @@ const formatLength = function(approxDurationMs) {
 
     itemInfo.lengthFormatted = `${itemInfo.hrs}:${itemInfo.minsStr}:${itemInfo.secsStr}`;
 };
-
 const cloneVideoDetails = function(itemURL, info, avType) {
     // console.log(avType);
     defaults.dev.downloadSmallestFile ?
@@ -105,7 +104,6 @@ const cloneVideoDetails = function(itemURL, info, avType) {
     // this.audioSampleRate = this.selectedFormat.audioSampleRate;
     // this.audioChannels = this.selectedFormat.audioChannels;
 };
-
 const removeVideoDetails = function() {
     itemInfo = {};
 };
@@ -126,7 +124,6 @@ const removeCharactersFromTitle = function() {
     // itemInfo.title = itemInfo.title.replace(`<`, ' ');
     // itemInfo.title = itemInfo.title.replace(`>`, ' ');
 };
-
 const downloadAndWrite = function(itemURL) {
     if (defaults.dev.getDownloadItemInfo) {
         (async() => {
@@ -138,7 +135,6 @@ const downloadAndWrite = function(itemURL) {
         })();
     }
 };
-
 const getFileSize = function() {};
 const createFilePath = function(itemURL, avType, platform, storage) {
     if (itemInfo.type === 'audio') {
