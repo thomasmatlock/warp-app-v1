@@ -22,7 +22,7 @@ const theme = require('./themeController');
 let state = new stateReq();
 let storage;
 (function init() {
-    ipcRenderer.on('window-ready', (e, storage, modalPrefsMarkup, markupDownloadItemAudio, markupDownloadItemVideo) => {
+    ipcRenderer.on('window-ready', (e, storage, modalPrefsMarkup, markupDownloadItemAudio, markupDownloadItemVideo, networkSpeed) => {
         // console.log(storage.user.prefs);
         // console.log(markupDownloadItemVideo);
         addEventListeners(); // activates DOM event listeners

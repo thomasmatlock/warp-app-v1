@@ -327,7 +327,7 @@ input {
 
 ::placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   color: black;
   opacity: 1;
   font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
@@ -394,7 +394,7 @@ input {
   flex-direction: column; }
 
 .nav_B_icon {
-  margin: 5px auto; }
+  margin: 1rem auto 0; }
 
 .nav_B_button:hover p {
   color: #ffffff; }
@@ -832,6 +832,8 @@ input[type='text'] {
   margin: 0 auto;
   width: 900px;
   max-height: 900px;
+  max-width: 70rem;
+  min-width: 30rem;
   background: #2a2a2a;
   border-radius: 4px;
   z-index: 11;
@@ -925,7 +927,7 @@ input[type='text'] {
 .modalActionComponent_child_title,
 .modalActionComponent_child_btn,
 .modalActionComponent_child_activated {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   color: #ffffff;
   cursor: default;
   transition: all 0.5s ease-in-out;
@@ -992,7 +994,7 @@ input[type='text'] {
 
 .modalPrefsCheckbox_child p {
   justify-content: flex-start;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   color: #ffffff;
   font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif; }
 
@@ -1099,10 +1101,10 @@ input[type='text'] {
 
 .modalDropdown_title p {
   color: #ffffff;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   cursor: default;
   font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
-  margin-bottom: 5px; }
+  margin-bottom: 1rem; }
 
 .modalDropdown {
   height: 40px;
@@ -1128,7 +1130,7 @@ input[type='text'] {
   position: relative;
   z-index: 10;
   color: #ffffff;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   cursor: pointer;
   font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
   transition: 0.25s; }
@@ -1263,7 +1265,6 @@ input[type='text'] {
   font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
   /* Firefox */
   padding-left: 1rem;
-  border: 1px solid red;
   margin: auto; }
 
 .modalOutputFolder_userInput__button {
@@ -1275,7 +1276,7 @@ input[type='text'] {
   background: linear-gradient(268deg, #f8ab37, #da2c4d);
   background: #ff7700;
   cursor: pointer;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   color: white;
   opacity: 1;
   transition: all ease-out 0.1s;

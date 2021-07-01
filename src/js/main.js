@@ -2,13 +2,13 @@ const { app, BrowserWindow, dialog, ipcMain, Menu, Tray } = require('electron');
 const displayControllerReq = require('./displayController');
 const appMenuAudio = require('./menuAudio');
 const appMenuVideo = require('./menuVideo');
+// const network = require('./network-speed');
 const appMenuWarpstagram = require('./menuWarpstagram');
 const fileControllerReq = require('./fileController');
 const fileController = new fileControllerReq();
 const settings = require('../renderer/settings');
 const defaultsReq = require('./defaults');
-const defaults = new defaultsReq();
-
+const defaults = new defaultsReq();;
 ///////////////////////////////////   TRAY   /////////////////////////////////
 let tray = null;
 app.whenReady().then(() => {
@@ -319,7 +319,10 @@ const windowController = {
         // send stuff to app.js
         wc.on('did-finish-load', () => {
             // wc.send('window-ready', storageMain, markupModalPrefs);
-            wc.send('window-ready', storageMain, markupModalPrefs, markupDownloadItemAudio, markupDownloadItemVideo);
+            // console.log(network.checkDownloadSpeed());
+            let networkSpeed;
+            // network.checkDownloadSpeed();
+            wc.send('window-ready', storageMain, markupModalPrefs, markupDownloadItemAudio, markupDownloadItemVideo, networkSpeed);
             if (defaults.dev.splashScreen) splash.destroy();
         });
         wc.on('devtools-opened', () => {});
