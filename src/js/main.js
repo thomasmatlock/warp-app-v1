@@ -318,10 +318,7 @@ const windowController = {
         const wc = mainWindow.webContents;
         // send stuff to app.js
         wc.on('did-finish-load', () => {
-            // wc.send('window-ready', storageMain, markupModalPrefs);
-            // console.log(network.checkDownloadSpeed());
-            let networkSpeed;
-            // network.checkDownloadSpeed();
+
             wc.send('window-ready', storageMain, markupModalPrefs, markupDownloadItemAudio, markupDownloadItemVideo, networkSpeed);
             if (defaults.dev.splashScreen) splash.destroy();
         });
