@@ -319,7 +319,7 @@ const windowController = {
         // send stuff to app.js
         wc.on('did-finish-load', () => {
 
-            wc.send('window-ready', storageMain, markupModalPrefs, markupDownloadItemAudio, markupDownloadItemVideo, networkSpeed);
+            wc.send('window-ready', storageMain, markupModalPrefs, markupDownloadItemAudio, markupDownloadItemVideo);
             if (defaults.dev.splashScreen) splash.destroy();
         });
         wc.on('devtools-opened', () => {});
