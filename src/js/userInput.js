@@ -14,7 +14,6 @@
 const { clipboard, ipcRenderer } = require('electron');
 const defaultsReq = require('./defaults');
 const defaults = new defaultsReq();
-const miscFunctions = require('../../library/js/miscArrays');
 const pattArr = [
     /facebook/i,
     /instagram/i,
@@ -30,9 +29,9 @@ const pattArr = [
 let pattMatchIndex, platform;
 const validateURL = (url, avType) => {
     if (defaults.dev.useRandomYoutubeURL)
-        url = miscFunctions.randomFromArray(defaults.dev.URLSyoutube); // substitutes a random placeholder URL if dev mode active
+        url = randomFromArray(defaults.dev.URLSyoutube); // substitutes a random placeholder URL if dev mode active
     if (defaults.dev.useRandomMiscURL) {
-        url = miscFunctions.randomFromArray(defaults.dev.URLSmisc); // substitutes a random placeholder URL if dev mode active
+        url = randomFromArray(defaults.dev.URLSmisc); // substitutes a random placeholder URL if dev mode active
     }
     checkURLforPattern(url, avType);
     if (platform === 'youtube') {
