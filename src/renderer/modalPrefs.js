@@ -82,6 +82,7 @@ const createCollapsiblePanelsArray = (arr, subStr, newArr) => {
         }
     }
 }
+
 const addNavAListeners = () => {
     elements.nav_A_audio.addEventListener('click', (e) => {
         state.activeTab = 'audio';
@@ -295,6 +296,7 @@ const refreshPrefsNavListeners = () => {
             });
     }, 100);
 };
+
 const refreshModalBackgroundListeners = (type) => {
     document
         .getElementById('modalBackgroundID')
