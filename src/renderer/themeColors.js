@@ -8,6 +8,14 @@ const themeColors = {
     // darkGray: '#777',
     // grey: '#ecedf3',
     // grey2: '#eee',
+    ///////////////////////////////////// SPOTIFY THEME ////////////////////////////////
+    // #5A5A5A item selected
+    // #2A2A2A item hovered
+    // #282828 right side panel
+    // #282828 action menu item background
+    // #181818 bottom action menu
+    // #3E3E3E action menu item hover
+    // #121212 item background
     dark: {
         primary: '#1f2029',
         secondary: '#353746',
