@@ -28,7 +28,7 @@ const pattArr = [
 ];
 
 let pattMatchIndex, platform;
-exports.validateURL = (url, avType) => {
+const validateURL = (url, avType) => {
     if (defaults.dev.useRandomYoutubeURL)
         url = miscFunctions.randomFromArray(defaults.dev.URLSyoutube); // substitutes a random placeholder URL if dev mode active
     if (defaults.dev.useRandomMiscURL) {
@@ -39,7 +39,11 @@ exports.validateURL = (url, avType) => {
         mediaController(url, avType, platform);
     }
 };
-checkURLforPattern = (url, avType) => {
+
+const randomFromArray = (arr) => {
+    return arr[Math.floor(Math.random() * arr.length)];
+}
+const checkURLforPattern = (url, avType) => {
     // check url against each pattern
     pattMatchIndex = pattArr.forEach(function(item, index) {
         if (url.match(item)) {
@@ -54,4 +58,9 @@ const mediaController = (url, avType, platform) => {
     ipcRenderer.send('new-item', url, avType, platform);
 };
 
-module.exports = {}
+module.exports = {
+    validateURL: validateURL,
+    randomFromArray: randomFromArray,
+    checkURLforPattern: checkURLforPattern,
+    mediaController: mediaController,
+}
