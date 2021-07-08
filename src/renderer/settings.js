@@ -102,29 +102,3 @@ module.exports = {
     loadMarkupDownloadItemAudio: loadMarkupDownloadItemAudio,
     loadMarkupDownloadItemVideo: loadMarkupDownloadItemVideo,
 };
-
-
-// async function saveMarkup() {
-//     // // https://puruvj.dev/blog/fs-promises
-//     try {
-//         //  const data = await readFile(
-//         //      `${__dirname}/modalPrefsMarkup.html`,
-//         //      'binary'
-//         //  );
-//         ipcRenderer.send('prefsMarkup-saved', data);
-//     } catch (e) {
-//         console.error(e);
-//     }
-// }
-
-// async function readMarkup(avType) {
-//     let modalMarkupPreferences;
-//     const data = await fs.readFile(
-//         `${__dirname}/modalPrefsMarkup.html`,
-//         'binary'
-//     );
-//     modalMarkupPreferences = new Buffer(data).toString();
-//     injectPrefsMarkup(modalMarkupPreferences, avType);
-//     // console.log(modalMarkupPreferences);
-//     return modalMarkupPreferences;
-// }

@@ -11,7 +11,6 @@
 // update state
 // update local user file
 // update UI
-const logging = false;
 const { clipboard, ipcRenderer } = require('electron');
 const defaultsReq = require('./defaults');
 const defaults = new defaultsReq();
@@ -30,7 +29,6 @@ const pattArr = [
 
 let pattMatchIndex, platform;
 exports.validateURL = (url, avType) => {
-    // console.log(url);
     if (defaults.dev.useRandomYoutubeURL)
         url = miscFunctions.randomFromArray(defaults.dev.URLSyoutube); // substitutes a random placeholder URL if dev mode active
     if (defaults.dev.useRandomMiscURL) {
@@ -50,13 +48,10 @@ checkURLforPattern = (url, avType) => {
             platform = type.substring(1, type.length - 2); // removes beginning/end characters: changes "/youtube/i to simply 'youtube'
         }
     });
-    // if (logging) console.log(platform);
 };
 const mediaController = (url, avType, platform) => {
-    if (logging)
-        console.log(
-            `mediaController: url ${url} platform ${platform} avType ${avType} `
-        );
     defaults.env.nav_A_active = avType;
     ipcRenderer.send('new-item', url, avType, platform);
 };
+
+module.exports = {}
