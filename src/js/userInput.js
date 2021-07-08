@@ -11,7 +11,7 @@
 // update state
 // update local user file
 // update UI
-const { clipboard, ipcRenderer } = require('electron');
+const { ipcRenderer } = require('electron');
 const defaultsReq = require('./defaults');
 const defaults = new defaultsReq();
 const pattArr = [
