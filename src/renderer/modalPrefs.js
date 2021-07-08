@@ -48,7 +48,7 @@ let panelTransitionSpeed = 'height 1s';
 const windowReady = (prefsMarkup) => {
     theme.setTheme(storage)
     prefsView.injectPrefsModalToCurrentSlide(prefsMarkup, startupTab, storage);
-    addNavBListeners();
+    // addNavBListeners();
     addAppMenuListeners();
     prefsView.showPanelInit('prefs', 'warpstagram');
     setTimeout(() => {

@@ -33,13 +33,22 @@ let storage, startupTab;
     });
 })();
 const addListeners = () => {
-    console.log(`hello`);
-    addNavAListeners()
     addNavBListeners()
     addMenuListeners()
+    setTimeout(() => {
+        addNavAListeners()
+    }, 400)
 }
 const addNavAListeners = () => {}
-const addNavBListeners = () => {}
+const addNavBListeners = () => {
+    elements.nav_B_button_audio_preferences.addEventListener('click', (e) => {
+        prefsView.toggleModalPrefsVisibility(state, 'audio');
+    });
+
+    elements.nav_B_button_video_preferences.addEventListener('click', (e) => {
+        prefsView.toggleModalPrefsVisibility(state, 'video');
+    });
+}
 const addMenuListeners = () => {}
 
 const toggleBackground = () => {}
