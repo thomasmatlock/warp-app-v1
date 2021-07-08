@@ -44,12 +44,9 @@ let panelTransitionSpeed = 'height 1s';
         console.log('mainWindow-resized');
     });
 })();
-
 const windowReady = (prefsMarkup) => {
     theme.setTheme(storage)
     prefsView.injectPrefsModalToCurrentSlide(prefsMarkup, startupTab, storage);
-    addNavBListeners();
-    addAppMenuListeners();
     prefsView.showPanelInit('prefs', 'warpstagram');
     setTimeout(() => {
         if (!defaults.dev.autoOpenModalPrefs) {
@@ -61,9 +58,7 @@ const windowReady = (prefsMarkup) => {
     }, 400);
     refreshModalListeners('refresh'); // THIS IS CHANGING BEHAVIOR OF BACKGROUND
     setTimeout(() => {
-        addNavAListeners();
         prefsView.updateInputOptions(storage);
-
         setLicenseActivationTransitionsSpeed();
         collapsibleLicensePanels = document.getElementsByClassName('modalActionComponent_panel_collapsible');
         expandLicensePanels(collapsibleLicensePanels, collapsibleLicensePanelsHeightMax);
@@ -82,42 +77,6 @@ const createCollapsiblePanelsArray = (arr, subStr, newArr) => {
         }
     }
 }
-const addNavAListeners = () => {
-    elements.nav_A_audio.addEventListener('click', (e) => {
-        state.activeTab = 'audio';
-        tabSwitch();
-    });
-    elements.nav_A_video.addEventListener('click', (e) => {
-        state.activeTab = 'video';
-        tabSwitch();
-    });
-    elements.nav_A_warpstagram.addEventListener('click', (e) => {
-        state.activeTab = 'warpstagram';
-        tabSwitch();
-    });
-};
-const addNavBListeners = () => {
-    elements.nav_B_button_audio_preferences.addEventListener('click', (e) => {
-        prefsView.toggleModalPrefsVisibility(state, 'audio');
-    });
-
-    elements.nav_B_button_video_preferences.addEventListener('click', (e) => {
-        prefsView.toggleModalPrefsVisibility(state, 'video');
-    });
-};
-const addAppMenuListeners = () => {
-    // ipcRenderer.on('Audio: Tools: Preferences', () => {
-    //     prefsView.toggleModalPrefsVisibility(state, 'audio');
-    // });
-
-    // ipcRenderer.on('Video: Tools: Preferences', () => {
-    //     prefsView.toggleModalPrefsVisibility(state, 'video');
-    // });
-
-    // ipcRenderer.on('Warpstagram: Tools: Preferences', () => {
-    //     prefsView.toggleModalPrefsVisibility(state, 'warpstagram');
-    // });
-};
 const refreshModalListeners = (type) => {
     refreshModalBackgroundListeners(type);
     refreshPrefsNavListeners();
@@ -294,6 +253,7 @@ const refreshPrefsNavListeners = () => {
             });
     }, 100);
 };
+
 const refreshModalBackgroundListeners = (type) => {
     document
         .getElementById('modalBackgroundID')
@@ -465,4 +425,5 @@ ipcRenderer.on(
 module.exports = {
     discoverStartupTab: discoverStartupTab,
     refreshModalListeners: refreshModalListeners,
+    tabSwitch: tabSwitch,
 };
