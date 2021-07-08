@@ -23,7 +23,7 @@ let collapsibleLicensePanelsBundle = [];
 let collapsibleLicensePanelsHeightMax = '400px';
 let collapsibleLicensePanelsHeightMin = '0px';
 let panelTransitionSpeed = 'height 1s';
-// console.log(state);
+
 (function init() {
     ipcRenderer.on(
         'window-ready',
@@ -253,7 +253,6 @@ const refreshPrefsNavListeners = () => {
             });
     }, 100);
 };
-
 const refreshModalBackgroundListeners = (type) => {
     document
         .getElementById('modalBackgroundID')

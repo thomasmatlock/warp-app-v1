@@ -33,26 +33,25 @@ let storage, startupTab;
     });
 })();
 const addEventListeners = () => {
-    addNavAListeners();
     addNavBListeners();
     addMenuListeners();
+    setTimeout(() => {
+        addNavAListeners();
+    }, 400);
 }
 const addNavAListeners = () => {
-    setTimeout(() => {
-
-        elements.nav_A_audio.addEventListener('click', (e) => {
-            state.activeTab = 'audio';
-            modalPrefs.tabSwitch();
-        });
-        elements.nav_A_video.addEventListener('click', (e) => {
-            state.activeTab = 'video';
-            modalPrefs.tabSwitch();
-        });
-        elements.nav_A_warpstagram.addEventListener('click', (e) => {
-            state.activeTab = 'warpstagram';
-            modalPrefs.tabSwitch();
-        });
-    }, 400)
+    elements.nav_A_audio.addEventListener('click', (e) => {
+        state.activeTab = 'audio';
+        modalPrefs.tabSwitch();
+    });
+    elements.nav_A_video.addEventListener('click', (e) => {
+        state.activeTab = 'video';
+        modalPrefs.tabSwitch();
+    });
+    elements.nav_A_warpstagram.addEventListener('click', (e) => {
+        state.activeTab = 'warpstagram';
+        modalPrefs.tabSwitch();
+    });
 }
 const addNavBListeners = () => {
     elements.nav_B_button_audio_preferences.addEventListener('click', (e) => {
