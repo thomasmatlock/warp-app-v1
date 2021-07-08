@@ -74,7 +74,6 @@ const windowReady = (prefsMarkup) => {
         createCollapsiblePanelsArray(collapsibleLicensePanels, 'bundle', collapsibleLicensePanelsBundle)
     }, 400);
 };
-
 const createCollapsiblePanelsArray = (arr, subStr, newArr) => {
 
     for (let i = 0; i < arr.length; i++) {
@@ -410,16 +409,8 @@ const tabSwitch = () => {
 
 
     }, 100);
-    // refreshModalListeners('refresh');
     prefsView.showPanelInit('prefs', state.activeTab);
     refreshPrefsNavListeners();
-    // setLicenseActivationTransitionsSpeed();
-    // expandLicensePanels(collapsibleLicensePanels, collapsibleLicensePanelsHeightMax);
-    // collapseLicensePanels(collapsibleLicensePanels, collapsibleLicensePanelsHeightMin);
-    // createCollapsiblePanelsArray(collapsibleLicensePanels, 'audio', collapsibleLicensePanelsAudio)
-    // createCollapsiblePanelsArray(collapsibleLicensePanels, 'video', collapsibleLicensePanelsVideo)
-    // createCollapsiblePanelsArray(collapsibleLicensePanels, 'warpstagram', collapsibleLicensePanelsWarpstagram)
-    // createCollapsiblePanelsArray(collapsibleLicensePanels, 'bundle', collapsibleLicensePanelsBundle)
 };
 const expandLicensePanels = (arr, height) => {
     for (let i = 0; i < arr.length; i++) {

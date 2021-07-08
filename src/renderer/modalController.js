@@ -33,3 +33,5 @@ let storage, startupTab;
 })();
 
 const togglePrefsVisibility = () => {}
+const closeModalPrefs = () => {}
+const openModalPrefs = () => {}
