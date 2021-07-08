@@ -106,17 +106,17 @@ const addNavBListeners = () => {
     });
 };
 const addAppMenuListeners = () => {
-    // ipcRenderer.on('Audio: Tools: Preferences', () => {
-    //     prefsView.toggleModalPrefsVisibility(state, 'audio');
-    // });
+    ipcRenderer.on('Audio: Tools: Preferences', () => {
+        prefsView.toggleModalPrefsVisibility(state, 'audio');
+    });
 
-    // ipcRenderer.on('Video: Tools: Preferences', () => {
-    //     prefsView.toggleModalPrefsVisibility(state, 'video');
-    // });
+    ipcRenderer.on('Video: Tools: Preferences', () => {
+        prefsView.toggleModalPrefsVisibility(state, 'video');
+    });
 
-    // ipcRenderer.on('Warpstagram: Tools: Preferences', () => {
-    //     prefsView.toggleModalPrefsVisibility(state, 'warpstagram');
-    // });
+    ipcRenderer.on('Warpstagram: Tools: Preferences', () => {
+        prefsView.toggleModalPrefsVisibility(state, 'warpstagram');
+    });
 };
 const refreshModalListeners = (type) => {
     refreshModalBackgroundListeners(type);
