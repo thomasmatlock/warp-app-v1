@@ -81,6 +81,7 @@ const refreshModalListeners = (type) => {
     refreshModalBackgroundListeners(type);
     refreshPrefsNavListeners();
 };
+
 const refreshPrefsNavListeners = () => {
     setTimeout(() => {
         // CLOSE MODAL
@@ -253,6 +254,7 @@ const refreshPrefsNavListeners = () => {
             });
     }, 100);
 };
+
 const refreshModalBackgroundListeners = (type) => {
     document
         .getElementById('modalBackgroundID')
@@ -261,6 +263,7 @@ const refreshModalBackgroundListeners = (type) => {
             prefsSettingsSync();
         });
 };
+
 const updatePrefsState = (eventTitle) => {
     let [
         audioQuality,
@@ -342,6 +345,7 @@ const setPrefDropdownsToFalse = (optionSubstring) => {
 const prefsSettingsSync = () => {
     ipcRenderer.send('storage-sync-request', storage);
 };
+
 const discoverStartupTab = function(storage) {
     if (storage.user.prefs.general_startupTab_audio) {
         return 'audio';
@@ -353,9 +357,34 @@ const discoverStartupTab = function(storage) {
         return 'warpstagram';
     }
 };
+
 const dialogShowOutputFolder = (outputFolderBtnID) => {
     ipcRenderer.send('dialog-showOutputFolder', outputFolderBtnID, storage);
 };
+
+ipcRenderer.on(
+    'dialog-outputFolderSelected',
+    (e, outputFolderSelected, outputFolderSelectedType) => {
+        outputFolderSelectedType = outputFolderSelectedType.replace(
+            /^\w/,
+            (c) => c.toUpperCase()
+        );
+
+        for (var key in storage.user.prefs) {
+            if (storage.user.prefs.hasOwnProperty(key)) {
+                let joined = `path${outputFolderSelectedType}`;
+
+                if (key === joined) {
+                    storage.user.prefs[key] = outputFolderSelected;
+
+                    storage.user.prefs[key] = storage.user.prefs[key][0];
+                    prefsView.updateInputOptions(storage);
+                }
+            }
+        }
+    }
+);
+
 const tabSwitch = () => {
     prefsView.removeAllInjectedModals();
     setTimeout(() => {
@@ -399,28 +428,7 @@ const setLicenseActivationTransitionsSpeed = () => {
     document.getElementById('modalActionComponent_panel_middle_bundle').style.WebkitTransition = panelTransitionSpeed;
     // document.getElementById('modalActionComponent_panel_bottom_bundle').style.WebkitTransition = panelTransitionSpeed;
 }
-ipcRenderer.on(
-    'dialog-outputFolderSelected',
-    (e, outputFolderSelected, outputFolderSelectedType) => {
-        outputFolderSelectedType = outputFolderSelectedType.replace(
-            /^\w/,
-            (c) => c.toUpperCase()
-        );
 
-        for (var key in storage.user.prefs) {
-            if (storage.user.prefs.hasOwnProperty(key)) {
-                let joined = `path${outputFolderSelectedType}`;
-
-                if (key === joined) {
-                    storage.user.prefs[key] = outputFolderSelected;
-
-                    storage.user.prefs[key] = storage.user.prefs[key][0];
-                    prefsView.updateInputOptions(storage);
-                }
-            }
-        }
-    }
-);
 module.exports = {
     discoverStartupTab: discoverStartupTab,
     refreshModalListeners: refreshModalListeners,
