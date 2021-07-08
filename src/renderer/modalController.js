@@ -33,35 +33,13 @@ let storage, startupTab;
     });
 })();
 const addEventListeners = () => {
+    console.log('addEventListeners');
     addNavAListeners();
     addNavBListeners();
     addMenuListeners();
 }
-const addNavAListeners = () => {
-    setTimeout(() => {
-
-        elements.nav_A_audio.addEventListener('click', (e) => {
-            state.activeTab = 'audio';
-            modalPrefs.tabSwitch();
-        });
-        elements.nav_A_video.addEventListener('click', (e) => {
-            state.activeTab = 'video';
-            modalPrefs.tabSwitch();
-        });
-        elements.nav_A_warpstagram.addEventListener('click', (e) => {
-            state.activeTab = 'warpstagram';
-            modalPrefs.tabSwitch();
-        });
-    }, 400)
-}
-const addNavBListeners = () => {
-    elements.nav_B_button_audio_preferences.addEventListener('click', (e) => {
-        prefsView.toggleModalPrefsVisibility(state, 'audio');
-    });
-    elements.nav_B_button_video_preferences.addEventListener('click', (e) => {
-        prefsView.toggleModalPrefsVisibility(state, 'video');
-    });
-}
+const addNavAListeners = () => {}
+const addNavBListeners = () => {}
 const addMenuListeners = () => {
     ipcRenderer.on('Audio: Tools: Preferences', () => {
         prefsView.toggleModalPrefsVisibility(state, 'audio');
