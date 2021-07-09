@@ -56,8 +56,6 @@ let storage;
             }
         }
     };
-
-
     ipcRenderer.on('resize', () => {
         ipcRenderer.send('mainWindow-resized');
         // CLICK ACTIVE NAV A
@@ -163,7 +161,6 @@ const addEventListeners = () => {
     addAudioDownloadListListeners();
     addVideoDownloadListListeners();
 };
-
 const addNavAListeners = () => {
     // Nav A LISTENERS
     elements.nav_A.addEventListener('click', (e) => {
@@ -393,7 +390,4 @@ const addVideoDownloadListListeners = () => {
             }
         }
     });
-}
-const NavBController = {
-
 }
