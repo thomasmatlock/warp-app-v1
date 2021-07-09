@@ -1,6 +1,4 @@
 const { clipboard, ipcRenderer } = require('electron');
-const stateReq = require('./state');
-let state = new stateReq();
 
 let storage;
 (function init() {
