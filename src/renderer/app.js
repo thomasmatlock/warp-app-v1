@@ -22,6 +22,7 @@ let storage;
 const addIpcListeners = () => {
     ipcRenderer.on('storage-sync-success', (e, storageReceived) => {
         storage = storageReceived;
+        // console.log(storage.state);
     });
     ipcRenderer.on('state-sync-success', (e, stateReceived) => {
         console.log('state-sync-success');

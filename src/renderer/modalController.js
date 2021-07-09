@@ -8,8 +8,6 @@ const prefsStorage = require('./settings');
 const defaultsReq = require('../js/defaults');
 const defaults = new defaultsReq();
 const auto = require('./automate');
-const fileControllerReq = require('../js/fileController');
-const fileController = new fileControllerReq();
 
 let storage, startupTab;
 const addIpcRendererListeners = () => {
