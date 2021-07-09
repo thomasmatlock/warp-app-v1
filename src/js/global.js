@@ -7,6 +7,11 @@ const discoverStartupTab = (storage) => {
     }
 }
 
+const randomFromArray = (array) => {
+    return array[Math.floor(Math.random() * array.length)];
+}
+
 module.exports = {
     discoverStartupTab,
+    randomFromArray,
 }

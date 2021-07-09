@@ -59,14 +59,11 @@ exports.addItem = (item, avType, isdefaults) => {
         theme.setTheme(storage)
     }
 };
-let string = `<p class="dl__item__data__property dl__item__data__property-file-percentDownloaded">
-                    %{percentDownloaded}percentDownloaded
-                </p>`
+
 let percentRounded;
 let textnode;
 let itemNode;
 let node;
-let lastChildNode
 exports.insertPercentDownloaded = (item, percent, statusType) => {
     percentRounded = `${(percent * 100).toFixed(0)}%`;
     if (statusType === 'add') {

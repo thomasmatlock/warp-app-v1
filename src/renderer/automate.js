@@ -2,17 +2,17 @@ const defaultsReq = require('../js/defaults');
 const defaults = new defaultsReq();
 let elements = require('./views/elements');
 
-exports.click_nav_A = (tab) => {
+const click_nav_A = (tab) => {
     if (defaults.dev.autoClickNavA_active) {
         if (tab === 'audio') elements.nav_A_audio.click(); // clicks audio tab
         if (tab === 'video') elements.nav_A_video.click(); // clicks audio tab
         if (tab === 'warpstagram') elements.nav_A_warpstagram.click(); // clicks audio tab
     }
 };
-exports.clickElement = (element) => {
+const clickElement = (element) => {
     element.click();
 };
-exports.click_nav_B = (nav_A_active, button) => {
+const click_nav_B = (nav_A_active, button) => {
     if (nav_A_active === 'audio') {
         if (defaults.dev.autoClick) {
             if (button === 'paste') {
@@ -58,8 +58,8 @@ exports.click_nav_B = (nav_A_active, button) => {
         }
     }
 };
-
-exports.fireMenuAction = () => {
-    console.log('firing menu action');
-    // appWin.send('Video: Tools: Preferences');
-};
+module.exports = {
+    click_nav_A,
+    click_nav_B,
+    clickElement,
+}
