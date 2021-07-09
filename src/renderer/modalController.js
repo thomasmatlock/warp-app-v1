@@ -32,26 +32,19 @@ let storage, startupTab;
         console.log('mainWindow-resized');
     });
     ipcRenderer.on('nav_B_button_audio_preferences', (e, storageReceived) => {
-        // console.log('nav_B_button_audio_preferences');
         prefsView.toggleModalPrefsVisibility(state, 'audio');
     });
     ipcRenderer.on('nav_B_button_video_preferences', (e, storageReceived) => {
-        // console.log('nav_B_button_video_preferences');
         prefsView.toggleModalPrefsVisibility(state, 'video');
     });
 })();
 const addListeners = () => {
-    addNavBListeners()
     addMenuListeners()
     setTimeout(() => {
         addNavAListeners()
     }, 400)
 }
 const addNavAListeners = () => {}
-const addNavBListeners = () => {
-    elements.nav_B_button_audio_preferences.addEventListener('click', (e) => {});
-    elements.nav_B_button_video_preferences.addEventListener('click', (e) => {});
-}
 const addMenuListeners = () => {}
 
 const toggleBackground = () => {}
