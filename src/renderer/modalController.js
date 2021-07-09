@@ -44,7 +44,6 @@ const addNavBListeners = () => {
     elements.nav_B_button_audio_preferences.addEventListener('click', (e) => {
         prefsView.toggleModalPrefsVisibility(state, 'audio');
     });
-
     elements.nav_B_button_video_preferences.addEventListener('click', (e) => {
         prefsView.toggleModalPrefsVisibility(state, 'video');
     });

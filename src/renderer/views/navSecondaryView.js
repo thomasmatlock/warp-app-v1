@@ -1,18 +1,12 @@
-const logging = true;
-const navSecondaryTitles = {};
 const elements = require('./elements');
 
-exports.clearActive = () => {
-    // GET ARRAY OF NAV TABS
-    // const tabsArr = Array.from(document.querySelectorAll('.nav_B_button'));
-    // console.log(elements.nav_B_buttonArr);
-    // REMOVE ACTIVE CLASS FROM ALL TABS
+const clearActive = () => {
     elements.nav_B_buttonArr.forEach((el) => {
         el.classList.remove('nav_B_button-slide--active');
     });
 };
 
-exports.highlightSelected = (type, tabId) => {
+const highlightSelected = (type, tabId) => {
     if (type === 'add') {
         let tab = document.getElementById(`${tabId}`);
         tab.classList.add('nav_B_button--active');
@@ -24,7 +18,7 @@ exports.highlightSelected = (type, tabId) => {
 
 let containsSubStr;
 let isActive;
-exports.checkForSubstring = (target, subString) => {
+const checkForSubstring = (target, subString) => {
     const id = target.id;
     const text = target.textContent;
     return text.includes(subString) ?
@@ -32,14 +26,22 @@ exports.checkForSubstring = (target, subString) => {
         (containsSubStr = false);
 };
 
-exports.checkActive = (target, classString) => {
+const checkActive = (target, classString) => {
     return target.className.includes(classString) ?
         (isActive = true) :
         (isActive = false);
 };
+const removeNavBActivateBtn = (storage) => {
+    if (storage.user.audio === 'pro')
+        elements.nav_B_button_audio_activate.style.display = 'none';
+    if (storage.user.video === 'pro')
+        elements.nav_B_button_video_activate.style.display = 'none';
+}
 
-// exports.toggleHighlight = (id) => {
-//     console.log(`toggling highlight on ${id}`);
-//     let tab = document.getElementById(`${id}`);
-//     tab.classList.add('nav_B_button--active');
-// };
+module.exports = {
+    clearActive: clearActive,
+    highlightSelected: highlightSelected,
+    checkForSubstring: checkForSubstring,
+    checkActive: checkActive,
+    removeNavBActivateBtn: removeNavBActivateBtn,
+}

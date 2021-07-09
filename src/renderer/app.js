@@ -29,7 +29,7 @@ let storage;
         addMenuListeners(); // activates menu event listeners
         let startupTab = discoverStartupTab(storage);
         setActiveNav_A(storage); // sets active Nav A
-        removeNavBActivateBtn(storage);
+        navSecondaryView.removeNavBActivateBtn(storage);
         setTimeout(() => {
             auto.click_nav_A(startupTab); // auto clicks active tab if active
         }, 50);
@@ -75,12 +75,7 @@ let storage;
             }
         }
     };
-    const removeNavBActivateBtn = (storage) => {
-        if (storage.user.audio === 'pro')
-            elements.nav_B_button_audio_activate.style.display = 'none';
-        if (storage.user.video === 'pro')
-            elements.nav_B_button_video_activate.style.display = 'none';
-    };
+
 
     ipcRenderer.on('resize', () => {
         ipcRenderer.send('mainWindow-resized');
@@ -181,6 +176,14 @@ const addMenuListeners = () => {
     });
 };
 const addEventListeners = () => {
+    addNavAListeners();
+    addNavBListeners();
+    addNavBSearchListeners();
+    addAudioDownloadListListeners();
+    addVideoDownloadListListeners();
+};
+
+const addNavAListeners = () => {
     // Nav A LISTENERS
     elements.nav_A.addEventListener('click', (e) => {
         // GETS CLICK EVENT TARGET
@@ -257,7 +260,8 @@ const addEventListeners = () => {
     elements.nav_A_warpstagram.addEventListener('mouseleave', (e) => {
         theme.setTheme(storage);
     });
-    // Nav B audio LISTENERS
+}
+const addNavBListeners = () => {
     elements.nav_B_button_audio_paste.addEventListener('click', (e) => {
         userInput.validateURL(clipboard.readText(), defaults.env.nav_A_active);
     });
@@ -276,14 +280,16 @@ const addEventListeners = () => {
         'click',
         (e) => {}
     );
-
-    // Nav B search listeners
+}
+const addNavBSearchListeners = () => {
     elements.searchAudio.addEventListener('keyup', (e) => {
         search.audioItems();
     });
     elements.searchVideo.addEventListener('keyup', (e) => {
         search.videoItems();
     });
+}
+const addAudioDownloadListListeners = () => {
     // Download lists listeners
     elements.download__list_audio_ID.addEventListener('click', (e) => {
         let itemID, action;
@@ -343,6 +349,9 @@ const addEventListeners = () => {
             }
         }
     });
+
+}
+const addVideoDownloadListListeners = () => {
     elements.download__list_video_ID.addEventListener('click', (e) => {
         let itemID, action;
         let actionMenuContainer;
@@ -403,4 +412,7 @@ const addEventListeners = () => {
             }
         }
     });
-};
+}
+const NavBController = {
+
+}
