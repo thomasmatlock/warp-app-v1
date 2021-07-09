@@ -6,12 +6,10 @@ const theme = require('./themeController');
 const prefsStorage = require('./settings');
 const defaultsReq = require('../js/defaults');
 const defaults = new defaultsReq();
-const stateReq = require('./state');
 const auto = require('./automate');
 const fileControllerReq = require('../js/fileController');
 const fileController = new fileControllerReq();
 
-let state = new stateReq();
 let startupTab, prefsMarkup, prefsMarkupSrc;
 let storage;
 // let collapsibleLicensePanels, collapsibleLicensePanelsVideo, collapsibleLicensePanelsWarpstagram, collapsibleLicensePanelsBundle;
@@ -23,7 +21,7 @@ let collapsibleLicensePanelsBundle = [];
 let collapsibleLicensePanelsHeightMax = '400px';
 let collapsibleLicensePanelsHeightMin = '0px';
 let panelTransitionSpeed = 'height 1s';
-// console.log(state);
+
 (function init() {
     ipcRenderer.on(
         'window-ready',
@@ -32,7 +30,7 @@ let panelTransitionSpeed = 'height 1s';
             prefsMarkupSrc = modalPrefsMarkup;
             prefsMarkup = modalPrefsMarkup;
             startupTab = discoverStartupTab(storage);
-            state.activeTab = startupTab;
+            storage.state.activeTab = startupTab;
             windowReady(prefsMarkup);
         }
     );
@@ -72,15 +70,15 @@ const createCollapsiblePanelsArray = (arr, subStr, newArr) => {
 }
 const addNavAListeners = () => {
     elements.nav_A_audio.addEventListener('click', (e) => {
-        state.activeTab = 'audio';
+        storage.state.activeTab = 'audio';
         tabSwitch();
     });
     elements.nav_A_video.addEventListener('click', (e) => {
-        state.activeTab = 'video';
+        storage.state.activeTab = 'video';
         tabSwitch();
     });
     elements.nav_A_warpstagram.addEventListener('click', (e) => {
-        state.activeTab = 'warpstagram';
+        storage.state.activeTab = 'warpstagram';
         tabSwitch();
     });
 };
@@ -95,7 +93,7 @@ const refreshListeners = () => {
             .getElementById('closePrefsModal')
             .addEventListener('click', (e) => {
                 // console.log(storage.user.prefs);
-                prefsView.toggleModalPrefsVisibility(state, 'warpstagram');
+                prefsView.toggleModalPrefsVisibility(storage.state, 'warpstagram');
                 prefsSettingsSync();
             });
         // NAV LISTENERS
@@ -264,7 +262,7 @@ const refreshModalBackgroundListeners = (type) => {
     document
         .getElementById('modalBackgroundID')
         .addEventListener('click', (e) => {
-            prefsView.toggleModalPrefsVisibility(state, 'warpstagram');
+            prefsView.toggleModalPrefsVisibility(storage.state, 'warpstagram');
             prefsSettingsSync();
         });
 };
@@ -368,14 +366,14 @@ const tabSwitch = () => {
     setTimeout(() => {
         prefsView.injectPrefsModalToCurrentSlide(
             prefsMarkup,
-            state.activeTab,
+            storage.state.activeTab,
             storage
         );
         prefsView.updateInputOptions(storage);
 
 
     }, 100);
-    prefsView.showPanelInit('prefs', state.activeTab);
+    prefsView.showPanelInit('prefs', storage.state.activeTab);
     refreshListeners();
 };
 const expandLicensePanels = (arr, height) => {

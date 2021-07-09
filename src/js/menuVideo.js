@@ -117,7 +117,7 @@ module.exports = (appWin) => {
                 },
                 {
                     label: 'Preferences',
-                    accelerator: 'P',
+                    accelerator: 'CmdOrCtrl+P',
                     click: () => {
                         appWin.send('Video: Tools: Preferences');
                     },

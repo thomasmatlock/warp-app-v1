@@ -147,7 +147,7 @@ module.exports = (appWin) => {
                 },
                 {
                     label: 'Preferences',
-                    accelerator: 'P',
+                    accelerator: 'CmdOrCtrl+P',
                     click: () => {
                         appWin.send('Warpstagram: Tools: Preferences');
                     },
