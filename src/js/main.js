@@ -56,6 +56,16 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
     ipcMain.on('mainWindow-resized', () => {
         mainWindow.webContents.send('mainWindow-resized');
     });
+    // MENU listeners
+    // ipcMain.on('Audio: Tools: Preferences', () => {
+    //     console.log('Audio: Tools: Preferences');
+    //     mainWindow.webContents.send('Audio: Tools: Preferences');
+    // });
+    // ipcMain.on('Video: Tools: Preferences', () => {
+    //     console.log('Video: Tools: Preferences');
+    //     mainWindow.webContents.send('Video: Tools: Preferences');
+    // });
+    // NAV B listeners
     ipcMain.on('nav_B_button_audio_paste', () => {
         mainWindow.webContents.send('nav_B_button_audio_paste');
     });
@@ -165,7 +175,6 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
         app.quit();
         mainWindow = null;
     });
-
     ipcMain.on('storage-sync-request', (e, storageObj, avType) => {
         fileController.settingsSave('settings', storageObj);
         e.reply('storage-sync-success', storageObj);

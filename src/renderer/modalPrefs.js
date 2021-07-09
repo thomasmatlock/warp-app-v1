@@ -49,15 +49,15 @@ const windowReady = (prefsMarkup) => {
     theme.setTheme(storage)
     prefsView.injectPrefsModalToCurrentSlide(prefsMarkup, startupTab, storage);
     // addNavBListeners();
-    addAppMenuListeners();
+    // addAppMenuListeners();
     prefsView.showPanelInit('prefs', 'warpstagram');
     setTimeout(() => {
-        if (!defaults.dev.autoOpenModalPrefs) {
-            prefsView.toggleModalPrefsVisibility(state, 'warpstagram');
-            auto.click_nav_B(startupTab, 'preferences');
-        }
-        if (defaults.dev.autoOpenModalPrefs)
-            auto.click_nav_B(startupTab, 'preferences');
+        // if (!defaults.dev.autoOpenModalPrefs) {
+        //     prefsView.toggleModalPrefsVisibility(state, 'warpstagram');
+        //     auto.click_nav_B(startupTab, 'preferences');
+        // }
+        // if (defaults.dev.autoOpenModalPrefs)
+        //     auto.click_nav_B(startupTab, 'preferences');
     }, 400);
     refreshModalListeners('refresh'); // THIS IS CHANGING BEHAVIOR OF BACKGROUND
     setTimeout(() => {

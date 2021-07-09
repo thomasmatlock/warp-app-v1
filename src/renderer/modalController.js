@@ -22,7 +22,6 @@ let storage, startupTab;
             storage = storageSentFromMain;
             startupTab = modalPrefs.discoverStartupTab(storage);
             state.activeTab = startupTab;
-            addListeners();
         }
     );
     ipcRenderer.on('storage-sync-success', (e, storageReceived) => {
@@ -38,21 +37,9 @@ let storage, startupTab;
         prefsView.toggleModalPrefsVisibility(state, 'video');
     });
 })();
-const addListeners = () => {
-    addMenuListeners()
-    setTimeout(() => {
-        addNavAListeners()
-    }, 400)
-}
-const addNavAListeners = () => {}
-const addMenuListeners = () => {}
+
 
 const toggleBackground = () => {}
 const togglePrefsVisibility = () => {}
 const closeModalPrefs = () => {}
 const openModalPrefs = () => {}
-
-ipcRenderer.on('nav_B_button_video_subscriptions', (e, storageReceived) => {
-    console.log('nav_B_button_video_subscriptions');
-    console.log('SUCCESS');
-});

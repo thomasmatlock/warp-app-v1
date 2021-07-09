@@ -97,6 +97,10 @@ const addMenuListeners = () => {
     ipcRenderer.on('Audio: Downloads: Remove All', () => {
         items.removeAllitems('audio');
     });
+    // Tools
+    ipcRenderer.on('Audio: Tools: Preferences', () => {
+        ipcRenderer.send('nav_B_button_audio_preferences');
+    });
 
     // MENU LISTENERS, VIDEO
     // File
@@ -117,6 +121,9 @@ const addMenuListeners = () => {
     ipcRenderer.on('Video: Tools: Smart Mode', () => {});
     ipcRenderer.on('Video: Tools: Subscriptions', () => {});
     ipcRenderer.on('Video: Tools: Check for update', () => {});
+    ipcRenderer.on('Video: Tools: Preferences', () => {
+        ipcRenderer.send('nav_B_button_video_preferences');
+    });
 
     // MENU LISTENERS, WARPSTAGRAM
     // File
