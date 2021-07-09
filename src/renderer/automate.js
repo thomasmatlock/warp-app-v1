@@ -1,4 +1,3 @@
-const logging = false;
 const defaultsReq = require('../js/defaults');
 const defaults = new defaultsReq();
 let elements = require('./views/elements');

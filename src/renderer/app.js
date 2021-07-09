@@ -11,6 +11,7 @@ const nav_B = require('./views/navSecondaryView.js');
 const listView = require('./views/listView.js');
 const userInput = require('../js/userInput');
 const defaultsReq = require('../js/defaults');
+const global = require('../js/global');
 const defaults = new defaultsReq();
 const items = require('./items');
 const auto = require('./automate');
@@ -18,7 +19,7 @@ const search = require('./searchLocal');
 const theme = require('./themeController');
 
 let storage;
-
+global.testFunctions();
 const addIpcListeners = () => {
     ipcRenderer.on('storage-sync-success', (e, storageReceived) => {
         storage = storageReceived;
