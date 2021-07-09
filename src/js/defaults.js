@@ -14,10 +14,10 @@ class defaults {
             theme: 'dark', // true = 'light', false = 'dark'
         };
         this.state = {
-            nav: new nav(), // controls active nav
+            // nav: new nav(), // controls active nav
             modals: {
-                preferencesVisible: false,
-                backgroundVisible: false,
+                preferences: false,
+                background: false,
             },
             activeTab: '',
         }

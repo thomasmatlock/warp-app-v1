@@ -12,7 +12,7 @@ const auto = require('./automate');
 const fileControllerReq = require('../js/fileController');
 const fileController = new fileControllerReq();
 
-let state = new stateReq();
+// let state = new stateReq();
 let storage, startupTab;
 const addIpcRendererListeners = () => {
     ipcRenderer.on('storage-sync-success', (e, storageReceived) => {
@@ -22,28 +22,26 @@ const addIpcRendererListeners = () => {
         console.log('mainWindow-resized');
     });
     ipcRenderer.on('nav_A_audio', (e, storageReceived) => {
-        state.activeTab = 'audio';
-        console.log(state);
-        // console.log(e.sender);
-        // modalPrefs.tabSwitch();
+        storage.state.activeTab = 'audio';
+        console.log(storage.state);
     });
     ipcRenderer.on('nav_A_video', (e, storageReceived) => {
-        state.activeTab = 'video';
-        console.log(state);
+        storage.state.activeTab = 'video';
+        console.log(storage.state);
     });
     ipcRenderer.on('nav_A_warpstagram', (e, storageReceived) => {
-        state.activeTab = 'warpstagram';
-        console.log(state);
+        storage.state.activeTab = 'warpstagram';
+        console.log(storage.state);
     });
 
     ipcRenderer.on('nav_B_button_audio_preferences', (e, storageReceived) => {
-        prefsView.toggleModalPrefsVisibility(state, 'audio');
+        prefsView.toggleModalPrefsVisibility(storage.state, 'audio');
     });
     ipcRenderer.on('nav_B_button_video_preferences', (e, storageReceived) => {
-        prefsView.toggleModalPrefsVisibility(state, 'video');
+        prefsView.toggleModalPrefsVisibility(storage.state, 'video');
     });
     ipcRenderer.on('Warpstagram: Tools: Preferences', (e, storageReceived) => {
-        // prefsView.toggleModalPrefsVisibility(state, 'warpstagram');
+        // prefsView.toggleModalPrefsVisibility(storage.state, 'warpstagram');
     });
 }
 
@@ -52,11 +50,12 @@ const addIpcRendererListeners = () => {
         'window-ready',
         (e, storageSentFromMain, modalPrefsMarkup, markupDownloadItemAudio, markupDownloadItemVideo) => {
             storage = storageSentFromMain;
+            console.log(storage);
             startupTab = modalPrefs.discoverStartupTab(storage);
-            state.activeTab = startupTab;
+            storage.state.activeTab = startupTab;
             setTimeout(() => {
                 if (!defaults.dev.autoOpenModalPrefs) {
-                    prefsView.toggleModalPrefsVisibility(state, 'warpstagram');
+                    prefsView.toggleModalPrefsVisibility(storage.state, 'warpstagram');
                     auto.click_nav_B(startupTab, 'preferences');
                 }
                 if (defaults.dev.autoOpenModalPrefs)

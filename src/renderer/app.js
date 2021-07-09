@@ -9,17 +9,14 @@ let elements = require('./views/elements');
 const nav_A = require('./views/navPrimaryView.js');
 const nav_B = require('./views/navSecondaryView.js');
 const listView = require('./views/listView.js');
-const Nav = require('../js/nav.js');
 const userInput = require('../js/userInput');
 const defaultsReq = require('../js/defaults');
 const defaults = new defaultsReq();
 const items = require('./items');
 const auto = require('./automate');
-const stateReq = require('./state');
 const search = require('./searchLocal');
 const theme = require('./themeController');
 
-let state = new stateReq();
 let storage;
 
 const addIpcListeners = () => {
@@ -60,20 +57,20 @@ const addIpcListeners = () => {
     ipcRenderer.on('window-ready', (e, storage, modalPrefsMarkup, markupDownloadItemAudio, markupDownloadItemVideo, networkSpeed) => {
         addEventListeners(); // activates DOM event listeners
         let startupTab = discoverStartupTab(storage);
-        state.activeTab = startupTab;
-        console.log(state);
-        // state.sync();
-
+        // state.activeTab = startupTab;
+        storage.state.activeTab = startupTab;
+        // state = storage.state;
+        console.log(storage.state);
 
         nav_A.setActiveNav_A(storage); // sets active Nav A
         nav_B.removeNavBActivateBtn(storage);
         setTimeout(() => {
-            auto.click_nav_A(state.activeTab); // auto clicks active tab if active
+            auto.click_nav_A(storage.state.activeTab); // auto clicks active tab if active
         }, 50);
         setTimeout(() => {
-            auto.click_nav_A(state.activeTab); // auto clicks active tab if active
+            auto.click_nav_A(storage.state.activeTab); // auto clicks active tab if active
         }, 300);
-        ipcRenderer.send('menu-change', state.activeTab);
+        ipcRenderer.send('menu-change', storage.state.activeTab);
         if (defaults.dev.clearStorage) items.resetStorage(); // clears localStorage if active
         items.defaultsAddAllItems(storage, markupDownloadItemAudio, markupDownloadItemVideo); // loads items stored in settings to UI
 
@@ -194,29 +191,9 @@ const addNavAListeners = () => {
         const target = e.target;
         const id = target.id;
         nav_A_active = id;
-
-        if (id) {
-            state.nav.updateActiveNav_A(id);
-            // changeNavB_listener(id);
-            // console.log(id);
-        }
-
-        // 	CLEARS ACTIVE AND ADDS IT TO SELECTED TAB
         nav_A.clearActive();
         nav_A.highlightSelected(id);
-
         nav_B.clearActive();
-
-        const nav_B_actives = state.nav.nav_B[nav_A_active];
-
-        for (var key in nav_B_actives) {
-            if (
-                nav_B_actives.hasOwnProperty(key) &&
-                nav_B_actives[key] === true
-            ) {
-                nav_B.highlightSelected('add', key);
-            }
-        }
     });
     let orangeGradient = 'linear-gradient(268deg, #da2c4d, #f8ab37)';
     let blueGradient = 'linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, #19d2fc 100%)';

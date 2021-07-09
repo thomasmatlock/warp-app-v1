@@ -8,7 +8,7 @@ const fileControllerReq = require('./fileController');
 const fileController = new fileControllerReq();
 const settings = require('../renderer/settings');
 const defaultsReq = require('./defaults');
-const defaults = new defaultsReq();;
+const defaults = new defaultsReq();
 ///////////////////////////////////   TRAY   /////////////////////////////////
 let tray = null;
 app.whenReady().then(() => {
@@ -199,14 +199,7 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
         console.log('closing app...');
         app.quit();
     });
-    const { app, globalShortcut } = require('electron');
-
-    // app.whenReady().then(() => {
-    //     globalShortcut.register('Alt+CommandOrControl+I', () => {
-    //         console.log('Electron loves global shortcuts!');
-    //     });
-    // });
-    // .then(createWindow);
+    // const { app, globalShortcut } = require('electron');
 })();
 ///////////////////////   IPC LISTENERS FOR EVENTS FROM APP.JS   ///////////////////////
 (function appListeners() {
@@ -220,6 +213,8 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
         (async() => {
             storageAwaited = await mainFunctions.load();
             storageMain = storageAwaited;
+            // storageMain.state = defaults.state;
+            // console.log(defaults.state);
             if (storageAwaited.user.prefs.prefsMarkup === '') {
                 // console.log(`no markup present`);
                 markupModalPrefs = await mainFunctions.loadMarkupModalPrefs();
@@ -242,6 +237,7 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
         if (mainWindow === null) windowController.createWindow(); // When app icon is clicked and app is running, (macOS) recreate the BrowserWindow
     });
 })();
+
 ///////////////////////   MAIN FUNCTIONS   ///////////////////////
 const mainFunctions = {
     setMenu: function(menuType) {
@@ -336,7 +332,10 @@ const windowController = {
         const wc = mainWindow.webContents;
         // send stuff to app.js
         wc.on('did-finish-load', () => {
-
+            // console.log(defaults.state);
+            // console.log(storageMain);
+            storageMain.state = defaults.state;
+            // storageMain.state = 'hello';
             wc.send('window-ready', storageMain, markupModalPrefs, markupDownloadItemAudio, markupDownloadItemVideo);
             if (defaults.dev.splashScreen) splash.destroy();
         });
