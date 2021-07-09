@@ -22,7 +22,7 @@ const theme = require('./themeController');
 let state = new stateReq();
 let storage;
 
-const addIpcRendererListeners = () => {
+const addIpcListeners = () => {
     ipcRenderer.on('storage-sync-success', (e, storageReceived) => {
         storage = storageReceived;
     });
@@ -62,7 +62,7 @@ const addIpcRendererListeners = () => {
         let startupTab = discoverStartupTab(storage);
         state.activeTab = startupTab;
         console.log(state);
-        state.sync();
+        // state.sync();
 
 
         nav_A.setActiveNav_A(storage); // sets active Nav A
@@ -92,7 +92,7 @@ const addIpcRendererListeners = () => {
             }
         }
     };
-    addIpcRendererListeners();
+    addIpcListeners();
 
 })();
 

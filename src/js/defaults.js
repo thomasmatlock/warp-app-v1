@@ -3,6 +3,7 @@ const fileController = new fileControllerReq();
 const path = require('path');
 const fs = require('fs');
 const urls = require('./testURLS');
+const nav = require('../js/nav');
 class defaults {
     constructor() {
         this.devMode = true;
@@ -12,7 +13,14 @@ class defaults {
             user: 'dev', // can be dev, free, or paid
             theme: 'dark', // true = 'light', false = 'dark'
         };
-
+        this.state = {
+            nav: new nav(), // controls active nav
+            modals: {
+                preferencesVisible: false,
+                backgroundVisible: false,
+            },
+            activeTab: '',
+        }
         this.dev = {
             autoClick: true, // clicks nav B button
             autoOpenModalPrefs: true, //
