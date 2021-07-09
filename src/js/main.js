@@ -61,10 +61,19 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
     //     console.log('Audio: Tools: Preferences');
     //     mainWindow.webContents.send('Audio: Tools: Preferences');
     // });
-    // ipcMain.on('Video: Tools: Preferences', () => {
-    //     console.log('Video: Tools: Preferences');
-    //     mainWindow.webContents.send('Video: Tools: Preferences');
-    // });
+    ipcMain.on('Warpstagram: Tools: Preferences', () => {
+        mainWindow.webContents.send('Warpstagram: Tools: Preferences');
+    });
+    // NAV a listeners
+    ipcMain.on('nav_A_audio', (e) => {
+        mainWindow.webContents.send('nav_A_audio');
+    });
+    ipcMain.on('nav_A_video', (e) => {
+        mainWindow.webContents.send('nav_A_video');
+    });
+    ipcMain.on('nav_A_warpstagram', (e) => {
+        mainWindow.webContents.send('nav_A_warpstagram');
+    });
     // NAV B listeners
     ipcMain.on('nav_B_button_audio_paste', () => {
         mainWindow.webContents.send('nav_B_button_audio_paste');

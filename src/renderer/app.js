@@ -21,41 +21,11 @@ const theme = require('./themeController');
 
 let state = new stateReq();
 let storage;
-(function init() {
-    ipcRenderer.on('window-ready', (e, storage, modalPrefsMarkup, markupDownloadItemAudio, markupDownloadItemVideo, networkSpeed) => {
-        addEventListeners(); // activates DOM event listeners
-        addMenuListeners(); // activates menu event listeners
-        let startupTab = discoverStartupTab(storage);
-        nav_A.setActiveNav_A(storage); // sets active Nav A
-        nav_B.removeNavBActivateBtn(storage);
-        setTimeout(() => {
-            auto.click_nav_A(startupTab); // auto clicks active tab if active
-        }, 50);
-        setTimeout(() => {
-            // auto.click_nav_A(defaults.env.nav_A_active); // auto clicks active tab if active
-            auto.click_nav_A(startupTab); // auto clicks active tab if active
-        }, 300);
-        ipcRenderer.send('menu-change', startupTab);
-        if (defaults.dev.clearStorage) items.resetStorage(); // clears localStorage if active
-        items.defaultsAddAllItems(storage, markupDownloadItemAudio, markupDownloadItemVideo); // loads items stored in settings to UI
 
-        ipcRenderer.send('mainWindow-ready');
-        ipcRenderer.on('modal-window-ready', () => {
-            console.log('attaching event listeners');
-        });
-    });
+const addIpcRendererListeners = () => {
     ipcRenderer.on('storage-sync-success', (e, storageReceived) => {
         storage = storageReceived;
     });
-
-    const discoverStartupTab = function(storage) {
-        for (var key in storage.user.prefs) {
-            if (storage.user.prefs[key] && key.toLowerCase().includes('startuptab')) {
-                let startupTab = key.toLowerCase().slice(19, key.length)
-                return startupTab;
-            }
-        }
-    };
     ipcRenderer.on('resize', () => {
         ipcRenderer.send('mainWindow-resized');
         // CLICK ACTIVE NAV A
@@ -81,9 +51,46 @@ let storage;
     ipcRenderer.on('paste-new-url', (event, itemURL, avType, platform) => {
         items.downloadItem(itemURL, avType, platform);
     });
+}
+
+(function init() {
+    ipcRenderer.on('window-ready', (e, storage, modalPrefsMarkup, markupDownloadItemAudio, markupDownloadItemVideo, networkSpeed) => {
+        addEventListeners(); // activates DOM event listeners
+        let startupTab = discoverStartupTab(storage);
+        state.activeTab = startupTab;
+        nav_A.setActiveNav_A(storage); // sets active Nav A
+        nav_B.removeNavBActivateBtn(storage);
+        setTimeout(() => {
+            auto.click_nav_A(state.activeTab); // auto clicks active tab if active
+        }, 50);
+        setTimeout(() => {
+            auto.click_nav_A(state.activeTab); // auto clicks active tab if active
+        }, 300);
+        ipcRenderer.send('menu-change', state.activeTab);
+        if (defaults.dev.clearStorage) items.resetStorage(); // clears localStorage if active
+        items.defaultsAddAllItems(storage, markupDownloadItemAudio, markupDownloadItemVideo); // loads items stored in settings to UI
+
+        ipcRenderer.send('mainWindow-ready');
+        ipcRenderer.on('modal-window-ready', () => {
+            console.log('attaching event listeners');
+        });
+    });
+
+
+    const discoverStartupTab = function(storage) {
+        for (var key in storage.user.prefs) {
+            if (storage.user.prefs[key] && key.toLowerCase().includes('startuptab')) {
+                let startupTab = key.toLowerCase().slice(19, key.length)
+                return startupTab;
+            }
+        }
+    };
+    addIpcRendererListeners();
+
 })();
 
 const addMenuListeners = () => {
+    // MENU LISTENERS, AUDIO
     ipcRenderer.on('Audio: File: Import Download Links', () => {
         console.log('you want to import audio');
     });
@@ -144,6 +151,10 @@ const addMenuListeners = () => {
     // Tools
     ipcRenderer.on('Warpstagram: Tools: Login', () => {});
     ipcRenderer.on('Warpstagram: Tools: Manage license', () => {});
+    ipcRenderer.on('Warpstagram: Tools: Check for update', () => {});
+    ipcRenderer.on('Warpstagram: Tools: Preferences', () => {
+        ipcRenderer.send('Warpstagram: Tools: Preferences');
+    });
 
     // Menu listeners, universal commands
     ipcRenderer.on('Check for update', () => {});
@@ -162,6 +173,7 @@ const addMenuListeners = () => {
     });
 };
 const addEventListeners = () => {
+    addMenuListeners();
     addNavAListeners();
     addNavBListeners();
     addNavBSearchListeners();
@@ -204,6 +216,7 @@ const addNavAListeners = () => {
     // menu-change
     elements.nav_A_audio.addEventListener('click', (e) => {
         ipcRenderer.send('menu-change', 'audio');
+        ipcRenderer.send('nav_A_audio');
         defaults.env.nav_A_active = 'audio';
         elements.nav_A_audio.style.backgroundImage = blueGradient;
         items.removeActionMenus();
@@ -219,6 +232,7 @@ const addNavAListeners = () => {
     });
     elements.nav_A_video.addEventListener('click', (e) => {
         ipcRenderer.send('menu-change', 'video');
+        ipcRenderer.send('nav_A_video');
         defaults.env.nav_A_active = 'video';
         elements.nav_A_video.style.backgroundImage = blueGradient;
         items.removeActionMenus();
@@ -233,6 +247,7 @@ const addNavAListeners = () => {
     });
     elements.nav_A_warpstagram.addEventListener('click', (e) => {
         ipcRenderer.send('menu-change', 'warpstagram');
+        ipcRenderer.send('nav_A_warpstagram');
         defaults.env.nav_A_active = 'warpstagram';
         elements.nav_A_warpstagram.style.backgroundImage = blueGradient;
         items.removeActionMenus();

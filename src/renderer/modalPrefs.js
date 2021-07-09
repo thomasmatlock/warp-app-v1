@@ -33,7 +33,6 @@ let panelTransitionSpeed = 'height 1s';
             prefsMarkup = modalPrefsMarkup;
             startupTab = discoverStartupTab(storage);
             state.activeTab = startupTab;
-            // console.log(state);
             windowReady(prefsMarkup);
         }
     );
@@ -48,22 +47,11 @@ let panelTransitionSpeed = 'height 1s';
 const windowReady = (prefsMarkup) => {
     theme.setTheme(storage)
     prefsView.injectPrefsModalToCurrentSlide(prefsMarkup, startupTab, storage);
-    // addNavBListeners();
-    // addAppMenuListeners();
     prefsView.showPanelInit('prefs', 'warpstagram');
-    setTimeout(() => {
-        // if (!defaults.dev.autoOpenModalPrefs) {
-        //     prefsView.toggleModalPrefsVisibility(state, 'warpstagram');
-        //     auto.click_nav_B(startupTab, 'preferences');
-        // }
-        // if (defaults.dev.autoOpenModalPrefs)
-        //     auto.click_nav_B(startupTab, 'preferences');
-    }, 400);
     refreshModalListeners('refresh'); // THIS IS CHANGING BEHAVIOR OF BACKGROUND
     setTimeout(() => {
         addNavAListeners();
         prefsView.updateInputOptions(storage);
-
         setLicenseActivationTransitionsSpeed();
         collapsibleLicensePanels = document.getElementsByClassName('modalActionComponent_panel_collapsible');
         expandLicensePanels(collapsibleLicensePanels, collapsibleLicensePanelsHeightMax);
@@ -94,19 +82,6 @@ const addNavAListeners = () => {
     elements.nav_A_warpstagram.addEventListener('click', (e) => {
         state.activeTab = 'warpstagram';
         tabSwitch();
-    });
-};
-const addAppMenuListeners = () => {
-    ipcRenderer.on('Audio: Tools: Preferences', () => {
-        prefsView.toggleModalPrefsVisibility(state, 'audio');
-    });
-
-    ipcRenderer.on('Video: Tools: Preferences', () => {
-        prefsView.toggleModalPrefsVisibility(state, 'video');
-    });
-
-    ipcRenderer.on('Warpstagram: Tools: Preferences', () => {
-        prefsView.toggleModalPrefsVisibility(state, 'warpstagram');
     });
 };
 const refreshModalListeners = (type) => {
@@ -456,4 +431,5 @@ ipcRenderer.on(
 module.exports = {
     discoverStartupTab: discoverStartupTab,
     refreshModalListeners: refreshModalListeners,
+    tabSwitch: tabSwitch,
 };
