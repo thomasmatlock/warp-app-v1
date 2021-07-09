@@ -1,3 +1,4 @@
+const { app, clipboard, ipcRenderer, shell } = require('electron');
 const nav = require('../js/nav');
 class state {
     constructor() {
@@ -7,9 +8,9 @@ class state {
         this.modals.background = false;
         this.activeTab = '';
     }
-
-    stateTest = () => {
-        console.log(`state test`);
-    };
+    sync = () => {
+        console.log(this);
+        // ipcRenderer.send('state-sync-request', this);
+    }
 }
 module.exports = state;

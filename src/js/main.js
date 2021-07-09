@@ -56,6 +56,9 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
     ipcMain.on('mainWindow-resized', () => {
         mainWindow.webContents.send('mainWindow-resized');
     });
+    ipcMain.on('state-sync-request', (e, stateReceived) => {
+        mainWindow.webContents.send('state-sync-success', stateReceived);
+    });
     // MENU listeners
     // ipcMain.on('Audio: Tools: Preferences', () => {
     //     console.log('Audio: Tools: Preferences');
@@ -154,30 +157,6 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
                     }
                 })
                 .catch((err) => console.log(err));
-            // dialog.showOpenDialogSync(mainWindow, {
-            //     properties: ['openFile', 'openDirectory'],
-            // });
-
-            //////////////////////////////////////////////////////////
-            // dialog.showSaveDialog({}, (filename) => {
-            //     console.log(filename);
-            // });
-            //////////////////////////////////////////////////////////
-            //
-            // const answers = ['Yeah', 'Naw', 'Maybe'];
-            // dialog
-            //     .showMessageBox({
-            //         title: 'The Big Message Box Title',
-            //         message: 'This is a message',
-            //         detail: 'Message details',
-            //         buttons: answers,
-            //     })
-            //     .then((response) => {
-            //         const res = answers[response.response];
-            //         console.log(res);
-            //     })
-            //     .catch((err) => console.log(err));
-            //////////////////////////////////////////////////////////
         }
     );
     ipcMain.on('quit', () => {

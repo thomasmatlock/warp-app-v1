@@ -26,6 +26,9 @@ const addIpcRendererListeners = () => {
     ipcRenderer.on('storage-sync-success', (e, storageReceived) => {
         storage = storageReceived;
     });
+    ipcRenderer.on('state-sync-success', (e, stateReceived) => {
+        console.log('state-sync-success');
+    });
     ipcRenderer.on('resize', () => {
         ipcRenderer.send('mainWindow-resized');
         // CLICK ACTIVE NAV A
@@ -58,6 +61,10 @@ const addIpcRendererListeners = () => {
         addEventListeners(); // activates DOM event listeners
         let startupTab = discoverStartupTab(storage);
         state.activeTab = startupTab;
+        console.log(state);
+        state.sync();
+
+
         nav_A.setActiveNav_A(storage); // sets active Nav A
         nav_B.removeNavBActivateBtn(storage);
         setTimeout(() => {
