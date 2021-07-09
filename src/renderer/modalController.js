@@ -21,15 +21,12 @@ const addIpcRendererListeners = () => {
     });
     ipcRenderer.on('nav_A_audio', (e, storageReceived) => {
         storage.state.activeTab = 'audio';
-        console.log(storage.state);
     });
     ipcRenderer.on('nav_A_video', (e, storageReceived) => {
         storage.state.activeTab = 'video';
-        console.log(storage.state);
     });
     ipcRenderer.on('nav_A_warpstagram', (e, storageReceived) => {
         storage.state.activeTab = 'warpstagram';
-        console.log(storage.state);
     });
 
     ipcRenderer.on('nav_B_button_audio_preferences', (e, storageReceived) => {
@@ -48,7 +45,6 @@ const addIpcRendererListeners = () => {
         'window-ready',
         (e, storageSentFromMain, modalPrefsMarkup, markupDownloadItemAudio, markupDownloadItemVideo) => {
             storage = storageSentFromMain;
-            console.log(storage);
             startupTab = modalPrefs.discoverStartupTab(storage);
             storage.state.activeTab = startupTab;
             setTimeout(() => {

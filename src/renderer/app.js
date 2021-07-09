@@ -60,7 +60,6 @@ const addIpcListeners = () => {
         // state.activeTab = startupTab;
         storage.state.activeTab = startupTab;
         // state = storage.state;
-        console.log(storage.state);
 
         nav_A.setActiveNav_A(storage); // sets active Nav A
         nav_B.removeNavBActivateBtn(storage);
