@@ -6,8 +6,8 @@
 const { app, clipboard, ipcRenderer, shell } = require('electron');
 const nativeImage = require('electron').nativeImage;
 let elements = require('./views/elements');
-const navPrimaryView = require('./views/navPrimaryView.js');
-const navSecondaryView = require('./views/navSecondaryView.js');
+const nav_A = require('./views/navPrimaryView.js');
+const nav_B = require('./views/navSecondaryView.js');
 const listView = require('./views/listView.js');
 const Nav = require('../js/nav.js');
 const userInput = require('../js/userInput');
@@ -29,7 +29,7 @@ let storage;
         addMenuListeners(); // activates menu event listeners
         let startupTab = discoverStartupTab(storage);
         setActiveNav_A(storage); // sets active Nav A
-        navSecondaryView.removeNavBActivateBtn(storage);
+        nav_B.removeNavBActivateBtn(storage);
         setTimeout(() => {
             auto.click_nav_A(startupTab); // auto clicks active tab if active
         }, 50);
@@ -66,9 +66,6 @@ let storage;
     };
     const discoverStartupTab = function(storage) {
         for (var key in storage.user.prefs) {
-            // if key value is true, and contains startupTab
-            // NEED THIS VERSION
-            // LATEST
             if (storage.user.prefs[key] && key.toLowerCase().includes('startuptab')) {
                 let startupTab = key.toLowerCase().slice(19, key.length)
                 return startupTab;
@@ -198,10 +195,10 @@ const addNavAListeners = () => {
         }
 
         // 	CLEARS ACTIVE AND ADDS IT TO SELECTED TAB
-        navPrimaryView.clearActive();
-        navPrimaryView.highlightSelected(id);
+        nav_A.clearActive();
+        nav_A.highlightSelected(id);
 
-        navSecondaryView.clearActive();
+        nav_B.clearActive();
 
         const nav_B_actives = state.nav.nav_B[nav_A_active];
 
@@ -210,7 +207,7 @@ const addNavAListeners = () => {
                 nav_B_actives.hasOwnProperty(key) &&
                 nav_B_actives[key] === true
             ) {
-                navSecondaryView.highlightSelected('add', key);
+                nav_B.highlightSelected('add', key);
             }
         }
     });
