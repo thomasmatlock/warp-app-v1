@@ -6,10 +6,11 @@ const prefsView = require('./modalPrefsView');
 const theme = require('./themeController');
 const prefsStorage = require('./settings');
 const defaultsReq = require('../js/defaults');
+const global = require('../js/global');
 const defaults = new defaultsReq();
 const auto = require('./automate');
 
-let storage, startupTab;
+let storage;
 const addIpcRendererListeners = () => {
     ipcRenderer.on('storage-sync-success', (e, storageReceived) => {
         storage = storageReceived;
@@ -43,15 +44,14 @@ const addIpcRendererListeners = () => {
         'window-ready',
         (e, storageSentFromMain, modalPrefsMarkup, markupDownloadItemAudio, markupDownloadItemVideo) => {
             storage = storageSentFromMain;
-            startupTab = modalPrefs.discoverStartupTab(storage);
-            storage.state.activeTab = startupTab;
+            storage.state.activeTab = global.discoverStartupTab(storage);
             setTimeout(() => {
                 if (!defaults.dev.autoOpenModalPrefs) {
                     prefsView.toggleModalPrefsVisibility(storage.state, 'warpstagram');
-                    auto.click_nav_B(startupTab, 'preferences');
+                    auto.click_nav_B(storage.state.activeTab, 'preferences');
                 }
                 if (defaults.dev.autoOpenModalPrefs)
-                    auto.click_nav_B(startupTab, 'preferences');
+                    auto.click_nav_B(storage.state.activeTab, 'preferences');
             }, 100);
         }
     );

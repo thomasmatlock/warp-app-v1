@@ -19,7 +19,7 @@ const search = require('./searchLocal');
 const theme = require('./themeController');
 
 let storage;
-global.testFunctions();
+// global.testFunctions();
 const addIpcListeners = () => {
     ipcRenderer.on('storage-sync-success', (e, storageReceived) => {
         storage = storageReceived;
@@ -58,11 +58,8 @@ const addIpcListeners = () => {
 (function init() {
     ipcRenderer.on('window-ready', (e, storage, modalPrefsMarkup, markupDownloadItemAudio, markupDownloadItemVideo, networkSpeed) => {
         addEventListeners(); // activates DOM event listeners
-        let startupTab = discoverStartupTab(storage);
-        // state.activeTab = startupTab;
-        storage.state.activeTab = startupTab;
-        // state = storage.state;
-
+        let startupTab = global.discoverStartupTab(storage);
+        storage.state.activeTab = global.discoverStartupTab(storage);
         nav_A.setActiveNav_A(storage); // sets active Nav A
         nav_B.removeNavBActivateBtn(storage);
         setTimeout(() => {
@@ -80,18 +77,7 @@ const addIpcListeners = () => {
             console.log('attaching event listeners');
         });
     });
-
-
-    const discoverStartupTab = function(storage) {
-        for (var key in storage.user.prefs) {
-            if (storage.user.prefs[key] && key.toLowerCase().includes('startuptab')) {
-                let startupTab = key.toLowerCase().slice(19, key.length)
-                return startupTab;
-            }
-        }
-    };
     addIpcListeners();
-
 })();
 
 const addMenuListeners = () => {

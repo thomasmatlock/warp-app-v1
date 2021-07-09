@@ -1,14 +1,8 @@
 const { app, clipboard, ipcRenderer, shell } = require('electron');
-const dialog = require('electron');
 let elements = require('./views/elements');
 const prefsView = require('./modalPrefsView');
 const theme = require('./themeController');
-const prefsStorage = require('./settings');
-const defaultsReq = require('../js/defaults');
-const defaults = new defaultsReq();
-const auto = require('./automate');
-const fileControllerReq = require('../js/fileController');
-const fileController = new fileControllerReq();
+const global = require('../js/global');
 
 let startupTab, prefsMarkup, prefsMarkupSrc;
 let storage;
@@ -29,8 +23,7 @@ let panelTransitionSpeed = 'height 1s';
             storage = storageSentFromMain;
             prefsMarkupSrc = modalPrefsMarkup;
             prefsMarkup = modalPrefsMarkup;
-            startupTab = discoverStartupTab(storage);
-            storage.state.activeTab = startupTab;
+            storage.state.activeTab = global.discoverStartupTab(storage);
             windowReady(prefsMarkup);
         }
     );
@@ -44,7 +37,7 @@ let panelTransitionSpeed = 'height 1s';
 
 const windowReady = (prefsMarkup) => {
     theme.setTheme(storage)
-    prefsView.injectPrefsModalToCurrentSlide(prefsMarkup, startupTab, storage);
+    prefsView.injectPrefsModalToCurrentSlide(prefsMarkup, storage.state.activeTab, storage);
     prefsView.showPanelInit('prefs', 'warpstagram');
     refreshModalListeners('refresh'); // THIS IS CHANGING BEHAVIOR OF BACKGROUND
     setTimeout(() => {
@@ -427,7 +420,7 @@ ipcRenderer.on(
     }
 );
 module.exports = {
-    discoverStartupTab: discoverStartupTab,
-    refreshModalListeners: refreshModalListeners,
-    tabSwitch: tabSwitch,
+    discoverStartupTab,
+    refreshModalListeners,
+    tabSwitch,
 };
