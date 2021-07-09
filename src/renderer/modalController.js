@@ -31,6 +31,14 @@ let storage, startupTab;
     ipcRenderer.on('mainWindow-resized', (e, storageReceived) => {
         console.log('mainWindow-resized');
     });
+    ipcRenderer.on('nav_B_button_audio_preferences', (e, storageReceived) => {
+        // console.log('nav_B_button_audio_preferences');
+        prefsView.toggleModalPrefsVisibility(state, 'audio');
+    });
+    ipcRenderer.on('nav_B_button_video_preferences', (e, storageReceived) => {
+        // console.log('nav_B_button_video_preferences');
+        prefsView.toggleModalPrefsVisibility(state, 'video');
+    });
 })();
 const addListeners = () => {
     addNavBListeners()
@@ -41,12 +49,8 @@ const addListeners = () => {
 }
 const addNavAListeners = () => {}
 const addNavBListeners = () => {
-    elements.nav_B_button_audio_preferences.addEventListener('click', (e) => {
-        prefsView.toggleModalPrefsVisibility(state, 'audio');
-    });
-    elements.nav_B_button_video_preferences.addEventListener('click', (e) => {
-        prefsView.toggleModalPrefsVisibility(state, 'video');
-    });
+    elements.nav_B_button_audio_preferences.addEventListener('click', (e) => {});
+    elements.nav_B_button_video_preferences.addEventListener('click', (e) => {});
 }
 const addMenuListeners = () => {}
 
@@ -54,3 +58,8 @@ const toggleBackground = () => {}
 const togglePrefsVisibility = () => {}
 const closeModalPrefs = () => {}
 const openModalPrefs = () => {}
+
+ipcRenderer.on('nav_B_button_video_subscriptions', (e, storageReceived) => {
+    console.log('nav_B_button_video_subscriptions');
+    console.log('SUCCESS');
+});

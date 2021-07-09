@@ -242,22 +242,39 @@ const addNavAListeners = () => {
 const addNavBListeners = () => {
     elements.nav_B_button_audio_paste.addEventListener('click', (e) => {
         userInput.validateURL(clipboard.readText(), defaults.env.nav_A_active);
+        ipcRenderer.send('nav_B_button_audio_paste');
     });
     elements.nav_B_button_audio_activate.addEventListener('click', (e) => {
-        if (logging) console.log('clicked activate');
+        ipcRenderer.send('nav_B_button_audio_activate');
     });
+    elements.nav_B_button_audio_preferences.addEventListener(
+        'click',
+        (e) => {
+            ipcRenderer.send('nav_B_button_audio_preferences');
+        }
+    );
 
     // Nav B video LISTENERS
     elements.nav_B_button_video_paste.addEventListener('click', (e) => {
         userInput.validateURL(clipboard.readText(), defaults.env.nav_A_active);
+        ipcRenderer.send('nav_B_button_video_paste');
     });
     elements.nav_B_button_video_activate.addEventListener('click', (e) => {
-        if (logging) console.log('clicked activate');
+        ipcRenderer.send('nav_B_button_video_activate');
     });
     elements.nav_B_button_video_subscriptions.addEventListener(
         'click',
-        (e) => {}
+        (e) => {
+            ipcRenderer.send('nav_B_button_video_subscriptions');
+        }
     );
+    elements.nav_B_button_video_preferences.addEventListener(
+        'click',
+        (e) => {
+            ipcRenderer.send('nav_B_button_video_preferences');
+        }
+    );
+
 }
 const addNavBSearchListeners = () => {
     elements.searchAudio.addEventListener('keyup', (e) => {

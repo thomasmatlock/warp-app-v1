@@ -56,6 +56,27 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
     ipcMain.on('mainWindow-resized', () => {
         mainWindow.webContents.send('mainWindow-resized');
     });
+    ipcMain.on('nav_B_button_audio_paste', () => {
+        mainWindow.webContents.send('nav_B_button_audio_paste');
+    });
+    ipcMain.on('nav_B_button_audio_activate', () => {
+        mainWindow.webContents.send('nav_B_button_audio_activate');
+    });
+    ipcMain.on('nav_B_button_audio_preferences', () => {
+        mainWindow.webContents.send('nav_B_button_audio_preferences');
+    });
+    ipcMain.on('nav_B_button_video_paste', () => {
+        mainWindow.webContents.send('nav_B_button_video_paste');
+    });
+    ipcMain.on('nav_B_button_video_activate', () => {
+        mainWindow.webContents.send('nav_B_button_video_activate');
+    });
+    ipcMain.on('nav_B_button_video_subscriptions', () => {
+        mainWindow.webContents.send('nav_B_button_video_subscriptions');
+    });
+    ipcMain.on('nav_B_button_video_preferences', () => {
+        mainWindow.webContents.send('nav_B_button_video_preferences');
+    });
     ipcMain.on(
         'dialog-showOutputFolder',
         (e, outputFolderBtnID, storageReceived) => {
