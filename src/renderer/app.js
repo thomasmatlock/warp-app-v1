@@ -23,12 +23,10 @@ let state = new stateReq();
 let storage;
 (function init() {
     ipcRenderer.on('window-ready', (e, storage, modalPrefsMarkup, markupDownloadItemAudio, markupDownloadItemVideo, networkSpeed) => {
-        // console.log(storage.user.prefs);
-        // console.log(markupDownloadItemVideo);
         addEventListeners(); // activates DOM event listeners
         addMenuListeners(); // activates menu event listeners
         let startupTab = discoverStartupTab(storage);
-        setActiveNav_A(storage); // sets active Nav A
+        nav_A.setActiveNav_A(storage); // sets active Nav A
         nav_B.removeNavBActivateBtn(storage);
         setTimeout(() => {
             auto.click_nav_A(startupTab); // auto clicks active tab if active
@@ -49,21 +47,7 @@ let storage;
     ipcRenderer.on('storage-sync-success', (e, storageReceived) => {
         storage = storageReceived;
     });
-    const setActiveNav_A = (storage) => {
-        for (var key in storage.user.prefs) {
-            if (key.includes('startupTab')) {
-                if (key && key.includes('audio')) {
-                    elements.nav_A_active = elements.nav_A_audio;
-                }
-                if (key && key.includes('video')) {
-                    elements.nav_A_active = elements.nav_A_video;
-                }
-                if (key && key.includes('warpstagram')) {
-                    elements.nav_A_active = elements.nav_A_warpstagram;
-                }
-            }
-        }
-    };
+
     const discoverStartupTab = function(storage) {
         for (var key in storage.user.prefs) {
             if (storage.user.prefs[key] && key.toLowerCase().includes('startuptab')) {
