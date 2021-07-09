@@ -7,12 +7,10 @@ const theme = require('./themeController');
 const prefsStorage = require('./settings');
 const defaultsReq = require('../js/defaults');
 const defaults = new defaultsReq();
-const stateReq = require('./state');
 const auto = require('./automate');
 const fileControllerReq = require('../js/fileController');
 const fileController = new fileControllerReq();
 
-// let state = new stateReq();
 let storage, startupTab;
 const addIpcRendererListeners = () => {
     ipcRenderer.on('storage-sync-success', (e, storageReceived) => {

@@ -11,7 +11,7 @@ class defaults {
         this.env = {
             nav_A_active: !this.devMode ? 'audio' : 'audio', //   audio, video, or warpstagram, defaults to audio
             user: 'dev', // can be dev, free, or paid
-            theme: 'dark', // true = 'light', false = 'dark'
+            // theme: 'dark', // true = 'light', false = 'dark'
         };
         this.state = {
             // nav: new nav(), // controls active nav
@@ -24,6 +24,7 @@ class defaults {
         this.dev = {
             autoClick: true, // clicks nav B button
             autoOpenModalPrefs: true, //
+            autoClickNavA_active: true, // clicks nav A tab on load
             getDownloadItemInfo: true, //
             clearStorage: false, // USE THIS TO RESET STORAGE
             devTools: !this.devMode ? false : true, // false, true, devTools off/on
@@ -31,7 +32,6 @@ class defaults {
             downloadFile: true, //
             splashScreen: true, //
             downloadSmallestFile: true,
-            autoClickNavA_active: true, // clicks nav A tab on load
             useRandomYoutubeURL: this.testingYoutubeURLS ? true : false, // uses YT URLS if testingYoutubeURLS is true
             useRandomMiscURL: !this.testingYoutubeURLS ? true : false, // uses misc URLS if testingYoutubeURLS is false
             URLSyoutube: urls.youtube,
