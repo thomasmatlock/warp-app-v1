@@ -29,13 +29,16 @@ const addIpcRendererListeners = () => {
     });
 
     ipcRenderer.on('nav_B_button_audio_preferences', (e, storageReceived) => {
-        prefsView.toggleModalPrefsVisibility(storage.state, 'audio');
+        toggleModal('prefs', 'audio');
+        // prefsView.toggleModalPrefsVisibility(storage.state, 'audio');
     });
     ipcRenderer.on('nav_B_button_video_preferences', (e, storageReceived) => {
-        prefsView.toggleModalPrefsVisibility(storage.state, 'video');
+        toggleModal('prefs', 'video');
+        // prefsView.toggleModalPrefsVisibility(storage.state, 'video');
     });
     ipcRenderer.on('Warpstagram: Tools: Preferences', (e, storageReceived) => {
-        prefsView.toggleModalPrefsVisibility(storage.state, 'warpstagram');
+        toggleModal('prefs', 'warpstagram');
+        // prefsView.toggleModalPrefsVisibility(storage.state, 'warpstagram');
     });
 }
 
@@ -55,5 +58,10 @@ const addIpcRendererListeners = () => {
 const discoverActiveNavA = (state) => {}
 const toggleBackground = () => {}
 const togglePrefsVisibility = () => {}
-const closeModalPrefs = () => {}
+const toggleModal = (modal, avType) => {
+    if (modal.includes('pref')) {
+        prefsView.toggleModalPrefsVisibility(storage.state, avType);
+    }
+
+}
 const openModalPrefs = () => {}
