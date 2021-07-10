@@ -44,7 +44,6 @@ const toggleVisibility = (state, avType) => {
         elements.modalContainerWarpstagram.style.display = 'none';
     }
 };
-
 const injectPrefsMarkup = (markup, activeTab) => {
     let modalContainerAudio = elements.modalContainerAudio; // selects target list to add item markup to
     let modalContainerVideo = elements.modalContainerVideo; // selects target list to add item markup to
@@ -217,7 +216,6 @@ const removeAllInjectedModals = () => {
         }
     }
 };
-
 const setDropdown = (storage, dropdownID, startingSubstr) => {
     let i = -1;
     let index;
@@ -264,7 +262,6 @@ const setDropdownsAll = (storage) => {
         setDropdown(storage, dropdownsObj[key], key);
     }
 };
-
 const setCheckboxes = (storage) => {
     const checkboxObj = {
         checkbox_autostartWarp: document.getElementById(
@@ -280,13 +277,12 @@ const setCheckboxes = (storage) => {
         }
     }
 };
-
 const toggleModalPrefsVisibility = (state, avType) => {
+    console.log(avType);
     toggleBackground(state);
     toggleState(state);
     toggleVisibility(state, avType);
 };
-
 const updateInputOptions = (storage) => {
     setDropdownsAll(storage);
     setCheckboxes(storage);
