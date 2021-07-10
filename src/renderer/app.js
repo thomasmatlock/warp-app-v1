@@ -62,7 +62,7 @@ const addIpcListeners = () => {
         storage.state.activeTab = global.discoverStartupTab(storage);
         // console.log(defaults.env.nav_A_active);
         // console.log(storage.state.activeTab);
-        nav_A.setActiveNav_A(storage); // sets active Nav A
+        // nav_A.setActiveNav_A(storage); // sets active Nav A
         nav_B.removeNavBActivateBtn(storage);
         setTimeout(() => {
             auto.click_nav_A(storage.state.activeTab); // auto clicks active tab if active
@@ -170,8 +170,7 @@ const addEventListeners = () => {
     addNavAListeners();
     addNavBListeners();
     addNavBSearchListeners();
-    addAudioDownloadListListeners();
-    addVideoDownloadListListeners();
+    addDownloadListListeners();
     addKeyboardListeners();
 };
 const addNavAListeners = () => {
@@ -180,23 +179,14 @@ const addNavAListeners = () => {
     let blueGradient = 'linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, #19d2fc 100%)';
     elements.nav_A.addEventListener('click', (e) => {
         const id = e.target.id;
-        nav_A.clearActive();
-        nav_A.highlightSelected(id);
-        nav_B.clearActive();
+        // nav_A.clearActive();
+        nav_A.updateHighlighted(id);
         let avType = id.substr(6, id.length)
         ipcRenderer.send('menu-change', avType);
         defaults.env.nav_A_active = avType;
         ipcRenderer.send(id);
         items.removeActionMenus();
-        if (id.includes('audio')) {
-            elements.nav_A_audio.style.backgroundImage = blueGradient;
-        }
-        if (id.includes('video')) {
-            elements.nav_A_video.style.backgroundImage = blueGradient;
-        }
-        if (id.includes('warp')) {
-            elements.nav_A_warpstagram.style.backgroundImage = blueGradient;
-        }
+        elements[id].style.backgroundImage = blueGradient;
     });
 
     // MOUSE HOVER NAV A
@@ -236,17 +226,6 @@ const addNavBListeners = () => {
             userInput.validateURL(clipboard.readText(), storage.state.activeTab);
         }
     })
-
-
-    // // Nav B video LISTENERS
-    // elements.nav_B_button_video_paste.addEventListener('click', (e) => {
-    //     userInput.validateURL(clipboard.readText(), storage.state.activeTab);
-    //     ipcRenderer.send('nav_B_button_video_paste');
-    // });
-
-
-
-
 }
 const addNavBSearchListeners = () => {
     elements.searchAudio.addEventListener('keyup', (e) => {
@@ -256,8 +235,7 @@ const addNavBSearchListeners = () => {
         search.videoItems();
     });
 }
-const addAudioDownloadListListeners = () => {
-    // Download lists listeners
+const addDownloadListListeners = () => {
     elements.download__list_audio_ID.addEventListener('click', (e) => {
         let itemID, action;
         let actionMenuContainer;
@@ -316,9 +294,6 @@ const addAudioDownloadListListeners = () => {
             }
         }
     });
-
-}
-const addVideoDownloadListListeners = () => {
     elements.download__list_video_ID.addEventListener('click', (e) => {
         let itemID, action;
         let actionMenuContainer;

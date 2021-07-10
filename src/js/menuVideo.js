@@ -93,12 +93,13 @@ module.exports = (appWin) => {
         },
         {
             label: 'Tools',
-            submenu: [{
-                    label: 'Smart Mode...',
-                    click: () => {
-                        appWin.send('Video: Tools: Smart Mode');
-                    },
-                },
+            submenu: [
+                // {
+                //     label: 'Smart Mode...',
+                //     click: () => {
+                //         appWin.send('Video: Tools: Smart Mode');
+                //     },
+                // },
                 {
                     label: 'Subscriptions...',
                     click: () => {
@@ -109,11 +110,26 @@ module.exports = (appWin) => {
                     label: 'separator',
                     type: 'separator',
                 },
+
                 {
                     label: 'Check for updates...',
                     click: () => {
                         appWin.send('Video: Tools: Check for update');
                     },
+                },
+                {
+                    label: 'separator',
+                    type: 'separator',
+                },
+                {
+                    label: 'Manage license',
+                    click: () => {
+                        appWin.send('Warpstagram: Tools: Manage license');
+                    },
+                },
+                {
+                    label: 'separator',
+                    type: 'separator',
                 },
                 {
                     label: 'Preferences',

@@ -81,6 +81,20 @@ module.exports = (appWin) => {
                     },
                 },
                 {
+                    label: 'separator',
+                    type: 'separator',
+                },
+                {
+                    label: 'Manage license',
+                    click: () => {
+                        appWin.send('Audio: Tools: Manage license');
+                    },
+                },
+                {
+                    label: 'separator',
+                    type: 'separator',
+                },
+                {
                     label: 'Preferences',
                     accelerator: 'CmdOrCtrl+P',
                     click: () => {
