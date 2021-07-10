@@ -17,7 +17,8 @@ const items = require('./items');
 const auto = require('./automate');
 const search = require('./searchLocal');
 const theme = require('./themeController');
-
+const modals = require('./modalController');
+console.log(modals);
 let storage;
 // global.testFunctions();
 const addIpcListeners = () => {
@@ -60,10 +61,7 @@ const addIpcListeners = () => {
     ipcRenderer.on('window-ready', (e, storage, modalPrefsMarkup, markupDownloadItemAudio, markupDownloadItemVideo, networkSpeed) => {
         addEventListeners(); // activates DOM event listeners
         storage.state.activeTab = global.discoverStartupTab(storage);
-        // console.log(defaults.env.nav_A_active);
-        // console.log(storage.state.activeTab);
-        // nav_A.setActiveNav_A(storage); // sets active Nav A
-        nav_B.removeNavBActivateBtn(storage);
+        nav_B.init(storage);
         setTimeout(() => {
             auto.click_nav_A(storage.state.activeTab); // auto clicks active tab if active
         }, 50);
@@ -169,7 +167,6 @@ const addEventListeners = () => {
     addMenuListeners();
     addNavAListeners();
     addNavBListeners();
-    addNavBSearchListeners();
     addDownloadListListeners();
     addKeyboardListeners();
 };
@@ -226,8 +223,6 @@ const addNavBListeners = () => {
             userInput.validateURL(clipboard.readText(), storage.state.activeTab);
         }
     })
-}
-const addNavBSearchListeners = () => {
     elements.searchAudio.addEventListener('keyup', (e) => {
         search.audioItems();
     });

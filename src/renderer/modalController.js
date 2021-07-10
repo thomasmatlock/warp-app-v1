@@ -77,3 +77,7 @@ const refreshModalBackgroundListeners = (type) => {
             modalPrefs.prefsSettingsSync();
         });
 };
+
+module.exports = {
+
+}

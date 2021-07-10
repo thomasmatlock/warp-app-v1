@@ -44,6 +44,10 @@ const getID = (e) => {
     if (e.target.tagName === 'I') return e.target.parentNode.parentNode.id; // returns id if user clicks icon element
 }
 
+const init = (storageReceived) => {
+    removeNavBActivateBtn(storageReceived)
+}
+
 const router = () => {}
 module.exports = {
     clearActive,
@@ -53,4 +57,5 @@ module.exports = {
     removeNavBActivateBtn,
     getID,
     router,
+    init,
 }
