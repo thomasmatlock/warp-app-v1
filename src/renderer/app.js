@@ -58,7 +58,6 @@ const addIpcListeners = () => {
 (function init() {
     ipcRenderer.on('window-ready', (e, storage, modalPrefsMarkup, markupDownloadItemAudio, markupDownloadItemVideo, networkSpeed) => {
         addEventListeners(); // activates DOM event listeners
-        let startupTab = global.discoverStartupTab(storage);
         storage.state.activeTab = global.discoverStartupTab(storage);
         nav_A.setActiveNav_A(storage); // sets active Nav A
         nav_B.removeNavBActivateBtn(storage);
@@ -170,6 +169,7 @@ const addEventListeners = () => {
     addNavBSearchListeners();
     addAudioDownloadListListeners();
     addVideoDownloadListListeners();
+    addKeyboardListeners();
 };
 const addNavAListeners = () => {
     // Nav A LISTENERS
@@ -398,6 +398,14 @@ const addVideoDownloadListListeners = () => {
                     item.removeEventListener('click', (e) => {});
                 });
             }
+        }
+    });
+}
+const addKeyboardListeners = () => {
+    window.addEventListener('keydown', (e) => {
+        const { key } = e;
+        if (key === 'Tab') {
+            e.preventDefault();
         }
     });
 }
