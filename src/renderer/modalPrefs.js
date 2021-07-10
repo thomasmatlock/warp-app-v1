@@ -37,8 +37,9 @@ let panelTransitionSpeed = 'height 1s';
 
 const windowReady = (prefsMarkup) => {
     theme.setTheme(storage)
+        // console.log(storage.state.activeTab);
     prefsView.injectPrefsModalToCurrentSlide(prefsMarkup, storage.state.activeTab, storage);
-    prefsView.showPanelInit('prefs', 'warpstagram');
+    prefsView.showPanelInit('prefs', storage.state.activeTab);
     refreshModalListeners('refresh'); // THIS IS CHANGING BEHAVIOR OF BACKGROUND
     setTimeout(() => {
         addNavAListeners();
@@ -76,7 +77,7 @@ const addNavAListeners = () => {
     });
 };
 const refreshModalListeners = (type) => {
-    refreshModalBackgroundListeners(type);
+    // refreshModalBackgroundListeners(type);
     refreshListeners();
 };
 const refreshListeners = () => {
@@ -423,4 +424,5 @@ module.exports = {
     discoverStartupTab,
     refreshModalListeners,
     tabSwitch,
+    prefsSettingsSync,
 };

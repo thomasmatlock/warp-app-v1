@@ -30,15 +30,12 @@ const addIpcRendererListeners = () => {
 
     ipcRenderer.on('nav_B_button_audio_preferences', (e, storageReceived) => {
         toggleModal('prefs', 'audio');
-        // prefsView.toggleModalPrefsVisibility(storage.state, 'audio');
     });
     ipcRenderer.on('nav_B_button_video_preferences', (e, storageReceived) => {
         toggleModal('prefs', 'video');
-        // prefsView.toggleModalPrefsVisibility(storage.state, 'video');
     });
     ipcRenderer.on('Warpstagram: Tools: Preferences', (e, storageReceived) => {
         toggleModal('prefs', 'warpstagram');
-        // prefsView.toggleModalPrefsVisibility(storage.state, 'warpstagram');
     });
 }
 
@@ -49,6 +46,7 @@ const addIpcRendererListeners = () => {
             storage = storageSentFromMain;
             storage.state.activeTab = global.discoverStartupTab(storage);
             auto.openModalPrefs(storage);
+            refreshModalBackgroundListeners();
         }
     );
     addIpcRendererListeners();
@@ -56,12 +54,29 @@ const addIpcRendererListeners = () => {
 
 
 const discoverActiveNavA = (state) => {}
-const toggleBackground = () => {}
+const toggleBackground = (state) => {
+    if (state.modals.background) {
+        elements.modalBackground.style.display = 'none'; // de-activate modal background
+    } else if (!state.modals.background) {
+        elements.modalBackground.style.display = 'flex'; // activate modal background
+    }
+    console.log(state.modals.background);
+}
 const togglePrefsVisibility = () => {}
 const toggleModal = (modal, avType) => {
+    // console.log(storage.state);
     if (modal.includes('pref')) {
+        // toggleBackground(storage.state);
         prefsView.toggleModalPrefsVisibility(storage.state, avType);
     }
 
 }
 const openModalPrefs = () => {}
+const refreshModalBackgroundListeners = (type) => {
+    document
+        .getElementById('modalBackgroundID')
+        .addEventListener('click', (e) => {
+            prefsView.toggleModalPrefsVisibility(storage.state, 'warpstagram');
+            modalPrefs.prefsSettingsSync();
+        });
+};

@@ -14,7 +14,6 @@ const clickElement = (element) => {
 };
 const openModalPrefs = (storage) => {
     setTimeout(() => {
-        console.log(storage.state);
         if (!defaults.dev.autoOpenModalPrefs) {
             prefsView.toggleModalPrefsVisibility(storage.state, 'warpstagram');
             click_nav_B(storage.state.activeTab, 'preferences');
