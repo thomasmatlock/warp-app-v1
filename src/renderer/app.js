@@ -174,25 +174,42 @@ const addEventListeners = () => {
 const addNavAListeners = () => {
     // Nav A LISTENERS
     elements.nav_A.addEventListener('click', (e) => {
-        // GETS CLICK EVENT TARGET
-        const target = e.target;
-        const id = target.id;
-        nav_A_active = id;
+        const id = e.target.id;
+        console.log(id);
         nav_A.clearActive();
         nav_A.highlightSelected(id);
         nav_B.clearActive();
+        ipcRenderer.send(id);
     });
     let orangeGradient = 'linear-gradient(268deg, #da2c4d, #f8ab37)';
     let blueGradient = 'linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, #19d2fc 100%)';
-    // menu-change
+    // MOUSE CLICK NAV A
     elements.nav_A_audio.addEventListener('click', (e) => {
+        let avType = 'audio';
         ipcRenderer.send('menu-change', 'audio');
-        ipcRenderer.send('nav_A_audio');
+        // ipcRenderer.send('nav_A_audio');
         defaults.env.nav_A_active = 'audio';
         elements.nav_A_audio.style.backgroundImage = blueGradient;
         items.removeActionMenus();
+        // tabSwitch();
+    });
+    elements.nav_A_video.addEventListener('click', (e) => {
+        ipcRenderer.send('menu-change', 'video');
+        // ipcRenderer.send('nav_A_video');
+        defaults.env.nav_A_active = 'video';
+        elements.nav_A_video.style.backgroundImage = blueGradient;
+        items.removeActionMenus();
 
     });
+    elements.nav_A_warpstagram.addEventListener('click', (e) => {
+        ipcRenderer.send('menu-change', 'warpstagram');
+        // ipcRenderer.send('nav_A_warpstagram');
+        defaults.env.nav_A_active = 'warpstagram';
+        elements.nav_A_warpstagram.style.backgroundImage = blueGradient;
+        items.removeActionMenus();
+
+    });
+    // MOUSE HOVER NAV A
     elements.nav_A_audio.addEventListener('mouseenter', (e) => {
         elements.nav_A_audio.style.backgroundImage = orangeGradient;
 
@@ -201,14 +218,7 @@ const addNavAListeners = () => {
         theme.setTheme(storage);
         // defaults.env.nav_A_active = 'audio';
     });
-    elements.nav_A_video.addEventListener('click', (e) => {
-        ipcRenderer.send('menu-change', 'video');
-        ipcRenderer.send('nav_A_video');
-        defaults.env.nav_A_active = 'video';
-        elements.nav_A_video.style.backgroundImage = blueGradient;
-        items.removeActionMenus();
 
-    });
     elements.nav_A_video.addEventListener('mouseenter', (e) => {
         elements.nav_A_video.style.backgroundImage = orangeGradient;
 
@@ -216,14 +226,7 @@ const addNavAListeners = () => {
     elements.nav_A_video.addEventListener('mouseleave', (e) => {
         theme.setTheme(storage);
     });
-    elements.nav_A_warpstagram.addEventListener('click', (e) => {
-        ipcRenderer.send('menu-change', 'warpstagram');
-        ipcRenderer.send('nav_A_warpstagram');
-        defaults.env.nav_A_active = 'warpstagram';
-        elements.nav_A_warpstagram.style.backgroundImage = blueGradient;
-        items.removeActionMenus();
 
-    });
     elements.nav_A_warpstagram.addEventListener('mouseenter', (e) => {
         elements.nav_A_warpstagram.style.backgroundImage = orangeGradient;
 

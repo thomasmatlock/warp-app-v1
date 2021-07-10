@@ -2,13 +2,13 @@ const { app, BrowserWindow, dialog, ipcMain, Menu, Tray } = require('electron');
 const displayControllerReq = require('./displayController');
 const appMenuAudio = require('./menuAudio');
 const appMenuVideo = require('./menuVideo');
-// const network = require('./network-speed');
 const appMenuWarpstagram = require('./menuWarpstagram');
 const fileControllerReq = require('./fileController');
 const fileController = new fileControllerReq();
 const settings = require('../renderer/settings');
 const defaultsReq = require('./defaults');
 const defaults = new defaultsReq();
+const global = require('./global');
 ///////////////////////////////////   TRAY   /////////////////////////////////
 let tray = null;
 app.whenReady().then(() => {
