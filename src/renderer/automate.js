@@ -18,8 +18,10 @@ const openModalPrefs = (storage) => {
             prefsView.toggleModalPrefsVisibility(storage.state, 'warpstagram');
             click_nav_B(storage.state.activeTab, 'preferences');
         }
-        if (defaults.dev.autoOpenModalPrefs)
+        if (defaults.dev.autoOpenModalPrefs) {
+
             click_nav_B(storage.state.activeTab, 'preferences');
+        }
     }, 100);
 };
 const click_nav_B = (nav_A_active, button) => {

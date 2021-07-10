@@ -175,38 +175,33 @@ const addNavAListeners = () => {
     // Nav A LISTENERS
     elements.nav_A.addEventListener('click', (e) => {
         const id = e.target.id;
-        console.log(id);
+        // console.log(id);
+        console.log(typeof elements[id]);
         nav_A.clearActive();
         nav_A.highlightSelected(id);
         nav_B.clearActive();
+        console.log(typeof id);
+        // console.log(typeof elements.nav_A_audio);/
+        let avType = id.substr(6, id.length)
+            // console.log(avType);
+        ipcRenderer.send('menu-change', avType);
+        defaults.env.nav_A_active = avType;
         ipcRenderer.send(id);
+        // elements.avType.style.backgroundImage = blueGradient;
+        items.removeActionMenus();
+
     });
     let orangeGradient = 'linear-gradient(268deg, #da2c4d, #f8ab37)';
     let blueGradient = 'linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, #19d2fc 100%)';
     // MOUSE CLICK NAV A
     elements.nav_A_audio.addEventListener('click', (e) => {
-        let avType = 'audio';
-        ipcRenderer.send('menu-change', 'audio');
-        // ipcRenderer.send('nav_A_audio');
-        defaults.env.nav_A_active = 'audio';
-        elements.nav_A_audio.style.backgroundImage = blueGradient;
-        items.removeActionMenus();
-        // tabSwitch();
+        // elements.nav_A_audio.style.backgroundImage = blueGradient;
     });
     elements.nav_A_video.addEventListener('click', (e) => {
-        ipcRenderer.send('menu-change', 'video');
-        // ipcRenderer.send('nav_A_video');
-        defaults.env.nav_A_active = 'video';
-        elements.nav_A_video.style.backgroundImage = blueGradient;
-        items.removeActionMenus();
-
+        // elements.nav_A_video.style.backgroundImage = blueGradient;
     });
     elements.nav_A_warpstagram.addEventListener('click', (e) => {
-        ipcRenderer.send('menu-change', 'warpstagram');
-        // ipcRenderer.send('nav_A_warpstagram');
-        defaults.env.nav_A_active = 'warpstagram';
-        elements.nav_A_warpstagram.style.backgroundImage = blueGradient;
-        items.removeActionMenus();
+        // elements.nav_A_warpstagram.style.backgroundImage = blueGradient;
 
     });
     // MOUSE HOVER NAV A

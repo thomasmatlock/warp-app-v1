@@ -53,7 +53,6 @@ const addIpcRendererListeners = () => {
 })();
 
 
-const discoverActiveNavA = (state) => {}
 const toggleBackground = (state) => {
     if (state.modals.background) {
         elements.modalBackground.style.display = 'none'; // de-activate modal background
@@ -62,7 +61,6 @@ const toggleBackground = (state) => {
     }
     console.log(state.modals.background);
 }
-const togglePrefsVisibility = () => {}
 const toggleModal = (modal, avType) => {
     // console.log(storage.state);
     if (modal.includes('pref')) {
