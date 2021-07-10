@@ -45,18 +45,12 @@ const addIpcRendererListeners = () => {
         (e, storageSentFromMain, modalPrefsMarkup, markupDownloadItemAudio, markupDownloadItemVideo) => {
             storage = storageSentFromMain;
             storage.state.activeTab = global.discoverStartupTab(storage);
-            setTimeout(() => {
-                if (!defaults.dev.autoOpenModalPrefs) {
-                    prefsView.toggleModalPrefsVisibility(storage.state, 'warpstagram');
-                    auto.click_nav_B(storage.state.activeTab, 'preferences');
-                }
-                if (defaults.dev.autoOpenModalPrefs)
-                    auto.click_nav_B(storage.state.activeTab, 'preferences');
-            }, 100);
+            auto.openModalPrefs(storage);
         }
     );
     addIpcRendererListeners();
 })();
+
 
 const discoverActiveNavA = (state) => {}
 const toggleBackground = () => {}

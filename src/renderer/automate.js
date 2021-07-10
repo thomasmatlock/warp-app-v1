@@ -12,6 +12,17 @@ const click_nav_A = (tab) => {
 const clickElement = (element) => {
     element.click();
 };
+const openModalPrefs = (storage) => {
+    setTimeout(() => {
+        console.log(storage.state);
+        if (!defaults.dev.autoOpenModalPrefs) {
+            prefsView.toggleModalPrefsVisibility(storage.state, 'warpstagram');
+            click_nav_B(storage.state.activeTab, 'preferences');
+        }
+        if (defaults.dev.autoOpenModalPrefs)
+            click_nav_B(storage.state.activeTab, 'preferences');
+    }, 100);
+};
 const click_nav_B = (nav_A_active, button) => {
     if (nav_A_active === 'audio') {
         if (defaults.dev.autoClick) {
@@ -62,4 +73,5 @@ module.exports = {
     click_nav_A,
     click_nav_B,
     clickElement,
+    openModalPrefs,
 }
