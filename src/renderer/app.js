@@ -32,6 +32,7 @@ const addIpcListeners = () => {
         ipcRenderer.send('mainWindow-resized');
         // CLICK ACTIVE NAV A
         var clickDelay = 50;
+
         if (defaults.env.nav_A_active == 'audio') {
             elements.nav_A_active = elements.nav_A_audio; // sets active Nav A
             setTimeout(() => {
@@ -59,6 +60,8 @@ const addIpcListeners = () => {
     ipcRenderer.on('window-ready', (e, storage, modalPrefsMarkup, markupDownloadItemAudio, markupDownloadItemVideo, networkSpeed) => {
         addEventListeners(); // activates DOM event listeners
         storage.state.activeTab = global.discoverStartupTab(storage);
+        console.log(defaults.env.nav_A_active);
+        console.log(storage.state.activeTab);
         nav_A.setActiveNav_A(storage); // sets active Nav A
         nav_B.removeNavBActivateBtn(storage);
         setTimeout(() => {
@@ -173,6 +176,8 @@ const addEventListeners = () => {
 };
 const addNavAListeners = () => {
     // Nav A LISTENERS
+    let orangeGradient = 'linear-gradient(268deg, #da2c4d, #f8ab37)';
+    let blueGradient = 'linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, #19d2fc 100%)';
     elements.nav_A.addEventListener('click', (e) => {
         const id = e.target.id;
         nav_A.clearActive();
@@ -183,19 +188,17 @@ const addNavAListeners = () => {
         defaults.env.nav_A_active = avType;
         ipcRenderer.send(id);
         items.removeActionMenus();
+        if (id.includes('audio')) {
+            elements.nav_A_audio.style.backgroundImage = blueGradient;
+        }
+        if (id.includes('video')) {
+            elements.nav_A_video.style.backgroundImage = blueGradient;
+        }
+        if (id.includes('warp')) {
+            elements.nav_A_warpstagram.style.backgroundImage = blueGradient;
+        }
     });
-    let orangeGradient = 'linear-gradient(268deg, #da2c4d, #f8ab37)';
-    let blueGradient = 'linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, #19d2fc 100%)';
-    // MOUSE CLICK NAV A
-    elements.nav_A_audio.addEventListener('click', (e) => {
-        // elements.nav_A_audio.style.backgroundImage = blueGradient;
-    });
-    elements.nav_A_video.addEventListener('click', (e) => {
-        // elements.nav_A_video.style.backgroundImage = blueGradient;
-    });
-    elements.nav_A_warpstagram.addEventListener('click', (e) => {
-        // elements.nav_A_warpstagram.style.backgroundImage = blueGradient;
-    });
+
     // MOUSE HOVER NAV A
     elements.nav_A_audio.addEventListener('mouseenter', (e) => {
         elements.nav_A_audio.style.backgroundImage = orangeGradient;
@@ -220,7 +223,8 @@ const addNavAListeners = () => {
 }
 const addNavBListeners = () => {
     elements.nav_B_button_audio_paste.addEventListener('click', (e) => {
-        userInput.validateURL(clipboard.readText(), defaults.env.nav_A_active);
+        console.log(e.target.id);
+        userInput.validateURL(clipboard.readText(), storage.state.activeTab);
         ipcRenderer.send('nav_B_button_audio_paste');
     });
     elements.nav_B_button_audio_activate.addEventListener('click', (e) => {
@@ -235,7 +239,7 @@ const addNavBListeners = () => {
 
     // Nav B video LISTENERS
     elements.nav_B_button_video_paste.addEventListener('click', (e) => {
-        userInput.validateURL(clipboard.readText(), defaults.env.nav_A_active);
+        userInput.validateURL(clipboard.readText(), storage.state.activeTab);
         ipcRenderer.send('nav_B_button_video_paste');
     });
     elements.nav_B_button_video_activate.addEventListener('click', (e) => {

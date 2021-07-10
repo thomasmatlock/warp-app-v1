@@ -3,7 +3,6 @@ const fileController = new fileControllerReq();
 const path = require('path');
 const fs = require('fs');
 const urls = require('./testURLS');
-const nav = require('../js/nav');
 class defaults {
     constructor() {
         this.devMode = true;
