@@ -278,7 +278,6 @@ const setCheckboxes = (storage) => {
     }
 };
 const toggleModalPrefsVisibility = (state, avType) => {
-    console.log(avType);
     toggleBackground(state);
     toggleState(state);
     toggleVisibility(state, avType);
@@ -289,10 +288,10 @@ const updateInputOptions = (storage) => {
     insertOutputFolderPaths(storage);
 }
 module.exports = {
-    showPanel: showPanel,
-    showPanelInit: showPanelInit,
-    removeAllInjectedModals: removeAllInjectedModals,
-    injectPrefsModalToCurrentSlide: injectPrefsModalToCurrentSlide,
-    toggleModalPrefsVisibility: toggleModalPrefsVisibility,
-    updateInputOptions: updateInputOptions,
+    showPanel,
+    showPanelInit,
+    removeAllInjectedModals,
+    injectPrefsModalToCurrentSlide,
+    toggleModalPrefsVisibility,
+    updateInputOptions,
 };
