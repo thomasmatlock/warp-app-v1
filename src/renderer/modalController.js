@@ -71,7 +71,6 @@ const toggleModal = (modal, avType) => {
     }
 
 }
-const openModalPrefs = () => {}
 const refreshModalBackgroundListeners = (type) => {
     document
         .getElementById('modalBackgroundID')

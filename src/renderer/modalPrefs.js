@@ -40,7 +40,7 @@ const windowReady = (prefsMarkup) => {
         // console.log(storage.state.activeTab);
     prefsView.injectPrefsModalToCurrentSlide(prefsMarkup, storage.state.activeTab, storage);
     prefsView.showPanelInit('prefs', storage.state.activeTab);
-    refreshModalListeners('refresh'); // THIS IS CHANGING BEHAVIOR OF BACKGROUND
+    refreshListeners(); // THIS IS CHANGING BEHAVIOR OF BACKGROUND
     setTimeout(() => {
         addNavAListeners();
         prefsView.updateInputOptions(storage);
@@ -75,10 +75,6 @@ const addNavAListeners = () => {
         storage.state.activeTab = 'warpstagram';
         tabSwitch();
     });
-};
-const refreshModalListeners = (type) => {
-    // refreshModalBackgroundListeners(type);
-    refreshListeners();
 };
 const refreshListeners = () => {
     setTimeout(() => {
@@ -252,14 +248,6 @@ const refreshListeners = () => {
             });
     }, 100);
 };
-const refreshModalBackgroundListeners = (type) => {
-    document
-        .getElementById('modalBackgroundID')
-        .addEventListener('click', (e) => {
-            prefsView.toggleModalPrefsVisibility(storage.state, 'warpstagram');
-            prefsSettingsSync();
-        });
-};
 const updatePrefsState = (eventTitle) => {
     let [
         audioQuality,
@@ -422,7 +410,6 @@ ipcRenderer.on(
 );
 module.exports = {
     discoverStartupTab,
-    refreshModalListeners,
     tabSwitch,
     prefsSettingsSync,
 };
