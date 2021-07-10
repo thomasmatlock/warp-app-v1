@@ -58,7 +58,7 @@ const addIpcListeners = () => {
 }
 
 (function init() {
-    ipcRenderer.on('window-ready', (e, storage, modalPrefsMarkup, markupDownloadItemAudio, markupDownloadItemVideo, networkSpeed) => {
+    ipcRenderer.on('window-ready', (e, storage) => {
         addEventListeners(); // activates DOM event listeners
         console.log(storage.markups);
         storage.state.activeTab = global.discoverStartupTab(storage);
@@ -71,7 +71,7 @@ const addIpcListeners = () => {
         }, 300);
         ipcRenderer.send('menu-change', storage.state.activeTab);
         if (defaults.dev.clearStorage) items.resetStorage(); // clears localStorage if active
-        items.defaultsAddAllItems(storage, markupDownloadItemAudio, markupDownloadItemVideo); // loads items stored in settings to UI
+        items.defaultsAddAllItems(storage); // loads items stored in settings to UI
 
         ipcRenderer.send('mainWindow-ready');
         ipcRenderer.on('modal-window-ready', () => {
