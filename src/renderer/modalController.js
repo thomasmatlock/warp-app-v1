@@ -35,7 +35,7 @@ const addIpcRendererListeners = () => {
         prefsView.toggleModalPrefsVisibility(storage.state, 'video');
     });
     ipcRenderer.on('Warpstagram: Tools: Preferences', (e, storageReceived) => {
-        // prefsView.toggleModalPrefsVisibility(storage.state, 'warpstagram');
+        prefsView.toggleModalPrefsVisibility(storage.state, 'warpstagram');
     });
 }
 
