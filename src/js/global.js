@@ -15,10 +15,13 @@ const randomFromArray = (array) => {
     return array[Math.floor(Math.random() * array.length)];
 }
 
-
+const getObjLength = (obj) => {
+    return Object.keys(obj).length;
+}
 
 
 module.exports = {
     discoverStartupTab,
     randomFromArray,
+    getObjLength,
 }

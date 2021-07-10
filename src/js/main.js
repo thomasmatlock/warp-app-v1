@@ -221,6 +221,7 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
                 markupModalLogin = await mainFunctions.loadMarkupModalLogin();
                 markupDownloadItemAudio = await mainFunctions.loadMarkupDownloadItemAudio();
                 markupDownloadItemVideo = await mainFunctions.loadMarkupDownloadItemVideo();
+
             }
             windowController.createWindow(markupModalPrefs, markupDownloadItemAudio, markupDownloadItemVideo); // creates main app window
             mainFunctions.setMenu(defaults.env.nav_A_active);
@@ -332,10 +333,14 @@ const windowController = {
         const wc = mainWindow.webContents;
         // send stuff to app.js
         wc.on('did-finish-load', () => {
-            // console.log(defaults.state);
-            // console.log(storageMain);
             storageMain.state = defaults.state;
-            // storageMain.state = 'hello';
+            // storageMain.markups = {};
+            // storageMain.markups.modals = {};
+            // storageMain.markups.downloadItems = {};
+            storageMain.markups.modals.prefs = markupModalPrefs;
+            storageMain.markups.modals.login = markupModalLogin;
+            storageMain.markups.downloadItems.audio = markupDownloadItemAudio;
+            storageMain.markups.downloadItems.video = markupDownloadItemVideo;
             wc.send('window-ready', storageMain, markupModalPrefs, markupDownloadItemAudio, markupDownloadItemVideo);
             if (defaults.dev.splashScreen) splash.destroy();
         });

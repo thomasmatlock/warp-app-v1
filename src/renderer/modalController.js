@@ -5,18 +5,13 @@ const modalPrefs = require('./modalPrefs');
 const prefsView = require('./modalPrefsView');
 const theme = require('./themeController');
 const prefsStorage = require('./settings');
-const defaultsReq = require('../js/defaults');
 const global = require('../js/global');
-const defaults = new defaultsReq();
 const auto = require('./automate');
 
 let storage;
 const addIpcRendererListeners = () => {
     ipcRenderer.on('storage-sync-success', (e, storageReceived) => {
         storage = storageReceived;
-    });
-    ipcRenderer.on('mainWindow-resized', (e, storageReceived) => {
-        console.log('mainWindow-resized');
     });
     ipcRenderer.on('nav_A_audio', (e, storageReceived) => {
         storage.state.activeTab = 'audio';
@@ -63,6 +58,7 @@ const toggleBackground = (state) => {
 }
 const toggleModal = (modal, avType) => {
     // console.log(storage.state);
+    // toggleBackground();
     if (modal.includes('pref')) {
         // toggleBackground(storage.state);
         prefsView.toggleModalPrefsVisibility(storage.state, avType);

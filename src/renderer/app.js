@@ -60,6 +60,7 @@ const addIpcListeners = () => {
 (function init() {
     ipcRenderer.on('window-ready', (e, storage, modalPrefsMarkup, markupDownloadItemAudio, markupDownloadItemVideo, networkSpeed) => {
         addEventListeners(); // activates DOM event listeners
+        console.log(storage.markups);
         storage.state.activeTab = global.discoverStartupTab(storage);
         nav_B.init(storage);
         setTimeout(() => {
