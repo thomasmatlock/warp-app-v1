@@ -18,7 +18,7 @@ const auto = require('./automate');
 const search = require('./searchLocal');
 const theme = require('./themeController');
 const modals = require('./modalController');
-console.log(modals);
+// console.log(modals);
 let storage;
 // global.testFunctions();
 const addIpcListeners = () => {
