@@ -404,7 +404,7 @@ const addVideoDownloadListListeners = () => {
 const addKeyboardListeners = () => {
     window.addEventListener('keydown', (e) => {
         const { key } = e;
-        console.log(storage.state);
+        // console.log(storage.state);
         if (key === 'Tab') {
             e.preventDefault();
         }

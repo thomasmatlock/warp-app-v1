@@ -11,6 +11,10 @@ const randomFromArray = (array) => {
     return array[Math.floor(Math.random() * array.length)];
 }
 
+const tabSwitch = () => {
+
+}
+
 module.exports = {
     discoverStartupTab,
     randomFromArray,
