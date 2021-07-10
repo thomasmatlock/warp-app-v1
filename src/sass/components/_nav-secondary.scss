@@ -171,16 +171,13 @@ input {
     color: $colorNavBText_active !important;
 }
 
-#nav_B_audioButton0,
-#nav_B_audioButton1,
-#nav_B_audioButton2,
-#nav_B_audioButton3,
-#nav_B_video-button0,
-#nav_B_video-button1,
-#nav_B_video-button2,
-#nav_B_video-button3,
-#nav_B_video-button4,
-#nav_B_video-button5 {
+#nav_B_button_audio_paste,
+#nav_B_button_audio_activate,
+#nav_B_button_audio_preferences,
+#nav_B_button_video_paste,
+#nav_B_button_video_activate,
+#nav_B_button_video_subscriptions,
+#nav_B_button_video_preferences {
     display: flex;
     flex-direction: column;
 }

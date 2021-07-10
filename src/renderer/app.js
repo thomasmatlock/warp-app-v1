@@ -60,8 +60,8 @@ const addIpcListeners = () => {
     ipcRenderer.on('window-ready', (e, storage, modalPrefsMarkup, markupDownloadItemAudio, markupDownloadItemVideo, networkSpeed) => {
         addEventListeners(); // activates DOM event listeners
         storage.state.activeTab = global.discoverStartupTab(storage);
-        console.log(defaults.env.nav_A_active);
-        console.log(storage.state.activeTab);
+        // console.log(defaults.env.nav_A_active);
+        // console.log(storage.state.activeTab);
         nav_A.setActiveNav_A(storage); // sets active Nav A
         nav_B.removeNavBActivateBtn(storage);
         setTimeout(() => {
@@ -222,41 +222,30 @@ const addNavAListeners = () => {
     });
 }
 const addNavBListeners = () => {
-    elements.nav_B_button_audio_paste.addEventListener('click', (e) => {
-        console.log(e.target.id);
-        userInput.validateURL(clipboard.readText(), storage.state.activeTab);
-        ipcRenderer.send('nav_B_button_audio_paste');
-    });
-    elements.nav_B_button_audio_activate.addEventListener('click', (e) => {
-        ipcRenderer.send('nav_B_button_audio_activate');
-    });
-    elements.nav_B_button_audio_preferences.addEventListener(
-        'click',
-        (e) => {
-            ipcRenderer.send('nav_B_button_audio_preferences');
+    elements.nav_B_audio.addEventListener('click', (e) => {
+        let id = nav_B.getID(e);
+        ipcRenderer.send(id);
+        if (id.includes('paste')) {
+            userInput.validateURL(clipboard.readText(), storage.state.activeTab);
         }
-    );
+    });
+    elements.nav_B_video.addEventListener('click', (e) => {
+        let id = nav_B.getID(e);
+        ipcRenderer.send(id);
+        if (id.includes('paste')) {
+            userInput.validateURL(clipboard.readText(), storage.state.activeTab);
+        }
+    })
 
-    // Nav B video LISTENERS
-    elements.nav_B_button_video_paste.addEventListener('click', (e) => {
-        userInput.validateURL(clipboard.readText(), storage.state.activeTab);
-        ipcRenderer.send('nav_B_button_video_paste');
-    });
-    elements.nav_B_button_video_activate.addEventListener('click', (e) => {
-        ipcRenderer.send('nav_B_button_video_activate');
-    });
-    elements.nav_B_button_video_subscriptions.addEventListener(
-        'click',
-        (e) => {
-            ipcRenderer.send('nav_B_button_video_subscriptions');
-        }
-    );
-    elements.nav_B_button_video_preferences.addEventListener(
-        'click',
-        (e) => {
-            ipcRenderer.send('nav_B_button_video_preferences');
-        }
-    );
+
+    // // Nav B video LISTENERS
+    // elements.nav_B_button_video_paste.addEventListener('click', (e) => {
+    //     userInput.validateURL(clipboard.readText(), storage.state.activeTab);
+    //     ipcRenderer.send('nav_B_button_video_paste');
+    // });
+
+
+
 
 }
 const addNavBSearchListeners = () => {

@@ -37,11 +37,20 @@ const removeNavBActivateBtn = (storage) => {
     if (storage.user.video === 'pro')
         elements.nav_B_button_video_activate.style.display = 'none';
 }
+const getID = (e) => {
+    if (e.target.tagName === 'DIV') return e.target.parentElement.id; // returns id if user clicks div element
+    if (e.target.tagName === 'A') return e.target.id; // returns id if user clicks anchor element
+    if (e.target.tagName === 'P') return e.target.parentNode.parentNode.id; // returns id if user clicks paragraph element
+    if (e.target.tagName === 'I') return e.target.parentNode.parentNode.id; // returns id if user clicks icon element
+}
 
+const router = () => {}
 module.exports = {
-    clearActive: clearActive,
-    highlightSelected: highlightSelected,
-    checkForSubstring: checkForSubstring,
-    checkActive: checkActive,
-    removeNavBActivateBtn: removeNavBActivateBtn,
+    clearActive,
+    highlightSelected,
+    checkForSubstring,
+    checkActive,
+    removeNavBActivateBtn,
+    getID,
+    router,
 }
