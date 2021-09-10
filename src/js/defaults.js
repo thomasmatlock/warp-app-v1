@@ -99,6 +99,16 @@ class defaults {
                     pinned: [],
                 },
             },
+            markups: {
+                modals: {
+                    prefs: '',
+                    login: ''
+                },
+                downloadItems: {
+                    audio: '',
+                    video: ''
+                }
+            }
         };
     }
 

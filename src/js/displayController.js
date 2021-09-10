@@ -52,9 +52,9 @@ class displayController {
             this.x = Math.round(this.displayToUse.size.width * 0); // how far to the right app appears
             this.y = Math.round(this.displayToUse.size.height * 0); // how far down the app
 
-            console.log(
-                `Dev mode, laptop, height ${this.height}, width ${this.width}, x ${this.x}, y ${this.y}`
-            );
+            // console.log(
+            //     `Dev mode, laptop, height ${this.height}, width ${this.width}, x ${this.x}, y ${this.y}`
+            // );
 
             // DEV MODE, DESKTOP PRIMARY
         } else if (

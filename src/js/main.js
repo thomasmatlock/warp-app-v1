@@ -333,7 +333,11 @@ const windowController = {
         const wc = mainWindow.webContents;
         // send stuff to app.js
         wc.on('did-finish-load', () => {
-            storageMain.state = defaults.state;
+            storageMain.markups = {};
+            storageMain.markups.modals = {};
+            storageMain.markups.downloadItems = {};
+
+            console.log(storageMain);
             storageMain.markups.modals.prefs = markupModalPrefs;
             storageMain.markups.modals.login = markupModalLogin;
             storageMain.markups.downloadItems.audio = markupDownloadItemAudio;
