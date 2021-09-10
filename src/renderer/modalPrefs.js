@@ -21,8 +21,10 @@ let panelTransitionSpeed = 'height 1s';
         'window-ready',
         (e, storageSentFromMain, modalPrefsMarkup, markupDownloadItemAudio, markupDownloadItemVideo) => {
             storage = storageSentFromMain;
+            console.log(storage);
             prefsMarkupSrc = modalPrefsMarkup;
             prefsMarkup = modalPrefsMarkup;
+            // storage.state.activeTab = global.discoverStartupTab(storage);
             storage.state.activeTab = global.discoverStartupTab(storage);
             windowReady(prefsMarkup);
         }
