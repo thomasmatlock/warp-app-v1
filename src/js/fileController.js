@@ -6,6 +6,7 @@ const os = require('os');
 const fs = require('fs');
 const path = require('path');
 const { app, ipcRenderer, ipcMain } = require('electron');
+
 const settings = require('electron-settings');
 
 class fileController {
@@ -102,6 +103,8 @@ class fileController {
         }
     };
     settingsLoad = async() => {
+
+
         // console.log('settingsLoad');
         try {
             const data = await settings.get('settings');
@@ -110,19 +113,8 @@ class fileController {
         } catch (e) {
             console.error(e);
         }
-
-        // let promise = new Promise((resolve, reject) => {
-        //     (async() => {
-        //         resolve(settings.get('settings'));
-        //     })();
-        // });
-        // let result = await promise; // wait until the promise resolves (*)
-        // return result;
     };
-    // settingsSync = async(name, obj) => {
-    //     this.settingsSave(name, obj);
-    //     // this.settingsLoad();
-    // };
+
     init = (settingsObj) => {
         this.settingsFile = settings.file();
         this.filesInitDirCreation();

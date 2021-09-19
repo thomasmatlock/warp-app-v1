@@ -242,6 +242,7 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
 ///////////////////////   MAIN FUNCTIONS   ///////////////////////
 const mainFunctions = {
     setMenu: function(menuType) {
+        if (defaults.logging) console.log(`Setting menu...`)
         if (menuType === 'audio') {
             appMenuAudio(mainWindow.webContents); // sets audio menu if audio tab is clicked
         }
@@ -253,33 +254,43 @@ const mainFunctions = {
         }
     },
     loadHtml: function(menuType) {
+        if (defaults.logging) console.log(`loading html...`)
         mainWindow.loadFile(`./src/renderer/html/${menuType}.html`);
     },
     load: async function() {
+        if (defaults.logging) console.log(`loading settings from file...`)
         const result = await fileController.settingsLoad();
         return result;
     },
     loadPrefs: async function() {
+        if (defaults.logging) console.log(`loading settings from file...`)
         const result = await settings.settingsLoad();
         return result;
     },
     loadMarkupModalPrefs: async function() {
+        if (defaults.logging) console.log(`loading markupModalPrefs from file...`)
         const result = await settings.loadMarkupModalPrefs();;
         return result;
     },
     loadMarkupModalLogin: async function() {
+        if (defaults.logging) console.log(`loading loadMarkupModalLogin from file...`)
+
         const result = await settings.loadMarkupModalLogin();
         return result;
     },
     loadMarkupDownloadItemAudio: async function() {
+        if (defaults.logging) console.log(`loading loadMarkupDownloadItemAudio from file...`)
+
         const result = await settings.loadMarkupDownloadItemAudio();;
         return result;
     },
     loadMarkupDownloadItemVideo: async function() {
+        if (defaults.logging) console.log(`loading loadMarkupDownloadItemVideo from file...`)
         const result = await settings.loadMarkupDownloadItemVideo();;
         return result;
     },
     syncStorage: function() {
+        if (defaults.logging) console.log(`saving state to local storage...`)
         fileController.settingsSave('settings', storageMain);
         mainWindow.webContents.send('storage-sync-success', storageMain);
     },
@@ -337,7 +348,7 @@ const windowController = {
             storageMain.markups.modals = {};
             storageMain.markups.downloadItems = {};
 
-            console.log(storageMain);
+            // console.log(storageMain);
             storageMain.markups.modals.prefs = markupModalPrefs;
             storageMain.markups.modals.login = markupModalLogin;
             storageMain.markups.downloadItems.audio = markupDownloadItemAudio;

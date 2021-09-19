@@ -6,6 +6,7 @@ const urls = require('./testURLS');
 class defaults {
     constructor() {
         this.devMode = true;
+        this.logging = false;
         this.testingYoutubeURLS = true; // true will use youtube URLS, false will use misc non youtube URLS
         this.env = {
             nav_A_active: !this.devMode ? 'audio' : 'audio', //   audio, video, or warpstagram, defaults to audio
