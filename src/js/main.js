@@ -242,14 +242,16 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
 ///////////////////////   MAIN FUNCTIONS   ///////////////////////
 const mainFunctions = {
     setMenu: function(menuType) {
-        if (defaults.logging) console.log(`Setting menu...`)
         if (menuType === 'audio') {
+            if (defaults.logging) console.log(`Setting audio menu...`)
             appMenuAudio(mainWindow.webContents); // sets audio menu if audio tab is clicked
         }
         if (menuType === 'video') {
+            if (defaults.logging) console.log(`Setting video menu...`)
             appMenuVideo(mainWindow.webContents); // sets audio menu if audio tab is clicked
         }
         if (menuType === 'warpstagram') {
+            if (defaults.logging) console.log(`Setting warpstagram menu...`)
             appMenuWarpstagram(mainWindow.webContents); // sets audio menu if audio tab is clicked
         }
     },
@@ -268,24 +270,24 @@ const mainFunctions = {
         return result;
     },
     loadMarkupModalPrefs: async function() {
-        if (defaults.logging) console.log(`loading markupModalPrefs from file...`)
+        if (defaults.logging) console.log(`loadMarkupModalPrefs from file...`)
         const result = await settings.loadMarkupModalPrefs();;
         return result;
     },
     loadMarkupModalLogin: async function() {
-        if (defaults.logging) console.log(`loading loadMarkupModalLogin from file...`)
+        if (defaults.logging) console.log(`loadMarkupModalLogin from file...`)
 
         const result = await settings.loadMarkupModalLogin();
         return result;
     },
     loadMarkupDownloadItemAudio: async function() {
-        if (defaults.logging) console.log(`loading loadMarkupDownloadItemAudio from file...`)
+        if (defaults.logging) console.log(`loadMarkupDownloadItemAudio from file...`)
 
         const result = await settings.loadMarkupDownloadItemAudio();;
         return result;
     },
     loadMarkupDownloadItemVideo: async function() {
-        if (defaults.logging) console.log(`loading loadMarkupDownloadItemVideo from file...`)
+        if (defaults.logging) console.log(`loadMarkupDownloadItemVideo from file...`)
         const result = await settings.loadMarkupDownloadItemVideo();;
         return result;
     },

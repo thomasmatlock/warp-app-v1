@@ -36,6 +36,7 @@ class displayController {
     }
     discoverDisplay = () => {
         // PRODUCTION MODE
+        if (defaults.logging) console.log(`discovering display...`)
         if (!defaults.devMode) {
             this.height = 900;
             this.width = 1600;

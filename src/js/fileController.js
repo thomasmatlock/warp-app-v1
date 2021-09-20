@@ -116,6 +116,7 @@ class fileController {
     };
 
     init = (settingsObj) => {
+        // if (defaults.logging) console.log(`initiating settings file checks...`)
         this.settingsFile = settings.file();
         this.filesInitDirCreation();
 
