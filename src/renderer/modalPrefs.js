@@ -332,17 +332,6 @@ const setPrefDropdownsToFalse = (optionSubstring) => {
 const prefsSettingsSync = () => {
     ipcRenderer.send('storage-sync-request', storage);
 };
-const discoverStartupTab = function(storage) {
-    if (storage.user.prefs.general_startupTab_audio) {
-        return 'audio';
-    }
-    if (storage.user.prefs.general_startupTab_video) {
-        return 'video';
-    }
-    if (storage.user.prefs.general_startupTab_warpstagram) {
-        return 'warpstagram';
-    }
-};
 const dialogShowOutputFolder = (outputFolderBtnID) => {
     ipcRenderer.send('dialog-showOutputFolder', outputFolderBtnID, storage);
 };
@@ -412,7 +401,6 @@ ipcRenderer.on(
     }
 );
 module.exports = {
-    discoverStartupTab,
     tabSwitch,
     prefsSettingsSync,
 };
