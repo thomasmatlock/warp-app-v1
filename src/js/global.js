@@ -1,7 +1,3 @@
-const appMenuAudio = require('./menuAudio');
-const appMenuVideo = require('./menuVideo');
-const appMenuWarpstagram = require('./menuWarpstagram');
-
 const discoverStartupTab = (storage) => {
     for (var key in storage.user.prefs) {
         if (storage.user.prefs[key] && key.toLowerCase().includes('startuptab')) {

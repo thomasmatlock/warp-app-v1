@@ -357,10 +357,22 @@ const addKeyboardListeners = () => {
         // console.log(storage.state);
         if (key === 'Tab') {
             e.preventDefault();
+            console.log(storage.state.activeTab);
+            // nav_A.clearActive();
+            auto.click_nav_A('audio');
+            // global.tabSwitch('idk', storage);
+            theme.setTheme(storage);
         }
-        // if (key === 'Tab') {
-        //     auto.click_nav_A('video');
-        //     nav_A.clearActive();
-        // }
+        if (key === '1') {
+            console.log('1');
+        }
+        if (key === '2') {
+            console.log('2');
+        }
+        if (key === '3') {
+            console.log('3');
+        }
+
+
     });
 }
