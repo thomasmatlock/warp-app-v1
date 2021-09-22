@@ -354,25 +354,31 @@ const addDownloadListListeners = () => {
 const addKeyboardListeners = () => {
     window.addEventListener('keydown', (e) => {
         const { key } = e;
-        // console.log(storage.state);
+        // console.log(key);
         if (key === 'Tab') {
             e.preventDefault();
-            console.log(storage.state.activeTab);
-            // nav_A.clearActive();
+            if (storage.state.activeTab === 'audio') {
+                auto.click_nav_A('video');
+                theme.setTheme(storage);
+            } else if (storage.state.activeTab === 'video') {
+                auto.click_nav_A('warpstagram');
+                theme.setTheme(storage);
+            } else if (storage.state.activeTab === 'warpstagram') {
+                auto.click_nav_A('audio');
+                theme.setTheme(storage);
+            }
+        }
+        if (key === '!') {
             auto.click_nav_A('audio');
-            // global.tabSwitch('idk', storage);
             theme.setTheme(storage);
         }
-        if (key === '1') {
-            console.log('1');
+        if (key === '@') {
+            auto.click_nav_A('video');
+            theme.setTheme(storage);
         }
-        if (key === '2') {
-            console.log('2');
+        if (key === '#') {
+            auto.click_nav_A('warpstagram');
+            theme.setTheme(storage);
         }
-        if (key === '3') {
-            console.log('3');
-        }
-
-
     });
 }
