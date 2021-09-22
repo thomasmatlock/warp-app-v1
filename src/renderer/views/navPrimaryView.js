@@ -29,6 +29,8 @@ const setActiveNav_A = (storage) => {
         }
     }
 };
+
+
 module.exports = {
     clearActive,
     updateHighlighted,

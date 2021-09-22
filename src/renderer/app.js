@@ -354,7 +354,6 @@ const addDownloadListListeners = () => {
 const addKeyboardListeners = () => {
     window.addEventListener('keydown', (e) => {
         const { key } = e;
-        // console.log(key);
         if (key === 'Tab') {
             e.preventDefault();
             if (storage.state.activeTab === 'audio') {
