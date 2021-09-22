@@ -60,14 +60,12 @@ const addIpcListeners = () => {
 (function init() {
     ipcRenderer.on('window-ready', (e, storage) => {
         addEventListeners(); // activates DOM event listeners
-        // console.log(storage.markups);
         storage.state.activeTab = global.discoverStartupTab(storage);
         nav_B.init(storage);
         auto.click_nav_A_INIT(storage)
         ipcRenderer.send('menu-change', storage.state.activeTab);
         if (defaults.dev.clearStorage) items.resetStorage(); // clears localStorage if active
-        items.defaultsAddAllItems(storage); // loads items stored in settings to UI
-
+        items.defaultsAddAllItems(storage); // loads items stored in settings to UIK
         ipcRenderer.send('mainWindow-ready');
         ipcRenderer.on('modal-window-ready', () => {
             console.log('attaching event listeners');
