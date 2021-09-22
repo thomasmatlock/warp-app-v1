@@ -355,7 +355,7 @@ const windowController = {
             storageMain.markups.modals.login = markupModalLogin;
             storageMain.markups.downloadItems.audio = markupDownloadItemAudio;
             storageMain.markups.downloadItems.video = markupDownloadItemVideo;
-            wc.send('window-ready', storageMain, markupModalPrefs, markupDownloadItemAudio, markupDownloadItemVideo);
+            wc.send('window-ready', storageMain);
             if (defaults.dev.splashScreen) splash.destroy();
         });
         wc.on('devtools-opened', () => {});

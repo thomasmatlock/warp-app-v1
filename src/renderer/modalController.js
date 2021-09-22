@@ -2,7 +2,7 @@ const { app, clipboard, ipcRenderer, shell } = require('electron');
 const dialog = require('electron');
 let elements = require('./views/elements');
 const modalPrefs = require('./modalPrefs');
-const prefsView = require('./modalPrefsView');
+const modalPrefsView = require('./modalPrefsView');
 const theme = require('./themeController');
 const prefsStorage = require('./settings');
 const global = require('../js/global');
@@ -57,11 +57,8 @@ const toggleBackground = (state) => {
     console.log(state.modals.background);
 }
 const toggleModal = (modal, avType) => {
-    // console.log(storage.state);
-    // toggleBackground();
     if (modal.includes('pref')) {
-        // toggleBackground(storage.state);
-        prefsView.toggleModalPrefsVisibility(storage.state, avType);
+        modalPrefsView.toggleModalPrefsVisibility(storage, avType);
     }
 
 }
@@ -69,7 +66,7 @@ const refreshModalBackgroundListeners = (type) => {
     document
         .getElementById('modalBackgroundID')
         .addEventListener('click', (e) => {
-            prefsView.toggleModalPrefsVisibility(storage.state, 'warpstagram');
+            modalPrefsView.toggleModalPrefsVisibility(storage, 'warpstagram');
             modalPrefs.prefsSettingsSync();
         });
 };

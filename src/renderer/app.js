@@ -60,7 +60,7 @@ const addIpcListeners = () => {
 (function init() {
     ipcRenderer.on('window-ready', (e, storage) => {
         addEventListeners(); // activates DOM event listeners
-        console.log(storage.markups);
+        // console.log(storage.markups);
         storage.state.activeTab = global.discoverStartupTab(storage);
         nav_B.init(storage);
         setTimeout(() => {
@@ -367,15 +367,27 @@ const addKeyboardListeners = () => {
                 theme.setTheme(storage);
             }
         }
-        if (key === '!') {
+        // if (key === '!') {
+        //     auto.click_nav_A('audio');
+        //     theme.setTheme(storage);
+        // }
+        // if (key === '@') {
+        //     auto.click_nav_A('video');
+        //     theme.setTheme(storage);
+        // }
+        // if (key === '#') {
+        //     auto.click_nav_A('warpstagram');
+        //     theme.setTheme(storage);
+        // }
+        if (e.ctrlKey && key === '1') {
             auto.click_nav_A('audio');
             theme.setTheme(storage);
         }
-        if (key === '@') {
+        if (e.ctrlKey && key === '2') {
             auto.click_nav_A('video');
             theme.setTheme(storage);
         }
-        if (key === '#') {
+        if (e.ctrlKey && key === '3') {
             auto.click_nav_A('warpstagram');
             theme.setTheme(storage);
         }

@@ -4,9 +4,7 @@ const prefsView = require('./modalPrefsView');
 const theme = require('./themeController');
 const global = require('../js/global');
 
-let startupTab, prefsMarkup, prefsMarkupSrc;
-let storage;
-// let collapsibleLicensePanels, collapsibleLicensePanelsVideo, collapsibleLicensePanelsWarpstagram, collapsibleLicensePanelsBundle;
+let storage, prefsMarkup, prefsMarkupSrc;
 let collapsibleLicensePanels = [];
 let collapsibleLicensePanelsAudio = [];
 let collapsibleLicensePanelsVideo = [];
@@ -19,13 +17,10 @@ let panelTransitionSpeed = 'height 1s';
 (function init() {
     ipcRenderer.on(
         'window-ready',
-        (e, storageSentFromMain, modalPrefsMarkup, markupDownloadItemAudio, markupDownloadItemVideo) => {
+        (e, storageSentFromMain) => {
             storage = storageSentFromMain;
-            console.log(storage);
-            prefsMarkupSrc = modalPrefsMarkup;
-            prefsMarkup = modalPrefsMarkup;
-            // storage.state.activeTab = global.discoverStartupTab(storage);
-
+            prefsMarkupSrc = storage.markups.modals.prefs;
+            prefsMarkup = storage.markups.modals.prefs;
             storage.state.activeTab = global.discoverStartupTab(storage);
             windowReady(prefsMarkup);
         }
@@ -86,7 +81,7 @@ const refreshListeners = () => {
             .getElementById('closePrefsModal')
             .addEventListener('click', (e) => {
                 // console.log(storage.user.prefs);
-                prefsView.toggleModalPrefsVisibility(storage.state, 'warpstagram');
+                prefsView.toggleModalPrefsVisibility(storage, 'warpstagram');
                 prefsSettingsSync();
             });
         // NAV LISTENERS

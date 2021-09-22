@@ -277,7 +277,8 @@ const setCheckboxes = (storage) => {
         }
     }
 };
-const toggleModalPrefsVisibility = (state, avType) => {
+const toggleModalPrefsVisibility = (storage, avType) => {
+    let state = storage.state
     toggleBackground(state);
     toggleState(state);
     toggleVisibility(state, avType);
