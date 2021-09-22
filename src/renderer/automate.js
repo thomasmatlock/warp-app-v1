@@ -9,6 +9,21 @@ const click_nav_A = (tab) => {
         if (tab === 'warpstagram') elements.nav_A_warpstagram.click(); // clicks audio tab
     }
 };
+const click_nav_A_INIT = (storage) => {
+    let tab = storage.state.activeTab;
+    if (defaults.dev.autoClickNavA_active) {
+        setTimeout(() => {
+            if (tab === 'audio') elements.nav_A_audio.click(); // clicks audio tab
+            if (tab === 'video') elements.nav_A_video.click(); // clicks audio tab
+            if (tab === 'warpstagram') elements.nav_A_warpstagram.click(); // clicks audio tab
+        }, 50);
+        setTimeout(() => {
+            if (tab === 'audio') elements.nav_A_audio.click(); // clicks audio tab
+            if (tab === 'video') elements.nav_A_video.click(); // clicks audio tab
+            if (tab === 'warpstagram') elements.nav_A_warpstagram.click(); // clicks audio tab
+        }, 300);
+    }
+};
 const clickElement = (element) => {
     element.click();
 };
@@ -72,6 +87,7 @@ const click_nav_B = (nav_A_active, button) => {
 };
 module.exports = {
     click_nav_A,
+    click_nav_A_INIT,
     click_nav_B,
     clickElement,
     openModalPrefs,

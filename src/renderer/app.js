@@ -63,12 +63,7 @@ const addIpcListeners = () => {
         // console.log(storage.markups);
         storage.state.activeTab = global.discoverStartupTab(storage);
         nav_B.init(storage);
-        setTimeout(() => {
-            auto.click_nav_A(storage.state.activeTab); // auto clicks active tab if active
-        }, 50);
-        setTimeout(() => {
-            auto.click_nav_A(storage.state.activeTab); // auto clicks active tab if active
-        }, 300);
+        auto.click_nav_A_INIT(storage)
         ipcRenderer.send('menu-change', storage.state.activeTab);
         if (defaults.dev.clearStorage) items.resetStorage(); // clears localStorage if active
         items.defaultsAddAllItems(storage); // loads items stored in settings to UI
@@ -367,18 +362,6 @@ const addKeyboardListeners = () => {
                 theme.setTheme(storage);
             }
         }
-        // if (key === '!') {
-        //     auto.click_nav_A('audio');
-        //     theme.setTheme(storage);
-        // }
-        // if (key === '@') {
-        //     auto.click_nav_A('video');
-        //     theme.setTheme(storage);
-        // }
-        // if (key === '#') {
-        //     auto.click_nav_A('warpstagram');
-        //     theme.setTheme(storage);
-        // }
         if (e.ctrlKey && key === '1') {
             auto.click_nav_A('audio');
             theme.setTheme(storage);
