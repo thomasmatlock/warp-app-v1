@@ -5,9 +5,8 @@ let storage;
 (function init() {
     ipcRenderer.on(
         'window-ready',
-        (e, storageSentFromMain, modalPrefsMarkup, markupDownloadItemAudio, markupDownloadItemVideo) => {
+        (e, storageSentFromMain) => {
             storage = storageSentFromMain;
-            // console.log(storage);
         }
     );
     ipcRenderer.on('storage-sync-success', (e, storageReceived) => {
@@ -30,21 +29,21 @@ const toggleLoginVisibility = (storageReceived, id) => {
     let markupNodeAudio, markupNodeVideo, markupNodeWarpstagram;
     if (activeTab === 'audio') {
         markupNodeAudio = document.createElement('div'); // Create a new HTML Dom node inside download list
-        markupNodeAudio.className = 'contentContainer';
+        markupNodeAudio.className = 'contentContainerLogin';
         markupNodeAudio.innerHTML = markup;
         modalContainerAudio.appendChild(markupNodeAudio); // Append item node
         // markupNodeAudio.id = 'modalPrefsID';
     }
     if (activeTab === 'video') {
         markupNodeVideo = document.createElement('div'); // Create a new HTML Dom node inside download list
-        markupNodeVideo.className = 'contentContainer';
+        markupNodeVideo.className = 'contentContainerLogin';
         markupNodeVideo.innerHTML = markup;
         modalContainerVideo.appendChild(markupNodeVideo); // Append item node
         // markupNodeVideo.id = 'modalPrefsID';
     }
     if (activeTab === 'warpstagram') {
         markupNodeWarpstagram = document.createElement('div'); // Create a new HTML Dom node inside download list
-        markupNodeWarpstagram.className = 'contentContainer';
+        markupNodeWarpstagram.className = 'contentContainerLogin';
         markupNodeWarpstagram.innerHTML = markup;
         modalContainerWarpstagram.appendChild(markupNodeWarpstagram); // Append item node
         // markupNodeWarpstagram.id = 'modalPrefsID';
