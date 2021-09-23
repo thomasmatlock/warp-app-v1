@@ -249,7 +249,7 @@ const refreshListeners = () => {
                 let id;
                 if (e.target.tagName === 'P') { id = e.target.parentNode.id; }
                 if (e.target.tagName === 'DIV') { id = e.target.id; }
-                modalLogin.toggleLoginVisibility(id)
+                modalLogin.toggleLoginVisibility(storage, id)
             });
         document
             .getElementById('loginYoutubeButton')
@@ -257,7 +257,7 @@ const refreshListeners = () => {
                 let id;
                 if (e.target.tagName === 'P') { id = e.target.parentNode.id; }
                 if (e.target.tagName === 'DIV') { id = e.target.id; }
-                modalLogin.toggleLoginVisibility(id);
+                modalLogin.toggleLoginVisibility(storage, id);
             });
     }, 100);
 };
