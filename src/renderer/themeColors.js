@@ -16,23 +16,43 @@ const themeColors = {
     // #181818 bottom action menu
     // #3E3E3E action menu item hover
     // #121212 item background
+    // 16 shades of gray
+    // 0E0F0F
+    // 202020
+    // 313131
+    // 434243
+    // 545254
+    // 656465
+    // 757575
+    // 868786
+    // 979798
+    // A8A7A8
+    // B8BAB8
+    // CACACA
+    // DBDCDB
+    // ECECEC
+    // ffffff
     dark: {
-        primary: '#1f2029',
-        secondary: '#353746',
+        // primary: '#1f2029',
+        primary: '#2A2A2A',
+        // primary: 'black',
+        secondary: '#323232',
         tertiary: 'black',
-        navAButtonBackground: '#353746',
+        navAButtonBackground: '#323232',
         navAButtonText_active: 'white',
         navAButton_active: 'linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, #19d2fc 100%)',
         textPrimary: 'white',
         textSecondary: 'white',
-        downloadItemBackgroundColor: '#353746',
+        downloadItemBackgroundColor: '#464646a1',
+        downloadItemBackgroundColorAlt: '#323232',
         downloadItemBackgroundColor_hover: '#f0eff3',
         downloadItemTextTitle_hover: 'white',
         downloadItemText_hover: 'white',
         downloadItemBorder: '#1f2029',
         navBTextColor: 'white',
         navBTextColor_hover: 'white',
-        navBbackground: '#353746',
+        // navBbackground: '#2A2A2A',
+        navBbackground: '#323232',
     },
     light: {
         primary: 'white',

@@ -24,6 +24,7 @@ const setTheme = (storage) => {
     let content_container = document.getElementsByClassName("content_container");
     let content_slide = document.getElementsByClassName("content_slide");
     let download__list = document.getElementsByClassName("download__list");
+    let download__list_itemArr = document.getElementsByClassName("dl__item");
     let nav_B__child = document.getElementsByClassName("nav_B__child");
     let background = document.getElementsByClassName("themeSecondary");
     let nav_A_tabArr = document.getElementsByClassName("nav_A_tab");
@@ -33,6 +34,7 @@ const setTheme = (storage) => {
     let nav_B_text = document.getElementsByClassName("navBTextColor");
     let dl__item__data__property_titleArr = document.getElementsByClassName("dl__item__data__property_title");
     let dl__item__data__propertyArr = document.getElementsByClassName("dl__item__data__property");
+
 
 
     setBackgroundColor(nav_A_tabArr, themeColors[theme].navBbackground);
@@ -48,6 +50,7 @@ const setTheme = (storage) => {
     setColor(nav_B_text, themeColors[theme].navBTextColor);
 
     setBackgroundColor(download__list, themeColors[theme].primary);
+    setBackgroundColor(download__list_itemArr, themeColors[theme].downloadItemBackgroundColorAlt);
 
     setColor(dl__item__data__property_titleArr, themeColors[theme].navBTextColor);
     setColor(dl__item__data__propertyArr, themeColors[theme].downloadItemText_hover);
