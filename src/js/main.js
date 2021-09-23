@@ -322,6 +322,7 @@ const windowController = {
             // icon: fileController.dirProjectPath + '/icon_black_gradient.png',
             // icon: fileController.dirProjectPath + '/22968-200.png',
             icon: fileController.dirProjectPath + '/build/icon_taskbar.png',
+            // icon: fileController.dirProjectPath + '/build/icon v2 200x200.png',
             _darkTheme: true,
             // get darkTheme() {
             //     return this._darkTheme;

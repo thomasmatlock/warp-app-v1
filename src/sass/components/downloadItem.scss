@@ -56,7 +56,8 @@
     box-shadow: $shadow-before;
     margin-top: 1px;
     &:hover {
-        background-color: $colorDownloadItemBackground_hover;
+        // background-color: $colorDownloadItemBackground_hover;
+        background-color: #fff;
         border-radius: 6px;
         transform: translate(20%);
         transform: scale(1.005);
