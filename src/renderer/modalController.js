@@ -54,13 +54,16 @@ const toggleBackground = (state) => {
     } else if (!state.modals.background) {
         elements.modalBackground.style.display = 'flex'; // activate modal background
     }
-    console.log(state.modals.background);
+    toggleBackgroundState(state);
+}
+
+const toggleBackgroundState = (state) => {
+    state.modals.background ? state.modals.background = false : state.modals.background = true;
 }
 const toggleModal = (modal, avType) => {
     if (modal.includes('pref')) {
         modalPrefsView.toggleModalPrefsVisibility(storage, avType);
     }
-
 }
 const refreshModalBackgroundListeners = (type) => {
     document
@@ -71,6 +74,10 @@ const refreshModalBackgroundListeners = (type) => {
         });
 };
 
+const refreshInjectedModals = () => {
+    modalPrefs.tabSwitch();
+}
 module.exports = {
-
+    toggleBackground,
+    refreshInjectedModals,
 }

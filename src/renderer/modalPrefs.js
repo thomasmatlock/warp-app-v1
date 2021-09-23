@@ -63,15 +63,15 @@ const createCollapsiblePanelsArray = (arr, subStr, newArr) => {
 const addNavAListeners = () => {
     elements.nav_A_audio.addEventListener('click', (e) => {
         storage.state.activeTab = 'audio';
-        tabSwitch();
+        // tabSwitch();
     });
     elements.nav_A_video.addEventListener('click', (e) => {
         storage.state.activeTab = 'video';
-        tabSwitch();
+        // tabSwitch();
     });
     elements.nav_A_warpstagram.addEventListener('click', (e) => {
         storage.state.activeTab = 'warpstagram';
-        tabSwitch();
+        // tabSwitch();
     });
 };
 const refreshListeners = () => {
@@ -81,7 +81,9 @@ const refreshListeners = () => {
             .getElementById('closePrefsModal')
             .addEventListener('click', (e) => {
                 // console.log(storage.user.prefs);
+                console.log('hello');
                 modalPrefsView.toggleModalPrefsVisibility(storage, 'warpstagram');
+
                 prefsSettingsSync();
             });
         // NAV LISTENERS

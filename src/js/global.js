@@ -1,3 +1,5 @@
+// const modalPrefsView = require('../../src/renderer/modalPrefsView')
+// console.log(modalPrefsView);
 const discoverStartupTab = (storage) => {
     for (var key in storage.user.prefs) {
         if (storage.user.prefs[key] && key.toLowerCase().includes('startuptab')) {

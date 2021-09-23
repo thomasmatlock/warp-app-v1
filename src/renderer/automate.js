@@ -34,7 +34,6 @@ const openModalPrefs = (storage) => {
             click_nav_B(storage.state.activeTab, 'preferences');
         }
         if (defaults.dev.autoOpenModalPrefs) {
-
             click_nav_B(storage.state.activeTab, 'preferences');
         }
     }, 100);

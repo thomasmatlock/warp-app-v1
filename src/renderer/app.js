@@ -352,25 +352,31 @@ const addKeyboardListeners = () => {
             if (storage.state.activeTab === 'audio') {
                 auto.click_nav_A('video');
                 theme.setTheme(storage);
+                modals.refreshInjectedModals();
             } else if (storage.state.activeTab === 'video') {
                 auto.click_nav_A('warpstagram');
                 theme.setTheme(storage);
+                modals.refreshInjectedModals();
             } else if (storage.state.activeTab === 'warpstagram') {
                 auto.click_nav_A('audio');
                 theme.setTheme(storage);
+                modals.refreshInjectedModals();
             }
         }
         if (e.ctrlKey && key === '1') {
             auto.click_nav_A('audio');
             theme.setTheme(storage);
+            modals.refreshInjectedModals();
         }
         if (e.ctrlKey && key === '2') {
             auto.click_nav_A('video');
             theme.setTheme(storage);
+            modals.refreshInjectedModals();
         }
         if (e.ctrlKey && key === '3') {
             auto.click_nav_A('warpstagram');
             theme.setTheme(storage);
+            modals.refreshInjectedModals();
         }
     });
 }
