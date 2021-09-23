@@ -6,7 +6,7 @@ let storage;
         'window-ready',
         (e, storageSentFromMain, modalPrefsMarkup, markupDownloadItemAudio, markupDownloadItemVideo) => {
             storage = storageSentFromMain;
-            // console.log(storage);
+            console.log(storage);
         }
     );
     ipcRenderer.on('storage-sync-success', (e, storageReceived) => {
@@ -16,3 +16,7 @@ let storage;
         console.log('mainWindow-resized');
     });
 })();
+
+module.exports = {
+
+}
