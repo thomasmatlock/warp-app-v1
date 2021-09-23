@@ -51,7 +51,6 @@ const addIpcRendererListeners = () => {
     addIpcRendererListeners();
 })();
 
-
 const toggleBackground = (state) => {
     if (state.modals.background) {
         elements.modalBackground.style.display = 'none'; // de-activate modal background
@@ -60,7 +59,6 @@ const toggleBackground = (state) => {
     }
     toggleBackgroundState(state);
 }
-
 const toggleBackgroundState = (state) => {
     state.modals.background ? state.modals.background = false : state.modals.background = true;
 }
@@ -77,16 +75,15 @@ const refreshModalBackgroundListeners = (type) => {
             modalPrefs.prefsSettingsSync();
         });
 };
-
 const addNavAListeners = () => {
     elements.nav_A_audio.addEventListener('click', (e) => {
-        // modalPrefs.tabSwitch();
+        modalLogin.injectModalLoginToCurrentSlide()
     });
     elements.nav_A_video.addEventListener('click', (e) => {
-        // modalPrefs.tabSwitch();
+        modalLogin.injectModalLoginToCurrentSlide()
     });
     elements.nav_A_warpstagram.addEventListener('click', (e) => {
-        // modalPrefs.tabSwitch();
+        modalLogin.injectModalLoginToCurrentSlide()
     });
 };
 

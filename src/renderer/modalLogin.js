@@ -17,10 +17,13 @@ let storage;
     });
 })();
 
-const injectModalLoginToCurrentSlide = () => {
-    console.log('hello');
+const injectModalLoginToCurrentSlide = () => {}
+const toggleLoginVisibility = (id) => {
+    console.log(`toggling visibility of ${id}`);
 }
+
 
 module.exports = {
     injectModalLoginToCurrentSlide,
+    toggleLoginVisibility,
 }

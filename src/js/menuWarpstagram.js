@@ -121,6 +121,7 @@ module.exports = (appWin) => {
             label: 'Tools',
             submenu: [{
                     label: 'Login',
+                    accelerator: 'CmdOrCtrl+L',
                     click: () => {
                         appWin.send('Warpstagram: Tools: Login');
                     },

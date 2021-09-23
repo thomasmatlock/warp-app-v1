@@ -134,7 +134,9 @@ const addMenuListeners = () => {
     ipcRenderer.on('Warpstagram: Edit: Pause all subscriptions', () => {});
     ipcRenderer.on('Warpstagram: Edit: Remove all subscriptions', () => {});
     // Tools
-    ipcRenderer.on('Warpstagram: Tools: Login', () => {});
+    ipcRenderer.on('Warpstagram: Tools: Login', () => {
+        ipcRenderer.send('Warpstagram: Tools: Login');
+    });
     ipcRenderer.on('Warpstagram: Tools: Manage license', () => {});
     ipcRenderer.on('Warpstagram: Tools: Check for update', () => {});
     ipcRenderer.on('Warpstagram: Tools: Preferences', () => {
@@ -377,6 +379,9 @@ const addKeyboardListeners = () => {
             auto.click_nav_A('warpstagram');
             theme.setTheme(storage);
             modals.refreshInjectedModals();
+        }
+        if (e.ctrlKey && key === 'l') {
+            console.log('ctrl L pressed');
         }
     });
 }

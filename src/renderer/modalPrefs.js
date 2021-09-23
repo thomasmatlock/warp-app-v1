@@ -1,6 +1,8 @@
 const { app, clipboard, ipcRenderer, shell } = require('electron');
 let elements = require('./views/elements');
 const modalPrefsView = require('./modalPrefsView');
+const modalLogin = require('./modalLogin');
+
 const theme = require('./themeController');
 const global = require('../js/global');
 
@@ -242,9 +244,14 @@ const refreshListeners = () => {
                 collapseLicensePanels(collapsibleLicensePanelsBundle, collapsibleLicensePanelsHeightMin);
             });
         document
-            .getElementById('loginButton')
-            .addEventListener('click', function() {
-                console.log('log in...');
+            .getElementById('loginInstagramButton')
+            .addEventListener('click', function(e) {
+                modalLogin.toggleLoginVisibility(e.target.id)
+            });
+        document
+            .getElementById('loginYoutubeButton')
+            .addEventListener('click', function(e) {
+                modalLogin.toggleLoginVisibility(e.target.id)
             });
     }, 100);
 };

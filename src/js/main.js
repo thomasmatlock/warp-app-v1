@@ -67,6 +67,10 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
     ipcMain.on('Warpstagram: Tools: Preferences', () => {
         // mainWindow.webContents.send('Warpstagram: Tools: Preferences');
     });
+    ipcMain.on('Warpstagram: Tools: Login', () => {
+        // console.log(`Warpstagram: Tools: Login`);
+        // mainWindow.webContents.send('Warpstagram: Tools: Preferences');
+    });
     // NAV a listeners
     ipcMain.on('nav_A_audio', (e) => {
         mainWindow.webContents.send('nav_A_audio');
