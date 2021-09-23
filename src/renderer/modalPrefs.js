@@ -36,7 +36,7 @@ let panelTransitionSpeed = 'height 1s';
 const windowReady = (prefsMarkup) => {
     theme.setTheme(storage)
         // console.log(storage.state.activeTab);
-    modalPrefsView.injectPrefsModalToCurrentSlide(prefsMarkup, storage.state.activeTab, storage);
+    modalPrefsView.injectModalPrefsToCurrentSlide(prefsMarkup, storage.state.activeTab, storage);
     modalPrefsView.showPanelInit('prefs', storage.state.activeTab);
     refreshListeners(); // THIS IS CHANGING BEHAVIOR OF BACKGROUND
     setTimeout(() => {
@@ -63,15 +63,15 @@ const createCollapsiblePanelsArray = (arr, subStr, newArr) => {
 const addNavAListeners = () => {
     elements.nav_A_audio.addEventListener('click', (e) => {
         storage.state.activeTab = 'audio';
-        // tabSwitch();
+        tabSwitch();
     });
     elements.nav_A_video.addEventListener('click', (e) => {
         storage.state.activeTab = 'video';
-        // tabSwitch();
+        tabSwitch();
     });
     elements.nav_A_warpstagram.addEventListener('click', (e) => {
         storage.state.activeTab = 'warpstagram';
-        // tabSwitch();
+        tabSwitch();
     });
 };
 const refreshListeners = () => {
@@ -335,7 +335,7 @@ const dialogShowOutputFolder = (outputFolderBtnID) => {
 const tabSwitch = () => {
     modalPrefsView.removeAllInjectedModals();
     setTimeout(() => {
-        modalPrefsView.injectPrefsModalToCurrentSlide(
+        modalPrefsView.injectModalPrefsToCurrentSlide(
             prefsMarkup,
             storage.state.activeTab,
             storage

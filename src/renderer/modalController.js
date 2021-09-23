@@ -3,6 +3,7 @@ const dialog = require('electron');
 let elements = require('./views/elements');
 const modalPrefs = require('./modalPrefs');
 const modalPrefsView = require('./modalPrefsView');
+const modalLogin = require('./modalLogin');
 const theme = require('./themeController');
 const prefsStorage = require('./settings');
 const global = require('../js/global');
@@ -42,6 +43,9 @@ const addIpcRendererListeners = () => {
             storage.state.activeTab = global.discoverStartupTab(storage);
             auto.openModalPrefs(storage);
             refreshModalBackgroundListeners();
+            setTimeout(() => {
+                addNavAListeners();
+            }, 300);
         }
     );
     addIpcRendererListeners();
@@ -74,8 +78,21 @@ const refreshModalBackgroundListeners = (type) => {
         });
 };
 
+const addNavAListeners = () => {
+    elements.nav_A_audio.addEventListener('click', (e) => {
+        // modalPrefs.tabSwitch();
+    });
+    elements.nav_A_video.addEventListener('click', (e) => {
+        // modalPrefs.tabSwitch();
+    });
+    elements.nav_A_warpstagram.addEventListener('click', (e) => {
+        // modalPrefs.tabSwitch();
+    });
+};
+
 const refreshInjectedModals = () => {
     modalPrefs.tabSwitch();
+    modalLogin.injectModalLoginToCurrentSlide()
 }
 module.exports = {
     toggleBackground,

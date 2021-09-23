@@ -17,6 +17,10 @@ let storage;
     });
 })();
 
-module.exports = {
+const injectModalLoginToCurrentSlide = () => {
+    console.log('hello');
+}
 
+module.exports = {
+    injectModalLoginToCurrentSlide,
 }
