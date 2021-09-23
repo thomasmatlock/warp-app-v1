@@ -28,8 +28,41 @@
 @import 'modals/components/modal-outputFolder';
 @import 'modals/components/modal-textDescription';
 @import 'modals/components/modal-textTitle';
+.contentContainerLogin {
+    width: 760px;
+    height: 540px;
+    position: absolute;
+    top: 0;
+    // left: 50% - 250px;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    z-index: 12;
+    background-color: #2A2A2A;
+    animation: moveInTop 0.25s ease-out;
+    border-radius: 4px;
+}
+
+.modalLoginContentPanel_left,
+.modalLoginContentPanel_right {
+    width: 100%;
+    height: 100%;
+    transition: all 0.1s ease-out;
+    background-color: #323232;
+    &:hover {
+        // transform: scale(1.025);
+        background-color: #464646a1;
+    }
+}
+
 .modalLoginContentPanel_left {
-    width: 500px;
-    height: 500px;
-    background-color: #fff;
+    border-radius: 4px 0 0 4px;
+}
+
+.modalLoginContentPanel_right {
+    border-radius: 0 4px 4px 0;
+    background-color: #2A2A2A;
 }
