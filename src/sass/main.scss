@@ -28,3 +28,8 @@
 @import 'modals/components/modal-outputFolder';
 @import 'modals/components/modal-textDescription';
 @import 'modals/components/modal-textTitle';
+.modalLoginContentPanel_left {
+    width: 500px;
+    height: 500px;
+    background-color: #fff;
+}

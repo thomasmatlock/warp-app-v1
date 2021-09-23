@@ -246,12 +246,18 @@ const refreshListeners = () => {
         document
             .getElementById('loginInstagramButton')
             .addEventListener('click', function(e) {
-                modalLogin.toggleLoginVisibility(e.target.id)
+                let id;
+                if (e.target.tagName === 'P') { id = e.target.parentNode.id; }
+                if (e.target.tagName === 'DIV') { id = e.target.id; }
+                modalLogin.toggleLoginVisibility(id)
             });
         document
             .getElementById('loginYoutubeButton')
             .addEventListener('click', function(e) {
-                modalLogin.toggleLoginVisibility(e.target.id)
+                let id;
+                if (e.target.tagName === 'P') { id = e.target.parentNode.id; }
+                if (e.target.tagName === 'DIV') { id = e.target.id; }
+                modalLogin.toggleLoginVisibility(id);
             });
     }, 100);
 };

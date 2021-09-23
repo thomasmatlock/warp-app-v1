@@ -1312,3 +1312,8 @@ input[type='text'] {
 
 .modalPrefsTitle_child_right {
   justify-content: flex-end; }
+
+.modalLoginContentPanel_left {
+  width: 500px;
+  height: 500px;
+  background-color: #fff; }
