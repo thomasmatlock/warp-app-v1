@@ -1,6 +1,6 @@
 const { app, clipboard, ipcRenderer, shell } = require('electron');
 let elements = require('./views/elements');
-const prefsView = require('./modalPrefsView');
+const modalPrefsView = require('./modalPrefsView');
 const theme = require('./themeController');
 const global = require('../js/global');
 
@@ -36,12 +36,12 @@ let panelTransitionSpeed = 'height 1s';
 const windowReady = (prefsMarkup) => {
     theme.setTheme(storage)
         // console.log(storage.state.activeTab);
-    prefsView.injectPrefsModalToCurrentSlide(prefsMarkup, storage.state.activeTab, storage);
-    prefsView.showPanelInit('prefs', storage.state.activeTab);
+    modalPrefsView.injectPrefsModalToCurrentSlide(prefsMarkup, storage.state.activeTab, storage);
+    modalPrefsView.showPanelInit('prefs', storage.state.activeTab);
     refreshListeners(); // THIS IS CHANGING BEHAVIOR OF BACKGROUND
     setTimeout(() => {
         addNavAListeners();
-        prefsView.updateInputOptions(storage);
+        modalPrefsView.updateInputOptions(storage);
         setLicenseActivationTransitionsSpeed();
         collapsibleLicensePanels = document.getElementsByClassName('modalActionComponent_panel_collapsible');
         expandLicensePanels(collapsibleLicensePanels, collapsibleLicensePanelsHeightMax);
@@ -81,34 +81,34 @@ const refreshListeners = () => {
             .getElementById('closePrefsModal')
             .addEventListener('click', (e) => {
                 // console.log(storage.user.prefs);
-                prefsView.toggleModalPrefsVisibility(storage, 'warpstagram');
+                modalPrefsView.toggleModalPrefsVisibility(storage, 'warpstagram');
                 prefsSettingsSync();
             });
         // NAV LISTENERS
         document
             .getElementById('modalPrefsNav_button_audio_ID')
             .addEventListener('click', (e) => {
-                prefsView.showPanel('prefs', 'audio');
+                modalPrefsView.showPanel('prefs', 'audio');
             });
         document
             .getElementById('modalPrefsNav_button_video_ID')
             .addEventListener('click', (e) => {
-                prefsView.showPanel('prefs', 'video');
+                modalPrefsView.showPanel('prefs', 'video');
             });
         document
             .getElementById('modalPrefsNav_button_warpstagram_ID')
             .addEventListener('click', (e) => {
-                prefsView.showPanel('prefs', 'warpstagram');
+                modalPrefsView.showPanel('prefs', 'warpstagram');
             });
         document
             .getElementById('modalPrefsNav_button_general_ID')
             .addEventListener('click', (e) => {
-                prefsView.showPanel('prefs', 'general');
+                modalPrefsView.showPanel('prefs', 'general');
             });
         document
             .getElementById('modalPrefsNav_button_license_ID')
             .addEventListener('click', (e) => {
-                prefsView.showPanel('prefs', 'license');
+                modalPrefsView.showPanel('prefs', 'license');
             });
         document
             .getElementById('modalPrefsCheckbox_autostartWarp')
@@ -125,7 +125,7 @@ const refreshListeners = () => {
             .getElementById('modalDropdown_audioQuality')
             .addEventListener('change', function() {
                 updatePrefsState(this.value);
-                prefsView.updateInputOptions(storage);
+                modalPrefsView.updateInputOptions(storage);
             });
         // AUDIO FORMAT
         document
@@ -331,18 +331,18 @@ const dialogShowOutputFolder = (outputFolderBtnID) => {
     ipcRenderer.send('dialog-showOutputFolder', outputFolderBtnID, storage);
 };
 const tabSwitch = () => {
-    prefsView.removeAllInjectedModals();
+    modalPrefsView.removeAllInjectedModals();
     setTimeout(() => {
-        prefsView.injectPrefsModalToCurrentSlide(
+        modalPrefsView.injectPrefsModalToCurrentSlide(
             prefsMarkup,
             storage.state.activeTab,
             storage
         );
-        prefsView.updateInputOptions(storage);
+        modalPrefsView.updateInputOptions(storage);
 
 
     }, 100);
-    prefsView.showPanelInit('prefs', storage.state.activeTab);
+    modalPrefsView.showPanelInit('prefs', storage.state.activeTab);
     refreshListeners();
 };
 const expandLicensePanels = (arr, height) => {
@@ -389,7 +389,7 @@ ipcRenderer.on(
                     storage.user.prefs[key] = outputFolderSelected;
 
                     storage.user.prefs[key] = storage.user.prefs[key][0];
-                    prefsView.updateInputOptions(storage);
+                    modalPrefsView.updateInputOptions(storage);
                 }
             }
         }
