@@ -35,6 +35,12 @@ const addIpcRendererListeners = () => {
     });
 }
 
+///////////////////////////////////////////////////
+// prefs
+// login
+// activation
+///////////////////////////////////////////////////
+
 (function init() {
     ipcRenderer.on(
         'window-ready',
@@ -50,7 +56,17 @@ const addIpcRendererListeners = () => {
     );
     addIpcRendererListeners();
 })();
-
+const addNavAListeners = () => {
+    elements.nav_A_audio.addEventListener('click', (e) => {
+        modalLogin.injectModalLoginToCurrentSlide()
+    });
+    elements.nav_A_video.addEventListener('click', (e) => {
+        modalLogin.injectModalLoginToCurrentSlide()
+    });
+    elements.nav_A_warpstagram.addEventListener('click', (e) => {
+        modalLogin.injectModalLoginToCurrentSlide()
+    });
+};
 const toggleBackground = (state) => {
     if (state.modals.background) {
         elements.modalBackground.style.display = 'none'; // de-activate modal background
@@ -75,18 +91,6 @@ const refreshModalBackgroundListeners = (type) => {
             modalPrefs.prefsSettingsSync();
         });
 };
-const addNavAListeners = () => {
-    elements.nav_A_audio.addEventListener('click', (e) => {
-        modalLogin.injectModalLoginToCurrentSlide()
-    });
-    elements.nav_A_video.addEventListener('click', (e) => {
-        modalLogin.injectModalLoginToCurrentSlide()
-    });
-    elements.nav_A_warpstagram.addEventListener('click', (e) => {
-        modalLogin.injectModalLoginToCurrentSlide()
-    });
-};
-
 const refreshInjectedModals = () => {
     modalPrefs.tabSwitch();
     modalLogin.injectModalLoginToCurrentSlide()
