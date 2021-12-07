@@ -17,6 +17,7 @@ const themeColors = {
     // #3E3E3E action menu item hover
     // #121212 item background
     // 16 shades of gray
+    // #000000
     // 0E0F0F
     // 202020
     // 313131
