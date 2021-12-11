@@ -38,7 +38,7 @@ module.exports = (appWin) => {
                 {
                     label: 'Quit',
 
-                    accelerator: 'CmdOrCtrl+Q',
+                    accelerator: 'CmdOrCtrl+W',
 
                     click: () => {
                         appWin.send('Quit');
