@@ -172,16 +172,7 @@ class defaults {
     init = () => {
         this.isDevMode();
         this.isOnline();
-        // this.checkFFmpeg();
-        // delete this comment
     };
-    // readLocalFiles = () => {};
-    // updateFilesState = () => {};
-    // updateFilesUI = () => {};
-    // serverConnected = () => {};
-    // isLatestVersion = () => {};
-    // isUpgradedUser = () => {};
-    // acceptedEULA = () => {};
 }
 
 module.exports = defaults;
