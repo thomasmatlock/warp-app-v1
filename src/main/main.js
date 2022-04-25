@@ -23,9 +23,7 @@ const { app } = require('electron/main');
 })();
 
 (function appListeners() {
-    app.on('ready', () =>
-    {
-        console.log('hello');
+    app.on('ready', () => {
         display.discoverDisplay();
     })
 })();
