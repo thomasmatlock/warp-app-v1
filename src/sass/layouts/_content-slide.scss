@@ -62,7 +62,7 @@
 // display: grid; // https://css-tricks.com/snippets/css/complete-guide-grid/
 // MEASURES WIDTH OF COLUMNS, TOP TO BOTTOM
 //grid-template-rows: 10rem minmax(100rem, auto); // 10rem/100px height, but shrinks no less than 100rem, height is auto
-// FOR EXAMPPLE: grid-template-rows: 25% 100px auto; means top to bottom, 25% top row, 100px, then auto to fill in rest of available space
+// FOR EXAMPLE: grid-template-rows: 25% 100px auto; means top to bottom, 25% top row, 100px, then auto to fill in rest of available space
 
 /*
     You also have access to a function which can help set boundaries for otherwise flexible units.
