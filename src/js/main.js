@@ -305,14 +305,14 @@ const mainFunctions = {
 const windowController = {
     createWindow: function(markupModalPrefs, markupDownloadItemAudio, markupDownloadItemVideo) {
         mainWindow = new BrowserWindow({
-            height: displayController.height,
-            width: displayController.width,
-            minWidth: displayController.minWidth,
-            minHeight: displayController.minHeight,
+            // height: displayController.height,
+            // width: displayController.width,
+            // minWidth: displayController.minWidth,
+            // minHeight: displayController.minHeight,
             x: displayController.x,
             y: displayController.y,
-            // height: 2200,
-            // width: 1900,
+            height: 100,
+            width: 100,
             // x: 0,
             // y: 0,
             // icon: __dirname + '/icon.ico',
@@ -364,7 +364,7 @@ const windowController = {
             wc.send('window-ready', storageMain);
             setTimeout(() => { 
 
-                if (defaults.dev.splashScreen) splash.destroy();
+                // if (defaults.dev.splashScreen) splash.destroy();
             }, 10000);
         });
         wc.on('devtools-opened', () => {});
@@ -386,9 +386,10 @@ const windowController = {
             // x: 100,
             // y: 100,
             frame: false,
+            transparent: true,
             webPreferences: {},
         });
-        splash.loadFile('./src/renderer/splash.html'); // Load index.html into the new BrowserWindow
+        splash.loadFile('./src/renderer/splash2.html'); // Load index.html into the new BrowserWindow
     },
     // createModalWindow: function() {
     //     modalWindow = new BrowserWindow({
