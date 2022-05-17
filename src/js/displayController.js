@@ -7,6 +7,7 @@
 const { screen } = require('electron');
 const defaultsReq = require('./defaults');
 const defaults = new defaultsReq();
+const pckg = require('../../package.json');
 class displayController {
     constructor() {
         // 34 inch display bounds = 2752 x 1152, workArea = 2752, 1112
@@ -37,6 +38,7 @@ class displayController {
     discoverDisplay = () => {
         // PRODUCTION MODE
         if (defaults.logging) console.log(`discovering display...`)
+        console.log(`version ${pckg.version}`);
         if (!defaults.devMode) {
             this.height = 900;
             this.width = 1600;

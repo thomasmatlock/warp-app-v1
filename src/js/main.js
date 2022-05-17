@@ -362,7 +362,10 @@ const windowController = {
             storageMain.markups.downloadItems.audio = markupDownloadItemAudio;
             storageMain.markups.downloadItems.video = markupDownloadItemVideo;
             wc.send('window-ready', storageMain);
-            if (defaults.dev.splashScreen) splash.destroy();
+            setTimeout(() => { 
+
+                if (defaults.dev.splashScreen) splash.destroy();
+            }, 10000);
         });
         wc.on('devtools-opened', () => {});
 
@@ -378,8 +381,8 @@ const windowController = {
     },
     createSplashWindow: function() {
         splash = new BrowserWindow({
-            height: 300,
-            width: 400,
+            height: 400,
+            width: 980,
             // x: 100,
             // y: 100,
             frame: false,
