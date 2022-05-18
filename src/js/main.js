@@ -370,7 +370,7 @@ const windowController = {
             setTimeout(() => {
 
                 if (defaults.dev.splashScreen) splash.destroy();
-            }, 5000);
+            }, 10000);
         });
         wc.on('devtools-opened', () => {});
 
