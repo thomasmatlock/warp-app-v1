@@ -19,7 +19,7 @@ const init = () => {
     //         // sentenceGenerator2();
     //     }, 500);
     // }
-    let delay = 500;
+    let delay = 1500;
     // console.log(`${pckg.version}`);
     // versionElement.innerHTML = `version ${pckg.version}`;
     element.innerHTML = sentenceGenerator();
@@ -72,26 +72,7 @@ const randomFromArray = function(arr) {
     return randomItem;
 };
 
-const verbArr = [
-    'refining',
-    'checking',
-    'preparing',
-    'waking up',
-    'warming up',
-    'spooling up',
-    'downloading',
-    'optimizing',
-    'preparing',
-    'shoveling coal into the',
-    'expanding',
-    'installing',
-    'seeking',
-    'collapsing',
-    'establishing',
-    'showing off',
-    'pre-computing',
-    'loading'
-];
+
 const sortThis = [
     "solar satellite",
     "Lunar network clusters...",
@@ -105,39 +86,85 @@ const sortThis = [
     ' flying pigeon',
     'adding 4 increasing chances of peer recognition',
     'coming up with new sentences to read next time',
+];
+// const adjectiveArr = [
+//     'eager',
+//     'speshow',
+//     'ambitious',
+//     'impatient',
+//     'earnest',
+//     'yearning',
+//     'helpful',
+//     'distracted',
+//     'gung ho',
+//     'rarin to go',
+//     'self-starting',
+//     'zealous',
+//     'lackadaisical',
+//     'snoring',
+//     'snoozing',
+//     'sleepy',
+//     'tired',
+//     'drowsy',
+//     'procrastinating',
+//     'slow-moving',
+//     'unenergetic',
+//     'unindustrious',
+//     'enthusiastic',
+//     'lively',
+//     'bright',
+//     'energetic',
+//     'frisky',
+//     'industrious',
+//     'perky',
+// ];
 
+// const hardwareNounsArray = [
+//     'CPUs / Processors',
+//     'Motherboards',
+//     'Video Graphic Devices',
+//     'Computer Cases',
+//     'Power Supplies',
+//     'Memory (PC RAM)',
+//     'Storage',
+//     'Optical Drives',
+//     'PC Cooling'
+// ]
+const verbArr = [
+    'refining',
+    'checking',
+    'updating',
+    'preparing',
+    'waking up',
+    'warming up',
+    'spooling up',
+    'downloading',
+    'arranging',
+    'composing',
+    'drawing',
+    'forming',
+    'optimizing',
+    'preparing',
+    'shoveling coal into the',
+    'expanding',
+    'installing',
+    'designing',
+    'applying',
+    'seeking',
+    'mapping',
+    'establishing',
+    'constructing',
+    'planning',
+    'diagramming',
+    'brewing coffee for',
+    'blueprinting',
+    'modeling',
+    'showing off',
+    'fueling',
+    'pre-computing',
+    'loading'
 ];
-const adjectiveArr = [
-    'eager',
-    'speshow',
-    'ambitious',
-    'impatient',
-    'earnest',
-    'yearning',
-    'helpful',
-    'distracted',
-    'gung ho',
-    'rarin to go',
-    'self-starting',
-    'zealous',
-    'lackadaisical',
-    'snoring',
-    'snoozing',
-    'sleepy',
-    'tired',
-    'drowsy',
-    'procrastinating',
-    'slow-moving',
-    'unenergetic',
-    'unindustrious',
-    'enthusiastic',
-    'lively',
-    'bright',
-    'energetic',
-    'frisky',
-    'industrious',
-    'perky',
-];
+
 const directObjArr = [
 
     'engines',
@@ -148,48 +175,76 @@ const directObjArr = [
     'satisfaction',
     'recognition',
     'fame',
+    'atoms',
     'ambitiousness',
     'curiousity',
     'sense of humor',
     'settings',
+    'enthusiasm',
     'the universe',
     'new sentences',
     'RAM',
     'processor cores',
-    'capabilities'
+    'contentment',
+    'delight',
+    'capabilities',
+    'bliss',
+    'glee',
+    'gleefulness',
+    'joy',
+    'amusement',
+    'entertainment',
+    'elation',
+    'euphoria',
+    'rapture',
+    'cheer',
+    'cheerfulness',
+    'galaxies',
+    'gas giants',
+    'exuberance',
+    'gravity',
+    'joyfulness',
+    'joie de vivre',
+    'comfort',
+    'CPU cores',
+    'CUDA cores',
+    'event horizons',
+    'leisure'
+
 ];
 
-const hardwareNounsArray = [
-    'CPUs / Processors',
-    'Motherboards',
-    'Video Graphic Devices',
-    'Computer Cases',
-    'Power Supplies',
-    'Memory (PC RAM)',
-    'Storage',
-    'Optical Drives',
-    'PC Cooling'
+
+const adjectiveArr = [
+    'imaginative',
+    'atomic',
+    'nuclear',
+    'dynamic',
+    'lively',
+    'potent',
+    'stupendous',
+    'project',
+    'breathtaking',
+    'infrared',
+    'cozy'
+]
+const adjectiveQuantityArr = [
+    'additional',
+    'numerous',
+    'substantial',
+    'sufficient',
+    'enough',
+    'several'
 ]
 
 const sentenceGenerator = () => {
     // let randomAdv = randomFromArray(advArr);
     // let randomNoun = randomFromArray(nounArr);
     let randomAdj = randomFromArray(adjectiveArr);
+    let randomAdjQuantity = randomFromArray(adjectiveQuantityArr);
     let randomDirObj = randomFromArray(directObjArr);
     // let randomAppearance = randomFromArray(appearanceArr);
     // let randomArticle = randomFromArray(articleArr);
     let randomVerb = randomFromArray(verbArr);
-    let sentence = `Warp is  ${randomVerb}  ${randomDirObj}...`;
+    let sentence = `${randomVerb} ${randomAdjQuantity} ${randomAdj}  ${randomDirObj}`;
     return sentence;
-};
-const sentenceGenerator2 = () => {
-    // let randomAdv = randomFromArray(advArr);
-    // let randomNoun = randomFromArray(nounArr);
-    let randomAdj = randomFromArray(adjectiveArr);
-    let randomDirObj = randomFromArray(directObjArr);
-    // let randomAppearance = randomFromArray(appearanceArr);
-    // let randomArticle = randomFromArray(articleArr);
-    let randomVerb = randomFromArray(verbArr);
-    let sentence = `Warp is  ${randomVerb}  ${randomDirObj}...`;
-    element.innerHTML = sentence;
 };
