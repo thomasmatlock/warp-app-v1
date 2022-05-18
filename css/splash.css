@@ -146,7 +146,8 @@ h1 {
 #app-title {
     position: absolute;
     left: 50px;
-    top: 127px;
+    /* top: 120px; */
+    top: 110px;
     width: 341px;
     height: 46px;
     background: -webkit-linear-gradient(90deg, #a445b2 0%, #d41872 50%, #ff0066 100%);
@@ -164,7 +165,7 @@ h1 {
 #version {
     position: absolute;
     left: 52px;
-    top: 165px;
+    top: 155px;
     width: 91px;
     height: 56px;
     color: #ffffff;

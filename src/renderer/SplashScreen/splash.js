@@ -217,7 +217,6 @@ const directObjArr = [
     'circuit boards'
 ];
 
-
 const adjectiveArr = [
     'imaginative',
     'atomic',
