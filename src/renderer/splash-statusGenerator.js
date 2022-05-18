@@ -1,4 +1,11 @@
-let element = document.getElementById('status-generator');
+// const pckg = require('../../package.json');
+// import pckg from '../../package.json';
+// import pckg from "module-name";
+// import pckg from "module-name";
+
+
+
+
 window.addEventListener(
     'load',
     function() {
@@ -18,6 +25,8 @@ const init = () => {
     //     }, 500);
     // }
     let delay = 750;
+    console.log(`${pckg.version}`);
+    versionElement.innerHTML = `version ${pckg.version}`;
     element.innerHTML = sentenceGenerator();
     setTimeout(() => {
         element.innerHTML = sentenceGenerator();
@@ -87,7 +96,6 @@ const sortThis = [
     'doing a mic check for jokes later',
     'mailing a letter to the server in hope of updates',
     ' flying pigeon',
-    'purchasing enjoyment',
     'adding 4 increasing chances of peer recognition',
     'coming up with new sentences to read next time',
 

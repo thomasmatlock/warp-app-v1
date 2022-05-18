@@ -392,7 +392,10 @@ const windowController = {
             // y: 100,
             frame: false,
             transparent: true,
-            webPreferences: {},
+            webPreferences: {
+                nodeIntegration: true,
+                worldSafeExecuteJavaScript: true,
+            },
         });
         // splash.loadFile('./src/renderer/splash.html'); // Load index.html into the new BrowserWindow
         splash.loadFile('./src/renderer/splash2.html'); // Load index.html into the new BrowserWindow
