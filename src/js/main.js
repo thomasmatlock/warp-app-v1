@@ -27,6 +27,8 @@ let mainWindow, splash, modalWindow, displayController, storageMain; // Keep a g
 app.allowRendererProcessReuse = true; // not sure what this does but I added it for a reason
 ///////////////////////   defaults   ///////////////////////
 (function init() {
+            // if (defaults.dev.splashScreen) windowController.createSplashWindow();
+
     ipcMain.on('eula-agreement-accepted', (e) => {
         // console.log(storageMain);
         storageMain.user.acceptedEULA = true;
@@ -309,8 +311,10 @@ const windowController = {
             // width: displayController.width,
             // minWidth: displayController.minWidth,
             // minHeight: displayController.minHeight,
-            x: displayController.x,
-            y: displayController.y,
+            // x:0 displayController.x,
+            x:0 ,
+            // y:0 displayController.y,
+            y:0 ,
             height: 100,
             width: 100,
             // x: 0,
@@ -364,8 +368,8 @@ const windowController = {
             wc.send('window-ready', storageMain);
             setTimeout(() => { 
 
-                // if (defaults.dev.splashScreen) splash.destroy();
-            }, 10000);
+                if (defaults.dev.splashScreen) splash.destroy();
+            }, 5000);
         });
         wc.on('devtools-opened', () => {});
 
@@ -389,6 +393,7 @@ const windowController = {
             transparent: true,
             webPreferences: {},
         });
+        // splash.loadFile('./src/renderer/splash.html'); // Load index.html into the new BrowserWindow
         splash.loadFile('./src/renderer/splash2.html'); // Load index.html into the new BrowserWindow
     },
     // createModalWindow: function() {

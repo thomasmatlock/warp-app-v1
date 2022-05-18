@@ -12,16 +12,20 @@
 
 <body>
     <div id="container">
-        <div id="gui"></div>
+        <!-- <div class="panel" id="panel2"> </div> -->
+        <!-- <div class="panel" id="panel1"> -->
+        <h1 id="app-title">Warp Downloader</h1>
+        <h1 id="version">1.0.1.</h1>
+        <h1 id="status-generator">Warp is warming up...</h1>
+        <h1 id="legal">© 2022 Superspreader Media. All rights reserved.</h1>
+        <!-- </div> -->
+        <!-- <div id="gui"></div> -->
         <!-- <h1>hello</h1> -->
-        <!-- <div class="panel" id="panel1"></div> -->
-        <!-- <div class="panel" id="panel2"> -->
-
-    </div>
     </div>
 
 </body>
 
+<!-- <script src="https://rawgithub.com/soulwire/sketch.js/master/js/sketch.min.js"></script> -->
 <script src="sketch.min.js"></script>
 <script>
     var sketch = Sketch.create(),
@@ -47,9 +51,9 @@
         jitterHue: 0,
         clearAlpha: 10,
         toggleOrbitals: true,
-        orbitalAlpha: 100,
+        orbitalAlpha: 10,
         toggleLight: true,
-        lightAlpha: 0,
+        lightAlpha: 0, // change this to 0 to turn off center light
         clear: function() {
             sketch.clearRect(0, 0, sketch.width, sketch.height), (orbs.length = 0);
         }
@@ -80,11 +84,12 @@
                 this.radius + random(-opt.jitterRadius, opt.jitterRadius);
             radius = opt.jitterRadius != 0 && radius < 0 ? 0.001 : radius;
             sketch.strokeStyle = "white";
-            "hsla( " +
-            ((this.angle + 90) / (PI / 180) + random(-opt.jitterHue, opt.jitterHue)) +
-            ", 100%, 50%, " +
-            opt.orbitalAlpha / 100 +
-                " )";
+            // sketch.strokeStyle =
+            //     "hsla( " +
+            //     ((this.angle + 90) / (PI / 180) + random(-opt.jitterHue, opt.jitterHue)) +
+            //     ", 100%, 50%, " +
+            //     opt.orbitalAlpha / 100 +
+            //     " )";
             sketch.lineWidth = this.size;
             // sketch.lineWidth = 100;
             sketch.beginPath();
@@ -103,7 +108,7 @@
                 "hsla( " +
                 ((this.angle + 90) / (PI / 180) + random(-opt.jitterHue, opt.jitterHue)) +
                 ", 100%, 70%, " +
-                opt.lightAlpha / 1000 +
+                opt.lightAlpha / 100 +
                 " )";
             sketch.beginPath();
             sketch.moveTo(0, 0);
@@ -169,7 +174,8 @@
     sketch.draw = function() {
         sketch.save();
         sketch.translate(center.x + 200, center.y - 5);
-        sketch.scale(opt.scale / 2.75, opt.scale / 2.75);
+        // sketch.scale(opt.scale / 2.75, opt.scale / 2.75);
+        sketch.scale(opt.scale / 2.5, opt.scale / 2.5);
         // sketch.scale(0.33, 0.33);
         var i = orbs.length;
         while (i--) {
@@ -178,7 +184,9 @@
         sketch.restore();
     };
 
-    // gui = new dat.GUI( { autoPlace: false } )
+    // gui = new dat.GUI({
+    //     autoPlace: false
+    // })
     // gui.add(opt, "total").name("Total Orbitals").listen();
     // gui.add(opt, "speed").min(-300).max(300).step(1).name("Speed");
     // gui.add(opt, "scale").min(0.5).max(5).step(0.001).name("Scale");
