@@ -369,6 +369,7 @@ const windowController = {
 
                 if (defaults.dev.splashScreen) splash.destroy();
             }, 10000);
+            // }, 2000);
         });
         wc.on('devtools-opened', () => {});
 

@@ -19,7 +19,7 @@ const init = () => {
     //         // sentenceGenerator2();
     //     }, 500);
     // }
-    let delay = 1500;
+    let delay = 1000;
     // console.log(`${pckg.version}`);
     // versionElement.innerHTML = `version ${pckg.version}`;
     element.innerHTML = sentenceGenerator();
@@ -161,6 +161,9 @@ const verbArr = [
     'modeling',
     'showing off',
     'fueling',
+    'generating',
+    'compiling',
+    'pre-compiling',
     'pre-computing',
     'loading'
 ];
@@ -181,7 +184,7 @@ const directObjArr = [
     'sense of humor',
     'settings',
     'enthusiasm',
-    'the universe',
+    'universes',
     'new sentences',
     'RAM',
     'processor cores',
@@ -189,7 +192,6 @@ const directObjArr = [
     'delight',
     'capabilities',
     'bliss',
-    'glee',
     'gleefulness',
     'joy',
     'amusement',
@@ -201,16 +203,18 @@ const directObjArr = [
     'cheerfulness',
     'galaxies',
     'gas giants',
-    'exuberance',
     'gravity',
     'joyfulness',
     'joie de vivre',
     'comfort',
+    'particles',
     'CPU cores',
     'CUDA cores',
     'event horizons',
-    'leisure'
-
+    'leisure',
+    'systems',
+    'clusters',
+    'circuit boards'
 ];
 
 
@@ -220,16 +224,50 @@ const adjectiveArr = [
     'nuclear',
     'dynamic',
     'lively',
+    'extra',
+    'reserve',
+    'interstellar',
     'potent',
     'stupendous',
     'project',
     'breathtaking',
     'infrared',
+    'backup',
+    'solar',
+    'orbital',
+    'interplanetary',
+    'electromagnetic',
+    'secondary',
+    'primary',
+    'critical ',
+    'crucial ',
+    'essential ',
+    'extensive ',
+    'imperative ',
+    'influential ',
+    'meaningful ',
+    'necessary ',
+    'relevant ',
+    'serious ',
+    'weapons-grade ',
+    'high-caliber ',
+    'significant ',
+    'vital ',
+    'considerable ',
+    'exceptional ',
+    'clustered ',
+
+
+
     'cozy'
 ]
 const adjectiveQuantityArr = [
     'additional',
-    'numerous',
+    'auxiliary',
+    'spare',
+    'increased',
+    'supplementary',
+    // 'numerous',
     'substantial',
     'sufficient',
     'enough',
