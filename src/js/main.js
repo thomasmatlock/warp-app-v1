@@ -21,8 +21,6 @@ app.whenReady().then(() => {
     tray.setContextMenu(contextMenu);
     // console.log(tray);
 });
-///////////////////////////////////   TRAY   /////////////////////////////////
-////////////////////////////////////////////////////////////////////
 let mainWindow, splash, modalWindow, displayController, storageMain; // Keep a global reference of the window object, if you don't, the window will be closed automatically when the JavaScript object is garbage collected.
 app.allowRendererProcessReuse = true; // not sure what this does but I added it for a reason
 ///////////////////////   defaults   ///////////////////////
@@ -398,7 +396,7 @@ const windowController = {
             },
         });
         // splash.loadFile('./src/renderer/splash.html'); // Load index.html into the new BrowserWindow
-        splash.loadFile('./src/renderer/splash2.html'); // Load index.html into the new BrowserWindow
+        splash.loadFile('./src/renderer/SplashScreen/splash.html'); // Load index.html into the new BrowserWindow
     },
     // createModalWindow: function() {
     //     modalWindow = new BrowserWindow({

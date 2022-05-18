@@ -1,11 +1,4 @@
-// const pckg = require('../../package.json');
-// import pckg from '../../package.json';
-// import pckg from "module-name";
-// import pckg from "module-name";
-
-
-
-
+const element = document.getElementById('status');
 window.addEventListener(
     'load',
     function() {
@@ -25,8 +18,8 @@ const init = () => {
     //     }, 500);
     // }
     let delay = 750;
-    console.log(`${pckg.version}`);
-    versionElement.innerHTML = `version ${pckg.version}`;
+    // console.log(`${pckg.version}`);
+    // versionElement.innerHTML = `version ${pckg.version}`;
     element.innerHTML = sentenceGenerator();
     setTimeout(() => {
         element.innerHTML = sentenceGenerator();
