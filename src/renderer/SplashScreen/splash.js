@@ -11,13 +11,15 @@ window.addEventListener(
 );
 
 const init = () => {
-    let repeatCount = 10;
-    // for (let i = 1; i < repeatCount; i++) {
+    // let repeatCount = 10;
+    // for (let i = 1; i < 10; i++) {
     //     setTimeout(() => {
-    //         element.innerHTML = sentenceGenerator();
+    //         document.getElementById('status').innerHTML = sentenceGenerator();
+    //         // element.innerHTML = sentenceGenerator();
+    //         // sentenceGenerator2();
     //     }, 500);
     // }
-    let delay = 750;
+    let delay = 500;
     // console.log(`${pckg.version}`);
     // versionElement.innerHTML = `version ${pckg.version}`;
     element.innerHTML = sentenceGenerator();
@@ -39,6 +41,21 @@ const init = () => {
                                     element.innerHTML = sentenceGenerator();
                                     setTimeout(() => {
                                         element.innerHTML = sentenceGenerator();
+                                        setTimeout(() => {
+                                            element.innerHTML = sentenceGenerator();
+                                            setTimeout(() => {
+                                                element.innerHTML = sentenceGenerator();
+                                                setTimeout(() => {
+                                                    element.innerHTML = sentenceGenerator();
+                                                    setTimeout(() => {
+                                                        element.innerHTML = sentenceGenerator();
+                                                        setTimeout(() => {
+                                                            element.innerHTML = sentenceGenerator();
+                                                        }, delay);
+                                                    }, delay);
+                                                }, delay);
+                                            }, delay);
+                                        }, delay);
                                     }, delay);
                                 }, delay);
                             }, delay);
@@ -70,6 +87,7 @@ const verbArr = [
     'installing',
     'seeking',
     'collapsing',
+    'establishing',
     'showing off',
     'pre-computing',
     'loading'
@@ -79,13 +97,9 @@ const sortThis = [
     "Lunar network clusters...",
     "Settings being boarded",
     "Network Express line rails installed",
-    "Downloads being  ",
-    "Checking network...",
     "Connection establishedOnline network...",
     "Authenrication Online network...",
-    'Tommyship preparing ',
     'RAM speed faster than GOAT speed',
-    ' Jakemachine engines',
     'doing a mic check for jokes later',
     'mailing a letter to the server in hope of updates',
     ' flying pigeon',
@@ -129,18 +143,33 @@ const directObjArr = [
     'engines',
     'enjoyment',
     'fatherboards',
+    'motherboards',
     'workflows',
     'satisfaction',
     'recognition',
     'fame',
     'ambitiousness',
+    'curiousity',
     'sense of humor',
     'settings',
     'the universe',
     'new sentences',
     'RAM',
+    'processor cores',
     'capabilities'
 ];
+
+const hardwareNounsArray = [
+    'CPUs / Processors',
+    'Motherboards',
+    'Video Graphic Devices',
+    'Computer Cases',
+    'Power Supplies',
+    'Memory (PC RAM)',
+    'Storage',
+    'Optical Drives',
+    'PC Cooling'
+]
 
 const sentenceGenerator = () => {
     // let randomAdv = randomFromArray(advArr);
@@ -152,4 +181,15 @@ const sentenceGenerator = () => {
     let randomVerb = randomFromArray(verbArr);
     let sentence = `Warp is  ${randomVerb}  ${randomDirObj}...`;
     return sentence;
+};
+const sentenceGenerator2 = () => {
+    // let randomAdv = randomFromArray(advArr);
+    // let randomNoun = randomFromArray(nounArr);
+    let randomAdj = randomFromArray(adjectiveArr);
+    let randomDirObj = randomFromArray(directObjArr);
+    // let randomAppearance = randomFromArray(appearanceArr);
+    // let randomArticle = randomFromArray(articleArr);
+    let randomVerb = randomFromArray(verbArr);
+    let sentence = `Warp is  ${randomVerb}  ${randomDirObj}...`;
+    element.innerHTML = sentence;
 };
