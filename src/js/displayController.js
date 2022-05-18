@@ -38,6 +38,7 @@ class displayController {
     discoverDisplay = () => {
         // PRODUCTION MODE
         if (defaults.logging) console.log(`discovering display...`)
+        console.log(typeof pckg.version);
         console.log(`version ${pckg.version}`);
         if (!defaults.devMode) {
             this.height = 900;

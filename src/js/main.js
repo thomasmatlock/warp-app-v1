@@ -27,7 +27,7 @@ let mainWindow, splash, modalWindow, displayController, storageMain; // Keep a g
 app.allowRendererProcessReuse = true; // not sure what this does but I added it for a reason
 ///////////////////////   defaults   ///////////////////////
 (function init() {
-            // if (defaults.dev.splashScreen) windowController.createSplashWindow();
+    // if (defaults.dev.splashScreen) windowController.createSplashWindow();
 
     ipcMain.on('eula-agreement-accepted', (e) => {
         // console.log(storageMain);
@@ -312,9 +312,9 @@ const windowController = {
             // minWidth: displayController.minWidth,
             // minHeight: displayController.minHeight,
             // x:0 displayController.x,
-            x:0 ,
+            x: 0,
             // y:0 displayController.y,
-            y:0 ,
+            y: 0,
             height: 100,
             width: 100,
             // x: 0,
@@ -350,6 +350,7 @@ const windowController = {
 
         if (defaults.dev.devTools) {
 
+            // splash.webContents.openDevTools(); // Open DevTools - Remove for PRODUCTION!
             mainWindow.webContents.openDevTools(); // Open DevTools - Remove for PRODUCTION!
         }
 
@@ -366,7 +367,7 @@ const windowController = {
             storageMain.markups.downloadItems.audio = markupDownloadItemAudio;
             storageMain.markups.downloadItems.video = markupDownloadItemVideo;
             wc.send('window-ready', storageMain);
-            setTimeout(() => { 
+            setTimeout(() => {
 
                 if (defaults.dev.splashScreen) splash.destroy();
             }, 5000);

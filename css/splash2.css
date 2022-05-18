@@ -78,7 +78,7 @@ h1 {
     position: absolute;
     left: 52px;
     top: 290px;
-    width: 183px;
+    /* width: 183px; */
     height: 43px;
     color: #ffffff;
     font-family: "Proxima Nova Alt";
