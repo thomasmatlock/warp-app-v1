@@ -74,7 +74,7 @@
         toggleOrbitals: true,
         orbitalAlpha: 100,
         toggleLight: true,
-        lightAlpha: 0, // change this to 0 to turn off center light
+        lightAlpha: 10, // change this to 0 to turn off center light
         clear: function() {
             sketch.clearRect(0, 0, sketch.width, sketch.height), (orbs.length = 0);
         }
@@ -128,7 +128,7 @@
             sketch.strokeStyle =
                 "hsla( " +
                 ((this.angle + 90) / (PI / 180) + random(-opt.jitterHue, opt.jitterHue)) +
-                ", 100%, 70%, " +
+                ", 100%, 100%, " +
                 opt.lightAlpha / 100 +
                 " )";
             sketch.beginPath();
