@@ -62,6 +62,7 @@
     scaleRandom = Math.floor(Math.random() * (2 - 1) + 1);
     speedRandom = Math.floor(Math.random() * (150 - 10) + 10);
     jitterRadiusRandom = Math.floor(Math.random() * (1 - 1) + 1);
+    lightAlphaRandom = Math.floor(Math.random() * (15 - 5) + 5);
     opt = {
         total: 0,
         count: countRandom,
@@ -74,7 +75,7 @@
         toggleOrbitals: true,
         orbitalAlpha: 100,
         toggleLight: true,
-        lightAlpha: 10, // change this to 0 to turn off center light
+        lightAlpha: lightAlphaRandom, // change this to 0 to turn off center light
         clear: function() {
             sketch.clearRect(0, 0, sketch.width, sketch.height), (orbs.length = 0);
         }
