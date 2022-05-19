@@ -1,59 +1,100 @@
 const nouns = [
+    // aviation
+    'altitudes',
+    'ailerons',
+
+    // emotions
+    'bliss',
+    'sense of humor',
+    'nostalgia',
+    'leisure',
     'ambitiousness',
-    'praise',
+    'cheer',
+    'cheerfulness',
+    'contentment',
+    'curiosity',
+    'delight',
+    'elation',
+    'enjoyment',
+    'enthusiasm',
+    'euphoria',
+
+
+
+    // videogames
+    'joysticks',
+    'controllers',
+    'consoles',
+    'keyboards',
+    'cartridges',
+
+    // coding
+
+    // interstellar/warp/space
+    'warp speeds',
+    'black holes',
+
+    // sailing
+    'sea shanties',
+
+    // technology terms/hardware
+    'CPU cores',
+    'CUDA cores',
     'satellites',
+    'circuit boards',
+    'multi-threading',
+    'transistors',
+    'potentiometers',
+
+    // audio/video/film/warp features
     'time-lapses',
+
+    'code-bases',
+    'terminals',
+    'functions',
     'discs',
     'synapses',
     'synthesis',
+    'riddles',
     'synthetics',
     'amusement',
     'doppelgangers',
+
+    // desired things
     'applause',
-    'atoms',
-    'waves',
-    'multi-threading',
-    'bliss',
-    'functions',
-    'black holes',
     'super powers',
+    'praise',
+
+    'atoms',
+    'wizardry',
+    'waves',
     'capabilities',
+    'realities',
     'materials',
+    'nodes',
     'architecture',
     'accelerants',
     'modes',
-    'sea shanties',
     'files',
     'media',
     'channels',
     'equipment',
-    'cheer',
-    'cheerfulness',
-    'circuit boards',
+
     'clusters',
     'comfort',
     'components',
     'constellations',
     'coordinates',
-    'joysticks',
-    'controllers',
-    'keyboards',
-    'cartridges',
-    'contentment',
+
     'diagnostics',
-    'CPU cores',
-    'CUDA cores',
-    'curiosity',
+
+
     'presets',
-    'delight',
-    'elation',
     'dark-years',
     'light-years',
     'engines',
     'time-travelers',
-    'enjoyment',
-    'enthusiasm',
-    'euphoria',
+
     'event horizons',
     'fatherboards',
     'ecosystems',
@@ -73,7 +114,6 @@ const nouns = [
     'refractors',
     'solstices',
     'supernovae',
-    'leisure',
     'variables',
     'tracks',
     'preferences',
@@ -93,7 +133,6 @@ const nouns = [
     'velocity',
     'rotators',
     'satisfaction',
-    'sense of humor',
     'schematics',
     'handsomeness',
     'intelligence',
@@ -117,14 +156,11 @@ const nouns = [
     'guidance',
     'universes',
     'archetypes',
-    'transistors',
-    'potentiometers',
+
     'applications',
-    'nostalgia',
     'workflows',
     'exponents',
     'autodidacts',
-    'logistics',
     'analytics',
 ];
 

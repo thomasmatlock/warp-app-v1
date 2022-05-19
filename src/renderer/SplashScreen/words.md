@@ -1,30 +1,4 @@
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
  anticipate 
  
   alliance
@@ -37,7 +11,7 @@
          
           armor
            argentina
-            anchor ability amsterdam acting abs artillery amusement art anvil active awe assault accent ask alive architecture arabesque audition adaptability abundance author adonis award aphrodite attraction accepting anthem aviator anarchy audacity anecdote aggressive artist academy amazed anti abandon
+             ability amsterdam acting abs artillery amusement art anvil active awe assault accent ask alive architecture arabesque audition adaptability abundance author adonis award aphrodite attraction accepting anthem aviator anarchy audacity anecdote aggressive artist academy amazed anti abandon
 
             appreciate 
             assurance

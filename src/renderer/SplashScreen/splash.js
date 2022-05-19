@@ -1,8 +1,8 @@
 const verbsArr = require('./verbs.js');
 const directObjArr = require('./nouns.js');
 const adjectiveDescriptiveArr = require('./adjectiveDescriptiveArr.js');
-const adjectiveQuantitativeArr = require('./adjectiveQuantitativeArr.js');
-const adjDegreeArr = require('./adjDegreeArr.js');
+const qualifier = require('./qualifier.js');
+const adverbs = require('./adverbs.js');
 const element = document.getElementById('status');
 window.addEventListener(
     'load',
@@ -69,11 +69,11 @@ const randomFromArray = function(arr) {
 
 const sentenceGenerator = () => {
     let randomAdj = randomFromArray(adjectiveDescriptiveArr);
-    let randomAdjDegree = randomFromArray(adjDegreeArr);
-    let randomAdjQuantity = randomFromArray(adjectiveQuantitativeArr);
+    let randomAdverb = randomFromArray(adverbs);
+    let randomQualifier = randomFromArray(qualifier);
     let randomDirObj = randomFromArray(directObjArr);
     let randomVerb = randomFromArray(verbsArr);
-    let sentence = `${randomVerb} ${randomAdjQuantity} ${randomAdjDegree} ${randomAdj}  ${randomDirObj}`;
-    sentence = `${randomVerb}  ${randomAdjDegree} ${randomAdj}  ${randomDirObj}`;
+    // let sentence = `${randomVerb} ${randomQualifier} ${randomAdverb} ${randomAdj}  ${randomDirObj}`;
+    let sentence = `${randomVerb} ${randomAdverb} ${randomAdj}  ${randomDirObj}`;
     return sentence;
 };

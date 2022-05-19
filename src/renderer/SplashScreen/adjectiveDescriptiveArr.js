@@ -1,13 +1,16 @@
 const adjectiveDescriptiveArr = [
-    // emotions
+    // emotions/attitudes
     'happy',
     'nostalgic',
     'euphoric',
     'playful',
     'friendly',
+    'determined',
+    'energetic',
+    'resourceful',
+    'irreverent',
 
     // human characteristics
-    'learning',
     'autodidactic',
     'ambitious',
 
@@ -18,6 +21,21 @@ const adjectiveDescriptiveArr = [
     'futuristic',
     'vintage',
     'classic',
+    'asynchronous',
+    'synchronous',
+
+    // IMPORTANCE
+    'primary',
+    'secondary',
+    'relevant',
+
+    // visual
+
+    'colorful',
+    'colorless',
+    'monochrome',
+    'multicolored',
+    'attractive',
 
     // tech
     'A/V',
@@ -33,37 +51,50 @@ const adjectiveDescriptiveArr = [
     'quad-core',
     'video',
     'VHS',
-    'formatted',
-    'unformatted',
+    'low-level',
+    'high-level',
     'algorithmic',
     'mono',
     'surrounding',
     'streaming',
     'wireframe',
     'disconnected',
-    'socketed',
     'un-socketed',
     'vertexed',
     'multi-threaded',
     '384-bit',
     'peer-to-peer',
+    'cascading',
+    'socketed',
+    'styled',
+    'computing',
+    'de-computing',
 
-    // film
+
+
+    // film/movies
     'time-lapse',
+    'Terminator-like',
+    'Thor-like',
+    'Odin-like',
+    'Loki-like',
 
     // space
     '2-dimensional',
     '3-dimensional',
     '4-dimensional',
     'solar',
+    'astronomical',
 
-    // size
-    'giant',
+
+
 
     // condition
     'refurbished',
     'clean',
     'salvaged',
+    'formatted',
+    'un-formatted',
 
     // sound
     'stereo',
@@ -71,6 +102,7 @@ const adjectiveDescriptiveArr = [
     'mono',
     'quiet',
     'noisy',
+    'rhythmic',
 
     // sailing
     'starboard',
@@ -80,31 +112,68 @@ const adjectiveDescriptiveArr = [
     'ocean-bound',
     'windward',
     'leeward',
+    'anchored',
+
+
+    // perspective/philosophical
+    'subjective',
+
+    // musical
+    'synthwave',
+    'jazz',
+
     // other
     'archetypical',
     'static',
 
+
+    // gaming
+    'up up down down left right left right B A',
+
+    // location/navigation/where/position
+    'latitudinal',
+    'longitudinal',
     'internal',
     'external',
+    'subterranean',
+
+    'radial',
     'expansion',
     'architectural',
-    'synthwave',
     'personal',
     'open',
     'similar',
     'opposing',
+    'developer',
     'closed',
     'modular',
     'compatible',
-    'jazz',
     'connected',
-    'up up down down left right left right B A',
-    'latitudinal',
-    'longitudinal',
+
+    // visual
+    'aesthetic',
+    'cosmetic',
+    'cinematic',
+    'invisible',
+    'transparent',
+    'translucent',
+    'opaque',
 
 
+    // SIZE/shape
+    'compact',
+    'giant',
+    'colossal',
+    'tiny',
+    'elongated',
+    'proportional',
+
+
+    // status/status
+    'unprocessed',
 
     'thermostatic',
+    'behavioral',
     'liquid',
     'guided',
     'accelerative',
@@ -112,35 +181,29 @@ const adjectiveDescriptiveArr = [
     'preset',
     'pre-determined',
     'fully-managed',
-    'astronomical',
     'genuine',
+    'extraordinary',
     'separated',
     'distributed',
     'centralized',
     'de-centralized',
-    'low-level',
-    'high-level',
-    'cosmetic',
-    'aesthetic',
-    'synchronous',
+
     'functional',
     'synaptic',
-    'asynchronous',
     'processed',
     'blissful',
-    'unprocessed',
     'non-synthetic',
     'packaged',
     'proxy',
     'hand-crafted',
     'machine',
     'power',
+    'emergent',
     'multi-versed',
     'aligned',
     'entertaining',
     'supercharged',
     'doppelganger',
-    'compact',
     'intelligent',
     'expanded',
     'developed',
@@ -149,7 +212,6 @@ const adjectiveDescriptiveArr = [
     'logical',
     'logistical',
     'interesting',
-    'cascading',
 
     'procedural',
     'blended',
@@ -167,7 +229,6 @@ const adjectiveDescriptiveArr = [
     'heavy',
     'twin',
     'triple',
-    'tiny',
     'double',
     'quadruple',
     'beautiful',
@@ -223,7 +284,6 @@ const adjectiveDescriptiveArr = [
     'crucial ',
     'parallax',
     'load-balancing',
-    'transparent',
     'circumpolar',
     'exhilarating',
     'curious',
@@ -242,7 +302,7 @@ const adjectiveDescriptiveArr = [
     'exhilarated',
     'uncollected',
     'technological',
-    'elongated',
+    // importance
     'imperative ',
     'influential ',
     'infrared',
@@ -259,6 +319,8 @@ const adjectiveDescriptiveArr = [
     'un-spontaneous',
     'nuclear',
     'rotating',
+    'aquatic',
+    'enigmatic',
     'spatial',
     'space-time',
     'orbital',
@@ -271,17 +333,18 @@ const adjectiveDescriptiveArr = [
     'molecular',
     'reflective',
     'refractive',
-    'primary',
-    'computing',
-    'de-computing',
+
+
+
     'project',
     'supplied',
     'un-supplied',
-    'relevant',
-    'secondary',
+
+    'meta',
+    'serverless',
     'serious',
     'significant',
-    'routing',
+    'routed',
 
     'stupendous',
     'concentrated',

@@ -1,4 +1,4 @@
-const adjectiveQuantitativeArr = [
+const qualifier = [
     'accompanying',
     'additional',
     'adequate',
@@ -27,11 +27,9 @@ const adjectiveQuantitativeArr = [
     'sufficient',
     'supplemental',
     'supportive',
-];
-const adjectiveQuantitativeArr2 = [
     'several',
     'duplicate',
-
 ];
 
-module.exports = adjectiveQuantitativeArr;
+
+module.exports = qualifier;
