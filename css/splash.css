@@ -4013,9 +4013,11 @@ body {
   display: flex;
   align-items: center; }
 
-#status {
+.status {
+  left: 52px; }
+
+#status1 {
   position: absolute;
-  left: 52px;
   top: 280px;
   /* width: 183px; */
   height: 43px;
@@ -4023,8 +4025,33 @@ body {
   font-size: 14px;
   font-weight: 400;
   display: flex;
+  opacity: 1;
   align-items: center;
   animation: lightSpeedInLeft 2s ease-out; }
+
+#status2 {
+  position: absolute;
+  top: 270px;
+  /* width: 183px; */
+  height: 43px;
+  font-family: "Proxima Nova";
+  font-size: 14px;
+  font-weight: 400;
+  display: flex;
+  opacity: 0.66;
+  align-items: center; }
+
+#status3 {
+  position: absolute;
+  top: 260px;
+  /* width: 183px; */
+  height: 43px;
+  font-family: "Proxima Nova";
+  font-size: 14px;
+  font-weight: 400;
+  display: flex;
+  opacity: 0.33;
+  align-items: center; }
 
 #legal {
   position: absolute;

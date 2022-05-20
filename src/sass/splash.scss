@@ -192,9 +192,12 @@
         // animation: moveInLeft 1s ease-out;
     }
     
-    #status {
-        position: absolute;
+    .status {
         left: 52px;
+    }
+    
+    #status1 {
+        position: absolute;
         top: 280px;
         /* width: 183px; */
         height: 43px;
@@ -203,10 +206,40 @@
         font-size: 14px;
         font-weight: 400;
         display: flex;
+        opacity: 1;
         align-items: center;
         // animation-delay: 1s;
         animation: lightSpeedInLeft 2s ease-out;
-        // animation: backInDown 1.5s ease-out;
+    }
+    
+    #status2 {
+        position: absolute;
+        // left: 52px;
+        top: 270px;
+        /* width: 183px; */
+        height: 43px;
+        // color: #ffffff;
+        font-family: "Proxima Nova";
+        font-size: 14px;
+        font-weight: 400;
+        display: flex;
+        opacity: 0.66;
+        align-items: center;
+    }
+    
+    #status3 {
+        position: absolute;
+        // left: 52px;
+        top: 260px;
+        /* width: 183px; */
+        height: 43px;
+        // color: #ffffff;
+        font-family: "Proxima Nova";
+        font-size: 14px;
+        font-weight: 400;
+        display: flex;
+        opacity: 0.33;
+        align-items: center;
     }
     
     #legal {

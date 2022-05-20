@@ -495,6 +495,7 @@ const adjectiveDescriptiveArr = [
     '80mm',
 
     'breathtaking',
+    'regenerative',
     'definitive',
     'defined',
     'reactive',

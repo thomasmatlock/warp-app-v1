@@ -5,7 +5,7 @@ const adjectiveDescriptiveArr = require('./adjectiveDescriptiveArr.js');
 const qualifier = require('./qualifier.js');
 const adverbs = require('./adverbs.js');
 const package = require('../../../package.json');
-const element = document.getElementById('status');
+const element = document.getElementById('status1');
 const delay = 2000;
 window.addEventListener(
     'load',
