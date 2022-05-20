@@ -1,6 +1,6 @@
 {
     "name": "Warp Downloader",
-    "version": "1.0.1",
+    "version": "2.1.0",
     "description": "wip",
     "main": "./src/js/main.js",
     "scripts": {

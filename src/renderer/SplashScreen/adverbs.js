@@ -40,9 +40,13 @@ const adverbs = [
 
     // comment
     'luckily',
-    'basically',
     'unusually',
+
     'understandably',
+    'presumably',
+    'haphazardly',
+
+
     'seemingly',
     'strangely',
     'casually',
@@ -54,6 +58,8 @@ const adverbs = [
     'confidently',
     'potentially',
     'interestingly',
+    'stealthily',
+    'clearly',
 
     // confirmation/negation
     'certainly',
@@ -69,7 +75,6 @@ const adverbs = [
     'relatively',
     'overtly',
     'offhandedly',
-    'plainly',
 ];
 
 module.exports = adverbs;

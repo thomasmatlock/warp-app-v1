@@ -20,9 +20,12 @@
      'warping',
      'diagramming',
      'anchoring',
+     'pioneering',
+
      'upgrading',
      'downloading',
      'materializing',
+     'transforming',
      'teleporting to',
      'refurbishing',
      'appreciating',
