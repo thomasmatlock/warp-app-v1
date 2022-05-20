@@ -66,7 +66,6 @@
      'securing',
      'preparing',
      'looking up',
-     'saving',
      'texturing',
      'reading',
      'propagating',

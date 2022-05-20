@@ -28,3 +28,4 @@
    document.getElementById('legal').style.color = textColor;
 
    if (theme === 'dark') document.getElementById('app-title').classList.add('glowing');
+   if (theme === 'dark') document.getElementById('app-title').classList.remove('coloredGradientText');
