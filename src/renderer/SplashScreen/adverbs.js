@@ -16,13 +16,14 @@ const adverbs = [
     'usually',
     'sometimes',
     // 'seldom',
-    'rarely',
-    'briefly',
+    // 'rarely',
+    // 'briefly',
     'regularly',
 
     // degree/how much
     'mostly',
     'almost',
+    'beyond',
     'slightly',
     'intensely',
     'overly',
@@ -49,6 +50,10 @@ const adverbs = [
     'incidentally',
     'oddly',
     'extraordinarily',
+    'deliciously',
+    'confidently',
+    'potentially',
+    'interestingly',
 
     // confirmation/negation
     'certainly',
@@ -65,6 +70,8 @@ const adverbs = [
     'rather',
     'relatively',
     'overtly',
+    'offhandedly',
+    'plainly',
 ];
 
 module.exports = adverbs;

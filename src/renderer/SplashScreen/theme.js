@@ -16,11 +16,9 @@
    // #ffffff
    // #2A2A2A
    // #3B3B3B
-   // let randomTheme = Math.floor(Math.random() * (1 - 0) + 0);
    let randomTheme = Math.round(Math.random());
-   // let theme = 'dark';
-   console.log(randomTheme);
    let theme = randomTheme === 0 ? 'dark' : 'light';
+   //    let theme = 'dark';
    let backgroundColor = theme === 'light' ? '#ECECEC ' : '#000';
    let textColor = theme === 'light' ? '#000' : '#fff';
 
@@ -28,3 +26,5 @@
    document.getElementById('version').style.color = textColor;
    document.getElementById('status').style.color = textColor;
    document.getElementById('legal').style.color = textColor;
+
+   if (theme === 'dark') document.getElementById('app-title').classList.add('glowing');

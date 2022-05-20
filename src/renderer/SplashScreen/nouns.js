@@ -1,7 +1,7 @@
 const nouns = [
     // aviation
     'altitudes',
-    'ailerons',
+    // 'ailerons',
 
     // emotions
     'bliss',
@@ -9,15 +9,26 @@ const nouns = [
     'nostalgia',
     'leisure',
     'ambitiousness',
-    'cheer',
     'cheerfulness',
     'contentment',
     'curiosity',
     'delight',
     'elation',
-    'enjoyment',
     'enthusiasm',
     'euphoria',
+    'pride',
+    'achievement',
+    'accomplishment',
+    'pride and accomplishment',
+    'senses',
+    'assurances',
+    'experiences',
+    'routines',
+
+
+    'appreciation',
+    'theory',
+    'theories',
 
 
 
@@ -27,15 +38,23 @@ const nouns = [
     'consoles',
     'keyboards',
     'cartridges',
+    'buttons',
+    'thumbsticks',
 
     // coding
 
     // interstellar/warp/space
     'warp speeds',
     'black holes',
+    'skies',
+    'worlds',
+    'dark matter',
+    'light matter',
 
     // sailing
     'sea shanties',
+    'buoys',
+    'lighthouses',
 
     // technology terms/hardware
     'CPU cores',
@@ -48,16 +67,22 @@ const nouns = [
 
     // audio/video/film/warp features
     'time-lapses',
-
+    'video tracks',
+    'audio tracks',
+    'waveforms',
+    'color-grading',
+    'renders',
+    'imports',
+    'exports',
     'code-bases',
     'terminals',
     'functions',
     'discs',
     'synapses',
     'synthesis',
-    'riddles',
     'synthetics',
     'amusement',
+    'singularities',
     'doppelgangers',
 
     // desired things
@@ -74,24 +99,44 @@ const nouns = [
     'nodes',
     'architecture',
     'accelerants',
+    'anthropomorphism',
     'modes',
     'files',
     'media',
+    'sensors',
+    'humanity',
+    'animations',
+
+    // words
+    'gods',
+
     'channels',
+    'savvy',
+    'geometry',
+    'radios',
+    'ships',
+    'propellants',
+    'cycles',
     'equipment',
 
     'clusters',
+    'machinery',
     'comfort',
     'components',
     'constellations',
     'coordinates',
+    'cylinders',
 
     'diagnostics',
 
 
     'presets',
     'dark-years',
+    'planets',
+    'stratospheres',
+    'atmospheres',
     'light-years',
+
     'engines',
     'time-travelers',
 
@@ -104,6 +149,7 @@ const nouns = [
     'gas giants',
     'gas gnomes',
     'gleefulness',
+    'vectors',
     'machines',
     'gravity',
     'joie de vivre',
@@ -113,6 +159,7 @@ const nouns = [
     'reflectors',
     'refractors',
     'solstices',
+    'wordplay',
     'supernovae',
     'variables',
     'tracks',
@@ -148,7 +195,7 @@ const nouns = [
     'sockets',
     'algorithms',
     'partitions',
-    'development',
+    'developments',
     'kaleidoscopes',
     'drives',
     'exhilaration',

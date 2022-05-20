@@ -7,8 +7,16 @@ const adjectiveDescriptiveArr = [
     'friendly',
     'determined',
     'energetic',
+    'procrastinating',
     'resourceful',
+    'sweet',
     'irreverent',
+    'wholesome',
+    'effervescent',
+    'anthropomorphic',
+    'animated',
+    'self-directed',
+    'self-aware',
 
     // human characteristics
     'autodidactic',
@@ -21,6 +29,7 @@ const adjectiveDescriptiveArr = [
     'futuristic',
     'vintage',
     'classic',
+    'human-like',
     'asynchronous',
     'synchronous',
 
@@ -36,20 +45,18 @@ const adjectiveDescriptiveArr = [
     'monochrome',
     'multicolored',
     'attractive',
+    'profound',
 
     // tech
-    'A/V',
     'overclocked',
     'analog',
-    'audio',
-    'deca-core',
+    '10-core',
     'hexa-core',
     'octo-core',
     'solid state',
     'offline',
     'online',
     'quad-core',
-    'video',
     'VHS',
     'low-level',
     'high-level',
@@ -66,7 +73,6 @@ const adjectiveDescriptiveArr = [
     'peer-to-peer',
     'cascading',
     'socketed',
-    'styled',
     'computing',
     'de-computing',
 
@@ -85,6 +91,17 @@ const adjectiveDescriptiveArr = [
     '4-dimensional',
     'solar',
     'astronomical',
+    'space',
+    'radio',
+
+
+    'outer',
+    'color-graded',
+    'director\'s cut',
+    'inner',
+    'exterior',
+    'interior',
+
 
 
 
@@ -120,26 +137,70 @@ const adjectiveDescriptiveArr = [
 
     // musical
     'synthwave',
+    'rock-n-roll',
     'jazz',
+    'classical',
+    'avant-garde',
+    'ballet',
+    'baroque',
+    'cantata',
+    'choral',
+    'classical crossover',
+    'concerto',
+    'concerto grosso',
+    'contemporary classical',
+    'early',
+    'expressionist',
+    'high classical',
+    'impressionist',
+    'medieval',
+    'minimalist',
+    'modern compositional',
+    'modern classical',
+    'operatic',
+    'oratorio',
+    'orchestral',
+    'renaissance',
+    'romantic',
+    'symphonic',
+    'twelve-tone',
+
 
     // other
     'archetypical',
     'static',
 
-
+    // words
+    'godly',
     // gaming
-    'up up down down left right left right B A',
 
     // location/navigation/where/position
     'latitudinal',
     'longitudinal',
     'internal',
+    'routine',
     'external',
     'subterranean',
 
     'radial',
+    'cylindrical',
+    'savvy',
+    'geometrical',
+    'gaming',
+    'morphed',
+    'whimsical',
+    'flying',
+    'caffeinated',
+    'spherical',
+    'shapeshifting',
+    'polygonal',
     'expansion',
     'architectural',
+    'unparalleled',
+    'noteworthy',
+    'exceptional',
+    'astonishing',
+    'thunderous',
     'personal',
     'open',
     'similar',
@@ -148,6 +209,9 @@ const adjectiveDescriptiveArr = [
     'closed',
     'modular',
     'compatible',
+    'unique',
+    'extraordinary',
+    'invaluable',
     'connected',
 
     // visual
@@ -224,12 +288,11 @@ const adjectiveDescriptiveArr = [
     'authentic',
     'certified',
     'sensible',
-    'snug',
     'enjoyable',
     'heavy',
     'twin',
-    'triple',
-    'double',
+    'triplicate',
+    'duplicate',
     'quadruple',
     'beautiful',
     'handsome',
