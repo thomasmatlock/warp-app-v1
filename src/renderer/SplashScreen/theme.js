@@ -16,7 +16,7 @@
    // #ffffff
    // #2A2A2A
    // #3B3B3B
-   let theme = 'light';
+   let theme = 'dark';
    let backgroundColor = theme === 'light' ? '#ECECEC ' : '#0E0F0F';
    let textColor = theme === 'light' ? '#0E0F0F' : '#ECECEC';
 
