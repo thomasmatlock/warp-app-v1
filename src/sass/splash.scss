@@ -192,10 +192,18 @@
         // animation: moveInLeft 1s ease-out;
     }
     
-    .hidden {
-        visibility: hidden;
-        opacity: 0;
-        transition: visibility 0s 2s, opacity 2s linear;
+    .status3 {
+        opacity: 0.25;
+        transition: opacity 1s linear;
+    }
+    
+    .status2 {
+        // visibility: hidden;
+        // opacity: 0.25;
+        opacity: 0.5;
+        // animation: lightSpeedInLeft 2s ease-out;
+        // transition: visibility 0s 2s, opacity 2s linear;
+        transition: opacity 2s linear;
     }
     
     .status {
@@ -219,12 +227,13 @@
     
     #status2 {
         top: 260px;
-        opacity: 0.50;
+        animation: lightSpeedInLeft 2s ease-out;
+        // opacity: 0.50;
     }
     
     #status3 {
         top: 240px;
-        opacity: 0.25;
+        // opacity: 0.25;
     }
     
     #legal {

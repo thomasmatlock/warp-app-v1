@@ -210,6 +210,8 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
 (function appListeners() {
     app.on('ready', () => {
         if (defaults.dev.splashScreen) windowController.createSplashWindow();
+        // splash.webContents.openDevTools(); // Open DevTools - Remove for PRODUCTION!
+
         displayController = new displayControllerReq(); // positions output window to display depending on single/multi-monitor
         defaults.init(); // all defaults checks, latest version, isOnline, hasFFmpeg etc
         fileController.init(defaults); // checks for local directories and creates them if non existent
@@ -249,15 +251,15 @@ const mainFunctions = {
     setMenu: function(menuType) {
         if (menuType === 'audio') {
             if (defaults.logging) console.log(`Setting audio menu...`)
-            appMenuAudio(mainWindow.webContents); // sets audio menu if audio tab is clicked
+                // appMenuAudio(mainWindow.webContents); // sets audio menu if audio tab is clicked
         }
         if (menuType === 'video') {
             if (defaults.logging) console.log(`Setting video menu...`)
-            appMenuVideo(mainWindow.webContents); // sets audio menu if audio tab is clicked
+                // appMenuVideo(mainWindow.webContents); // sets audio menu if audio tab is clicked
         }
         if (menuType === 'warpstagram') {
             if (defaults.logging) console.log(`Setting warpstagram menu...`)
-            appMenuWarpstagram(mainWindow.webContents); // sets audio menu if audio tab is clicked
+                // appMenuWarpstagram(mainWindow.webContents); // sets audio menu if audio tab is clicked
         }
     },
     loadHtml: function(menuType) {
@@ -347,9 +349,9 @@ const windowController = {
         mainWindow.loadFile('./src/renderer/main.html'); // Load index.html into the new BrowserWindow
         // mainWindow.loadFile('./main.html'); // Load index.html into the new BrowserWindow
 
+        // splash.webContents.openDevTools(); // Open DevTools - Remove for PRODUCTION!
         if (defaults.dev.devTools) {
 
-            // splash.webContents.openDevTools(); // Open DevTools - Remove for PRODUCTION!
             mainWindow.webContents.openDevTools(); // Open DevTools - Remove for PRODUCTION!
         }
 

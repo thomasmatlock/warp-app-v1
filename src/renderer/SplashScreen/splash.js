@@ -11,14 +11,21 @@ window.addEventListener(
     'load',
     function() {
         element.innerHTML = sentenceGenerator();
-        document.getElementById('status2').classList.add('hidden');
-        document.getElementById('version').innerHTML = `${package.version}`; // display app version
+
+        // document.getElementById('version').innerHTML = `${package.version}`; // display app version
+        // let element = document.createElement('h1');
+        // element.innerHTML = 'hello';
+        // element.style.color = 'purple';
+        // const newContent = document.createTextNode("Hi there and greetings!");
+        // document.getElementById('statusContainer').appendChild(newContent);
     },
     false
 );
 
 window.setInterval(function() {
     element.innerHTML = sentenceGenerator();
+    document.getElementById('status2').classList.add('status2');
+    document.getElementById('status3').classList.add('status3');
 }, delay);
 const getRandomInt = (max) => {
     return Math.floor(Math.random() * max);
