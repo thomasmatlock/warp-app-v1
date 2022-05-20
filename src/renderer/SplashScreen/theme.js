@@ -16,9 +16,13 @@
    // #ffffff
    // #2A2A2A
    // #3B3B3B
-   let theme = 'dark';
+   // let randomTheme = Math.floor(Math.random() * (1 - 0) + 0);
+   let randomTheme = Math.round(Math.random());
+   // let theme = 'dark';
+   console.log(randomTheme);
+   let theme = randomTheme === 0 ? 'dark' : 'light';
    let backgroundColor = theme === 'light' ? '#ECECEC ' : '#000';
-   let textColor = theme === 'light' ? '#000' : '#ECECEC';
+   let textColor = theme === 'light' ? '#000' : '#fff';
 
    document.getElementById('body').style.background = backgroundColor;
    document.getElementById('version').style.color = textColor;
