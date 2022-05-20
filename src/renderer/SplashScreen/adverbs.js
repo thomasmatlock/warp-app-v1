@@ -57,8 +57,6 @@ const adverbs = [
 
     // confirmation/negation
     'certainly',
-
-
     'fairly',
     'highly',
     'mainly',
