@@ -53,7 +53,7 @@
     // let themeColor = 'dark';
     // let orbsColor = theme === 'dark' ? '100% ' : '0%';
     // let lightColor = theme === 'dark' ? '90% ' : '0%';
-    let orbsColor = '0%'; // 0 for black, 100 for white
+    let orbsColor = '100%'; // 0 for black, 100 for white
     let lightColor = '90%'; // 0 for black, 90 for white
     var sketch = Sketch.create(),
         center = {
@@ -64,11 +64,11 @@
         },
         orbs = [],
         dt = 10,
-        countRandom = Math.floor(Math.random() * (150 - 50) + 50);
+        countRandom = Math.floor(Math.random() * (100 - 50) + 50);
     scaleRandom = Math.floor(Math.random() * (2 - 1) + 1);
-    speedRandom = Math.floor(Math.random() * (150 - 10) + 10);
+    speedRandom = Math.floor(Math.random() * (150 - 50) + 50);
     jitterRadiusRandom = Math.floor(Math.random() * (1 - 1) + 1);
-    lightAlphaRandom = Math.floor(Math.random() * (20 - 5) + 5);
+    lightAlphaRandom = Math.floor(Math.random() * (15 - 5) + 5);
     opt = {
         total: 0,
         count: countRandom,
@@ -114,7 +114,7 @@
             sketch.strokeStyle =
                 "hsla( " +
                 ((this.angle + 90) / (PI / 180) + random(-opt.jitterHue, opt.jitterHue)) +
-                ", 100%, 100%, " +
+                ", 100%, " + `${orbsColor}`,
                 opt.orbitalAlpha / 100 +
                 " )";
             sketch.lineWidth = this.size;
@@ -135,7 +135,7 @@
                 "hsla( " +
                 ((this.angle + 90) / (PI / 180) + random(-opt.jitterHue, opt.jitterHue)) +
                 ", 100%, 90%, " +
-                opt.lightAlpha / 100 +
+                opt.lightAlpha / 200 +
                 " )";
             sketch.beginPath();
             sketch.moveTo(0, 0);
