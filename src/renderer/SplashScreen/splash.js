@@ -30,6 +30,12 @@ const easterEggSentences = [
     `Ctrl Alt ${global.capitalizeFirstLetter(global.randomFromArray(directObjArr))}`,
     `Ctrl Alt ${global.capitalizeFirstLetter(global.randomFromArray(directObjArr))}`,
     `Ctrl Alt ${global.capitalizeFirstLetter(global.randomFromArray(directObjArr))}`,
+    `hello ${global.randomFromArray(adjectiveDescriptiveArr)} ${global.randomFromArray(directObjArr)}`,
+    `hello ${global.randomFromArray(adjectiveDescriptiveArr)} ${global.randomFromArray(directObjArr)}`,
+    `hello ${global.randomFromArray(adjectiveDescriptiveArr)} ${global.randomFromArray(directObjArr)}`,
+    `Ctrl Alt ${global.capitalizeFirstLetter(global.randomFromArray(directObjArr))}`,
+    `Ctrl Alt ${global.capitalizeFirstLetter(global.randomFromArray(directObjArr))}`,
+    `Ctrl Alt ${global.capitalizeFirstLetter(global.randomFromArray(directObjArr))}`,
 ]
 
 const sentenceGenerator = () => {
