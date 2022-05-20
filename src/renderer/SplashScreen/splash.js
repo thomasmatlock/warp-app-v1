@@ -11,6 +11,7 @@ window.addEventListener(
     'load',
     function() {
         element.innerHTML = sentenceGenerator();
+        document.getElementById('status2').classList.add('hidden');
         document.getElementById('version').innerHTML = `${package.version}`; // display app version
     },
     false

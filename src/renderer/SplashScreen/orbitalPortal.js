@@ -1,0 +1,1 @@
+const verbsArr = require('./sketch/sketch.min.js');

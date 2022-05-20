@@ -192,54 +192,39 @@
         // animation: moveInLeft 1s ease-out;
     }
     
+    .hidden {
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0s 2s, opacity 2s linear;
+    }
+    
     .status {
         left: 52px;
+        font-family: "Proxima Nova";
+        height: 43px;
+        font-weight: 400;
+        font-size: 14px;
+        position: absolute;
+        display: flex;
+        align-items: center;
     }
     
     #status1 {
-        position: absolute;
         top: 280px;
-        /* width: 183px; */
-        height: 43px;
         // color: #ffffff;
-        font-family: "Proxima Nova";
-        font-size: 14px;
-        font-weight: 400;
-        display: flex;
         opacity: 1;
-        align-items: center;
         // animation-delay: 1s;
         animation: lightSpeedInLeft 2s ease-out;
     }
     
     #status2 {
-        position: absolute;
-        // left: 52px;
-        top: 270px;
-        /* width: 183px; */
-        height: 43px;
-        // color: #ffffff;
-        font-family: "Proxima Nova";
-        font-size: 14px;
-        font-weight: 400;
-        display: flex;
-        opacity: 0.66;
-        align-items: center;
+        top: 260px;
+        opacity: 0.50;
     }
     
     #status3 {
-        position: absolute;
-        // left: 52px;
-        top: 260px;
-        /* width: 183px; */
-        height: 43px;
-        // color: #ffffff;
-        font-family: "Proxima Nova";
-        font-size: 14px;
-        font-weight: 400;
-        display: flex;
-        opacity: 0.33;
-        align-items: center;
+        top: 240px;
+        opacity: 0.25;
     }
     
     #legal {

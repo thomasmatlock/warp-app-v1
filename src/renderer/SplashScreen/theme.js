@@ -25,6 +25,8 @@
    document.getElementById('body').style.background = backgroundColor;
    document.getElementById('version').style.color = textColor;
    document.getElementById('status1').style.color = textColor;
+   document.getElementById('status2').style.color = textColor;
+   document.getElementById('status3').style.color = textColor;
    document.getElementById('legal').style.color = textColor;
 
    if (theme === 'dark') document.getElementById('app-title').classList.add('glowing');
