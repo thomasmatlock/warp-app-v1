@@ -88,19 +88,36 @@
     //         margin-top: 25%;
     //     }
     // }
+    // 16 shades of gray
+    // #0E0F0F
+    // #202020
+    // #313131
+    // #434243
+    // #545254
+    // #656465
+    // #757575
+    // #868786
+    // #979798
+    // #A8A7A8
+    // #B8BAB8
+    // #CACACA
+    // #DBDCDB
+    // #ECECEC
+    // #ffffff
+    // #2A2A2A
+    // #3B3B3B
+    $themeTextColor: #0E0F0F;
+    $themeBackgroundColor: #ECECEC;
     body {
-        background: #000;
+        background: $themeBackgroundColor;
         /* background: -webkit-radial-gradient(75%, #2a2a2a, #000 50%); */
-        // background: -webkit-radial-gradient(70% 200px, #2a2a2a, #000 35%);
-        // background: transparent;
         border-radius: 5px;
         overflow: hidden;
     }
     
-    h1 {
-        color: white;
-    }
-    
+    // h1 {
+    //     color: white;
+    // }
     .container {
         display: flex;
         flex-direction: row;
@@ -129,14 +146,20 @@
         font-weight: 400;
         display: flex;
         align-items: center;
-        // background: -webkit-linear-gradient(90deg, #a445b2 0%, #d41872 50%, #ff0066 100%);
-        // background-blend-mode: normal;
-        // -webkit-background-clip: text;
-        // -webkit-text-fill-color: transparent;
-        color: #ffffff;
-        animation: animate 3s linear infinite;
-        // text-shadow: 0 0 10px #fff, 0 0 50px #0072ff, 0 0 100px #0072ff, 0 0 150px #0072ff, 0 0 200px #0072ff;
-        text-shadow: 0 0 5px #fff, 0 0 10px #0072ff, 0 0 100px #0072ff, 0 0 20px #0072ff, 0 0 30px #0072ff, 0 0 40px #0072ff;
+        background: -webkit-linear-gradient(90deg, #a445b2 0%, #d41872 50%, #ff0066 100%);
+        background-blend-mode: normal;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        // color: #ffffff;
+        // animation: animate 3s linear infinite;
+        // // text-shadow: 0 0 10px #fff, 0 0 50px #0072ff, 0 0 100px #0072ff, 0 0 150px #0072ff, 0 0 200px #0072ff;
+        // text-shadow: 0 0 5px #fff, 0 0 10px #0072ff, 0 0 100px #0072ff, 0 0 20px #0072ff, 0 0 30px #0072ff, 0 0 40px #0072ff;
+    }
+    
+    #version,
+    #status,
+    #legal {
+        color: $themeTextColor;
     }
     
     #version {
@@ -145,7 +168,7 @@
         top: 155px;
         width: 91px;
         height: 56px;
-        color: #ffffff;
+        // color: #ffffff;
         font-family: "Proxima Nova";
         font-size: 22px;
         font-weight: 400;
@@ -161,7 +184,7 @@
         top: 290px;
         /* width: 183px; */
         height: 43px;
-        color: #ffffff;
+        // color: #ffffff;
         font-family: "Proxima Nova";
         font-size: 14px;
         font-weight: 400;
@@ -177,7 +200,7 @@
         top: 328px;
         width: 151px;
         height: 24px;
-        color: #ffffff;
+        // color: #ffffff;
         font-family: "Proxima Nova";
         font-size: 10px;
         font-weight: 400;
