@@ -64,11 +64,11 @@
         },
         orbs = [],
         dt = 10,
-        countRandom = Math.floor(Math.random() * (100 - 50) + 50);
+        countRandom = Math.floor(Math.random() * (5 - 5) + 5);
     scaleRandom = Math.floor(Math.random() * (2 - 1) + 1);
     speedRandom = Math.floor(Math.random() * (150 - 50) + 50);
     jitterRadiusRandom = Math.floor(Math.random() * (1 - 1) + 1);
-    lightAlphaRandom = Math.floor(Math.random() * (15 - 5) + 5);
+    lightAlphaRandom = Math.floor(Math.random() * (5 - 5) + 5);
     opt = {
         total: 0,
         count: countRandom,
@@ -208,6 +208,7 @@
         while (i--) {
             orbs[i].render();
         }
+        turnOnMove();
         sketch.restore();
     };
 

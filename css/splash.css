@@ -3958,7 +3958,8 @@ body {
   background: #ECECEC;
   /* background: -webkit-radial-gradient(75%, #2a2a2a, #000 50%); */
   border-radius: 5px;
-  overflow: hidden; }
+  overflow: hidden;
+  cursor: none; }
 
 .container {
   display: flex;
@@ -3977,7 +3978,6 @@ body {
   position: absolute;
   left: 50px;
   top: 110px;
-  width: 341px;
   height: 46px;
   font-family: "Proxima Nova";
   font-size: 36px;
@@ -3992,13 +3992,13 @@ body {
 #version,
 #status,
 #legal {
-  color: #0E0F0F; }
+  color: #0E0F0F;
+  width: auto; }
 
 #version {
   position: absolute;
   left: 52px;
   top: 155px;
-  width: 91px;
   height: 56px;
   font-family: "Proxima Nova";
   font-size: 22px;
@@ -4023,7 +4023,6 @@ body {
   position: absolute;
   left: 52px;
   top: 328px;
-  width: 151px;
   height: 24px;
   font-family: "Proxima Nova";
   font-size: 10px;

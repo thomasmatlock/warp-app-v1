@@ -391,6 +391,8 @@ const windowController = {
             // y: 100,
             frame: false,
             transparent: true,
+            icon: fileController.dirProjectPath + '/build/icon_taskbar.png',
+
             webPreferences: {
                 nodeIntegration: true,
                 worldSafeExecuteJavaScript: true,

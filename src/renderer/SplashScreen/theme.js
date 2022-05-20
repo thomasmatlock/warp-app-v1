@@ -17,8 +17,8 @@
    // #2A2A2A
    // #3B3B3B
    let theme = 'dark';
-   let backgroundColor = theme === 'light' ? '#ECECEC ' : '#0E0F0F';
-   let textColor = theme === 'light' ? '#0E0F0F' : '#ECECEC';
+   let backgroundColor = theme === 'light' ? '#ECECEC ' : '#000';
+   let textColor = theme === 'light' ? '#000' : '#ECECEC';
 
    document.getElementById('body').style.background = backgroundColor;
    document.getElementById('version').style.color = textColor;
