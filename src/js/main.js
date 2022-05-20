@@ -21,7 +21,8 @@ app.whenReady().then(() => {
     tray.setContextMenu(contextMenu);
     // console.log(tray);
 });
-let mainWindow, splash, modalWindow, displayController, storageMain; // Keep a global reference of the window object, if you don't, the window will be closed automatically when the JavaScript object is garbage collected.
+let mainWindow;
+let splash, modalWindow, displayController, storageMain; // Keep a global reference of the window object, if you don't, the window will be closed automatically when the JavaScript object is garbage collected.
 app.allowRendererProcessReuse = true; // not sure what this does but I added it for a reason
 ///////////////////////   defaults   ///////////////////////
 (function init() {
@@ -227,7 +228,7 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
                 markupDownloadItemVideo = await mainFunctions.loadMarkupDownloadItemVideo();
 
             }
-            windowController.createWindow(markupModalPrefs, markupDownloadItemAudio, markupDownloadItemVideo); // creates main app window
+            // windowController.createWindow(markupModalPrefs, markupDownloadItemAudio, markupDownloadItemVideo); // creates main app window
             mainFunctions.setMenu(defaults.env.nav_A_active);
         })();
         // if (defaults.dev.backendOnly) mainWindow.hide(); // devMode only

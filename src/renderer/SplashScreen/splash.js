@@ -4,12 +4,14 @@ const directObjArr = require('./nouns.js');
 const adjectiveDescriptiveArr = require('./adjectiveDescriptiveArr.js');
 const qualifier = require('./qualifier.js');
 const adverbs = require('./adverbs.js');
+const package = require('../../../package.json');
 const element = document.getElementById('status');
 const delay = 2000;
 window.addEventListener(
     'load',
     function() {
         element.innerHTML = sentenceGenerator();
+        document.getElementById('version').innerHTML = `${package.version}`; // display app version
     },
     false
 );
@@ -27,12 +29,24 @@ const easterEggSentences = [
     `hello ${global.randomFromArray(adjectiveDescriptiveArr)} ${global.randomFromArray(directObjArr)}`,
     `hello ${global.randomFromArray(adjectiveDescriptiveArr)} ${global.randomFromArray(directObjArr)}`,
     `hello ${global.randomFromArray(adjectiveDescriptiveArr)} ${global.randomFromArray(directObjArr)}`,
-    `Ctrl Alt ${global.capitalizeFirstLetter(global.randomFromArray(directObjArr))}`,
-    `Ctrl Alt ${global.capitalizeFirstLetter(global.randomFromArray(directObjArr))}`,
-    `Ctrl Alt ${global.capitalizeFirstLetter(global.randomFromArray(directObjArr))}`,
     `hello ${global.randomFromArray(adjectiveDescriptiveArr)} ${global.randomFromArray(directObjArr)}`,
     `hello ${global.randomFromArray(adjectiveDescriptiveArr)} ${global.randomFromArray(directObjArr)}`,
     `hello ${global.randomFromArray(adjectiveDescriptiveArr)} ${global.randomFromArray(directObjArr)}`,
+    `hello ${global.randomFromArray(adjectiveDescriptiveArr)} ${global.randomFromArray(directObjArr)}`,
+    `hello ${global.randomFromArray(adjectiveDescriptiveArr)} ${global.randomFromArray(directObjArr)}`,
+    `hello ${global.randomFromArray(adjectiveDescriptiveArr)} ${global.randomFromArray(directObjArr)}`,
+    `hello ${global.randomFromArray(adjectiveDescriptiveArr)} ${global.randomFromArray(directObjArr)}`,
+    `hello ${global.randomFromArray(adjectiveDescriptiveArr)} ${global.randomFromArray(directObjArr)}`,
+    `hello ${global.randomFromArray(adjectiveDescriptiveArr)} ${global.randomFromArray(directObjArr)}`,
+    `Ctrl Alt ${global.capitalizeFirstLetter(global.randomFromArray(directObjArr))}`,
+    `Ctrl Alt ${global.capitalizeFirstLetter(global.randomFromArray(directObjArr))}`,
+    `Ctrl Alt ${global.capitalizeFirstLetter(global.randomFromArray(directObjArr))}`,
+    `Ctrl Alt ${global.capitalizeFirstLetter(global.randomFromArray(directObjArr))}`,
+    `Ctrl Alt ${global.capitalizeFirstLetter(global.randomFromArray(directObjArr))}`,
+    `Ctrl Alt ${global.capitalizeFirstLetter(global.randomFromArray(directObjArr))}`,
+    `Ctrl Alt ${global.capitalizeFirstLetter(global.randomFromArray(directObjArr))}`,
+    `Ctrl Alt ${global.capitalizeFirstLetter(global.randomFromArray(directObjArr))}`,
+    `Ctrl Alt ${global.capitalizeFirstLetter(global.randomFromArray(directObjArr))}`,
     `Ctrl Alt ${global.capitalizeFirstLetter(global.randomFromArray(directObjArr))}`,
     `Ctrl Alt ${global.capitalizeFirstLetter(global.randomFromArray(directObjArr))}`,
     `Ctrl Alt ${global.capitalizeFirstLetter(global.randomFromArray(directObjArr))}`,
@@ -47,7 +61,7 @@ const sentenceGenerator = () => {
     let sentence = `${randomVerb} ${randomAdverb} ${randomAdj}  ${randomDirObj}`;
     // easter egg
     let easterEggSentence = easterEggSentences[Math.floor(Math.random() * easterEggSentences.length)];
-    if (getRandomInt(20) === 0) {
+    if (getRandomInt(10) === 0) {
         sentence = easterEggSentence;
     }
     // let sentence = `${randomVerb} ${randomQualifier} ${randomAdverb} ${randomAdj}  ${randomDirObj}`;
