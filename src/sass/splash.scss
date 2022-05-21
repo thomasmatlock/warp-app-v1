@@ -1,111 +1,6 @@
     @import 'base/animations';
     @import 'base/whoa-animations';
     @import 'base/animateCSS';
-    // @import 'compass/css3';
-    // $speed: 2.5s;
-    // .loader {
-    //     position: absolute;
-    //     top: 0px;
-    //     bottom: 0px;
-    //     left: 0px;
-    //     right: 0px;
-    //     margin: auto;
-    //     width: 175px;
-    //     height: 100px;
-    //     span {
-    //         display: block;
-    //         background: #ccc;
-    //         width: 7px;
-    //         height: 10%;
-    //         border-radius: 14px;
-    //         margin-right: 5px;
-    //         float: left;
-    //         margin-top: 25%;
-    //         &:last-child {
-    //             margin-right: 0px;
-    //         }
-    //         &:nth-child(1) {
-    //             animation: load $speed 1.4s infinite linear;
-    //         }
-    //         &:nth-child(2) {
-    //             animation: load $speed 1.2s infinite linear;
-    //         }
-    //         &:nth-child(3) {
-    //             animation: load $speed 1s infinite linear;
-    //         }
-    //         &:nth-child(4) {
-    //             animation: load $speed 0.8s infinite linear;
-    //         }
-    //         &:nth-child(5) {
-    //             animation: load $speed 0.6s infinite linear;
-    //         }
-    //         &:nth-child(6) {
-    //             animation: load $speed 0.4s infinite linear;
-    //         }
-    //         &:nth-child(7) {
-    //             animation: load $speed 0.2s infinite linear;
-    //         }
-    //         &:nth-child(8) {
-    //             animation: load $speed 0s infinite linear;
-    //         }
-    //         &:nth-child(9) {
-    //             animation: load $speed 0.2s infinite linear;
-    //         }
-    //         &:nth-child(10) {
-    //             animation: load $speed 0.4s infinite linear;
-    //         }
-    //         &:nth-child(11) {
-    //             animation: load $speed 0.6s infinite linear;
-    //         }
-    //         &:nth-child(12) {
-    //             animation: load $speed 0.8s infinite linear;
-    //         }
-    //         &:nth-child(13) {
-    //             animation: load $speed 1s infinite linear;
-    //         }
-    //         &:nth-child(14) {
-    //             animation: load $speed 1.2s infinite linear;
-    //         }
-    //         &:nth-child(15) {
-    //             animation: load $speed 1.4s infinite linear;
-    //         }
-    //     }
-    // }
-    // @keyframes load {
-    //     0% {
-    //         background: #ccc;
-    //         margin-top: 25%;
-    //         height: 10%;
-    //     }
-    //     50% {
-    //         background: #444;
-    //         height: 100%;
-    //         margin-top: 0%;
-    //     }
-    //     100% {
-    //         background: #ccc;
-    //         height: 10%;
-    //         margin-top: 25%;
-    //     }
-    // }
-    // 16 shades of gray
-    // #0E0F0F
-    // #202020
-    // #313131
-    // #434243
-    // #545254
-    // #656465
-    // #757575
-    // #868786
-    // #979798
-    // #A8A7A8
-    // #B8BAB8
-    // #CACACA
-    // #DBDCDB
-    // #ECECEC
-    // #ffffff
-    // #2A2A2A
-    // #3B3B3B
     $themeTextColor: #0E0F0F;
     $themeBackgroundColor: #ECECEC;
     body {
@@ -117,9 +12,11 @@
         cursor: none;
     }
     
-    // h1 {
-    //     color: white;
-    // }
+    h1 {
+        font-family: "Proxima Nova";
+        position: absolute;
+    }
+    
     .container {
         display: flex;
         flex-direction: row;
@@ -191,17 +88,22 @@
     
     .status3 {
         top: 240px;
-        opacity: 0.33;
+        opacity: 0.11;
     }
     
     .status2 {
         top: 260px;
-        opacity: 0.66;
+        opacity: 0.33;
+    }
+    
+    .status1First {
+        top: 280px;
+        animation: lightSpeedInLeft 0.5s ease-out;
     }
     
     .status1 {
         top: 280px;
-        animation: lightSpeedInLeft 2s ease-out;
+        animation: lightSpeedInLeft 0.5s ease-out;
     }
     
     .fadeOut {
@@ -228,20 +130,15 @@
         height: 43px;
         font-weight: 400;
         font-size: 14px;
-        position: absolute;
         display: flex;
         align-items: center;
         // top: 280px;
     }
     
     #legal {
-        position: absolute;
         left: 52px;
         top: 320px;
-        // width: 151px;
-        height: 24px;
-        // color: #ffffff;
-        font-family: "Proxima Nova";
+        height: auto;
         font-size: 7px;
         font-weight: 100;
         text-transform: uppercase;

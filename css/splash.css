@@ -3960,6 +3960,10 @@ body {
   overflow: hidden;
   cursor: none; }
 
+h1 {
+  font-family: "Proxima Nova";
+  position: absolute; }
+
 .container {
   display: flex;
   flex-direction: row;
@@ -4015,15 +4019,19 @@ body {
 
 .status3 {
   top: 240px;
-  opacity: 0.33; }
+  opacity: 0.11; }
 
 .status2 {
   top: 260px;
-  opacity: 0.66; }
+  opacity: 0.33; }
+
+.status1First {
+  top: 280px;
+  animation: lightSpeedInLeft 0.5s ease-out; }
 
 .status1 {
   top: 280px;
-  animation: lightSpeedInLeft 2s ease-out; }
+  animation: lightSpeedInLeft 0.5s ease-out; }
 
 .fadeOut {
   opacity: 0;
@@ -4046,16 +4054,13 @@ body {
   height: 43px;
   font-weight: 400;
   font-size: 14px;
-  position: absolute;
   display: flex;
   align-items: center; }
 
 #legal {
-  position: absolute;
   left: 52px;
   top: 320px;
-  height: 24px;
-  font-family: "Proxima Nova";
+  height: auto;
   font-size: 7px;
   font-weight: 100;
   text-transform: uppercase; }
