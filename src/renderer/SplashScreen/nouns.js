@@ -56,6 +56,9 @@ const nouns = [
     'sea shanties',
     'buoys',
     'lighthouses',
+    'frigates',
+    'cruisers',
+    'dreadnoughts',
 
     // technology terms/hardware
     'CPU cores',

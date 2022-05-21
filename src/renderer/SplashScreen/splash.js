@@ -28,11 +28,11 @@ const statusController = (statusNumber) => {
     setTimeout(() => {
         status1.classList.add('becomeStatus2');
         setTimeout(() => {
-            status1.style.top = '270px';
+            status1.style.top = '260px';
             status1.classList.remove('becomeStatus2');
             status1.classList.add('becomeStatus3');
             setTimeout(() => {
-                status1.style.top = '250px';
+                status1.style.top = '240px';
                 status1.classList.remove('becomeStatus3');
                 status1.classList.add('fadeOut');
                 setTimeout(() => {

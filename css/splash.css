@@ -301,10 +301,10 @@
 #app-title,
 .title {
   left: 50px;
-  top: 110px;
+  top: 100px;
   font-size: 36px;
   position: absolute;
-  font-weight: 400;
+  font-weight: 300;
   display: flex;
   align-items: center; }
 
@@ -314,15 +314,15 @@
   transition: all 1s ease-in-out; }
 
 .status3 {
-  top: 250px;
+  top: 240px;
   opacity: 1; }
 
 .status2 {
-  top: 270px;
+  top: 260px;
   opacity: 0.10; }
 
 .status1 {
-  top: 290px;
+  top: 280px;
   animation: lightSpeedInLeft 0.5s ease-out; }
 
 .becomeStatus3 {
@@ -4194,12 +4194,12 @@ h1 {
   align-items: center; }
 
 #version {
-  top: 165px;
+  top: 155px;
   font-size: 22px;
   font-weight: 400; }
 
 #legal {
-  top: 320px;
+  top: 310px;
   font-size: 7px;
   font-weight: 100;
   text-transform: uppercase; }

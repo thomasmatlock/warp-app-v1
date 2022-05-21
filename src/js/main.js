@@ -395,6 +395,10 @@ const windowController = {
             // y: 100,
             frame: false,
             transparent: true,
+            resizable: false,
+            movable: false,
+            minimizable: false,
+            maximizable: false,
             icon: fileController.dirProjectPath + '/build/icon_taskbar.png',
 
             webPreferences: {

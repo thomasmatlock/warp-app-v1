@@ -1,3 +1,29 @@
+# LOG
+## version 1, vanilla/non-React
+## version 2, React rewrite
+major/minor/patch
+minor = features
+patches = fixes, polish, etc
+### 2.1.0, splash screen
+- 2.1.1
+    - all elements added
+- 2.1.2
+    -  random dark/light theme
+    -  glowing title text
+    - status sentence generator
+- 2.1.2
+    - cascading upwards status texts
+    - portal polish
+    - title text glitch effect
+    - finished splash screen
+
+
+features
+- menus
+- trays
+
+
+-----------------------------------
 # version 1, cross-platform 
 # version 1, audio
 - 1.1.0 youtube audio

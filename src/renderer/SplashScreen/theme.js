@@ -2,7 +2,8 @@
    let themeStyle = randomTheme === 0 ? 'dark' : 'light'; // DEFAULT
    //    themeStyle = 'dark';
    //    themeStyle = 'light';
-   const backgroundColor = themeStyle === 'light' ? '#ECECEC ' : '#000';
+   //    const backgroundColor = themeStyle === 'light' ? '#ECECEC ' : '#000';
+   const backgroundColor = themeStyle === 'light' ? '#fff ' : '#000';
    const textColor = themeStyle === 'light' ? '#000' : '#fff';
    document.getElementById('body').style.background = backgroundColor;
    document.getElementById('version').style.color = textColor;
