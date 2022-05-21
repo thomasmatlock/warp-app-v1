@@ -4,18 +4,18 @@ const directObjArr = require('./nouns.js');
 const adjectiveDescriptiveArr = require('./adjectiveDescriptiveArr.js');
 const qualifier = require('./qualifier.js');
 const adverbs = require('./adverbs.js');
-const themeObj = require('./theme.js');
 const package = require('../../../package.json');
 const element = document.getElementById('status1');
+const themes = require('./theme.js');
 const delay = 1000;
 let status1, status2, status3;
 window.addEventListener(
     'load',
     function() {
-
+        // console.log(themeObj);
         status1 = document.createElement("h1");
         status1.innerHTML = sentenceGenerator();
-        // status1.style.color = themeObj.textColor;
+        status1.style.color = themes.textColor;
         status1.classList.add('status');
         status1.classList.add('status1');
         // status1.classList.add('status1animation');

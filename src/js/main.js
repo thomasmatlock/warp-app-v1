@@ -12,14 +12,13 @@ const global = require('./global');
 ///////////////////////////////////   TRAY   /////////////////////////////////
 let tray = null;
 app.whenReady().then(() => {
-    tray = new Tray(fileController.dirProjectPath + '/build/icon_tray.png');
+    // tray = new Tray(fileController.dirProjectPath + '/build/icon_tray.png');
     const contextMenu = Menu.buildFromTemplate([
         { label: 'Open Warp' },
         { label: 'Quit Warp' },
     ]);
-    tray.setToolTip('Warp Downloader');
-    tray.setContextMenu(contextMenu);
-    // console.log(tray);
+    // tray.setToolTip('Warp Downloader');
+    // tray.setContextMenu(contextMenu);
 });
 let mainWindow;
 let splash, modalWindow, displayController, storageMain; // Keep a global reference of the window object, if you don't, the window will be closed automatically when the JavaScript object is garbage collected.

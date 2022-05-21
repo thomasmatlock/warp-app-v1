@@ -9,12 +9,12 @@
    //     backgroundColor: this.style === 'light' ? '#ECECEC ' : '#000',
    //     textColor: this.style === 'light' ? '#000' : '#fff',
    // }
-   document.getElementById('body').style.background = themeStyle.backgroundColor;
-   document.getElementById('version').style.color = themeStyle.textColor;
-   document.getElementById('legal').style.color = themeStyle.textColor;
+   document.getElementById('body').style.background = backgroundColor;
+   document.getElementById('version').style.color = textColor;
+   document.getElementById('legal').style.color = textColor;
 
-   if (themeStyle.style === 'dark') document.getElementById('app-title').classList.add('glowing');
-   if (themeStyle.style === 'dark') document.getElementById('app-title').classList.remove('coloredGradientText');
+   if (themeStyle === 'dark') document.getElementById('app-title').classList.add('glowing');
+   if (themeStyle === 'dark') document.getElementById('app-title').classList.remove('coloredGradientText');
 
    module.exports = { themeStyle, backgroundColor, textColor };
 
