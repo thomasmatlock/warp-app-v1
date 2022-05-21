@@ -1,6 +1,6 @@
    let randomTheme = Math.round(Math.random());
    let themeStyle = randomTheme === 0 ? 'dark' : 'light'; // DEFAULT
-   themeStyle = 'dark';
+   //    themeStyle = 'dark';
    //    themeStyle = 'light';
    const backgroundColor = themeStyle === 'light' ? '#ECECEC ' : '#000';
    const textColor = themeStyle === 'light' ? '#000' : '#fff';
