@@ -370,8 +370,9 @@ const windowController = {
             wc.send('window-ready', storageMain);
             setTimeout(() => {
 
-                // if (defaults.dev.splashScreen) splash.destroy();
-            }, 10000);
+                // if (defaults.dev.splashScreen)
+                splash.destroy();
+            }, 3000);
             // }, 2000);
         });
         wc.on('devtools-opened', () => {});
