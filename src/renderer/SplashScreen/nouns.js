@@ -55,6 +55,7 @@ const nouns = [
     // sailing
     'sea shanties',
     'buoys',
+    'Jolly Rogers',
     'lighthouses',
     'frigates',
     'cruisers',

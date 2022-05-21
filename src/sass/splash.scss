@@ -43,15 +43,17 @@
     }
     
     #version {
-        top: 155px;
-        font-size: 22px;
-        font-weight: 400;
+        top: 158px;
+        font-size: 20px;
+        font-weight: 300;
     }
     
     #legal {
-        top: 310px;
-        font-size: 7px;
+        top: 320px;
+        font-size: 8px;
         font-weight: 100;
+        line-height: 150%;
+        letter-spacing: 0.5px;
         text-transform: uppercase;
     }
     
