@@ -91,7 +91,6 @@ Orb.prototype.render = function() {
         sketch.stroke();
     }
 };
-// ", 100%, 90%, " +
 
 var createOrb = function(config) {
     var x = config && config.x ? config.x : sketch.mouse.x,
