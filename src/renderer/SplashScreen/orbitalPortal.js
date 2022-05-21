@@ -2,7 +2,7 @@ const Sketch = require('./sketch/sketch.min.js');
 const theme = require('./theme.js');
 
 let orbsColor = theme.style === 'dark' ? '100% ' : '0%';
-// let lightColor = theme.style === 'dark' ? '100% ' : '0%';
+let lightColor = theme.style === 'dark' ? '100% ' : '0%';
 // let lightColor = '90%'; // 0 for black, 90 for 
 var sketch = Sketch.create(),
     center = {
@@ -25,7 +25,7 @@ opt = {
     speed: speedRandom,
     scale: scaleRandom,
     jitterRadius: 0,
-    jitterHue: 0,
+    // jitterHue: 0,
     clearAlpha: 10,
     toggleOrbitals: true,
     orbitalAlpha: 100,
@@ -62,8 +62,8 @@ Orb.prototype.render = function() {
         radius = opt.jitterRadius != 0 && radius < 0 ? 0.001 : radius;
         sketch.strokeStyle =
             "hsla( " +
-            ((this.angle + 90) / (PI / 180) + random(-opt.jitterHue, opt.jitterHue)) +
-            ", 100%, " + `${orbsColor}`,
+            ((this.angle + 90) / (PI / 180)) +
+            ", 100%, " + `${orbsColor}`, +
             opt.orbitalAlpha / 100 +
             " )";
         sketch.lineWidth = this.size;
@@ -82,7 +82,7 @@ Orb.prototype.render = function() {
         sketch.lineWidth = 0.5;
         sketch.strokeStyle =
             "hsla( " +
-            ((this.angle + 90) / (PI / 180) + random(-opt.jitterHue, opt.jitterHue)) +
+            ((this.angle + 90) / (PI / 180)) +
             ", 100%, 90%, " +
             opt.lightAlpha / 200 +
             " )";
