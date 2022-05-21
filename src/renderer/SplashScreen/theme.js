@@ -13,7 +13,7 @@
    const theme = {
            style: themeStyle,
            backgroundColor: backgroundColor,
-           textColor: textColor
+           textColor: textColor,
        }
        // module.exports = { theme, themeStyle, backgroundColor, textColor };
 
