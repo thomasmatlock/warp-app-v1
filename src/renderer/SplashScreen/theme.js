@@ -1,17 +1,21 @@
    let randomTheme = Math.round(Math.random());
-   const theme = randomTheme === 0 ? 'dark' : 'light';
+   const themeStyle = randomTheme === 0 ? 'dark' : 'light';
    //    let theme = 'dark';
-   const backgroundColor = theme === 'light' ? '#ECECEC ' : '#000';
-   const textColor = theme === 'light' ? '#000' : '#fff';
+   const backgroundColor = themeStyle === 'light' ? '#ECECEC ' : '#000';
+   const textColor = themeStyle === 'light' ? '#000' : '#fff';
+   // const theme = {
+   //     //  randomTheme: Math.round(Math.random()),
+   //     style: randomTheme === 0 ? 'dark' : 'light',
+   //     backgroundColor: this.style === 'light' ? '#ECECEC ' : '#000',
+   //     textColor: this.style === 'light' ? '#000' : '#fff',
+   // }
+   document.getElementById('body').style.background = themeStyle.backgroundColor;
+   document.getElementById('version').style.color = themeStyle.textColor;
+   document.getElementById('legal').style.color = themeStyle.textColor;
 
-   document.getElementById('body').style.background = backgroundColor;
-   document.getElementById('version').style.color = textColor;
-   // document.getElementById('status1').style.color = textColor;
-   // document.getElementById('status2').style.color = textColor;
-   // document.getElementById('status3').style.color = textColor;
-   document.getElementById('legal').style.color = textColor;
+   if (themeStyle.style === 'dark') document.getElementById('app-title').classList.add('glowing');
+   if (themeStyle.style === 'dark') document.getElementById('app-title').classList.remove('coloredGradientText');
 
-   if (theme === 'dark') document.getElementById('app-title').classList.add('glowing');
-   if (theme === 'dark') document.getElementById('app-title').classList.remove('coloredGradientText');
+   module.exports = { themeStyle, backgroundColor, textColor };
 
-   module.exports = { theme, backgroundColor, textColor };
+   // module.exports = theme;

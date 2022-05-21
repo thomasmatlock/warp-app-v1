@@ -4,7 +4,7 @@ const directObjArr = require('./nouns.js');
 const adjectiveDescriptiveArr = require('./adjectiveDescriptiveArr.js');
 const qualifier = require('./qualifier.js');
 const adverbs = require('./adverbs.js');
-// const theme = require('./theme.js');
+const themeObj = require('./theme.js');
 const package = require('../../../package.json');
 const element = document.getElementById('status1');
 const delay = 1000;
@@ -15,7 +15,7 @@ window.addEventListener(
 
         status1 = document.createElement("h1");
         status1.innerHTML = sentenceGenerator();
-        status1.style.color = 'purple';
+        // status1.style.color = themeObj.textColor;
         status1.classList.add('status');
         status1.classList.add('status1');
         // status1.classList.add('status1animation');
@@ -31,7 +31,7 @@ window.addEventListener(
                     status1.classList.remove('becomeStatus3');
                     status1.classList.add('fadeOut');
                     setTimeout(() => {
-
+                        status1 = null;
                         // status1.classList.remove('becomeStatus2');
                         // status1.style.top = '240px';
                     }, 1000);
