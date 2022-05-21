@@ -1,10 +1,8 @@
 const Sketch = require('./sketch/sketch.min.js');
 const theme = require('./theme.js');
 
-let orbsColor = theme.themeStyle === 'dark' ? '100% ' : '0%';
-// let lightColor = themes === 'dark' ? '90% ' : '0%';
-// let orbsColor = '100%'; // 0 for black, 100 for white
-let lightColor = '90%'; // 0 for black, 90 for white
+let orbsColor = theme.style === 'dark' ? '100% ' : '0%';
+// let lightColor = '90%'; // 0 for black, 90 for white
 var sketch = Sketch.create(),
     center = {
         x: (sketch.width / 2),
