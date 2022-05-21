@@ -2,7 +2,8 @@ const Sketch = require('./sketch/sketch.min.js');
 const theme = require('./theme.js');
 
 let orbsColor = theme.style === 'dark' ? '100% ' : '0%';
-// let lightColor = '90%'; // 0 for black, 90 for white
+// let lightColor = theme.style === 'dark' ? '100% ' : '0%';
+// let lightColor = '90%'; // 0 for black, 90 for 
 var sketch = Sketch.create(),
     center = {
         x: (sketch.width / 2),
@@ -91,6 +92,7 @@ Orb.prototype.render = function() {
         sketch.stroke();
     }
 };
+// ", 100%, 90%, " +
 
 var createOrb = function(config) {
     var x = config && config.x ? config.x : sketch.mouse.x,

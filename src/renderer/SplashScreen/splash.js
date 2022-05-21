@@ -12,7 +12,7 @@ window.addEventListener(
     'load',
     function() {
         setTimeout(function() {
-
+            document.getElementById('version').innerHTML = package.version;
             statusController();
         }, 50)
     },
