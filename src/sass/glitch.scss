@@ -1,10 +1,10 @@
 .glitchDark:nth-child(1) {
-    animation: glitch1 2.5s infinite;
+    animation: glitch1 2s infinite;
 }
 
 .glitchDark:nth-child(2) {
     color: #67f3da;
-    animation: glitch2 2.5s infinite;
+    animation: glitch2 1.5s infinite;
 }
 
 .glitchDark:nth-child(3) {
@@ -71,7 +71,7 @@
         opacity: 1;
     }
     75% {
-        transform: skew(0.4deg, 1deg);
+        transform: skew(0.4deg, 100deg);
         opacity: 0.75;
     }
     80% {
@@ -157,8 +157,8 @@
         opacity: 0.25;
     }
     30% {
-        transform: translate(5px, 2px);
-        opacity: 0.5;
+        transform: translate(-55px, 20px);
+        opacity: 1;
     }
     35% {
         transform: none;
@@ -169,8 +169,8 @@
         opacity: 0.25;
     }
     55% {
-        transform: translate(5px, 1px);
-        opacity: 0.5;
+        transform: translate(55px, 1px);
+        opacity: 1;
     }
     50% {
         transform: none;
