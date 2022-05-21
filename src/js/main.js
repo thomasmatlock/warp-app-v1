@@ -217,18 +217,19 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
         displayController.discoverDisplay(); // discovers which display to use, 3 dev mode displayController or production
         let storageAwaited, markupModalPrefs, markupDownloadItemAudio, markupDownloadItemVideo;
         (async() => {
-            storageAwaited = await mainFunctions.load();
+            // storageAwaited = await mainFunctions.load(); // RESTORE
             storageMain = storageAwaited;
             // storageMain.state = defaults.state;
             // console.log(defaults.state);
-            if (storageAwaited.user.prefs.prefsMarkup === '') {
-                // console.log(`no markup present`);
-                markupModalPrefs = await mainFunctions.loadMarkupModalPrefs();
-                markupModalLogin = await mainFunctions.loadMarkupModalLogin();
-                markupDownloadItemAudio = await mainFunctions.loadMarkupDownloadItemAudio();
-                markupDownloadItemVideo = await mainFunctions.loadMarkupDownloadItemVideo();
+            // restore this expression
+            // if (storageAwaited.user.prefs.prefsMarkup === '') {
+            //     // console.log(`no markup present`);
+            //     markupModalPrefs = await mainFunctions.loadMarkupModalPrefs();
+            //     markupModalLogin = await mainFunctions.loadMarkupModalLogin();
+            //     markupDownloadItemAudio = await mainFunctions.loadMarkupDownloadItemAudio();
+            //     markupDownloadItemVideo = await mainFunctions.loadMarkupDownloadItemVideo();
 
-            }
+            // }
             // windowController.createWindow(markupModalPrefs, markupDownloadItemAudio, markupDownloadItemVideo); // creates main app window
             mainFunctions.setMenu(defaults.env.nav_A_active);
         })();

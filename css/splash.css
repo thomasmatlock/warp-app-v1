@@ -134,6 +134,214 @@
   -webkit-animation-name: bounceIn;
   animation-name: bounceIn; }
 
+.glitchDark:nth-child(1) {
+  animation: glitch1 2.5s infinite; }
+
+.glitchDark:nth-child(2) {
+  color: #67f3da;
+  animation: glitch2 2.5s infinite; }
+
+.glitchDark:nth-child(3) {
+  color: #f16f6f;
+  animation: glitch3 2.5s infinite; }
+
+.glitchLight:nth-child(1) {
+  animation: glitch1 2.5s infinite; }
+
+.glitchLight:nth-child(2) {
+  color: #000000;
+  animation: glitch2 2.5s infinite; }
+
+.glitchLight:nth-child(3) {
+  color: #000000;
+  animation: glitch3 2.5s infinite; }
+
+/*Keyframes*/
+@keyframes glitch1 {
+  0% {
+    transform: none;
+    opacity: 1; }
+  7% {
+    transform: skew(-0.5deg, -0.9deg);
+    opacity: 0.75; }
+  10% {
+    transform: none;
+    opacity: 1; }
+  27% {
+    transform: none;
+    opacity: 1; }
+  30% {
+    transform: skew(0.8deg, -0.1deg);
+    opacity: 0.75; }
+  35% {
+    transform: none;
+    opacity: 1; }
+  52% {
+    transform: none;
+    opacity: 1; }
+  55% {
+    transform: skew(-1deg, 0.2deg);
+    opacity: 0.75; }
+  50% {
+    transform: none;
+    opacity: 1; }
+  72% {
+    transform: none;
+    opacity: 1; }
+  75% {
+    transform: skew(0.4deg, 1deg);
+    opacity: 0.75; }
+  80% {
+    transform: none;
+    opacity: 1; }
+  100% {
+    transform: none;
+    opacity: 1; } }
+
+@keyframes glitch2 {
+  0% {
+    transform: none;
+    opacity: 0.25; }
+  7% {
+    transform: translate(-2px, -3px);
+    opacity: 0.5; }
+  10% {
+    transform: none;
+    opacity: 0.25; }
+  27% {
+    transform: none;
+    opacity: 0.25; }
+  30% {
+    transform: translate(-5px, -2px);
+    opacity: 0.5; }
+  35% {
+    transform: none;
+    opacity: 0.25; }
+  52% {
+    transform: none;
+    opacity: 0.25; }
+  55% {
+    transform: translate(-5px, -1px);
+    opacity: 0.5; }
+  50% {
+    transform: none;
+    opacity: 0.25; }
+  72% {
+    transform: none;
+    opacity: 0.25; }
+  75% {
+    transform: translate(-2px, -6px);
+    opacity: 0.5; }
+  80% {
+    transform: none;
+    opacity: 0.25; }
+  100% {
+    transform: none;
+    opacity: 0.25; } }
+
+@keyframes glitch3 {
+  0% {
+    transform: none;
+    opacity: 0.25; }
+  7% {
+    transform: translate(2px, 3px);
+    opacity: 0.5; }
+  10% {
+    transform: none;
+    opacity: 0.25; }
+  27% {
+    transform: none;
+    opacity: 0.25; }
+  30% {
+    transform: translate(5px, 2px);
+    opacity: 0.5; }
+  35% {
+    transform: none;
+    opacity: 0.25; }
+  52% {
+    transform: none;
+    opacity: 0.25; }
+  55% {
+    transform: translate(5px, 1px);
+    opacity: 0.5; }
+  50% {
+    transform: none;
+    opacity: 0.25; }
+  72% {
+    transform: none;
+    opacity: 0.25; }
+  75% {
+    transform: translate(2px, 6px);
+    opacity: 0.5; }
+  80% {
+    transform: none;
+    opacity: 0.25; }
+  100% {
+    transform: none;
+    opacity: 0.25; } }
+
+@keyframes animate {
+  from {
+    filter: hue-rotate(0deg); }
+  to {
+    filter: hue-rotate(360deg); } }
+
+.glowing {
+  color: #ffffff;
+  animation: animate 3s infinite;
+  animation-timing-function: cubic-bezier(0.1, -0.6, 0.2, 0);
+  text-shadow: 0 0 5px #fff, 0 0 10px #0072ff, 0 0 20px #0072ff, 0 0 30px #0072ff, 0 0 40px #0072ff, 0 0 50px #0072ff, 0 0 75px #0072ff, 0 0 100px #0072ff, 0 0 125px #0072ff, 0 0 150px #0072ff, 0 0 175px #0072ff; }
+
+.coloredGradientText {
+  background: -webkit-linear-gradient(90deg, #a445b2 0%, #d41872 50%, #ff0066 100%);
+  background-blend-mode: normal;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; }
+
+#app-title,
+.title {
+  left: 50px;
+  top: 110px;
+  font-size: 36px;
+  position: absolute;
+  font-weight: 400;
+  display: flex;
+  align-items: center; }
+
+.fadeOut {
+  opacity: 0;
+  transform: translate(0px, -20px);
+  transition: all 1s ease-in-out; }
+
+.status3 {
+  top: 250px;
+  opacity: 1; }
+
+.status2 {
+  top: 270px;
+  opacity: 0.10; }
+
+.status1 {
+  top: 290px;
+  animation: lightSpeedInLeft 0.5s ease-out; }
+
+.becomeStatus3 {
+  opacity: 0.1;
+  transform: translate(0px, -20px);
+  transition: all 1s ease-in-out; }
+
+.becomeStatus2 {
+  opacity: 0.25;
+  transform: translate(0px, -20px);
+  transition: all 1s ease-in-out; }
+
+.status {
+  left: 52px;
+  font-weight: 400;
+  font-size: 14px;
+  display: flex;
+  align-items: center; }
+
 /*!
  * Woah.css - http://joerezendes.com/woah.css
  * Version - 1.0
@@ -3955,9 +4163,11 @@
 
 body {
   background: #ECECEC;
-  /* background: -webkit-radial-gradient(75%, #2a2a2a, #000 50%); */
+  background: -webkit-radial-gradient(75%, #2a2a2a, #000 50%);
   border-radius: 5px;
   overflow: hidden;
+  height: 400px;
+  width: 980px;
   cursor: none; }
 
 h1 {
@@ -3968,105 +4178,34 @@ h1 {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  height: 400px;
+  width: 980px;
   border-radius: 5px;
   background: transparent; }
-
-@keyframes animate {
-  from {
-    filter: hue-rotate(0deg); }
-  to {
-    filter: hue-rotate(360deg); } }
-
-.glowing {
-  color: #ffffff;
-  animation: animate 3s infinite;
-  animation-timing-function: cubic-bezier(0.1, -0.6, 0.2, 0);
-  text-shadow: 0 0 5px #fff, 0 0 10px #0072ff, 0 0 20px #0072ff, 0 0 30px #0072ff, 0 0 40px #0072ff, 0 0 50px #0072ff, 0 0 75px #0072ff, 0 0 100px #0072ff, 0 0 125px #0072ff, 0 0 150px #0072ff, 0 0 175px #0072ff; }
-
-.coloredGradientText {
-  background: -webkit-linear-gradient(90deg, #a445b2 0%, #d41872 50%, #ff0066 100%);
-  background-blend-mode: normal;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent; }
-
-#app-title {
-  position: absolute;
-  left: 50px;
-  top: 110px;
-  height: 46px;
-  font-family: "Proxima Nova";
-  font-size: 36px;
-  font-weight: 400;
-  display: flex;
-  align-items: center; }
 
 #version,
 #status,
 #legal {
+  position: absolute;
   color: #0E0F0F;
-  width: auto; }
+  width: auto;
+  left: 52px;
+  display: flex;
+  align-items: center; }
 
 #version {
-  position: absolute;
-  left: 52px;
-  top: 155px;
-  height: 56px;
-  font-family: "Proxima Nova";
+  top: 165px;
   font-size: 22px;
-  font-weight: 400;
-  display: flex;
-  align-items: center; }
-
-.status3 {
-  top: 240px;
-  opacity: 0.11; }
-
-.status2 {
-  top: 260px;
-  opacity: 0.33; }
-
-.status1First {
-  top: 280px;
-  animation: lightSpeedInLeft 0.5s ease-out; }
-
-.status1 {
-  top: 280px;
-  animation: lightSpeedInLeft 0.5s ease-out; }
-
-.fadeOut {
-  opacity: 0;
-  transform: translate(0px, -20px);
-  transition: all 1s ease-in-out; }
-
-.becomeStatus3 {
-  opacity: 0.25;
-  transform: translate(0px, -20px);
-  transition: all 1s ease-in-out; }
-
-.becomeStatus2 {
-  opacity: 0.5;
-  transform: translate(0px, -20px);
-  transition: all 1s ease-in-out; }
-
-.status {
-  left: 52px;
-  font-family: "Proxima Nova";
-  height: 43px;
-  font-weight: 400;
-  font-size: 14px;
-  display: flex;
-  align-items: center; }
+  font-weight: 400; }
 
 #legal {
-  left: 52px;
   top: 320px;
-  height: auto;
   font-size: 7px;
   font-weight: 100;
   text-transform: uppercase; }
 
 #gui {
-  right: 0;
+  left: 0;
   position: fixed;
   top: 0;
   z-index: 1; }

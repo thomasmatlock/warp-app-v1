@@ -5,61 +5,48 @@ const adjectiveDescriptiveArr = require('./adjectiveDescriptiveArr.js');
 const qualifier = require('./qualifier.js');
 const adverbs = require('./adverbs.js');
 const package = require('../../../package.json');
-const element = document.getElementById('status1');
 const themes = require('./theme.js');
-const delay = 1000;
-// let status1, status2, status3, statusCounter;
-let statusCounter;
+const delay = 2000;
+
 window.addEventListener(
     'load',
     function() {
-        statusCounter = 0;
-        statusController1();
+        setTimeout(function() {
 
-        // statusController1();
-
-        // setTimeout(function () {
-        //     statusController1();
-        //     setTimeout(() => {
-        //         statusController2();
-        //         setTimeout(() => {
-        //             statusController3();
-
-        //         }, 2000);
-        //     }, 2000);
-        // }, 0)
+            statusController();
+        }, 50)
     },
     false
 );
-const statusController1 = (statusNumber) => {
+const statusController = (statusNumber) => {
     let status1 = document.createElement("h1");
     status1.innerHTML = sentenceGenerator();
     status1.style.color = themes.textColor;
     status1.classList.add('status');
-    status1.classList.add('status1First');
+    status1.classList.add('status1');
     document.getElementById('statusContainer').appendChild(status1);
     setTimeout(() => {
         status1.classList.add('becomeStatus2');
         setTimeout(() => {
-            status1.style.top = '260px';
+            status1.style.top = '270px';
             status1.classList.remove('becomeStatus2');
             status1.classList.add('becomeStatus3');
             setTimeout(() => {
-                status1.style.top = '240px';
+                status1.style.top = '250px';
                 status1.classList.remove('becomeStatus3');
                 status1.classList.add('fadeOut');
                 setTimeout(() => {
                     document.getElementById('statusContainer').removeChild(status1);
                     status1 = null;
-                }, 2000);
-            }, 2000);
-        }, 2000)
+                }, delay);
+            }, delay);
+        }, delay)
     }, 1050)
 }
 
 window.setInterval(function() {
-    statusController1();
-}, 2000);
+    statusController();
+}, delay);
 const getRandomInt = (max) => {
     return Math.floor(Math.random() * max);
 }
