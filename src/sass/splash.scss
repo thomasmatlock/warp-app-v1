@@ -172,7 +172,6 @@
     #status,
     #legal {
         color: $themeTextColor;
-        // cursor: none;
         width: auto;
     }
     
@@ -188,22 +187,39 @@
         font-weight: 400;
         display: flex;
         align-items: center;
-        // animation: lightSpeedInLeft 1s ease-out;
-        // animation: moveInLeft 1s ease-out;
     }
     
     .status3 {
+        top: 240px;
         opacity: 0.25;
-        transition: opacity 1s linear;
     }
     
     .status2 {
-        // visibility: hidden;
-        // opacity: 0.25;
+        top: 260px;
         opacity: 0.5;
-        // animation: lightSpeedInLeft 2s ease-out;
-        // transition: visibility 0s 2s, opacity 2s linear;
-        transition: opacity 2s linear;
+    }
+    
+    .status1 {
+        top: 280px;
+        animation: lightSpeedInLeft 2s ease-out;
+    }
+    
+    .fadeOut {
+        opacity: 0;
+        transform: translate(0px, -20px);
+        transition: all 1s ease-in-out;
+    }
+    
+    .becomeStatus3 {
+        opacity: 0.25;
+        transform: translate(0px, -20px);
+        transition: all 1s ease-in-out;
+    }
+    
+    .becomeStatus2 {
+        opacity: 0.5;
+        transform: translate(0px, -20px);
+        transition: all 1s ease-in-out;
     }
     
     .status {
@@ -215,25 +231,7 @@
         position: absolute;
         display: flex;
         align-items: center;
-    }
-    
-    #status1 {
-        top: 280px;
-        // color: #ffffff;
-        opacity: 1;
-        // animation-delay: 1s;
-        animation: lightSpeedInLeft 2s ease-out;
-    }
-    
-    #status2 {
-        top: 260px;
-        animation: lightSpeedInLeft 2s ease-out;
-        // opacity: 0.50;
-    }
-    
-    #status3 {
-        top: 240px;
-        // opacity: 0.25;
+        // top: 280px;
     }
     
     #legal {
