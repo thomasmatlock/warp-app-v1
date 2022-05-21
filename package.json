@@ -1,6 +1,6 @@
 {
     "name": "Warp",
-    "version": "2.1.0",
+    "version": "2.1.1",
     "description": "wip",
     "main": "./src/js/main.js",
     "scripts": {
