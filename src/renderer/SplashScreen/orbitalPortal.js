@@ -2,7 +2,10 @@ const Sketch = require('./sketch/sketch.min.js');
 const theme = require('./theme.js');
 
 let orbsColor = theme.style === 'dark' ? '100% ' : '0%';
-let lightColor = theme.style === 'dark' ? '100% ' : '0%';
+let lightColor = theme.style === 'dark' ? '90% ' : '0%';
+// lightColor = '0%';
+// console.log(typeof lightColor);
+// console.log(theme);
 // let lightColor = '90%'; // 0 for black, 90 for 
 var sketch = Sketch.create(),
     center = {
@@ -13,7 +16,7 @@ var sketch = Sketch.create(),
     },
     orbs = [],
     dt = 10,
-    countRandom = Math.floor(Math.random() * (100 - 5) + 5);
+    countRandom = Math.floor(Math.random() * (150 - 5) + 5);
 scaleRandom = Math.floor(Math.random() * (1 - 1) + 1);
 speedRandom = Math.floor(Math.random() * (200 - 20) + 20);
 jitterRadiusRandom = Math.floor(Math.random() * (1 - 1) + 1);
@@ -60,12 +63,7 @@ Orb.prototype.render = function() {
             this.radius :
             this.radius + random(-opt.jitterRadius, opt.jitterRadius);
         radius = opt.jitterRadius != 0 && radius < 0 ? 0.001 : radius;
-        sketch.strokeStyle =
-            "hsla( " +
-            ((this.angle + 90) / (PI / 180)) +
-            ", 100%, " + `${orbsColor}`, +
-            opt.orbitalAlpha / 100 +
-            " )";
+        sketch.strokeStyle = `hsla( ${((this.angle + 90) / (PI / 180))}, 100%, ${orbsColor}, ${opt.orbitalAlpha / 100} )`;
         sketch.lineWidth = this.size;
         // sketch.lineWidth = 100;
         sketch.beginPath();
@@ -80,12 +78,13 @@ Orb.prototype.render = function() {
     // change the lightAlpha / 1000 to 100 to return to original
     if (opt.toggleLight) {
         sketch.lineWidth = 0.5;
-        sketch.strokeStyle =
-            "hsla( " +
-            ((this.angle + 90) / (PI / 180)) +
-            ", 100%, 90%, " +
-            opt.lightAlpha / 200 +
-            " )";
+        // sketch.strokeStyle =
+        //     "hsla( " +
+        //     ((this.angle + 90) / (PI / 180)) +
+        //     ", 100%, 10%, " +
+        //     opt.lightAlpha / 200 +
+        //     " )";
+        sketch.strokeStyle = `hsla( ${((this.angle + 90) / (PI / 180))}, 100%, ${lightColor}, ${opt.lightAlpha / 200} )`;
         sketch.beginPath();
         sketch.moveTo(0, 0);
         sketch.lineTo(this.x, this.y);
