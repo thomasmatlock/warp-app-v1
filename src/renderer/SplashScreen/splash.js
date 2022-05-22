@@ -1,9 +1,9 @@
 const global = require('../../js/global.js');
-const verbsArr = require('./verbs.js');
-const directObjArr = require('./nouns.js');
-const adjectiveDescriptiveArr = require('./adjectiveDescriptiveArr.js');
-const qualifier = require('./qualifier.js');
-const adverbs = require('./adverbs.js');
+const verbsArr = require('./sentenceGenerator/verbs.js');
+const directObjArr = require('./sentenceGenerator/nouns.js');
+const adjectiveDescriptiveArr = require('./sentenceGenerator/adjectiveDescriptiveArr.js');
+const qualifier = require('./sentenceGenerator/qualifier.js');
+const adverbs = require('./sentenceGenerator/adverbs.js');
 const package = require('../../../package.json');
 const themes = require('./theme.js');
 const delay = 2000;
@@ -47,14 +47,16 @@ const statusController = (statusNumber) => {
 window.setInterval(function() {
     statusController();
 }, delay);
-const getRandomInt = (max) => {
-    return Math.floor(Math.random() * max);
-}
-
+let totalPossibleSentences = verbsArr.length * directObjArr.length * adjectiveDescriptiveArr.length * adverbs.length;
+totalPossibleSentences = global.numberWithCommas(totalPossibleSentences);
 const easterEggSentences = [
+    // it would be cool to do sentences, like verbs at warp speeds, nouns at warp speeds
+    // https://www.howtogeek.com/241598/whats-the-equivalent-of-ctrlaltdelete-on-a-mac/
     'hello world',
     'hmmmm',
+    'workflows at warp speeds',
     'up up down down left right left right B A',
+    `${totalPossibleSentences} possible sentences`,
     `hello ${global.randomFromArray(adjectiveDescriptiveArr)} ${global.randomFromArray(directObjArr)}`,
     `hello ${global.randomFromArray(adjectiveDescriptiveArr)} ${global.randomFromArray(directObjArr)}`,
     `hello ${global.randomFromArray(adjectiveDescriptiveArr)} ${global.randomFromArray(directObjArr)}`,
@@ -84,13 +86,12 @@ const easterEggSentences = [
 const sentenceGenerator = () => {
     let randomAdj = global.randomFromArray(adjectiveDescriptiveArr);
     let randomAdverb = global.randomFromArray(adverbs);
-    // let randomQualifier = global.randomFromArray(qualifier);
     let randomDirObj = global.randomFromArray(directObjArr);
     let randomVerb = global.randomFromArray(verbsArr);
     let sentence = `${randomVerb} ${randomAdverb} ${randomAdj}  ${randomDirObj}`;
     // easter egg
     let easterEggSentence = easterEggSentences[Math.floor(Math.random() * easterEggSentences.length)];
-    if (getRandomInt(10) === 0) {
+    if (global.getRandomInt(2) === 0) {
         sentence = easterEggSentence;
     }
     // let sentence = `${randomVerb} ${randomQualifier} ${randomAdverb} ${randomAdj}  ${randomDirObj}`;

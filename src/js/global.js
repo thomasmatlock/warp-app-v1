@@ -21,9 +21,19 @@ function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+}
+
 module.exports = {
     discoverStartupTab,
     randomFromArray,
     getObjLength,
     capitalizeFirstLetter,
+    numberWithCommas,
+    getRandomInt,
 }
