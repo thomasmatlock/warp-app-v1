@@ -1,9 +1,7 @@
 const global = require('../../js/global.js');
-const verbsArr = require('./sentenceGenerator/verbs.js');
-const directObjArr = require('./sentenceGenerator/nouns.js');
-const adjectiveDescriptiveArr = require('./sentenceGenerator/adjectiveDescriptiveArr.js');
-const qualifier = require('./sentenceGenerator/qualifier.js');
-const adverbs = require('./sentenceGenerator/adverbs.js');
+const easterEggs = require('./sentenceGenerator/generators/easterEggs.js');
+const randomSentences = require('./sentenceGenerator/generators/randomSentences.js');
+const tips = require('./sentenceGenerator/generators/tips.js');
 const package = require('../../../package.json');
 const themes = require('./theme.js');
 const delay = 2000;
@@ -20,7 +18,7 @@ window.addEventListener(
 );
 const statusController = (statusNumber) => {
     let status1 = document.createElement("h1");
-    status1.innerHTML = sentenceGenerator();
+    status1.innerHTML = statusGenerator();
     status1.style.color = themes.textColor;
     status1.classList.add('status');
     status1.classList.add('status1');
@@ -47,53 +45,11 @@ const statusController = (statusNumber) => {
 window.setInterval(function() {
     statusController();
 }, delay);
-let totalPossibleSentences = verbsArr.length * directObjArr.length * adjectiveDescriptiveArr.length * adverbs.length;
-totalPossibleSentences = global.numberWithCommas(totalPossibleSentences);
-const easterEggSentences = [
-    // it would be cool to do sentences, like verbs at warp speeds, nouns at warp speeds
-    // https://www.howtogeek.com/241598/whats-the-equivalent-of-ctrlaltdelete-on-a-mac/
-    'hello world',
-    'hmmmm',
-    'workflows at warp speeds',
-    'up up down down left right left right B A',
-    `${totalPossibleSentences} possible sentences`,
-    `hello ${global.randomFromArray(adjectiveDescriptiveArr)} ${global.randomFromArray(directObjArr)}`,
-    `hello ${global.randomFromArray(adjectiveDescriptiveArr)} ${global.randomFromArray(directObjArr)}`,
-    `hello ${global.randomFromArray(adjectiveDescriptiveArr)} ${global.randomFromArray(directObjArr)}`,
-    `hello ${global.randomFromArray(adjectiveDescriptiveArr)} ${global.randomFromArray(directObjArr)}`,
-    `hello ${global.randomFromArray(adjectiveDescriptiveArr)} ${global.randomFromArray(directObjArr)}`,
-    `hello ${global.randomFromArray(adjectiveDescriptiveArr)} ${global.randomFromArray(directObjArr)}`,
-    `hello ${global.randomFromArray(adjectiveDescriptiveArr)} ${global.randomFromArray(directObjArr)}`,
-    `hello ${global.randomFromArray(adjectiveDescriptiveArr)} ${global.randomFromArray(directObjArr)}`,
-    `hello ${global.randomFromArray(adjectiveDescriptiveArr)} ${global.randomFromArray(directObjArr)}`,
-    `hello ${global.randomFromArray(adjectiveDescriptiveArr)} ${global.randomFromArray(directObjArr)}`,
-    `hello ${global.randomFromArray(adjectiveDescriptiveArr)} ${global.randomFromArray(directObjArr)}`,
-    `hello ${global.randomFromArray(adjectiveDescriptiveArr)} ${global.randomFromArray(directObjArr)}`,
-    `Ctrl Alt ${global.capitalizeFirstLetter(global.randomFromArray(directObjArr))}`,
-    `Ctrl Alt ${global.capitalizeFirstLetter(global.randomFromArray(directObjArr))}`,
-    `Ctrl Alt ${global.capitalizeFirstLetter(global.randomFromArray(directObjArr))}`,
-    `Ctrl Alt ${global.capitalizeFirstLetter(global.randomFromArray(directObjArr))}`,
-    `Ctrl Alt ${global.capitalizeFirstLetter(global.randomFromArray(directObjArr))}`,
-    `Ctrl Alt ${global.capitalizeFirstLetter(global.randomFromArray(directObjArr))}`,
-    `Ctrl Alt ${global.capitalizeFirstLetter(global.randomFromArray(directObjArr))}`,
-    `Ctrl Alt ${global.capitalizeFirstLetter(global.randomFromArray(directObjArr))}`,
-    `Ctrl Alt ${global.capitalizeFirstLetter(global.randomFromArray(directObjArr))}`,
-    `Ctrl Alt ${global.capitalizeFirstLetter(global.randomFromArray(directObjArr))}`,
-    `Ctrl Alt ${global.capitalizeFirstLetter(global.randomFromArray(directObjArr))}`,
-    `Ctrl Alt ${global.capitalizeFirstLetter(global.randomFromArray(directObjArr))}`,
-]
 
-const sentenceGenerator = () => {
-    let randomAdj = global.randomFromArray(adjectiveDescriptiveArr);
-    let randomAdverb = global.randomFromArray(adverbs);
-    let randomDirObj = global.randomFromArray(directObjArr);
-    let randomVerb = global.randomFromArray(verbsArr);
-    let sentence = `${randomVerb} ${randomAdverb} ${randomAdj}  ${randomDirObj}`;
-    // easter egg
-    let easterEggSentence = easterEggSentences[Math.floor(Math.random() * easterEggSentences.length)];
-    if (global.getRandomInt(2) === 0) {
-        sentence = easterEggSentence;
-    }
-    // let sentence = `${randomVerb} ${randomQualifier} ${randomAdverb} ${randomAdj}  ${randomDirObj}`;
-    return sentence;
+const statusGenerator = () => {
+    // 20% chance comment/saying
+    let odds = global.getRandomInt(10); // testing set to 1 for easter eggs; 
+    if (odds === 0) return easterEggs.generate();
+    if (odds === 1) return tips.generateTip();
+    if (odds >= 2 && odds <= 10) return randomSentences.generate();
 };

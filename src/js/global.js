@@ -17,6 +17,8 @@ const getObjLength = (obj) => {
     return Object.keys(obj).length;
 }
 
+
+
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
@@ -29,6 +31,15 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
 
+function toTitleCase(str) {
+    return str.replace(
+        /\w\S*/g,
+        function(txt) {
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        }
+    );
+}
+
 module.exports = {
     discoverStartupTab,
     randomFromArray,
@@ -36,4 +47,5 @@ module.exports = {
     capitalizeFirstLetter,
     numberWithCommas,
     getRandomInt,
+    toTitleCase,
 }

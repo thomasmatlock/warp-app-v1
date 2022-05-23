@@ -209,7 +209,7 @@ app.allowRendererProcessReuse = true; // not sure what this does but I added it 
 (function appListeners() {
     app.on('ready', () => {
         if (defaults.dev.splashScreen) windowController.createSplashWindow();
-        // splash.webContents.openDevTools(); // Open DevTools - Remove for PRODUCTION!
+        // splash.webContents.openDevTools(); // Open DevTools - Remove for PRODUCTION!    
 
         displayController = new displayControllerReq(); // positions output window to display depending on single/multi-monitor
         defaults.init(); // all defaults checks, latest version, isOnline, hasFFmpeg etc

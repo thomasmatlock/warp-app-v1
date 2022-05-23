@@ -1,6 +1,7 @@
 const nouns = [
     // https://www.phrases.org.uk/meanings/phrases-and-sayings-list.html
     // https://www.phrases.org.uk/meanings/nautical-phrases.html
+    // https://www.theorderexpert.com/the-ultimate-office-supply-checklist/
     // aviation
     'altitudes',
     'elevations',
@@ -67,7 +68,6 @@ const nouns = [
     'supply trays and containers',
     'desktop organizers',
     'desk drawer organizers',
-    'keyboard',
     'monitor stands',
     'wireless router',
     'thumb drives',
@@ -116,7 +116,6 @@ const nouns = [
     'composition notebooks',
     'spiral-bound notebooks',
     'legal pads',
-    'steno pads',
     'notepads',
     'planners',
     'staplers',
@@ -202,7 +201,7 @@ const nouns = [
     'video tracks',
     'audio tracks',
     'waveforms',
-    'color-grading',
+    'color grading',
     'renders',
     'uploads',
     'downloads',
