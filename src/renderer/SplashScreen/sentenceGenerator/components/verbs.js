@@ -23,7 +23,7 @@
      'diagramming',
      'anchoring',
      'stretching',
-     'cooking',
+     'cooking up',
      'pioneering',
 
      'upgrading',

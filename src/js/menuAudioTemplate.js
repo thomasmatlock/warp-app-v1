@@ -20,7 +20,7 @@ const template = [{
             },
             {
                 label: 'Quit',
-                accelerator: 'CmdOrCtrl+W',
+                accelerator: 'CmdOrCtrl+Q',
                 click: () => {
                     appWin.send('Quit');
                 },

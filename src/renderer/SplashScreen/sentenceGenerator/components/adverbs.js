@@ -23,7 +23,6 @@ const adverbs = [
     // degree/how much
     'mostly',
     'almost',
-    'beyond',
     'slightly',
     'intensely',
     'overly',

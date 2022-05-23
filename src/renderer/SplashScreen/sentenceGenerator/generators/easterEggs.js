@@ -10,7 +10,6 @@ totalPossibleSentences = global.numberWithCommas(totalPossibleSentences);
 let easterEggPredefined = [
     `${totalPossibleSentences} possible sentences`,
     'hello world',
-    'hmmmm',
     'workflows at warp speeds',
     'up up down down left right left right B A',
 ];

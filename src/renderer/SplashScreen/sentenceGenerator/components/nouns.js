@@ -80,7 +80,7 @@ const nouns = [
     'postage meter',
     'projection device',
     'photocopiers',
-    'digital camera',
+    'digital cameras',
     'lamps',
     'lightbulbs',
     'label makers',
@@ -96,7 +96,7 @@ const nouns = [
     'fire extinguishers',
     'smoke detectors',
     'carbon monoxide detectors',
-    'desk',
+    'desks',
     'chairs',
     'chair floor mats',
     'filing cabinets',
@@ -338,10 +338,7 @@ const nouns = [
 
     'clusters',
     'Valhallas',
-    'Lokis',
     'particle effects',
-    'Thors',
-    'Odins',
 
     'machinery',
     'comfort',

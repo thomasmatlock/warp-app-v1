@@ -1,0 +1,26 @@
+const interjections = [
+    "Aye",
+    "well well well",
+    "well well",
+    "well",
+    "good",
+    // "great",
+    "nice",
+    "ok",
+    "okay",
+    "hm",
+    "hmm",
+    "hmmm",
+    //
+    "eh",
+    "ah",
+    "ahh",
+    "ahhh",
+    'oh',
+    'ohh',
+    'ohhh',
+    'for heaven\'s sake',
+    'not bad',
+    'excellent',
+];
+module.exports = interjections;
