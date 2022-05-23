@@ -462,7 +462,7 @@ const phrases = [
     'crocodile tears',
     'don\'t count your chickens before they are hatched ',
     'don\'t look a gift horse in the mouth ',
-    'drink like a fish',
+    'drinks like a fish',
     'dropping like flies',
     'elephant in the room',
     'even a worm will turn',
@@ -493,7 +493,6 @@ const phrases = [
     'put the cart before the horse',
     'raining cats and dogs',
     'red herring',
-    'purple cow',
     'separate the sheep from the goats',
     'straight from the horse\'s mouth ',
 

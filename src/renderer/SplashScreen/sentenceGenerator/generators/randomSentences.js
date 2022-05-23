@@ -11,7 +11,10 @@ const getRandomPunctuation = () => global.randomFromArray(punctuation);
 const getRandomInterjection = () => global.randomFromArray(interjections);
 
 const generate = () => {
-    let odds = global.getRandomInt(1); // DEFAULT (set to 1 to test interjections)
+    // chances = 1 is 100% chance of interjection sentence
+    // chances = 2 is 50% chance of random sentence and 50% chance of interjection sentence 
+    let chances = 2; // look above for explanation
+    let odds = global.getRandomInt(chances);
     let randomAdj = global.randomFromArray(adjectives);
     let randomAdverb = global.randomFromArray(adverbs);
     let randomNoun = global.randomFromArray(nouns);
@@ -19,8 +22,9 @@ const generate = () => {
     let sentence = `${randomVerb} ${randomAdverb} ${randomAdj}  ${randomNoun}`;
     if (odds === 0) {
         let odds2 = global.getRandomInt(2); // DEFAULT TO 2
-        if (odds2 === 0) sentence = `...${getRandomInterjection().toLowerCase()}, ${global.randomFromArray(phrases).toLowerCase()}...`;
-        if (odds2 === 1) sentence = `${randomVerb} ${randomAdverb} ${randomAdj}  ${randomNoun} (${global.randomFromArray(phrases).toLowerCase()}${getRandomPunctuation()})`;
+        if (odds2 === 0) sentence = `...${getRandomInterjection().toLowerCase()}, ${global.randomFromArray(phrases).toLowerCase()}...`; // interjection sentence
+        // if (odds2 === 1) sentence = `${randomVerb} ${randomAdverb} ${randomAdj}  ${randomNoun} (${global.randomFromArray(phrases).toLowerCase()}${getRandomPunctuation()})`; // random sentence
+        if (odds2 === 1) sentence = `${randomVerb} ${randomAdverb} ${randomAdj}  ${randomNoun} (${getRandomInterjection().toLowerCase()}, ${global.randomFromArray(phrases).toLowerCase()}${getRandomPunctuation()})`; // random sentence with interjection
     }
     return sentence;
 }
