@@ -11,6 +11,7 @@ const interjections = [
     "hm",
     "hmm",
     "hmmm",
+    'not sure about this',
     //
     "eh",
     "ah",
@@ -28,7 +29,9 @@ const interjections = [
     'wow',
     'ouch,',
     'yum',
-    'eek',
+    'yup',
+    'yep',
+    'nope',
     'duh',
     'oh no',
     'yikes',

@@ -13,7 +13,8 @@ const getRandomInterjection = () => global.randomFromArray(interjections);
 const generate = () => {
     // chances = 1 is 100% chance of interjection sentence
     // chances = 2 is 50% chance of random sentence and 50% chance of interjection sentence 
-    let chances = 2; // look above for explanation
+    // chances = 4 or 5 is default. 5 sets 20% chance of interjection sentence
+    let chances = 4; // look above for explanation
     let odds = global.getRandomInt(chances);
     let randomAdj = global.randomFromArray(adjectives);
     let randomAdverb = global.randomFromArray(adverbs);

@@ -2,9 +2,10 @@ let verbs = require('../components/verbs');
 let nouns = require('../components/nouns');
 let adjectives = require('../components/adjectives');
 let adverbs = require('../components/adverbs');
+let interjections = require('../components/interjections');
 let phrases = require('../components/phrases');
 let global = require('../../../../js/global');
-let totalPossibleSentences = global.numberWithCommas(verbs.length * nouns.length * adjectives.length * adverbs.length * phrases.length);
+let totalPossibleSentences = global.numberWithCommas(verbs.length * nouns.length * adjectives.length * adverbs.length * phrases.length * interjections.length);
 totalPossibleSentences = global.numberWithCommas(totalPossibleSentences);
 
 let easterEggPredefined = [

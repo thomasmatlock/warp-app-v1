@@ -31,7 +31,9 @@ const nouns = [
     'routines',
     'hot air balloons',
     'umbrellas',
+    'snowflakes',
 
+    // ! this is an important comment
     // office
     'books',
     'frameworks',
@@ -59,12 +61,12 @@ const nouns = [
     'bookends',
     'paperweights',
     'magazine holders',
-    'bulletin board',
+    'bulletin boards',
     'pushpins',
-    'letter opener',
-    'pen holder',
-    'in/out box',
-    'document sorter/holder',
+    'letter openesr',
+    'pen holders',
+    'in/out boxes',
+    'document sorter/holders',
     'supply trays and containers',
     'desktop organizers',
     'desk drawer organizers',
@@ -317,6 +319,20 @@ const nouns = [
     'café au laits',
     'café mochas',
     'café lattes',
+    // construction
+    'boom lifts',
+    'scissor lifts',
+    'forklifts',
+    'bulldozers',
+    'skid steer loaders',
+    'backhoe loaders',
+    'excavators',
+    'harvesters',
+    'asphalt pavers',
+    'compactors',
+    'drum rollers',
+    'cranes',
+
 
 
 

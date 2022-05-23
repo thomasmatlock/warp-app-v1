@@ -164,7 +164,6 @@ const adjectiveDescriptiveArr = [
     'Christmas',
     'Easter',
     'Halloween',
-    'Valentine\'s',
     'Thanksgiving',
     'shadowy',
 
