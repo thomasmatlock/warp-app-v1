@@ -57,7 +57,6 @@ const adjectiveDescriptiveArr = [
     'sufficient',
     'supplemental',
     'supportive',
-    'several',
     'duplicate',
 
     'sweet',

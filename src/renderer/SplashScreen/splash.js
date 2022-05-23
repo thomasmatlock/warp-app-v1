@@ -47,9 +47,12 @@ window.setInterval(function() {
 }, delay);
 
 const statusGenerator = () => {
+    let min = 0;
+    let max = 15;
+    let threshold = 2;
     // 20% chance comment/saying
-    let odds = global.getRandomInt(10); // testing set to 1 for easter eggs; 
-    if (odds === 0) return easterEggs.generate();
+    let odds = global.getRandomInt(max); // testing set to 1 for easter eggs; 
+    if (odds === min) return easterEggs.generate();
     if (odds === 1) return tips.generateTip();
-    if (odds >= 2 && odds <= 10) return randomSentences.generate();
+    if (odds >= threshold) return randomSentences.generate();
 };
