@@ -8,9 +8,11 @@ let totalPossibleSentences = global.numberWithCommas(verbs.length * nouns.length
 totalPossibleSentences = global.numberWithCommas(totalPossibleSentences);
 
 let easterEggPredefined = [
+    // https://veteran.com/military-alphabet/
     `${totalPossibleSentences} possible sentences`,
-    'hello world',
+    // 'hello world',
     'workflows at warp speeds',
+    'Whiskey Alpha Romeo Papa',
     'up up down down left right left right B A',
 ];
 const getEasterEggPredefined = () => {

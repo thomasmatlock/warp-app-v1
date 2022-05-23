@@ -342,6 +342,10 @@
   display: flex;
   align-items: center; }
 
+.statusGlowing {
+  color: #ffffff;
+  text-shadow: 0 0 15px #02186e; }
+
 /*!
  * Woah.css - http://joerezendes.com/woah.css
  * Version - 1.0

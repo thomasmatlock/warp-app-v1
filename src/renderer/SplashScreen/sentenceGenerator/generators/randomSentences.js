@@ -11,7 +11,7 @@ const getRandomPunctuation = () => global.randomFromArray(punctuation);
 const getRandomInterjection = () => global.randomFromArray(interjections);
 
 const generate = () => {
-    let odds = global.getRandomInt(6); // DEFAULT (set to 1 to test interjections)
+    let odds = global.getRandomInt(1); // DEFAULT (set to 1 to test interjections)
     let randomAdj = global.randomFromArray(adjectives);
     let randomAdverb = global.randomFromArray(adverbs);
     let randomNoun = global.randomFromArray(nouns);

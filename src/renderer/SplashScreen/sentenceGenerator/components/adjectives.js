@@ -159,7 +159,7 @@ const adjectiveDescriptiveArr = [
     'offline',
     '9 to 5',
     'online',
-    'holiday',
+    'holiday-ish',
     'New Year\'s',
     'Christmas',
     'Easter',

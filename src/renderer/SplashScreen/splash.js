@@ -18,8 +18,15 @@ window.addEventListener(
 );
 const statusController = (statusNumber) => {
     let status1 = document.createElement("h1");
-    status1.innerHTML = statusGenerator();
+    let generatedStatus = statusGenerator();
+    // console.log(generatedStatus);
+    //     // console.log('tip detected', generatedStatus);
+    status1.innerHTML = generatedStatus;
     status1.style.color = themes.textColor;
+    // if (generatedStatus.includes('Press')) status1.classList.add('glowing'); // makes tip text glow
+    // if (generatedStatus.includes('Press')) status1.classList.add('statusGlowing'); // makes tip text glow
+
+    // status1.innerHTML = statusGenerator();
     status1.classList.add('status');
     status1.classList.add('status1');
     document.getElementById('statusContainer').appendChild(status1);
@@ -52,7 +59,8 @@ const statusGenerator = () => {
     let threshold = 2;
     // 20% chance comment/saying
     let odds = global.getRandomInt(max); // testing set to 1 for easter eggs; 
-    if (odds === min) return easterEggs.generate();
-    if (odds === 1) return tips.generateTip();
-    if (odds >= threshold) return randomSentences.generate();
+    if (odds === min) return easterEggs.generate(); // default
+    // if (odds >= 10) return tips.generateTip(); // testing
+    if (odds === 1) return tips.generateTip(); // default
+    if (odds >= threshold) return randomSentences.generate(); // default
 };

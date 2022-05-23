@@ -41,3 +41,10 @@
         align-items: center;
         // top: 280px;
     }
+    
+    .statusGlowing {
+        color: #ffffff;
+        // animation: animate 10s infinite;
+        // animation-timing-function: cubic-bezier(0.1, -0.6, 0.2, 0);
+        text-shadow: 0 0 15px rgb(2, 24, 110);
+    }

@@ -57,7 +57,7 @@ const nouns = [
     't-squares',
     'clipboards',
     'bookends',
-    'paperweight',
+    'paperweights',
     'magazine holders',
     'bulletin board',
     'pushpins',
