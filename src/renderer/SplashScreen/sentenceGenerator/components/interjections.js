@@ -50,7 +50,6 @@ const interjections = [
     'hey',
     'ugh',
     'yeah',
-    'eww',
     'yay',
     'uh-oh',
     'oh boy',

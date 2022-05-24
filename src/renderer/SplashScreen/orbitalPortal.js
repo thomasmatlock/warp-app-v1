@@ -20,7 +20,7 @@ var sketch = Sketch.create(),
 scaleRandom = Math.floor(Math.random() * (1 - 1) + 1);
 speedRandom = Math.floor(Math.random() * (200 - 20) + 20);
 jitterRadiusRandom = Math.floor(Math.random() * (1 - 1) + 1);
-lightAlphaRandom = Math.floor(Math.random() * (20 - 5) + 5);
+lightAlphaRandom = Math.floor(Math.random() * (20 - 10) + 10);
 opt = {
     total: 0,
     count: countRandom,
@@ -100,6 +100,8 @@ var createOrb = function(config) {
 
 var turnOnMove = function() {
     sketch.mousemove = createOrb;
+    // sketch.opt.speed = sketch.opt.speed + 1;
+
 };
 
 var turnOffMove = function() {
@@ -107,6 +109,7 @@ var turnOffMove = function() {
 };
 
 sketch.mousedown = function() {
+
     createOrb();
     turnOnMove();
 };
@@ -155,7 +158,9 @@ sketch.draw = function() {
     var i = orbs.length;
     while (i--) {
         orbs[i].render();
+
     }
+
     turnOnMove();
     sketch.restore();
 };
@@ -177,7 +182,9 @@ sketch.draw = function() {
 // gui.add(opt, "clear").name("Clear");
 // customContainer = document.getElementById("gui");
 // customContainer.appendChild(gui.domElement);
-
+window.setInterval(function() {
+    // statusController();
+}, 250);
 document.onselectstart = function() {
     return false;
 };
