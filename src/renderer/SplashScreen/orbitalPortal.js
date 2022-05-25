@@ -31,7 +31,7 @@ opt = {
     // jitterHue: 0,
     clearAlpha: 10,
     toggleOrbitals: true,
-    orbitalAlpha: 100,
+    orbitalAlpha: 1000,
     toggleLight: true,
     lightAlpha: lightAlphaRandom, // change this to 0 to turn off center light
     clear: function() {
