@@ -100,7 +100,10 @@ var createOrb = function(config) {
 
 var turnOnMove = function() {
     sketch.mousemove = createOrb;
-    // sketch.opt.speed = sketch.opt.speed + 1;
+    // if (opt.speed < 200) {
+
+    //     opt.speed = opt.speed + 1;
+    // }
 
 };
 
