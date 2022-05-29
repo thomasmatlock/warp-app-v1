@@ -44,6 +44,7 @@
         "instagram-scraping": "^1.0.13",
         "live-server": "^1.2.1",
         "network-speed": "^2.1.1",
+        "node": "^17.7.2",
         "stripe": "^8.145.0",
         "uuid": "^8.3.2",
         "youtube-audio-server": "^2.4.2",
