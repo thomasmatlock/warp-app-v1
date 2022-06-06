@@ -60,7 +60,9 @@ const statusGenerator = () => {
     // 20% chance comment/saying
     let odds = global.getRandomInt(max); // testing set to 1 for easter eggs; 
     if (odds === min) return easterEggs.generate(); // default
+    // TIPS START
     // if (odds >= 10) return tips.generateTip(); // testing
     if (odds === 1) return tips.generateTip(); // default
+    // TIPS END
     if (odds >= threshold) return randomSentences.generate(); // default
 };
