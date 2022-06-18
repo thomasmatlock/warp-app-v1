@@ -17,6 +17,20 @@ const loopThroughObj = (obj) => {
     return itemWithCommands;
 }
 
+const getRandomPresetTip = () => {
+    let presets = [
+        'Press Shift + 1 to quickly switch to Audio Mode',
+        'Press Shift + 2 to quickly switch to Video Mode',
+        'Press Shift + 3 to quickly switch to Warpstagram Mode',
+    ];
+    let randomTip = global.randomFromArray(presets);
+    if (process.platform === 'darwin') {
+        randomTip = randomTip.replace('Shift', 'Cmd');
+    }
+    return randomTip;
+
+}
+
 const formatTip = (tip) => {
     // win32 or darwin
     if (process.platform === 'win32') {
@@ -58,24 +72,24 @@ const getRandomMenuItem = (menuArr, type) => {
             formatTip(randomTipData);
             // return `Press ${randomTipData.command} to ${randomTipData.label.toLowerCase()}`;
             return `Press ${randomTipData.command} to ${randomTipData.label}`;
+
         }
     }
 }
 
-const generateTip = () => {
-    let dice = global.getRandomInt(3);
-    let randomTipInfo;
-    if (dice === 0) {
-        // randomTipInfo = getRandomMenuItem(audioMenu, 'audio');
-        return getRandomMenuItem(audioMenu, 'audio');
-        // console.log(randomTipInfo);
 
+const generateTip = () => {
+    let dice = global.getRandomInt(4);
+    if (dice === 0) {
+        return getRandomMenuItem(audioMenu, 'audio');
     } else if (dice === 1) {
         return getRandomMenuItem(videoMenu, 'video');
-
     } else if (dice === 2) {
         return getRandomMenuItem(warpstagramMenu, 'warpstagram');
-
+    } else if (dice === 3) {
+        return getRandomPresetTip();
     }
+
+
 }
 module.exports = { generateTip };
