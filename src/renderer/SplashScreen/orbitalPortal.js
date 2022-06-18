@@ -38,6 +38,7 @@ opt = {
         sketch.clearRect(0, 0, sketch.width, sketch.height), (orbs.length = 0);
     }
 };
+console.log(sketch);
 
 var Orb = function(x, y) {
     var dx = x / opt.scale - center.x / opt.scale,
