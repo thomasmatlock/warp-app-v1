@@ -169,26 +169,159 @@ sketch.draw = function() {
     sketch.restore();
 };
 
-// gui = new dat.GUI({
-//     autoPlace: false
-// })
-// gui.add(opt, "total").name("Total Orbitals").listen();
-// gui.add(opt, "speed").min(-300).max(300).step(1).name("Speed");
-// gui.add(opt, "scale").min(0.5).max(5).step(0.001).name("Scale");
-// gui.add(opt, "jitterRadius").min(0).max(5).step(0.001).name("Radius Jitter");
-// gui.add(opt, "jitterHue").min(0).max(90).step(1).name("Hue Jitter");
-// gui.add(opt, "clearAlpha").min(0).max(100).step(1).name("Clear Alpha");
-// gui.add(opt, "toggleOrbitals").name("Toggle Orbitals");
-// gui.add(opt, "orbitalAlpha").min(0).max(100).step(1).name("Orbital Alpha");
-// gui.add(opt, "toggleLight").name("Toggle Light");
-// gui.add(opt, "lightAlpha").min(0).max(100).step(1).name("Light Alpha");
 
-// gui.add(opt, "clear").name("Clear");
-// customContainer = document.getElementById("gui");
-// customContainer.appendChild(gui.domElement);
-window.setInterval(function() {
-    // statusController();
-}, 250);
 document.onselectstart = function() {
     return false;
 };
+
+// orbiters
+
+const ctx = sketch.canvas.getContext('2d');
+// console.log(ctx);
+const getRandomFloat = (min, max) => (max - min) * Math.random() + min;
+const getRandomInt = (min, max) => Math.floor(getRandomFloat(min, max + 1));
+
+// viewport class
+class Viewport {
+    constructor() {
+        this.update();
+    }
+
+    update() {
+        this.width = window.innerWidth;
+        this.height = window.innerHeight;
+        this.center = {
+            x: this.width / 1.42,
+            y: this.height / 2.05,
+        };
+        sketch.canvas.width = this.width;
+        sketch.canvas.height = this.height;
+    }
+}
+
+const vw = new Viewport();
+
+const maxAmp = 225;
+const minAmp = 150; // default
+// const minAmp = 1; // testing
+// const numParticles = 200; // default
+const numParticles = Math.floor(Math.random() * (250 - 150) + 150); // default
+
+class Tracks {
+    constructor() {
+        const numTracks = 25;
+        this.tracks = [];
+
+        for (let i = 0; i < numTracks; ++i) {
+            const ratio = i / numTracks;
+
+            this.tracks.push({ amp: (maxAmp - minAmp) * ratio + minAmp });
+        }
+    }
+}
+
+const { tracks } = new Tracks();
+
+class Particle {
+    constructor() {
+        this.init();
+    }
+
+    init() {
+        // constants
+        let randomAmpSpeed = Math.floor(Math.random() * (2 - 1) + 1);
+        this.baseAmp = tracks[getRandomInt(0, tracks.length - 1)].amp;
+        this.rotSpeed = getRandomFloat(0.01, 0.0115);
+        // this.ampSpeed = 1; // particle speed default
+        this.ampSpeed = randomAmpSpeed; // particle speed
+        // this.baseRad = 1.5; // particle size default
+        this.baseRad = 2; // particle size
+        // this.baseRad = 2.5; // particle size
+        this.grownAge = 10;
+
+        this.age = 0;
+        this.amp = this.baseAmp;
+        this.rad = this.baseRad;
+        this.angle = getRandomFloat(0, Math.PI * 2);
+        this.pos = {
+            x: 0,
+            y: 0,
+        };
+    }
+
+    updateRadius() {
+        let ratio = (this.amp / this.baseAmp) * 2.5 - 1.5;
+        this.rad = ratio * this.baseRad;
+    }
+
+    updatePosition() {
+        this.angle += this.rotSpeed; // AMAZING, remove this to have zero spin, just inward lightspeed effect
+        this.pos.x = vw.center.x + this.amp * Math.cos(this.angle) * 1.2;
+        this.pos.y = vw.center.y + this.amp * Math.pow(Math.sin(this.angle), 3) * 0.8;
+    }
+
+    draw() {
+        const { pos } = this;
+        const ageAttack = this.age / this.grownAge;
+        const rad = this.rad * ageAttack;
+        const alpha = ageAttack;
+
+        ctx.beginPath();
+        ctx.arc(pos.x, pos.y, rad, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(0, 0, 0, 1`;
+        ctx.fill();
+    }
+
+    update() {
+        if (this.age < this.grownAge) {
+            this.age++;
+        }
+
+        this.amp -= this.ampSpeed;
+        this.updateRadius();
+
+        if (this.rad > 0) {
+            this.updatePosition();
+            this.draw();
+        } else {
+            this.init();
+        }
+    }
+}
+
+class Emitter {
+    constructor() {
+        this.particles = [...Array(numParticles).keys()].map(() => new Particle());
+    }
+
+    update() {
+        this.particles.forEach((particle) => particle.update());
+    }
+}
+
+const emitter = new Emitter();
+
+// init canvas color with scene overlap
+initCanvasColor = () => {
+    ctx.fillStyle = `rgba(255, 255, 255, 1)`;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = `rgba(0, 0, 0, 0.1)`;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+};
+
+// canvas renderer
+const render = () => {
+    // alpha value affects trail length
+    ctx.fillStyle = `rgba(255, 255, 255, 0.15)`; // smaller the alpha value, longer the trails last
+    // ctx.fillStyle = 'rgba( 0, 0, 0 , ' + 10 / 100 + ' )';
+    // ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    emitter.update();
+
+    requestAnimationFrame(render);
+};
+
+// initCanvasColor();
+render();
+
+window.addEventListener('resize', () => vw.update());
