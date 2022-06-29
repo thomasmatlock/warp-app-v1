@@ -234,8 +234,8 @@ class Particle {
         this.rotSpeed = getRandomFloat(0.01, 0.0115);
         // this.ampSpeed = 1; // particle speed default
         this.ampSpeed = randomAmpSpeed; // particle speed
-        // this.baseRad = 1.5; // particle size default
-        this.baseRad = 2; // particle size
+        this.baseRad = 1.5; // particle size default
+        // this.baseRad = 2; // particle size
         // this.baseRad = 2.5; // particle size
         this.grownAge = 10;
 
@@ -255,20 +255,23 @@ class Particle {
     }
 
     updatePosition() {
-        this.angle += this.rotSpeed; // AMAZING, remove this to have zero spin, just inward lightspeed effect
-        this.pos.x = vw.center.x + this.amp * Math.cos(this.angle) * 1.2;
-        this.pos.y = vw.center.y + this.amp * Math.pow(Math.sin(this.angle), 3) * 0.8;
-    }
-
+            this.angle += this.rotSpeed; // AMAZING, remove this to have zero spin, just inward lightspeed effect
+            this.pos.x = vw.center.x + this.amp * Math.cos(this.angle) * 1.2;
+            this.pos.y = vw.center.y + this.amp * Math.pow(Math.sin(this.angle), 3) * 0.8;
+        }
+        // let orbitersColor = theme.style === 'dark' ? `rgba(255, 255, 255, 1)` : `rgba(0, 0, 0, 1)`;
+        // let orbitersColor = theme.style === 'dark' ? 'white ' : 'red';
+        // let lightColor = theme.style === 'dark' ? '92% ' : '12%';
     draw() {
         const { pos } = this;
         const ageAttack = this.age / this.grownAge;
         const rad = this.rad * ageAttack;
         const alpha = ageAttack;
+        let orbitersColor = theme.style === 'dark' ? 'white ' : 'black';
 
         ctx.beginPath();
         ctx.arc(pos.x, pos.y, rad, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(0, 0, 0, 1`;
+        ctx.fillStyle = orbitersColor;
         ctx.fill();
     }
 
@@ -324,4 +327,4 @@ const render = () => {
 // initCanvasColor();
 render();
 
-window.addEventListener('resize', () => vw.update());
+// window.addEventListener('resize', () => vw.update());
