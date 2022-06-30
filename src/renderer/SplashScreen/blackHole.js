@@ -16,7 +16,7 @@ var sketch = Sketch.create(),
     },
     orbs = [],
     dt = 10,
-    countRandom = Math.floor(Math.random() * (150 - 5) + 5);
+    countRandom = Math.floor(Math.random() * (100 - 5) + 5);
 scaleRandom = Math.floor(Math.random() * (1 - 1) + 1);
 speedRandom = Math.floor(Math.random() * (200 - 20) + 20);
 jitterRadiusRandom = Math.floor(Math.random() * (1 - 1) + 1);
@@ -229,7 +229,8 @@ class Particle {
 
     init() {
         // constants
-        let randomAmpSpeed = Math.floor(Math.random() * (2 - 1) + 1);
+        // let randomAmpSpeed = Math.floor(Math.random() * (2 - 1) + 1);
+        let randomAmpSpeed = Math.floor(Math.random() * (1 - 1) + 1);
         this.baseAmp = tracks[getRandomInt(0, tracks.length - 1)].amp;
         this.rotSpeed = getRandomFloat(0.01, 0.0115);
         // this.ampSpeed = 1; // particle speed default
@@ -328,3 +329,5 @@ const render = () => {
 render();
 
 // window.addEventListener('resize', () => vw.update());
+
+// seekers
