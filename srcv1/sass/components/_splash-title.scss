@@ -1,0 +1,33 @@
+       @keyframes animate {
+           from {
+               filter: hue-rotate(0deg);
+           }
+           to {
+               filter: hue-rotate(360deg);
+           }
+       }
+       
+       .glowing {
+           color: #ffffff;
+           animation: animate 3s infinite;
+           animation-timing-function: cubic-bezier(0.1, -0.6, 0.2, 0);
+           text-shadow: 0 0 5px #fff, 0 0 10px #0072ff, 0 0 20px #0072ff, 0 0 30px #0072ff, 0 0 40px #0072ff, 0 0 50px #0072ff, 0 0 75px #0072ff, 0 0 100px #0072ff, 0 0 125px #0072ff, 0 0 150px #0072ff, 0 0 175px #0072ff;
+       }
+       
+       .coloredGradientText {
+           background: -webkit-linear-gradient(90deg, #a445b2 0%, #d41872 50%, #ff0066 100%);
+           background-blend-mode: normal;
+           -webkit-background-clip: text;
+           -webkit-text-fill-color: transparent;
+       }
+       
+       #app-title,
+       .title {
+           left: 50px;
+           top: 100px;
+           font-size: 36px;
+           position: absolute;
+           font-weight: 300;
+           display: flex;
+           align-items: center;
+       }

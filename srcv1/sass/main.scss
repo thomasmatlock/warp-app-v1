@@ -1,0 +1,69 @@
+    // @import 'compass';
+    @import 'abstracts/mixins';
+    @import 'abstracts/variables';
+    @import 'abstracts/variables-colors';
+    @import 'base/animations';
+    @import 'base/base';
+    @import 'base/typography';
+    @import 'components/buttons';
+    @import 'components/nav-primary';
+    @import 'components/nav-secondary';
+    @import 'components/downloadItem';
+    @import 'components/downloadItemOptionsMenu';
+    @import 'layouts/content-slide';
+    @import 'layouts/grid';
+    @import 'pages/warpstagram';
+    @import 'pages/warpstagram-userSearch';
+    @import 'pages/warpstagram-filterToolbar';
+    @import 'pages/warpstagram-userInfo';
+    @import 'modals/modal-prefs';
+    @import 'modals/components/modal-activate';
+    @import 'modals/components/modal_action';
+    @import 'modals/components/modal-button';
+    @import 'modals/components/modal-checkbox';
+    @import 'modals/components/modal-dropdown-list';
+    @import 'modals/components/modal-dropdown-radioSelect';
+    @import 'modals/components/modal-nav';
+    @import 'modals/components/modal-spacer';
+    @import 'modals/components/modal-outputFolder';
+    @import 'modals/components/modal-textDescription';
+    @import 'modals/components/modal-textTitle';
+    .contentContainerLogin {
+        width: 760px;
+        height: 540px;
+        position: absolute;
+        top: 20;
+        // left: 50% - 250px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: row;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+        z-index: 12;
+        background-color: #2A2A2A;
+        animation: moveInTop 0.25s ease-out;
+        border-radius: 4px;
+        box-shadow: $shadow-after;
+    }
+    
+    .modalLoginContentPanel_left,
+    .modalLoginContentPanel_right {
+        width: 100%;
+        height: 100%;
+        // position: absolute;
+        transition: all 0.1s ease-out;
+        &:hover {
+            background-color: #464646a1;
+        }
+    }
+    
+    .modalLoginContentPanel_left {
+        background-color: #323232;
+        border-radius: 4px 0 0 4px;
+    }
+    
+    .modalLoginContentPanel_right {
+        border-radius: 0 4px 4px 0;
+        background-color: #2A2A2A;
+    }

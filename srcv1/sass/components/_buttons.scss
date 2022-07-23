@@ -1,0 +1,38 @@
+.btn {
+    flex: 1 1 auto;
+    margin: 10px;
+    padding: 30px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    transition: all 0.1s ease;
+    &::hover {
+        background-position: right center;
+        /* change the direction of the change here */
+    }
+}
+
+.btn-1 {
+    background-image: $color-gradient-1;
+}
+
+.btn-2 {
+    background-image: $color-gradient-2;
+}
+
+.btn-3 {
+    background-image: $color-gradient-3;
+}
+
+.btn-4 {
+    background-image: $color-gradient-4;
+}
+
+.btn-5 {
+    background-image: $color-gradient-5;
+}
