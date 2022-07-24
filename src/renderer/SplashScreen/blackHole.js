@@ -1,18 +1,17 @@
 const Sketch = require('./sketch/sketch.min.js');
-const theme = require('./theme.js');
+const themeObj = require('./theme.js');
 
-let orbsColor = theme.style === 'dark' ? '100% ' : '0%';
-let lightColor = theme.style === 'dark' ? '92% ' : '12%';
+let orbsColor = themeObj.style === 'dark' ? '100% ' : '0%';
+let lightColor = themeObj.style === 'dark' ? '92% ' : '12%';
 // lightColor = '0%';
 // console.log(typeof lightColor);
-// console.log(theme);
 // let lightColor = '90%'; // 0 for black, 90 for 
 var sketch = Sketch.create(),
     center = {
         x: (sketch.width / 2),
         y: sketch.height / 2
-            // x: 30,
-            // y: 30
+        // x: 30,
+        // y: 30
     },
     orbs = [],
     dt = 10,
@@ -34,13 +33,13 @@ opt = {
     orbitalAlpha: 1000,
     toggleLight: true,
     lightAlpha: lightAlphaRandom, // change this to 0 to turn off center light
-    clear: function() {
+    clear: function () {
         sketch.clearRect(0, 0, sketch.width, sketch.height), (orbs.length = 0);
     }
 };
-console.log(sketch);
+// console.log(sketch);
 
-var Orb = function(x, y) {
+var Orb = function (x, y) {
     var dx = x / opt.scale - center.x / opt.scale,
         dy = y / opt.scale - center.y / opt.scale;
     this.angle = atan2(dy, dx);
@@ -50,19 +49,19 @@ var Orb = function(x, y) {
     this.speed = (random(1, 10) / 300000) * this.radius + 0.015;
 };
 
-Orb.prototype.update = function() {
+Orb.prototype.update = function () {
     this.lastAngle = this.angle;
     this.angle += this.speed * (opt.speed / 50) * dt;
     this.x = this.radius * cos(this.angle);
     this.y = this.radius * sin(this.angle);
 };
 
-Orb.prototype.render = function() {
+Orb.prototype.render = function () {
     if (opt.toggleOrbitals) {
         var radius =
             opt.jitterRadius === 0 ?
-            this.radius :
-            this.radius + random(-opt.jitterRadius, opt.jitterRadius);
+                this.radius :
+                this.radius + random(-opt.jitterRadius, opt.jitterRadius);
         radius = opt.jitterRadius != 0 && radius < 0 ? 0.001 : radius;
         sketch.strokeStyle = `hsla( ${((this.angle + 90) / (PI / 180))}, 100%, ${orbsColor}, ${opt.orbitalAlpha / 100} )`;
         sketch.lineWidth = this.size;
@@ -93,13 +92,13 @@ Orb.prototype.render = function() {
     }
 };
 
-var createOrb = function(config) {
+var createOrb = function (config) {
     var x = config && config.x ? config.x : sketch.mouse.x,
         y = config && config.y ? config.y : sketch.mouse.y;
     orbs.push(new Orb(x, y));
 };
 
-var turnOnMove = function() {
+var turnOnMove = function () {
     // sketch.mousemove = createOrb;
     // if (opt.speed < 200) {
 
@@ -108,11 +107,11 @@ var turnOnMove = function() {
 
 };
 
-var turnOffMove = function() {
+var turnOffMove = function () {
     sketch.mousemove = null;
 };
 
-sketch.mousedown = function() {
+sketch.mousedown = function () {
 
     createOrb();
     turnOnMove();
@@ -120,14 +119,14 @@ sketch.mousedown = function() {
 
 sketch.mouseup = turnOffMove;
 
-sketch.resize = function() {
+sketch.resize = function () {
     center.x = sketch.width / 2;
     center.y = sketch.height / 2;
     // center.y = sketch.height / 2;
     sketch.lineCap = "butt";
 };
 
-sketch.setup = function() {
+sketch.setup = function () {
     while (opt.count--) {
         createOrb({
             x: random(sketch.width / 2 - 300, sketch.width / 2 + 300),
@@ -136,14 +135,14 @@ sketch.setup = function() {
     }
 };
 
-sketch.clear = function() {
+sketch.clear = function () {
     sketch.globalCompositeOperation = "destination-out";
     sketch.fillStyle = "rgba( 0, 0, 0 , " + opt.clearAlpha / 100 + " )";
     sketch.fillRect(0, 0, sketch.width, sketch.height);
     sketch.globalCompositeOperation = "lighter";
 };
 
-sketch.update = function() {
+sketch.update = function () {
     dt = sketch.dt < 0.1 ? 0.1 : sketch.dt / 16;
     dt = dt > 5 ? 5 : dt;
     var i = orbs.length;
@@ -153,7 +152,7 @@ sketch.update = function() {
     }
 };
 
-sketch.draw = function() {
+sketch.draw = function () {
     sketch.save();
     sketch.translate(center.x + 200, center.y - 5);
     // sketch.scale(opt.scale / 2.75, opt.scale / 2.75);
@@ -170,7 +169,7 @@ sketch.draw = function() {
 };
 
 
-document.onselectstart = function() {
+document.onselectstart = function () {
     return false;
 };
 
@@ -256,19 +255,19 @@ class Particle {
     }
 
     updatePosition() {
-            this.angle += this.rotSpeed; // AMAZING, remove this to have zero spin, just inward lightspeed effect
-            this.pos.x = vw.center.x + this.amp * Math.cos(this.angle) * 1.2;
-            this.pos.y = vw.center.y + this.amp * Math.pow(Math.sin(this.angle), 3) * 0.8;
-        }
-        // let orbitersColor = theme.style === 'dark' ? `rgba(255, 255, 255, 1)` : `rgba(0, 0, 0, 1)`;
-        // let orbitersColor = theme.style === 'dark' ? 'white ' : 'red';
-        // let lightColor = theme.style === 'dark' ? '92% ' : '12%';
+        this.angle += this.rotSpeed; // AMAZING, remove this to have zero spin, just inward lightspeed effect
+        this.pos.x = vw.center.x + this.amp * Math.cos(this.angle) * 1.2;
+        this.pos.y = vw.center.y + this.amp * Math.pow(Math.sin(this.angle), 3) * 0.8;
+    }
+    // let orbitersColor = themeObj.style === 'dark' ? `rgba(255, 255, 255, 1)` : `rgba(0, 0, 0, 1)`;
+    // let orbitersColor = themeObj.style === 'dark' ? 'white ' : 'red';
+    // let lightColor = themeObj.style === 'dark' ? '92% ' : '12%';
     draw() {
         const { pos } = this;
         const ageAttack = this.age / this.grownAge;
         const rad = this.rad * ageAttack;
         const alpha = ageAttack;
-        let orbitersColor = theme.style === 'dark' ? 'white ' : 'black';
+        let orbitersColor = themeObj.style === 'dark' ? 'white ' : 'black';
 
         ctx.beginPath();
         ctx.arc(pos.x, pos.y, rad, 0, Math.PI * 2);
