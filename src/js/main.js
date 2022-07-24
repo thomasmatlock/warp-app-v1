@@ -102,10 +102,13 @@ const windowController = {
         const swwc = splashWindow.webContents;
         swwc.once('ready-to-show', () => {
             setTimeout(() => {
+
                 windowController.createMainWindow();
-                splashWindow.destroy();
-                // }, 5000) // default
-            }, 10000) // testing
+                setTimeout(() => {
+                    splashWindow.destroy();
+                }, 5000) // default
+                // }, 10000) // testing
+            }, 3000);
         });
     },
 };
