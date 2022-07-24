@@ -106,7 +106,7 @@ const windowController = {
                 windowController.createMainWindow();
                 setTimeout(() => {
                     splashWindow.destroy();
-                }, 5000) // default
+                }, 3000) // default
                 // }, 10000) // testing
             }, 3000);
         });
