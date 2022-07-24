@@ -42,10 +42,15 @@ const windowController = {
         });
 
         // mainFunctions.loadHtml(defaults.env.nav_A_active);
-
-        mainWindow.loadFile('./src/renderer/main.html'); // Load index.html into the new BrowserWindow
+        // mainWindow.loadURL('www.google.com')
+        // mainWindow.loadFile('./src/renderer/main.html'); // Load index.html into the new BrowserWindow
+        mainWindow.loadURL('http://localhost:3000');
         // mainWindow.webContents.openDevTools(); // Open DevTools - Remove for PRODUCTION!
-
+        // win.loadURL(
+        //   isDev
+        //     ? 'http://localhost:3000'
+        //     : `file://${path.join(__dirname, '../build/index.html')}`
+        // )
         const wc = mainWindow.webContents;
         // send stuff to app.js
         wc.on('did-finish-load', () => {
@@ -100,10 +105,9 @@ const windowController = {
         // splashWindow.webContents.openDevTools(); // Open DevTools - Remove for PRODUCTION!
 
         const swwc = splashWindow.webContents;
-        swwc.once('ready-to-show', () => {
+        swwc.on('ready-to-show', () => {
             setTimeout(() => {
 
-                windowController.createMainWindow();
                 setTimeout(() => {
                     splashWindow.destroy();
                 }, 3000) // default
@@ -113,6 +117,7 @@ const windowController = {
     },
 };
 app.on('ready', () => {
-    windowController.createSplashWindow();
+    windowController.createMainWindow();
+    // windowController.createSplashWindow();
 
 });
