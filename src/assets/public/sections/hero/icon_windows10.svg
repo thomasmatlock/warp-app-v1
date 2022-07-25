@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="25px" height="25px" viewBox="0 0 25 25" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <path d="M0 0L25 0L25 25L0 25L0 0Z" id="path_1" />
+    <clipPath id="mask_1">
+      <use xlink:href="#path_1" />
+    </clipPath>
+  </defs>
+  <g id="Windows-10-icon-3">
+    <g id="Background">
+      <path d="M0 0L25 0L25 25L0 25L0 0Z" id="Background" fill="none" fill-rule="evenodd" stroke="none" />
+    </g>
+    <path d="M1.09375 20.8009L1.09375 12.9688L10.1563 12.9688L10.1563 22.0253L1.09375 20.8009Z" id="Shape" fill="#000000" stroke="none" />
+    <path d="M10 13.125L10 21.8469L1.25 20.6644L1.25 13.125L10 13.125M10.3125 12.8125L0.9375 12.8125L0.9375 20.9375L10.3125 22.2044L10.3125 12.8125L10.3125 12.8125L10.3125 12.8125Z" id="Shape" fill="#000000" fill-rule="evenodd" stroke="none" />
+    <path d="M11.0938 22.1525L11.0938 12.9688L23.9063 12.9688L23.9063 23.8838L11.0938 22.1525Z" id="Shape" fill="#000000" stroke="none" />
+    <path d="M23.75 13.125L23.75 23.705L11.25 22.0156L11.25 13.125L23.75 13.125M24.0625 12.8125L10.9375 12.8125L10.9375 22.2887L24.0625 24.0625L24.0625 12.8125L24.0625 12.8125L24.0625 12.8125Z" id="Shape" fill="#000000" fill-rule="evenodd" stroke="none" />
+    <g id="Group" transform="translate(0.9375 2.7956238)">
+      <path d="M0.15625 9.23564L0.15625 1.40345L9.21875 0.179077L9.21875 9.23564L0.15625 9.23564Z" id="Shape" fill="#000000" fill-rule="evenodd" stroke="none" />
+      <path d="M9.0625 0.357513L9.0625 9.07939L0.3125 9.07939L0.3125 1.54001L9.0625 0.357513M9.375 0L0 1.26688L0 9.39188L9.375 9.39188L9.375 0L9.375 0L9.375 0Z" id="Shape" fill="#000000" fill-rule="evenodd" stroke="none" />
+    </g>
+    <g id="Group" transform="translate(10.9375 0.9375)">
+      <path d="M0.15625 11.0937L0.15625 1.90999L12.9688 0.178741L12.9688 11.0937L0.15625 11.0937Z" id="Shape" fill="#000000" fill-rule="evenodd" stroke="none" />
+      <path d="M12.8125 0.357513L12.8125 10.9375L0.3125 10.9375L0.3125 2.04689L12.8125 0.357513M13.125 0L0 1.77375L0 11.25L13.125 11.25L13.125 0L13.125 0L13.125 0Z" id="Shape" fill="#000000" fill-rule="evenodd" stroke="none" />
+    </g>
+  </g>
+</svg>

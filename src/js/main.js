@@ -4,6 +4,7 @@ let mainWindow, splashWindow;
 const windowController = {
 
     createMainWindow: function (markupModalPrefs, markupDownloadItemAudio, markupDownloadItemVideo) {
+        let windowPercentage = 1;
         mainWindow = new BrowserWindow({
             // height: displayController.height,
             // width: displayController.width,
@@ -13,8 +14,8 @@ const windowController = {
             // y:0 displayController.y,
             // x: 0,
             // y: 0,
-            height: 900 * 0.75,
-            width: 1600 * 0.75,
+            height: 900 * windowPercentage,
+            width: 1600 * windowPercentage,
             // x: 0,
             // y: 0,
             // icon: __dirname + '/icon.ico',
