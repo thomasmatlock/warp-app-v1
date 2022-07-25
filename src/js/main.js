@@ -1,11 +1,15 @@
 const { app, BrowserWindow, dialog, ipcMain, Menu, Tray } = require('electron');
-
+const path = require('path');
+const package = require('../../package.json');
+// console.log(package.version);
+// console.log(__dirname);
 let mainWindow, splashWindow;
 const windowController = {
 
     createMainWindow: function (markupModalPrefs, markupDownloadItemAudio, markupDownloadItemVideo) {
         let windowPercentage = 1;
         mainWindow = new BrowserWindow({
+            backgroundColor: '#1A1A1A',
             // height: displayController.height,
             // width: displayController.width,
             // minWidth: displayController.minWidth,
@@ -20,12 +24,17 @@ const windowController = {
             // y: 0,
             // icon: __dirname + '/icon.ico',
             // icon: __dirname + '/icon.png',
-            // icon: 'C:\\Users\\Tommy\\Documents\\GitHub\\Warp-App\\icon.png',
+            icon: 'C:\\Users\\Tommy\\Documents\\GitHub\\Warp-App\\src\\assets\\3rdparty\\flaticon\\4927615-space\\png\\008-blackhole-white.png',
+            // icon: 'C:\\Users\\Tommy\\Documents\\GitHub\\Warp-App\\src\\assets\\3rdparty\\flaticon\\4927615-space\\svg\\008-blackhole.svg',
             // icon: fileController.dirProjectPath + '/icon_black_hole.png',
             // icon: fileController.dirProjectPath + '/icon_black_gradient.png',
             // icon: fileController.dirProjectPath + '/22968-200.png',
             // icon: fileController.dirProjectPath + '/build/icon_taskbar.png', // DEFAULT`
             // icon: fileController.dirProjectPath + '/build/icon v2 200x200.png',
+            // icon: fileController.dirProjectPath + '/build/icon_taskbar.png',
+            // console.log(`file://${path.join(__dirname, '/build/icon_taskbar.png`),
+            // icon: `file://${path.join(__dirname, '/build/icon_taskbar.png')}`,
+            //    `file://${path.join(__dirname, '../build/index.html')}`
             _darkTheme: true,
             // get darkTheme() {
             //     return this._darkTheme;
@@ -39,7 +48,6 @@ const windowController = {
                 nodeIntegration: true,
                 worldSafeExecuteJavaScript: true,
             },
-            backgroundColor: '#1A1A1A',
         });
 
         // mainFunctions.loadHtml(defaults.env.nav_A_active);

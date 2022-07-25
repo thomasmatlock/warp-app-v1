@@ -14,13 +14,13 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     // position: absolute;
     justify-content: center;
     // top: 120px;
-    // background-color: #fafafa;
+    background-color: $gray-dark-lightest;
 }
 
 .contentPanel {
     height: 100%;
     width: 100%;
-    border: 1px dotted red;
+    border: 1px solid $gray-dark-dark;
     display: flex;
     flex-direction: column;
     align-items: center;

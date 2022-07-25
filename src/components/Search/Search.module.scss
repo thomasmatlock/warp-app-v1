@@ -6,7 +6,7 @@
   $gray-dark-lightest: #313131;
   $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, #19d2fc 100%);
   .search {
-      height: 60px;
+      height: 64px;
       width: 100%;
       /* border-radius: 5px 5px 0 0; */
       display: flex;
@@ -15,25 +15,27 @@
       flex-direction: row;
       //   position: fixed;
       top: 0;
-      /* margin: 0px 10px; */
+      left: 0;
+      margin: 0px 0px;
       background-color: $gray-dark-dark;
       // background-color: #202020;
       // border: 1px solid red;
       &__input {
           transition: all 0.1s ease-in-out !important;
           width: 33%;
-          height: 75%;
-          padding: 1rem;
+          height: 40px;
+          margin: 0px 16px;
+          //   transform: translateX(-8px);
+          //   padding: 1rem;
           color: white;
           border-radius: 3px;
           background-color: $gray-dark-light;
-          background-color: $gray-dark-lightest; // change
-          border: 1px solid rgb(157, 157, 157);
+          border: 1px solid $gray-dark-lightest;
           outline: none;
           font-size: 14px;
           box-shadow: none;
           &__icon {
-              transform: translateX(32px);
+              transform: translateX(48px);
               //   transform: translateX(-500%);
               height: 20px;
               ;
@@ -46,6 +48,7 @@
           }
           &:focus {
               width: 66%;
+              width: 100%;
           }
           &:focus::placeholder {
               color: transparent;

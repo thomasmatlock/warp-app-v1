@@ -1,6 +1,10 @@
-import { Fragment } from 'react';
+import { Fragment, version } from 'react';
+// import { version } from "react";
+// import package from '../../../package.json';
+// console.log(package.version);
+// console.log(version);
 import classes from './Nav.module.scss';
-import NavLogoImg from '../../assets//3rdparty/flaticon/4927615-space/svg/008-blackhole_lunacy.svg';
+import NavLogoImg from '../../assets/3rdparty/flaticon/4927615-space/svg/008-blackhole_lunacy.svg';
 import NavLogoText from '../../assets/public/sections/nav/logo_lowercase_extrabold.svg';
 const Nav = (props) => {
     return <Fragment>
