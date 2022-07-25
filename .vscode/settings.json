@@ -1,14 +1,30 @@
 {
-    "cSpell.ignoreWords": ["container", "modal", "warpstagram"],
-    "cSpell.words": ["container", "modal", "warpstagram"],
-    "html.format.wrapLineLength": 0,
-    "editor.minimap.scale": 2,
-    "editor.fontFamily": "Segoe UI",
-    "editor.fontSize": 12,
-    "html-css-class-completion.JavaScriptLanguages": [
-        "javascript",
-        "javascriptreact",
-        "typescriptreact"
-    ],
-    "liveServer.settings.port": 5501
+  "files.associations": {
+    ".eslintrc": "jsonc",
+    ".prettierrc": "jsonc",
+    ".eslintignore": "ignore"
+  },
+  
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "html",
+    "typescriptreact"
+  ],
+
+  "javascript.validate.enable": false,
+  "javascript.format.enable": false,
+  "typescript.format.enable": false,
+
+  "search.exclude": {
+    ".git": true,
+    ".eslintcache": true,
+    ".erb/dll": true,
+    "release/{build,app/dist}": true,
+    "node_modules": true,
+    "npm-debug.log.*": true,
+    "test/**/__snapshots__": true,
+    "package-lock.json": true,
+    "*.{css,sass,scss}.d.ts": true
+  }
 }
