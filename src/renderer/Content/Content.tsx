@@ -10,9 +10,8 @@ const Content = () => {
 
         
         <div className="content">
-        {/* <Browser/> */}
-        {/* <DownloadsAudio/> */}
         <Browser/>
+        {/* <DownloadsAudio/> */}
         <DownloadsVideo/>
         {/* <Warpstagram/> */}
         </div>

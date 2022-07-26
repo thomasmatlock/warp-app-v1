@@ -83,6 +83,8 @@ const createMainWindow = async () => {
     show: false,
     width: 1600,
     height: 900,
+    minWidth: 845,
+    minHeight: 485,
     darkTheme: true,
     icon: getAssetPath('icon.png'),
     webPreferences: {

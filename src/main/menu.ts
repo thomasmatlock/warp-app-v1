@@ -211,6 +211,7 @@ export default class MenuBuilder {
         submenu: [
             {
                 label: 'Paste',
+                enabled: false,
                 accelerator: 'CmdOrCtrl+V',
                 click: () => {
                     appWin.send('Audio: Downloads: Paste');
@@ -223,12 +224,14 @@ export default class MenuBuilder {
             {
                 label: 'Pause All',
                 enabled: false,
+                enabled: false,
                 click: () => {
                     appWin.send('Audio: Downloads: Pause All');
                 },
             },
             {
                 label: 'Resume All',
+                enabled: false,
                 enabled: false,
                 click: () => {
                     appWin.send('Audio: Downloads: Resume All');
@@ -240,6 +243,7 @@ export default class MenuBuilder {
             },
             {
                 label: 'Remove All',
+                enabled: false,
                 click: () => {
                     appWin.send('Audio: Downloads: Remove All');
                 },
@@ -250,6 +254,7 @@ export default class MenuBuilder {
             },
            {
                 label: 'Import Download Links',
+                enabled: false,
                 accelerator: 'CmdOrCtrl+Shift+O',
                 click: () => {
                     appWin.send('Audio: File: Import Download Links');
@@ -257,6 +262,7 @@ export default class MenuBuilder {
             },
             {
                 label: 'Export Download Links',
+                enabled: false,
                 accelerator: 'CmdOrCtrl+Shift+S',
                 click: () => {
                     appWin.send('Audio: File: Export Download Links');
@@ -271,6 +277,7 @@ export default class MenuBuilder {
         submenu: [
                {
                 label: 'Paste',
+                enabled: false,
                 accelerator: 'CmdOrCtrl+V',
                 click: () => {
                     appWin.send('Video: Downloads: Paste');
@@ -300,6 +307,7 @@ export default class MenuBuilder {
             },
             {
                 label: 'Remove All',
+                enabled: false,
                 click: () => {
                     appWin.send('Video: Downloads: Remove All');
                 },
@@ -310,6 +318,7 @@ export default class MenuBuilder {
             },
            {
                 label: 'Import Download Links',
+                enabled: false,
                 accelerator: 'CmdOrCtrl+O',
                 click: () => {
                     appWin.send('Video: File: Import Download Links');
@@ -317,6 +326,7 @@ export default class MenuBuilder {
             },
             {
                 label: 'Export Download Links',
+                enabled: false,
                 accelerator: 'CmdOrCtrl+S',
                 click: () => {
                     appWin.send('Video: File: Export Download Links');
@@ -328,12 +338,14 @@ export default class MenuBuilder {
             },
             {
                 label: 'Import Subscriptions',
+                enabled: false,
                 click: () => {
                     appWin.send('Video: File: Import Subscriptions');
                 },
             },
             {
                 label: 'Export Subscriptions',
+                enabled: false,
                 click: () => {
                     appWin.send('Video: File: Export Subscriptions');
                 },
@@ -344,6 +356,7 @@ export default class MenuBuilder {
             },
        {
                 label: 'Subscriptions...',
+                enabled: false,
                 click: () => {
                     appWin.send('Video: Tools: Subscriptions');
                 },
@@ -360,6 +373,7 @@ export default class MenuBuilder {
         submenu: [
                     {
                 label: 'Import Subscriptions',
+                enabled: false,
                 accelerator: 'CmdOrCtrl+O',
                 click: () => {
                     appWin.send('Warpstagram: File: Import Subscriptions');
@@ -367,6 +381,7 @@ export default class MenuBuilder {
             },
             {
                 label: 'Export Subscriptions',
+                enabled: false,
                 accelerator: 'CmdOrCtrl+S',
                 click: () => {
                     appWin.send('Warpstagram: File: Export Subscriptions');
@@ -379,10 +394,12 @@ export default class MenuBuilder {
             },
            {
                 label: 'Subscribe to ',
+                enabled: false,
                 submenu: [
                     { label: 'My Account' },
                     {
                         label: 'My Saved Posts',
+                        enabled: false,
                         click: () => {
                             appWin.send(
                                 'Warpstagram: Edit: Subscribe to My Saved Posts'
@@ -391,6 +408,7 @@ export default class MenuBuilder {
                     },
                     {
                         label: `Accounts I'm Following`,
+                        enabled: false,
                         click: () => {
                             appWin.send(
                                 'Warpstagram: Edit: Sub to Accts I Follow'
@@ -399,6 +417,7 @@ export default class MenuBuilder {
                     },
                     {
                         label: `Stories Of Accounts I'm Following`,
+                        enabled: false,
                         click: () => {
                             appWin.send(
                                 'Warpstagram: Edit: Sub to Stories Of Accts I Follow'
@@ -414,6 +433,7 @@ export default class MenuBuilder {
             },
             {
                 label: 'Update pinned subscriptions',
+                enabled: false,
                 click: () => {
                     appWin.send(
                         'Warpstagram: Edit: Update pinned subscriptions'
@@ -422,6 +442,7 @@ export default class MenuBuilder {
             },
             {
                 label: 'Update all subscriptions',
+                enabled: false,
                 click: () => {
                     appWin.send(
                         'Warpstagram: Edit: Update all subscriptions'
@@ -430,6 +451,7 @@ export default class MenuBuilder {
             },
             {
                 label: 'Pause all subscriptions',
+                enabled: false,
                 click: () => {
                     appWin.send(
                         'Warpstagram: Edit: Pause all subscriptions'
@@ -438,6 +460,7 @@ export default class MenuBuilder {
             },
             {
                 label: 'Remove all subscriptions',
+                enabled: false,
                 click: () => {
                     appWin.send(
                         'Warpstagram: Edit: Remove all subscriptions'
@@ -446,10 +469,12 @@ export default class MenuBuilder {
             },
                 {
                 label: 'separator',
+                enabled: false,
                 type: 'separator',
             },
             {
                 label: 'Export Posts...',
+                enabled: false,
                 click: () => {
                     appWin.send('Warpstagram: File: Export Posts');
                 },
@@ -504,6 +529,7 @@ export default class MenuBuilder {
         
           {
                 label: 'Check for updates...',
+                enabled: false,
                 click: () => {
                     appWin.send('Check for update');
                 },
@@ -514,6 +540,7 @@ export default class MenuBuilder {
             },
             {
                 label: 'Manage license',
+                enabled: false,
                 click: () => {
                     appWin.send('Audio: Tools: Manage license');
                 },
@@ -524,6 +551,7 @@ export default class MenuBuilder {
             },
             {
                 label: 'Preferences',
+                enabled: false,
                 accelerator: 'CmdOrCtrl+P',
                 click: () => {
                     appWin.send('nav_B_button_audio_preferences');
@@ -556,6 +584,7 @@ export default class MenuBuilder {
         submenu: [
              {
                 label: 'Restart Warp',
+                enabled: false,
                 accelerator: 'CmdOrCtrl+R',
                 click: () => {
                     appWin.send('Restart');
