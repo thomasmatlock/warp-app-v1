@@ -157,29 +157,29 @@ export default class MenuBuilder {
         {
           label: 'Learn More',
           click() {
-            shell.openExternal('https://electronjs.org');
+            shell.openExternal('https://warpdownload.com');
           },
         },
-        {
-          label: 'Documentation',
-          click() {
-            shell.openExternal(
-              'https://github.com/electron/electron/tree/main/docs#readme'
-            );
-          },
-        },
-        {
-          label: 'Community Discussions',
-          click() {
-            shell.openExternal('https://www.electronjs.org/community');
-          },
-        },
-        {
-          label: 'Search Issues',
-          click() {
-            shell.openExternal('https://github.com/electron/electron/issues');
-          },
-        },
+        // {
+        //   label: 'Documentation',
+        //   click() {
+        //     shell.openExternal(
+        //       'https://github.com/electron/electron/tree/main/docs#readme'
+        //     );
+        //   },
+        // },
+        // {
+        //   label: 'Community Discussions',
+        //   click() {
+        //     shell.openExternal('https://www.electronjs.org/community');
+        //   },
+        // },
+        // {
+        //   label: 'Search Issues',
+        //   click() {
+        //     shell.openExternal('https://github.com/electron/electron/issues');
+        //   },
+        // },
       ],
     };
 
@@ -198,89 +198,395 @@ export default class MenuBuilder {
         label: '&File',
         submenu: [
           {
-            label: '&Open',
-            accelerator: 'Ctrl+O',
-          },
-          {
-            label: '&Close',
+            label: '&Quit',
             accelerator: 'Ctrl+W',
             click: () => {
               this.mainWindow.close();
             },
           },
         ],
+      }, 
+       {
+        label: '&Audio',
+        submenu: [
+            {
+                label: 'Paste',
+                accelerator: 'CmdOrCtrl+V',
+                click: () => {
+                    appWin.send('Audio: Downloads: Paste');
+                },
+            },
+            {
+                label: 'separator',
+                type: 'separator',
+            },
+            {
+                label: 'Pause All',
+                enabled: false,
+                click: () => {
+                    appWin.send('Audio: Downloads: Pause All');
+                },
+            },
+            {
+                label: 'Resume All',
+                enabled: false,
+                click: () => {
+                    appWin.send('Audio: Downloads: Resume All');
+                },
+            },
+            {
+                label: 'separator',
+                type: 'separator',
+            },
+            {
+                label: 'Remove All',
+                click: () => {
+                    appWin.send('Audio: Downloads: Remove All');
+                },
+            },
+             {
+                label: 'separator',
+                type: 'separator',
+            },
+           {
+                label: 'Import Download Links',
+                accelerator: 'CmdOrCtrl+Shift+O',
+                click: () => {
+                    appWin.send('Audio: File: Import Download Links');
+                },
+            },
+            {
+                label: 'Export Download Links',
+                accelerator: 'CmdOrCtrl+Shift+S',
+                click: () => {
+                    appWin.send('Audio: File: Export Download Links');
+                },
+            },
+           
+            
+        ],
       },
-      {
-        label: '&View',
-        submenu:
-          process.env.NODE_ENV === 'development' ||
-          process.env.DEBUG_PROD === 'true'
-            ? [
-                {
-                  label: '&Reload',
-                  accelerator: 'Ctrl+R',
-                  click: () => {
-                    this.mainWindow.webContents.reload();
-                  },
+        {
+        label: '&Video',
+        submenu: [
+               {
+                label: 'Paste',
+                accelerator: 'CmdOrCtrl+V',
+                click: () => {
+                    appWin.send('Video: Downloads: Paste');
                 },
-                {
-                  label: 'Toggle &Full Screen',
-                  accelerator: 'F11',
-                  click: () => {
-                    this.mainWindow.setFullScreen(
-                      !this.mainWindow.isFullScreen()
+            },
+            {
+                label: 'separator',
+                type: 'separator',
+            },
+            {
+                label: 'Pause All',
+                enabled: false,
+                click: () => {
+                    appWin.send('Video: Downloads: Pause All');
+                },
+            },
+            {
+                label: 'Resume All',
+                enabled: false,
+                click: () => {
+                    appWin.send('Video: Downloads: Resume All');
+                },
+            },
+            {
+                label: 'separator',
+                type: 'separator',
+            },
+            {
+                label: 'Remove All',
+                click: () => {
+                    appWin.send('Video: Downloads: Remove All');
+                },
+            },
+             {
+                label: 'separator',
+                type: 'separator',
+            },
+           {
+                label: 'Import Download Links',
+                accelerator: 'CmdOrCtrl+O',
+                click: () => {
+                    appWin.send('Video: File: Import Download Links');
+                },
+            },
+            {
+                label: 'Export Download Links',
+                accelerator: 'CmdOrCtrl+S',
+                click: () => {
+                    appWin.send('Video: File: Export Download Links');
+                },
+            },
+            {
+                label: 'separator',
+                type: 'separator',
+            },
+            {
+                label: 'Import Subscriptions',
+                click: () => {
+                    appWin.send('Video: File: Import Subscriptions');
+                },
+            },
+            {
+                label: 'Export Subscriptions',
+                click: () => {
+                    appWin.send('Video: File: Export Subscriptions');
+                },
+            },
+            {
+                label: 'separator',
+                type: 'separator',
+            },
+       {
+                label: 'Subscriptions...',
+                click: () => {
+                    appWin.send('Video: Tools: Subscriptions');
+                },
+            },
+            {
+                label: 'separator',
+                type: 'separator',
+            },
+             
+        ],
+      },
+        {
+        label: '&Warpstagram',
+        submenu: [
+                    {
+                label: 'Import Subscriptions',
+                accelerator: 'CmdOrCtrl+O',
+                click: () => {
+                    appWin.send('Warpstagram: File: Import Subscriptions');
+                },
+            },
+            {
+                label: 'Export Subscriptions',
+                accelerator: 'CmdOrCtrl+S',
+                click: () => {
+                    appWin.send('Warpstagram: File: Export Subscriptions');
+                },
+            },
+        
+            {
+                label: 'separator',
+                type: 'separator',
+            },
+           {
+                label: 'Subscribe to ',
+                submenu: [
+                    { label: 'My Account' },
+                    {
+                        label: 'My Saved Posts',
+                        click: () => {
+                            appWin.send(
+                                'Warpstagram: Edit: Subscribe to My Saved Posts'
+                            );
+                        },
+                    },
+                    {
+                        label: `Accounts I'm Following`,
+                        click: () => {
+                            appWin.send(
+                                'Warpstagram: Edit: Sub to Accts I Follow'
+                            );
+                        },
+                    },
+                    {
+                        label: `Stories Of Accounts I'm Following`,
+                        click: () => {
+                            appWin.send(
+                                'Warpstagram: Edit: Sub to Stories Of Accts I Follow'
+                            );
+                        },
+                    },
+                ],
+            },
+
+            {
+                label: 'separator',
+                type: 'separator',
+            },
+            {
+                label: 'Update pinned subscriptions',
+                click: () => {
+                    appWin.send(
+                        'Warpstagram: Edit: Update pinned subscriptions'
                     );
-                  },
                 },
-                {
-                  label: 'Toggle &Developer Tools',
-                  accelerator: 'Alt+Ctrl+I',
-                  click: () => {
-                    this.mainWindow.webContents.toggleDevTools();
-                  },
-                },
-              ]
-            : [
-                {
-                  label: 'Toggle &Full Screen',
-                  accelerator: 'F11',
-                  click: () => {
-                    this.mainWindow.setFullScreen(
-                      !this.mainWindow.isFullScreen()
+            },
+            {
+                label: 'Update all subscriptions',
+                click: () => {
+                    appWin.send(
+                        'Warpstagram: Edit: Update all subscriptions'
                     );
-                  },
                 },
-              ],
+            },
+            {
+                label: 'Pause all subscriptions',
+                click: () => {
+                    appWin.send(
+                        'Warpstagram: Edit: Pause all subscriptions'
+                    );
+                },
+            },
+            {
+                label: 'Remove all subscriptions',
+                click: () => {
+                    appWin.send(
+                        'Warpstagram: Edit: Remove all subscriptions'
+                    );
+                },
+            },
+                {
+                label: 'separator',
+                type: 'separator',
+            },
+            {
+                label: 'Export Posts...',
+                click: () => {
+                    appWin.send('Warpstagram: File: Export Posts');
+                },
+            },
+        ],
+      },
+      // {
+      //   label: '&View',
+      //   submenu:
+      //     process.env.NODE_ENV === 'development' ||
+      //     process.env.DEBUG_PROD === 'true'
+      //       ? [
+      //           {
+      //             label: '&Reload',
+      //             accelerator: 'Ctrl+R',
+      //             click: () => {
+      //               this.mainWindow.webContents.reload();
+      //             },
+      //           },
+      //           {
+      //             label: 'Toggle &Full Screen',
+      //             accelerator: 'F11',
+      //             click: () => {
+      //               this.mainWindow.setFullScreen(
+      //                 !this.mainWindow.isFullScreen()
+      //               );
+      //             },
+      //           },
+      //           {
+      //             label: 'Toggle &Developer Tools',
+      //             accelerator: 'Alt+Ctrl+I',
+      //             click: () => {
+      //               this.mainWindow.webContents.toggleDevTools();
+      //             },
+      //           },
+      //         ]
+      //       : [
+      //           {
+      //             label: 'Toggle &Full Screen',
+      //             accelerator: 'F11',
+      //             click: () => {
+      //               this.mainWindow.setFullScreen(
+      //                 !this.mainWindow.isFullScreen()
+      //               );
+      //             },
+      //           },
+      //         ],
+      // },
+        {
+        label: 'Tools',
+        submenu: [
+        
+          {
+                label: 'Check for updates...',
+                click: () => {
+                    appWin.send('Check for update');
+                },
+            },
+            {
+                label: 'separator',
+                type: 'separator',
+            },
+            {
+                label: 'Manage license',
+                click: () => {
+                    appWin.send('Audio: Tools: Manage license');
+                },
+            },
+            {
+                label: 'separator',
+                type: 'separator',
+            },
+            {
+                label: 'Preferences',
+                accelerator: 'CmdOrCtrl+P',
+                click: () => {
+                    appWin.send('nav_B_button_audio_preferences');
+                },
+            },
+          // {
+          //   label: 'Documentation',
+          //   click() {
+          //     shell.openExternal(
+          //       'https://github.com/electron/electron/tree/main/docs#readme'
+          //     );
+          //   },
+          // },
+          // {
+          //   label: 'Community Discussions',
+          //   click() {
+          //     shell.openExternal('https://www.electronjs.org/community');
+          //   },
+          // },
+          // {
+          //   label: 'Search Issues',
+          //   click() {
+          //     shell.openExternal('https://github.com/electron/electron/issues');
+          //   },
+          // },
+        ],
       },
       {
         label: 'Help',
         submenu: [
+             {
+                label: 'Restart Warp',
+                accelerator: 'CmdOrCtrl+R',
+                click: () => {
+                    appWin.send('Restart');
+                },
+            },
           {
             label: 'Learn More',
             click() {
-              shell.openExternal('https://electronjs.org');
+              shell.openExternal('https://warpdownload.com');
             },
           },
-          {
-            label: 'Documentation',
-            click() {
-              shell.openExternal(
-                'https://github.com/electron/electron/tree/main/docs#readme'
-              );
-            },
-          },
-          {
-            label: 'Community Discussions',
-            click() {
-              shell.openExternal('https://www.electronjs.org/community');
-            },
-          },
-          {
-            label: 'Search Issues',
-            click() {
-              shell.openExternal('https://github.com/electron/electron/issues');
-            },
-          },
+          // {
+          //   label: 'Documentation',
+          //   click() {
+          //     shell.openExternal(
+          //       'https://github.com/electron/electron/tree/main/docs#readme'
+          //     );
+          //   },
+          // },
+          // {
+          //   label: 'Community Discussions',
+          //   click() {
+          //     shell.openExternal('https://www.electronjs.org/community');
+          //   },
+          // },
+          // {
+          //   label: 'Search Issues',
+          //   click() {
+          //     shell.openExternal('https://github.com/electron/electron/issues');
+          //   },
+          // },
         ],
       },
     ];
