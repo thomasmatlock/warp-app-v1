@@ -10,10 +10,8 @@ const ActionBar = () => {
     const warpstagram = true;
     return <Fragment>
         <div className="actionBar" >
-            <BrowserBar />
-            <FilterBar />
-            {/* {audio && <BrowserBar />} */}
-            {/* {warpstagram && <FilterBar />} */}
+            {audio && <BrowserBar />}
+            {warpstagram && <FilterBar />}
         </div>
     </Fragment>
 }

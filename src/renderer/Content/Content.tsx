@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 import thumbnail from '../../../assets/Content/dummy_thumbnail.png';
-import dummy_avatar from '../../../assets/Content/peaky/3.jpg'
+import dummy_avatar from '../../../assets/Content/peaky/6.jpg'
 import dummy_post3 from '../../../assets/Content/peaky/3.jpg'
 import dummy_post4 from '../../../assets/Content/peaky/4.jpg'
 import dummy_post5 from '../../../assets/Content/peaky/5.jpg'
@@ -20,7 +20,7 @@ const Content = () => {
         <div className="content">
             {/* <div className="contentPanel"/> */}
 
-            {/* <div className="contentPanel">
+            <div className="contentPanel">
                         <ul className="content__panel__downloads__list">
                             <li className="content__panel__downloads__list__item">
                                 <img src={thumbnail}  className="content__panel__downloads__list__item__thumbnail" />
@@ -109,34 +109,67 @@ const Content = () => {
                             </li>
                           
                         </ul>
-            </div>  */}
+            </div>  
 
-                <div className="contentPanel">
+                {/* <div className="contentPanel">
                          <ul className="content__panel__warpstagram__accounts">
                             <li className="content__panel__warpstagram__account">
                                 <div className="content__panel__warpstagram__account__info">
                                     <img src={dummy_avatar} className=" content__panel__warpstagram__account__info__avatar" ></img>
-                                    <div className="content__panel__warpstagram__account__info__text content__panel__warpstagram__account__info__name">thedreamsetup</div>
+                                    <div className="content__panel__warpstagram__account__info__text content__panel__warpstagram__account__info__name">peakyblindersofficial</div>
                                     <div className="content__panel__warpstagram__account__info__text content__panel__warpstagram__account__info__posts">143 items</div>
                                     <div className="content__panel__warpstagram__account__info__text content__panel__warpstagram__account__info__posts-type">posts, stories, highlights</div>
                                 </div>
                                 <div className="content__panel__warpstagram__account__posts">
-                                    <img src={dummy_post3} alt="" className="content__panel__warpstagram__account__posts__item" />
-                                    <img src={dummy_post4} alt="" className="content__panel__warpstagram__account__posts__item" />
-                                    <img src={dummy_post5} alt="" className="content__panel__warpstagram__account__posts__item" />
-                                    <img src={dummy_post6} alt="" className="content__panel__warpstagram__account__posts__item" />
-                                    <img src={dummy_post7} alt="" className="content__panel__warpstagram__account__posts__item" />
-                                    <img src={dummy_post8} alt="" className="content__panel__warpstagram__account__posts__item" />
-                                    <img src={dummy_post9} alt="" className="content__panel__warpstagram__account__posts__item" />
-                                    <img src={dummy_post10} alt="" className="content__panel__warpstagram__account__posts__item" />
-                                    <img src={dummy_post11} alt="" className="content__panel__warpstagram__account__posts__item" />
-                                    <img src={dummy_post12} alt="" className="content__panel__warpstagram__account__posts__item" />
-                                    <img src={dummy_post13} alt="" className="content__panel__warpstagram__account__posts__item" />
-                                    <img src={dummy_post14} alt="" className="content__panel__warpstagram__account__posts__item" />
+                                    <img src={dummy_post12} alt="null" className="content__panel__warpstagram__account__posts__item" />
+                                    <img src={dummy_post3}  alt="null" className="content__panel__warpstagram__account__posts__item" />
+                                    <img src={dummy_post4} alt="null" className="content__panel__warpstagram__account__posts__item" />
+                                    <img src={dummy_post5} alt="null" className="content__panel__warpstagram__account__posts__item" />
+                                    <img src={dummy_post6} alt="null" className="content__panel__warpstagram__account__posts__item" />
+                                    <img src={dummy_post7} alt="null" className="content__panel__warpstagram__account__posts__item" />
+                                    <img src={dummy_post8} alt="null" className="content__panel__warpstagram__account__posts__item" />
+                                    <img src={dummy_post9} alt="null" className="content__panel__warpstagram__account__posts__item" />
+                                    <img src={dummy_post11} alt="null" className="content__panel__warpstagram__account__posts__item" />
+                                </div>
+                            </li>   <li className="content__panel__warpstagram__account">
+                                <div className="content__panel__warpstagram__account__info">
+                                    <img src={dummy_avatar} className=" content__panel__warpstagram__account__info__avatar" ></img>
+                                    <div className="content__panel__warpstagram__account__info__text content__panel__warpstagram__account__info__name">peakyblindersofficial</div>
+                                    <div className="content__panel__warpstagram__account__info__text content__panel__warpstagram__account__info__posts">143 items</div>
+                                    <div className="content__panel__warpstagram__account__info__text content__panel__warpstagram__account__info__posts-type">posts, stories, highlights</div>
+                                </div>
+                                <div className="content__panel__warpstagram__account__posts">
+                                    <img src={dummy_post12} alt="null" className="content__panel__warpstagram__account__posts__item" />
+                                    <img src={dummy_post3}  alt="null" className="content__panel__warpstagram__account__posts__item" />
+                                    <img src={dummy_post4} alt="null" className="content__panel__warpstagram__account__posts__item" />
+                                    <img src={dummy_post5} alt="null" className="content__panel__warpstagram__account__posts__item" />
+                                    <img src={dummy_post6} alt="null" className="content__panel__warpstagram__account__posts__item" />
+                                    <img src={dummy_post7} alt="null" className="content__panel__warpstagram__account__posts__item" />
+                                    <img src={dummy_post8} alt="null" className="content__panel__warpstagram__account__posts__item" />
+                                    <img src={dummy_post9} alt="null" className="content__panel__warpstagram__account__posts__item" />
+                                    <img src={dummy_post11} alt="null" className="content__panel__warpstagram__account__posts__item" />
+                                </div>
+                            </li>   <li className="content__panel__warpstagram__account">
+                                <div className="content__panel__warpstagram__account__info">
+                                    <img src={dummy_avatar} className=" content__panel__warpstagram__account__info__avatar" ></img>
+                                    <div className="content__panel__warpstagram__account__info__text content__panel__warpstagram__account__info__name">peakyblindersofficial</div>
+                                    <div className="content__panel__warpstagram__account__info__text content__panel__warpstagram__account__info__posts">143 items</div>
+                                    <div className="content__panel__warpstagram__account__info__text content__panel__warpstagram__account__info__posts-type">posts, stories, highlights</div>
+                                </div>
+                                <div className="content__panel__warpstagram__account__posts">
+                                    <img src={dummy_post12} alt="null" className="content__panel__warpstagram__account__posts__item" />
+                                    <img src={dummy_post3}  alt="null" className="content__panel__warpstagram__account__posts__item" />
+                                    <img src={dummy_post4} alt="null" className="content__panel__warpstagram__account__posts__item" />
+                                    <img src={dummy_post5} alt="null" className="content__panel__warpstagram__account__posts__item" />
+                                    <img src={dummy_post6} alt="null" className="content__panel__warpstagram__account__posts__item" />
+                                    <img src={dummy_post7} alt="null" className="content__panel__warpstagram__account__posts__item" />
+                                    <img src={dummy_post8} alt="null" className="content__panel__warpstagram__account__posts__item" />
+                                    <img src={dummy_post9} alt="null" className="content__panel__warpstagram__account__posts__item" />
+                                    <img src={dummy_post11} alt="null" className="content__panel__warpstagram__account__posts__item" />
                                 </div>
                             </li>
                         </ul> 
-                </div>
+                </div> */}
         </div>
     </Fragment>
 }
