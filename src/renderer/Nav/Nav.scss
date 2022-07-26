@@ -9,7 +9,7 @@
       bottom: 0 !important;
       margin: 0 auto;
       left: 0 !important;
-      //   position: fixed;
+      position: relative;
       width: 100%;
       //   height: 64px;
       min-height: 64px;
@@ -20,6 +20,7 @@
       flex-direction: row;
       //   border: 1px dotted rgb(146, 146, 146);
       background-color: $gray-dark-dark;
+      //   z-index: 10;
   }
   
   .logoContainer {
@@ -57,7 +58,7 @@
       cursor: pointer;
       flex: 1;
       background-color: $gray-dark-light;
-      height: 100%;
+      height: 60px;
       border-radius: 1px;
       &:hover {
           background-color: white;

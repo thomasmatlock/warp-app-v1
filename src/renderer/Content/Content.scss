@@ -4,25 +4,263 @@ $gray-dark-darkest: #1a1a1a;
 $gray-dark-dark: #202020;
 $gray-dark-light: #252525;
 $gray-dark-lightest: #313131;
+// $gray-light-lightest: #454545;
 $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, #19d2fc 100%);
 .content {
-    height: 100%;
+    // box-sizing: content-box;
     width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
-    // position: absolute;
+    position: relative;
     justify-content: center;
-    // top: 120px;
+    // border: 3px dotted red;
     background-color: $gray-dark-lightest;
+    height: calc(100vh - 192px);
 }
 
 .contentPanel {
-    height: 100%;
+    // height: 100%;
+    // height: calc(100vh - 192px);
+    height: calc(100vh - 200px);
     width: 100%;
-    border: 1px solid $gray-dark-dark;
+    // border: 3px dotted red;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    flex: 1;
+    // width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    // justify-content: center;
+    // overflow: hidden;
+    // overflow: scroll;
+}
+
+.content__panel__downloads__list {
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    left: 0 !important;
+    position: relative;
+    margin: 0;
+    width: 100%;
+    padding: 0 0;
+    list-style: none;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    // border: 1px dotted red;
+    height: 100%;
+    &__item {
+        padding: 5px;
+        border-radius: 3px;
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+        align-items: center;
+        will-change: transform;
+        width: 100%;
+        border: 1px solid $gray-dark-lightest;
+        background-color: $gray-dark-light;
+        min-height: 50px !important;
+        animation: moveInLeftDownload 0.5s ease-in-out;
+        // animation-delay: 0.5s;
+        // border: 1px dotted red;
+        // z-index: 10;
+        &:hover {
+            border: 1px solid $gray-dark-lightest;
+            // transform: scaleX(1.1001);
+            box-shadow: -20px 30px 80px 0 rgba(0, 0, 0, 1) !important;
+            background-color: $gray-dark-lightest;
+            // background-image: $gradient-blue;
+            cursor: pointer;
+        }
+        &__thumbnail {
+            border-radius: 1px;
+            // height: 100%;
+            display: block;
+            max-height: 50px;
+            // width: auto;
+            // height: auto;
+        }
+        &__text {
+            margin-left: 8px;
+            font-size: 0.7rem;
+            // color: $gray-dark-darkest;
+            color: white;
+        }
+        &__title {
+            // font-size: 7px;
+        }
+        &__file_length {
+            color: rgb(92, 92, 92) !important;
+            // color: rgb(255, 255, 255);
+            // font-size: 7px;
+        }
+        &__file_type {
+            color: rgb(92, 92, 92) !important;
+            // font-size: 7px;
+        }
+        &__file_size {
+            color: rgb(92, 92, 92) !important;
+            // font-size: 7px;
+        }
+    }
+}
+
+.content__panel__warpstagram__accounts {
+    // height: 100%;
+    // width: 98%;
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: flex-start;
+    // align-items: center;
+    // margin: 0 auto;
+    // padding: 2px 8px 2px 8px !important;
+    overflow: hidden;
+    // overflow-y: scroll;
+    height: calc(100vh - 192px);
+    list-style: none;
+    // border: 1px dotted red;
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    left: 0 !important;
+    position: relative;
+    margin: 0;
+    width: 99.8%;
+    padding: 0 0;
+    list-style: none;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    // border: 1px dotted red;
+    height: 100%;
+    // padding: 4px 16px;
+}
+
+.content__panel__warpstagram__account {
+    height: 230px !important;
+    width: 99%;
+    display: flex;
+    // margin-top: 8px;
+    // margin-left: 48px;
+    // margin-right: 48px;
+    // margin: 4px 16px;
+    will-change: transform;
+    flex-direction: column;
+    // justify-content: center;
+    align-items: left;
+    border: 1px dotted white;
+    border: 1px solid $gray-dark-lightest;
+    background-color: $gray-dark-light;
+    border-radius: 1px;
+    // margin: 2px 4px !important;
+    will-change: transform;
+    animation: moveInLeftWarpstagramAccount 0.25s ease-in-out;
+    // border: 1px dotted red;
+    &:hover {
+        background-color: $gray-dark-lightest;
+        transform: scaleX(1.001);
+        box-shadow: -20px 30px 80px 0 rgba(0, 0, 0, 0.54) !important;
+        // transform: scale(1.01);
+        cursor: pointer;
+    }
+    &__info {
+        display: flex;
+        flex-direction: row;
+        justify-content: start flex;
+        align-items: center;
+        margin-top: 15px;
+        margin-left: 15px;
+        height: 20px; // border: 1px dotted white;
+        // height: auto;
+        &__text {
+            color: rgb(162, 162, 162);
+            font-size: 10px;
+            // margin: 8px 0;
+            font-weight: 100 !important;
+            // border: 1px dotted white;
+        }
+        &__avatar {
+            height: 20px;
+            border-radius: 50%;
+            width: 20px !important;
+            margin-left: 8px;
+        }
+        &__name {
+            font-size: 14px;
+            margin: 8px 0;
+            font-weight: 100 !important;
+            // border: 1px dotted white;
+        }
+        &__posts {
+            font-size: 14px;
+        }
+        &__posts-type {
+            font-size: 14px;
+        }
+    }
+    &__posts {
+        display: flex;
+        flex-direction: row;
+        // justify-content: space-between !important;
+        // justify-content: start;
+        align-items: center;
+        // margin-top: 5px;
+        margin: 15px 15px;
+        // border: 1px dotted white;
+        // margin-bottom: 4px;
+        &__item {
+            margin-left: 4px;
+            // animation: moveInLeftWarpstagramAccount 0.25s ease-in-out;
+            border-radius: 1px;
+            min-height: 164px !important;
+            max-height: 164px !important;
+            min-width: 164px !important;
+            max-width: 164px !important;
+            object-fit: cover; // fill contain
+            // object-fit: contain; // fill contain
+            // object-fit: fill; // fill contain
+            // margin: 8px 4px;
+            // margin-left: 2px;
+            // margin-right: 3px;
+            // margin-top: 8px;
+            &:hover {
+                // transform: scale(1.01);
+                transform: scale(1.01);
+                transition: all 0.1s ease-in-out !important;
+                // transform: rotateX(7deg) translateY(-6px);
+                box-shadow: -20px 30px 80px 0 rgba(0, 0, 0, 0.54) !important;
+                filter: brightness(1.1);
+                background-size: 600px;
+                // filter: brightness(0.5) saturate(0) contrast(1.2) blur(2px);
+                // cursor: pointer;
+            }
+            // &:hover~.content__panel__warpstagram__account__posts__item {
+            //     // transform: scale(1.01);
+            //     // transform: scale(1.01);
+            //     // transition: all 0.1s ease-in-out !important;
+            //     // // transform: rotateX(7deg) translateY(-6px);
+            //     // box-shadow: -20px 30px 80px 0 rgba(0, 0, 0, 0.54) !important;
+            //     // filter: brightness(1.1);
+            //     // background-size: 600px;
+            //     // cursor: pointer;
+            // }
+        }
+    }
+}
+
+// .content__panel__warpstagram__account__posts__item:hover X .content__panel__warpstagram__account__posts__item {
+//     opacity: 0.5
+// }
+.content__panel__warpstagram__account__posts:hover>*:not(:hover) {
+    filter: brightness(0.5) saturate(0.5) contrast(1.0) blur(0px);
+    // opacity: 0.5;
 }

@@ -14,6 +14,9 @@ import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
+import package from '../../package.json';
+console.log(`${package.name} ${package.version}`);
+
 
 class AppUpdater {
   constructor() {
@@ -24,11 +27,18 @@ class AppUpdater {
 }
 
 let mainWindow: BrowserWindow | null = null;
+let splashWindow: BrowserWindow | null = null;
 
 ipcMain.on('ipc-example', async (event, arg) => {
-  const msgTemplate = (pingPong: string) => `IPC test: ${pingPong}`;
+  const msgTemplate = (pingPong: string) => `IPC SUCCESS: message from renderer: ${pingPong}`;
   console.log(msgTemplate(arg));
-  event.reply('ipc-example', msgTemplate('pong'));
+  event.reply('ipc-example', msgTemplate('success sent to renderer')); // sends message to renderer
+});
+
+ipcMain.on('package', async (event, arg) => {
+  const msgTemplate = (message: string) => `${message}`;
+  console.log(msgTemplate(arg));
+  event.reply('package', package); // sends message to renderer
 });
 
 if (process.env.NODE_ENV === 'production') {
@@ -56,7 +66,7 @@ const installExtensions = async () => {
     .catch(console.log);
 };
 
-const createWindow = async () => {
+const createMainWindow = async () => {
   if (isDebug) {
     await installExtensions();
   }
@@ -73,6 +83,7 @@ const createWindow = async () => {
     show: false,
     width: 1600,
     height: 900,
+    darkTheme: true,
     icon: getAssetPath('icon.png'),
     webPreferences: {
       preload: app.isPackaged
@@ -110,6 +121,72 @@ const createWindow = async () => {
   // Remove this if your app does not use auto updates
   // eslint-disable-next-line
   new AppUpdater();
+};const createSplashWindow = async () => {
+  if (isDebug) {
+    await installExtensions();
+  }
+
+  const RESOURCES_PATH = app.isPackaged
+    ? path.join(process.resourcesPath, 'assets')
+    : path.join(__dirname, '../../assets');
+
+  const getAssetPath = (...paths: string[]): string => {
+    return path.join(RESOURCES_PATH, ...paths);
+  };
+
+  splashWindow = new BrowserWindow({
+   height: 400,
+            width: 980,
+            // x: 100,
+            // y: 100,
+            frame: false,
+            transparent: true,
+            // resizable: false,
+            // movable: false,
+            // minimizable: false,
+            // maximizable: false,
+    // icon: getAssetPath('icon.png'),
+    webPreferences: {
+      preload: app.isPackaged
+        ? path.join(__dirname, 'preload.js')
+        : path.join(__dirname, '../../.erb/dll/preload.js'),
+    },
+  });
+
+  splashWindow.loadURL(resolveHtmlPath('index.html'));
+
+  // splashWindow.on('ready-to-show', () => {
+  //   if (!splashWindow) {
+  //     throw new Error('"mainWindow" is not defined');
+  //   }
+  //   if (process.env.START_MINIMIZED) {
+  //     splashWindow.minimize();
+  //   } else {
+  //     splashWindow.show();
+  //   }
+  // });
+
+  splashWindow.on('ready', () => {
+    // splashWindow.setSize(1500  ,500);
+    // setTimeout(() =>     {
+      // }, 1000);
+    });
+    // splashWindow.on('closed', () => {
+    //   splashWindow = null;
+    // });
+
+  // const menuBuilder = new MenuBuilder(splashWindow);
+  // menuBuilder.buildMenu();
+
+  // Open urls in the user's browser
+  splashWindow.webContents.setWindowOpenHandler((edata) => {
+    shell.openExternal(edata.url);
+    return { action: 'deny' };
+  });
+
+  // Remove this if your app does not use auto updates
+  // eslint-disable-next-line
+  // new AppUpdater();
 };
 
 /**
@@ -127,11 +204,13 @@ app.on('window-all-closed', () => {
 app
   .whenReady()
   .then(() => {
-    createWindow();
+    // createSplashWindow();
+    //  splashWindow.setFullScreen(false);
+    createMainWindow();
     app.on('activate', () => {
       // On macOS it's common to re-create a window in the app when the
       // dock icon is clicked and there are no other windows open.
-      if (mainWindow === null) createWindow();
+      if (mainWindow === null) createMainWindow();
     });
   })
   .catch(console.log);

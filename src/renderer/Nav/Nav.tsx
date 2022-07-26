@@ -17,6 +17,7 @@ const Nav = () => {
             <a className="navMainBtn" >Audio</a>
             <a className="navMainBtn" >Video</a>
             <a className="navMainBtn" >Warpstagram</a>
+            {/* <a className="navMainBtn" >Morph</a> */}
             </div>
             <div className="logoContainer">
             <p className="navVersion">version 2.1.3.</p>
