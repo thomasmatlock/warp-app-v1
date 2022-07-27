@@ -579,8 +579,8 @@ export default class MenuBuilder {
             enabled: true,
             accelerator: 'CmdOrCtrl+R',
             click: () => {
-              app.relaunch();
-              // this.mainWindow.webContents.send('Menu: Shortcuts: Restart');
+              // app.relaunch();
+              this.mainWindow.webContents.send('Menu: Shortcuts: Restart');
             },
           },
         ],

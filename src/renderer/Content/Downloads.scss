@@ -6,75 +6,95 @@ $gray-dark-light: #252525;
 $gray-dark-lightest: #313131;
 // $gray-light-lightest: #454545;
 $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, #19d2fc 100%);
+@keyframes moveInLeftDownload {
+        0% {
+                opacity: 0;
+                // transform: translateX(-500px) scale(3); // start keyframe, just translate position on x axis to left 10rem
+                // transform: translateX(-350px) scale(1); // start keyframe, just translate position on x axis to left 10rem
+                transform: perspective(400px) rotate3d(1, 0, 0, 90deg) translateX(-1000px);
+                // z-index: 5;
+                // transform: translateX( -500px); // start keyframe, just translate position on x axis to left 10rem
+                // transform: translateX( -20rem); // start keyframe, just translate position on x axis to left 10rem
+        }
+        80% {
+                // transform: translateX(1rem);
+        }
+        100% {
+                opacity: 1;
+                // transform: translate(0) scale(1);
+                //putting zero basically places elements how it looks normally above we just offset the starting keyframes by translating it over
+        }
+}
+
 .content__panel__downloads__list {
-    display: flex;
-    position: absolute;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    left: 0 !important;
-    position: relative;
-    margin: 0;
-    width: 100%;
-    padding: 0 0;
-    list-style: none;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    // border: 1px dotted red;
-    height: 100%;
-    &__item {
-        padding: 5px;
-        border-radius: 3px;
         display: flex;
-        flex-direction: row;
-        justify-content: start;
+        position: absolute;
+        flex-direction: column;
         align-items: center;
-        will-change: transform;
+        justify-content: flex-start;
+        left: 0 !important;
+        position: relative;
+        margin: 0;
         width: 100%;
-        border: 1px solid $gray-dark-lightest;
-        background-color: $gray-dark-light;
-        min-height: 50px !important;
-        animation: moveInLeftDownload 0.5s ease-in-out;
-        // animation-delay: 0.5s;
+        padding: 0 0;
+        list-style: none;
+        overflow-y: scroll;
+        overflow-x: hidden;
         // border: 1px dotted red;
-        // z-index: 10;
-        &:hover {
-            border: 1px solid $gray-dark-lightest;
-            // transform: scaleX(1.1001);
-            box-shadow: -20px 30px 80px 0 rgba(0, 0, 0, 1) !important;
-            background-color: $gray-dark-lightest;
-            // background-image: $gradient-blue;
-            cursor: pointer;
+        height: 100%;
+        &__item {
+                padding: 5px;
+                border-radius: 3px;
+                display: flex;
+                flex-direction: row;
+                justify-content: start;
+                align-items: center;
+                will-change: transform;
+                width: 100%;
+                border: 1px solid $gray-dark-lightest;
+                background-color: $gray-dark-light;
+                min-height: 50px !important;
+                animation: moveInLeftDownload 0.5s ease-in-out;
+                // animation-delay: 0.5s;
+                // border: 1px dotted red;
+                // z-index: 10;
+                &:hover {
+                        border: 1px solid $gray-dark-lightest;
+                        // transform: scaleX(1.1001);
+                        box-shadow: -20px 30px 80px 0 rgba(0, 0, 0, 1) !important;
+                        background-color: $gray-dark-lightest;
+                        // background-image: $gradient-blue;
+                        cursor: pointer;
+                }
+                &__thumbnail {
+                        border-radius: 1px;
+                        // height: 100%;
+                        display: block;
+                        max-height: 50px;
+                        // width: auto;
+                        // height: auto;
+                }
+                &__text {
+                        margin-left: 8px;
+                        font-size: 14px;
+                        // color: $gray-dark-darkest;
+                        color: white;
+                }
+                &__title {
+                        // font-size: 7px;
+                }
+                &__file_length {
+                        color: rgb(92, 92, 92) !important;
+                        // color: rgb(255, 255, 255);
+                        // font-size: 7px;
+                }
+                &__file_type {
+                        color: rgb(92, 92, 92) !important;
+                        // font-size: 7px;
+                }
+                &__file_size {
+                        color: rgb(92, 92, 92) !important;
+                        // font-size: 7px;
+                }
         }
-        &__thumbnail {
-            border-radius: 1px;
-            // height: 100%;
-            display: block;
-            max-height: 50px;
-            // width: auto;
-            // height: auto;
-        }
-        &__text {
-            margin-left: 8px;
-            font-size: 14px;
-            // color: $gray-dark-darkest;
-            color: white;
-        }
-        &__title {
-            // font-size: 7px;
-        }
-        &__file_length {
-            color: rgb(92, 92, 92) !important;
-            // color: rgb(255, 255, 255);
-            // font-size: 7px;
-        }
-        &__file_type {
-            color: rgb(92, 92, 92) !important;
-            // font-size: 7px;
-        }
-        &__file_size {
-            color: rgb(92, 92, 92) !important;
-            // font-size: 7px;
-        }
-    }
 }

@@ -62,3 +62,12 @@ body {
         /* Non-prefixed version, currently
                                   supported by Chrome and Opera */
 }
+
+@keyframes fadeIn {
+        from {
+                opacity: 0;
+        }
+        to {
+                opacity: 1;
+        }
+}

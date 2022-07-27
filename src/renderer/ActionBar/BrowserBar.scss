@@ -6,6 +6,28 @@ $gray-dark-light: #252525;
 $gray-dark-lightest: #313131;
 $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, #19d2fc 100%);
 $gradient-orange: linear-gradient(to left, #da2c4d 0%, #f8ab37 100%);
+@keyframes flipInX {
+        from {
+                transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+                animation-timing-function: ease-in;
+                // opacity: 0;
+        }
+        40% {
+                transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+                animation-timing-function: ease-in;
+        }
+        60% {
+                transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+        }
+        80% {
+                transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+        }
+        to {
+                transform: perspective(400px);
+                opacity: 1;
+        }
+}
+
 .browserBar {
         display: flex;
         flex-direction: row;
@@ -98,7 +120,7 @@ $gradient-orange: linear-gradient(to left, #da2c4d 0%, #f8ab37 100%);
         justify-content: space-around !important;
         cursor: pointer;
         animation: flipInX 0.5s ease-in-out;
-        transition: all 0.1s ease-in-out;
+        // transition: all 0.1s ease-in-out;
         &__audio {
                 background-image: $gradient-orange;
                 &:hover {
