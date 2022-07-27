@@ -5,7 +5,7 @@ import SearchIcon from '../../../assets/Search/lightning.svg';
 import clearTextIcon from '../../../assets/Search/close.svg';
 
 const Search = () => {
-  const restoreInputDefaultWidthDelay = 2000;
+  const restoreInputDefaultWidthDelay = 3000;
   const audioPlaceholder = 'audio search...beep boop  ';
   const videoPlaceholder = 'video search...beep boop  ';
   const warpstagramPlaceholder =
@@ -27,21 +27,21 @@ const Search = () => {
     setAudioMode(true);
     setVideoMode(false);
     setWarpstagramMode(false);
-    setPlaceholderController();
+    // setPlaceholderController();
     setPlaceholder(audioPlaceholder);
   });
   window.electron.ipcRenderer.on('nav: mode: video', (arg) => {
     setVideoMode(true);
     setAudioMode(false);
     setWarpstagramMode(false);
-    setPlaceholderController();
+    // setPlaceholderController();
     setPlaceholder(videoPlaceholder);
   });
   window.electron.ipcRenderer.on('nav: mode: warpstagram', (arg) => {
     setWarpstagramMode(true);
     setAudioMode(false);
     setVideoMode(false);
-    setPlaceholderController();
+    // setPlaceholderController();
     setPlaceholder(warpstagramPlaceholder);
   });
   const [placeholder, setPlaceholder] = useState('input search...beep boop');
@@ -70,29 +70,33 @@ const Search = () => {
   const searchClearTextHandler = (event) => {
     setClearIcon(false);
     setSearchText('');
-    if (warpstagramMode) {
-      setPlaceholder('Enter instagram username, hashtag, or location');
-    } else {
-      setPlaceholder('');
-    }
+    // setPlaceholderController();
 
     window.electron.ipcRenderer.sendMessage('Search: InputChange', ['']);
   };
   const searchInputBlurHandler = (event) => {
+    let inputContainsText = event.target.value.length > 0;
     if (clearIcon == false && searchText.length === 0) {
-      setPlaceholderController();
+      // setPlaceholderController();
     }
-    setTimeout(() => {
-      userStoppedInteracting();
-    }, restoreInputDefaultWidthDelay);
+    if (!inputContainsText) {
+      setTimeout(() => {
+        userStoppedInteracting();
+      }, restoreInputDefaultWidthDelay);
+    }
   };
-  const userStartedInteracting = (event) => {
-    // console.log('user started interacting');
+  const userStartedInteracting = () => {
     setIsHovering(true);
   };
-  const userStoppedInteracting = (event) => {
-    // console.log('user stopped interacting');
-    setIsHovering(false);
+  const userStoppedInteracting = () => {
+    // let inputContainsText = searchText.length > 0;
+    if (clearIcon == false && searchText.length === 0) {
+      setPlaceholderController();
+      setTimeout(() => {
+        // userStoppedInteracting();
+        setIsHovering(false);
+      }, restoreInputDefaultWidthDelay);
+    }
   };
 
   return (
@@ -101,7 +105,7 @@ const Search = () => {
         className="search"
         onSubmit={searchInputSubmit}
         onMouseEnter={userStartedInteracting}
-        onMouseLeave={searchInputBlurHandler}
+        onMouseLeave={userStoppedInteracting}
       >
         <img
           id="search__input__icon__unfocused"
@@ -115,6 +119,8 @@ const Search = () => {
           type="text"
           value={searchText}
           onChange={searchInputChangeHandler}
+          // onMouseEnter={userStartedInteracting}
+          onMouseLeave={userStartedInteracting}
           onBlur={searchInputBlurHandler}
           placeholder={placeholder}
           spellCheck="false"

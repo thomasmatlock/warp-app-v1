@@ -541,26 +541,6 @@ export default class MenuBuilder {
               appWin.send('nav_B_button_audio_preferences');
             },
           },
-          // {
-          //   label: 'Documentation',
-          //   click() {
-          //     shell.openExternal(
-          //       'https://github.com/electron/electron/tree/main/docs#readme'
-          //     );
-          //   },
-          // },
-          // {
-          //   label: 'Community Discussions',
-          //   click() {
-          //     shell.openExternal('https://www.electronjs.org/community');
-          //   },
-          // },
-          // {
-          //   label: 'Search Issues',
-          //   click() {
-          //     shell.openExternal('https://github.com/electron/electron/issues');
-          //   },
-          // },
         ],
       },
       {
@@ -599,68 +579,21 @@ export default class MenuBuilder {
             enabled: true,
             accelerator: 'CmdOrCtrl+R',
             click: () => {
-              this.mainWindow.webContents.send('Menu: Shortcuts: Restart');
+              app.relaunch();
+              // this.mainWindow.webContents.send('Menu: Shortcuts: Restart');
             },
           },
-          // {
-          //   label: 'Documentation',
-          //   click() {
-          //     shell.openExternal(
-          //       'https://github.com/electron/electron/tree/main/docs#readme'
-          //     );
-          //   },
-          // },
-          // {
-          //   label: 'Community Discussions',
-          //   click() {
-          //     shell.openExternal('https://www.electronjs.org/community');
-          //   },
-          // },
-          // {
-          //   label: 'Search Issues',
-          //   click() {
-          //     shell.openExternal('https://github.com/electron/electron/issues');
-          //   },
-          // },
         ],
       },
       {
         label: 'Help',
         submenu: [
           {
-            label: 'Restart Warp',
-            enabled: false,
-            accelerator: 'CmdOrCtrl+R',
-            click: () => {
-              // appWin.send('Restart');
-            },
-          },
-          {
             label: 'Learn More',
             click() {
               shell.openExternal('https://warpdownload.com');
             },
           },
-          // {
-          //   label: 'Documentation',
-          //   click() {
-          //     shell.openExternal(
-          //       'https://github.com/electron/electron/tree/main/docs#readme'
-          //     );
-          //   },
-          // },
-          // {
-          //   label: 'Community Discussions',
-          //   click() {
-          //     shell.openExternal('https://www.electronjs.org/community');
-          //   },
-          // },
-          // {
-          //   label: 'Search Issues',
-          //   click() {
-          //     shell.openExternal('https://github.com/electron/electron/issues');
-          //   },
-          // },
         ],
       },
     ];
