@@ -99,10 +99,20 @@ $gradient-orange: linear-gradient(to left, #da2c4d 0%, #f8ab37 100%);
     cursor: pointer;
     animation: flipInX 0.5s ease-in-out;
     transition: all 0.1s ease-in-out;
-    &__audio {}
-    &__video {}
-    &:hover {
+    &__audio {
         background-image: $gradient-orange;
+        &:hover {
+            background-image: $gradient-blue;
+        }
+    }
+    &__video {
+        background-image: $gradient-blue;
+        &:hover {
+            background-image: $gradient-orange;
+        }
+    }
+    &:hover {
+        // background-image: $gradient-orange;
         box-shadow: -20px 30px 80px 0 rgba(0, 0, 0, 1) !important;
         // transform: scale(1.01);
     }

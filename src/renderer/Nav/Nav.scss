@@ -1,82 +1,108 @@
-  $nav-text-color: #000;
-  $nav-text-color_hover: #fff;
-  $gray-dark-darkest: #1a1a1a;
-  $gray-dark-dark: #202020;
-  $gray-dark-light: #252525;
-  $gray-dark-lightest: #313131;
-  $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, #19d2fc 100%);
-  .navMain {
-      bottom: 0 !important;
-      margin: 0 auto;
-      left: 0 !important;
-      position: relative;
-      width: 100%;
-      //   height: 64px;
-      min-height: 64px;
-      max-height: 64px;
-      display: flex;
-      justify-content: space-evenly !important;
-      align-items: center;
-      flex-direction: row;
-      //   border: 1px dotted rgb(146, 146, 146);
-      background-color: $gray-dark-dark;
-      //   z-index: 10;
-  }
-  
-  .logoContainer {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      width: 25%;
-      //   cursor: none !important;
-      height: 100%;
-      color: white;
-  }
-  
-  .navLogoImg {
-      height: 20px;
-      margin: 0 10px;
-  }
-  
-  .buttonContainer {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: row;
-      height: 100%;
-      width: 33%;
-      //   border: 1px dotted rgb(146, 146, 146);
-  }
-  
-  .navMainBtn {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 14px;
-      color: white;
-      cursor: pointer;
-      flex: 1;
-      background-color: $gray-dark-light;
-      height: 60px;
-      border-radius: 1px;
-      &:hover {
-          background-color: white;
-          color: black;
-          //   -webkit-box-shadow: 0 0 1px 3px #000 inset;
-          //   -moz-box-shadow: 0 0 1px 3px #000 inset;
-          //   box-shadow: 0px -3px 3px 3px rgb(70, 70, 70) inset;
-          border-bottom: #0463db 3px solid;
-      }
-      &__active {
-          background-color: white;
-          color: black;
-          border-bottom: #0463db 3px solid;
-          // border-bottom: linear-gradient(to left, #da2c4d 0%, #f8ab37 100%) 3px solid;
-          // transform: translateY(3px);
-      }
-  }
-  
-  .navVersion {
-      font-size: 10px;
-  }
+$nav-text-color: #000;
+$nav-text-color_hover: #fff;
+$gray-dark-darkest: #1a1a1a;
+$gray-dark-dark: #202020;
+$gray-dark-light: #252525;
+$gray-dark-lightest: #313131;
+$gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, #19d2fc 100%);
+.navMain {
+    bottom: 0 !important;
+    margin: 0 auto;
+    left: 0 !important;
+    position: relative;
+    width: 100%;
+    //   height: 64px;
+    min-height: 64px;
+    max-height: 64px;
+    display: flex;
+    justify-content: space-evenly !important;
+    align-items: center;
+    flex-direction: row;
+    //   border: 1px dotted rgb(146, 146, 146);
+    background-color: $gray-dark-dark;
+    //   z-index: 10;
+}
+
+.logoContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 25%;
+    //   cursor: none !important;
+    height: 100%;
+    color: white;
+}
+
+.navLogoImg {
+    height: 20px;
+    margin: 0 10px;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    height: 100%;
+    width: 33%;
+    //   border: 1px dotted rgb(146, 146, 146);
+}
+
+.navMainBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    color: white;
+    cursor: pointer;
+    flex: 1;
+    background-color: $gray-dark-light;
+    height: 60px;
+    border-radius: 1px;
+    &:hover {
+        background-color: white;
+        //   -webkit-box-shadow: 0 0 1px 3px #000 inset;
+        //   -moz-box-shadow: 0 0 1px 3px #000 inset;
+        //   box-shadow: 0px -3px 3px 3px rgb(70, 70, 70) inset;
+        color: black;
+    }
+    &__active {
+        color: black;
+        border-bottom: #0463db 3px solid;
+        // border-bottom: linear-gradient(to left, #da2c4d 0%, #f8ab37 100%) 3px solid;
+        // transform: translateY(3px);
+    }
+}
+
+.navMainBtnActive {
+    background-color: white;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    // color: white;
+    cursor: pointer;
+    flex: 1;
+    background-color: white;
+    height: 60px;
+    border-radius: 1px;
+    // border-bottom: #0463db 3px solid;
+}
+
+.navMainBtnAudio {
+    // background-color: $gradient-blue;
+}
+
+.navMainBtnVideo {
+    background-color: $gradient-blue;
+}
+
+.navMainBtnWarpstagram {
+    // background-color: $gradient-blue;
+}
+
+.navVersion {
+    font-size: 12px;
+}

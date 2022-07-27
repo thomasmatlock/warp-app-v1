@@ -17,7 +17,6 @@ import { resolveHtmlPath } from './util';
 import package from '../../package.json';
 console.log(`${package.name} ${package.version}`);
 
-
 class AppUpdater {
   constructor() {
     log.transports.file.level = 'info';
@@ -29,16 +28,34 @@ class AppUpdater {
 let mainWindow: BrowserWindow | null = null;
 let splashWindow: BrowserWindow | null = null;
 
-ipcMain.on('ipc-example', async (event, arg) => {
-  const msgTemplate = (pingPong: string) => `IPC SUCCESS: message from renderer: ${pingPong}`;
-  console.log(msgTemplate(arg));
-  event.reply('ipc-example', msgTemplate('success sent to renderer')); // sends message to renderer
+// SEARCH LISTENERS
+ipcMain.on('Search: InputChange', async (event, arg) => {
+  console.log('Search: InputChange', arg);
+  event.reply('Search: InputChange', arg);
 });
-
+ipcMain.on('Search: Submit', async (event, arg) => {
+  console.log('Search: Submit', arg);
+  event.reply('Search: Submit', arg);
+});
+// NAV BAR LISTENERS
 ipcMain.on('package', async (event, arg) => {
-  const msgTemplate = (message: string) => `${message}`;
-  console.log(msgTemplate(arg));
   event.reply('package', package); // sends message to renderer
+});
+ipcMain.on('nav: mode: audio', async (event, arg) => {
+  event.reply('nav: mode: audio', 'nav: mode: audio successful'); // sends message to renderer
+});
+ipcMain.on('nav: mode: video', async (event, arg) => {
+  event.reply('nav: mode: video', 'nav: mode: video successful'); // sends message to renderer
+});
+ipcMain.on('nav: mode: warpstagram', async (event, arg) => {
+  event.reply('nav: mode: warpstagram', 'nav: mode: warpstagram successful'); // sends message to renderer
+});
+// BROWSERBAR LISTENERS
+ipcMain.on('BrowserBar: button: downloadAudio', async (event, arg) => {
+  event.reply('BrowserBar: button: downloadAudio successful');
+});
+ipcMain.on('BrowserBar: button: downloadVideo', async (event, arg) => {
+  event.reply('BrowserBar: button: downloadVideo successful'); // sends message to renderer
 });
 
 if (process.env.NODE_ENV === 'production') {
@@ -123,7 +140,8 @@ const createMainWindow = async () => {
   // Remove this if your app does not use auto updates
   // eslint-disable-next-line
   new AppUpdater();
-};const createSplashWindow = async () => {
+};
+const createSplashWindow = async () => {
   if (isDebug) {
     await installExtensions();
   }
@@ -137,16 +155,16 @@ const createMainWindow = async () => {
   };
 
   splashWindow = new BrowserWindow({
-   height: 400,
-            width: 980,
-            // x: 100,
-            // y: 100,
-            frame: false,
-            transparent: true,
-            // resizable: false,
-            // movable: false,
-            // minimizable: false,
-            // maximizable: false,
+    height: 400,
+    width: 980,
+    // x: 100,
+    // y: 100,
+    frame: false,
+    transparent: true,
+    // resizable: false,
+    // movable: false,
+    // minimizable: false,
+    // maximizable: false,
     // icon: getAssetPath('icon.png'),
     webPreferences: {
       preload: app.isPackaged
@@ -171,11 +189,11 @@ const createMainWindow = async () => {
   splashWindow.on('ready', () => {
     // splashWindow.setSize(1500  ,500);
     // setTimeout(() =>     {
-      // }, 1000);
-    });
-    // splashWindow.on('closed', () => {
-    //   splashWindow = null;
-    // });
+    // }, 1000);
+  });
+  // splashWindow.on('closed', () => {
+  //   splashWindow = null;
+  // });
 
   // const menuBuilder = new MenuBuilder(splashWindow);
   // menuBuilder.buildMenu();

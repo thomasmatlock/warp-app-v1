@@ -16,5 +16,5 @@ const addIpcListeners = () => {
   });
   window.electron.ipcRenderer.sendMessage('ipc-example', ['sent from renderer']); // send message to main process
 }
-addIpcListeners();
+// addIpcListeners();
 

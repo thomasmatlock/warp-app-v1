@@ -5,6 +5,10 @@
   $gray-dark-light: #252525;
   $gray-dark-lightest: #313131;
   $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, #19d2fc 100%);
+  .overview_display__search__input:focus~* {
+      transform: translateX(-25px);
+  }
+  
   .search {
       min-height: 64px;
       max-height: 64px;
@@ -22,10 +26,15 @@
       background-color: $gray-dark-dark;
       //   background-color: #eee;
       //   border: 1px dotted red;
+      &:hover .search__input {
+          width: 66%;
+          width: 100%;
+      }
       &__input {
           //   border: 1px dotted red;
           transition: all 0.1s ease-in-out !important;
           width: 33%;
+          //   padding: 10px;
           height: 40px;
           margin: 0px 16px;
           //   transform: translateX(-8px);
@@ -38,32 +47,35 @@
           font-size: 14px;
           box-shadow: none;
           &__icon {
+              transform: translateX(48px);
               height: 20px;
-              &__unfocused {
-                  //   position: absolute;
+              &__focused {
+                  //   display: none;
                   transform: translateX(-48px);
               }
-              &__focused {
-                  display: none;
+              &__clearText {
                   transform: translateX(-48px);
+                  fill: #fff;
+                  cursor: pointer;
+                  //   position: absolute;
+                  //   transform: translateX(-48px);
               }
           }
           &::placeholder {
-              color: white;
-              transform: translateX(20px);
+              color: rgb(167, 167, 167);
+              //   padding-left: 36px;
+              //   transform: translateX(36px);
               // background-color: $gray-dark-lightest; // change
           }
-          &:focus {
+          &:hover {
               width: 66%;
               width: 100%;
           }
-          &:focus .search__input__icon__unfocused {
-              width: 100px;
-              //   width: 66%;
-              //   width: 100%;
-          }
           &:focus::placeholder {
+              //   display: none;
               color: transparent;
+              //   transform: translateX(200px);
+              //   color: transparent;
           }
       }
   }
@@ -81,4 +93,8 @@
       transform: translateX(-98px);
       display: none;
       //   height: 100px;
+  }
+  
+  input[type="text"] {
+      padding-left: 40px !important;
   }

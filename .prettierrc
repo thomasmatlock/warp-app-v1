@@ -1,0 +1,10 @@
+{
+  "typescriptreact": {
+    "semi": true,
+    "tabWidth": 8,
+    "printWidth": 120,
+    "singleQuote": true,
+    "trailingComma": "none",
+    "jsxBracketSameLine": true
+  }
+}
