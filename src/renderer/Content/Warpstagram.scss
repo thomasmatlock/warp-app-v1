@@ -77,7 +77,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
         // padding: 4px 16px;
         &:hover> :not(:hover) * {
                 // border: 1px dotted red;
-                filter: brightness(1) saturate(0) contrast(1) blur(0px);
+                filter: brightness(0.5) saturate(0) contrast(1) blur(0px);
                 // transform: scaleX(1.1001);
                 // box-shadow: -20px 30px 80px 0 rgba(0, 0, 0, 1) !important;
                 // background-color: $gray-dark-lightest;
@@ -190,6 +190,6 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
 }
 
 .content__panel__warpstagram__account__posts:hover>*:not(:hover) {
-        // filter: brightness(1) saturate(1) contrast(0.75) blur(0px);
+        filter: brightness(0.75) saturate(0.5) contrast(0.75) blur(1px);
         // filter: saturate(0.75) contrast(1) blur(2px);
 }
