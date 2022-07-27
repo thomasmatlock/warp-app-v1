@@ -6,3 +6,30 @@ $gray-dark-light: #252525;
 $gray-dark-lightest: #313131;
 // $gray-light-lightest: #454545;
 $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, #19d2fc 100%);
+.contentPanel__browser {
+        // height: 100%;
+        // height: calc(100vh - 192px);
+        background-image: $gradient-blue;
+        height: calc(100vh - 200px);
+        width: 49%;
+        // border: 3px dotted red;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+        // width: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: start;
+        // justify-content: center;
+        // overflow: hidden;
+        // overflow: scroll;
+}
+
+.contentPanel__browser img {
+        width: 100%;
+        height: 100%;
+        // border: 3px dotted red;
+}

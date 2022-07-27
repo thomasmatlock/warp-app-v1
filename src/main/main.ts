@@ -28,6 +28,11 @@ class AppUpdater {
 let mainWindow: BrowserWindow | null = null;
 let splashWindow: BrowserWindow | null = null;
 
+// MENU LISTENERS
+ipcMain.on('Menu: Shortcuts: Restart', async (event, arg) => {
+  console.log('Menu: Shortcuts: Restart', arg);
+  event.reply('Menu: Shortcuts: Restart', arg);
+});
 // SEARCH LISTENERS
 ipcMain.on('Search: InputChange', async (event, arg) => {
   console.log('Search: InputChange', arg);
@@ -57,6 +62,22 @@ ipcMain.on('BrowserBar: button: downloadAudio', async (event, arg) => {
 ipcMain.on('BrowserBar: button: downloadVideo', async (event, arg) => {
   event.reply('BrowserBar: button: downloadVideo successful'); // sends message to renderer
 });
+// FILTERBAR LISTENERS
+ipcMain.on('FilterBar: Warpstagram: FilterTypeAll', async (event, arg) => {
+  event.reply('FilterBar: Warpstagram: FilterTypeAll successful'); // sends message to renderer
+});
+ipcMain.on('FilterBar: Warpstagram: FilterTypeUsers', async (event, arg) => {
+  event.reply('FilterBar: Warpstagram: FilterTypeUsers successful'); // sends message to renderer
+});
+ipcMain.on('FilterBar: Warpstagram: FilterTypeHashtags', async (event, arg) => {
+  event.reply('FilterBar: Warpstagram: FilterTypeHashtags successful'); // sends message to renderer
+});
+ipcMain.on(
+  'FilterBar: Warpstagram: FilterTypeLocations',
+  async (event, arg) => {
+    event.reply('FilterBar: Warpstagram: FilterTypeLocations successful'); // sends message to renderer
+  }
+);
 
 if (process.env.NODE_ENV === 'production') {
   const sourceMapSupport = require('source-map-support');

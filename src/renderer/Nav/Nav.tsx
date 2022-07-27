@@ -3,37 +3,19 @@ import NavLogoImg from '../../../assets/Nav/008-blackhole_lunacy.svg';
 import navLogoText from '../../../assets/Nav/logo_lowercase_extrabold.svg';
 import './Nav.scss';
 let appVersion: string = '1.0.0';
-const addNavIPCListeners = () => {
-  window.electron.ipcRenderer.on('package', (arg) => {
-    appVersion = arg.version;
-  });
-  window.electron.ipcRenderer.on('nav: mode: audio', (arg) => {
-    // console.log(arg);
-  });
-  window.electron.ipcRenderer.on('nav: mode: video', (arg) => {
-    // console.log(arg);
-  });
-  window.electron.ipcRenderer.on('nav: mode: warpstagram', (arg) => {
-    // console.log(arg);
-  });
-  window.electron.ipcRenderer.sendMessage('package', [
-    'Nav requesting package.json',
-  ]); // send message to main process
-};
-addNavIPCListeners();
+
 const Nav = () => {
   const [audioMode, setAudioMode] = useState(true);
   const [videoMode, setVideoMode] = useState(false);
   const [warpstagramMode, setWarpstagramMode] = useState(false);
+
   const AudioBtnHandler = () => {
     setAudioMode(true);
     setVideoMode(false);
     setWarpstagramMode(false);
-    // console.log(audioMode);
-
     window.electron.ipcRenderer.sendMessage('nav: mode: audio', [
       `Nav change: Audio Mode`,
-    ]); // send message to main process
+    ]);
   };
   const VideoBtnHandler = () => {
     setVideoMode(true);
@@ -41,8 +23,7 @@ const Nav = () => {
     setWarpstagramMode(false);
     window.electron.ipcRenderer.sendMessage('nav: mode: video', [
       `Nav change: Video Mode`,
-    ]); // send message to main process
-    // console.log(videoMode);
+    ]);
   };
   const WarpstagramBtnHandler = () => {
     setWarpstagramMode(true);
@@ -50,9 +31,30 @@ const Nav = () => {
     setVideoMode(false);
     window.electron.ipcRenderer.sendMessage('nav: mode: warpstagram', [
       `Nav change: Warpstagram Mode`,
-    ]); // send message to main process
-    // console.log(warpstagramMode);
+    ]);
   };
+  window.electron.ipcRenderer.on('package', (arg) => {
+    appVersion = arg.version;
+  });
+  window.electron.ipcRenderer.on('nav: mode: audio', (arg) => {
+    setAudioMode(true);
+    setVideoMode(false);
+    setWarpstagramMode(false);
+  });
+  window.electron.ipcRenderer.on('nav: mode: video', (arg) => {
+    // console.log(arg);
+    setAudioMode(false);
+    setVideoMode(true);
+    setWarpstagramMode(false);
+  });
+  window.electron.ipcRenderer.on('nav: mode: warpstagram', (arg) => {
+    setAudioMode(false);
+    setVideoMode(false);
+    setWarpstagramMode(true);
+  });
+  window.electron.ipcRenderer.sendMessage('package', [
+    'Nav requesting package.json',
+  ]);
   return (
     <Fragment>
       <div className="navMain">

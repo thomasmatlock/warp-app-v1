@@ -9,24 +9,40 @@ const FilterBar = () => {
   const [filterTypeLocations, setFilterTypeLocations] = useState(false);
 
   const filterTypeAllHandler = () => {
+    window.electron.ipcRenderer.sendMessage(
+      'FilterBar: Warpstagram: FilterTypeAll',
+      [`FilterBar: Warpstagram: FilterTypeAll`]
+    );
     setFilterTypeAll(true);
     setFilterTypeUsers(false);
     setFilterTypeHashtags(false);
     setFilterTypeLocations(false);
   };
   const filterTypeUsersHandler = () => {
+    window.electron.ipcRenderer.sendMessage(
+      'FilterBar: Warpstagram: FilterTypeUsers',
+      [`FilterBar: Warpstagram: FilterTypeUsers`]
+    );
     setFilterTypeAll(false);
     setFilterTypeUsers(true);
     setFilterTypeHashtags(false);
     setFilterTypeLocations(false);
   };
   const filterTypeHashtagsHandler = () => {
+    window.electron.ipcRenderer.sendMessage(
+      'FilterBar: Warpstagram: FilterTypeHashtags',
+      [`FilterBar: Warpstagram: FilterTypeHashtags`]
+    );
     setFilterTypeAll(false);
     setFilterTypeUsers(false);
     setFilterTypeHashtags(true);
     setFilterTypeLocations(false);
   };
   const filterTypeLocationsHandler = () => {
+    window.electron.ipcRenderer.sendMessage(
+      'FilterBar: Warpstagram: FilterTypeLocations',
+      [`FilterBar: Warpstagram: FilterTypeLocations`]
+    );
     setFilterTypeAll(false);
     setFilterTypeUsers(false);
     setFilterTypeHashtags(false);

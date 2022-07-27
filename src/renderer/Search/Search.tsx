@@ -5,6 +5,7 @@ import SearchIcon from '../../../assets/Search/lightning.svg';
 import clearTextIcon from '../../../assets/Search/close.svg';
 
 const Search = () => {
+  const restoreInputDefaultWidthDelay = 2000;
   const audioPlaceholder = 'audio search...beep boop  ';
   const videoPlaceholder = 'video search...beep boop  ';
   const warpstagramPlaceholder =
@@ -12,6 +13,16 @@ const Search = () => {
   const [audioMode, setAudioMode] = useState(true);
   const [videoMode, setVideoMode] = useState(false);
   const [warpstagramMode, setWarpstagramMode] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
+  const setPlaceholderController = () => {
+    if (warpstagramMode) {
+      setPlaceholder(warpstagramPlaceholder);
+    } else if (videoMode) {
+      setPlaceholder(videoPlaceholder);
+    } else if (audioMode) {
+      setPlaceholder(audioPlaceholder);
+    }
+  };
   window.electron.ipcRenderer.on('nav: mode: audio', (arg) => {
     setAudioMode(true);
     setVideoMode(false);
@@ -36,19 +47,11 @@ const Search = () => {
   const [placeholder, setPlaceholder] = useState('input search...beep boop');
   const [searchText, setSearchText] = useState('');
   const [clearIcon, setClearIcon] = useState(false);
-  const setPlaceholderController = () => {
-    if (warpstagramMode) {
-      setPlaceholder(warpstagramPlaceholder);
-    } else if (videoMode) {
-      setPlaceholder(videoPlaceholder);
-    } else if (audioMode) {
-      setPlaceholder(audioPlaceholder);
-    }
-  };
+
   const searchInputSubmit = (event) => {
     event.preventDefault();
     if (searchText.length > 0) {
-      console.log(searchText);
+      // console.log(searchText);
       window.electron.ipcRenderer.sendMessage('Search: Submit', [searchText]);
     } else {
       console.log('no search text');
@@ -79,6 +82,17 @@ const Search = () => {
     if (clearIcon == false && searchText.length === 0) {
       setPlaceholderController();
     }
+    setTimeout(() => {
+      userStoppedInteracting();
+    }, restoreInputDefaultWidthDelay);
+  };
+  const userStartedInteracting = (event) => {
+    // console.log('user started interacting');
+    setIsHovering(true);
+  };
+  const userStoppedInteracting = (event) => {
+    // console.log('user stopped interacting');
+    setIsHovering(false);
   };
 
   return (
@@ -86,6 +100,7 @@ const Search = () => {
       <form
         className="search"
         onSubmit={searchInputSubmit}
+        onMouseEnter={userStartedInteracting}
         onMouseLeave={searchInputBlurHandler}
       >
         <img
@@ -96,7 +111,7 @@ const Search = () => {
         <input
           autoFocus
           id="search__input"
-          className="search__input"
+          className={isHovering ? 'search__input__hovering' : 'search__input'}
           type="text"
           value={searchText}
           onChange={searchInputChangeHandler}

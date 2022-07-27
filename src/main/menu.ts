@@ -564,6 +564,67 @@ export default class MenuBuilder {
         ],
       },
       {
+        label: 'Shortcuts',
+        submenu: [
+          {
+            label: 'Audio Mode',
+            enabled: true,
+            accelerator: 'Shift+1',
+            click: () => {
+              this.mainWindow.webContents.send('nav: mode: audio');
+            },
+          },
+          {
+            label: 'Video Mode',
+            enabled: true,
+            accelerator: 'Shift+2',
+            click: () => {
+              this.mainWindow.webContents.send('nav: mode: video');
+            },
+          },
+          {
+            label: 'Warpstagram Mode',
+            enabled: true,
+            accelerator: 'Shift+3',
+            click: () => {
+              this.mainWindow.webContents.send('nav: mode: warpstagram');
+            },
+          },
+          {
+            label: 'separator',
+            type: 'separator',
+          },
+          {
+            label: 'Restart Warp',
+            enabled: true,
+            accelerator: 'CmdOrCtrl+R',
+            click: () => {
+              this.mainWindow.webContents.send('Menu: Shortcuts: Restart');
+            },
+          },
+          // {
+          //   label: 'Documentation',
+          //   click() {
+          //     shell.openExternal(
+          //       'https://github.com/electron/electron/tree/main/docs#readme'
+          //     );
+          //   },
+          // },
+          // {
+          //   label: 'Community Discussions',
+          //   click() {
+          //     shell.openExternal('https://www.electronjs.org/community');
+          //   },
+          // },
+          // {
+          //   label: 'Search Issues',
+          //   click() {
+          //     shell.openExternal('https://github.com/electron/electron/issues');
+          //   },
+          // },
+        ],
+      },
+      {
         label: 'Help',
         submenu: [
           {
@@ -571,7 +632,7 @@ export default class MenuBuilder {
             enabled: false,
             accelerator: 'CmdOrCtrl+R',
             click: () => {
-              appWin.send('Restart');
+              // appWin.send('Restart');
             },
           },
           {
