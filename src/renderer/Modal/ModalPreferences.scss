@@ -17,6 +17,29 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
         background-color: $gray-dark-darkest;
         // width: 600px;
         // height: 400px;
+        &__content {
+                height: 100%;
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-evenly;
+                align-items: center;
+                &__panel {
+                        // border: 1px dotted red;
+                        height: 100%;
+                        width: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: flex-start;
+                        align-items: center;
+                        &__nav {
+                                // justify-content: start;
+                                width: 200px;
+                                height: 100%;
+                        }
+                        &__content {}
+                }
+        }
         &__header {
                 // border: 1px dotted red;
                 // border: 1px dotted red;
@@ -57,15 +80,4 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
                         // right: 0;
                 }
         }
-}
-
-.modalSpacer_space {
-        width: 100%;
-        height: 1.4rem;
-        border: 1px dotted white;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        align-content: center;
 }

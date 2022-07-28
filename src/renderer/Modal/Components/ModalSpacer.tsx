@@ -1,11 +1,11 @@
 import { Fragment } from 'react';
-import './Spacer.scss';
+import './ModalSpacer.scss';
 
-const Spacer = () => {
+const ModalSpacer = () => {
   return (
     <Fragment>
       <div className="spacer"></div>
     </Fragment>
   );
 };
-export default Spacer;
+export default ModalSpacer;
