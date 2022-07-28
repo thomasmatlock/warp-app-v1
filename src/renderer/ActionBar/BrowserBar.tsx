@@ -2,9 +2,11 @@ import { Fragment, useState } from 'react';
 import './BrowserBar.scss';
 import browserBarDownloadSourceIcon1 from '../../../assets/ActionBar/youtube.svg';
 import browserBarDownloadSourceIcon2 from '../../../assets/ActionBar/caret-down.svg';
+import Modal from '../Modal/Modal';
 // import browserBarDownloadSourceIcon1 from '../../../../assets/3rdparty/fontawesome/svgs/brands/youtube.svg';
 // import browserBarDownloadSourceIcon2 from '../../../../assets/3rdparty/fontawesome/svgs/solid/caret-down.svg';
 const BrowserBar = (props) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   let audioMode = props.audioMode;
   let videoMode = props.videoMode;
   //  const [audioMode, setAudioMode] = useState(true);
@@ -40,6 +42,10 @@ const BrowserBar = (props) => {
       'BrowserBar: button: downloadVideo',
       [`Download Video`]
     );
+  };
+  const modalHandler = () => {
+    setIsModalOpen(true);
+    console.log('modalHandler');
   };
   return (
     <Fragment>
@@ -82,7 +88,7 @@ const BrowserBar = (props) => {
             </div>
           </li>
         </div>
-        {audioMode && (
+        {/* {audioMode && (
           <a
             onClick={downloadAudioHandler}
             className="browserBarDownloadBtn browserBarDownloadBtn__audio"
@@ -97,7 +103,11 @@ const BrowserBar = (props) => {
           >
             Download Video MP4
           </a>
-        )}
+        )} */}
+        <a className="browserBarDownloadBtn" onClick={modalHandler}>
+          test
+        </a>
+        {isModalOpen && <Modal />}
       </div>
     </Fragment>
   );

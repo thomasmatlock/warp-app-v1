@@ -15,7 +15,12 @@ import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
 import package from '../../package.json';
-console.log(`${package.name} ${package.version}`);
+const contextMenu = require('electron-context-menu');
+// console.log(`${package.name} ${package.version}`);
+
+contextMenu({
+  // inspect: true,
+});
 
 class AppUpdater {
   constructor() {

@@ -9,12 +9,16 @@ const addIpcListeners = () => {
   window.electron.ipcRenderer.on('ipc-example', (arg) => {
     // eslint-disable-next-line no-console
     console.log(arg);
-  }); 
+  });
 
   window.electron.ipcRenderer.on('package', (arg) => {
     console.log(arg);
   });
-  window.electron.ipcRenderer.sendMessage('ipc-example', ['sent from renderer']); // send message to main process
-}
+  document.oncontextmenu = function () {
+    return false;
+  };
+  window.electron.ipcRenderer.sendMessage('ipc-example', [
+    'sent from renderer',
+  ]); // send message to main process
+};
 // addIpcListeners();
-
