@@ -25,6 +25,7 @@ const Search = () => {
   const [audioMode, setAudioMode] = useState(true);
   const [videoMode, setVideoMode] = useState(false);
   const [warpstagramMode, setWarpstagramMode] = useState(false);
+
   const [isHovering, setIsHovering] = useState(false);
   const setPlaceholderController = () => {
     if (warpstagramMode) {
@@ -41,6 +42,7 @@ const Search = () => {
     setWarpstagramMode(false);
     // setPlaceholderController();
     setPlaceholder(audioPlaceholder);
+    setMode();
   });
   window.electron.ipcRenderer.on('nav: mode: video', (arg) => {
     setVideoMode(true);
@@ -48,6 +50,7 @@ const Search = () => {
     setWarpstagramMode(false);
     // setPlaceholderController();
     setPlaceholder(videoPlaceholder);
+    setMode();
   });
   window.electron.ipcRenderer.on('nav: mode: warpstagram', (arg) => {
     setWarpstagramMode(true);
@@ -55,6 +58,7 @@ const Search = () => {
     setVideoMode(false);
     // setPlaceholderController();
     setPlaceholder(warpstagramPlaceholder);
+    setMode();
   });
   window.electron.ipcRenderer.on('modal: preferences', (arg) => {
     if (isModalOpen) {

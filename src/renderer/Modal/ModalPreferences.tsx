@@ -11,11 +11,12 @@ import ModalPanelVideo from './Panels/ModalPanelVideo';
 import ModalPanelWarpstagram from './Panels/ModalPanelWarpstagram';
 
 const ModalPreferences = (props) => {
-  const [isModalPanelAudio, setModalPanelAudio] = useState(false);
-  const [isModalPanelGeneral, setModalPanelGeneral] = useState(true);
+  const [isModalPanelAudio, setModalPanelAudio] = useState(true);
+  const [isModalPanelGeneral, setModalPanelGeneral] = useState(false);
   const [isModalPanelLicenses, setModalPanelLicenses] = useState(false);
   const [isModalPanelVideo, setModalPanelVideo] = useState(false);
   const [isModalPanelWarpstagram, setModalPanelWarpstagram] = useState(false);
+
   const hideAllPanels = () => {
     setModalPanelAudio(false);
     setModalPanelGeneral(false);
@@ -43,6 +44,27 @@ const ModalPreferences = (props) => {
     hideAllPanels();
     setModalPanelWarpstagram(true);
   };
+  const setNavMode = () => {
+    if (props.mode === 'audio') {
+      console.log('setNavMode: audio');
+
+      hideAllPanels();
+      setModalPanelAudio(true);
+    } else if (props.mode === 'general') {
+      hideAllPanels();
+      setModalPanelGeneral(true);
+    } else if (props.mode === 'licenses') {
+      hideAllPanels();
+      setModalPanelLicenses(true);
+    } else if (props.mode === 'video') {
+      hideAllPanels();
+      setModalPanelVideo(true);
+    } else if (props.mode === 'warpstagram') {
+      setModalPanelVideo(true);
+      setModalPanelWarpstagram(true);
+    }
+  };
+  setNavMode();
   return (
     <Modal onClose={props.onClose}>
       <div className="modal_preferences">

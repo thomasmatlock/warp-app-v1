@@ -31,45 +31,29 @@
                 // border-radius: 2px 2px 0 0;
                 // border-radius: 4px;
                 border-radius: 4px 4px 0 0;
-                // box-shadow: $shadow-after;
-                // transform: translateY(-0.2rem);
+                transform: translateY(-0.2rem);
+                box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
                 &::after {
                         // transform: scaleX(1.4) scaleY(1.6);
                 }
         }
         &:active {
                 /*heres what happens when it's active by user, aka a click lol*/
-                // transform: scaleX(0.98) scaleY(0.98);
+                transform: scaleX(0.98) scaleY(0.98);
                 // transform: translateY(-0.2rem);
                 /*this value is in relation to initial state, not hover state*/
-                // box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
+                box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
         }
 }
 
-.modalPrefsNav_button_background {
-        z-index: 1;
-        // background-image: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, #19d2fc 100%);
-}
-
 .modalPrefsNav_button p {
-        font-size: 14px;
-        margin-left: 1rem;
-        font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
-        margin-right: 8px;
-}
-
-.modalPrefsNav_button i {
-        font-size: 1.2rem;
-        margin-top: 2px;
+        font-size: 16px;
+        // margin-left: 1rem;
+        // margin-right: 8px;
 }
 
 .modalPrefsNav_button_active {
-        // background-color: rgba(238, 238, 238, 0.205);
-        // background-image: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, #19d2fc 100%);
         background-image: linear-gradient( to left, rgba(238, 238, 238, 0.205) 0%, rgba(102, 102, 102, 0.205) 100%);
         color: #ffffff;
-        border-radius: 4px 4px 0 0;
-        // box-shadow: $shadow-after;
-        // border-bottom: 2px solid linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, #19d2fc 100%);
-        // border-bottom: 1px solid #0463db;
+        // border-radius: 4px 4px 0 0;
 }
