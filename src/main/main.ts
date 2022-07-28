@@ -14,7 +14,7 @@ import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
-import package from '../../package.json';
+import packageJSON from '../../package.json';
 const contextMenu = require('electron-context-menu');
 // console.log(`${package.name} ${package.version}`);
 
@@ -38,6 +38,10 @@ ipcMain.on('Menu: Shortcuts: Restart', async (event, arg) => {
   console.log('Menu: Shortcuts: Restart', arg);
   event.reply('Menu: Shortcuts: Restart', arg);
 });
+ipcMain.on('modal: preferences', async (event, arg) => {
+  console.log('modal: preferences', arg);
+  event.reply('modal: preferences', arg);
+});
 // SEARCH LISTENERS
 ipcMain.on('Search: InputChange', async (event, arg) => {
   console.log('Search: InputChange', arg);
@@ -49,7 +53,7 @@ ipcMain.on('Search: Submit', async (event, arg) => {
 });
 // NAV BAR LISTENERS
 ipcMain.on('package', async (event, arg) => {
-  event.reply('package', package); // sends message to renderer
+  event.reply('package', packageJSON); // sends message to renderer
 });
 ipcMain.on('nav: mode: audio', async (event, arg) => {
   event.reply('nav: mode: audio', 'nav: mode: audio successful'); // sends message to renderer
@@ -199,7 +203,8 @@ const createSplashWindow = async () => {
     },
   });
 
-  splashWindow.loadURL(resolveHtmlPath('index.html'));
+  splashWindow.loadURL(resolveHtmlPath('splash.html'));
+  // splashWindow.loadFile('splash.html');
 
   // splashWindow.on('ready-to-show', () => {
   //   if (!splashWindow) {

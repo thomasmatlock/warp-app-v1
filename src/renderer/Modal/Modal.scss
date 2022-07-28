@@ -6,68 +6,74 @@ $gray-dark-light: #252525;
 $gray-dark-lightest: #313131;
 $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, #19d2fc 100%);
 .backdrop {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 20;
-        background-color: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .modal {
-        // position: absolute;
-        position: fixed;
-        top: 10%;
-        // left: 0;
-        // height: 100%;
-        background-color: transparent;
-        // padding: 1rem;
+    // position: absolute;
+    position: fixed;
+    top: 25vh;
+    // top: 0;
+    left: 0;
+    // width: 50vw !important;
+    height: 50vh;
+    // width: 50vw;
+    max-height: 600px;
+    width: 800px;
+    // border: 1px solid #fff;
+    // height: 50vh;
+    // background-color: red;
+    // padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    z-index: 30;
+    transition: all 0.3s ease-in-out;
+    animation: slide-down 300ms ease-out forwards;
+    &__content {
+        box-shadow: 0 8px 8px rgba(0, 0, 0, 0.975);
+        // border: 1px solid red;
+        width: 100%;
+        height: 100%;
         display: flex;
-        flex-direction: row;
-        justify-content: center;
+        // margin: 15px;
+        padding: 15px;
+        flex-direction: column;
         align-items: center;
         border-radius: 10px;
-        z-index: 30;
-        transition: all 0.3s ease-in-out;
-        animation: slide-down 300ms ease-out forwards;
-        // border: 1px solid #fff;
-        // width: 100% !important;
-        &__content {
-                box-shadow: 0 8px 8px rgba(0, 0, 0, 0.75);
-                // border: 1px solid red;
-                width: 100%;
-                // width: 4px !important;
-                height: 600px;
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                border-radius: 10px;
-                position: relative;
-                justify-content: center;
-                // border: 3px dotted red;
-                background-color: $gray-dark-darkest;
-                // height: calc(100vh - 192px);
-        }
+        position: relative;
+        justify-content: center;
+        // border: 3px dotted red;
+        background-color: $gray-dark-darkest;
+        // height: calc(100vh - 192px);
+    }
 }
 
 @media (min-width: 768px) {
-        .modal {
-                width: 40rem;
-                left: calc(50% - 20rem);
-        }
+    .modal {
+        width: 40rem;
+        left: calc(50% - 20rem);
+    }
 }
 
 @keyframes slide-down {
-        from {
-                opacity: 0;
-                transform: translateY(-3rem);
-        }
-        to {
-                opacity: 1;
-                transform: translateY(0);
-        }
+    from {
+        opacity: 0;
+        transform: translateY(-3rem);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

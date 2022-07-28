@@ -5,6 +5,9 @@ import './Nav.scss';
 let appVersion: string = '1.0.0';
 
 const Nav = () => {
+  window.electron.ipcRenderer.sendMessage('package', [
+    'Nav requesting package.json',
+  ]);
   const [audioMode, setAudioMode] = useState(true);
   const [videoMode, setVideoMode] = useState(false);
   const [warpstagramMode, setWarpstagramMode] = useState(false);
@@ -42,7 +45,6 @@ const Nav = () => {
     setWarpstagramMode(false);
   });
   window.electron.ipcRenderer.on('nav: mode: video', (arg) => {
-    // console.log(arg);
     setAudioMode(false);
     setVideoMode(true);
     setWarpstagramMode(false);
@@ -52,9 +54,7 @@ const Nav = () => {
     setVideoMode(false);
     setWarpstagramMode(true);
   });
-  window.electron.ipcRenderer.sendMessage('package', [
-    'Nav requesting package.json',
-  ]);
+
   return (
     <Fragment>
       <div className="navMain">

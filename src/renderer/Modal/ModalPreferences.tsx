@@ -1,6 +1,7 @@
 import { Fragment } from 'react';
 import './ModalPreferences.scss';
 import Modal from './Modal';
+import clearTextIcon from '../../../assets/Search/close.svg';
 
 const ModalPreferences = (props) => {
   //  const cartItems = (
@@ -19,7 +20,17 @@ const ModalPreferences = (props) => {
   //  );
   return (
     <Modal onClose={props.onClose}>
-      <button onClick={props.onClose}>Close</button>
+      <div className="modal_preferences">
+        <div className="modal_preferences__header">
+          <div className="modal_preferences__header__title">
+            <h3>Preferences</h3>
+          </div>
+          <div className="modal_preferences__header__close">
+            <img src={clearTextIcon} onClick={props.onClose} />
+          </div>
+        </div>
+      </div>
+      {/* <button onClick={props.onClose}>Close</button> */}
     </Modal>
   );
 };

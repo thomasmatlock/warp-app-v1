@@ -3,9 +3,20 @@ import './Search.scss';
 // import SearchIcon from '../../assets/public/sections/wrapup/cards/lightning.svg';
 import SearchIcon from '../../../assets/Search/lightning.svg';
 import clearTextIcon from '../../../assets/Search/close.svg';
-import settingsIcon from '../../../assets/Search/settings.svg';
+import settingsIcon from '../../../assets/Search/settings_white.svg';
+import Modal from '../Modal/Modal';
+import ModalPreferences from '../Modal/ModalPreferences';
 
 const Search = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const hideModalHandler = () => {
+    setIsModalOpen(false);
+  };
+  const showModalHandler = () => {
+    setIsModalOpen(true);
+    // console.log('showModalHandler');
+  };
   const restoreInputDefaultWidthDelay = 3000;
   const audioPlaceholder = 'audio search...beep boop  ';
   const videoPlaceholder = 'video search...beep boop  ';
@@ -44,6 +55,15 @@ const Search = () => {
     setVideoMode(false);
     // setPlaceholderController();
     setPlaceholder(warpstagramPlaceholder);
+  });
+  window.electron.ipcRenderer.on('modal: preferences', (arg) => {
+    if (isModalOpen) {
+      hideModalHandler();
+    } else if (!isModalOpen) {
+      showModalHandler();
+    }
+
+    // setPlaceholderController();
   });
   const [placeholder, setPlaceholder] = useState('input search...beep boop');
   const [searchText, setSearchText] = useState('');
@@ -105,8 +125,8 @@ const Search = () => {
       <form
         className="search"
         onSubmit={searchInputSubmit}
-        onMouseEnter={userStartedInteracting}
-        onMouseLeave={userStoppedInteracting}
+        // onMouseEnter={userStartedInteracting}
+        // onMouseLeave={userStoppedInteracting}
       >
         <img
           id="search__input__icon__unfocused"
@@ -120,7 +140,7 @@ const Search = () => {
           type="text"
           value={searchText}
           onChange={searchInputChangeHandler}
-          // onMouseEnter={userStartedInteracting}
+          onMouseEnter={userStartedInteracting}
           onMouseLeave={userStartedInteracting}
           onBlur={searchInputBlurHandler}
           placeholder={placeholder}
@@ -134,11 +154,15 @@ const Search = () => {
             onClick={searchClearTextHandler}
           />
         )}
+      </form>
+      <div className="settings">
         <img
           src={settingsIcon}
-          className={isHovering ? 'settings_icon' : 'settings_icon'}
+          className="settings_icon"
+          onClick={showModalHandler}
         />
-      </form>
+      </div>
+      {isModalOpen && <ModalPreferences onClose={hideModalHandler} />}
     </Fragment>
   );
 };

@@ -2,39 +2,24 @@ import { Fragment, useState } from 'react';
 import './BrowserBar.scss';
 import browserBarDownloadSourceIcon1 from '../../../assets/ActionBar/youtube.svg';
 import browserBarDownloadSourceIcon2 from '../../../assets/ActionBar/caret-down.svg';
-import Modal from '../Modal/Modal';
-import ModalPreferences from '../Modal/ModalPreferences';
+
 // import browserBarDownloadSourceIcon1 from '../../../../assets/3rdparty/fontawesome/svgs/brands/youtube.svg';
 // import browserBarDownloadSourceIcon2 from '../../../../assets/3rdparty/fontawesome/svgs/solid/caret-down.svg';
 const BrowserBar = (props) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [audioMode, setAudioMode] = useState(true);
+  // const [videoMode, setVideoMode] = useState(false);
+  let audioMode = props.audioMode;
+  let videoMode = props.videoMode;
+  // const [warpstagramMode, setWarpstagramMode] = useState(false);
 
-  const hideModalHandler = () => {
-    setIsModalOpen(false);
-  };
-  const showModalHandler = () => {
-    setIsModalOpen(true);
-    // console.log('showModalHandler');
-  };
-  //  const [audioMode, setAudioMode] = useState(true);
-  //     const [videoMode, setVideoMode] = useState(false);
-  //     const [warpstagramMode, setWarpstagramMode] = useState(false);
-
-  //     window.electron.ipcRenderer.on('nav: mode: audio', (arg) => {
-  //         // console.log(arg);
-  //         setAudioMode(true);
-  //         setVideoMode(false);
-  //         setWarpstagramMode(false);
-  //     });
-  //     window.electron.ipcRenderer.on('nav: mode: video', (arg) => {
-  //         setVideoMode(true);
-  //         setAudioMode(false);
-  //         setWarpstagramMode(false);
-  //     });
-  //         setWarpstagramMode(true);
-  //         setAudioMode(false);
-  //         setVideoMode(false);
-  //     });
+  // window.electron.ipcRenderer.on('nav: mode: audio', (arg) => {
+  //   setAudioMode(true);
+  //   setVideoMode(false);
+  // });
+  // window.electron.ipcRenderer.on('nav: mode: video', (arg) => {
+  //   setVideoMode(true);
+  //   setAudioMode(false);
+  // });
 
   const downloadAudioHandler = () => {
     // window.electron.ipcRenderer.on('nav: mode: warpstagram', (arg) => {
@@ -92,7 +77,7 @@ const BrowserBar = (props) => {
             </div>
           </li>
         </div>
-        {/* {audioMode && (
+        {audioMode && (
           <a
             onClick={downloadAudioHandler}
             className="browserBarDownloadBtn browserBarDownloadBtn__audio"
@@ -107,11 +92,7 @@ const BrowserBar = (props) => {
           >
             Download Video MP4
           </a>
-        )} */}
-        <a className="browserBarDownloadBtn" onClick={showModalHandler}>
-          test
-        </a>
-        {isModalOpen && <ModalPreferences onClose={hideModalHandler} />}
+        )}
       </div>
     </Fragment>
   );

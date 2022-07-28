@@ -535,10 +535,10 @@ export default class MenuBuilder {
           },
           {
             label: 'Preferences',
-            enabled: false,
+            enabled: true,
             accelerator: 'CmdOrCtrl+P',
             click: () => {
-              appWin.send('nav_B_button_audio_preferences');
+              this.mainWindow.webContents.send('modal: preferences');
             },
           },
         ],
