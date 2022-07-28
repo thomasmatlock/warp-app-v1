@@ -3,6 +3,7 @@ import './Search.scss';
 // import SearchIcon from '../../assets/public/sections/wrapup/cards/lightning.svg';
 import SearchIcon from '../../../assets/Search/lightning.svg';
 import clearTextIcon from '../../../assets/Search/close.svg';
+import settingsIcon from '../../../assets/Search/settings.svg';
 
 const Search = () => {
   const restoreInputDefaultWidthDelay = 3000;
@@ -133,6 +134,10 @@ const Search = () => {
             onClick={searchClearTextHandler}
           />
         )}
+        <img
+          src={settingsIcon}
+          className={isHovering ? 'settings_icon' : 'settings_icon'}
+        />
       </form>
     </Fragment>
   );

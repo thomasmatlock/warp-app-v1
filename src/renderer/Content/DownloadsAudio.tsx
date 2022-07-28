@@ -12,6 +12,7 @@ const DownloadsAudio = () => {
   return (
     <Fragment>
       <div className="contentPanel">
+        {/* <div className="content__panel__toggle_collapse"></div> */}
         <ul className="content__panel__downloads__list">
           <li className="content__panel__downloads__list__item">
             <img

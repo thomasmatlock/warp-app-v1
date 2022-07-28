@@ -2,17 +2,12 @@ import { Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import './Modal.scss';
 const Backdrop = (props) => {
-  return (
-    <div
-      className="backdrop"
-      //   onClick={props.onClose}
-    />
-  );
+  return <div className="backdrop" onClick={props.onClose} />;
 };
 const ModalOverlay = (props) => {
   return (
     <div className="modal">
-      <div className="content">{/* {props.children} */}</div>
+      <div className="modal__content">{props.children}</div>
     </div>
   );
 };

@@ -26,6 +26,20 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
         }
 }
 
+.content__panel__toggle_collapse {
+        position: absolute;
+        // display: none;
+        top: 0;
+        left: calc(50vw - 25px);
+        // left: 50vw - 50px;
+        height: 100%;
+        width: 25px;
+        // border: 1px solid red;
+        z-index: 10;
+        background-color: $gray-dark-dark;
+        cursor: pointer;
+}
+
 .content__panel__downloads__list {
         display: flex;
         position: absolute;
@@ -42,6 +56,9 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
         overflow-x: hidden;
         // border: 1px dotted red;
         height: 100%;
+        &:hover .content__panel__toggle_collapse {
+                display: flex;
+        }
         &__item {
                 padding: 5px;
                 border-radius: 3px;

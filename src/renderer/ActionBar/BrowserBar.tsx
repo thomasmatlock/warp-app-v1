@@ -3,12 +3,19 @@ import './BrowserBar.scss';
 import browserBarDownloadSourceIcon1 from '../../../assets/ActionBar/youtube.svg';
 import browserBarDownloadSourceIcon2 from '../../../assets/ActionBar/caret-down.svg';
 import Modal from '../Modal/Modal';
+import ModalPreferences from '../Modal/ModalPreferences';
 // import browserBarDownloadSourceIcon1 from '../../../../assets/3rdparty/fontawesome/svgs/brands/youtube.svg';
 // import browserBarDownloadSourceIcon2 from '../../../../assets/3rdparty/fontawesome/svgs/solid/caret-down.svg';
 const BrowserBar = (props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  let audioMode = props.audioMode;
-  let videoMode = props.videoMode;
+
+  const hideModalHandler = () => {
+    setIsModalOpen(false);
+  };
+  const showModalHandler = () => {
+    setIsModalOpen(true);
+    // console.log('showModalHandler');
+  };
   //  const [audioMode, setAudioMode] = useState(true);
   //     const [videoMode, setVideoMode] = useState(false);
   //     const [warpstagramMode, setWarpstagramMode] = useState(false);
@@ -43,10 +50,7 @@ const BrowserBar = (props) => {
       [`Download Video`]
     );
   };
-  const modalHandler = () => {
-    setIsModalOpen(true);
-    console.log('modalHandler');
-  };
+
   return (
     <Fragment>
       <div className="browserBar">
@@ -104,10 +108,10 @@ const BrowserBar = (props) => {
             Download Video MP4
           </a>
         )} */}
-        <a className="browserBarDownloadBtn" onClick={modalHandler}>
+        <a className="browserBarDownloadBtn" onClick={showModalHandler}>
           test
         </a>
-        {isModalOpen && <Modal />}
+        {isModalOpen && <ModalPreferences onClose={hideModalHandler} />}
       </div>
     </Fragment>
   );
