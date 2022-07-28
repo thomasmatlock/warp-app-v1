@@ -1,6 +1,8 @@
 import { Fragment } from 'react';
 import './ModalPreferences.scss';
 import Modal from './Modal';
+import Spacer from './Components/Spacer';
+import SpacerLine from './Components/SpacerLine';
 import clearTextIcon from '../../../assets/Search/close.svg';
 
 const ModalPreferences = (props) => {
@@ -22,13 +24,16 @@ const ModalPreferences = (props) => {
     <Modal onClose={props.onClose}>
       <div className="modal_preferences">
         <div className="modal_preferences__header">
-          <div className="modal_preferences__header__title">
-            <h3>Preferences</h3>
-          </div>
+          <h3 className="modal_preferences__header__title">Preferences</h3>
           <div className="modal_preferences__header__close">
             <img src={clearTextIcon} onClick={props.onClose} />
           </div>
         </div>
+        <Spacer />
+        <SpacerLine />
+
+        <div className="modal_preferences__nav"></div>
+        {/* <div className="modal_preferences__body"></div> */}
       </div>
       {/* <button onClick={props.onClose}>Close</button> */}
     </Modal>
