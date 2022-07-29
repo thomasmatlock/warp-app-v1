@@ -10,6 +10,7 @@ const ModalPanelAudio = (props) => {
     id: 'modalPrefsOutputFolder_audio',
     placeholder: 'C:/Users/Tommy/Documents/Warp Downloader/Audio',
   };
+
   return (
     <Fragment>
       <div id="modalPrefsPanel_audio" className="modalPrefsPanel">
@@ -19,80 +20,76 @@ const ModalPanelAudio = (props) => {
           placeholder={outputFolders.placeholder}
         />
         <div className="modalDropdownContainer">
-          <div className="modalDropdownColumn modalDropdownColumn_left">
-            <div className="modalDropdownContent">
-              <div className="modalDropdown_title modalDropdown_child">
-                <p>Audio Quality</p>
-              </div>
-              <div className="modalDropdown modalDropdown_child">
-                <select
-                  id="modalDropdown_audioQuality"
-                  name="modalDropdown_select"
+          <div className="modalDropdownContent">
+            <div className="modalDropdown_title modalDropdown_child">
+              <p>Audio Quality</p>
+            </div>
+            <div className="modalDropdown modalDropdown_child">
+              <select
+                id="modalDropdown_audioQuality"
+                name="modalDropdown_select"
+              >
+                <option
+                  id="modalDropdown_audioQuality_best"
+                  value="audioQuality_best"
                 >
-                  <option
-                    id="modalDropdown_audioQuality_best"
-                    value="audioQuality_best"
-                  >
-                    Best Available
-                  </option>
-                  <option
-                    id="modalDropdown_audioQuality_high"
-                    value="audioQuality_high"
-                  >
-                    High quality (320kbps)
-                  </option>
-                  <option
-                    id="modalDropdown_audioQuality_medium"
-                    value="audioQuality_medium"
-                  >
-                    Medium quality (256kbps)
-                  </option>
-                  <option
-                    id="modalDropdown_audioQuality_low"
-                    value="audioQuality_low"
-                  >
-                    Low quality (128kbps)
-                  </option>
-                </select>
-              </div>
+                  Best Available
+                </option>
+                <option
+                  id="modalDropdown_audioQuality_high"
+                  value="audioQuality_high"
+                >
+                  High quality (320kbps)
+                </option>
+                <option
+                  id="modalDropdown_audioQuality_medium"
+                  value="audioQuality_medium"
+                >
+                  Medium quality (256kbps)
+                </option>
+                <option
+                  id="modalDropdown_audioQuality_low"
+                  value="audioQuality_low"
+                >
+                  Low quality (128kbps)
+                </option>
+              </select>
             </div>
           </div>
-          <div className="modalDropdownColumn">
-            <div className="modalDropdownContent">
-              <div className="modalDropdown_title modalDropdown_child">
-                <p>Audio Format</p>
-              </div>
-              <div className="modalDropdown modalDropdown_child">
-                <select
-                  id="modalDropdown_audioFormat"
-                  name="modalDropdown_select"
+          <div className="modalDropdownContent">
+            <div className="modalDropdown_title modalDropdown_child">
+              <p>Audio Format</p>
+            </div>
+            <div className="modalDropdown modalDropdown_child">
+              <select
+                id="modalDropdown_audioFormat"
+                name="modalDropdown_select"
+              >
+                <option
+                  id="modalDropdown_audioFormat_MP3"
+                  value="audioFormat_MP3"
                 >
-                  <option
-                    id="modalDropdown_audioFormat_MP3"
-                    value="audioFormat_MP3"
-                  >
-                    MP3
-                  </option>
-                  <option
-                    id="modalDropdown_audioFormat_M4A"
-                    value="audioFormat_M4A"
-                  >
-                    M4A
-                  </option>
-                  <option
-                    id="modalDropdown_audioFormat_WAV"
-                    value="audioFormat_WAV"
-                  >
-                    WAV
-                  </option>
-                  <option
-                    id="modalDropdown_audioFormat_OGG"
-                    value="audioFormat_OGG"
-                  >
-                    OGG
-                  </option>
-                </select>
-              </div>
+                  MP3
+                </option>
+                <option
+                  id="modalDropdown_audioFormat_M4A"
+                  value="audioFormat_M4A"
+                >
+                  M4A
+                </option>
+                <option
+                  id="modalDropdown_audioFormat_WAV"
+                  value="audioFormat_WAV"
+                >
+                  WAV
+                </option>
+                <option
+                  id="modalDropdown_audioFormat_OGG"
+                  value="audioFormat_OGG"
+                >
+                  OGG
+                </option>
+              </select>
             </div>
           </div>
         </div>
