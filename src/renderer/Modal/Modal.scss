@@ -6,68 +6,69 @@ $gray-dark-light: #252525;
 $gray-dark-lightest: #313131;
 $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, #19d2fc 100%);
 .backdrop {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 20;
-        background-color: rgba(0, 0, 0, 0.85);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+    background-color: rgba(0, 0, 0, 0.85);
 }
 
 .modal {
-        position: fixed;
-        top: 25%;
-        left: 25% !important;
-        background-color: transparent;
+    position: fixed;
+    top: 25%;
+    left: 25% !important;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    z-index: 30;
+    transition: all 0.3s ease-in-out;
+    animation: slide-down 300ms ease-out forwards;
+    height: calc(100% - 50%) !important;
+    max-height: calc(100% - 300px) !important;
+    width: calc(100% - 50%) !important;
+    width: calc(100% - 50%) !important;
+    // max-width: 800px !important;
+    min-height: 480px;
+    &__content {
+        box-shadow: 0 8px 8px rgba(0, 0, 0, 0.975);
+        // border: 1px solid red;
+        width: 100%;
+        height: 100%;
         display: flex;
+        // margin: 15px;
+        // padding: 15px;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
         border-radius: 10px;
-        z-index: 30;
-        transition: all 0.3s ease-in-out;
-        animation: slide-down 300ms ease-out forwards;
-        height: calc(100% - 50%) !important;
-        max-height: calc(100% - 300px) !important;
-        width: calc(100% - 50%) !important;
-        width: calc(100% - 50%) !important;
-        min-height: 480px;
-        &__content {
-                box-shadow: 0 8px 8px rgba(0, 0, 0, 0.975);
-                // border: 1px solid red;
-                width: 100%;
-                height: 100%;
-                display: flex;
-                // margin: 15px;
-                // padding: 15px;
-                flex-direction: column;
-                align-items: center;
-                border-radius: 10px;
-                position: relative;
-                justify-content: center;
-                // border: 3px dotted red;
-                background-color: $gray-dark-darkest;
-        }
+        position: relative;
+        justify-content: center;
+        // border: 3px dotted red;
+        background-color: $gray-dark-darkest;
+    }
 }
 
 @media (min-width: 768px) {
-        .modal {
-                width: 40rem;
-                left: calc(50% - 20rem);
-        }
+    .modal {
+        width: 40rem;
+        left: calc(50% - 20rem);
+    }
 }
 
 @keyframes slide-down {
-        from {
-                opacity: 0;
-                transform: translateY(-3rem);
-        }
-        to {
-                opacity: 1;
-                transform: translateY(0);
-        }
+    from {
+        opacity: 0;
+        transform: translateY(-3rem);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

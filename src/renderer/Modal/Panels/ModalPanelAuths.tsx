@@ -4,62 +4,34 @@ import './ModalPanel.scss';
 const ModalPanelAuths = (props) => {
   return (
     <Fragment>
-      {/* <!-- MODAL-ACTION --> */}
-      <div
-        id="modalActionComponent_login_1"
-        className="modalActionComponent modalActionComponent_licenseActivation"
-      >
+      <div id="modalPrefsPanel_auths" className="modalPrefsPanel">
         <div
-          id="modalActionComponent_panel_top_audio"
-          className="modalActionComponent_panel modalActionComponent_panel_primary"
+          id="modalPrefsPanel__auths__login_instagram"
+          className="modalPrefsPanel__auths modalPrefsPanel__auths_licenseActivation"
         >
-          <div className="modalActionComponent_child  modalActionComponent_child_title">
-            <p>Login to Instagram</p>
+          <div
+            id="modalPrefsPanel__auths_panel_top_audio"
+            className="modalPrefsPanel__auths_panel modalPrefsPanel__auths_panel_primary"
+          >
+            <div className="modalPrefsPanel__auths_child  modalPrefsPanel__auths_child_title">
+              <p>Login to Instagram</p>
+            </div>
+            <div
+              id="loginInstagramButton"
+              className="modalPrefsPanel__auths_child modalPrefsPanel__auths_child_btn"
+            >
+              <p>Login</p>
+            </div>
           </div>
           <div
-            id="loginInstagramButton"
-            className="modalActionComponent_child modalActionComponent_child_btn"
-          >
-            <p>Login</p>
-          </div>
-        </div>
-        <div
-          id="modalActionComponent_panel_middle_audio"
-          className="modalActionComponent_panel modalActionComponent_panel_collapsible"
-        ></div>
-        <div
-          id="modalActionComponent_panel_bottom_audio"
-          className="modalActionComponent_panel modalActionComponent_panel_secondary modalActionComponent_panel_collapsible"
-        ></div>
-      </div>
-
-      {/* <!-- MODAL-ACTION --> */}
-      <div
-        id="modalActionComponent_login_2"
-        className="modalActionComponent modalActionComponent_licenseActivation"
-      >
-        <div
-          id="modalActionComponent_panel_top_audio"
-          className="modalActionComponent_panel modalActionComponent_panel_primary"
-        >
-          <div className="modalActionComponent_child  modalActionComponent_child_title">
-            <p>Login to Youtube</p>
-          </div>
+            id="modalPrefsPanel__auths_panel_middle_audio"
+            className="modalPrefsPanel__auths_panel modalPrefsPanel__auths_panel_collapsible"
+          ></div>
           <div
-            id="loginYoutubeButton"
-            className="modalActionComponent_child modalActionComponent_child_btn"
-          >
-            <p>Login</p>
-          </div>
+            id="modalPrefsPanel__auths_panel_bottom_audio"
+            className="modalPrefsPanel__auths_panel modalPrefsPanel__auths_panel_secondary modalPrefsPanel__auths_panel_collapsible"
+          ></div>
         </div>
-        <div
-          id="modalActionComponent_panel_middle_audio"
-          className="modalActionComponent_panel modalActionComponent_panel_collapsible"
-        ></div>
-        <div
-          id="modalActionComponent_panel_bottom_audio"
-          className="modalActionComponent_panel modalActionComponent_panel_secondary modalActionComponent_panel_collapsible"
-        ></div>
       </div>
     </Fragment>
   );

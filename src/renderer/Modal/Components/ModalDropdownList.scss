@@ -3,8 +3,10 @@
     width: 100%;
     height: auto;
     display: flex;
+    // display: grid;
     flex-direction: row;
     justify-content: space-evenly;
+    border: 1px dotted red;
 }
 
 .modalDropdownColumn {

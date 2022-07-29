@@ -1,38 +1,24 @@
 import { Fragment } from 'react';
 import './ModalPanel.scss';
 import ModalSpacer from '../Components/ModalSpacer';
+import ModalOutputFolder from '../Components/ModalOutputFolder';
+
 import ModalSpacerLine from '../Components/ModalSpacerLine';
 
 const ModalPanelVideo = () => {
+  const outputFolders = {
+    label: 'Video Downloads Folder',
+    id: 'modalPrefsOutputFolder_video',
+    placeholder: 'C:/Users/Tommy/Documents/Warp Downloader/Video',
+  };
   return (
     <Fragment>
       <div id="modalPrefsPanel_video" className="modalPrefsPanel">
-        {/* <!-- MODAL-TEXT-INPUT --> */}
-        <div
-          id="modalPrefsOutputFolderComponent_video"
-          className="modalOutputFolder"
-        >
-          <div className="modalOutputFolder_title">
-            <p>Video Downloads Folder</p>
-          </div>
-          <div className="modalOutputFolder_userInput">
-            <div className="modalOutputFolder_userInput__textInput">
-              <input
-                id="modalPrefsOutputFolder_video"
-                type="text"
-                placeholder="C:/Users/Tommy/Documents/Warp Downloader/Video"
-              />
-            </div>
-            <div
-              id="modalOutputFolderBtn_video"
-              className="modalOutputFolder_userInput__button"
-            >
-              <p>Browse</p>
-            </div>
-          </div>
-        </div>
-        {/* <ModalSpacer /> */}
-        {/* <ModalSpacerLine /> */}
+        <ModalOutputFolder
+          label={outputFolders.label}
+          id={outputFolders.id}
+          placeholder={outputFolders.placeholder}
+        />
         <div className="modalDropdownContainer">
           <div className="modalDropdownColumn modalDropdownColumn_left">
             <div className="modalDropdownContent">
@@ -154,6 +140,12 @@ const ModalPanelVideo = () => {
                     value="videoFormat_MKV"
                   >
                     MKV
+                  </option>
+                  <option
+                    id="modalDropdown_videoFormat_MOV"
+                    value="videoFormat_MOV"
+                  >
+                    MOV
                   </option>
                 </select>
               </div>

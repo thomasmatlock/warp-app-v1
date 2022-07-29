@@ -1,41 +1,23 @@
 import { Fragment } from 'react';
 import './ModalPanel.scss';
 import ModalSpacer from '../Components/ModalSpacer';
+import ModalOutputFolder from '../Components/ModalOutputFolder';
 import ModalSpacerLine from '../Components/ModalSpacerLine';
 
 const ModalPanelAudio = (props) => {
+  const outputFolders = {
+    label: 'Audio Downloads Folder',
+    id: 'modalPrefsOutputFolder_audio',
+    placeholder: 'C:/Users/Tommy/Documents/Warp Downloader/Audio',
+  };
   return (
     <Fragment>
       <div id="modalPrefsPanel_audio" className="modalPrefsPanel">
-        {/* <!-- MODAL-TEXT-INPUT --> */}
-        <div
-          id="modalPrefsOutputFolderComponent_audio"
-          className="modalOutputFolder"
-        >
-          <div className="modalOutputFolder_title">
-            <p>Audio Downloads Folder</p>
-          </div>
-          <div className="modalOutputFolder_userInput">
-            <div className="modalOutputFolder_userInput__textInput">
-              <input
-                id="modalPrefsOutputFolder_audio"
-                type="text"
-                placeholder="C:/Users/Tommy/Documents/Warp Downloader/Audio"
-              />
-            </div>
-            <div
-              id="modalOutputFolderBtn_audio"
-              className="modalOutputFolder_userInput__button"
-            >
-              <p>Browse</p>
-            </div>
-          </div>
-        </div>
-
-        {/* <ModalSpacer /> */}
-        {/* <ModalSpacer /> */}
-
-        {/* <!-- DROPDOWN --> */}
+        <ModalOutputFolder
+          label={outputFolders.label}
+          id={outputFolders.id}
+          placeholder={outputFolders.placeholder}
+        />
         <div className="modalDropdownContainer">
           <div className="modalDropdownColumn modalDropdownColumn_left">
             <div className="modalDropdownContent">
@@ -96,6 +78,12 @@ const ModalPanelAudio = (props) => {
                     value="audioFormat_M4A"
                   >
                     M4A
+                  </option>
+                  <option
+                    id="modalDropdown_audioFormat_WAV"
+                    value="audioFormat_WAV"
+                  >
+                    WAV
                   </option>
                   <option
                     id="modalDropdown_audioFormat_OGG"

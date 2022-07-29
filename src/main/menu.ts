@@ -531,12 +531,20 @@ export default class MenuBuilder {
             },
           },
           {
+            label: 'separator',
+            type: 'separator',
+          },
+          {
             label: 'Manage logins',
             enabled: true,
-            accelerator: 'CmdOrCtrl+A',
+            accelerator: 'CmdOrCtrl+Alt+L',
             click: () => {
               this.mainWindow.webContents.send('modal: preferences: auths');
             },
+          },
+          {
+            label: 'separator',
+            type: 'separator',
           },
           {
             label: 'Manage license',
@@ -588,8 +596,8 @@ export default class MenuBuilder {
             enabled: true,
             accelerator: 'CmdOrCtrl+R',
             click: () => {
-              // app.relaunch();
-              this.mainWindow.webContents.send('Menu: Shortcuts: Restart');
+              app.relaunch();
+              // this.mainWindow.webContents.send('Menu: Shortcuts: Restart');
             },
           },
         ],
