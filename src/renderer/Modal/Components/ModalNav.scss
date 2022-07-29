@@ -1,3 +1,10 @@
+$nav-text-color: #000;
+$nav-text-color_hover: #fff;
+$gray-dark-darkest: #1a1a1a;
+$gray-dark-dark: #202020;
+$gray-dark-light: #252525;
+$gray-dark-lightest: #313131;
+$gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, #19d2fc 100%);
 .modalPrefsNav {
         height: 100%;
         width: 100%;
@@ -8,6 +15,7 @@
         justify-content: center;
         align-items: center;
         align-content: center;
+        background-color: $gray-dark-lightest;
         // box-shadow: 0 10px 20px -8px #c5d6d6;
 }
 
@@ -49,7 +57,8 @@
                 border-radius: 4px;
                 font-size: 14px;
                 // transform: translateY(-0.2rem);
-                box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.2);
+                box-shadow: 0 0.6rem 1rem rgba(0, 0, 0, 0.6);
+                transform: scaleX(0.99) scaleY(0.99);
                 &::after {
                         // transform: scaleX(1.4) scaleY(1.6);
                 }
@@ -57,7 +66,7 @@
         &:active {
                 /*heres what happens when it's active by user, aka a click lol*/
                 font-size: 14px;
-                transform: scaleX(0.96) scaleY(0.96);
+                transform: scaleX(0.95) scaleY(0.95);
                 box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.2);
         }
 }
@@ -91,10 +100,10 @@
         transform: translateY(-0.2rem);
         background-image: linear-gradient( to left, rgba(238, 238, 238, 0.205) 0%, rgba(102, 102, 102, 0.205) 100%);
         width: 100%;
-        transform: scaleX(0.99) scaleY(0.99);
+        transform: scaleX(0.96) scaleY(0.96);
         // transform: translateY(-0.2rem);
         /*this value is in relation to initial state, not hover state*/
-        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.4);
+        box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.4);
         filter: grayscale(0%);
         transition: all ease-out 0.1s;
         margin-bottom: 8px;

@@ -22,10 +22,11 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
         &__title {
                 font-size: 1.25rem !important;
                 font-weight: 100 !important;
-                // color: white;
-                color: rgb(199, 199, 199);
-                // left: 0;
+                // color: rgb(199, 199, 199);
                 margin-left: 24px;
+                color: white;
+                font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
+                letter-spacing: 0.1rem;
         }
         &__close {
                 display: flex;

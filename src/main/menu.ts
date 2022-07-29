@@ -550,7 +550,7 @@ export default class MenuBuilder {
           {
             label: 'Audio Mode',
             enabled: true,
-            accelerator: 'CmdOrCtrl+1',
+            accelerator: 'Shift+1',
             click: () => {
               this.mainWindow.webContents.send('nav: mode: audio');
             },
@@ -558,7 +558,7 @@ export default class MenuBuilder {
           {
             label: 'Video Mode',
             enabled: true,
-            accelerator: 'CmdOrCtrl+2',
+            accelerator: 'Shift+2',
             click: () => {
               this.mainWindow.webContents.send('nav: mode: video');
             },
@@ -566,7 +566,7 @@ export default class MenuBuilder {
           {
             label: 'Warpstagram Mode',
             enabled: true,
-            accelerator: 'CmdOrCtrl+3',
+            accelerator: 'Shift+3',
             click: () => {
               this.mainWindow.webContents.send('nav: mode: warpstagram');
             },
