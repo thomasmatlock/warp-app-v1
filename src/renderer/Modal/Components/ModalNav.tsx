@@ -1,4 +1,9 @@
 import { Fragment } from 'react';
+import iconAudio from '../../../../assets/Modals/settings/audio.svg';
+import iconVideo from '../../../../assets/Modals/settings/video3.svg';
+import iconWarpstagram from '../../../../assets/Modals/settings/warpstagram.svg';
+import iconGeneralDark from '../../../../assets/Modals/settings/general_dark.svg';
+import iconLicenses from '../../../../assets/Modals/settings/shuttle.svg';
 import './ModalNav.scss';
 
 const ModalNav = (props) => {
@@ -8,41 +13,116 @@ const ModalNav = (props) => {
         <div
           onClick={props.showAudio}
           id="modalPrefsNav_button_audio_ID"
-          className="modalPrefsNav_button modalPrefsNav_button_background"
+          className={
+            props.isAudioActive
+              ? 'modalPrefsNav_button__active'
+              : 'modalPrefsNav_button'
+          }
         >
-          <i className="fas fa-headphones-alt"></i>
+          <img
+            className={
+              props.isGeneralActive
+                ? 'modalPrefsNav_button__icon'
+                : 'modalPrefsNav_button__icon'
+            }
+            src={iconAudio}
+          />
           <p>Audio</p>
         </div>
         <div
           onClick={props.showVideo}
           id="modalPrefsNav_button_video_ID"
-          className="modalPrefsNav_button modalPrefsNav_button_background"
+          className={
+            props.isVideoActive
+              ? 'modalPrefsNav_button__active'
+              : 'modalPrefsNav_button'
+          }
         >
-          <i className="fas fa-video"></i>
+          <img
+            className={
+              props.isGeneralActive
+                ? 'modalPrefsNav_button__icon'
+                : 'modalPrefsNav_button__icon'
+            }
+            src={iconVideo}
+          />
           <p>Video</p>
         </div>
         <div
           onClick={props.showWarpstagram}
           id="modalPrefsNav_button_warpstagram_ID"
-          className="modalPrefsNav_button modalPrefsNav_button_background"
+          // className="modalPrefsNav_button modalPrefsNav_button_background"
+          className={
+            props.isWarpstagramActive
+              ? 'modalPrefsNav_button__active'
+              : 'modalPrefsNav_button'
+          }
         >
-          <i className="fas fa-camera"></i>
+          <img
+            className={
+              props.isGeneralActive
+                ? 'modalPrefsNav_button__icon'
+                : 'modalPrefsNav_button__icon'
+            }
+            src={iconWarpstagram}
+          />
           <p>Warpstagram</p>
         </div>
+        {/* <div
+          onClick={props.showMorph}
+          id="modalPrefsNav_button_license_ID"
+          className={
+            props.isMor
+              ? 'modalPrefsNav_button__active'
+              : 'modalPrefsNav_button'
+          }
+        >
+          <img
+            className={
+              props.isGeneralActive
+                ? 'modalPrefsNav_button__icon'
+                : 'modalPrefsNav_button__icon'
+            }
+            src={iconLicenses}
+          />
+          <p>Morph</p>
+        </div> */}
         <div
           onClick={props.showGeneral}
           id="modalPrefsNav_button_general_ID"
-          className="modalPrefsNav_button modalPrefsNav_button_background"
+          className={
+            props.isGeneralActive
+              ? 'modalPrefsNav_button__active'
+              : 'modalPrefsNav_button'
+          }
         >
-          <i className="fas fa-sliders-h"></i>
+          <img
+            className={
+              props.isGeneralActive
+                ? 'modalPrefsNav_button__icon'
+                : 'modalPrefsNav_button__icon'
+            }
+            src={iconGeneralDark}
+          />
           <p>General</p>
         </div>
         <div
           onClick={props.showLicenses}
           id="modalPrefsNav_button_license_ID"
-          className="modalPrefsNav_button modalPrefsNav_button_background"
+          className={
+            props.isLicensesActive
+              ? 'modalPrefsNav_button__active'
+              : 'modalPrefsNav_button'
+          }
         >
-          <i className="fas fa-rocket"></i>
+          <img
+            className={
+              props.isGeneralActive
+                ? 'modalPrefsNav_button__icon'
+                : 'modalPrefsNav_button__icon'
+            }
+            src={iconLicenses}
+          />
           <p>License</p>
         </div>
       </div>

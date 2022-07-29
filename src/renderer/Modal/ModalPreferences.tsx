@@ -7,6 +7,7 @@ import ModalSpacer from './Components/ModalSpacer';
 import ModalPanelAudio from './Panels/ModalPanelAudio';
 import ModalPanelGeneral from './Panels/ModalPanelGeneral';
 import ModalPanelLicenses from './Panels/ModalPanelLicenses';
+import ModalPanelMorph from './Panels/ModalPanelMorph';
 import ModalPanelVideo from './Panels/ModalPanelVideo';
 import ModalPanelWarpstagram from './Panels/ModalPanelWarpstagram';
 
@@ -14,6 +15,7 @@ const ModalPreferences = (props) => {
   const [isModalPanelAudio, setModalPanelAudio] = useState(true);
   const [isModalPanelGeneral, setModalPanelGeneral] = useState(false);
   const [isModalPanelLicenses, setModalPanelLicenses] = useState(false);
+  const [isModalPanelMorph, setModalPanelMorph] = useState(false);
   const [isModalPanelVideo, setModalPanelVideo] = useState(false);
   const [isModalPanelWarpstagram, setModalPanelWarpstagram] = useState(false);
 
@@ -21,6 +23,7 @@ const ModalPreferences = (props) => {
     setModalPanelAudio(false);
     setModalPanelGeneral(false);
     setModalPanelLicenses(false);
+    setModalPanelMorph(false);
     setModalPanelVideo(false);
     setModalPanelWarpstagram(false);
   };
@@ -36,6 +39,10 @@ const ModalPreferences = (props) => {
     hideAllPanels();
     setModalPanelLicenses(true);
   };
+  const showPanelMorph = () => {
+    hideAllPanels();
+    setModalPanelMorph(true);
+  };
   const showPanelVideo = () => {
     hideAllPanels();
     setModalPanelVideo(true);
@@ -44,38 +51,24 @@ const ModalPreferences = (props) => {
     hideAllPanels();
     setModalPanelWarpstagram(true);
   };
-  const setNavMode = () => {
-    if (props.mode === 'audio') {
-      console.log('setNavMode: audio');
 
-      hideAllPanels();
-      setModalPanelAudio(true);
-    } else if (props.mode === 'general') {
-      hideAllPanels();
-      setModalPanelGeneral(true);
-    } else if (props.mode === 'licenses') {
-      hideAllPanels();
-      setModalPanelLicenses(true);
-    } else if (props.mode === 'video') {
-      hideAllPanels();
-      setModalPanelVideo(true);
-    } else if (props.mode === 'warpstagram') {
-      setModalPanelVideo(true);
-      setModalPanelWarpstagram(true);
-    }
-  };
-  setNavMode();
   return (
     <Modal onClose={props.onClose}>
       <div className="modal_preferences">
         <ModalHeader onClose={props.onClose} />
         <div className="modal_preferences__content">
           <div className="modal_preferences__content__panel modal_preferences__content__panel__nav">
-            <ModalSpacer />
             <ModalNav
+              isAudioActive={isModalPanelAudio}
+              isVideoActive={isModalPanelVideo}
+              isWarpstagramActive={isModalPanelWarpstagram}
+              isGeneralActive={isModalPanelGeneral}
+              isLicensesActive={isModalPanelLicenses}
+              isMorphActive={isModalPanelMorph}
               showAudio={showPanelAudio}
               showGeneral={showPanelGeneral}
               showLicenses={showPanelLicenses}
+              showMorph={showPanelMorph}
               showVideo={showPanelVideo}
               showWarpstagram={showPanelWarpstagram}
             />
@@ -84,6 +77,7 @@ const ModalPreferences = (props) => {
             {isModalPanelAudio && <ModalPanelAudio />}
             {isModalPanelGeneral && <ModalPanelGeneral />}
             {isModalPanelLicenses && <ModalPanelLicenses />}
+            {isModalPanelMorph && <ModalPanelMorph />}
             {isModalPanelVideo && <ModalPanelVideo />}
             {isModalPanelWarpstagram && <ModalPanelWarpstagram />}
           </div>
