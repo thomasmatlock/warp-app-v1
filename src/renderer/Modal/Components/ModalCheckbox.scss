@@ -1,0 +1,129 @@
+$nav-text-color: #000;
+$nav-text-color_hover: #fff;
+$gray-dark-darkest: #1a1a1a;
+$gray-dark-dark: #202020;
+$gray-dark-light: #252525;
+$gray-dark-lightest: #313131;
+$gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, #19d2fc 100%);
+// TOGGLE BUTTON
+.modalPrefsCheckbox {
+        width: 100%;
+        height: 24px;
+        // border: 1px dotted red;
+        display: flex;
+        margin-top: 1.4rem;
+}
+
+.modalPrefsCheckbox_child {
+        flex-grow: 1;
+        cursor: default;
+        // border: 1px dotted white;w
+}
+
+.modalPrefsCheckbox_child_left {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        align-content: center;
+}
+
+.modalPrefsCheckbox_child_right {
+        display: flex;
+        justify-content: flex-end;
+}
+
+.modalPrefsCheckbox_child p {
+        justify-content: flex-start;
+        font-size: 1.2rem;
+        color: #ffffff;
+        font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
+}
+
+.modalPrefsCheckbox_child button {
+        justify-content: flex-end;
+}
+
+.knobs,
+.layer {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+}
+
+.button {
+        position: absolute;
+        width: 32px;
+        height: 16px;
+        margin: 2px 0;
+        overflow: hidden;
+}
+
+.button.r,
+.button.r .layer {
+        border-radius: 100px;
+}
+
+.button.b2 {
+        border-radius: 2px;
+}
+
+.checkbox {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+        opacity: 0;
+        cursor: pointer;
+        z-index: 3;
+}
+
+.knobs {
+        z-index: 2;
+}
+
+.layer {
+        width: 100%;
+        background-color: #6d6d6d; // bgd color, OFF
+        transition: 0.1s ease all;
+        z-index: 1;
+}
+
+
+/* Button 1 */
+
+// KNOB PROPERTIES
+.modalCheckbox .knobs:before {
+        content: '';
+        position: absolute;
+        top: 1px;
+        left: 2px;
+        width: 9px;
+        height: 9px;
+        color: #fff;
+        font-size: 50px;
+        padding: 2px 2px;
+        // padding: 1px 1px;
+        background-color: #fff; // button color, OFF
+        border-radius: 50%;
+        transition: 0.1s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
+}
+
+.modalCheckbox .checkbox:checked+.knobs:before {
+        content: '';
+        // left: 42px; // where the knobs move to
+        left: 16px; // where the knobs move to
+        background-color: #fff; // button color, ON
+}
+
+.modalCheckbox .checkbox:checked~.layer {
+        background: #ff7700; // bgd color, ON
+}
+
+.modalCheckbox .knobs,
+.modalCheckbox .knobs:before,
+.modalCheckbox .layer {
+        transition: 0.1s ease all;
+}

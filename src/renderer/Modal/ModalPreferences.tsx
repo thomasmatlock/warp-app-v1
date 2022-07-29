@@ -1,5 +1,10 @@
 import { Fragment, useState } from 'react';
 import './ModalPreferences.scss';
+import './Components/ModalCheckbox.scss';
+import './Components/ModalDropdownList.scss';
+import './Components/ModalOutputFolder.scss';
+import './Components/ModalAction.scss';
+
 import Modal from './Modal';
 import ModalHeader from './Components/ModalHeader';
 import ModalNav from './Components/ModalNav';
