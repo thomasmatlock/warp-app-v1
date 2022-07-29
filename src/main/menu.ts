@@ -515,19 +515,7 @@ export default class MenuBuilder {
             label: 'Check for updates...',
             enabled: false,
             click: () => {
-              appWin.send('Check for update');
-            },
-          },
-          {
-            label: 'separator',
-            type: 'separator',
-          },
-          {
-            label: 'Manage license',
-            enabled: true,
-            accelerator: 'CmdOrCtrl+L',
-            click: () => {
-              this.mainWindow.webContents.send('modal: preferences: license');
+              // appWin.send('Check for update');
             },
           },
           {
@@ -541,6 +529,26 @@ export default class MenuBuilder {
             click: () => {
               this.mainWindow.webContents.send('modal: preferences');
             },
+          },
+          {
+            label: 'Manage logins',
+            enabled: true,
+            accelerator: 'CmdOrCtrl+A',
+            click: () => {
+              this.mainWindow.webContents.send('modal: preferences: auths');
+            },
+          },
+          {
+            label: 'Manage license',
+            enabled: true,
+            accelerator: 'CmdOrCtrl+L',
+            click: () => {
+              this.mainWindow.webContents.send('modal: preferences: license');
+            },
+          },
+          {
+            label: 'separator',
+            type: 'separator',
           },
         ],
       },

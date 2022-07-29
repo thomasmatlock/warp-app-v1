@@ -1,25 +1,26 @@
 import { Fragment } from 'react';
 import './ModalPanel.scss';
+import ModalSpacer from '../Components/ModalSpacer';
+import ModalSpacerLine from '../Components/ModalSpacerLine';
 
 const ModalPanelVideo = () => {
   return (
     <Fragment>
-      {/* <!-- VIDEO --> */}
-      <div id="modalPrefsContentPanel_video" className="modalPrefsContentPanel">
+      <div id="modalPrefsPanel_video" className="modalPrefsPanel">
         {/* <!-- MODAL-TEXT-INPUT --> */}
         <div
           id="modalPrefsOutputFolderComponent_video"
           className="modalOutputFolder"
         >
           <div className="modalOutputFolder_title">
-            <p>Video Output Folder</p>
+            <p>Video Downloads Folder</p>
           </div>
           <div className="modalOutputFolder_userInput">
             <div className="modalOutputFolder_userInput__textInput">
               <input
                 id="modalPrefsOutputFolder_video"
                 type="text"
-                placeholder="C:/Users/Tommy/Documents/Warp Downloader"
+                placeholder="C:/Users/Tommy/Documents/Warp Downloader/Video"
               />
             </div>
             <div
@@ -30,12 +31,8 @@ const ModalPanelVideo = () => {
             </div>
           </div>
         </div>
-
-        {/* <!-- MODAL-SPACER --> */}
-        <div className="modalSpacer_space"></div>
-        <div className="modalSpacer_space"></div>
-
-        {/* <!-- DROPDOWN --> */}
+        {/* <ModalSpacer /> */}
+        {/* <ModalSpacerLine /> */}
         <div className="modalDropdownContainer">
           <div className="modalDropdownColumn modalDropdownColumn_left">
             <div className="modalDropdownContent">
@@ -163,10 +160,6 @@ const ModalPanelVideo = () => {
             </div>
           </div>
         </div>
-
-        {/* <!-- MODAL-SPACER --> */}
-        <div className="modalSpacer_space"></div>
-        <div className="modalSpacer_space"></div>
       </div>
     </Fragment>
   );

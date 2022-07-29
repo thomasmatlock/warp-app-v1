@@ -4,10 +4,7 @@ import './ModalPanel.scss';
 const ModalPanelLicenses = () => {
   return (
     <Fragment>
-      <div
-        id="modalPrefsContentPanel_license"
-        className="modalPrefsContentPanel"
-      >
+      <div id="modalPrefsPanel_license" className="modalPrefsPanel">
         <div className="modalActionComponent_Container">
           {/* <!-- MODAL-ACTION --> */}
           <div
@@ -111,12 +108,12 @@ const ModalPanelLicenses = () => {
               <div className="modalActionComponent_child  modalActionComponent_child_title">
                 {/* <!-- <p>Warp BUNDLE (all 3 downloaders)</p> --> */}
               </div>
-              {/* <!-- <div className="modalActionComponent_child  modalActionComponent_child_activated">
-                    <p>Activated</p>
-                </div> --> */}
-              {/* <!-- <div className="modalActionComponent_child modalActionComponent_child_btn">
-                    <p>Activate</p>
-                </div> --> */}
+              {/* <div className="modalActionComponent_child  modalActionComponent_child_activated">
+                <p>Activated</p>
+              </div> */}
+              {/* <div className="modalActionComponent_child modalActionComponent_child_btn">
+                <p>Activate</p>
+              </div> */}
             </div>
           </div>
         </div>

@@ -25,8 +25,9 @@ const Search = () => {
   const [audioMode, setAudioMode] = useState(true);
   const [videoMode, setVideoMode] = useState(false);
   const [warpstagramMode, setWarpstagramMode] = useState(false);
-  const [licenseMode, setLicenseMode] = useState(false);
   const [generalMode, setGeneralMode] = useState(false);
+  const [authsMode, setAuthsMode] = useState(false);
+  const [licenseMode, setLicenseMode] = useState(false);
 
   const [isHovering, setIsHovering] = useState(false);
   const setPlaceholderController = () => {
@@ -42,8 +43,9 @@ const Search = () => {
     setAudioMode(false);
     setVideoMode(false);
     setWarpstagramMode(false);
-    setLicenseMode(false);
     setGeneralMode(false);
+    setAuthsMode(false);
+    setLicenseMode(false);
   };
   window.electron.ipcRenderer.on('nav: mode: audio', (arg) => {
     setAllModesToFalse();
@@ -63,6 +65,15 @@ const Search = () => {
   window.electron.ipcRenderer.on('modal: preferences: license', (arg) => {
     setAllModesToFalse();
     setLicenseMode(true);
+    if (isModalOpen) {
+      hideModalHandler();
+    } else if (!isModalOpen) {
+      showModalHandler();
+    }
+  });
+  window.electron.ipcRenderer.on('modal: preferences: auths', (arg) => {
+    setAllModesToFalse();
+    setAuthsMode(true);
     if (isModalOpen) {
       hideModalHandler();
     } else if (!isModalOpen) {
@@ -181,6 +192,7 @@ const Search = () => {
           isAudioMode={audioMode}
           isVideoMode={videoMode}
           isWarpstagramMode={warpstagramMode}
+          isAuthsMode={authsMode}
           isLicenseMode={licenseMode}
         />
       )}

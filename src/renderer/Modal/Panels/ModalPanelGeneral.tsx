@@ -1,16 +1,12 @@
 import { Fragment } from 'react';
 import './ModalPanel.scss';
+import ModalSpacer from '../Components/ModalSpacer';
+import ModalSpacerLine from '../Components/ModalSpacerLine';
 
 const ModalPanelGeneral = () => {
   return (
     <Fragment>
-      <div
-        id="modalPrefsContentPanel_general"
-        className="modalPrefsContentPanel"
-      >
-        {/* <!-- theme, dark, light --> */}
-
-        {/* <!-- DROPDOWN --> */}
+      <div id="modalPrefsPanel_general" className="modalPrefsPanel">
         <div className="modalDropdownContainer">
           {/* <!-- LEFT SIDE, TOP DROPDOWN --> */}
           <div className="modalDropdownColumn modalDropdownColumn_left">
@@ -84,21 +80,20 @@ const ModalPanelGeneral = () => {
                   >
                     Warpstagram
                   </option>
-                  {/* <!-- <option id="modalDropdown_general_startupTab_recent" value="general_startupTab_recent">Most recently used tab</option> --> */}
+                  <option
+                    id="modalDropdown_general_startupTab_recent"
+                    value="general_startupTab_recent"
+                  >
+                    Most recently used mode
+                  </option>
                 </select>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div className="modalPrefsContentPanel modalPrefsContentPanel_bottom">
-        {/* <!-- MODAL-SPACER --> */}
-        <div className="modalSpacer_space"></div>
-        <div className="modalSpacer_space"></div>
-        <div className="modalSpacer_line"></div>
-        <div className="modalSpacer_space"></div>
-
-        {/* <!-- CHECKBOX --> */}
+        <ModalSpacer />
+        <ModalSpacerLine />
+        <ModalSpacer />
         <div className="modalPrefsCheckbox">
           <div className="modalPrefsCheckbox_child modalPrefsCheckbox_child_left">
             <p>Automatically start Warp on system start</p>
@@ -138,6 +133,8 @@ const ModalPanelGeneral = () => {
           </div>
         </div>
       </div>
+
+      {/* <div className="modalPrefsPanel modalPrefsPanel_bottom"> */}
     </Fragment>
   );
 };

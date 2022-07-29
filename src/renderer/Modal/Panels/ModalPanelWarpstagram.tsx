@@ -1,27 +1,26 @@
 import { Fragment } from 'react';
 import './ModalPanel.scss';
+import ModalSpacer from '../Components/ModalSpacer';
+import ModalSpacerLine from '../Components/ModalSpacerLine';
 
 const ModalPanelWarpstagram = () => {
   return (
     <Fragment>
-      <div
-        id="modalPrefsContentPanel_warpstagram"
-        className="modalPrefsContentPanel"
-      >
+      <div id="modalPrefsPanel_warpstagram" className="modalPrefsPanel">
         {/* <!-- MODAL-TEXT-INPUT --> */}
         <div
           id="modalPrefsOutputFolderComponent_warpstagram"
           className="modalOutputFolder"
         >
           <div className="modalOutputFolder_title">
-            <p>Warpstagram Output Folder</p>
+            <p>Warpstagram Downloads Folder</p>
           </div>
           <div className="modalOutputFolder_userInput">
             <div className="modalOutputFolder_userInput__textInput">
               <input
                 id="modalPrefsOutputFolder_warpstagram"
                 type="text"
-                placeholder="C:/Users/Tommy/Documents/Warp Downloader"
+                placeholder="C:/Users/Tommy/Documents/Warp Downloader/Warpstagram"
               />
             </div>
             <div
@@ -33,9 +32,8 @@ const ModalPanelWarpstagram = () => {
           </div>
         </div>
 
-        {/* <!-- MODAL-SPACER --> */}
-        <div className="modalSpacer_space"></div>
-        <div className="modalSpacer_space"></div>
+        {/* <ModalSpacer /> */}
+        {/* <ModalSpacer /> */}
 
         {/* <!-- DROPDOWN --> */}
         <div className="modalDropdownContainer">
@@ -147,9 +145,8 @@ const ModalPanelWarpstagram = () => {
           </div>
         </div>
 
-        {/* <!-- MODAL-SPACER --> */}
-        <div className="modalSpacer_space"></div>
-        <div className="modalSpacer_space"></div>
+        <ModalSpacer />
+        <ModalSpacer />
       </div>
     </Fragment>
   );

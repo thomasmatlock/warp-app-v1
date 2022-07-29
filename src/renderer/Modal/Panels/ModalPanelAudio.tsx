@@ -1,25 +1,26 @@
 import { Fragment } from 'react';
 import './ModalPanel.scss';
+import ModalSpacer from '../Components/ModalSpacer';
+import ModalSpacerLine from '../Components/ModalSpacerLine';
 
 const ModalPanelAudio = (props) => {
   return (
     <Fragment>
-      <div id="modalPrefsContentPanel_audio" className="modalPrefsContentPanel">
+      <div id="modalPrefsPanel_audio" className="modalPrefsPanel">
         {/* <!-- MODAL-TEXT-INPUT --> */}
         <div
           id="modalPrefsOutputFolderComponent_audio"
           className="modalOutputFolder"
         >
           <div className="modalOutputFolder_title">
-            <p>Audio Output Folder</p>
+            <p>Audio Downloads Folder</p>
           </div>
           <div className="modalOutputFolder_userInput">
             <div className="modalOutputFolder_userInput__textInput">
               <input
                 id="modalPrefsOutputFolder_audio"
                 type="text"
-                placeholder="C:/Users/Tommy/Documents/Warp Downloader"
-                autofocus
+                placeholder="C:/Users/Tommy/Documents/Warp Downloader/Audio"
               />
             </div>
             <div
@@ -31,9 +32,8 @@ const ModalPanelAudio = (props) => {
           </div>
         </div>
 
-        {/* <!-- MODAL-SPACER --> */}
-        <div className="modalSpacer_space"></div>
-        <div className="modalSpacer_space"></div>
+        {/* <ModalSpacer /> */}
+        {/* <ModalSpacer /> */}
 
         {/* <!-- DROPDOWN --> */}
         <div className="modalDropdownContainer">

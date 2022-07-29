@@ -5,7 +5,7 @@ import iconWarpstagram from '../../../../assets/Modals/settings/warpstagram.svg'
 import iconGeneralDark from '../../../../assets/Modals/settings/general_dark.svg';
 import iconLicenses from '../../../../assets/Modals/settings/shuttle.svg';
 import IconAuths from '../../../../assets/Modals/settings/auths1_white.svg';
-import './ModalNav.scss';
+import './ModalPanelNav.scss';
 
 const ModalNav = (props) => {
   return (

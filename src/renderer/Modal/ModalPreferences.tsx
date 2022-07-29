@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react';
+import { useState } from 'react';
 import './ModalPreferences.scss';
 import './Components/ModalCheckbox.scss';
 import './Components/ModalDropdownList.scss';
@@ -7,8 +7,8 @@ import './Components/ModalAction.scss';
 
 import Modal from './Modal';
 import ModalHeader from './Components/ModalHeader';
-import ModalNav from './Components/ModalNav';
-import ModalSpacer from './Components/ModalSpacer';
+import ModalNav from './Panels/ModalPanelNav';
+// import ModalSpacer from './Components/ModalSpacer';
 import ModalPanelAudio from './Panels/ModalPanelAudio';
 import ModalPanelGeneral from './Panels/ModalPanelGeneral';
 import ModalPanelLicenses from './Panels/ModalPanelLicenses';
@@ -23,12 +23,14 @@ const ModalPreferences = (props) => {
   const [isModalPanelWarpstagram, setModalPanelWarpstagram] = useState(
     props.isWarpstagramMode
   );
+  console.log(props.isAuthsMode);
+
   const [isModalPanelGeneral, setModalPanelGeneral] = useState(false);
   const [isModalPanelLicenses, setModalPanelLicenses] = useState(
     props.isLicenseMode
   );
   const [isModalPanelMorph, setModalPanelMorph] = useState(false);
-  const [isModalPanelAuths, setModalPanelAuths] = useState(false);
+  const [isModalPanelAuths, setModalPanelAuths] = useState(props.isAuthsMode);
 
   const hideAllPanels = () => {
     setModalPanelAudio(false);

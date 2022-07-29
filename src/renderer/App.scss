@@ -11,63 +11,71 @@ $gray-dark-light: #252525;
 $gray-dark-lightest: #313131;
 $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, #19d2fc 100%);
 body {
-        box-sizing: content-box;
-        width: 100%;
-        margin: 0;
-        background: $gray-dark-darkest;
-        // background: linear-gradient( 200.96deg, #fedc2a -29.09%, #dd5789 51.77%, #7a2c9e 129.35%);
-        font-family: sans-serif;
-        overflow: hidden;
-        font-family: 'Proxima Nova', Montserrat, sans-serif !important;
+    box-sizing: content-box;
+    width: 100%;
+    margin: 0;
+    background: $gray-dark-darkest;
+    // background: linear-gradient( 200.96deg, #fedc2a -29.09%, #dd5789 51.77%, #7a2c9e 129.35%);
+    font-family: sans-serif;
+    overflow: hidden;
+    font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif !important;
+    // font-family: 'Proxima Nova', Montserrat, sans-serif !important;
+}
+
+* {
+    font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
+    // font-family: 'Proxima Nova', Montserrat, sans-serif !important;
+    transition: all 0.1s ease-in-out;
+    //     transition: all 0.5s ease-in-out !important;
 }
 
 ::-webkit-scrollbar {
-        width: 10px;
+    width: 10px;
 }
 
 
 /* Track */
 
 ::-webkit-scrollbar-track {
-        background: #3a3a3a;
+    background: #3a3a3a;
 }
 
 
 /* Handle */
 
 ::-webkit-scrollbar-thumb {
-        background: #888;
-        border-radius: 16px;
+    background: #888;
+    border-radius: 16px;
 }
 
 
 /* Handle on hover */
 
 ::-webkit-scrollbar-thumb:hover {
-        background: #555;
+    background: #555;
 }
 
 * {
-        -webkit-touch-callout: none;
-        /* iOS Safari */
-        -webkit-user-select: none;
-        /* Safari */
-        -khtml-user-select: none;
-        /* Konqueror HTML */
-        -moz-user-select: none;
-        /* Firefox */
-        -ms-user-select: none;
-        /* Internet Explorer/Edge */
-        user-select: none;
-        /* Non-prefixed version, currently
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
                                   supported by Chrome and Opera */
 }
 
 @keyframes fadeIn {
-        from {
-                opacity: 0;
-        }
-        to {
-                opacity: 1;
-        }
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
