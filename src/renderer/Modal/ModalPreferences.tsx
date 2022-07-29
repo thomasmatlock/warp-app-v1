@@ -12,12 +12,16 @@ import ModalPanelVideo from './Panels/ModalPanelVideo';
 import ModalPanelWarpstagram from './Panels/ModalPanelWarpstagram';
 
 const ModalPreferences = (props) => {
-  const [isModalPanelAudio, setModalPanelAudio] = useState(true);
+  const [isModalPanelAudio, setModalPanelAudio] = useState(props.isAudioMode);
+  const [isModalPanelVideo, setModalPanelVideo] = useState(props.isVideoMode);
+  const [isModalPanelWarpstagram, setModalPanelWarpstagram] = useState(
+    props.isWarpstagramMode
+  );
   const [isModalPanelGeneral, setModalPanelGeneral] = useState(false);
-  const [isModalPanelLicenses, setModalPanelLicenses] = useState(false);
+  const [isModalPanelLicenses, setModalPanelLicenses] = useState(
+    props.isLicenseMode
+  );
   const [isModalPanelMorph, setModalPanelMorph] = useState(false);
-  const [isModalPanelVideo, setModalPanelVideo] = useState(false);
-  const [isModalPanelWarpstagram, setModalPanelWarpstagram] = useState(false);
 
   const hideAllPanels = () => {
     setModalPanelAudio(false);

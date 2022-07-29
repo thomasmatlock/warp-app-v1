@@ -4,7 +4,7 @@ import './ModalPanel.scss';
 const ModalPanelLicenses = () => {
   return (
     <Fragment>
-      <h1>licenses</h1>
+      <h1>license</h1>
     </Fragment>
   );
 };

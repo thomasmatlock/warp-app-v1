@@ -524,9 +524,10 @@ export default class MenuBuilder {
           },
           {
             label: 'Manage license',
-            enabled: false,
+            enabled: true,
+            accelerator: 'CmdOrCtrl+L',
             click: () => {
-              appWin.send('Audio: Tools: Manage license');
+              this.mainWindow.webContents.send('modal: preferences: license');
             },
           },
           {

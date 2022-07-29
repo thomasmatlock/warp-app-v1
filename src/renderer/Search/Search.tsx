@@ -25,6 +25,8 @@ const Search = () => {
   const [audioMode, setAudioMode] = useState(true);
   const [videoMode, setVideoMode] = useState(false);
   const [warpstagramMode, setWarpstagramMode] = useState(false);
+  const [licenseMode, setLicenseMode] = useState(false);
+  const [generalMode, setGeneralMode] = useState(false);
 
   const [isHovering, setIsHovering] = useState(false);
   const setPlaceholderController = () => {
@@ -36,26 +38,36 @@ const Search = () => {
       setPlaceholder(audioPlaceholder);
     }
   };
-  window.electron.ipcRenderer.on('nav: mode: audio', (arg) => {
-    setAudioMode(true);
+  const setAllModesToFalse = () => {
+    setAudioMode(false);
     setVideoMode(false);
     setWarpstagramMode(false);
-    // setPlaceholderController();
+    setLicenseMode(false);
+    setGeneralMode(false);
+  };
+  window.electron.ipcRenderer.on('nav: mode: audio', (arg) => {
+    setAllModesToFalse();
+    setAudioMode(true);
     setPlaceholder(audioPlaceholder);
   });
   window.electron.ipcRenderer.on('nav: mode: video', (arg) => {
+    setAllModesToFalse();
     setVideoMode(true);
-    setAudioMode(false);
-    setWarpstagramMode(false);
-    // setPlaceholderController();
     setPlaceholder(videoPlaceholder);
   });
   window.electron.ipcRenderer.on('nav: mode: warpstagram', (arg) => {
+    setAllModesToFalse();
     setWarpstagramMode(true);
-    setAudioMode(false);
-    setVideoMode(false);
-    // setPlaceholderController();
     setPlaceholder(warpstagramPlaceholder);
+  });
+  window.electron.ipcRenderer.on('modal: preferences: license', (arg) => {
+    setAllModesToFalse();
+    setLicenseMode(true);
+    if (isModalOpen) {
+      hideModalHandler();
+    } else if (!isModalOpen) {
+      showModalHandler();
+    }
   });
   window.electron.ipcRenderer.on('modal: preferences', (arg) => {
     if (isModalOpen) {
@@ -163,7 +175,15 @@ const Search = () => {
           onClick={showModalHandler}
         />
       </div>
-      {isModalOpen && <ModalPreferences onClose={hideModalHandler} />}
+      {isModalOpen && (
+        <ModalPreferences
+          onClose={hideModalHandler}
+          isAudioMode={audioMode}
+          isVideoMode={videoMode}
+          isWarpstagramMode={warpstagramMode}
+          isLicenseMode={licenseMode}
+        />
+      )}
     </Fragment>
   );
 };
