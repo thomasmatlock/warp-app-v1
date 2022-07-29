@@ -9,6 +9,7 @@ import ModalPanelGeneral from './Panels/ModalPanelGeneral';
 import ModalPanelLicenses from './Panels/ModalPanelLicenses';
 import ModalPanelMorph from './Panels/ModalPanelMorph';
 import ModalPanelVideo from './Panels/ModalPanelVideo';
+import ModalPanelAuths from './Panels/ModalPanelAuths';
 import ModalPanelWarpstagram from './Panels/ModalPanelWarpstagram';
 
 const ModalPreferences = (props) => {
@@ -22,30 +23,20 @@ const ModalPreferences = (props) => {
     props.isLicenseMode
   );
   const [isModalPanelMorph, setModalPanelMorph] = useState(false);
+  const [isModalPanelAuths, setModalPanelAuths] = useState(false);
 
   const hideAllPanels = () => {
     setModalPanelAudio(false);
-    setModalPanelGeneral(false);
-    setModalPanelLicenses(false);
-    setModalPanelMorph(false);
     setModalPanelVideo(false);
     setModalPanelWarpstagram(false);
+    setModalPanelMorph(false);
+    setModalPanelGeneral(false);
+    setModalPanelAuths(false);
+    setModalPanelLicenses(false);
   };
   const showPanelAudio = () => {
     hideAllPanels();
     setModalPanelAudio(true);
-  };
-  const showPanelGeneral = () => {
-    hideAllPanels();
-    setModalPanelGeneral(true);
-  };
-  const showPanelLicenses = () => {
-    hideAllPanels();
-    setModalPanelLicenses(true);
-  };
-  const showPanelMorph = () => {
-    hideAllPanels();
-    setModalPanelMorph(true);
   };
   const showPanelVideo = () => {
     hideAllPanels();
@@ -54,6 +45,22 @@ const ModalPreferences = (props) => {
   const showPanelWarpstagram = () => {
     hideAllPanels();
     setModalPanelWarpstagram(true);
+  };
+  const showPanelMorph = () => {
+    hideAllPanels();
+    setModalPanelMorph(true);
+  };
+  const showPanelGeneral = () => {
+    hideAllPanels();
+    setModalPanelGeneral(true);
+  };
+  const showPanelAuths = () => {
+    hideAllPanels();
+    setModalPanelAuths(true);
+  };
+  const showPanelLicenses = () => {
+    hideAllPanels();
+    setModalPanelLicenses(true);
   };
 
   return (
@@ -66,24 +73,27 @@ const ModalPreferences = (props) => {
               isAudioActive={isModalPanelAudio}
               isVideoActive={isModalPanelVideo}
               isWarpstagramActive={isModalPanelWarpstagram}
-              isGeneralActive={isModalPanelGeneral}
-              isLicensesActive={isModalPanelLicenses}
               isMorphActive={isModalPanelMorph}
+              isGeneralActive={isModalPanelGeneral}
+              isAuthsActive={isModalPanelAuths}
+              isLicensesActive={isModalPanelLicenses}
               showAudio={showPanelAudio}
-              showGeneral={showPanelGeneral}
-              showLicenses={showPanelLicenses}
-              showMorph={showPanelMorph}
               showVideo={showPanelVideo}
+              showMorph={showPanelMorph}
               showWarpstagram={showPanelWarpstagram}
+              showGeneral={showPanelGeneral}
+              showAuths={showPanelAuths}
+              showLicenses={showPanelLicenses}
             />
           </div>
           <div className="modal_preferences__content__panel modal_preferences__content__panel__content">
             {isModalPanelAudio && <ModalPanelAudio />}
-            {isModalPanelGeneral && <ModalPanelGeneral />}
-            {isModalPanelLicenses && <ModalPanelLicenses />}
-            {isModalPanelMorph && <ModalPanelMorph />}
             {isModalPanelVideo && <ModalPanelVideo />}
             {isModalPanelWarpstagram && <ModalPanelWarpstagram />}
+            {isModalPanelMorph && <ModalPanelMorph />}
+            {isModalPanelGeneral && <ModalPanelGeneral />}
+            {isModalPanelAuths && <ModalPanelAuths />}
+            {isModalPanelLicenses && <ModalPanelLicenses />}
           </div>
         </div>
       </div>

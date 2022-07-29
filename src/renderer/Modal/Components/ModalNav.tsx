@@ -4,6 +4,7 @@ import iconVideo from '../../../../assets/Modals/settings/video3.svg';
 import iconWarpstagram from '../../../../assets/Modals/settings/warpstagram.svg';
 import iconGeneralDark from '../../../../assets/Modals/settings/general_dark.svg';
 import iconLicenses from '../../../../assets/Modals/settings/shuttle.svg';
+import IconAuths from '../../../../assets/Modals/settings/auths1_white.svg';
 import './ModalNav.scss';
 
 const ModalNav = (props) => {
@@ -105,6 +106,25 @@ const ModalNav = (props) => {
             src={iconGeneralDark}
           />
           <p>General</p>
+        </div>
+        <div
+          onClick={props.showAuths}
+          id="modalPrefsNav_button_general_ID"
+          className={
+            props.isAuthsActive
+              ? 'modalPrefsNav_button__active'
+              : 'modalPrefsNav_button'
+          }
+        >
+          <img
+            className={
+              props.isAuthsActive
+                ? 'modalPrefsNav_button__icon'
+                : 'modalPrefsNav_button__icon'
+            }
+            src={IconAuths}
+          />
+          <p>Authorizations</p>
         </div>
         <div
           onClick={props.showLicenses}

@@ -199,7 +199,7 @@ export default class MenuBuilder {
         submenu: [
           {
             label: '&Quit',
-            accelerator: 'Ctrl+W',
+            accelerator: 'CmdOrCtrl+Q',
             click: () => {
               this.mainWindow.close();
             },
@@ -550,7 +550,7 @@ export default class MenuBuilder {
           {
             label: 'Audio Mode',
             enabled: true,
-            accelerator: 'Shift+1',
+            accelerator: 'CmdOrCtrl+1',
             click: () => {
               this.mainWindow.webContents.send('nav: mode: audio');
             },
@@ -558,7 +558,7 @@ export default class MenuBuilder {
           {
             label: 'Video Mode',
             enabled: true,
-            accelerator: 'Shift+2',
+            accelerator: 'CmdOrCtrl+2',
             click: () => {
               this.mainWindow.webContents.send('nav: mode: video');
             },
@@ -566,7 +566,7 @@ export default class MenuBuilder {
           {
             label: 'Warpstagram Mode',
             enabled: true,
-            accelerator: 'Shift+3',
+            accelerator: 'CmdOrCtrl+3',
             click: () => {
               this.mainWindow.webContents.send('nav: mode: warpstagram');
             },
