@@ -208,6 +208,7 @@ const ModalPanelWarpstagram = () => {
           placeholder={outputFolders.placeholder}
         />
         <ModalDropdownList
+          warpstagram={true}
           dropdownWarpstagram1={dropdownWarpstagram1}
           dropdownWarpstagram2={dropdownWarpstagram2}
           dropdownWarpstagram3={dropdownWarpstagram3}

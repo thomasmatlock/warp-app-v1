@@ -3,6 +3,7 @@ import './ModalPanel.scss';
 import ModalSpacer from '../Components/ModalSpacer';
 import ModalOutputFolder from '../Components/ModalOutputFolder';
 import ModalSpacerLine from '../Components/ModalSpacerLine';
+import ModalDropdownList from '../Components/ModalDropdownList';
 
 const ModalPanelAudio = (props) => {
   const outputFolders = {
@@ -19,7 +20,13 @@ const ModalPanelAudio = (props) => {
           id={outputFolders.id}
           placeholder={outputFolders.placeholder}
         />
-        <div className="modalDropdownContainer">
+        <ModalDropdownList
+        // warpstagram={true}
+        // dropdownWarpstagram1={dropdownWarpstagram1}
+        // dropdownWarpstagram2={dropdownWarpstagram2}
+        // dropdownWarpstagram3={dropdownWarpstagram3}
+        />
+        {/* <div className="modalDropdownContainer">
           <div className="modalDropdownContent">
             <div className="modalDropdown_title modalDropdown_child">
               <p>Audio Quality</p>
@@ -92,7 +99,7 @@ const ModalPanelAudio = (props) => {
               </select>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </Fragment>
   );
