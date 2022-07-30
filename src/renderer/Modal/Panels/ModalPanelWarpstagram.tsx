@@ -12,73 +12,193 @@ const ModalPanelWarpstagram = () => {
     id: 'modalPrefsOutputFolder_warpstagram',
     placeholder: 'C:/Users/Tommy/Documents/Warp Downloader/Warpstagram',
   };
-  const dropdowns = {
-    warpstagram: [
+  const dropdownWarpstagram1 = {
+    title: 'Auto update',
+    selectID: 'modalDropdown_warpstagram_updateSelected',
+    options: [
       {
-        title1: 'Auto update',
-        selectID: 'modalDropdown_warpstagram_updateSelected',
-        options: [
-          {
-            id: 'modalDropdown_warpstagram_updateSelected_all',
-            value: 'warpstagram_updateSelected_all',
-            label: 'Update All',
-          },
-          {
-            id: 'modalDropdown_warpstagram_updateSelected_pinned',
-            value: 'warpstagram_updateSelected_pinned',
-            label: 'Update Pinned',
-          },
-          {
-            id: 'modalDropdown_warpstagram_updateSelected_disabled',
-            value: 'warpstagram_updateSelected_disabled',
-            label: 'Disabled',
-          },
-        ],
+        enabled: true,
+        id: 'modalDropdown_warpstagram_updateSelected_all',
+        value: 'warpstagram_updateSelected_all',
+        label: 'Update All',
       },
       {
-        title: 'Auto update',
-        selectID: 'modalDropdown_warpstagram_updateSelected',
-        options: [
-          {
-            id: 'modalDropdown_warpstagram_updateSelected_all',
-            value: 'warpstagram_updateSelected_all',
-            label: 'Update All',
-          },
-          {
-            id: 'modalDropdown_warpstagram_updateSelected_pinned',
-            value: 'warpstagram_updateSelected_pinned',
-            label: 'Update Pinned',
-          },
-          {
-            id: 'modalDropdown_warpstagram_updateSelected_disabled',
-            value: 'warpstagram_updateSelected_disabled',
-            label: 'Disabled',
-          },
-        ],
+        enabled: true,
+        id: 'modalDropdown_warpstagram_updateSelected_pinned',
+        value: 'warpstagram_updateSelected_pinned',
+        label: 'Update Pinned',
       },
       {
-        title: 'Auto update',
-        selectID: 'modalDropdown_warpstagram_updateSelected',
-        options: [
-          {
-            id: 'modalDropdown_warpstagram_updateSelected_all',
-            value: 'warpstagram_updateSelected_all',
-            label: 'Update All',
-          },
-          {
-            id: 'modalDropdown_warpstagram_updateSelected_pinned',
-            value: 'warpstagram_updateSelected_pinned',
-            label: 'Update Pinned',
-          },
-          {
-            id: 'modalDropdown_warpstagram_updateSelected_disabled',
-            value: 'warpstagram_updateSelected_disabled',
-            label: 'Disabled',
-          },
-        ],
+        enabled: true,
+        id: 'modalDropdown_warpstagram_updateSelected_disabled',
+        value: 'warpstagram_updateSelected_disabled',
+        label: 'Disabled',
+      },
+      {
+        enabled: false,
+        id: 'changeThis',
+        value: 'changeThis',
+        label: 'changeThis',
+      },
+      {
+        enabled: false,
+        id: 'changeThis',
+        value: 'changeThis',
+        label: 'changeThis',
+      },
+      {
+        enabled: false,
+        id: 'changeThis',
+        value: 'changeThis',
+        label: 'changeThis',
+      },
+      {
+        enabled: false,
+        id: 'changeThis',
+        value: 'changeThis',
+        label: 'changeThis',
+      },
+      {
+        enabled: false,
+        id: 'changeThis',
+        value: 'changeThis',
+        label: 'changeThis',
+      },
+      {
+        enabled: false,
+        id: 'changeThis',
+        value: 'changeThis',
+        label: 'changeThis',
       },
     ],
   };
+  const dropdownWarpstagram2 = {
+    title: 'Post sorting',
+    selectID: 'modalDropdown_warpstagram_postSorting',
+    options: [
+      {
+        enabled: true,
+        id: 'modalDropdown_warpstagram_postSorting_default',
+        value: 'warpstagram_postSorting_default',
+        label: 'Default',
+      },
+      {
+        enabled: true,
+        id: 'modalDropdown_warpstagram_postSorting_new_to_old',
+        value: 'warpstagram_postSorting_new_to_old',
+        label: 'Newest to oldest',
+      },
+      {
+        enabled: true,
+        id: 'modalDropdown_warpstagram_postSorting_old_to_new',
+        value: 'warpstagram_postSorting_old_to_new',
+        label: 'Oldest to newest',
+      },
+      {
+        enabled: true,
+        id: 'modalDropdown_warpstagram_postSorting_AZ',
+        value: 'warpstagram_postSorting_AZ',
+        label: 'A to Z',
+      },
+      {
+        enabled: true,
+        id: 'modalDropdown_warpstagram_postSorting_ZA',
+        value: 'warpstagram_postSorting_ZA',
+        label: 'Z to A',
+      },
+      {
+        enabled: false,
+        id: 'changeThis',
+        value: 'changeThis',
+        label: 'changeThis',
+      },
+      {
+        enabled: false,
+        id: 'changeThis',
+        value: 'changeThis',
+        label: 'changeThis',
+      },
+      {
+        enabled: false,
+        id: 'changeThis',
+        value: 'changeThis',
+        label: 'changeThis',
+      },
+      {
+        enabled: false,
+        id: 'changeThis',
+        value: 'changeThis',
+        label: 'changeThis',
+      },
+    ],
+  };
+  const dropdownWarpstagram3 = {
+    title: 'Auto update frequency',
+    selectID: 'modalDropdown_warpstagram_autoUpdateFrequency',
+    options: [
+      {
+        enabled: true,
+        id: 'modalDropdown_warpstagram_autoUpdateFrequency_24',
+        value: 'warpstagram_autoUpdateFrequency_24',
+        label: 'Daily',
+      },
+      {
+        enabled: true,
+        id: 'modalDropdown_warpstagram_autoUpdateFrequency_12',
+        value: 'warpstagram_autoUpdateFrequency_12',
+        label: '12 hours',
+      },
+      {
+        enabled: true,
+        id: 'modalDropdown_warpstagram_autoUpdateFrequency_6',
+        value: 'warpstagram_autoUpdateFrequency_6',
+        label: '6 hours',
+      },
+      {
+        enabled: false,
+        id: 'changeThis',
+        value: 'changeThis',
+        label: 'changeThis',
+      },
+      {
+        enabled: false,
+        id: 'changeThis',
+        value: 'changeThis',
+        label: 'changeThis',
+      },
+      {
+        enabled: false,
+        id: 'changeThis',
+        value: 'changeThis',
+        label: 'changeThis',
+      },
+      {
+        enabled: false,
+        id: 'changeThis',
+        value: 'changeThis',
+        label: 'changeThis',
+      },
+      {
+        enabled: false,
+        id: 'changeThis',
+        value: 'changeThis',
+        label: 'changeThis',
+      },
+      {
+        enabled: false,
+        id: 'changeThis',
+        value: 'changeThis',
+        label: 'changeThis',
+      },
+      {
+        enabled: false,
+        id: 'changeThis',
+        value: 'changeThis',
+        label: 'changeThis',
+      },
+    ],
+  };
+
   return (
     <Fragment>
       <div id="modalPrefsPanel_warpstagram" className="modalPrefsPanel">
@@ -88,17 +208,9 @@ const ModalPanelWarpstagram = () => {
           placeholder={outputFolders.placeholder}
         />
         <ModalDropdownList
-          title1={dropdowns.warpstagram[0].title1}
-          selectID1={dropdowns.warpstagram[0].selectID}
-          optionID1={dropdowns.warpstagram[0].options[0].id}
-          optionValue1={dropdowns.warpstagram[0].options[0].value}
-          optionLabel1={dropdowns.warpstagram[0].options[0].label}
-          optionID2={dropdowns.warpstagram[0].options[1].id}
-          optionValue2={dropdowns.warpstagram[0].options[1].value}
-          optionLabel2={dropdowns.warpstagram[0].options[1].label}
-          optionID3={dropdowns.warpstagram[0].options[2].id}
-          optionValue3={dropdowns.warpstagram[0].options[2].value}
-          optionLabel3={dropdowns.warpstagram[0].options[2].label}
+          dropdownWarpstagram1={dropdownWarpstagram1}
+          dropdownWarpstagram2={dropdownWarpstagram2}
+          dropdownWarpstagram3={dropdownWarpstagram3}
         />
       </div>
     </Fragment>
