@@ -5,17 +5,9 @@ import './ModalDropdownList.scss';
 const ModalDropdownList = (props) => {
   return (
     <Fragment>
-      <div className="modalDropdownContainer">
-        {props.warpstagram && (
-          <ModalDropdownListItem item={props.dropdownWarpstagram1} />
-        )}
-        {props.warpstagram && (
-          <ModalDropdownListItem item={props.dropdownWarpstagram2} />
-        )}
-        {props.warpstagram && (
-          <ModalDropdownListItem item={props.dropdownWarpstagram3} />
-        )}
-      </div>
+      {/* <div className="modalDropdownContainer"> */}
+      <ModalDropdownListItem item={props.dropdownItem} />
+      {/* </div> */}
     </Fragment>
   );
 };

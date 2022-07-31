@@ -207,12 +207,11 @@ const ModalPanelWarpstagram = () => {
           id={outputFolders.id}
           placeholder={outputFolders.placeholder}
         />
-        <ModalDropdownList
-          warpstagram={true}
-          dropdownWarpstagram1={dropdownWarpstagram1}
-          dropdownWarpstagram2={dropdownWarpstagram2}
-          dropdownWarpstagram3={dropdownWarpstagram3}
-        />
+        <div className="modalDropdownContainer">
+          <ModalDropdownList dropdownItem={dropdownWarpstagram1} />
+          <ModalDropdownList dropdownItem={dropdownWarpstagram2} />
+          <ModalDropdownList dropdownItem={dropdownWarpstagram3} />
+        </div>
       </div>
     </Fragment>
   );
