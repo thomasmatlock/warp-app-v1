@@ -7,151 +7,93 @@ $gray-dark-lightest: #313131;
 $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, #19d2fc 100%);
 $gradient-orange: linear-gradient(to left, #da2c4d 0%, #f8ab37 100%);
 @keyframes flipInX {
-        from {
-                transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
-                animation-timing-function: ease-in;
-                // opacity: 0;
-        }
-        40% {
-                transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
-                animation-timing-function: ease-in;
-        }
-        60% {
-                transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
-        }
-        80% {
-                transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
-        }
-        to {
-                transform: perspective(400px);
-                opacity: 1;
-        }
+    from {
+        transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+        animation-timing-function: ease-in;
+        // opacity: 0;
+    }
+    40% {
+        transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+        animation-timing-function: ease-in;
+    }
+    60% {
+        transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+    }
+    80% {
+        transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+    }
+    to {
+        transform: perspective(400px);
+        opacity: 1;
+    }
 }
 
 .browserBar {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        // background-color: #f5f5f5;
-        // border: 1px solid #e0e0e0;
-        width: 50%;
-        display: flex;
-        height: 100%;
-        // flex: 1;
-        flex-direction: row;
-        align-items: center;
-        // border: 1px solid $gray-dark-lightest;
-        // border: 1px dotted red;
-}
-
-.browserBarDownloadSource {
-        height: 48px;
-        width: 300px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        // justify-content: center !important;
-        list-style: none;
-        color: #fff;
-        margin: 8px 48px;
-        border-radius: 3px;
-        font-size: 14px;
-        background-color: $gray-dark-lightest;
-        justify-content: flex-start !important;
-        cursor: pointer;
-        transition: all 0.1s ease-in-out;
-        // overflow: hidden;
-        &:hover {
-                background-color: rgb(68, 68, 68);
-                // height: 148px;
-        }
-        &:hover>~.browserBarDownloadSource__item {
-                display: flex !important;
-        }
-        &__item {
-                min-height: 48px;
-                width: 100%;
-                margin: 0 0px;
-                // position: absolute;
-                left: 0;
-                // width: 300px;
-                display: flex;
-                flex-direction: row;
-                justify-content: flex-start !important;
-                align-items: center;
-                // border: 1px solid green;
-                &__icon {
-                        height: 16px;
-                        margin-left: 16px;
-                        margin-right: 16px;
-                }
-                &__container {
-                        height: 100%;
-                        width: 50%;
-                        display: flex;
-                        flex-direction: row;
-                        align-items: center;
-                        // border: 1px dotted white;
-                }
-                &__container1 {
-                        justify-content: flex-start !important;
-                }
-                &__container2 {
-                        justify-content: flex-end !important;
-                }
-        }
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    // background-color: #f5f5f5;
+    // border: 1px solid #e0e0e0;
+    width: 50%;
+    display: flex;
+    height: 100%;
+    // flex: 1;
+    flex-direction: row;
+    align-items: center;
+    // border: 1px solid $gray-dark-lightest;
+    // border: 1px dotted red;
 }
 
 // https://www.w3schools.com/howto/howto_custom_select.asp
 .browserBarDownloadBtn {
-        width: 300px;
-        justify-content: center !important;
-        background-image: $gradient-blue;
-        margin: 8px 48px;
-        height: 48px;
-        border-radius: 3px;
-        font-size: 14px;
-        background-color: $gray-dark-lightest;
-        color: white;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-around !important;
-        cursor: pointer;
-        animation: flipInX 0.5s ease-in-out;
-        // transition: all 0.1s ease-in-out;
-        &__audio {
-                background-image: $gradient-orange;
-                &:hover {
-                        background-image: $gradient-blue;
-                }
-        }
-        &__video {
-                background-image: $gradient-blue;
-                &:hover {
-                        background-image: $gradient-orange;
-                }
-        }
+    width: 300px;
+    justify-content: center !important;
+    background-image: $gradient-blue;
+    margin: 8px 48px;
+    height: 48px;
+    border-radius: 3px;
+    font-size: 14px;
+    background-color: $gray-dark-lightest;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around !important;
+    cursor: pointer;
+    animation: flipInX 0.5s ease-in-out;
+    // transition: all 0.1s ease-in-out;
+    &__audio {
+        background-image: $gradient-orange;
         &:hover {
-                // background-image: $gradient-orange;
-                box-shadow: -20px 30px 80px 0 rgba(0, 0, 0, 1) !important;
-                // transform: scale(1.01);
+            background-image: $gradient-blue;
         }
-        &:active {
-                background-image: $gradient-orange;
-                box-shadow: -5px 10px 10px 0 rgba(0, 0, 0, 1) !important;
-                transition: 0.01s ease-in-out;
-                transform: scale(0.99);
+    }
+    &__video {
+        background-image: $gradient-blue;
+        &:hover {
+            background-image: $gradient-orange;
         }
-        & p {
-                transform: translate(-90px) translateY(0px);
-                // border: 1px dotted red;
-        }
+    }
+    &:hover {
+        // background-image: $gradient-orange;
+        box-shadow: -20px 30px 80px 0 rgba(0, 0, 0, 1) !important;
+        // transform: scale(1.01);
+    }
+    &:active {
+        background-image: $gradient-orange;
+        box-shadow: -5px 10px 10px 0 rgba(0, 0, 0, 1) !important;
+        transition: 0.01s ease-in-out;
+        transform: scale(0.99);
+    }
+    & p {
+        transform: translate(-90px) translateY(0px);
+        // border: 1px dotted red;
+    }
 }
 
 ul,
 li {
-        margin: 0;
-        padding: 0;
+    margin: 0;
+    padding: 0;
 }

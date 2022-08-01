@@ -68,7 +68,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
             // background-color: $gray-dark-lightest; // change
         }
         &:hover {
-            width: 100%;
+            width: 66%;
         }
         &:focus::placeholder {
             //   display: none;
@@ -101,7 +101,7 @@ input[type='text'] {
 .search__input__hovering {
     //   border: 1px dotted red;
     transition: all 0.1s ease-in-out !important;
-    width: 100%;
+    width: 66%;
     //   padding: 10px;
     height: 40px;
     margin: 0px 16px;
