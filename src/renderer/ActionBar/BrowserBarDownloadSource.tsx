@@ -18,7 +18,7 @@ const BrowserBarDownloadSource = () => {
   const [sourceTiktokActive, setSourceTiktokActive] = useState(false);
   const [sourceTwitterActive, setSourceTwitterActive] = useState(false);
   const [sourceYoutubeActive, setSourceYoutubeActive] = useState(false);
-  const [isSourcedExpanded, setIsSourcedExpanded] = useState(false);
+  const [isSourcesExpanded, setIsSourcesExpanded] = useState(false);
   // const selectedSourceHandler = (event) => {
   //   if (event.target.nodeName === 'IMG') {
   //     console.log('IMG found');
@@ -52,20 +52,31 @@ const BrowserBarDownloadSource = () => {
   };
   const selectedSourceHandler = (event) => {
     disableAllSources();
+    toggleSourceExpanded();
   };
   const toggleSourceExpanded = (event) => {
-    if (isSourcedExpanded) {
-      setIsSourcedExpanded(false);
-    } else if (!isSourcedExpanded) {
-      setIsSourcedExpanded(true);
+    if (isSourcesExpanded) {
+      setIsSourcesExpanded(false);
+    } else if (!isSourcesExpanded) {
+      setIsSourcesExpanded(true);
     }
   };
   return (
     <Fragment>
-      <div className="browserBarDownloadSource ">
+      <div
+        onClick={toggleSourceExpanded}
+        className={
+          !isSourcesExpanded
+            ? 'browserBarDownloadSource'
+            : 'browserBarDownloadSource__hovering'
+        }
+      >
         <ul
-          onClick={toggleSourceExpanded}
-          className="browserBarDownloadSource__list"
+          className={
+            !isSourcesExpanded
+              ? 'browserBarDownloadSource__list'
+              : 'browserBarDownloadSource__hovering__list'
+          }
         >
           <li
             onClick={selectedSourceHandler}
