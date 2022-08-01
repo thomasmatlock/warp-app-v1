@@ -4,7 +4,7 @@ import './ActionBar.scss';
 import BrowserBar from './BrowserBar';
 import FilterBar from './FilterBar';
 
-const ActionBar = () => {
+const ActionBar = (props) => {
   const [audioMode, setAudioMode] = useState(true);
   const [videoMode, setVideoMode] = useState(false);
   const [warpstagramMode, setWarpstagramMode] = useState(false);

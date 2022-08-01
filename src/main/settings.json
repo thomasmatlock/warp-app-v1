@@ -1,0 +1,65 @@
+{
+  "settings": {
+    "user": {
+      "audio": "pro",
+      "video": "pro",
+      "warpstagram": "pro",
+      "acceptedEULA": false,
+      "prefs": {
+        "pathMain": "C:\\Users\\Tommy\\Documents\\Warp Downloader",
+        "pathAudio": "C:\\Users\\Tommy\\Documents\\Warp Downloader\\Audio",
+        "pathVideo": "C:\\Users\\Tommy\\Documents\\Warp Downloader\\Video",
+        "pathWarpstagram": "C:\\Users\\Tommy\\Documents\\Warp Downloader\\Warpstagram",
+        "checkbox_autostartWarp": false,
+        "checkbox_minimizeToTrayOnClose": false,
+        "general_theme_dark": true,
+        "general_theme_light": false,
+        "general_startupTab_audio": true,
+        "general_startupTab_video": false,
+        "general_startupTab_warpstagram": false,
+        "prefsMarkup": "",
+        "audioQuality_best": true,
+        "audioQuality_high": false,
+        "audioQuality_medium": false,
+        "audioQuality_low": false,
+        "audioFormat_MP3": true,
+        "audioFormat_M4A": false,
+        "audioFormat_OGG": false,
+        "videoQuality_best": true,
+        "videoQuality_8k_60fps": false,
+        "videoQuality_8k": false,
+        "videoQuality_4k_60fps": false,
+        "videoQuality_4k": false,
+        "videoQuality_1080p_60fps": false,
+        "videoQuality_1080p": false,
+        "videoQuality_720p_60fps": false,
+        "videoQuality_720p": false,
+        "videoQuality_480p": false,
+        "videoQuality_360p": false,
+        "videoQuality_240p": false,
+        "videoFormat_MP4": true,
+        "videoFormat_MKV": false,
+        "warpstagram_updateSelected_all": true,
+        "warpstagram_updateSelected_pinned": false,
+        "warpstagram_updateSelected_disabled": false,
+        "warpstagram_autoUpdateFrequency_24": true,
+        "warpstagram_autoUpdateFrequency_12": false,
+        "warpstagram_autoUpdateFrequency_6": false,
+        "warpstagram_postSorting_default": true,
+        "warpstagram_postSorting_new_to_old": false,
+        "warpstagram_postSorting_old_to_new": false,
+        "warpstagram_postSorting_AZ": false,
+        "warpstagram_postSorting_ZA": false
+      }
+    },
+    "downloadItems": {
+      "audioArr": [],
+      "videoArr": [],
+      "warpstagram": { "subscribed": [], "pinned": [] }
+    },
+    "markups": {
+      "modals": { "prefs": "", "login": "" },
+      "downloadItems": { "audio": "", "video": "" }
+    }
+  }
+}

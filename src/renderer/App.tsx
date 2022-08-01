@@ -4,11 +4,10 @@ import './App.scss';
 // import Nav from './Nav/Nav';
 import Container from './Container';
 // import ActionBar from './ActionBar/ActionBar';
+// const Store = require('electron-store');
 
 const Hello = () => {
-  return (
-    <Container/>
-  );
+  return <Container />;
 };
 
 export default function App() {

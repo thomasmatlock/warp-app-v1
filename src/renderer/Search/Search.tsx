@@ -6,8 +6,11 @@ import clearTextIcon from '../../../assets/Search/close.svg';
 import settingsIcon from '../../../assets/Search/settings_white.svg';
 import Modal from '../Modal/Modal';
 import ModalPreferences from '../Modal/ModalPreferences';
+import { log } from 'console';
 
-const Search = () => {
+const Search = (props) => {
+  // console.log(props.settings);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const hideModalHandler = () => {
@@ -47,6 +50,7 @@ const Search = () => {
     setAuthsMode(false);
     setLicenseMode(false);
   };
+
   window.electron.ipcRenderer.on('nav: mode: audio', (arg) => {
     setAllModesToFalse();
     setAudioMode(true);
@@ -80,7 +84,7 @@ const Search = () => {
       showModalHandler();
     }
   });
-  window.electron.ipcRenderer.on('modal: preferences', (arg) => {
+  window.electron.ipcRenderer.on('modal: preferences', (prefs) => {
     if (isModalOpen) {
       hideModalHandler();
     } else if (!isModalOpen) {
@@ -188,6 +192,7 @@ const Search = () => {
       </div>
       {isModalOpen && (
         <ModalPreferences
+          settings={props.settings}
           onClose={hideModalHandler}
           isAudioMode={audioMode}
           isVideoMode={videoMode}

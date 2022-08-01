@@ -4,7 +4,7 @@ import navLogoText from '../../../assets/Nav/logo_lowercase_extrabold.svg';
 import './Nav.scss';
 let appVersion: string = '1.0.0';
 
-const Nav = () => {
+const Nav = (props) => {
   window.electron.ipcRenderer.sendMessage('package', [
     'Nav requesting package.json',
   ]);

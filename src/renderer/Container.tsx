@@ -6,15 +6,17 @@ import Content from './Content/Content';
 import Nav from './Nav/Nav';
 import './Container.scss';
 
-const Container = () => {
-    return <Fragment>
-        <div className="container">
-            {/* <BlackHole /> */}
-            <Search />
-            <ActionBar />
-            <Content />
-            <Nav />
-        </div>
+const Container = (props) => {
+  return (
+    <Fragment>
+      <div className="container">
+        {/* <BlackHole /> */}
+        <Search />
+        <ActionBar />
+        <Content />
+        <Nav />
+      </div>
     </Fragment>
-}
+  );
+};
 export default Container;

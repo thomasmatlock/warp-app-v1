@@ -18,12 +18,14 @@ import ModalPanelAuths from './Panels/ModalPanelAuths';
 import ModalPanelWarpstagram from './Panels/ModalPanelWarpstagram';
 
 const ModalPreferences = (props) => {
+  // console.log(props.settings);
+
   const [isModalPanelAudio, setModalPanelAudio] = useState(props.isAudioMode);
   const [isModalPanelVideo, setModalPanelVideo] = useState(props.isVideoMode);
   const [isModalPanelWarpstagram, setModalPanelWarpstagram] = useState(
     props.isWarpstagramMode
   );
-  console.log(props.isAuthsMode);
+  // console.log(props.isAuthsMode);
 
   const [isModalPanelGeneral, setModalPanelGeneral] = useState(false);
   const [isModalPanelLicenses, setModalPanelLicenses] = useState(
