@@ -34,7 +34,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     height: calc(100% - 50%) !important;
     max-height: calc(100% - 300px) !important;
     width: calc(100% - 50%) !important;
-    width: calc(100% - 50%) !important;
+    min-width: 800px !important;
     // max-width: 800px !important;
     min-height: 480px;
     &__content {

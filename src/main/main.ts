@@ -423,7 +423,7 @@ ipcMain.on('modal: preferences', async (event, arg) => {
 });
 // SEARCH LISTENERS
 ipcMain.on('Search: InputChange', async (event, arg) => {
-  console.log('Search: InputChange', arg);
+  // console.log('Search: InputChange', arg);
   event.reply('Search: InputChange', arg);
 });
 ipcMain.on('Search: Submit', async (event, arg) => {

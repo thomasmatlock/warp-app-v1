@@ -45,6 +45,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
         outline: none;
         font-size: 14px;
         box-shadow: none;
+        // padding-left: 40px !important;
         &__icon {
             transform: translateX(48px);
             height: 20px;
@@ -57,13 +58,13 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
                 fill: #fff;
                 cursor: pointer;
                 //   position: absolute;
-                //   transform: translateX(-48px);
+                transform: translateX(-48px);
             }
         }
         &::placeholder {
             color: rgb(167, 167, 167);
-            //   padding-left: 36px;
-            //   transform: translateX(36px);
+            // padding-left: 60px;
+            // transform: translateX(36px);
             // background-color: $gray-dark-lightest; // change
         }
         &:hover {
@@ -72,10 +73,14 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
         &:focus::placeholder {
             //   display: none;
             color: transparent;
-            //   transform: translateX(200px);
+            // transform: translateX(400px);
             //   color: transparent;
         }
     }
+}
+
+input[type='text'] {
+    padding-left: 40px !important;
 }
 
 #search__input:focus+#search__input__icon__focused {
@@ -109,10 +114,6 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     outline: none;
     font-size: 14px;
     box-shadow: none;
-}
-
-input[type='text'] {
-    padding-left: 40px !important;
 }
 
 .settings {
