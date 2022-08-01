@@ -9,8 +9,6 @@ import ModalPreferences from '../Modal/ModalPreferences';
 import { log } from 'console';
 
 const Search = (props) => {
-  // console.log(props.settings);
-
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const hideModalHandler = () => {
@@ -18,7 +16,6 @@ const Search = (props) => {
   };
   const showModalHandler = () => {
     setIsModalOpen(true);
-    // console.log('showModalHandler');
   };
   const restoreInputDefaultWidthDelay = 3000;
   const audioPlaceholder = 'audio search...beep boop  ';
@@ -116,7 +113,7 @@ const Search = (props) => {
     }
     setSearchText(event.target.value);
   };
-  const searchClearTextHandler = (event) => {
+  const searchClearTextHandler = () => {
     setClearIcon(false);
     setSearchText('');
     // setPlaceholderController();
@@ -147,7 +144,14 @@ const Search = (props) => {
       }, restoreInputDefaultWidthDelay);
     }
   };
-
+  window.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      setIsModalOpen(false);
+    }
+    if (event.key === 'Escape' && !isModalOpen) {
+      searchClearTextHandler();
+    }
+  });
   return (
     <Fragment>
       <form
