@@ -11,6 +11,10 @@ const Hello = () => {
 };
 
 export default function App() {
+  // window.electron.ipcRenderer.on('resize', (arg) => {
+  //   // eslint-disable-next-line no-console
+  //   console.log('resize');
+  // });
   return (
     <Router>
       <Routes>

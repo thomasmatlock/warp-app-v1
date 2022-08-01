@@ -17,7 +17,7 @@ const Warpstagram = () => {
   let items;
   setTimeout(() => {
     items = document.querySelectorAll('.filter-contentPanel');
-    console.log(items);
+    // console.log(items);
   }, 1000);
   return (
     <Fragment>

@@ -53,7 +53,7 @@ const FilterBar = () => {
   // console.log(items);
   setTimeout(() => {
     items = document.querySelectorAll('.filter-filterBar__menu__item');
-    console.log(items);
+    // console.log(items);
   }, 1000);
 
   return (

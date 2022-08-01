@@ -420,6 +420,7 @@ class AppUpdater {
 
 let mainWindow: BrowserWindow | null = null;
 let splashWindow: BrowserWindow | null = null;
+let browserWindow: BrowserWindow | null = null;
 
 // MENU LISTENERS
 ipcMain.on('Menu: Shortcuts: Restart', async (event, arg) => {
@@ -482,6 +483,25 @@ ipcMain.on('settings: request', async (event, arg) => {
 
   event.reply('settings-broadcast', settings); // sends message to renderer
 });
+let browserWindowHeight: number;
+let browserWindowWidth: number;
+ipcMain.on('browserWindowWidth', async (event, width) => {
+  // mainWindow.setWidth(width);
+  browserWindowWidth = Math.round(width);
+  // console.log('width', browserWindowWidth);
+  browserWindow.setSize(browserWindowWidth, browserWindowHeight);
+  // event.reply('settings-broadcast', settings); // sends message to renderer
+});
+ipcMain.on('browserWindowHeight', async (event, height) => {
+  // console.log('browserWindowHeight', browserWindowHeight);
+
+  // browserWindow.setSize(1000, height);
+  browserWindowHeight = Math.round(height);
+  // console.log('height', browserWindowHeight);
+  browserWindow.setSize(browserWindowWidth, browserWindowHeight);
+
+  // event.reply('settings-broadcast', settings); // sends message to renderer
+});
 
 if (process.env.NODE_ENV === 'production') {
   const sourceMapSupport = require('source-map-support');
@@ -525,8 +545,10 @@ const createMainWindow = async () => {
     show: false,
     width: 1600,
     height: 900,
-    minWidth: 845,
-    minHeight: 485,
+    x: 0,
+    y: 0,
+    minWidth: 850,
+    minHeight: 500,
     darkTheme: true,
     icon: getAssetPath('icon.png'),
     webPreferences: {
@@ -552,10 +574,53 @@ const createMainWindow = async () => {
   mainWindow.on('closed', () => {
     mainWindow = null;
   });
+  const wc = mainWindow.webContents;
+  mainWindow.on('resize', () => {
+    // console.log('resize');
+    // let test = mainWindow.getSize();
+    // console.log('test', test);
+
+    // wc.send('resized', mainWindow.getSize());
+    wc.send('resize');
+  });
+  mainWindow.on('resized', () => {
+    // console.log('resize');
+    // let test = mainWindow.getSize();
+    // console.log('test', test);
+
+    // wc.send('resized', mainWindow.getSize());
+    wc.send('resized');
+  });
+  mainWindow.on('will-resize', () => {
+    // console.log('resize');
+    // let test = mainWindow.getSize();
+    // console.log('test', test);
+
+    // wc.send('resized', mainWindow.getSize());
+    wc.send('will-resize');
+  });
+  mainWindow.on('hide', () => {
+    // browserWindow.hide();
+    // wc.send('will-resize');
+  });
+  mainWindow.on('minimize', () => {
+    // console.log('minimize');
+
+    // browserWindow.minimize();
+    browserWindow.hide();
+    // wc.send('will-resize');
+  });
+  mainWindow.on('restore', () => {
+    // browserWindow.restore();
+    browserWindow.show();
+    // browserWindow.hide();
+  });
+  mainWindow.on('focus', () => {
+    // wc.send('will-resize');
+  });
 
   const menuBuilder = new MenuBuilder(mainWindow);
   menuBuilder.buildMenu();
-  const wc = mainWindow.webContents;
 
   // Open urls in the user's browser
   wc.setWindowOpenHandler((edata) => {
@@ -638,6 +703,83 @@ const createSplashWindow = async () => {
   // eslint-disable-next-line
   // new AppUpdater();
 };
+const createBrowserWindow = async () => {
+  // if (isDebug) {
+  //   await installExtensions();
+  // }
+
+  // const RESOURCES_PATH = app.isPackaged
+  //   ? path.join(process.resourcesPath, 'assets')
+  //   : path.join(__dirname, '../../assets');
+
+  // const getAssetPath = (...paths: string[]): string => {
+  //   return path.join(RESOURCES_PATH, ...paths);
+  // };
+
+  browserWindow = new BrowserWindow({
+    height: 800,
+    width: 800,
+    x: 0,
+    y: 180,
+    // x: 100,
+    // y: 100,
+    frame: false,
+    transparent: true,
+    parent: mainWindow,
+    hasShadow: false,
+    isAlwaysOnTop: true,
+    resizable: true,
+    skipTaskbar: true,
+    // movable: false,
+    // minimizable: false,
+    // maximizable: false,
+    // useContentSize: true,
+    devTools: false,
+    // icon: getAssetPath('icon.png'),
+    webPreferences: {
+      // preload: app.isPackaged
+      //   ? path.join(__dirname, 'preload.js')
+      //   : path.join(__dirname, '../../.erb/dll/preload.js'),
+    },
+  });
+  // browserWindow.loadURL('https://github.com');
+  browserWindow.loadURL('https://youtube.com');
+  // browserWindow.loadURL('www.youtube.com');
+  // browserWindow.loadFile('splash.html');
+
+  // browserWindow.on('ready-to-show', () => {
+  //   if (!browserWindow) {
+  //     throw new Error('"mainWindow" is not defined');
+  //   }
+  //   if (process.env.START_MINIMIZED) {
+  //     browserWindow.minimize();
+  //   } else {
+  //     browserWindow.show();
+  //   }
+  // });
+  browserWindow.setAlwaysOnTop(true, 'screen');
+  browserWindow.on('ready', () => {
+    // browserWindow.setSize(1500, 500);
+    // setTimeout(() =>     {
+    // }, 1000);
+  });
+  // browserWindow.on('closed', () => {
+  //   browserWindow = null;
+  // });
+
+  // const menuBuilder = new MenuBuilder(browserWindow);
+  // menuBuilder.buildMenu();
+
+  // Open urls in the user's browser
+  // browserWindow.webContents.setWindowOpenHandler((edata) => {
+  //   shell.openExternal(edata.url);
+  //   return { action: 'deny' };
+  // });
+
+  // Remove this if your app does not use auto updates
+  // eslint-disable-next-line
+  // new AppUpdater();
+};
 
 /**
  * Add event listeners...
@@ -657,6 +799,7 @@ app
     // createSplashWindow();
     //  splashWindow.setFullScreen(false);
     createMainWindow();
+    createBrowserWindow();
     app.on('activate', () => {
       // On macOS it's common to re-create a window in the app when the
       // dock icon is clicked and there are no other windows open.
