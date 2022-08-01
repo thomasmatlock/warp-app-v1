@@ -48,6 +48,13 @@ const FilterBar = () => {
     setFilterTypeHashtags(false);
     setFilterTypeLocations(true);
   };
+  let items;
+  // document.querySelectorAll('.filter-content__panel__warpstagram__account');
+  // console.log(items);
+  setTimeout(() => {
+    items = document.querySelectorAll('.filter-filterBar__menu__item');
+    console.log(items);
+  }, 1000);
 
   return (
     <Fragment>

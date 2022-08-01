@@ -14,6 +14,11 @@ import dummy_post12 from '../../../assets/Content/Warpstagram/peaky/12.jpg';
 import './Warpstagram.scss';
 
 const Warpstagram = () => {
+  let items;
+  setTimeout(() => {
+    items = document.querySelectorAll('.filter-contentPanel');
+    console.log(items);
+  }, 1000);
   return (
     <Fragment>
       <div className="contentPanel">

@@ -9,7 +9,7 @@
  * `./src/main.js` using webpack. This gives us some performance wins.
  */
 import path from 'path';
-import { app, BrowserWindow, shell, ipcMain } from 'electron';
+import { app, BrowserWindow, shell, ipcMain, Tray } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
@@ -394,8 +394,19 @@ settings.set('prefs', {
 // console.log(settings.get('downloads'));
 // console.log(settings.get('prefs.audio[1]'));
 let prefs = settings.get('prefs');
-console.log(prefs);
-
+// console.log(prefs);
+let tray = null;
+app.whenReady().then(() => {
+  tray = new Tray('/path/to/my/icon');
+  const contextMenu = Menu.buildFromTemplate([
+    { label: 'Item1', type: 'radio' },
+    { label: 'Item2', type: 'radio' },
+    { label: 'Item3', type: 'radio', checked: true },
+    { label: 'Item4', type: 'radio' },
+  ]);
+  tray.setToolTip('This is my application.');
+  tray.setContextMenu(contextMenu);
+});
 // store.set('foo.bar', true);
 // store.delete('unicorn');
 

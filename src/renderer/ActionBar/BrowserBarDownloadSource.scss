@@ -1,3 +1,32 @@
+// https://www.w3schools.com/howto/howto_custom_select.asp
+// FONT
+$default-font-size: 1.6rem;
+// GRID
+$grid-width: 114rem; //1140px standard grid width, but use rem for dynamic page adapting to viewport size
+$gutter-vertical: 8rem; //80px -- gutter is space between columns
+$gutter-horizontal: 6rem; //60px
+// SHADOWS
+$shadow-none: 0 1.5rem 4rem rgba(0, 0, 0, 0);
+$shadow-light: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+$shadow-before: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+$shadow-after: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+// DIMENSIONS
+$nav_A-height: 60px;
+// $nav_A-height: 8vh;
+$nav_A-max-height: 60px;
+// Development TESTING
+$dev-border: 1px dotted rgba(255, 0, 0, 0.5);
+// Download items
+$download-item-video-height: 60px; // 4k vid dl has 57px min, 71px max
+$download-item-video-min-height: 60px;
+$download-item-video-max-height: 60px;
+// TESTING BORDERS
+$border-heavy: 0px dotted black;
+$border-heavy2: 0px dotted red;
+$border-medium: 0px dotted black;
+$border-light: 0px dotted black;
+// GRAD TIMELAPSE DURATIONS
+$duration-1: 10s;
 $nav-text-color: #000;
 $nav-text-color_hover: #fff;
 $gray-dark-darkest: #1a1a1a;
@@ -8,92 +37,27 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
 $gradient-orange: linear-gradient(to left, #da2c4d 0%, #f8ab37 100%);
 .browserBarDownloadSource {
     height: 48px;
-    width: 300px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    // justify-content: center !important;
-    list-style: none;
-    color: #fff;
+    // width: 300px;
+    width: clamp(20%, 20vw, 250px);
     margin: 8px 48px;
     border-radius: 3px;
-    font-size: 14px;
-    background-color: $gray-dark-lightest;
-    justify-content: flex-start !important;
-    cursor: pointer;
-    transition: all 0.1s ease-in-out;
-    // overflow: hidden;
-    &:hover {
-        background-color: rgb(68, 68, 68);
-        // height: 148px;
-    }
-    &:hover>~.browserBarDownloadSource__item {
-        display: flex !important;
-    }
-    &__item {
-        min-height: 48px;
-        width: 100%;
-        margin: 0 0px;
-        // position: absolute;
-        left: 0;
-        // width: 300px;
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start !important;
-        align-items: center;
-        // border: 1px solid green;
-        &__icon {
-            height: 16px;
-            margin-left: 16px;
-            margin-right: 16px;
-        }
-        &__container {
-            height: 100%;
-            width: 50%;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            // border: 1px dotted white;
-        }
-        &__container1 {
-            justify-content: flex-start !important;
-        }
-        &__container2 {
-            justify-content: flex-end !important;
-        }
-    }
-}
-
-@keyframes displayWarpIn {
-    0% {
-        opacity: 0;
-        // transform: scale(0) rotate3d(1, 0, -360, 90deg) translateX(0px);
-        transform: scale(0) rotate3d(0, 0, -100, 760deg) translateX(0px) skew(0deg, 0deg);
-    }
-    80% {
-        opacity: 1;
-        // transform: scale(1) rotate3d(1, 0, -360, 90deg) translateX(0px);
-        transform: scale(1);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
-.feature_display_wrapup__panel {
-    box-shadow: -20px 30px 116px 0 rgba(0, 0, 0, 0.5);
-    animation: displayScaleIn 0.4s ease-in-out; // DEFAULT animation for how the panel comes in
-    // animation: displayWarpIn 0.75s ease-in-out; // TESTING animation for how the panel comes in
-    display: none;
-    flex-direction: column;
-    justify-content: center !important;
-    align-items: center;
-    background-color: transparent;
-    width: 100%;
+    position: absolute;
+    // position: relative;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    // height: calc(6 * 48px); // item height times number of items
+    z-index: 1;
     &__list {
-        border: 1px solid red;
+        background-color: $gray-dark-lightest;
         overflow: hidden;
-        position: relative;
+        box-shadow: $shadow-after;
+        // border: 1px dotted red;
+        transition: all 0.1s ease-in-out;
+        // border: 1px solid red;
+        // position: absolute;
+        z-index: 2;
+        // position: relative;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -102,32 +66,41 @@ $gradient-orange: linear-gradient(to left, #da2c4d 0%, #f8ab37 100%);
         width: 100%;
         padding: 0 0;
         height: 100%;
+        height: 48px;
         list-style: none;
-        border-radius: 5px;
+        border-radius: 3px;
         &:hover {
             background-color: $gray-dark-lightest;
-            cursor: pointer;
-            border: 1px solid green !important;
+            transition: all 0.1s ease-in-out !important;
+            box-shadow: $shadow-after;
+            border-radius: 3px;
+            height: calc(6 * 48px); // item height times number of items
+            // border: 1px solid green !important;
         }
         &__item {
             padding: 5px;
             // border: 1px solid red !important;
             border-radius: 3px;
             display: flex;
+            border-radius: 3px;
             flex-direction: row;
             justify-content: space-between;
             align-items: center;
             will-change: transform;
             width: 100%;
             border: 1px solid $gray-dark-lightest;
-            background-color: $gray-dark-light;
-            height: 60px !important;
+            background-color: $gray-dark-lightest;
+            height: 48px !important;
             // animation: flipInX 0.5s ease-in-out;
             &:hover {
-                background-color: $gray-dark-lightest;
+                background-color: $gray-dark-light;
+                box-shadow: $shadow-after;
+                border-radius: 3px;
+                border-radius: 3px;
                 cursor: pointer;
             }
             &__container1 {
+                border-radius: 3px;
                 display: flex;
                 flex-direction: row;
                 justify-content: start;
@@ -139,6 +112,7 @@ $gradient-orange: linear-gradient(to left, #da2c4d 0%, #f8ab37 100%);
             }
             &__container2 {
                 width: 50%;
+                border-radius: 3px;
                 height: 100%;
                 margin: 0 1vh;
                 // border: 1px solid red !important;
@@ -167,14 +141,23 @@ $gradient-orange: linear-gradient(to left, #da2c4d 0%, #f8ab37 100%);
             }
             &__text {
                 margin-left: 1rem;
-                font-size: 1rem;
+                // font-size: 1rem;
+                font-size: 14px;
                 // color: $gray-dark-darkest;
                 color: white;
             }
-            &__title {
-                // font-size: 7px;
-            }
         }
     }
-    // }
+}
+
+.browserBarDownloadSource__hovering {
+    border-radius: 3px;
+    // border: 1px solid red;
+    // height: auto;
+    // box-shadow: $shadow-after;
+    top: 0;
+    transition: all 0.25s ease-in-out;
+    height: calc(6 * 48px); // item height times number of items
+    cursor: pointer;
+    // border: 1px dotted red;
 }
