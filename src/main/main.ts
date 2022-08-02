@@ -421,7 +421,19 @@ class AppUpdater {
 let mainWindow: BrowserWindow | null = null;
 let splashWindow: BrowserWindow | null = null;
 let browserWindow: BrowserWindow | null = null;
-
+let mainWindowBounds = { x: 200, y: 0, width: 1600, height: 900 };
+// let splashWindowBounds = {
+//   x: 400,
+//   y: 400,
+//   width: 400,
+//   height: 400,
+// };
+let browserWindowBounds = {
+  x: mainWindowBounds.x + 10,
+  y: mainWindowBounds.y + 180,
+  width: mainWindowBounds.width / 2 - 10,
+  height: mainWindowBounds.height - 250,
+};
 // MENU LISTENERS
 ipcMain.on('Menu: Shortcuts: Restart', async (event, arg) => {
   console.log('Menu: Shortcuts: Restart', arg);
@@ -483,25 +495,23 @@ ipcMain.on('settings: request', async (event, arg) => {
 
   event.reply('settings-broadcast', settings); // sends message to renderer
 });
-let browserWindowHeight: number;
-let browserWindowWidth: number;
-ipcMain.on('browserWindowWidth', async (event, width) => {
-  // mainWindow.setWidth(width);
-  browserWindowWidth = Math.round(width);
-  // console.log('width', browserWindowWidth);
-  browserWindow.setSize(browserWindowWidth, browserWindowHeight);
-  // event.reply('settings-broadcast', settings); // sends message to renderer
-});
-ipcMain.on('browserWindowHeight', async (event, height) => {
-  // console.log('browserWindowHeight', browserWindowHeight);
+// ipcMain.on('browserWindowWidth', async (event, width) => {
+//   // mainWindow.setWidth(width);
+//   browserWindowBounds.width = Math.round(width);
+//   // console.log('width', browserWindowWidth);
+//   browserWindow.setSize(browserWindowBounds.width, browserWindowBounds.height);
+//   // event.reply('settings-broadcast', settings); // sends message to renderer
+// });
+// ipcMain.on('browserWindowHeight', async (event, height) => {
+//   // console.log('browserWindowHeight', browserWindowHeight);
 
-  // browserWindow.setSize(1000, height);
-  browserWindowHeight = Math.round(height);
-  // console.log('height', browserWindowHeight);
-  browserWindow.setSize(browserWindowWidth, browserWindowHeight);
+//   // browserWindow.setSize(1000, height);
+//   browserWindowBounds.height = Math.round(height);
+//   // console.log('height', browserWindowHeight);
+//   browserWindow.setSize(browserWindowBounds.width, browserWindowBounds.height);
 
-  // event.reply('settings-broadcast', settings); // sends message to renderer
-});
+//   // event.reply('settings-broadcast', settings); // sends message to renderer
+// });
 
 if (process.env.NODE_ENV === 'production') {
   const sourceMapSupport = require('source-map-support');
@@ -543,10 +553,10 @@ const createMainWindow = async () => {
 
   mainWindow = new BrowserWindow({
     show: false,
-    width: 1600,
-    height: 900,
-    x: 0,
-    y: 0,
+    width: mainWindowBounds.width,
+    height: mainWindowBounds.height,
+    x: mainWindowBounds.x,
+    y: mainWindowBounds.y,
     minWidth: 850,
     minHeight: 500,
     darkTheme: true,
@@ -576,49 +586,90 @@ const createMainWindow = async () => {
   });
   const wc = mainWindow.webContents;
   mainWindow.on('resize', () => {
+    resizeBrowserWindow();
     // console.log('resize');
     // let test = mainWindow.getSize();
     // console.log('test', test);
 
     // wc.send('resized', mainWindow.getSize());
-    wc.send('resize');
+    // wc.send('resize');
   });
-  mainWindow.on('resized', () => {
+  mainWindow.on('resized', (e) => {
+    resizeBrowserWindow();
+
     // console.log('resize');
     // let test = mainWindow.getSize();
     // console.log('test', test);
 
     // wc.send('resized', mainWindow.getSize());
-    wc.send('resized');
+    // wc.send('resized');
+  });
+  mainWindow.on('will-move', (e) => {
+    // console.log('will-move');
+
+    // let test = mainWindow.getSize();
+    // console.log('test', test);
+    browserWindow.hide();
+    // wc.send('resized', mainWindow.getSize());
+    wc.send('will-move');
+  });
+  mainWindow.on('move', (e) => {
+    // console.log(e.sender);
+    // console.log('move');
+    // let test = mainWindow.getSize();
+    // console.log(mainWindow.getBounds());
+    // console.log('test', test);
+    // wc.send('resized', mainWindow.getSize());
+    // wc.send('move');
+  });
+  const resizeBrowserWindow = (e) => {
+    mainWindowBounds = mainWindow.getBounds();
+    // console.log('mainWindowBounds', mainWindowBounds);
+    // console.log('browserWindowBounds', browserWindowBounds);
+    browserWindowBounds.width = Math.round(mainWindowBounds.width / 2 - 10);
+    browserWindowBounds.height = Math.round(mainWindowBounds.height - 250);
+    browserWindow.setSize(
+      browserWindowBounds.width,
+      browserWindowBounds.height
+    );
+    browserWindow.setPosition(
+      mainWindowBounds.x + 10,
+      mainWindowBounds.y + 180
+    );
+  };
+  mainWindow.on('moved', () => {
+    resizeBrowserWindow();
+    browserWindow.show();
+    // wc.send('moved');
   });
   mainWindow.on('will-resize', () => {
-    // console.log('resize');
-    // let test = mainWindow.getSize();
-    // console.log('test', test);
-
-    // wc.send('resized', mainWindow.getSize());
-    wc.send('will-resize');
+    // wc.send('will-resize');
   });
-  mainWindow.on('hide', () => {
+  mainWindow.on('blur', () => {
+    // console.log('blur');
     // browserWindow.hide();
     // wc.send('will-resize');
   });
   mainWindow.on('minimize', () => {
     // console.log('minimize');
 
-    // browserWindow.minimize();
+    browserWindow.minimize();
     browserWindow.hide();
     // wc.send('will-resize');
   });
   mainWindow.on('restore', () => {
-    // browserWindow.restore();
+    browserWindow.restore();
+    resizeBrowserWindow();
     browserWindow.show();
     // browserWindow.hide();
   });
   mainWindow.on('focus', () => {
+    // browserWindow.show();
     // wc.send('will-resize');
   });
+  // const hideBrowserWindow = () => {
 
+  // }
   const menuBuilder = new MenuBuilder(mainWindow);
   menuBuilder.buildMenu();
 
@@ -717,10 +768,10 @@ const createBrowserWindow = async () => {
   // };
 
   browserWindow = new BrowserWindow({
-    height: 800,
-    width: 800,
-    x: 0,
-    y: 180,
+    height: browserWindowBounds.height,
+    width: browserWindowBounds.width,
+    x: browserWindowBounds.x,
+    y: browserWindowBounds.y,
     // x: 100,
     // y: 100,
     frame: false,
@@ -730,7 +781,7 @@ const createBrowserWindow = async () => {
     isAlwaysOnTop: true,
     resizable: true,
     skipTaskbar: true,
-    // movable: false,
+    movable: false,
     // minimizable: false,
     // maximizable: false,
     // useContentSize: true,
@@ -743,6 +794,7 @@ const createBrowserWindow = async () => {
     },
   });
   // browserWindow.loadURL('https://github.com');
+  // browserWindow.loadURL('https://soundcloud.com');
   browserWindow.loadURL('https://youtube.com');
   // browserWindow.loadURL('www.youtube.com');
   // browserWindow.loadFile('splash.html');
