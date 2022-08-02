@@ -3,8 +3,15 @@ import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.scss';
 // import Nav from './Nav/Nav';
 import Container from './Container';
-// import ActionBar from './ActionBar/ActionBar';
-// const Store = require('electron-store');
+// import { nanoid } from 'nanoid/async';
+
+// let testID;
+// async function createUser() {
+//   testID = await nanoid();
+//   console.log(testID);
+//   return testID;
+// }
+// createUser();
 
 const Hello = () => {
   return <Container />;

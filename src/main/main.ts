@@ -9,13 +9,23 @@
  * `./src/main.js` using webpack. This gives us some performance wins.
  */
 import path from 'path';
-import { app, BrowserWindow, shell, ipcMain, Tray } from 'electron';
+import fs from 'fs';
+import {
+  app,
+  BrowserWindow,
+  desktopCapturer,
+  dialog,
+  shell,
+  ipcMain,
+  Tray,
+} from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
 import packageJSON from '../../package.json';
 const contextMenu = require('electron-context-menu');
+
 // console.log(`${package.name} ${package.version}`);
 
 contextMenu({
@@ -432,7 +442,8 @@ let browserWindowBounds = {
   x: mainWindowBounds.x + 10,
   y: mainWindowBounds.y + 180,
   width: mainWindowBounds.width / 2 - 10,
-  height: mainWindowBounds.height - 250,
+  height: mainWindowBounds.height - 250, // default
+  // height: mainWindowBounds.height - 300, // testing
 };
 // MENU LISTENERS
 ipcMain.on('Menu: Shortcuts: Restart', async (event, arg) => {
@@ -494,6 +505,122 @@ ipcMain.on('settings: request', async (event, arg) => {
   console.log('settings: request', arg);
 
   event.reply('settings-broadcast', settings); // sends message to renderer
+});
+ipcMain.on('screenshotting', async (event, arg) => {
+  browserWindow.webContents
+    .capturePage({
+      x: 0,
+      y: 0,
+      width: browserWindowBounds.width,
+      height: browserWindowBounds.height,
+    })
+    .then((img) => {
+      console.log('captured');
+
+      dialog
+        .showSaveDialog({
+          title: 'Select the File Path to save',
+
+          // Default path to assets folder
+          defaultPath: path.join(__dirname, '../assets/image.png'),
+
+          // defaultPath: path.join(__dirname,
+          // '../assets/image.jpeg'),
+          buttonLabel: 'Save',
+
+          // Restricting the user to only Image Files.
+          filters: [
+            {
+              name: 'Image Files',
+              extensions: ['png', 'jpeg', 'jpg'],
+            },
+          ],
+          properties: [],
+        })
+        .then((file) => {
+          // Stating whether dialog operation was
+          // cancelled or not.
+          console.log(file.canceled);
+          if (!file.canceled) {
+            console.log(file.filePath.toString());
+
+            // Creating and Writing to the image.png file
+            // Can save the File as a jpeg file as well,
+            // by simply using img.toJPEG(100);
+            fs.writeFile(
+              file.filePath.toString(),
+              img.toPNG(),
+              'base64',
+              function (err) {
+                if (err) throw err;
+                console.log('Saved!');
+              }
+            );
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+  // console.log('screenshotting');
+  //   desktopCapturer
+  //     .getSources({
+  //       types: ['screen'],
+  //       thumbnailSize: { width: 200, height: 200 },
+  //     })
+  //     .then(async (sources) => {
+  //       console.log('sources', sources);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // const RESOURCES_PATH = app.isPackaged
+  //   ? path.join(process.resourcesPath, 'assets')
+  //   : path.join(__dirname, '../../assets');
+
+  // const getAssetPath = (...paths: string[]): string => {
+  //   return path.join(RESOURCES_PATH, ...paths);
+  // };
+
+  // console.log(getAssetPath('screenshot.png'));
+
+  // desktopCapturer
+  //   .getSources({
+  //     types: ['window'],
+  //     thumbnailSize: {
+  //       width: browserWindowBounds.width,
+  //       height: browserWindowBounds.height,
+  //     },
+  //   })
+  //   .then(async (sources) => {
+  //     for (const source of sources) {
+  //       console.log(source.name);
+  //       console.log(browserWindowBounds.width);
+
+  //       // if (source.name === 'Electron') {
+  //       if (source.name.includes('Brave')) {
+  //         // console.log('source.name', source.thumbnail.toDataURL());
+  //         fs.writeFile(
+  //           getAssetPath('screenshot.png'),
+  //           source.thumbnail.toPNG(),
+  //           function (err) {
+  //             if (err) throw err;
+  //             console.log('Saved!');
+  //           }
+  //         );
+  //         mainWindow.webContents.send(
+  //           'SET_SOURCE',
+  //           // source.thumbnail.toDataURL()
+  //           source.thumbnail.toPNG()
+  //         );
+  //         return;
+  //       }
+  //     }
+  //   });
 });
 // ipcMain.on('browserWindowWidth', async (event, width) => {
 //   // mainWindow.setWidth(width);
@@ -586,32 +713,13 @@ const createMainWindow = async () => {
   });
   const wc = mainWindow.webContents;
   mainWindow.on('resize', () => {
-    resizeBrowserWindow();
-    // console.log('resize');
-    // let test = mainWindow.getSize();
-    // console.log('test', test);
-
-    // wc.send('resized', mainWindow.getSize());
-    // wc.send('resize');
+    if (browserWindow) resizeBrowserWindow();
   });
   mainWindow.on('resized', (e) => {
-    resizeBrowserWindow();
-
-    // console.log('resize');
-    // let test = mainWindow.getSize();
-    // console.log('test', test);
-
-    // wc.send('resized', mainWindow.getSize());
-    // wc.send('resized');
+    if (browserWindow) resizeBrowserWindow();
   });
   mainWindow.on('will-move', (e) => {
-    // console.log('will-move');
-
-    // let test = mainWindow.getSize();
-    // console.log('test', test);
-    browserWindow.hide();
-    // wc.send('resized', mainWindow.getSize());
-    wc.send('will-move');
+    if (browserWindow) browserWindow.hide();
   });
   mainWindow.on('move', (e) => {
     // console.log(e.sender);
@@ -623,23 +731,28 @@ const createMainWindow = async () => {
     // wc.send('move');
   });
   const resizeBrowserWindow = (e) => {
+    if (browserWindow) browserWindow.setResizable(true);
     mainWindowBounds = mainWindow.getBounds();
     // console.log('mainWindowBounds', mainWindowBounds);
     // console.log('browserWindowBounds', browserWindowBounds);
     browserWindowBounds.width = Math.round(mainWindowBounds.width / 2 - 10);
-    browserWindowBounds.height = Math.round(mainWindowBounds.height - 250);
-    browserWindow.setSize(
-      browserWindowBounds.width,
-      browserWindowBounds.height
-    );
-    browserWindow.setPosition(
-      mainWindowBounds.x + 10,
-      mainWindowBounds.y + 180
-    );
+    browserWindowBounds.height = Math.round(mainWindowBounds.height - 250); //default
+    // browserWindowBounds.height = Math.round(mainWindowBounds.height - 300); //testing
+    if (browserWindow)
+      browserWindow.setSize(
+        browserWindowBounds.width,
+        browserWindowBounds.height
+      );
+    if (browserWindow)
+      browserWindow.setPosition(
+        mainWindowBounds.x + 10,
+        mainWindowBounds.y + 180
+      );
+    if (browserWindow) browserWindow.setResizable(false);
   };
   mainWindow.on('moved', () => {
     resizeBrowserWindow();
-    browserWindow.show();
+    if (browserWindow) browserWindow.show();
     // wc.send('moved');
   });
   mainWindow.on('will-resize', () => {
@@ -647,29 +760,32 @@ const createMainWindow = async () => {
   });
   mainWindow.on('blur', () => {
     // console.log('blur');
-    // browserWindow.hide();
-    // wc.send('will-resize');
+    // if (browserWindow) browserWindow.hide();
+    // if (browserWindow) browserWindow.minimize();
+  });
+  mainWindow.on('focus', () => {
+    // console.log('focus');
+    // if (browserWindow) browserWindow.restore();
   });
   mainWindow.on('minimize', () => {
     // console.log('minimize');
-
-    browserWindow.minimize();
-    browserWindow.hide();
+    if (browserWindow) browserWindow.minimize();
+    if (browserWindow) browserWindow.hide();
     // wc.send('will-resize');
   });
   mainWindow.on('restore', () => {
-    browserWindow.restore();
-    resizeBrowserWindow();
-    browserWindow.show();
+    // mainWindow.restore();
+    // if (browserWindow) browserWindow.restore();
+    if (browserWindow) resizeBrowserWindow();
+    if (browserWindow) browserWindow.show();
     // browserWindow.hide();
-  });
-  mainWindow.on('focus', () => {
-    // browserWindow.show();
-    // wc.send('will-resize');
   });
   // const hideBrowserWindow = () => {
 
   // }
+  mainWindow.once('ready-to-show', () => {
+    console.log('mainWindow ready');
+  });
   const menuBuilder = new MenuBuilder(mainWindow);
   menuBuilder.buildMenu();
 
@@ -679,6 +795,8 @@ const createMainWindow = async () => {
     return { action: 'deny' };
   });
   wc.on('did-finish-load', () => {
+    console.log('did-finish-load');
+    mainWindow.show();
     wc.send('window-ready', prefs);
   });
 
@@ -706,6 +824,7 @@ const createSplashWindow = async () => {
     // y: 100,
     frame: false,
     transparent: true,
+    show: false,
     // resizable: false,
     // movable: false,
     // minimizable: false,
@@ -779,9 +898,10 @@ const createBrowserWindow = async () => {
     parent: mainWindow,
     hasShadow: false,
     isAlwaysOnTop: true,
-    resizable: true,
+    resizable: false,
     skipTaskbar: true,
     movable: false,
+    show: false,
     // minimizable: false,
     // maximizable: false,
     // useContentSize: true,
@@ -795,6 +915,10 @@ const createBrowserWindow = async () => {
   });
   // browserWindow.loadURL('https://github.com');
   // browserWindow.loadURL('https://soundcloud.com');
+  // browserWindow.loadURL('https://pinterest.com');
+  // browserWindow.loadURL('https://tiktok.com');
+  // browserWindow.loadURL('https://twitter.com');
+  // browserWindow.loadURL('https://youtube.com');
   browserWindow.loadURL('https://youtube.com');
   // browserWindow.loadURL('www.youtube.com');
   // browserWindow.loadFile('splash.html');
@@ -810,7 +934,12 @@ const createBrowserWindow = async () => {
   //   }
   // });
   browserWindow.setAlwaysOnTop(true, 'screen');
-  browserWindow.on('ready', () => {
+  // browserWindow.on('ready-to-show', () => {
+  browserWindow.once('ready-to-show', () => {
+    // browserWindow.once('did-finish-load', () => {
+    browserWindow.show();
+    console.log('browserWindow did-finish-load');
+
     // browserWindow.setSize(1500, 500);
     // setTimeout(() =>     {
     // }, 1000);
@@ -845,13 +974,73 @@ app.on('window-all-closed', () => {
   }
 });
 
+// var screenshot = document.getElementById('screenshot');
+// screenshot.addEventListener('click', (event) => {
+//   mainWindow.webContents
+//     .capturePage({
+//       x: 0,
+//       y: 0,
+//       width: 800,
+//       height: 600,
+//     })
+//     .then((img) => {
+//       dialog
+//         .showSaveDialog({
+//           title: 'Select the File Path to save',
+
+//           // Default path to assets folder
+//           defaultPath: path.join(__dirname, '../assets/image.png'),
+
+//           // defaultPath: path.join(__dirname,
+//           // '../assets/image.jpeg'),
+//           buttonLabel: 'Save',
+
+//           // Restricting the user to only Image Files.
+//           filters: [
+//             {
+//               name: 'Image Files',
+//               extensions: ['png', 'jpeg', 'jpg'],
+//             },
+//           ],
+//           properties: [],
+//         })
+//         .then((file) => {
+//           // Stating whether dialog operation was
+//           // cancelled or not.
+//           console.log(file.canceled);
+//           if (!file.canceled) {
+//             console.log(file.filePath.toString());
+
+//             // Creating and Writing to the image.png file
+//             // Can save the File as a jpeg file as well,
+//             // by simply using img.toJPEG(100);
+//             fs.writeFile(
+//               file.filePath.toString(),
+//               img.toPNG(),
+//               'base64',
+//               function (err) {
+//                 if (err) throw err;
+//                 console.log('Saved!');
+//               }
+//             );
+//           }
+//         })
+//         .catch((err) => {
+//           console.log(err);
+//         });
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//     });
+// });
+
 app
   .whenReady()
   .then(() => {
     // createSplashWindow();
     //  splashWindow.setFullScreen(false);
-    createMainWindow();
     createBrowserWindow();
+    createMainWindow();
     app.on('activate', () => {
       // On macOS it's common to re-create a window in the app when the
       // dock icon is clicked and there are no other windows open.

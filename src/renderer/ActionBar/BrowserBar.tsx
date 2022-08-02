@@ -28,6 +28,7 @@ const BrowserBar = (props) => {
   // });
 
   const downloadAudioHandler = () => {
+    window.electron.ipcRenderer.sendMessage('screenshotting');
     // window.electron.ipcRenderer.on('nav: mode: warpstagram', (arg) => {
     window.electron.ipcRenderer.sendMessage(
       'BrowserBar: button: downloadAudio',
