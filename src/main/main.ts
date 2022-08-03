@@ -622,23 +622,6 @@ ipcMain.on('screenshotting', async (event, arg) => {
   //     }
   //   });
 });
-// ipcMain.on('browserWindowWidth', async (event, width) => {
-//   // mainWindow.setWidth(width);
-//   browserWindowBounds.width = Math.round(width);
-//   // console.log('width', browserWindowWidth);
-//   browserWindow.setSize(browserWindowBounds.width, browserWindowBounds.height);
-//   // event.reply('settings-broadcast', settings); // sends message to renderer
-// });
-// ipcMain.on('browserWindowHeight', async (event, height) => {
-//   // console.log('browserWindowHeight', browserWindowHeight);
-
-//   // browserWindow.setSize(1000, height);
-//   browserWindowBounds.height = Math.round(height);
-//   // console.log('height', browserWindowHeight);
-//   browserWindow.setSize(browserWindowBounds.width, browserWindowBounds.height);
-
-//   // event.reply('settings-broadcast', settings); // sends message to renderer
-// });
 
 if (process.env.NODE_ENV === 'production') {
   const sourceMapSupport = require('source-map-support');
@@ -664,7 +647,6 @@ const installExtensions = async () => {
     )
     .catch(console.log);
 };
-
 const createMainWindow = async () => {
   if (isDebug) {
     await installExtensions();
@@ -697,46 +679,17 @@ const createMainWindow = async () => {
 
   mainWindow.loadURL(resolveHtmlPath('index.html'));
 
-  mainWindow.on('ready-to-show', () => {
-    if (!mainWindow) {
-      throw new Error('"mainWindow" is not defined');
-    }
-    if (process.env.START_MINIMIZED) {
-      mainWindow.minimize();
-    } else {
-      mainWindow.show();
-    }
-  });
-
-  mainWindow.on('closed', () => {
-    mainWindow = null;
-  });
   const wc = mainWindow.webContents;
-  mainWindow.on('resize', () => {
-    if (browserWindow) resizeBrowserWindow();
-  });
-  mainWindow.on('resized', (e) => {
-    if (browserWindow) resizeBrowserWindow();
-  });
-  mainWindow.on('will-move', (e) => {
-    if (browserWindow) browserWindow.hide();
-  });
-  mainWindow.on('move', (e) => {
-    // console.log(e.sender);
-    // console.log('move');
-    // let test = mainWindow.getSize();
-    // console.log(mainWindow.getBounds());
-    // console.log('test', test);
-    // wc.send('resized', mainWindow.getSize());
-    // wc.send('move');
-  });
+
   const resizeBrowserWindow = (e) => {
     if (browserWindow) browserWindow.setResizable(true);
     mainWindowBounds = mainWindow.getBounds();
     // console.log('mainWindowBounds', mainWindowBounds);
     // console.log('browserWindowBounds', browserWindowBounds);
     browserWindowBounds.width = Math.round(mainWindowBounds.width / 2 - 10);
+    // browserWindowBounds.width = 1;
     browserWindowBounds.height = Math.round(mainWindowBounds.height - 250); //default
+    // browserWindowBounds.height = 1; //default
     // browserWindowBounds.height = Math.round(mainWindowBounds.height - 300); //testing
     if (browserWindow)
       browserWindow.setSize(
@@ -748,61 +701,137 @@ const createMainWindow = async () => {
         mainWindowBounds.x + 10,
         mainWindowBounds.y + 180
       );
-    if (browserWindow) browserWindow.setResizable(false);
+    // if (browserWindow) browserWindow.setResizable(false);
   };
-  mainWindow.on('moved', () => {
-    resizeBrowserWindow();
-    if (browserWindow) browserWindow.show();
-    // wc.send('moved');
+
+  mainWindow.on('always-on-top-changed', () => {
+    console.log('always-on-top-changed');
   });
-  mainWindow.on('will-resize', () => {
-    // wc.send('will-resize');
+  mainWindow.on('app-command', () => {
+    console.log('app-command');
   });
   mainWindow.on('blur', () => {
-    // console.log('blur');
-    // if (browserWindow) browserWindow.hide();
-    // if (browserWindow) browserWindow.minimize();
+    console.log('blur');
+  });
+  mainWindow.on('close', () => {
+    console.log('close');
+  });
+  mainWindow.on('closed', () => {
+    console.log('closed');
+    mainWindow = null;
+  });
+  mainWindow.on('enter-full-screen', () => {
+    console.log('enter-full-screen');
+  });
+  mainWindow.on('enter-html-full-screen', () => {
+    console.log('enter-html-full-screen');
   });
   mainWindow.on('focus', () => {
-    // console.log('focus');
-    // if (browserWindow) browserWindow.restore();
+    console.log('focus');
+  });
+  mainWindow.on('hide', () => {
+    console.log('hide');
+  });
+  mainWindow.on('leave-full-screen', () => {
+    console.log('leave-full-screen');
+  });
+  mainWindow.on('leave-html-full-screen', () => {
+    console.log('leave-html-full-screen');
+  });
+  mainWindow.on('maximize', () => {
+    console.log('maximize');
   });
   mainWindow.on('minimize', () => {
-    // console.log('minimize');
+    console.log('minimize');
     if (browserWindow) browserWindow.minimize();
     if (browserWindow) browserWindow.hide();
     // wc.send('will-resize');
   });
+  mainWindow.on('move', (e) => {
+    console.log('move');
+
+    // resizeBrowserWindow();
+    if (browserWindow) browserWindow.setResizable(true);
+    browserWindow.setSize(1, 1);
+    // console.log(e.sender);
+    // let test = mainWindow.getSize();
+    // console.log(mainWindow.getBounds());
+    // console.log('test', test);
+    // wc.send('resized', mainWindow.getSize());
+    // wc.send('move');
+  });
+  mainWindow.on('moved', () => {
+    console.log('moved');
+    // resizeBrowserWindow();
+    // if (browserWindow) browserWindow.show();
+    // wc.send('moved');
+  });
+  mainWindow.on('new-window-for-tab', () => {
+    console.log('new-window-for-tab');
+  });
+  mainWindow.on('ready-to-show', () => {
+    console.log('ready-to-show');
+    if (!mainWindow) {
+      throw new Error('"mainWindow" is not defined');
+    }
+    if (process.env.START_MINIMIZED) {
+      mainWindow.minimize();
+    } else {
+      mainWindow.show();
+    }
+  });
+  mainWindow.on('resize', () => {
+    console.log('resize');
+    if (browserWindow) resizeBrowserWindow();
+  });
+  mainWindow.on('resized', (e) => {
+    console.log('resized');
+    if (browserWindow) resizeBrowserWindow();
+  });
+  mainWindow.on('responsive', () => {
+    console.log('responsive');
+  });
   mainWindow.on('restore', () => {
+    console.log('restore');
     // mainWindow.restore();
     // if (browserWindow) browserWindow.restore();
     if (browserWindow) resizeBrowserWindow();
     if (browserWindow) browserWindow.show();
     // browserWindow.hide();
   });
-  // const hideBrowserWindow = () => {
-
-  // }
-  mainWindow.once('ready-to-show', () => {
-    console.log('mainWindow ready');
+  mainWindow.on('session-end', () => {
+    console.log('session-end');
   });
-  const menuBuilder = new MenuBuilder(mainWindow);
-  menuBuilder.buildMenu();
-
-  // Open urls in the user's browser
-  wc.setWindowOpenHandler((edata) => {
-    shell.openExternal(edata.url);
-    return { action: 'deny' };
+  mainWindow.on('sheet-begin', () => {
+    console.log('sheet-begin');
   });
-  wc.on('did-finish-load', () => {
-    console.log('did-finish-load');
-    mainWindow.show();
-    wc.send('window-ready', prefs);
+  mainWindow.on('sheet-end', () => {
+    console.log('sheet-end');
   });
-
-  // Remove this if your app does not use auto updates
-  // eslint-disable-next-line
-  new AppUpdater();
+  mainWindow.on('show', () => {
+    console.log('show');
+  });
+  mainWindow.on('system-context-menu', () => {
+    console.log('system-context-menu');
+  });
+  mainWindow.on('unmaximize', () => {
+    console.log('unmaximize');
+  });
+  mainWindow.on('unresponsive', () => {
+    console.log('unresponsive');
+  });
+  mainWindow.on('will-move', (e) => {
+    console.log('will-move');
+    if (browserWindow) browserWindow.setResizable(true);
+    // resizeBrowserWindow();
+    // console.log('will-move');
+    // browserWindow.setSize(500, 500);
+    browserWindow.setSize(1, 1);
+    // browserWindow.hide();
+  });
+  mainWindow.on('will-resize', () => {
+    // wc.send('will-resize');
+  });
 };
 const createSplashWindow = async () => {
   if (isDebug) {

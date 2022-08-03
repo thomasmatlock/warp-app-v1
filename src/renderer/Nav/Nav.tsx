@@ -54,10 +54,12 @@ const Nav = (props) => {
     setVideoMode(false);
     setWarpstagramMode(true);
   });
-
+  const mouseEnterHandler = () => {
+    console.log('mouse enter');
+  };
   return (
     <Fragment>
-      <div className="navMain">
+      <div onMouseEnter={mouseEnterHandler} className="navMain">
         <div className="logoContainer">
           <a className="navLogo">
             <img className="navLogoImg" alt="icon" src={NavLogoImg} />
