@@ -520,9 +520,6 @@ ipcMain.on('settings: request', async (event, arg) => {
   event.reply('settings-broadcast', settings); // sends message to renderer
 });
 (function browserWindowListeners() {
-  ipcMain.on('screenshotting', async (event, arg) => {
-    // setBrowserScreenshot(event, arg);
-  });
   ipcMain.on('browserWindowDimensions', async (event, arg) => {
     browserWindowBounds.width = Math.round(arg.width);
     browserWindowBounds.height = Math.round(arg.height);
@@ -535,19 +532,26 @@ ipcMain.on('settings: request', async (event, arg) => {
     browserWindow.blur();
   });
   ipcMain.on('prepareToHideBrowserWindow', async (event, arg) => {
-    console.log('prepareToHideBrowserWindow');
+    // console.log('prepareToHideBrowserWindow');
     setBrowserScreenshot();
   });
   ipcMain.on('hideBrowserWindow', async (event, arg) => {
-    console.log('hideBrowserWindow');
+    // console.log('hideBrowserWindow');
     browserWindow.setAlwaysOnTop(false, 'screen');
     mainWindow.setAlwaysOnTop(true, 'screen');
+    // stopUsingWhiteBackground;
+    if (browserWindow.webContents.getURL().includes('pinterest')) {
+      mainWindow.webContents.send('stopUsingWhiteBackground');
+    }
   });
   ipcMain.on('showBrowserWindow', async (event, arg) => {
-    console.log('showBrowserWindow');
+    // console.log('showBrowserWindow');
     mainWindow.setAlwaysOnTop(false, 'screen');
     if (browserWindow) browserWindow.setAlwaysOnTop(true, 'screen');
     if (browserWindow) browserWindow.focus();
+    if (browserWindow.webContents.getURL().includes('pinterest')) {
+      mainWindow.webContents.send('useWhiteBackground');
+    }
   });
 })();
 
@@ -559,7 +563,7 @@ const setBrowserScreenshot = () => {
   const getAssetPath = (...paths: string[]): string => {
     return path.join(RESOURCES_PATH, ...paths);
   };
-  console.log('setting screenshot');
+
   if (browserWindow)
     browserWindow.webContents
       .capturePage({
@@ -682,16 +686,16 @@ const createMainWindow = async () => {
     // console.log('mainWindow always-on-top-changed');
   });
   mainWindow.on('app-command', () => {
-    console.log('mainWindow app-command');
+    // console.log('mainWindow app-command');
   });
   mainWindow.on('blur', () => {
     console.log('mainWindow blur');
   });
   mainWindow.on('close', () => {
-    console.log('mainWindow close');
+    // console.log('mainWindow close');
   });
   mainWindow.on('closed', () => {
-    console.log('mainWindow closed');
+    // console.log('mainWindow closed');
     mainWindow = null;
   });
   mainWindow.on('enter-full-screen', () => {
@@ -722,7 +726,7 @@ const createMainWindow = async () => {
     // setBrowserScreenshot();
   });
   mainWindow.on('minimize', () => {
-    console.log('mainWindow minimize');
+    // console.log('mainWindow minimize');
     if (browserWindow) browserWindow.minimize();
     // if (browserWindow) browserWindow.hide();
     // wc.send('will-resize');
@@ -920,10 +924,10 @@ const createBrowserWindow = async () => {
     },
   });
   let URLS = [
-    'https://www.google.com/',
-    'https://www.youtube.com/',
-    'https://www.github.com/',
-    'https://www.soundcloud.com/',
+    // 'https://www.google.com/',
+    // 'https://www.youtube.com/',
+    // 'https://www.github.com/',
+    // 'https://www.soundcloud.com/',
     'https://www.pinterest.com/',
   ];
   let url = URLS[Math.floor(Math.random() * URLS.length)];
@@ -949,20 +953,21 @@ const createBrowserWindow = async () => {
     browserWindow.show();
   });
   browserWindow.on('always-on-top-changed', () => {
-    console.log('browserWindow always-on-top-changed');
+    // console.log('browserWindow always-on-top-changed');
   });
   browserWindow.on('app-command', () => {
     // console.log('browserWindow app-command');
   });
   browserWindow.on('blur', () => {
     // setBrowserScreenshot();
+
     console.log('browserWindow blur');
   });
   browserWindow.on('close', () => {
-    console.log('browserWindow close');
+    // console.log('browserWindow close');
   });
   browserWindow.on('closed', () => {
-    console.log('browserWindow closed');
+    // console.log('browserWindow closed');
     browserWindow = null;
   });
   browserWindow.on('enter-full-screen', () => {
