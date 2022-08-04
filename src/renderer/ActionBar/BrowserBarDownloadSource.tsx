@@ -51,8 +51,10 @@ const BrowserBarDownloadSource = () => {
     // console.log('disabledAllSources');
   };
   const selectedSourceHandler = (event) => {
+    // mouseLeaveHandler();
     disableAllSources();
     toggleSourceExpanded();
+    // setIsSourcesExpanded(false);
   };
   const toggleSourceExpanded = (event) => {
     window.electron.ipcRenderer.sendMessage('hideBrowserWindow');
@@ -63,9 +65,12 @@ const BrowserBarDownloadSource = () => {
     }
   };
   const mouseEnterHandler = () => {
+    // window.electron.ipcRenderer.sendMessage('prepareToHideBrowserWindow');
     // console.log('mouse enter');
   };
   const mouseLeaveHandler = () => {
+    // toggleSourceExpanded();
+    setIsSourcesExpanded(false);
     window.electron.ipcRenderer.sendMessage('showBrowserWindow');
     // console.log('mouse leave');
   };

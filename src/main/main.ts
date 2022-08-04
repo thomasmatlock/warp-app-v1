@@ -535,9 +535,11 @@ ipcMain.on('settings: request', async (event, arg) => {
     browserWindow.blur();
   });
   ipcMain.on('prepareToHideBrowserWindow', async (event, arg) => {
-    // setBrowserScreenshot();
+    console.log('prepareToHideBrowserWindow');
+    setBrowserScreenshot();
   });
   ipcMain.on('hideBrowserWindow', async (event, arg) => {
+    console.log('hideBrowserWindow');
     browserWindow.setAlwaysOnTop(false, 'screen');
     mainWindow.setAlwaysOnTop(true, 'screen');
   });
@@ -557,7 +559,7 @@ const setBrowserScreenshot = () => {
   const getAssetPath = (...paths: string[]): string => {
     return path.join(RESOURCES_PATH, ...paths);
   };
-  // console.log('setBrowserScreenshot');
+  console.log('setting screenshot');
   if (browserWindow)
     browserWindow.webContents
       .capturePage({
@@ -700,6 +702,7 @@ const createMainWindow = async () => {
   });
   mainWindow.on('focus', () => {
     wc.send('request-browserDimensions');
+    resizeBrowserWindow();
     console.log('mainWindow focus');
     // setBrowserScreenshot();
   });
@@ -713,8 +716,8 @@ const createMainWindow = async () => {
     console.log('mainWindow leave-html-full-screen');
   });
   mainWindow.on('maximize', () => {
-    // console.log('mainWindow maximize');
     wc.send('request-browserDimensions');
+    resizeBrowserWindow();
     resizeBrowserWindow();
     // setBrowserScreenshot();
   });
@@ -726,12 +729,10 @@ const createMainWindow = async () => {
   });
   mainWindow.on('move', (e) => {
     wc.send('request-browserDimensions');
-    // console.log('mainWindow move');
     resizeBrowserWindow();
   });
   mainWindow.on('moved', () => {
     wc.send('request-browserDimensions');
-    // console.log('mainWindow moved');
     resizeBrowserWindow();
 
     // browserWindow.setSize(1, 1);
@@ -758,29 +759,22 @@ const createMainWindow = async () => {
     // console.log('mainWindow resize');
     wc.send('request-browserDimensions');
     resizeBrowserWindow();
-
-    // if (browserWindow) resizeBrowserWindow();
   });
   mainWindow.on('resized', (e) => {
     resizeBrowserWindow();
     wc.send('request-browserDimensions');
-
-    // console.log('mainWindow resized');
+    resizeBrowserWindow();
   });
   mainWindow.on('responsive', () => {
     console.log('mainWindow responsive');
   });
   mainWindow.on('restore', () => {
-    // console.log('mainWindow restore');
     wc.send('request-browserDimensions');
     // mainWindow.restore();
-    // setBrowserScreenshot();
+    wc.send('request-browserDimensions');
+    resizeBrowserWindow();
     if (browserWindow) browserWindow.restore();
     resizeBrowserWindow();
-
-    // if (browserWindow) resizeBrowserWindow();
-    // if (browserWindow) browserWindow.show();
-    // browserWindow.hide();
   });
   mainWindow.on('session-end', () => {
     console.log('mainWindow session-end');
@@ -792,13 +786,15 @@ const createMainWindow = async () => {
     console.log('mainWindow sheet-end');
   });
   mainWindow.on('show', () => {
-    console.log('mainWindow show');
+    wc.send('request-browserDimensions');
+    resizeBrowserWindow();
   });
   mainWindow.on('system-context-menu', () => {
     console.log('mainWindow system-context-menu');
   });
   mainWindow.on('unmaximize', () => {
     console.log('mainWindow unmaximize');
+    wc.send('request-browserDimensions');
     resizeBrowserWindow();
   });
   mainWindow.on('unresponsive', () => {
@@ -806,20 +802,11 @@ const createMainWindow = async () => {
   });
   mainWindow.on('will-move', (e) => {
     wc.send('request-browserDimensions');
-    // console.log('mainWindow will-move');
     resizeBrowserWindow();
-
-    // if (browserWindow) browserWindow.setResizable(true);
-    // browserWindow.setSize(1, 1);
-    // resizeBrowserWindow();
-    // browserWindow.hide();
   });
   mainWindow.on('will-resize', () => {
-    // console.log('mainWindow will-resize');
     wc.send('request-browserDimensions');
     resizeBrowserWindow();
-
-    // wc.send('will-resize');
   });
 };
 const createSplashWindow = async () => {
@@ -932,13 +919,15 @@ const createBrowserWindow = async () => {
       //   : path.join(__dirname, '../../.erb/dll/preload.js'),
     },
   });
-  // browserWindow.loadURL('https://github.com');
-  // browserWindow.loadURL('https://soundcloud.com');
-  // browserWindow.loadURL('https://pinterest.com');
-  // browserWindow.loadURL('https://tiktok.com');
-  // browserWindow.loadURL('https://twitter.com');
-  // browserWindow.loadURL('https://youtube.com');
-  browserWindow.loadURL('https://youtube.com');
+  let URLS = [
+    'https://www.google.com/',
+    'https://www.youtube.com/',
+    'https://www.github.com/',
+    'https://www.soundcloud.com/',
+    'https://www.pinterest.com/',
+  ];
+  let url = URLS[Math.floor(Math.random() * URLS.length)];
+  browserWindow.loadURL(url);
   // browserWindow.loadURL('www.youtube.com');
   // browserWindow.loadFile('splash.html');
 

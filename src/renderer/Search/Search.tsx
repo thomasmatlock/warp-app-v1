@@ -157,10 +157,10 @@ const Search = (props) => {
   });
   const mouseEnterHandler = () => {
     // console.log('mouse enter');
-    // window.electron.ipcRenderer.sendMessage('prepareToHideBrowserWindow');
+    window.electron.ipcRenderer.sendMessage('prepareToHideBrowserWindow');
   };
   const mouseLeaveHandler = () => {
-    // window.electron.ipcRenderer.sendMessage('showBrowserWindow');
+    window.electron.ipcRenderer.sendMessage('showBrowserWindow');
     // console.log('mouse leave');
   };
   return (

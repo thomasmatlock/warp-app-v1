@@ -28,10 +28,11 @@ const ActionBar = (props) => {
   const mouseEnterHandler = () => {
     // console.log('mouse enter');
     // window.electron.ipcRenderer.sendMessage('browserNotHovered');
-    // window.electron.ipcRenderer.sendMessage('prepareToHideBrowserWindow');
+    window.electron.ipcRenderer.sendMessage('prepareToHideBrowserWindow');
   };
   const mouseLeaveHandler = () => {
     // console.log('mouse leave');
+    window.electron.ipcRenderer.sendMessage('showBrowserWindow');
   };
   // window.electron.ipcRenderer.sendMessage('package', ['Nav requesting package.json']); // send message to main process
   return (
