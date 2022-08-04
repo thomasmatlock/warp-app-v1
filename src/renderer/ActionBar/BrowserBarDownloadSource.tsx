@@ -55,15 +55,25 @@ const BrowserBarDownloadSource = () => {
     toggleSourceExpanded();
   };
   const toggleSourceExpanded = (event) => {
+    window.electron.ipcRenderer.sendMessage('hideBrowserWindow');
     if (isSourcesExpanded) {
       setIsSourcesExpanded(false);
     } else if (!isSourcesExpanded) {
       setIsSourcesExpanded(true);
     }
   };
+  const mouseEnterHandler = () => {
+    // console.log('mouse enter');
+  };
+  const mouseLeaveHandler = () => {
+    window.electron.ipcRenderer.sendMessage('showBrowserWindow');
+    // console.log('mouse leave');
+  };
   return (
     <Fragment>
       <div
+        onMouseEnter={mouseEnterHandler}
+        onMouseLeave={mouseLeaveHandler}
         onClick={toggleSourceExpanded}
         className={
           !isSourcesExpanded

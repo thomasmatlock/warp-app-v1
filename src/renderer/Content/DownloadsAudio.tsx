@@ -9,9 +9,20 @@ const DownloadsAudio = () => {
   window.electron.ipcRenderer.on('Search: InputChange', (arg) => {
     setSearchInput(arg[0]);
   });
+  const mouseEnterHandler = () => {
+    // console.log('mouse enter');
+    window.electron.ipcRenderer.sendMessage('browserNotHovered');
+  };
+  const mouseLeaveHandler = () => {
+    // console.log('mouse leave');
+  };
   return (
     <Fragment>
-      <div className="contentPanel">
+      <div
+        // onMouseEnter={mouseEnterHandler}
+        // onMouseLeave={mouseLeaveHandler}
+        className="contentPanel"
+      >
         {/* <div className="content__panel__toggle_collapse"></div> */}
         <ul className="content__panel__downloads__list">
           <li className="content__panel__downloads__list__item">

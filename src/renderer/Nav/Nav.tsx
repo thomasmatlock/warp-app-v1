@@ -55,11 +55,19 @@ const Nav = (props) => {
     setWarpstagramMode(true);
   });
   const mouseEnterHandler = () => {
-    console.log('mouse enter');
+    // console.log('mouse enter');
+    window.electron.ipcRenderer.sendMessage('browserNotHovered');
+  };
+  const mouseLeaveHandler = () => {
+    // console.log('mouse leave');
   };
   return (
     <Fragment>
-      <div onMouseEnter={mouseEnterHandler} className="navMain">
+      <div
+        // onMouseEnter={mouseEnterHandler}
+        // onMouseLeave={mouseLeaveHandler}
+        className="navMain"
+      >
         <div className="logoContainer">
           <a className="navLogo">
             <img className="navLogoImg" alt="icon" src={NavLogoImg} />

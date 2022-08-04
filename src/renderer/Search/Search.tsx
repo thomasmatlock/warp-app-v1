@@ -13,8 +13,11 @@ const Search = (props) => {
 
   const hideModalHandler = () => {
     setIsModalOpen(false);
+    window.electron.ipcRenderer.sendMessage('showBrowserWindow');
   };
   const showModalHandler = () => {
+    window.electron.ipcRenderer.sendMessage('hideBrowserWindow');
+
     setIsModalOpen(true);
   };
   const restoreInputDefaultWidthDelay = 3000;
@@ -152,9 +155,19 @@ const Search = (props) => {
       searchClearTextHandler();
     }
   });
+  const mouseEnterHandler = () => {
+    // console.log('mouse enter');
+    // window.electron.ipcRenderer.sendMessage('prepareToHideBrowserWindow');
+  };
+  const mouseLeaveHandler = () => {
+    // window.electron.ipcRenderer.sendMessage('showBrowserWindow');
+    // console.log('mouse leave');
+  };
   return (
     <Fragment>
       <form
+        onMouseEnter={mouseEnterHandler}
+        onMouseLeave={mouseLeaveHandler}
         className="search"
         onSubmit={searchInputSubmit}
         // onMouseEnter={userStartedInteracting}

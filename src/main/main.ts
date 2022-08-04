@@ -12,6 +12,7 @@ import path from 'path';
 import fs from 'fs';
 import {
   app,
+  BrowserView,
   BrowserWindow,
   desktopCapturer,
   dialog,
@@ -431,198 +432,159 @@ class AppUpdater {
 let mainWindow: BrowserWindow | null = null;
 let splashWindow: BrowserWindow | null = null;
 let browserWindow: BrowserWindow | null = null;
-let mainWindowBounds = { x: 200, y: 0, width: 1600, height: 900 };
-// let splashWindowBounds = {
-//   x: 400,
-//   y: 400,
-//   width: 400,
-//   height: 400,
+// let windowBounds = {
+//   main: { x: 200, y: 0, width: 1600, height: 900 },
+//   splash: { x: 400, y: 400, width: 400, height: 400 },
+//   browser: {
+//     // x: this.main.x + 10,
+//     // y: this.main.y + 180,
+//     // width: this.main.width / 2 - 250,
+//     // height: this.main.height - 250, // default
+//   },
 // };
+let mainWindowBounds = { x: 200, y: 0, width: 1600, height: 900 };
 let browserWindowBounds = {
-  x: mainWindowBounds.x + 10,
-  y: mainWindowBounds.y + 180,
-  width: mainWindowBounds.width / 2 - 10,
+  x: mainWindowBounds.x + 8,
+  y: mainWindowBounds.y + 183,
+  width: mainWindowBounds.width / 2 - 250,
   height: mainWindowBounds.height - 250, // default
   // height: mainWindowBounds.height - 300, // testing
 };
-// MENU LISTENERS
-ipcMain.on('Menu: Shortcuts: Restart', async (event, arg) => {
-  console.log('Menu: Shortcuts: Restart', arg);
-  event.reply('Menu: Shortcuts: Restart', arg);
-});
-ipcMain.on('modal: preferences', async (event, arg) => {
-  // console.log('modal: preferences', arg);
-  // console.log(prefs);
 
-  event.reply('modal: preferences', prefs);
-});
-// SEARCH LISTENERS
-ipcMain.on('Search: InputChange', async (event, arg) => {
-  // console.log('Search: InputChange', arg);
-  event.reply('Search: InputChange', arg);
-});
-ipcMain.on('Search: Submit', async (event, arg) => {
-  console.log('Search: Submit', arg);
-  event.reply('Search: Submit', arg);
-});
-// NAV BAR LISTENERS
-ipcMain.on('package', async (event, arg) => {
-  event.reply('package', packageJSON); // sends message to renderer
-});
-ipcMain.on('nav: mode: audio', async (event, arg) => {
-  event.reply('nav: mode: audio', 'nav: mode: audio successful'); // sends message to renderer
-});
-ipcMain.on('nav: mode: video', async (event, arg) => {
-  event.reply('nav: mode: video', 'nav: mode: video successful'); // sends message to renderer
-});
-ipcMain.on('nav: mode: warpstagram', async (event, arg) => {
-  event.reply('nav: mode: warpstagram', 'nav: mode: warpstagram successful'); // sends message to renderer
-});
-// BROWSERBAR LISTENERS
-ipcMain.on('BrowserBar: button: downloadAudio', async (event, arg) => {
-  event.reply('BrowserBar: button: downloadAudio successful');
-});
-ipcMain.on('BrowserBar: button: downloadVideo', async (event, arg) => {
-  event.reply('BrowserBar: button: downloadVideo successful'); // sends message to renderer
-});
-// FILTERBAR LISTENERS
-ipcMain.on('FilterBar: Warpstagram: FilterTypeAll', async (event, arg) => {
-  event.reply('FilterBar: Warpstagram: FilterTypeAll successful'); // sends message to renderer
-});
-ipcMain.on('FilterBar: Warpstagram: FilterTypeUsers', async (event, arg) => {
-  event.reply('FilterBar: Warpstagram: FilterTypeUsers successful'); // sends message to renderer
-});
-ipcMain.on('FilterBar: Warpstagram: FilterTypeHashtags', async (event, arg) => {
-  event.reply('FilterBar: Warpstagram: FilterTypeHashtags successful'); // sends message to renderer
-});
-ipcMain.on(
-  'FilterBar: Warpstagram: FilterTypeLocations',
-  async (event, arg) => {
-    event.reply('FilterBar: Warpstagram: FilterTypeLocations successful'); // sends message to renderer
-  }
-);
+(function appListeners() {
+  // MENU LISTENERS
+  ipcMain.on('Menu: Shortcuts: Restart', async (event, arg) => {
+    console.log('Menu: Shortcuts: Restart', arg);
+    event.reply('Menu: Shortcuts: Restart', arg);
+  });
+  ipcMain.on('modal: preferences', async (event, arg) => {
+    // console.log('modal: preferences', arg);
+    // console.log(prefs);
+
+    event.reply('modal: preferences', prefs);
+  });
+  // MENU LISTENERS
+  ipcMain.on('Menu: Shortcuts: Restart', async (event, arg) => {
+    console.log('Menu: Shortcuts: Restart', arg);
+    event.reply('Menu: Shortcuts: Restart', arg);
+  });
+  ipcMain.on('modal: preferences', async (event, arg) => {
+    // console.log('modal: preferences', arg);
+    // console.log(prefs);
+
+    event.reply('modal: preferences', prefs);
+  });
+  // NAV BAR LISTENERS
+  ipcMain.on('package', async (event, arg) => {
+    event.reply('package', packageJSON); // sends message to renderer
+  });
+  ipcMain.on('nav: mode: audio', async (event, arg) => {
+    event.reply('nav: mode: audio', 'nav: mode: audio successful'); // sends message to renderer
+  });
+  ipcMain.on('nav: mode: video', async (event, arg) => {
+    event.reply('nav: mode: video', 'nav: mode: video successful'); // sends message to renderer
+  });
+  ipcMain.on('nav: mode: warpstagram', async (event, arg) => {
+    event.reply('nav: mode: warpstagram', 'nav: mode: warpstagram successful'); // sends message to renderer
+  });
+  // BROWSERBAR LISTENERS
+  ipcMain.on('BrowserBar: button: downloadAudio', async (event, arg) => {
+    event.reply('BrowserBar: button: downloadAudio successful');
+  });
+  ipcMain.on('BrowserBar: button: downloadVideo', async (event, arg) => {
+    event.reply('BrowserBar: button: downloadVideo successful'); // sends message to renderer
+  });
+  // FILTERBAR LISTENERS
+  ipcMain.on('FilterBar: Warpstagram: FilterTypeAll', async (event, arg) => {
+    event.reply('FilterBar: Warpstagram: FilterTypeAll successful'); // sends message to renderer
+  });
+  ipcMain.on('FilterBar: Warpstagram: FilterTypeUsers', async (event, arg) => {
+    event.reply('FilterBar: Warpstagram: FilterTypeUsers successful'); // sends message to renderer
+  });
+  ipcMain.on(
+    'FilterBar: Warpstagram: FilterTypeHashtags',
+    async (event, arg) => {
+      event.reply('FilterBar: Warpstagram: FilterTypeHashtags successful'); // sends message to renderer
+    }
+  );
+  ipcMain.on(
+    'FilterBar: Warpstagram: FilterTypeLocations',
+    async (event, arg) => {
+      event.reply('FilterBar: Warpstagram: FilterTypeLocations successful'); // sends message to renderer
+    }
+  );
+})();
+
 ipcMain.on('settings: request', async (event, arg) => {
   console.log('settings: request', arg);
-
   event.reply('settings-broadcast', settings); // sends message to renderer
 });
-ipcMain.on('screenshotting', async (event, arg) => {
-  browserWindow.webContents
-    .capturePage({
-      x: 0,
-      y: 0,
-      width: browserWindowBounds.width,
-      height: browserWindowBounds.height,
-    })
-    .then((img) => {
-      console.log('captured');
+(function browserWindowListeners() {
+  ipcMain.on('screenshotting', async (event, arg) => {
+    // setBrowserScreenshot(event, arg);
+  });
+  ipcMain.on('browserWindowDimensions', async (event, arg) => {
+    browserWindowBounds.width = Math.round(arg.width);
+    browserWindowBounds.height = Math.round(arg.height);
+    // console.log(browserWindowBounds);
+  });
+  ipcMain.on('browserHovered', async (event, arg) => {
+    browserWindow.focus();
+  });
+  ipcMain.on('browserNotHovered', async (event, arg) => {
+    browserWindow.blur();
+  });
+  ipcMain.on('prepareToHideBrowserWindow', async (event, arg) => {
+    // setBrowserScreenshot();
+  });
+  ipcMain.on('hideBrowserWindow', async (event, arg) => {
+    browserWindow.setAlwaysOnTop(false, 'screen');
+    mainWindow.setAlwaysOnTop(true, 'screen');
+  });
+  ipcMain.on('showBrowserWindow', async (event, arg) => {
+    console.log('showBrowserWindow');
+    mainWindow.setAlwaysOnTop(false, 'screen');
+    if (browserWindow) browserWindow.setAlwaysOnTop(true, 'screen');
+    if (browserWindow) browserWindow.focus();
+  });
+})();
 
-      dialog
-        .showSaveDialog({
-          title: 'Select the File Path to save',
+const setBrowserScreenshot = () => {
+  const RESOURCES_PATH = app.isPackaged
+    ? path.join(process.resourcesPath, 'assets')
+    : path.join(__dirname, '../../assets');
 
-          // Default path to assets folder
-          defaultPath: path.join(__dirname, '../assets/image.png'),
-
-          // defaultPath: path.join(__dirname,
-          // '../assets/image.jpeg'),
-          buttonLabel: 'Save',
-
-          // Restricting the user to only Image Files.
-          filters: [
-            {
-              name: 'Image Files',
-              extensions: ['png', 'jpeg', 'jpg'],
-            },
-          ],
-          properties: [],
-        })
-        .then((file) => {
-          // Stating whether dialog operation was
-          // cancelled or not.
-          console.log(file.canceled);
-          if (!file.canceled) {
-            console.log(file.filePath.toString());
-
-            // Creating and Writing to the image.png file
-            // Can save the File as a jpeg file as well,
-            // by simply using img.toJPEG(100);
-            fs.writeFile(
-              file.filePath.toString(),
-              img.toPNG(),
-              'base64',
-              function (err) {
-                if (err) throw err;
-                console.log('Saved!');
-              }
-            );
+  const getAssetPath = (...paths: string[]): string => {
+    return path.join(RESOURCES_PATH, ...paths);
+  };
+  // console.log('setBrowserScreenshot');
+  if (browserWindow)
+    browserWindow.webContents
+      .capturePage({
+        x: 0,
+        y: 0,
+        width: browserWindowBounds.width,
+        height: browserWindowBounds.height,
+      })
+      .then((img) => {
+        // let defaultPath: path.join(__dirname, '../assets/image.png');
+        // console.log('captured');
+        fs.writeFile(
+          getAssetPath('screenshot.png'),
+          img.toPNG(),
+          'base64',
+          function (err) {
+            if (err) throw err;
+            // console.log('Saved!');
           }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-
-  // console.log('screenshotting');
-  //   desktopCapturer
-  //     .getSources({
-  //       types: ['screen'],
-  //       thumbnailSize: { width: 200, height: 200 },
-  //     })
-  //     .then(async (sources) => {
-  //       console.log('sources', sources);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // const RESOURCES_PATH = app.isPackaged
-  //   ? path.join(process.resourcesPath, 'assets')
-  //   : path.join(__dirname, '../../assets');
-
-  // const getAssetPath = (...paths: string[]): string => {
-  //   return path.join(RESOURCES_PATH, ...paths);
-  // };
-
-  // console.log(getAssetPath('screenshot.png'));
-
-  // desktopCapturer
-  //   .getSources({
-  //     types: ['window'],
-  //     thumbnailSize: {
-  //       width: browserWindowBounds.width,
-  //       height: browserWindowBounds.height,
-  //     },
-  //   })
-  //   .then(async (sources) => {
-  //     for (const source of sources) {
-  //       console.log(source.name);
-  //       console.log(browserWindowBounds.width);
-
-  //       // if (source.name === 'Electron') {
-  //       if (source.name.includes('Brave')) {
-  //         // console.log('source.name', source.thumbnail.toDataURL());
-  //         fs.writeFile(
-  //           getAssetPath('screenshot.png'),
-  //           source.thumbnail.toPNG(),
-  //           function (err) {
-  //             if (err) throw err;
-  //             console.log('Saved!');
-  //           }
-  //         );
-  //         mainWindow.webContents.send(
-  //           'SET_SOURCE',
-  //           // source.thumbnail.toDataURL()
-  //           source.thumbnail.toPNG()
-  //         );
-  //         return;
-  //       }
-  //     }
-  //   });
-});
-
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  // browserWindow.setAlwaysOnTop(false, 'screen');
+  // mainWindow.setAlwaysOnTop(true, 'screen');
+};
 if (process.env.NODE_ENV === 'production') {
   const sourceMapSupport = require('source-map-support');
   sourceMapSupport.install();
@@ -649,7 +611,7 @@ const installExtensions = async () => {
 };
 const createMainWindow = async () => {
   if (isDebug) {
-    await installExtensions();
+    // await installExtensions();
   }
 
   const RESOURCES_PATH = app.isPackaged
@@ -669,6 +631,12 @@ const createMainWindow = async () => {
     minWidth: 850,
     minHeight: 500,
     darkTheme: true,
+    // titleBarStyle: 'hidden',
+    // titleBarOverlay: {
+    //   color: '#1a1a1a',
+    //   symbolColor: '#eee',
+    //   height: 40,
+    // },
     icon: getAssetPath('icon.png'),
     webPreferences: {
       preload: app.isPackaged
@@ -686,11 +654,13 @@ const createMainWindow = async () => {
     mainWindowBounds = mainWindow.getBounds();
     // console.log('mainWindowBounds', mainWindowBounds);
     // console.log('browserWindowBounds', browserWindowBounds);
-    browserWindowBounds.width = Math.round(mainWindowBounds.width / 2 - 10);
+    // browserWindowBounds.width = Math.round(mainWindowBounds.width / 2 - 10);
     // browserWindowBounds.width = 1;
-    browserWindowBounds.height = Math.round(mainWindowBounds.height - 250); //default
+    // browserWindowBounds.height = Math.round(mainWindowBounds.height - 270); //default
     // browserWindowBounds.height = 1; //default
     // browserWindowBounds.height = Math.round(mainWindowBounds.height - 300); //testing
+    // browserWindowBounds.width = Math.round(mainWindowBounds.width / 2 - 10);//default/
+    // browserWindowBounds.height = Math.round(mainWindowBounds.height - 255); //default
     if (browserWindow)
       browserWindow.setSize(
         browserWindowBounds.width,
@@ -698,79 +668,83 @@ const createMainWindow = async () => {
       );
     if (browserWindow)
       browserWindow.setPosition(
-        mainWindowBounds.x + 10,
-        mainWindowBounds.y + 180
+        mainWindowBounds.x + 8,
+        mainWindowBounds.y + 183
       );
     // if (browserWindow) browserWindow.setResizable(false);
   };
+  const menuBuilder = new MenuBuilder(mainWindow);
+  menuBuilder.buildMenu();
 
   mainWindow.on('always-on-top-changed', () => {
-    console.log('always-on-top-changed');
+    // console.log('mainWindow always-on-top-changed');
   });
   mainWindow.on('app-command', () => {
-    console.log('app-command');
+    console.log('mainWindow app-command');
   });
   mainWindow.on('blur', () => {
-    console.log('blur');
+    console.log('mainWindow blur');
   });
   mainWindow.on('close', () => {
-    console.log('close');
+    console.log('mainWindow close');
   });
   mainWindow.on('closed', () => {
-    console.log('closed');
+    console.log('mainWindow closed');
     mainWindow = null;
   });
   mainWindow.on('enter-full-screen', () => {
-    console.log('enter-full-screen');
+    console.log('mainWindow enter-full-screen');
   });
   mainWindow.on('enter-html-full-screen', () => {
-    console.log('enter-html-full-screen');
+    console.log('mainWindow enter-html-full-screen');
   });
   mainWindow.on('focus', () => {
-    console.log('focus');
+    wc.send('request-browserDimensions');
+    console.log('mainWindow focus');
+    // setBrowserScreenshot();
   });
   mainWindow.on('hide', () => {
-    console.log('hide');
+    console.log('mainWindow hide');
   });
   mainWindow.on('leave-full-screen', () => {
-    console.log('leave-full-screen');
+    console.log('mainWindow leave-full-screen');
   });
   mainWindow.on('leave-html-full-screen', () => {
-    console.log('leave-html-full-screen');
+    console.log('mainWindow leave-html-full-screen');
   });
   mainWindow.on('maximize', () => {
-    console.log('maximize');
+    // console.log('mainWindow maximize');
+    wc.send('request-browserDimensions');
+    resizeBrowserWindow();
+    // setBrowserScreenshot();
   });
   mainWindow.on('minimize', () => {
-    console.log('minimize');
+    console.log('mainWindow minimize');
     if (browserWindow) browserWindow.minimize();
-    if (browserWindow) browserWindow.hide();
+    // if (browserWindow) browserWindow.hide();
     // wc.send('will-resize');
   });
   mainWindow.on('move', (e) => {
-    console.log('move');
-
-    // resizeBrowserWindow();
-    if (browserWindow) browserWindow.setResizable(true);
-    browserWindow.setSize(1, 1);
-    // console.log(e.sender);
-    // let test = mainWindow.getSize();
-    // console.log(mainWindow.getBounds());
-    // console.log('test', test);
-    // wc.send('resized', mainWindow.getSize());
-    // wc.send('move');
+    wc.send('request-browserDimensions');
+    // console.log('mainWindow move');
+    resizeBrowserWindow();
   });
   mainWindow.on('moved', () => {
-    console.log('moved');
-    // resizeBrowserWindow();
+    wc.send('request-browserDimensions');
+    // console.log('mainWindow moved');
+    resizeBrowserWindow();
+
+    // browserWindow.setSize(1, 1);
+    // setBrowserScreenshot();
+    // if (browserWindow) browserWindow.setResizable(false);
     // if (browserWindow) browserWindow.show();
     // wc.send('moved');
   });
   mainWindow.on('new-window-for-tab', () => {
-    console.log('new-window-for-tab');
+    console.log('mainWindow new-window-for-tab');
   });
   mainWindow.on('ready-to-show', () => {
-    console.log('ready-to-show');
+    console.log('mainWindow ready-to-show');
     if (!mainWindow) {
       throw new Error('"mainWindow" is not defined');
     }
@@ -781,55 +755,70 @@ const createMainWindow = async () => {
     }
   });
   mainWindow.on('resize', () => {
-    console.log('resize');
-    if (browserWindow) resizeBrowserWindow();
+    // console.log('mainWindow resize');
+    wc.send('request-browserDimensions');
+    resizeBrowserWindow();
+
+    // if (browserWindow) resizeBrowserWindow();
   });
   mainWindow.on('resized', (e) => {
-    console.log('resized');
-    if (browserWindow) resizeBrowserWindow();
+    resizeBrowserWindow();
+    wc.send('request-browserDimensions');
+
+    // console.log('mainWindow resized');
   });
   mainWindow.on('responsive', () => {
-    console.log('responsive');
+    console.log('mainWindow responsive');
   });
   mainWindow.on('restore', () => {
-    console.log('restore');
+    // console.log('mainWindow restore');
+    wc.send('request-browserDimensions');
     // mainWindow.restore();
-    // if (browserWindow) browserWindow.restore();
-    if (browserWindow) resizeBrowserWindow();
-    if (browserWindow) browserWindow.show();
+    // setBrowserScreenshot();
+    if (browserWindow) browserWindow.restore();
+    resizeBrowserWindow();
+
+    // if (browserWindow) resizeBrowserWindow();
+    // if (browserWindow) browserWindow.show();
     // browserWindow.hide();
   });
   mainWindow.on('session-end', () => {
-    console.log('session-end');
+    console.log('mainWindow session-end');
   });
   mainWindow.on('sheet-begin', () => {
-    console.log('sheet-begin');
+    console.log('mainWindow sheet-begin');
   });
   mainWindow.on('sheet-end', () => {
-    console.log('sheet-end');
+    console.log('mainWindow sheet-end');
   });
   mainWindow.on('show', () => {
-    console.log('show');
+    console.log('mainWindow show');
   });
   mainWindow.on('system-context-menu', () => {
-    console.log('system-context-menu');
+    console.log('mainWindow system-context-menu');
   });
   mainWindow.on('unmaximize', () => {
-    console.log('unmaximize');
+    console.log('mainWindow unmaximize');
+    resizeBrowserWindow();
   });
   mainWindow.on('unresponsive', () => {
-    console.log('unresponsive');
+    console.log('mainWindow unresponsive');
   });
   mainWindow.on('will-move', (e) => {
-    console.log('will-move');
-    if (browserWindow) browserWindow.setResizable(true);
+    wc.send('request-browserDimensions');
+    // console.log('mainWindow will-move');
+    resizeBrowserWindow();
+
+    // if (browserWindow) browserWindow.setResizable(true);
+    // browserWindow.setSize(1, 1);
     // resizeBrowserWindow();
-    // console.log('will-move');
-    // browserWindow.setSize(500, 500);
-    browserWindow.setSize(1, 1);
     // browserWindow.hide();
   });
   mainWindow.on('will-resize', () => {
+    // console.log('mainWindow will-resize');
+    wc.send('request-browserDimensions');
+    resizeBrowserWindow();
+
     // wc.send('will-resize');
   });
 };
@@ -930,10 +919,11 @@ const createBrowserWindow = async () => {
     resizable: false,
     skipTaskbar: true,
     movable: false,
+    // 'use-content-size': true,
     show: false,
     // minimizable: false,
     // maximizable: false,
-    // useContentSize: true,
+    useContentSize: true,
     devTools: false,
     // icon: getAssetPath('icon.png'),
     webPreferences: {
@@ -963,32 +953,104 @@ const createBrowserWindow = async () => {
   //   }
   // });
   browserWindow.setAlwaysOnTop(true, 'screen');
-  // browserWindow.on('ready-to-show', () => {
+
   browserWindow.once('ready-to-show', () => {
-    // browserWindow.once('did-finish-load', () => {
+    console.log('browserWindow ready-to-show');
+    // setBrowserScreenshot();
     browserWindow.show();
-    console.log('browserWindow did-finish-load');
-
-    // browserWindow.setSize(1500, 500);
-    // setTimeout(() =>     {
-    // }, 1000);
   });
-  // browserWindow.on('closed', () => {
-  //   browserWindow = null;
-  // });
-
-  // const menuBuilder = new MenuBuilder(browserWindow);
-  // menuBuilder.buildMenu();
-
-  // Open urls in the user's browser
-  // browserWindow.webContents.setWindowOpenHandler((edata) => {
-  //   shell.openExternal(edata.url);
-  //   return { action: 'deny' };
-  // });
-
-  // Remove this if your app does not use auto updates
-  // eslint-disable-next-line
-  // new AppUpdater();
+  browserWindow.on('always-on-top-changed', () => {
+    console.log('browserWindow always-on-top-changed');
+  });
+  browserWindow.on('app-command', () => {
+    // console.log('browserWindow app-command');
+  });
+  browserWindow.on('blur', () => {
+    // setBrowserScreenshot();
+    console.log('browserWindow blur');
+  });
+  browserWindow.on('close', () => {
+    console.log('browserWindow close');
+  });
+  browserWindow.on('closed', () => {
+    console.log('browserWindow closed');
+    browserWindow = null;
+  });
+  browserWindow.on('enter-full-screen', () => {
+    console.log('browserWindow enter-full-screen');
+  });
+  browserWindow.on('enter-html-full-screen', () => {
+    console.log('browserWindow enter-html-full-screen');
+  });
+  browserWindow.on('focus', () => {
+    console.log('browserWindow focus');
+  });
+  browserWindow.on('hide', () => {
+    console.log('browserWindow hide');
+  });
+  browserWindow.on('leave-full-screen', () => {
+    console.log('browserWindow leave-full-screen');
+  });
+  browserWindow.on('leave-html-full-screen', () => {
+    console.log('browserWindow leave-html-full-screen');
+  });
+  browserWindow.on('maximize', () => {
+    console.log('browserWindow maximize');
+  });
+  browserWindow.on('minimize', () => {
+    // console.log('browserWindow minimize');
+  });
+  browserWindow.on('move', (e) => {
+    // console.log('browserWindow move');
+  });
+  browserWindow.on('moved', () => {
+    // console.log('browserWindow moved');
+  });
+  browserWindow.on('new-window-for-tab', () => {
+    console.log('browserWindow new-window-for-tab');
+  });
+  browserWindow.on('ready-to-show', () => {
+    console.log('browserWindow ready-to-show');
+  });
+  browserWindow.on('resize', () => {
+    // console.log('browserWindow resize');
+  });
+  browserWindow.on('resized', (e) => {
+    // console.log('browserWindow resized');
+  });
+  browserWindow.on('responsive', () => {
+    console.log('browserWindow responsive');
+  });
+  browserWindow.on('restore', () => {
+    console.log('browserWindow restore');
+  });
+  browserWindow.on('session-end', () => {
+    console.log('browserWindow session-end');
+  });
+  browserWindow.on('sheet-begin', () => {
+    console.log('browserWindow sheet-begin');
+  });
+  browserWindow.on('sheet-end', () => {
+    console.log('browserWindow sheet-end');
+  });
+  browserWindow.on('show', () => {
+    console.log('browserWindow show');
+  });
+  browserWindow.on('system-context-menu', () => {
+    console.log('browserWindow system-context-menu');
+  });
+  browserWindow.on('unmaximize', () => {
+    console.log('browserWindow unmaximize');
+  });
+  browserWindow.on('unresponsive', () => {
+    console.log('browserWindow unresponsive');
+  });
+  browserWindow.on('will-move', (e) => {
+    console.log('browserWindow will-move');
+  });
+  browserWindow.on('will-resize', () => {
+    // console.log('browserWindow will-resize');
+  });
 };
 
 /**
@@ -1068,6 +1130,19 @@ app
   .then(() => {
     // createSplashWindow();
     //  splashWindow.setFullScreen(false);
+    // const win = new BrowserWindow({
+    //   x: 400,
+    //   y: 400,
+    //   width: 800,
+    //   height: 600,
+    //   frame: false,
+    //   skipTaskbar: true,
+    // });
+
+    // const view = new BrowserView();
+    // win.setBrowserView(view);
+    // view.setBounds({ x: 0, y: 0, width: 800, height: 800 });
+    // view.webContents.loadURL('https://youtube.com');
     createBrowserWindow();
     createMainWindow();
     app.on('activate', () => {

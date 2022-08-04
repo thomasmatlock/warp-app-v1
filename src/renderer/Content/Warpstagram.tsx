@@ -19,9 +19,20 @@ const Warpstagram = () => {
     items = document.querySelectorAll('.filter-contentPanel');
     // console.log(items);
   }, 1000);
+  const mouseEnterHandler = () => {
+    // console.log('mouse enter');
+    window.electron.ipcRenderer.sendMessage('browserNotHovered');
+  };
+  const mouseLeaveHandler = () => {
+    // console.log('mouse leave');
+  };
   return (
     <Fragment>
-      <div className="contentPanel">
+      <div
+        onMouseEnter={mouseEnterHandler}
+        onMouseLeave={mouseLeaveHandler}
+        className="contentPanel"
+      >
         <ul className="content__panel__warpstagram__accounts">
           <li className="content__panel__warpstagram__account">
             <div className="content__panel__warpstagram__account__info">

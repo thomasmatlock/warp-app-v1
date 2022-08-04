@@ -9,63 +9,29 @@ import screenshotPlaceholder from '../../../assets/screenshot.png';
 const Browser = () => {
   let screenshot: any;
   let browserWindowDimensions = { x: 0, y: 0, width: 0, height: 0 };
-  // window.electron.ipcRenderer.on('resize', (arg) => {
-  //   // eslint-disable-next-line no-console
-  //   // console.log('resize');
-  //   browserWindowDimensions = document
-  //     .getElementById('contentPanel__browser')
-  //     .getBoundingClientRect();
-  //   // console.log(browserWindowDimensions.width);
-
-  //   window.electron.ipcRenderer.sendMessage(
-  //     'browserWindowWidth',
-  //     browserWindowDimensions.width
-  //   );
-  //   window.electron.ipcRenderer.sendMessage(
-  //     'browserWindowHeight',
-  //     browserWindowDimensions.height
-  //   );
-  // });
-  // window.electron.ipcRenderer.on('resized', (arg) => {
-  //   // eslint-disable-next-line no-console
-  //   // console.log('resize');
-  //   browserWindowDimensions = document
-  //     .getElementById('contentPanel__browser')
-  //     .getBoundingClientRect();
-  //   // console.log(browserWindowDimensions.width);
-
-  //   window.electron.ipcRenderer.sendMessage(
-  //     'browserWindowWidth',
-  //     browserWindowDimensions.width
-  //   );
-  //   window.electron.ipcRenderer.sendMessage(
-  //     'browserWindowHeight',
-  //     browserWindowDimensions.height
-  //   );
-  // });
-  // window.electron.ipcRenderer.on('will-resize', (arg) => {
-  //   // eslint-disable-next-line no-console
-  //   // console.log('resize');
-  //   browserWindowDimensions = document
-  //     .getElementById('contentPanel__browser')
-  //     .getBoundingClientRect();
-  //   // console.log(browserWindowDimensions.width);
-
-  //   window.electron.ipcRenderer.sendMessage(
-  //     'browserWindowWidth',
-  //     browserWindowDimensions.width
-  //   );
-  //   window.electron.ipcRenderer.sendMessage(
-  //     'browserWindowHeight',
-  //     browserWindowDimensions.height
-  //   );
-  // });
+  window.electron.ipcRenderer.on('request-browserDimensions', (arg) => {
+    browserWindowDimensions = document
+      .getElementById('contentPanel__browser__screenshot')
+      .getBoundingClientRect();
+    // window.electron.ipcRenderer.sendMessage('browserWindowDimensions', [
+    //   browserWindowDimensions.x,
+    //   browserWindowDimensions.y,
+    //   browserWindowDimensions.width,
+    //   browserWindowDimensions.height,
+    // ]);
+    window.electron.ipcRenderer.sendMessage('browserWindowDimensions', {
+      x: browserWindowDimensions.x,
+      y: browserWindowDimensions.y,
+      width: browserWindowDimensions.width,
+      height: browserWindowDimensions.height,
+      // browserWindowDimensions.x,
+      // browserWindowDimensions.y,
+      // browserWindowDimensions.width,
+      // browserWindowDimensions.height,
+    });
+  });
 
   window.electron.ipcRenderer.on('SET_SOURCE', (arg) => {
-    // eslint-disable-next-line no-console
-    // console.log(arg);
-
-    // console.log(arg.thumbnail.getSize());
     document.getElementById('contentPanel__browser__screenshot').src = arg;
   });
 
@@ -75,16 +41,23 @@ const Browser = () => {
     // console.log('screenshotting');
     window.electron.ipcRenderer.sendMessage('screenshotting');
   };
+  const mouseEnterHandler = () => {
+    // console.log('mouse enter');
+    window.electron.ipcRenderer.sendMessage('browserHovered');
+  };
+  const mouseLeaveHandler = () => {
+    window.electron.ipcRenderer.sendMessage('browserNotHovered');
+    // console.log('mouse leave');
+  };
   return (
     <Fragment>
       <div id="contentPanel__browser" className="contentPanel__browser">
         <img
+          // onMouseEnter={mouseEnterHandler}
+          // onMouseLeave={mouseLeaveHandler}
           id="contentPanel__browser__screenshot"
           src={screenshotPlaceholder}
         />
-        {/* <button onClick={screenshotter} id="screenshot">
-          screenshot
-        </button> */}
       </div>
     </Fragment>
   );
