@@ -405,19 +405,20 @@ settings.set('prefs', {
 // console.log(settings.get('downloads'));
 // console.log(settings.get('prefs.audio[1]'));
 let prefs = settings.get('prefs');
+
 // console.log(prefs);
-let tray = null;
-app.whenReady().then(() => {
-  tray = new Tray('/path/to/my/icon');
-  const contextMenu = Menu.buildFromTemplate([
-    { label: 'Item1', type: 'radio' },
-    { label: 'Item2', type: 'radio' },
-    { label: 'Item3', type: 'radio', checked: true },
-    { label: 'Item4', type: 'radio' },
-  ]);
-  tray.setToolTip('This is my application.');
-  tray.setContextMenu(contextMenu);
-});
+// let tray = null;
+// app.whenReady().then(() => {
+//   tray = new Tray('/path/to/my/icon');
+//   const contextMenu = Menu.buildFromTemplate([
+//     { label: 'Item1', type: 'radio' },
+//     { label: 'Item2', type: 'radio' },
+//     { label: 'Item3', type: 'radio', checked: true },
+//     { label: 'Item4', type: 'radio' },
+//   ]);
+//   tray.setToolTip('This is my application.');
+//   tray.setContextMenu(contextMenu);
+// });
 // store.set('foo.bar', true);
 // store.delete('unicorn');
 
@@ -442,7 +443,24 @@ let browserWindow: BrowserWindow | null = null;
 //     // height: this.main.height - 250, // default
 //   },
 // };
-let mainWindowBounds = { x: 200, y: 0, width: 1600, height: 900 };
+let windowVisibility = {
+  mainReady: false,
+  browserReady: false,
+  mainWebContentsLoaded: false,
+  browserWebContentsLoaded: false,
+};
+const checkWindowVisibility = () => {
+  if (
+    windowVisibility.mainReady &&
+    windowVisibility.browserReady &&
+    windowVisibility.browserReady &&
+    windowVisibility.mainWebContentsLoaded
+  ) {
+    mainWindow.show();
+    browserWindow.show();
+  }
+};
+let mainWindowBounds = { x: 0, y: 0, width: 1600, height: 900 };
 let browserWindowBounds = {
   x: mainWindowBounds.x + 8,
   y: mainWindowBounds.y + 183,
@@ -519,21 +537,43 @@ ipcMain.on('settings: request', async (event, arg) => {
   console.log('settings: request', arg);
   event.reply('settings-broadcast', settings); // sends message to renderer
 });
+const resizeBrowserWindow = (e) => {
+  if (browserWindow) browserWindow.setResizable(true);
+  mainWindowBounds = mainWindow.getBounds();
+  browserWindowBounds.width = Math.round(mainWindowBounds.width / 2 - 9); //default/
+  browserWindowBounds.height = Math.round(mainWindowBounds.height - 259); //default
+  if (browserWindow)
+    browserWindow.setSize(
+      browserWindowBounds.width,
+      browserWindowBounds.height
+    );
+  if (browserWindow)
+    browserWindow.setPosition(mainWindowBounds.x + 8, mainWindowBounds.y + 183);
+  if (browserWindow) browserWindow.setResizable(false);
+};
 (function browserWindowListeners() {
   ipcMain.on('browserWindowDimensions', async (event, arg) => {
+    console.log(' dimensions received');
+    if (browserWindow) browserWindow.setResizable(true);
     browserWindowBounds.width = Math.round(arg.width);
     browserWindowBounds.height = Math.round(arg.height);
-    // console.log(browserWindowBounds);
+    if (browserWindow)
+      browserWindow.setSize(
+        browserWindowBounds.width,
+        browserWindowBounds.height
+      );
+    if (browserWindow) browserWindow.setResizable(false);
+    setBrowserScreenshot();
   });
   ipcMain.on('browserHovered', async (event, arg) => {
-    browserWindow.focus();
+    if (browserWindow) browserWindow.focus();
   });
   ipcMain.on('browserNotHovered', async (event, arg) => {
-    browserWindow.blur();
+    if (browserWindow) browserWindow.blur();
   });
   ipcMain.on('prepareToHideBrowserWindow', async (event, arg) => {
-    // console.log('prepareToHideBrowserWindow');
     setBrowserScreenshot();
+    // mainWindow.webContents.send('request-browserDimensions');
   });
   ipcMain.on('hideBrowserWindow', async (event, arg) => {
     // console.log('hideBrowserWindow');
@@ -654,31 +694,16 @@ const createMainWindow = async () => {
   mainWindow.loadURL(resolveHtmlPath('index.html'));
 
   const wc = mainWindow.webContents;
+  wc.on('did-finish-load', (event, url) => {
+    console.log('mainWindow did-finish-load');
 
-  const resizeBrowserWindow = (e) => {
-    if (browserWindow) browserWindow.setResizable(true);
-    mainWindowBounds = mainWindow.getBounds();
-    // console.log('mainWindowBounds', mainWindowBounds);
-    // console.log('browserWindowBounds', browserWindowBounds);
-    // browserWindowBounds.width = Math.round(mainWindowBounds.width / 2 - 10);
-    // browserWindowBounds.width = 1;
-    // browserWindowBounds.height = Math.round(mainWindowBounds.height - 270); //default
-    // browserWindowBounds.height = 1; //default
-    // browserWindowBounds.height = Math.round(mainWindowBounds.height - 300); //testing
-    // browserWindowBounds.width = Math.round(mainWindowBounds.width / 2 - 10);//default/
-    // browserWindowBounds.height = Math.round(mainWindowBounds.height - 255); //default
-    if (browserWindow)
-      browserWindow.setSize(
-        browserWindowBounds.width,
-        browserWindowBounds.height
-      );
-    if (browserWindow)
-      browserWindow.setPosition(
-        mainWindowBounds.x + 8,
-        mainWindowBounds.y + 183
-      );
-    // if (browserWindow) browserWindow.setResizable(false);
-  };
+    windowVisibility.mainWebContentsLoaded = true;
+    checkWindowVisibility();
+  });
+  wc.on('dom-ready', (event, url) => {
+    console.log('mainWindow dom-ready');
+  });
+
   const menuBuilder = new MenuBuilder(mainWindow);
   menuBuilder.buildMenu();
 
@@ -689,7 +714,7 @@ const createMainWindow = async () => {
     // console.log('mainWindow app-command');
   });
   mainWindow.on('blur', () => {
-    console.log('mainWindow blur');
+    // console.log('mainWindow blur');
   });
   mainWindow.on('close', () => {
     // console.log('mainWindow close');
@@ -699,57 +724,41 @@ const createMainWindow = async () => {
     mainWindow = null;
   });
   mainWindow.on('enter-full-screen', () => {
-    console.log('mainWindow enter-full-screen');
+    // console.log('mainWindow enter-full-screen');
   });
   mainWindow.on('enter-html-full-screen', () => {
-    console.log('mainWindow enter-html-full-screen');
+    // console.log('mainWindow enter-html-full-screen');
   });
   mainWindow.on('focus', () => {
-    wc.send('request-browserDimensions');
     resizeBrowserWindow();
-    console.log('mainWindow focus');
-    // setBrowserScreenshot();
   });
   mainWindow.on('hide', () => {
     console.log('mainWindow hide');
   });
   mainWindow.on('leave-full-screen', () => {
-    console.log('mainWindow leave-full-screen');
+    // console.log('mainWindow leave-full-screen');
   });
   mainWindow.on('leave-html-full-screen', () => {
-    console.log('mainWindow leave-html-full-screen');
+    // console.log('mainWindow leave-html-full-screen');
   });
   mainWindow.on('maximize', () => {
-    wc.send('request-browserDimensions');
     resizeBrowserWindow();
-    resizeBrowserWindow();
-    // setBrowserScreenshot();
   });
   mainWindow.on('minimize', () => {
-    // console.log('mainWindow minimize');
     if (browserWindow) browserWindow.minimize();
-    // if (browserWindow) browserWindow.hide();
-    // wc.send('will-resize');
   });
   mainWindow.on('move', (e) => {
-    wc.send('request-browserDimensions');
     resizeBrowserWindow();
   });
   mainWindow.on('moved', () => {
-    wc.send('request-browserDimensions');
     resizeBrowserWindow();
-
-    // browserWindow.setSize(1, 1);
-    // setBrowserScreenshot();
-    // if (browserWindow) browserWindow.setResizable(false);
-    // if (browserWindow) browserWindow.show();
-    // wc.send('moved');
   });
   mainWindow.on('new-window-for-tab', () => {
     console.log('mainWindow new-window-for-tab');
   });
   mainWindow.on('ready-to-show', () => {
-    console.log('mainWindow ready-to-show');
+    windowVisibility.mainReady = true;
+    checkWindowVisibility();
     if (!mainWindow) {
       throw new Error('"mainWindow" is not defined');
     }
@@ -760,24 +769,15 @@ const createMainWindow = async () => {
     }
   });
   mainWindow.on('resize', () => {
-    // console.log('mainWindow resize');
-    wc.send('request-browserDimensions');
     resizeBrowserWindow();
   });
   mainWindow.on('resized', (e) => {
-    resizeBrowserWindow();
-    wc.send('request-browserDimensions');
     resizeBrowserWindow();
   });
   mainWindow.on('responsive', () => {
     console.log('mainWindow responsive');
   });
   mainWindow.on('restore', () => {
-    wc.send('request-browserDimensions');
-    // mainWindow.restore();
-    wc.send('request-browserDimensions');
-    resizeBrowserWindow();
-    if (browserWindow) browserWindow.restore();
     resizeBrowserWindow();
   });
   mainWindow.on('session-end', () => {
@@ -790,26 +790,21 @@ const createMainWindow = async () => {
     console.log('mainWindow sheet-end');
   });
   mainWindow.on('show', () => {
-    wc.send('request-browserDimensions');
     resizeBrowserWindow();
   });
   mainWindow.on('system-context-menu', () => {
     console.log('mainWindow system-context-menu');
   });
   mainWindow.on('unmaximize', () => {
-    console.log('mainWindow unmaximize');
-    wc.send('request-browserDimensions');
     resizeBrowserWindow();
   });
   mainWindow.on('unresponsive', () => {
     console.log('mainWindow unresponsive');
   });
   mainWindow.on('will-move', (e) => {
-    wc.send('request-browserDimensions');
     resizeBrowserWindow();
   });
   mainWindow.on('will-resize', () => {
-    wc.send('request-browserDimensions');
     resizeBrowserWindow();
   });
 };
@@ -925,10 +920,10 @@ const createBrowserWindow = async () => {
   });
   let URLS = [
     // 'https://www.google.com/',
-    // 'https://www.youtube.com/',
-    // 'https://www.github.com/',
+    'https://www.youtube.com/',
+    'https://www.github.com/',
     // 'https://www.soundcloud.com/',
-    'https://www.pinterest.com/',
+    // 'https://www.pinterest.com/',
   ];
   let url = URLS[Math.floor(Math.random() * URLS.length)];
   browserWindow.loadURL(url);
@@ -948,9 +943,30 @@ const createBrowserWindow = async () => {
   browserWindow.setAlwaysOnTop(true, 'screen');
 
   browserWindow.once('ready-to-show', () => {
-    console.log('browserWindow ready-to-show');
-    // setBrowserScreenshot();
-    browserWindow.show();
+    // console.log('browserWindow ready-to-show');
+
+    windowVisibility.browserReady = true;
+    // console.log(windowVisibility);
+    checkWindowVisibility();
+  });
+  browserWindow.webContents.on('did-finish-load', (event, url) => {
+    console.log('browserWindow did-finish-load');
+
+    windowVisibility.browserWebContentsLoaded = true;
+    // console.log(windowVisibility);
+    checkWindowVisibility();
+  });
+  browserWindow.webContents.on('will-navigate', (event, url) => {
+    console.log('browserWindow will-navigate');
+  });
+  mainWindow.webContents.on('will-navigate', (event, url) => {
+    console.log('mainWindow will-navigate');
+  });
+  browserWindow.webContents.on('did-start-navigation', (event, url) => {
+    console.log('browserWindow did-start-navigation');
+  });
+  mainWindow.webContents.on('did-start-navigation', (event, url) => {
+    console.log('mainWindow did-start-navigation');
   });
   browserWindow.on('always-on-top-changed', () => {
     // console.log('browserWindow always-on-top-changed');
@@ -960,8 +976,7 @@ const createBrowserWindow = async () => {
   });
   browserWindow.on('blur', () => {
     // setBrowserScreenshot();
-
-    console.log('browserWindow blur');
+    // console.log('browserWindow blur');
   });
   browserWindow.on('close', () => {
     // console.log('browserWindow close');
@@ -971,22 +986,22 @@ const createBrowserWindow = async () => {
     browserWindow = null;
   });
   browserWindow.on('enter-full-screen', () => {
-    console.log('browserWindow enter-full-screen');
+    // console.log('browserWindow enter-full-screen');
   });
   browserWindow.on('enter-html-full-screen', () => {
-    console.log('browserWindow enter-html-full-screen');
+    // console.log('browserWindow enter-html-full-screen');
   });
   browserWindow.on('focus', () => {
-    console.log('browserWindow focus');
+    // console.log('browserWindow focus');
   });
   browserWindow.on('hide', () => {
     console.log('browserWindow hide');
   });
   browserWindow.on('leave-full-screen', () => {
-    console.log('browserWindow leave-full-screen');
+    // console.log('browserWindow leave-full-screen');
   });
   browserWindow.on('leave-html-full-screen', () => {
-    console.log('browserWindow leave-html-full-screen');
+    // console.log('browserWindow leave-html-full-screen');
   });
   browserWindow.on('maximize', () => {
     console.log('browserWindow maximize');
@@ -1016,7 +1031,7 @@ const createBrowserWindow = async () => {
     console.log('browserWindow responsive');
   });
   browserWindow.on('restore', () => {
-    console.log('browserWindow restore');
+    resizeBrowserWindow();
   });
   browserWindow.on('session-end', () => {
     console.log('browserWindow session-end');
@@ -1028,7 +1043,7 @@ const createBrowserWindow = async () => {
     console.log('browserWindow sheet-end');
   });
   browserWindow.on('show', () => {
-    console.log('browserWindow show');
+    // console.log('browserWindow show');
   });
   browserWindow.on('system-context-menu', () => {
     console.log('browserWindow system-context-menu');

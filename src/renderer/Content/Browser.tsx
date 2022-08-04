@@ -14,21 +14,11 @@ const Browser = () => {
     browserWindowDimensions = document
       .getElementById('contentPanel__browser__screenshot')
       .getBoundingClientRect();
-    // window.electron.ipcRenderer.sendMessage('browserWindowDimensions', [
-    //   browserWindowDimensions.x,
-    //   browserWindowDimensions.y,
-    //   browserWindowDimensions.width,
-    //   browserWindowDimensions.height,
-    // ]);
     window.electron.ipcRenderer.sendMessage('browserWindowDimensions', {
       x: browserWindowDimensions.x,
       y: browserWindowDimensions.y,
       width: browserWindowDimensions.width,
       height: browserWindowDimensions.height,
-      // browserWindowDimensions.x,
-      // browserWindowDimensions.y,
-      // browserWindowDimensions.width,
-      // browserWindowDimensions.height,
     });
   });
 
