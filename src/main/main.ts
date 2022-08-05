@@ -195,12 +195,9 @@ ipcMain.on('settings: request', async (event, arg) => {
     mainWindow.setAlwaysOnTop(true, 'screen');
     // stopUsingWhiteBackground;
     if (browserWindow.webContents.getURL().includes('pinterest')) {
-      // mainWindow.webContents.send('stopUsingWhiteBackground');
-      // browserWindow.webContents.on('did-finish-load', () => {
       browserWindow.webContents.insertCSS(
         'html, body { background-color: #fff; }'
       );
-      // });
     }
   });
   ipcMain.on('showBrowserWindow', async (event, arg) => {
@@ -368,7 +365,7 @@ const windowController = {
         browserWindow.loadURL(sources[key].URL);
       }
     }
-    browserWindow.setAlwaysOnTop(true, 'screen');
+    // browserWindow.setAlwaysOnTop(true, 'screen');
 
     browserWindow.once('ready-to-show', () => {
       console.log('browserWindow ready-to-show');
@@ -426,7 +423,7 @@ const windowController = {
       // y: 100,
       frame: false,
       transparent: true,
-      show: false,
+      show: true,
       // resizable: false,
       // movable: false,
       // minimizable: false,
@@ -448,8 +445,6 @@ const windowController = {
 
     // Remove this if your app does not use auto updates
   },
-  // createSplashWindow();
-  //  splashWindow.setFullScreen(false);
   // const win = new BrowserWindow({
   //   x: 400,
   //   y: 400,
@@ -528,8 +523,9 @@ app.on('window-all-closed', () => {
 app
   .whenReady()
   .then(() => {
-    windowController.createMainWindow();
-    windowController.createBrowserWindow();
+    // windowController.createMainWindow();
+    windowController.createSplashWindow();
+    // windowController.createBrowserWindow();
     app.on('activate', () => {
       if (mainWindow === null) windowController.createMainWindow();
     });
