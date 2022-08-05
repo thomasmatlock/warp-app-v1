@@ -95,7 +95,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     align-content: center;
     color: #ffffff60;
     cursor: pointer;
-    transition: all ease-out 0.1s;
+    transition: all ease-out 0.1s !important;
     border-radius: 4px;
     &__icon {
         display: flex;
@@ -144,7 +144,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     transform: scaleX(0.95) scaleY(0.95);
     box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.4);
     filter: grayscale(0%);
-    transition: all ease-out 0.1s;
+    transition: all ease-out 0.1s !important;
     // margin-bottom: 8px;
     max-height: 56px;
     height: 56px !important;

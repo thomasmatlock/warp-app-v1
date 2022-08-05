@@ -5,6 +5,7 @@ import DownloadsVideo from './DownloadsVideo';
 import Warpstagram from './Warpstagram';
 // import thumbnail from '../../../assets/Content/thumbnail.png'
 import './Content.scss';
+import { log } from 'console';
 const Content = (props) => {
   const [audioMode, setAudioMode] = useState(true);
   const [videoMode, setVideoMode] = useState(false);
@@ -23,6 +24,7 @@ const Content = (props) => {
     // console.log(videoMode);
   });
   window.electron.ipcRenderer.on('nav: mode: warpstagram', (arg) => {
+    // console.log(arg);
     setWarpstagramMode(true);
     setAudioMode(false);
     setVideoMode(false);

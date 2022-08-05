@@ -131,20 +131,22 @@ const updateSource = (updatedSource: any) => {
     event.reply('package', packageJSON); // sends message to renderer
   });
   ipcMain.on('nav: mode: audio', async (event, arg) => {
+    mainWindow.webContents.send('count-downloads', arg);
     event.reply('nav: mode: audio', 'nav: mode: audio successful'); // sends message to renderer
-    browserWindow.show();
+    if (browserWindow) browserWindow.show();
   });
   ipcMain.on('nav: mode: video', async (event, arg) => {
     event.reply('nav: mode: video', 'nav: mode: video successful'); // sends message to renderer
-    browserWindow.show();
+    if (browserWindow) browserWindow.show();
   });
   ipcMain.on('nav: mode: warpstagram', async (event, arg) => {
-    browserWindow.hide();
+    console.log('nav: mode: warpstagram');
+
     event.reply('nav: mode: warpstagram', 'nav: mode: warpstagram successful'); // sends message to renderer
+    if (browserWindow) browserWindow.hide();
   });
   // BROWSERBAR DOWNLOAD SOURCE LISTENERS
   ipcMain.on('source: change', async (event, arg) => {
-    // browserWindow.loadURL('https://www.facebook.com/');
     updateSource(arg);
   });
   // BROWSERBAR DOWNLOAD BUTTON LISTENERS
@@ -203,14 +205,14 @@ ipcMain.on('settings: request', async (event, arg) => {
     // mainWindow.webContents.send('request-browserDimensions');
   });
   ipcMain.on('hideBrowserWindow', async (event, arg) => {
-    browserWindow.setAlwaysOnTop(false);
+    if (browserWindow) browserWindow.setAlwaysOnTop(false);
     mainWindow.setAlwaysOnTop(true);
     mainWindow.focus();
   });
   ipcMain.on('showBrowserWindow', async (event, arg) => {
-    browserWindow.setAlwaysOnTop(true);
+    if (browserWindow) browserWindow.setAlwaysOnTop(true);
     mainWindow.setAlwaysOnTop(false);
-    browserWindow.focus();
+    if (browserWindow) browserWindow.focus();
   });
 })();
 
@@ -302,6 +304,7 @@ const windowController = {
     mainWindow.on('moved', () => browserWindowHandler.resize());
     mainWindow.on('new-window-for-tab', () => {});
     mainWindow.on('ready-to-show', () => {
+      mainWindow.webContents.send('ready-to-show');
       if (process.platform === 'win32') {
         mainWindow.webContents.send('platform', 'windows');
       }
@@ -504,10 +507,12 @@ const windowController = {
 };
 const browserWindowHandler = {
   resize: async function () {
-    if (browserWindow.webContents.getURL().includes('pinterest')) {
-      browserWindow.webContents.insertCSS(
-        'html, body { background-color: #fff; }'
-      );
+    if (browserWindow) {
+      if (browserWindow.webContents.getURL().includes('pinterest')) {
+        browserWindow.webContents.insertCSS(
+          'html, body { background-color: #fff; }'
+        );
+      }
     }
     // mainWindow.getBounds();
     if (browserWindow) browserWindow.setResizable(true);

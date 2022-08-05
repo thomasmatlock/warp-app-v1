@@ -16,8 +16,23 @@ const DownloadsAudio = () => {
   const mouseLeaveHandler = () => {
     // console.log('mouse leave');
   };
+  //  const audioItems = (
+  //    <ul className={classes['cart-items']}>
+  //      {cartCtx.items.map((item) => (
+  //        <CartItem
+  //          key={item.id}
+  //          name={item.name}
+  //          amount={item.amount}
+  //          price={item.price}
+  //          onRemove={cartItemRemoveHandler.bind(null, item.id)}
+  //          onAdd={cartItemAddHandler.bind(null, item)}
+  //        />
+  //      ))}
+  //    </ul>
+  //  );
   return (
     <Fragment>
+      {/* {audioItems} */}
       <div
         // onMouseEnter={mouseEnterHandler}
         // onMouseLeave={mouseLeaveHandler}
@@ -25,7 +40,7 @@ const DownloadsAudio = () => {
       >
         {/* <div className="content__panel__toggle_collapse"></div> */}
         <ul className="content__panel__downloads__list">
-          <li className="content__panel__downloads__list__item">
+          <li className="content__panel__downloads__list__item content__panel__downloads__list__item__audio">
             <img
               src={thumbnail}
               className="content__panel__downloads__list__item__thumbnail"
@@ -44,7 +59,7 @@ const DownloadsAudio = () => {
             </div>
           </li>
 
-          <li className="content__panel__downloads__list__item">
+          <li className="content__panel__downloads__list__item content__panel__downloads__list__item__audio">
             <img
               src={thumbnail}
               className="content__panel__downloads__list__item__thumbnail"
@@ -62,7 +77,7 @@ const DownloadsAudio = () => {
               8.6MB
             </div>
           </li>
-          <li className="content__panel__downloads__list__item">
+          <li className="content__panel__downloads__list__item content__panel__downloads__list__item__audio">
             <img
               src={thumbnail}
               className="content__panel__downloads__list__item__thumbnail"
@@ -80,7 +95,7 @@ const DownloadsAudio = () => {
               8.6MB
             </div>
           </li>
-          <li className="content__panel__downloads__list__item">
+          <li className="content__panel__downloads__list__item content__panel__downloads__list__item__audio">
             <img
               src={thumbnail}
               className="content__panel__downloads__list__item__thumbnail"
@@ -98,7 +113,7 @@ const DownloadsAudio = () => {
               8.6MB
             </div>
           </li>
-          <li className="content__panel__downloads__list__item">
+          <li className="content__panel__downloads__list__item content__panel__downloads__list__item__audio">
             <img
               src={thumbnail}
               className="content__panel__downloads__list__item__thumbnail"
@@ -116,7 +131,7 @@ const DownloadsAudio = () => {
               8.6MB
             </div>
           </li>
-          <li className="content__panel__downloads__list__item">
+          <li className="content__panel__downloads__list__item content__panel__downloads__list__item__audio">
             <img
               src={thumbnail}
               className="content__panel__downloads__list__item__thumbnail"
@@ -134,7 +149,7 @@ const DownloadsAudio = () => {
               8.6MB
             </div>
           </li>
-          <li className="content__panel__downloads__list__item">
+          <li className="content__panel__downloads__list__item content__panel__downloads__list__item__audio">
             <img
               src={thumbnail}
               className="content__panel__downloads__list__item__thumbnail"
@@ -152,7 +167,7 @@ const DownloadsAudio = () => {
               8.6MB
             </div>
           </li>
-          <li className="content__panel__downloads__list__item">
+          <li className="content__panel__downloads__list__item content__panel__downloads__list__item__audio">
             <img
               src={thumbnail}
               className="content__panel__downloads__list__item__thumbnail"
@@ -170,7 +185,7 @@ const DownloadsAudio = () => {
               8.6MB
             </div>
           </li>
-          <li className="content__panel__downloads__list__item">
+          <li className="content__panel__downloads__list__item content__panel__downloads__list__item__audio">
             <img
               src={thumbnail}
               className="content__panel__downloads__list__item__thumbnail"
@@ -188,7 +203,7 @@ const DownloadsAudio = () => {
               8.6MB
             </div>
           </li>
-          <li className="content__panel__downloads__list__item">
+          <li className="content__panel__downloads__list__item content__panel__downloads__list__item__audio">
             <img
               src={thumbnail}
               className="content__panel__downloads__list__item__thumbnail"
@@ -206,7 +221,7 @@ const DownloadsAudio = () => {
               8.6MB
             </div>
           </li>
-          <li className="content__panel__downloads__list__item">
+          <li className="content__panel__downloads__list__item content__panel__downloads__list__item__audio">
             <img
               src={thumbnail}
               className="content__panel__downloads__list__item__thumbnail"
@@ -224,7 +239,7 @@ const DownloadsAudio = () => {
               8.6MB
             </div>
           </li>
-          <li className="content__panel__downloads__list__item">
+          <li className="content__panel__downloads__list__item content__panel__downloads__list__item__audio">
             <img
               src={thumbnail}
               className="content__panel__downloads__list__item__thumbnail"
@@ -242,7 +257,7 @@ const DownloadsAudio = () => {
               8.6MB
             </div>
           </li>
-          <li className="content__panel__downloads__list__item">
+          <li className="content__panel__downloads__list__item content__panel__downloads__list__item__audio">
             <img
               src={thumbnail}
               className="content__panel__downloads__list__item__thumbnail"
@@ -260,7 +275,7 @@ const DownloadsAudio = () => {
               8.6MB
             </div>
           </li>
-          <li className="content__panel__downloads__list__item">
+          <li className="content__panel__downloads__list__item content__panel__downloads__list__item__audio">
             <img
               src={thumbnail}
               className="content__panel__downloads__list__item__thumbnail"

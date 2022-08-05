@@ -59,51 +59,9 @@ const FilterBar = (props) => {
   return (
     <Fragment>
       <div className="filterBar">
-        <div className="filterBar__menu filterBar__menu__left">
-          <div
-            className={
-              filterTypeAll
-                ? 'filterBar__menu__item__active'
-                : 'filterBar__menu__item'
-            }
-            onClick={filterTypeAllHandler}
-          >
-            All
-          </div>
-          <div
-            className={
-              filterTypeUsers
-                ? 'filterBar__menu__item__active'
-                : 'filterBar__menu__item'
-            }
-            onClick={filterTypeUsersHandler}
-          >
-            Users
-          </div>
-          <div
-            className={
-              filterTypeHashtags
-                ? 'filterBar__menu__item__active'
-                : 'filterBar__menu__item'
-            }
-            onClick={filterTypeHashtagsHandler}
-          >
-            Hashtags
-          </div>
-          <div
-            className={
-              filterTypeLocations
-                ? 'filterBar__menu__item__active'
-                : 'filterBar__menu__item'
-            }
-            onClick={filterTypeLocationsHandler}
-          >
-            Locations
-          </div>
-        </div>
         <div className="filterBar__menu filterBar__menu__right">
           <div className="filterBar__menu__item filterBar__menu__item__accounts_total">
-            {props.warpstagramDownloadsTotal} accounts
+            {props.videoDownloadsTotal} video downloads
           </div>
           {/* <div className="filterBar__menu__item filterBar__menu__item__find">
             <img src={searchIcon} />
