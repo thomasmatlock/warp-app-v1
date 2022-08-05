@@ -25,7 +25,30 @@ import prefs from '../storage/preferences';
 import sources from '../storage/sources';
 import downloads from '../storage/downloads';
 // console.log(prefs);
+if (process.env.NODE_ENV === 'production') {
+  const sourceMapSupport = require('source-map-support');
+  sourceMapSupport.install();
+}
 
+const isDebug =
+  process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true';
+
+if (isDebug) {
+  require('electron-debug')();
+}
+
+const installExtensions = async () => {
+  const installer = require('electron-devtools-installer');
+  const forceDownload = !!process.env.UPGRADE_EXTENSIONS;
+  const extensions = ['REACT_DEVELOPER_TOOLS'];
+
+  return installer
+    .default(
+      extensions.map((name) => installer[name]),
+      forceDownload
+    )
+    .catch(console.log);
+};
 const contextMenu = require('electron-context-menu');
 contextMenu({});
 const Store = require('electron-store');
@@ -42,26 +65,9 @@ class AppUpdater {
   }
 }
 
-let mainWindow: BrowserWindow;
-let splashWindow: BrowserWindow;
-let browserWindow: BrowserWindow;
-let windowVisibility = {
-  mainReady: false,
-  browserReady: false,
-  mainWebContentsLoaded: false,
-  browserWebContentsLoaded: false,
-};
-const checkWindowVisibility = () => {
-  if (
-    windowVisibility.mainReady &&
-    windowVisibility.browserReady &&
-    windowVisibility.browserReady &&
-    windowVisibility.mainWebContentsLoaded
-  ) {
-    mainWindow.show();
-    browserWindow.show();
-  }
-};
+let mainWindow: BrowserWindow | null = null;
+let splashWindow: BrowserWindow | null = null;
+let browserWindow: BrowserWindow | null = null;
 let mainWindowBounds = { x: 0, y: 0, width: 1600, height: 900 };
 let browserWindowBounds = {
   x: mainWindowBounds.x + 8,
@@ -160,26 +166,8 @@ ipcMain.on('settings: request', async (event, arg) => {
   console.log('settings: request', arg);
   event.reply('settings-broadcast', settings); // sends message to renderer
 });
-const resizeBrowserWindow = () => {
-  // console.log(mainWindow.getBounds());
-  // console.log(mainWindow.getContentBounds());
-  mainWindow.getBounds();
-  if (browserWindow) browserWindow.setResizable(true);
-  mainWindowBounds = mainWindow.getBounds();
-  browserWindowBounds.width = Math.round(mainWindowBounds.width / 2 - 9); //default/
-  browserWindowBounds.height = Math.round(mainWindowBounds.height - 258); //default
-  if (browserWindow)
-    browserWindow.setSize(
-      browserWindowBounds.width,
-      browserWindowBounds.height
-    );
-  if (browserWindow)
-    browserWindow.setPosition(mainWindowBounds.x + 8, mainWindowBounds.y + 183);
-  if (browserWindow) browserWindow.setResizable(false);
-};
 (function browserWindowListeners() {
   ipcMain.on('browserWindowDimensions', async (event, arg) => {
-    console.log(' dimensions received');
     if (browserWindow) browserWindow.setResizable(true);
     browserWindowBounds.width = Math.round(arg.width);
     browserWindowBounds.height = Math.round(arg.height);
@@ -189,7 +177,7 @@ const resizeBrowserWindow = () => {
         browserWindowBounds.height
       );
     if (browserWindow) browserWindow.setResizable(false);
-    setBrowserScreenshot();
+    browserWindowHandler.setScreenshot();
   });
   ipcMain.on('browserHovered', async (event, arg) => {
     if (browserWindow) browserWindow.focus();
@@ -198,7 +186,7 @@ const resizeBrowserWindow = () => {
     if (browserWindow) browserWindow.blur();
   });
   ipcMain.on('prepareToHideBrowserWindow', async (event, arg) => {
-    setBrowserScreenshot();
+    browserWindowHandler.setScreenshot();
     // mainWindow.webContents.send('request-browserDimensions');
   });
   ipcMain.on('hideBrowserWindow', async (event, arg) => {
@@ -228,302 +216,301 @@ const resizeBrowserWindow = () => {
   });
 })();
 
-const setBrowserScreenshot = () => {
-  const RESOURCES_PATH = app.isPackaged
-    ? path.join(process.resourcesPath, 'assets')
-    : path.join(__dirname, '../../assets');
-
-  const getAssetPath = (...paths: string[]): string => {
-    return path.join(RESOURCES_PATH, ...paths);
-  };
-
-  if (browserWindow)
-    browserWindow.webContents
-      .capturePage({
-        x: 0,
-        y: 0,
-        width: browserWindowBounds.width,
-        height: browserWindowBounds.height,
-      })
-      .then((img) => {
-        // let defaultPath: path.join(__dirname, '../assets/image.png');
-        // console.log('captured');
-        fs.writeFile(
-          getAssetPath('screenshot.png'),
-          img.toPNG(),
-          'base64',
-          function (err) {
-            if (err) throw err;
-            // console.log('Saved!');
-          }
-        );
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  // browserWindow.setAlwaysOnTop(false, 'screen');
-  // mainWindow.setAlwaysOnTop(true, 'screen');
-};
-if (process.env.NODE_ENV === 'production') {
-  const sourceMapSupport = require('source-map-support');
-  sourceMapSupport.install();
-}
-
-const isDebug =
-  process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true';
-
-if (isDebug) {
-  require('electron-debug')();
-}
-
-const installExtensions = async () => {
-  const installer = require('electron-devtools-installer');
-  const forceDownload = !!process.env.UPGRADE_EXTENSIONS;
-  const extensions = ['REACT_DEVELOPER_TOOLS'];
-
-  return installer
-    .default(
-      extensions.map((name) => installer[name]),
-      forceDownload
-    )
-    .catch(console.log);
-};
 const windowController = {
-  
-}
-const createMainWindow = async () => {
-  if (isDebug) {
-    // await installExtensions();
-  }
-
-  const RESOURCES_PATH = app.isPackaged
-    ? path.join(process.resourcesPath, 'assets')
-    : path.join(__dirname, '../../assets');
-
-  const getAssetPath = (...paths: string[]): string => {
-    return path.join(RESOURCES_PATH, ...paths);
-  };
-
-  mainWindow = new BrowserWindow({
-    show: false,
-    width: mainWindowBounds.width,
-    height: mainWindowBounds.height,
-    x: mainWindowBounds.x,
-    y: mainWindowBounds.y,
-    minWidth: 850,
-    minHeight: 500,
-    darkTheme: true,
-    // titleBarStyle: 'hidden',
-    // titleBarOverlay: {
-    //   color: '#1a1a1a',
-    //   symbolColor: '#eee',
-    //   height: 40,
-    // },
-    icon: getAssetPath('icon.png'),
-    webPreferences: {
-      preload: app.isPackaged
-        ? path.join(__dirname, 'preload.js')
-        : path.join(__dirname, '../../.erb/dll/preload.js'),
-    },
-  });
-
-  mainWindow.loadURL(resolveHtmlPath('index.html'));
-
-  const wc = mainWindow.webContents;
-  wc.on('did-finish-load', (event, url) => {
-    // console.log('mainWindow did-finish-load');
-
-    windowVisibility.mainWebContentsLoaded = true;
-    checkWindowVisibility();
-  });
-  wc.on('dom-ready', (event, url) => {
-    // console.log('mainWindow dom-ready');
-  });
-
-  const menuBuilder = new MenuBuilder(mainWindow);
-  menuBuilder.buildMenu();
-
-  mainWindow.on('always-on-top-changed', () => {});
-  mainWindow.on('app-command', () => {});
-  mainWindow.on('blur', () => {});
-  mainWindow.on('close', () => {});
-  mainWindow.on('closed', () => (mainWindow = null));
-  mainWindow.on('enter-full-screen', () => {});
-  mainWindow.on('enter-html-full-screen', () => {});
-  mainWindow.on('focus', () => resizeBrowserWindow());
-  mainWindow.on('hide', () => {  });
-  mainWindow.on('leave-full-screen', () => {});
-  mainWindow.on('leave-html-full-screen', () => {});
-  mainWindow.on('maximize', () =>     resizeBrowserWindow());
-  mainWindow.on('minimize', () =>     if (browserWindow) browserWindow.minimize());
-  mainWindow.on('move', () =>     resizeBrowserWindow());
-  mainWindow.on('moved', () =>     resizeBrowserWindow());
-  mainWindow.on('new-window-for-tab', () => {  });
-  mainWindow.on('ready-to-show', () => {
-    windowVisibility.mainReady = true;
-    checkWindowVisibility();
-    if (!mainWindow) {
-      throw new Error('"mainWindow" is not defined');
+  createMainWindow: async function () {
+    if (isDebug) {
+      // await installExtensions();
     }
-    if (process.env.START_MINIMIZED) {
-      mainWindow.minimize();
-    } else {
-      mainWindow.show();
+
+    const RESOURCES_PATH = app.isPackaged
+      ? path.join(process.resourcesPath, 'assets')
+      : path.join(__dirname, '../../assets');
+
+    const getAssetPath = (...paths: string[]): string => {
+      return path.join(RESOURCES_PATH, ...paths);
+    };
+
+    mainWindow = new BrowserWindow({
+      show: false,
+      width: mainWindowBounds.width,
+      height: mainWindowBounds.height,
+      x: mainWindowBounds.x,
+      y: mainWindowBounds.y,
+      minWidth: 850,
+      minHeight: 500,
+      darkTheme: true,
+      // titleBarStyle: 'hidden',
+      // titleBarOverlay: {
+      //   color: '#1a1a1a',
+      //   symbolColor: '#eee',
+      //   height: 40,
+      // },
+      icon: getAssetPath('icon.png'),
+      webPreferences: {
+        preload: app.isPackaged
+          ? path.join(__dirname, 'preload.js')
+          : path.join(__dirname, '../../.erb/dll/preload.js'),
+      },
+    });
+
+    mainWindow.loadURL(resolveHtmlPath('index.html'));
+
+    const wc = mainWindow.webContents;
+    wc.on('did-finish-load', (event, url) => {
+      // console.log('mainWindow did-finish-load');
+    });
+    wc.on('dom-ready', (event, url) => {
+      // console.log('mainWindow dom-ready');
+    });
+
+    const menuBuilder = new MenuBuilder(mainWindow);
+    menuBuilder.buildMenu();
+
+    mainWindow.on('always-on-top-changed', () => {});
+    mainWindow.on('app-command', () => {});
+    mainWindow.on('blur', () => {});
+    mainWindow.on('close', () => {});
+    mainWindow.on('closed', () => (mainWindow = null));
+    mainWindow.on('enter-full-screen', () => {});
+    mainWindow.on('enter-html-full-screen', () => {});
+    mainWindow.on('focus', () => browserWindowHandler.resize());
+    mainWindow.on('hide', () => {});
+    mainWindow.on('leave-full-screen', () => {});
+    mainWindow.on('leave-html-full-screen', () => {});
+    mainWindow.on('maximize', () => browserWindowHandler.resize());
+    mainWindow.on('minimize', () => {
+      if (browserWindow) browserWindow.minimize();
+    });
+    mainWindow.on('move', () => browserWindowHandler.resize());
+    mainWindow.on('moved', () => browserWindowHandler.resize());
+    mainWindow.on('new-window-for-tab', () => {});
+    mainWindow.on('ready-to-show', () => {
+      if (!mainWindow) {
+        throw new Error('"mainWindow" is not defined');
+      }
+      if (process.env.START_MINIMIZED) {
+        mainWindow.minimize();
+      } else {
+        mainWindow.show();
+      }
+    });
+    mainWindow.on('resize', () => {
+      browserWindowHandler.resize();
+    });
+    mainWindow.on('resized', (e) => {
+      browserWindowHandler.resize();
+    });
+    mainWindow.on('responsive', () => {});
+    mainWindow.on('restore', () => {
+      browserWindowHandler.resize();
+    });
+    mainWindow.on('session-end', () => {});
+    mainWindow.on('sheet-begin', () => {});
+    mainWindow.on('sheet-end', () => {});
+    mainWindow.on('show', () => {
+      browserWindowHandler.resize();
+    });
+    mainWindow.on('system-context-menu', () => {});
+    mainWindow.on('unmaximize', () => {});
+    mainWindow.on('unresponsive', () => {});
+    mainWindow.on('will-move', () => {
+      browserWindowHandler.resize();
+    });
+    mainWindow.on('will-resize', () => browserWindowHandler.resize());
+  },
+  createBrowserWindow: async function () {
+    // if (isDebug) {
+    //   await installExtensions();
+    // }
+
+    // const RESOURCES_PATH = app.isPackaged
+    //   ? path.join(process.resourcesPath, 'assets')
+    //   : path.join(__dirname, '../../assets');
+
+    // const getAssetPath = (...paths: string[]): string => {
+    //   return path.join(RESOURCES_PATH, ...paths);
+    // };
+
+    browserWindow = new BrowserWindow({
+      height: browserWindowBounds.height,
+      width: browserWindowBounds.width,
+      x: browserWindowBounds.x,
+      y: browserWindowBounds.y,
+      // x: 100,
+      // y: 100,
+      frame: false,
+      transparent: true,
+      parent: mainWindow,
+      hasShadow: false,
+      isAlwaysOnTop: true,
+      resizable: false,
+      skipTaskbar: true,
+      movable: false,
+      // 'use-content-size': true,
+      show: false,
+      // minimizable: false,
+      // maximizable: false,
+      useContentSize: true,
+      devTools: false,
+      // icon: getAssetPath('icon.png'),
+      webPreferences: {
+        // preload: app.isPackaged
+        //   ? path.join(__dirname, 'preload.js')
+        //   : path.join(__dirname, '../../.erb/dll/preload.js'),
+      },
+    });
+    let sources = settings.get('sources');
+
+    for (const key in sources) {
+      if (sources[key].active === true) {
+        browserWindow.loadURL(sources[key].URL);
+      }
     }
-  });
-  mainWindow.on('resize', () => {
-    resizeBrowserWindow();
-  });
-  mainWindow.on('resized', (e) => {
-    resizeBrowserWindow();
-  });
-  mainWindow.on('responsive', () => {});
-  mainWindow.on('restore', () => {
-    resizeBrowserWindow();
-  });
-  mainWindow.on('session-end', () => {});
-  mainWindow.on('sheet-begin', () => {});
-  mainWindow.on('sheet-end', () => {});
-  mainWindow.on('show', () => {
-    resizeBrowserWindow();
-  });
-  mainWindow.on('system-context-menu', () => {});
-  mainWindow.on('unmaximize', () => {});
-  mainWindow.on('unresponsive', () => {});
-  mainWindow.on('will-move', () => {
-    resizeBrowserWindow();
-  });
-  mainWindow.on('will-resize', () => resizeBrowserWindow());
+    browserWindow.setAlwaysOnTop(true, 'screen');
+
+    browserWindow.once('ready-to-show', () => {});
+    browserWindow.webContents.on('did-finish-load', () => {
+      browserWindowHandler.setScreenshot();
+    });
+    browserWindow.webContents.on('will-navigate', () => {});
+    browserWindow.on('blur', () => browserWindowHandler.setScreenshot());
+    browserWindow.on('close', () => console.log('browserWindow close'));
+    browserWindow.on('closed', () => (browserWindow = null));
+    browserWindow.on('enter-full-screen', () => {});
+    browserWindow.on('focus', () => {});
+    browserWindow.on('hide', () => {});
+    browserWindow.on('maximize', () => {});
+    browserWindow.on('minimize', () => {});
+    browserWindow.on('move', () => {});
+    browserWindow.on('moved', () => {});
+    browserWindow.on('new-window-for-tab', () => {});
+    browserWindow.on('ready-to-show', () => {});
+    browserWindow.on('resize', () => {});
+    browserWindow.on('resized', () => console.log('browserWindow resized'));
+    browserWindow.on('responsive', () => {});
+    browserWindow.on('restore', () => browserWindowHandler.resize());
+    browserWindow.on('session-end', () => {});
+    browserWindow.on('sheet-begin', () => {});
+    browserWindow.on('sheet-end', () => {});
+    browserWindow.on('show', () => {});
+    browserWindow.on('system-context-menu', () => {});
+    browserWindow.on('unmaximize', () => {});
+    browserWindow.on('unresponsive', () => {});
+    browserWindow.on('will-move', () => {});
+    browserWindow.on('will-resize', () => {});
+  },
+  createSplashWindow: async function () {
+    if (isDebug) {
+      await installExtensions();
+    }
+
+    const RESOURCES_PATH = app.isPackaged
+      ? path.join(process.resourcesPath, 'assets')
+      : path.join(__dirname, '../../assets');
+
+    const getAssetPath = (...paths: string[]): string => {
+      return path.join(RESOURCES_PATH, ...paths);
+    };
+
+    splashWindow = new BrowserWindow({
+      height: 400,
+      width: 980,
+      // x: 100,
+      // y: 100,
+      frame: false,
+      transparent: true,
+      show: false,
+      // resizable: false,
+      // movable: false,
+      // minimizable: false,
+      // maximizable: false,
+      // icon: getAssetPath('icon.png'),
+      webPreferences: {
+        preload: app.isPackaged
+          ? path.join(__dirname, 'preload.js')
+          : path.join(__dirname, '../../.erb/dll/preload.js'),
+      },
+    });
+
+    splashWindow.loadURL(resolveHtmlPath('splash.html'));
+
+    splashWindow.webContents.setWindowOpenHandler((edata) => {
+      shell.openExternal(edata.url);
+      return { action: 'deny' };
+    });
+
+    // Remove this if your app does not use auto updates
+  },
+  // createSplashWindow();
+  //  splashWindow.setFullScreen(false);
+  // const win = new BrowserWindow({
+  //   x: 400,
+  //   y: 400,
+  //   width: 800,
+  //   height: 600,
+  //   frame: false,
+  //   skipTaskbar: true,
+  // });
+
+  // const view = new BrowserView();
+  // win.setBrowserView(view);
+  // view.setBounds({ x: 0, y: 0, width: 800, height: 800 });
 };
-const createSplashWindow = async () => {
-  if (isDebug) {
-    await installExtensions();
-  }
+const browserWindowHandler = {
+  resize: async function (params: type) {
+    mainWindow.getBounds();
+    if (browserWindow) browserWindow.setResizable(true);
+    mainWindowBounds = mainWindow.getBounds();
+    browserWindowBounds.width = Math.round(mainWindowBounds.width / 2 - 9); //default/
+    browserWindowBounds.height = Math.round(mainWindowBounds.height - 258); //default
+    if (browserWindow)
+      browserWindow.setSize(
+        browserWindowBounds.width,
+        browserWindowBounds.height
+      );
+    if (browserWindow)
+      browserWindow.setPosition(
+        mainWindowBounds.x + 8,
+        mainWindowBounds.y + 183
+      );
+    if (browserWindow) browserWindow.setResizable(false);
+  },
+  setScreenshot: async function () {
+    const RESOURCES_PATH = app.isPackaged
+      ? path.join(process.resourcesPath, 'assets')
+      : path.join(__dirname, '../../assets');
 
-  const RESOURCES_PATH = app.isPackaged
-    ? path.join(process.resourcesPath, 'assets')
-    : path.join(__dirname, '../../assets');
+    const getAssetPath = (...paths: string[]): string => {
+      return path.join(RESOURCES_PATH, ...paths);
+    };
 
-  const getAssetPath = (...paths: string[]): string => {
-    return path.join(RESOURCES_PATH, ...paths);
-  };
-
-  splashWindow = new BrowserWindow({
-    height: 400,
-    width: 980,
-    // x: 100,
-    // y: 100,
-    frame: false,
-    transparent: true,
-    show: false,
-    // resizable: false,
-    // movable: false,
-    // minimizable: false,
-    // maximizable: false,
-    // icon: getAssetPath('icon.png'),
-    webPreferences: {
-      preload: app.isPackaged
-        ? path.join(__dirname, 'preload.js')
-        : path.join(__dirname, '../../.erb/dll/preload.js'),
-    },
-  });
-
-  splashWindow.loadURL(resolveHtmlPath('splash.html'));
-
-  splashWindow.webContents.setWindowOpenHandler((edata) => {
-    shell.openExternal(edata.url);
-    return { action: 'deny' };
-  });
-
-  // Remove this if your app does not use auto updates
-  // eslint-disable-next-line
-  // new AppUpdater();
-};
-const createBrowserWindow = async () => {
-  // if (isDebug) {
-  //   await installExtensions();
-  // }
-
-  // const RESOURCES_PATH = app.isPackaged
-  //   ? path.join(process.resourcesPath, 'assets')
-  //   : path.join(__dirname, '../../assets');
-
-  // const getAssetPath = (...paths: string[]): string => {
-  //   return path.join(RESOURCES_PATH, ...paths);
-  // };
-
-  browserWindow = new BrowserWindow({
-    height: browserWindowBounds.height,
-    width: browserWindowBounds.width,
-    x: browserWindowBounds.x,
-    y: browserWindowBounds.y,
-    // x: 100,
-    // y: 100,
-    frame: false,
-    transparent: true,
-    parent: mainWindow,
-    hasShadow: false,
-    isAlwaysOnTop: true,
-    resizable: false,
-    skipTaskbar: true,
-    movable: false,
-    // 'use-content-size': true,
-    show: false,
-    // minimizable: false,
-    // maximizable: false,
-    useContentSize: true,
-    devTools: false,
-    // icon: getAssetPath('icon.png'),
-    webPreferences: {
-      // preload: app.isPackaged
-      //   ? path.join(__dirname, 'preload.js')
-      //   : path.join(__dirname, '../../.erb/dll/preload.js'),
-    },
-  });
-  let sources = settings.get('sources');
-
-  for (const key in sources) {
-    if (sources[key].active === true) {
-      browserWindow.loadURL(sources[key].URL);
-    }
-  }
-  browserWindow.setAlwaysOnTop(true, 'screen');
-
-  browserWindow.once('ready-to-show', () => {
-    windowVisibility.browserReady = true;
-    checkWindowVisibility();
-  });
-  browserWindow.webContents.on('did-finish-load', () => {
-    windowVisibility.browserWebContentsLoaded = true;
-    setBrowserScreenshot();
-    checkWindowVisibility();
-  });
-  browserWindow.webContents.on('will-navigate', () => {});
-  browserWindow.on('blur', () => setBrowserScreenshot());
-  browserWindow.on('close', () => console.log('browserWindow close'));
-  browserWindow.on('closed', () => (browserWindow = null));
-  browserWindow.on('enter-full-screen', () => {});
-  browserWindow.on('focus', () => {});
-  browserWindow.on('hide', () => {});
-  browserWindow.on('maximize', () => {});
-  browserWindow.on('minimize', () => {});
-  browserWindow.on('move', () => {});
-  browserWindow.on('moved', () => {});
-  browserWindow.on('new-window-for-tab', () => {});
-  browserWindow.on('ready-to-show', () => {});
-  browserWindow.on('resize', () => {});
-  browserWindow.on('resized', () => console.log('browserWindow resized'));
-  browserWindow.on('responsive', () => {});
-  browserWindow.on('restore', () =>     resizeBrowserWindow());
-  browserWindow.on('session-end', () => {});
-  browserWindow.on('sheet-begin', () => {});
-  browserWindow.on('sheet-end', () => {});
-  browserWindow.on('show', () => {});
-  browserWindow.on('system-context-menu', () => {});
-  browserWindow.on('unmaximize', () => {});
-  browserWindow.on('unresponsive', () => {});
-  browserWindow.on('will-move', () => {});
-  browserWindow.on('will-resize', () => {});
+    if (browserWindow)
+      browserWindow.webContents
+        .capturePage({
+          x: 0,
+          y: 0,
+          width: browserWindowBounds.width,
+          height: browserWindowBounds.height,
+        })
+        .then((img) => {
+          // let defaultPath: path.join(__dirname, '../assets/image.png');
+          // console.log('captured');
+          fs.writeFile(
+            getAssetPath('screenshot.png'),
+            img.toPNG(),
+            'base64',
+            function (err) {
+              if (err) throw err;
+              // console.log('Saved!');
+            }
+          );
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    // browserWindow.setAlwaysOnTop(false, 'screen');
+    // mainWindow.setAlwaysOnTop(true, 'screen');
+  },
 };
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
@@ -534,24 +521,10 @@ app.on('window-all-closed', () => {
 app
   .whenReady()
   .then(() => {
-    // createSplashWindow();
-    //  splashWindow.setFullScreen(false);
-    // const win = new BrowserWindow({
-    //   x: 400,
-    //   y: 400,
-    //   width: 800,
-    //   height: 600,
-    //   frame: false,
-    //   skipTaskbar: true,
-    // });
-
-    // const view = new BrowserView();
-    // win.setBrowserView(view);
-    // view.setBounds({ x: 0, y: 0, width: 800, height: 800 });
-    // createBrowserWindow();
-    // createMainWindow();
+    windowController.createMainWindow();
+    windowController.createBrowserWindow();
     app.on('activate', () => {
-      if (mainWindow === null) createMainWindow();
+      if (mainWindow === null) windowController.createMainWindow();
     });
   })
   .catch(console.log);
