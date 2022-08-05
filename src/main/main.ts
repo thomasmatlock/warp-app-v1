@@ -25,6 +25,10 @@ import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
 import packageJSON from '../../package.json';
+import sources from './sources';
+// console.log(sources);
+// console.log(sources.get('sources'));
+
 const contextMenu = require('electron-context-menu');
 
 // console.log(`${package.name} ${package.version}`);
@@ -41,6 +45,18 @@ settings.set('downloads', {
   video: [],
   warpstagram: { subscribed: [], pinned: [] },
 });
+// settings.set('sources', {
+//   facebook: { URL: 'https://facebook.com', active: false, enabled: false },
+//   instagram: { URL: 'https://instagram.com', active: false, enabled: false },
+//   pinterest: { URL: 'https://pinterest.com', active: false, enabled: false },
+//   snapchat: { URL: 'https://snapchat.com', active: false, enabled: false },
+//   soundcloud: { URL: 'https://soundcloud.com', active: false, enabled: false },
+//   tiktok: { URL: 'https://tiktok.com', active: false, enabled: false },
+//   twitch: { URL: 'https://twitch.com', active: false, enabled: false },
+//   twitter: { URL: 'https://twitter.com', active: false, enabled: false },
+//   vimeo: { URL: 'https://vimeo.com', active: false, enabled: false },
+//   youtube: { URL: 'https://youtube.com', active: true, enabled: true },
+// });
 settings.set('prefs', {
   audio: {
     dropdowns: [
@@ -404,9 +420,9 @@ settings.set('prefs', {
 });
 // console.log(settings.get('downloads'));
 // console.log(settings.get('prefs.audio[1]'));
-let prefs = settings.get('prefs');
+// let prefs = settings.get('prefs');
 
-// console.log(prefs);
+// console.log(sources);
 // let tray = null;
 // app.whenReady().then(() => {
 //   tray = new Tray('/path/to/my/icon');
@@ -468,7 +484,33 @@ let browserWindowBounds = {
   height: mainWindowBounds.height - 250, // default
   // height: mainWindowBounds.height - 300, // testing
 };
+let sources = settings.get('sources');
+const updateSource = (updatedSource: string) => {
+  // console.log(updatedSource, ' is new source');
+  // clear all active sources
+  for (const key in sources) {
+    if (sources[key].active === true) {
+      // console.log(key);
 
+      sources[key].active = false;
+      // console.log(sources[key].active);
+    }
+  }
+  // set new active source
+  sources[updatedSource].active = true;
+  // console.log(sources[updatedSource], ' is new active source');
+  console.log(sources[updatedSource].URL);
+
+  // browserWindow.loadURL(sources[updatedSource].url);
+  for (const key in sources) {
+    if (sources[key].active === true) {
+      console.log(sources[key].URL);
+
+      browserWindow.loadURL(sources[key].URL);
+    }
+  }
+  settings.set('sources', sources);
+};
 (function appListeners() {
   // MENU LISTENERS
   ipcMain.on('Menu: Shortcuts: Restart', async (event, arg) => {
@@ -498,14 +540,22 @@ let browserWindowBounds = {
   });
   ipcMain.on('nav: mode: audio', async (event, arg) => {
     event.reply('nav: mode: audio', 'nav: mode: audio successful'); // sends message to renderer
+    browserWindow.show();
   });
   ipcMain.on('nav: mode: video', async (event, arg) => {
     event.reply('nav: mode: video', 'nav: mode: video successful'); // sends message to renderer
+    browserWindow.show();
   });
   ipcMain.on('nav: mode: warpstagram', async (event, arg) => {
+    browserWindow.hide();
     event.reply('nav: mode: warpstagram', 'nav: mode: warpstagram successful'); // sends message to renderer
   });
-  // BROWSERBAR LISTENERS
+  // BROWSERBAR DOWNLOAD SOURCE LISTENERS
+  ipcMain.on('source: change', async (event, arg) => {
+    // browserWindow.loadURL('https://www.facebook.com/');
+    updateSource(arg);
+  });
+  // BROWSERBAR DOWNLOAD BUTTON LISTENERS
   ipcMain.on('BrowserBar: button: downloadAudio', async (event, arg) => {
     event.reply('BrowserBar: button: downloadAudio successful');
   });
@@ -538,10 +588,13 @@ ipcMain.on('settings: request', async (event, arg) => {
   event.reply('settings-broadcast', settings); // sends message to renderer
 });
 const resizeBrowserWindow = (e) => {
+  // console.log(mainWindow.getBounds());
+  // console.log(mainWindow.getContentBounds());
+  mainWindow.getBounds();
   if (browserWindow) browserWindow.setResizable(true);
   mainWindowBounds = mainWindow.getBounds();
   browserWindowBounds.width = Math.round(mainWindowBounds.width / 2 - 9); //default/
-  browserWindowBounds.height = Math.round(mainWindowBounds.height - 259); //default
+  browserWindowBounds.height = Math.round(mainWindowBounds.height - 258); //default
   if (browserWindow)
     browserWindow.setSize(
       browserWindowBounds.width,
@@ -551,6 +604,24 @@ const resizeBrowserWindow = (e) => {
     browserWindow.setPosition(mainWindowBounds.x + 8, mainWindowBounds.y + 183);
   if (browserWindow) browserWindow.setResizable(false);
 };
+// const resizeBrowserWindow = (e) => {
+//   // console.log(mainWindow.getBounds());
+//   console.log(mainWindow.getContentBounds());
+//   if (browserWindow) browserWindow.setResizable(true);
+//   let mainWindowContentBounds = mainWindow.getContentBounds();
+//   // browserWindowBounds.width = Math.round(mainWindowBounds.width / 2 - 9); //default/
+//   browserWindowBounds.width = Math.round(mainWindowContentBounds.width / 2 + 1); //default/
+//   // browserWindowBounds.height = Math.round(mainWindowBounds.height - 259); //default
+//   browserWindowBounds.height = Math.round(mainWindowContentBounds.height - 199); //default
+//   if (browserWindow)
+//     browserWindow.setSize(
+//       browserWindowBounds.width,
+//       browserWindowBounds.height
+//     );
+//   if (browserWindow)
+//     browserWindow.setPosition(mainWindowBounds.x + 8, mainWindowBounds.y + 183);
+//   if (browserWindow) browserWindow.setResizable(false);
+// };
 (function browserWindowListeners() {
   ipcMain.on('browserWindowDimensions', async (event, arg) => {
     console.log(' dimensions received');
@@ -581,7 +652,12 @@ const resizeBrowserWindow = (e) => {
     mainWindow.setAlwaysOnTop(true, 'screen');
     // stopUsingWhiteBackground;
     if (browserWindow.webContents.getURL().includes('pinterest')) {
-      mainWindow.webContents.send('stopUsingWhiteBackground');
+      // mainWindow.webContents.send('stopUsingWhiteBackground');
+      // browserWindow.webContents.on('did-finish-load', () => {
+      browserWindow.webContents.insertCSS(
+        'html, body { background-color: #fff; }'
+      );
+      // });
     }
   });
   ipcMain.on('showBrowserWindow', async (event, arg) => {
@@ -590,7 +666,9 @@ const resizeBrowserWindow = (e) => {
     if (browserWindow) browserWindow.setAlwaysOnTop(true, 'screen');
     if (browserWindow) browserWindow.focus();
     if (browserWindow.webContents.getURL().includes('pinterest')) {
-      mainWindow.webContents.send('useWhiteBackground');
+      browserWindow.webContents.insertCSS(
+        'html, body { background-color: #fff; }'
+      );
     }
   });
 })();
@@ -695,13 +773,13 @@ const createMainWindow = async () => {
 
   const wc = mainWindow.webContents;
   wc.on('did-finish-load', (event, url) => {
-    console.log('mainWindow did-finish-load');
+    // console.log('mainWindow did-finish-load');
 
     windowVisibility.mainWebContentsLoaded = true;
     checkWindowVisibility();
   });
   wc.on('dom-ready', (event, url) => {
-    console.log('mainWindow dom-ready');
+    // console.log('mainWindow dom-ready');
   });
 
   const menuBuilder = new MenuBuilder(mainWindow);
@@ -918,28 +996,13 @@ const createBrowserWindow = async () => {
       //   : path.join(__dirname, '../../.erb/dll/preload.js'),
     },
   });
-  let URLS = [
-    // 'https://www.google.com/',
-    'https://www.youtube.com/',
-    'https://www.github.com/',
-    // 'https://www.soundcloud.com/',
-    // 'https://www.pinterest.com/',
-  ];
-  let url = URLS[Math.floor(Math.random() * URLS.length)];
-  browserWindow.loadURL(url);
-  // browserWindow.loadURL('www.youtube.com');
-  // browserWindow.loadFile('splash.html');
+  let sources = settings.get('sources');
 
-  // browserWindow.on('ready-to-show', () => {
-  //   if (!browserWindow) {
-  //     throw new Error('"mainWindow" is not defined');
-  //   }
-  //   if (process.env.START_MINIMIZED) {
-  //     browserWindow.minimize();
-  //   } else {
-  //     browserWindow.show();
-  //   }
-  // });
+  for (const key in sources) {
+    if (sources[key].active === true) {
+      browserWindow.loadURL(sources[key].URL);
+    }
+  }
   browserWindow.setAlwaysOnTop(true, 'screen');
 
   browserWindow.once('ready-to-show', () => {
@@ -954,7 +1017,12 @@ const createBrowserWindow = async () => {
 
     windowVisibility.browserWebContentsLoaded = true;
     // console.log(windowVisibility);
+    setBrowserScreenshot();
     checkWindowVisibility();
+  });
+  browserWindow.webContents.on('scroll-touch-end', (event, url) => {
+    console.log('browserWindow scroll-touch-end');
+    setBrowserScreenshot();
   });
   browserWindow.webContents.on('will-navigate', (event, url) => {
     console.log('browserWindow will-navigate');
@@ -963,7 +1031,10 @@ const createBrowserWindow = async () => {
     console.log('mainWindow will-navigate');
   });
   browserWindow.webContents.on('did-start-navigation', (event, url) => {
-    console.log('browserWindow did-start-navigation');
+    // console.log('browserWindow did-start-navigation');
+  });
+  browserWindow.webContents.on('did-navigate', (event, url) => {
+    console.log('browserWindow did-navigate');
   });
   mainWindow.webContents.on('did-start-navigation', (event, url) => {
     console.log('mainWindow did-start-navigation');
@@ -975,7 +1046,7 @@ const createBrowserWindow = async () => {
     // console.log('browserWindow app-command');
   });
   browserWindow.on('blur', () => {
-    // setBrowserScreenshot();
+    setBrowserScreenshot();
     // console.log('browserWindow blur');
   });
   browserWindow.on('close', () => {
@@ -1061,11 +1132,6 @@ const createBrowserWindow = async () => {
     // console.log('browserWindow will-resize');
   });
 };
-
-/**
- * Add event listeners...
- */
-
 app.on('window-all-closed', () => {
   // Respect the OSX convention of having the application in memory even
   // after all windows have been closed
@@ -1073,66 +1139,6 @@ app.on('window-all-closed', () => {
     app.quit();
   }
 });
-
-// var screenshot = document.getElementById('screenshot');
-// screenshot.addEventListener('click', (event) => {
-//   mainWindow.webContents
-//     .capturePage({
-//       x: 0,
-//       y: 0,
-//       width: 800,
-//       height: 600,
-//     })
-//     .then((img) => {
-//       dialog
-//         .showSaveDialog({
-//           title: 'Select the File Path to save',
-
-//           // Default path to assets folder
-//           defaultPath: path.join(__dirname, '../assets/image.png'),
-
-//           // defaultPath: path.join(__dirname,
-//           // '../assets/image.jpeg'),
-//           buttonLabel: 'Save',
-
-//           // Restricting the user to only Image Files.
-//           filters: [
-//             {
-//               name: 'Image Files',
-//               extensions: ['png', 'jpeg', 'jpg'],
-//             },
-//           ],
-//           properties: [],
-//         })
-//         .then((file) => {
-//           // Stating whether dialog operation was
-//           // cancelled or not.
-//           console.log(file.canceled);
-//           if (!file.canceled) {
-//             console.log(file.filePath.toString());
-
-//             // Creating and Writing to the image.png file
-//             // Can save the File as a jpeg file as well,
-//             // by simply using img.toJPEG(100);
-//             fs.writeFile(
-//               file.filePath.toString(),
-//               img.toPNG(),
-//               'base64',
-//               function (err) {
-//                 if (err) throw err;
-//                 console.log('Saved!');
-//               }
-//             );
-//           }
-//         })
-//         .catch((err) => {
-//           console.log(err);
-//         });
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     });
-// });
 
 app
   .whenReady()

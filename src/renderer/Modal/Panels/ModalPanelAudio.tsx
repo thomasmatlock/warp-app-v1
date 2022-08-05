@@ -19,7 +19,7 @@ const ModalPanelAudio = (props) => {
         enabled: true,
         id: 'audioQuality_best',
         value: 'audioQuality_best',
-        label: 'Best Available',
+        label: 'Best Available (default)',
       },
       {
         enabled: true,

@@ -20,7 +20,7 @@ const ModalPanelWarpstagram = () => {
         enabled: true,
         id: 'modalDropdown_warpstagram_updateSelected_all',
         value: 'warpstagram_updateSelected_all',
-        label: 'Update All',
+        label: 'Update All (default)',
       },
       {
         enabled: true,
@@ -78,15 +78,9 @@ const ModalPanelWarpstagram = () => {
     options: [
       {
         enabled: true,
-        id: 'modalDropdown_warpstagram_postSorting_default',
-        value: 'warpstagram_postSorting_default',
-        label: 'Default',
-      },
-      {
-        enabled: true,
         id: 'modalDropdown_warpstagram_postSorting_new_to_old',
         value: 'warpstagram_postSorting_new_to_old',
-        label: 'Newest to oldest',
+        label: 'Newest to oldest (default)',
       },
       {
         enabled: true,
@@ -140,7 +134,7 @@ const ModalPanelWarpstagram = () => {
         enabled: true,
         id: 'modalDropdown_warpstagram_autoUpdateFrequency_24',
         value: 'warpstagram_autoUpdateFrequency_24',
-        label: 'Daily',
+        label: 'Daily (default)',
       },
       {
         enabled: true,

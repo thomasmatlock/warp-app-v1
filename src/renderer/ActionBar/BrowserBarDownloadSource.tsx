@@ -5,6 +5,7 @@ import browserBarDownloadSourceIcon2 from '../../../assets/ActionBar/caret-down.
 import downloadSourceIcon__available from '../../../assets/BrowserBar/check.svg';
 import downloadSourceIcon__unavailable from '../../../assets/BrowserBar/remove.svg';
 import downloadSourceIconFacebook from '../../../assets/BrowserBar/facebook.svg';
+import downloadSourceIconPinterest from '../../../assets/BrowserBar/pinterest.svg';
 import downloadSourceIconSoundcloud from '../../../assets/BrowserBar/soundcloud.svg';
 import downloadSourceIconTiktok from '../../../assets/BrowserBar/tiktok.svg';
 import downloadSourceIconTwitter from '../../../assets/BrowserBar/twitter.svg';
@@ -14,50 +15,58 @@ import downloadSourceIconYoutube from '../../../assets/BrowserBar/youtube.svg';
 // import browserBarDownloadSourceIcon2 from '../../../../assets/3rdparty/fontawesome/svgs/solid/caret-down.svg';
 const BrowserBarDownloadSource = () => {
   const [sourceFacebookActive, setSourceFacebookActive] = useState(false);
+  const [sourcePinterestActive, setSourcePinterestActive] = useState(false);
   const [sourceSoundcloudActive, setSourceSoundcloudActive] = useState(false);
   const [sourceTiktokActive, setSourceTiktokActive] = useState(false);
   const [sourceTwitterActive, setSourceTwitterActive] = useState(false);
   const [sourceYoutubeActive, setSourceYoutubeActive] = useState(false);
   const [isSourcesExpanded, setIsSourcesExpanded] = useState(false);
-  // const selectedSourceHandler = (event) => {
-  //   if (event.target.nodeName === 'IMG') {
-  //     console.log('IMG found');
-  //     console.log(event.target.parentNode.parentNode.id); // GOOD
-  //   }
-  //   if (event.target.nodeName === 'LI') {
-  //     console.log(event.target.id);
-  //   }
-  //   if (event.target.nodeName === 'DIV') {
-  //     // console.log('DIV  found');
-  //     if (event.target.parentNode.parentNode.nodeName === 'LI') {
-  //       console.log(event.target.parentNode.parentNode.id);
-  //       // console.log('LI found');
-  //     }
-  //     if (event.target.parentNode.parentNode.nodeName === 'UL') {
-  //       console.log('UL found');
-  //       console.log(event.target.parentNode.parentNode.children);
-  //     }
-  //     // if (event.target.parentNode.parentNode.nodeName === 'UL') {
-  //     //   console.log(event.target.parentNode.parentNode);
-  //     // }
-  //   }
-  // };
   const disableAllSources = () => {
     setSourceFacebookActive(false);
+    setSourcePinterestActive(false);
     setSourceSoundcloudActive(false);
     setSourceTiktokActive(false);
     setSourceTwitterActive(false);
     setSourceYoutubeActive(false);
-    // console.log('disabledAllSources');
+    console.log('disabledAllSources');
   };
-  const selectedSourceHandler = (event) => {
-    // mouseLeaveHandler();
+  const selectedFacebookHandler = (event) => {
+    window.electron.ipcRenderer.sendMessage('source: change', 'facebook');
     disableAllSources();
+    setSourceFacebookActive(true);
     toggleSourceExpanded();
-    // setIsSourcesExpanded(false);
+  };
+  const selectedPinterestHandler = (event) => {
+    window.electron.ipcRenderer.sendMessage('source: change', 'pinterest');
+    disableAllSources();
+    setSourcePinterestActive(true);
+    toggleSourceExpanded();
+  };
+  const selectedYoutubeHandler = (event) => {
+    window.electron.ipcRenderer.sendMessage('source: change', 'youtube');
+    disableAllSources();
+    setSourceYoutubeActive(true);
+    toggleSourceExpanded();
+  };
+  const selectedSoundcloudHandler = (event) => {
+    window.electron.ipcRenderer.sendMessage('source: change', 'soundcloud');
+    disableAllSources();
+    setSourceSoundcloudActive(true);
+    toggleSourceExpanded();
+  };
+  const selectedTwitterHandler = (event) => {
+    window.electron.ipcRenderer.sendMessage('source: change', 'twitter');
+    disableAllSources();
+    setSourceTwitterActive(true);
+    toggleSourceExpanded();
+  };
+  const selectedTiktokHandler = (event) => {
+    window.electron.ipcRenderer.sendMessage('source: change', 'tiktok');
+    disableAllSources();
+    setSourceTiktokActive(true);
+    toggleSourceExpanded();
   };
   const toggleSourceExpanded = (event) => {
-    window.electron.ipcRenderer.sendMessage('hideBrowserWindow');
     if (isSourcesExpanded) {
       setIsSourcesExpanded(false);
     } else if (!isSourcesExpanded) {
@@ -67,6 +76,8 @@ const BrowserBarDownloadSource = () => {
   const mouseEnterHandler = () => {
     // window.electron.ipcRenderer.sendMessage('prepareToHideBrowserWindow');
     // console.log('mouse enter');
+    window.electron.ipcRenderer.sendMessage('hideBrowserWindow');
+    setIsSourcesExpanded(true);
   };
   const mouseLeaveHandler = () => {
     // toggleSourceExpanded();
@@ -79,7 +90,7 @@ const BrowserBarDownloadSource = () => {
       <div
         onMouseEnter={mouseEnterHandler}
         onMouseLeave={mouseLeaveHandler}
-        onClick={toggleSourceExpanded}
+        // onClick={toggleSourceExpanded}
         className={
           !isSourcesExpanded
             ? 'browserBarDownloadSource'
@@ -93,9 +104,95 @@ const BrowserBarDownloadSource = () => {
               : 'browserBarDownloadSource__hovering__list'
           }
         >
+          {!isSourcesExpanded && (
+            <li
+              // onClick={selectedFacebookHandler}
+              className={'browserBarDownloadSource__list__item__active'}
+              id="downloadSource__facebook"
+            >
+              <div className="browserBarDownloadSource__list__item__container1">
+                {sourceFacebookActive && (
+                  <img
+                    src={downloadSourceIconFacebook}
+                    className="browserBarDownloadSource__list__item__icon"
+                  />
+                )}{' '}
+                {sourcePinterestActive && (
+                  <img
+                    src={downloadSourceIconPinterest}
+                    className="browserBarDownloadSource__list__item__icon"
+                  />
+                )}
+                {sourceSoundcloudActive && (
+                  <img
+                    src={downloadSourceIconSoundcloud}
+                    className="browserBarDownloadSource__list__item__icon"
+                  />
+                )}{' '}
+                {sourceTiktokActive && (
+                  <img
+                    src={downloadSourceIconTiktok}
+                    className="browserBarDownloadSource__list__item__icon"
+                  />
+                )}{' '}
+                {sourceTwitterActive && (
+                  <img
+                    src={downloadSourceIconTwitter}
+                    className="browserBarDownloadSource__list__item__icon"
+                  />
+                )}{' '}
+                {sourceYoutubeActive && (
+                  <img
+                    src={downloadSourceIconYoutube}
+                    className="browserBarDownloadSource__list__item__icon"
+                  />
+                )}
+                {sourceFacebookActive && (
+                  <div className="browserBarDownloadSource__list__item__text browserBarDownloadSource__list__item__title">
+                    Facebook
+                  </div>
+                )}{' '}
+                {sourcePinterestActive && (
+                  <div className="browserBarDownloadSource__list__item__text browserBarDownloadSource__list__item__title">
+                    Pinterest
+                  </div>
+                )}{' '}
+                {sourceSoundcloudActive && (
+                  <div className="browserBarDownloadSource__list__item__text browserBarDownloadSource__list__item__title">
+                    Soundcloud
+                  </div>
+                )}{' '}
+                {sourceTiktokActive && (
+                  <div className="browserBarDownloadSource__list__item__text browserBarDownloadSource__list__item__title">
+                    Tiktok
+                  </div>
+                )}{' '}
+                {sourceTwitterActive && (
+                  <div className="browserBarDownloadSource__list__item__text browserBarDownloadSource__list__item__title">
+                    Twitter
+                  </div>
+                )}{' '}
+                {sourceYoutubeActive && (
+                  <div className="browserBarDownloadSource__list__item__text browserBarDownloadSource__list__item__title">
+                    Youtube
+                  </div>
+                )}
+              </div>
+              <div className="browserBarDownloadSource__list__item__container2">
+                <img
+                  src={downloadSourceIcon__available}
+                  className="browserBarDownloadSource__list__item__icon browserBarDownloadSource__list__item__icon__status browserBarDownloadSource__list__item__icon__status__1"
+                />
+              </div>
+            </li>
+          )}
           <li
-            onClick={selectedSourceHandler}
-            className="browserBarDownloadSource__list__item "
+            onClick={selectedFacebookHandler}
+            className={
+              sourceFacebookActive
+                ? 'browserBarDownloadSource__list__item__active'
+                : 'browserBarDownloadSource__list__item'
+            }
             id="downloadSource__facebook"
           >
             <div className="browserBarDownloadSource__list__item__container1">
@@ -117,9 +214,38 @@ const BrowserBarDownloadSource = () => {
             </div>
           </li>
           <li
-            onClick={selectedSourceHandler}
+            onClick={selectedPinterestHandler}
+            className={
+              sourcePinterestActive
+                ? 'browserBarDownloadSource__list__item__active'
+                : 'browserBarDownloadSource__list__item'
+            }
+            id="downloadSource__pinterest"
+          >
+            <div className="browserBarDownloadSource__list__item__container1">
+              <img
+                src={downloadSourceIconPinterest}
+                className="browserBarDownloadSource__list__item__icon"
+              />
+              <div className="browserBarDownloadSource__list__item__text browserBarDownloadSource__list__item__title">
+                Pinterest
+              </div>
+            </div>
+            <div className="browserBarDownloadSource__list__item__container2">
+              <img
+                src={downloadSourceIcon__available}
+                className="browserBarDownloadSource__list__item__icon browserBarDownloadSource__list__item__icon__status browserBarDownloadSource__list__item__icon__status__1"
+              />
+            </div>
+          </li>
+          <li
+            onClick={selectedSoundcloudHandler}
             id="downloadSource__soundcloud"
-            className="browserBarDownloadSource__list__item "
+            className={
+              sourceSoundcloudActive
+                ? 'browserBarDownloadSource__list__item__active'
+                : 'browserBarDownloadSource__list__item'
+            }
           >
             <div className="browserBarDownloadSource__list__item__container1">
               <img
@@ -144,9 +270,14 @@ const BrowserBarDownloadSource = () => {
             </div>
           </li>
           <li
-            onClick={selectedSourceHandler}
+            onClick={selectedTiktokHandler}
             id="downloadSource__tiktok"
             className="browserBarDownloadSource__list__item "
+            className={
+              sourceTiktokActive
+                ? 'browserBarDownloadSource__list__item__active'
+                : 'browserBarDownloadSource__list__item'
+            }
           >
             <div className="browserBarDownloadSource__list__item__container1">
               <img
@@ -166,9 +297,13 @@ const BrowserBarDownloadSource = () => {
             </div>
           </li>
           <li
-            onClick={selectedSourceHandler}
+            onClick={selectedTwitterHandler}
             id="downloadSource__twitter"
-            className="browserBarDownloadSource__list__item "
+            className={
+              sourceTwitterActive
+                ? 'browserBarDownloadSource__list__item__active'
+                : 'browserBarDownloadSource__list__item'
+            }
           >
             <div className="browserBarDownloadSource__list__item__container1">
               <img
@@ -182,15 +317,19 @@ const BrowserBarDownloadSource = () => {
             </div>
             <div className="browserBarDownloadSource__list__item__container2">
               <img
-                src={downloadSourceIcon__unavailable}
+                src={downloadSourceIcon__available}
                 className="browserBarDownloadSource__list__item__icon browserBarDownloadSource__list__item__icon__status browserBarDownloadSource__list__item__icon__status__4"
               />
             </div>
           </li>
           <li
             id="downloadSource__youtube"
-            onClick={selectedSourceHandler}
-            className="browserBarDownloadSource__list__item "
+            onClick={selectedYoutubeHandler}
+            className={
+              sourceYoutubeActive
+                ? 'browserBarDownloadSource__list__item__active'
+                : 'browserBarDownloadSource__list__item'
+            }
           >
             <div className="browserBarDownloadSource__list__item__container1">
               <img

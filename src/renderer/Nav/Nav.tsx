@@ -50,6 +50,9 @@ const Nav = (props) => {
     setWarpstagramMode(false);
   });
   window.electron.ipcRenderer.on('nav: mode: warpstagram', (arg) => {
+    // window.electron.ipcRenderer.sendMessage('nav: mode: warpstagram', [
+    //   `Nav change: Warpstagram Mode`,
+    // ]);
     setAudioMode(false);
     setVideoMode(false);
     setWarpstagramMode(true);

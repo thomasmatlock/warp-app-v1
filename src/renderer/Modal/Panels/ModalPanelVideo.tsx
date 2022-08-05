@@ -20,7 +20,7 @@ const ModalPanelVideo = () => {
         enabled: true,
         id: 'modalDropdown_videoQuality_best',
         value: 'videoQuality_best',
-        label: 'Best Available',
+        label: 'Best Available (default)',
       },
       {
         enabled: true,
