@@ -13,7 +13,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 const configuration: webpack.Configuration = {
-  devtool: 'inline-source-map',
+  // devtool: 'inline-source-map',
 
   mode: 'development',
 

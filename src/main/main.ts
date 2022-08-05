@@ -34,7 +34,7 @@ const isDebug =
   process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true';
 
 if (isDebug) {
-  require('electron-debug')();
+  // require('electron-debug')(); // ENABLE FOR DEVTOOLS
 }
 
 const installExtensions = async () => {
@@ -191,25 +191,16 @@ ipcMain.on('settings: request', async (event, arg) => {
   });
   ipcMain.on('hideBrowserWindow', async (event, arg) => {
     console.log('hideBrowserWindow');
-    browserWindow.setAlwaysOnTop(false, 'screen');
-    mainWindow.setAlwaysOnTop(true, 'screen');
-    // stopUsingWhiteBackground;
-    if (browserWindow.webContents.getURL().includes('pinterest')) {
-      browserWindow.webContents.insertCSS(
-        'html, body { background-color: #fff; }'
-      );
-    }
+    // browserWindow.hide();
+    browserWindow.setAlwaysOnTop(false);
+    mainWindow.setAlwaysOnTop(true);
+    mainWindow.focus();
   });
   ipcMain.on('showBrowserWindow', async (event, arg) => {
-    console.log('showBrowserWindow');
-    mainWindow.setAlwaysOnTop(false, 'screen');
-    browserWindow.setAlwaysOnTop(true, 'screen');
+    // browserWindow.show();
+    browserWindow.setAlwaysOnTop(true);
+    mainWindow.setAlwaysOnTop(false);
     browserWindow.focus();
-    if (browserWindow.webContents.getURL().includes('pinterest')) {
-      browserWindow.webContents.insertCSS(
-        'html, body { background-color: #fff; }'
-      );
-    }
   });
 })();
 
@@ -341,11 +332,11 @@ const windowController = {
       transparent: true,
       parent: mainWindow,
       hasShadow: false,
-      isAlwaysOnTop: true,
+      isAlwaysOnTop: false,
       resizable: false,
       skipTaskbar: true,
       movable: false,
-      // 'use-content-size': true,
+      'use-content-size': true,
       show: false,
       // minimizable: false,
       // maximizable: false,
@@ -365,7 +356,6 @@ const windowController = {
         browserWindow.loadURL(sources[key].URL);
       }
     }
-    // browserWindow.setAlwaysOnTop(true, 'screen');
 
     browserWindow.once('ready-to-show', () => {
       console.log('browserWindow ready-to-show');
@@ -377,6 +367,7 @@ const windowController = {
       browserWindowHandler.setScreenshot();
     });
     browserWindow.webContents.on('will-navigate', () => {});
+    browserWindow.on('always-on-top-changed', () => {});
     browserWindow.on('blur', () => browserWindowHandler.setScreenshot());
     // browserWindow.on('close', () => console.log('browserWindow close'));
     browserWindow.on('closed', () => (browserWindow = null));
@@ -459,7 +450,12 @@ const windowController = {
   // view.setBounds({ x: 0, y: 0, width: 800, height: 800 });
 };
 const browserWindowHandler = {
-  resize: async function (params: type) {
+  resize: async function () {
+    if (browserWindow.webContents.getURL().includes('pinterest')) {
+      browserWindow.webContents.insertCSS(
+        'html, body { background-color: #fff; }'
+      );
+    }
     mainWindow.getBounds();
     if (browserWindow) browserWindow.setResizable(true);
     mainWindowBounds = mainWindow.getBounds();
@@ -472,12 +468,18 @@ const browserWindowHandler = {
       );
     if (browserWindow)
       browserWindow.setPosition(
-        mainWindowBounds.x + 8,
-        mainWindowBounds.y + 183
+        mainWindowBounds.x + 8, // default
+        mainWindowBounds.y + 183 // default
+        // mainWindowBounds.y + 283 // testing
       );
     if (browserWindow) browserWindow.setResizable(false);
   },
   setScreenshot: async function () {
+    if (browserWindow.webContents.getURL().includes('pinterest')) {
+      browserWindow.webContents.insertCSS(
+        'html, body { background-color: #fff; }'
+      );
+    }
     const RESOURCES_PATH = app.isPackaged
       ? path.join(process.resourcesPath, 'assets')
       : path.join(__dirname, '../../assets');
@@ -495,6 +497,8 @@ const browserWindowHandler = {
           height: browserWindowBounds.height,
         })
         .then((img) => {
+          console.log('capturePage');
+
           // let defaultPath: path.join(__dirname, '../assets/image.png');
           // console.log('captured');
           fs.writeFile(
@@ -510,8 +514,6 @@ const browserWindowHandler = {
         .catch((err) => {
           console.log(err);
         });
-    // browserWindow.setAlwaysOnTop(false, 'screen');
-    // mainWindow.setAlwaysOnTop(true, 'screen');
   },
 };
 app.on('window-all-closed', () => {
@@ -523,9 +525,9 @@ app.on('window-all-closed', () => {
 app
   .whenReady()
   .then(() => {
-    // windowController.createMainWindow();
-    windowController.createSplashWindow();
-    // windowController.createBrowserWindow();
+    // windowController.createSplashWindow();
+    windowController.createBrowserWindow();
+    windowController.createMainWindow();
     app.on('activate', () => {
       if (mainWindow === null) windowController.createMainWindow();
     });
