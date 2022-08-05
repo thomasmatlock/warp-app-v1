@@ -17,6 +17,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
+    border: 1px solid red;
     // background-color: $gray-dark-light;
     background-color: $gray-dark-dark;
     border: 1px solid $gray-dark-lightest;

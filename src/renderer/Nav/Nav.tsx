@@ -1,6 +1,15 @@
 import { Fragment, useState } from 'react';
+// LOGO ICONS
 import NavLogoImg from '../../../assets/Nav/008-blackhole_lunacy.svg';
 import navLogoText from '../../../assets/Nav/logo_lowercase_extrabold.svg';
+// NAV BUTTON ICONS
+import iconAudio from '../../../assets/Modals/settings/audio.svg';
+import iconVideo from '../../../assets/Modals/settings/video3.svg';
+import iconWarpstagram from '../../../assets/Modals/settings/warpstagram.svg';
+// PLATFORM ICONS
+import iconWindows from '../../../assets/Nav/windows.svg';
+import iconApple from '../../../assets/Nav/apple.svg';
+import iconLinux from '../../../assets/Nav/linux.svg';
 import './Nav.scss';
 let appVersion: string = '1.0.0';
 
@@ -11,7 +20,15 @@ const Nav = (props) => {
   const [audioMode, setAudioMode] = useState(true);
   const [videoMode, setVideoMode] = useState(false);
   const [warpstagramMode, setWarpstagramMode] = useState(false);
-
+  const [isWindows, setIsWindows] = useState(false);
+  const [isApple, setIsApple] = useState(false);
+  const [isLinux, setIsLinux] = useState(false);
+  window.electron.ipcRenderer.on('platform', (arg) => {
+    window.electron.ipcRenderer.sendMessage('package', []);
+    if (arg === 'windows') setIsWindows(true);
+    if (arg === 'darwin') setIsApple(true);
+    if (arg === 'linux') setIsLinux(true);
+  });
   const AudioBtnHandler = () => {
     setAudioMode(true);
     setVideoMode(false);
@@ -78,32 +95,68 @@ const Nav = (props) => {
           </a>
         </div>
         <div className="buttonContainer">
-          <a
-            id="navMainBtnAudio"
-            className={audioMode ? 'navMainBtnActive' : 'navMainBtn'}
+          <div
             onClick={AudioBtnHandler}
+            id="navMainBtnAudio"
+            className={props.isAudioActive ? 'navMainBtnActive' : 'navMainBtn'}
           >
-            Audio
-          </a>
-          <a
-            id="navMainBtnVideo"
+            <img
+              className={
+                props.isGeneralActive
+                  ? 'modalPrefsNav_button__icon'
+                  : 'modalPrefsNav_button__icon'
+              }
+              src={iconAudio}
+            />
+            <p>Audio</p>
+          </div>
+          <div
             onClick={VideoBtnHandler}
-            className={videoMode ? 'navMainBtnActive' : 'navMainBtn'}
+            id="navMainBtnVideo"
+            className={props.isAudioActive ? 'navMainBtnActive' : 'navMainBtn'}
           >
-            Video
-          </a>
-          <a
-            id="navMainBtnWarpstagram"
+            <img
+              className={
+                props.isGeneralActive
+                  ? 'modalPrefsNav_button__icon'
+                  : 'modalPrefsNav_button__icon'
+              }
+              src={iconVideo}
+            />
+            <p>Video</p>
+          </div>
+          <div
             onClick={WarpstagramBtnHandler}
-            className={warpstagramMode ? 'navMainBtnActive' : 'navMainBtn'}
+            id="navMainBtnWarpstagram"
+            className={props.isAudioActive ? 'navMainBtnActive' : 'navMainBtn'}
           >
-            Warpstagram
-          </a>
-          {/* <a className="navMainBtn" >Images</a> */}
-          {/* <a className="navMainBtn" >Morph</a> */}
+            <img
+              className={
+                props.isGeneralActive
+                  ? 'modalPrefsNav_button__icon'
+                  : 'modalPrefsNav_button__icon'
+              }
+              src={iconWarpstagram}
+            />
+            <p>Warpstagram</p>
+          </div>
         </div>
         <div className="logoContainer">
-          <p className="navVersion">{`Version ` + appVersion}</p>
+          <a className="navLogo">
+            {isWindows && (
+              <img className="platformImg" alt="icon" src={iconWindows} />
+            )}
+            {isApple && (
+              <img className="platformImg" alt="icon" src={iconApple} />
+            )}
+            {isLinux && (
+              <img className="platformImg" alt="icon" src={iconLinux} />
+            )}
+            {/* <img className="navLogoText" alt="icon" src={navLogoText} /> */}
+          </a>
+          <a className="navLogo">
+            <p className="navVersion">{`Version ` + appVersion}</p>
+          </a>
         </div>
       </div>
     </Fragment>

@@ -29,14 +29,14 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: 25%;
+    // width: 25%;
     width: clamp(0%, 20%, 25%);
     //   cursor: none !important;
+    // border: 1px solid rgb(146, 146, 146);
     height: 100%;
     color: white;
 }
 
-// @media (min-width: 30em) and (max-width: 80em) {
 @media (min-width: 800px) and (max-width: 1200px) {
     .logoContainer {
         // width: 100%;
@@ -48,9 +48,25 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     }
 }
 
+.navLogo {
+    // width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // border: 1px solid rgb(146, 146, 146);
+    // background-color: purple;
+    //   cursor: pointer;
+}
+
 .navLogoImg {
     height: 20px;
-    margin: 0 10px;
+    margin: 0.5rem;
+}
+
+.platformImg {
+    height: 1rem;
+    margin: 1rem;
 }
 
 .buttonContainer {
@@ -64,33 +80,68 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     //   border: 1px dotted rgb(146, 146, 146);
 }
 
+.navVersion {
+    font-size: 12px;
+}
+
 .navMainBtn {
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 14px;
-    transition: all 0.1s ease-in-out;
     color: white;
-    cursor: pointer;
-    flex: 1;
     background-color: $gray-dark-light;
     height: 60px;
-    border-radius: 1px;
+    //
+    display: flex;
+    flex: 1;
+    width: 100%;
+    max-height: 60px !important;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    color: #ffffff60;
+    cursor: pointer;
+    transition: all ease-out 0.1s;
+    border-radius: 4px;
+    &__icon {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        align-content: center;
+        justify-content: center;
+        margin-left: 24px;
+        // margin: 0 auto;
+        height: 20px;
+        filter: grayscale(100%);
+    }
     &:hover {
         background-color: white;
         background-image: linear-gradient( to left, rgba(238, 238, 238, 0.205) 0%, rgba(102, 102, 102, 0.205) 100%);
-        //   -webkit-box-shadow: 0 0 1px 3px #000 inset;
-        //   -moz-box-shadow: 0 0 1px 3px #000 inset;
-        //   box-shadow: 0px -3px 3px 3px rgb(70, 70, 70) inset;
         color: black;
         background-image: linear-gradient( to left, rgba(238, 238, 238, 0.205) 0%, rgba(102, 102, 102, 0.205) 100%);
         transition: all 0.1s ease-in-out;
+        //
+        background-image: linear-gradient( to left, rgba(238, 238, 238, 0.205) 0%, rgba(102, 102, 102, 0.205) 100%);
+        color: #ffffff;
+        border-radius: 4px;
+        font-size: 14px;
+        // transform: translateY(-0.2rem);
+        box-shadow: 0 0.6rem 1rem rgba(0, 0, 0, 0.6);
+        transform: scaleX(0.99) scaleY(0.99);
+        &::after {
+            // transform: scaleX(1.4) scaleY(1.6);
+        }
     }
     &:active {
         color: black;
         box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.2);
         transform: scaleX(0.96) scaleY(0.96);
         transition: all 0.1s ease-in-out;
+        //
+        font-size: 14px;
+        transform: scaleX(0.95) scaleY(0.95);
+        box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.2);
     }
 }
 
@@ -116,18 +167,54 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     // transform: scaleX(0.96) scaleY(0.96);
 }
 
-.navMainBtnAudio {
-    // background-color: $gradient-blue;
+.modalPrefsNav_button:hover .modalPrefsNav_button__icon {
+    filter: grayscale(0%);
 }
 
-.navMainBtnVideo {
-    background-color: $gradient-blue;
+.navMainBtnActive {
+    display: flex;
+    // flex-grow: 1;
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    flex-direction: row;
+    align-items: evenly;
+    align-content: center;
+    color: #ffffff60;
+    cursor: pointer;
+    justify-content: flex-start; // PRODUCTION
+    z-index: 20;
+    transition: all ease-out 0.1s;
+    display: flex;
+    font-size: 14px;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    // background-color: #ffffff;
+    color: white;
+    border-radius: 4px;
+    transform: translateY(-0.2rem);
+    background-image: linear-gradient( to left, rgba(238, 238, 238, 0.205) 0%, rgba(102, 102, 102, 0.205) 100%);
+    width: 100%;
+    transform: scaleX(0.96) scaleY(0.96);
+    // transform: translateY(-0.2rem);
+    /*this value is in relation to initial state, not hover state*/
+    box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.4);
+    filter: grayscale(0%);
+    transition: all ease-out 0.1s;
+    margin-bottom: 8px;
+    max-height: 60px;
 }
 
-.navMainBtnWarpstagram {
-    // background-color: $gradient-blue;
+.modalPrefsNav_button__active img {
+    filter: grayscale(0%);
 }
 
-.navVersion {
-    font-size: 12px;
+.modalPrefsNav_button__active p {
+    margin-left: 20px;
+}
+
+.modalPrefsNav_button p {
+    font-size: 14px;
+    margin-left: 20px;
 }

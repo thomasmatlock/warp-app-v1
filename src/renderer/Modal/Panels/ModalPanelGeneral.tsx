@@ -73,7 +73,7 @@ const ModalPanelGeneral = () => {
     ],
   };
   const dropdownGeneral2 = {
-    title: 'Download source on startup',
+    title: 'Browser source on startup',
     selectID: 'modalDropdown_general_startupSource',
     options: [
       {

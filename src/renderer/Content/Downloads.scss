@@ -27,16 +27,17 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
 }
 
 .content__panel__toggle_collapse {
-    position: absolute;
+    // position: absolute;
     // display: none;
     top: 0;
-    left: calc(50vw - 25px);
+    // left: calc(50vw + 25px);
+    left: calc(50vw + 0px);
     // left: 50vw - 50px;
     height: 100%;
     width: 25px;
     // border: 1px solid red;
     z-index: 10;
-    background-color: $gray-dark-dark;
+    background-image: $gradient-blue;
     cursor: pointer;
 }
 
