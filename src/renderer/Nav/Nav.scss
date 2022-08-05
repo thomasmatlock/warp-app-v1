@@ -11,12 +11,9 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     left: 0 !important;
     position: relative;
     width: 100%;
-    //   height: 64px;
-    //     min-height: 64px;
-    //     max-height: 64px;
     height: clamp(64px, 64px, 64px);
     display: flex;
-    justify-content: space-evenly !important;
+    justify-content: space-around !important;
     align-items: center;
     flex-direction: row;
     //   border: 1px dotted rgb(146, 146, 146);
@@ -49,14 +46,10 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
 }
 
 .navLogo {
-    // width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    // border: 1px solid rgb(146, 146, 146);
-    // background-color: purple;
-    //   cursor: pointer;
 }
 
 .navLogoImg {
@@ -91,12 +84,12 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     font-size: 14px;
     color: white;
     background-color: $gray-dark-light;
-    height: 60px;
+    height: 56px !important;
     //
     display: flex;
     flex: 1;
     width: 100%;
-    max-height: 60px !important;
+    max-height: 56px !important;
     flex-direction: row;
     align-items: center;
     align-content: center;
@@ -110,35 +103,20 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
         align-items: center;
         align-content: center;
         justify-content: center;
-        margin-left: 24px;
+        // margin-left: 24px;
         // margin: 0 auto;
         height: 20px;
         filter: grayscale(100%);
     }
     &:hover {
-        background-color: white;
-        background-image: linear-gradient( to left, rgba(238, 238, 238, 0.205) 0%, rgba(102, 102, 102, 0.205) 100%);
-        color: black;
-        background-image: linear-gradient( to left, rgba(238, 238, 238, 0.205) 0%, rgba(102, 102, 102, 0.205) 100%);
-        transition: all 0.1s ease-in-out;
-        //
         background-image: linear-gradient( to left, rgba(238, 238, 238, 0.205) 0%, rgba(102, 102, 102, 0.205) 100%);
         color: #ffffff;
         border-radius: 4px;
         font-size: 14px;
-        // transform: translateY(-0.2rem);
         box-shadow: 0 0.6rem 1rem rgba(0, 0, 0, 0.6);
         transform: scaleX(0.99) scaleY(0.99);
-        &::after {
-            // transform: scaleX(1.4) scaleY(1.6);
-        }
     }
     &:active {
-        color: black;
-        box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.2);
-        transform: scaleX(0.96) scaleY(0.96);
-        transition: all 0.1s ease-in-out;
-        //
         font-size: 14px;
         transform: scaleX(0.95) scaleY(0.95);
         box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.2);
@@ -146,75 +124,45 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
 }
 
 .navMainBtnActive {
-    // border-bottom: #0463db 3px solid;
-    background-color: white;
+    // border-bottom: #0463db 1px solid;
     color: black;
     display: flex;
     justify-content: center;
-    align-items: center;
-    font-size: 14px;
-    // color: white;
-    cursor: pointer;
     flex: 1;
     // background-color: white;
-    height: 60px;
-    border-radius: 1px;
-    transition: all 0.1s ease-in-out;
-    background-image: linear-gradient( to left, rgba(238, 238, 238, 0.205) 0%, rgba(102, 102, 102, 0.205) 100%);
-    // border-bottom: #0463db 3px solid;
-    background-image: linear-gradient( to left, rgba(238, 238, 238, 0.205) 0%, rgba(102, 102, 102, 0.205) 100%);
-    transform: scaleX(0.97) scaleY(0.97);
-    // transform: scaleX(0.96) scaleY(0.96);
-}
-
-.modalPrefsNav_button:hover .modalPrefsNav_button__icon {
-    filter: grayscale(0%);
-}
-
-.navMainBtnActive {
-    display: flex;
     // flex-grow: 1;
-    flex: 1;
-    width: 100%;
-    height: 100%;
-    flex-direction: row;
-    align-items: evenly;
-    align-content: center;
-    color: #ffffff60;
     cursor: pointer;
-    justify-content: flex-start; // PRODUCTION
     z-index: 20;
-    transition: all ease-out 0.1s;
-    display: flex;
     font-size: 14px;
     flex-direction: row;
     align-items: center;
     align-content: center;
-    // background-color: #ffffff;
     color: white;
     border-radius: 4px;
-    transform: translateY(-0.2rem);
     background-image: linear-gradient( to left, rgba(238, 238, 238, 0.205) 0%, rgba(102, 102, 102, 0.205) 100%);
     width: 100%;
-    transform: scaleX(0.96) scaleY(0.96);
-    // transform: translateY(-0.2rem);
-    /*this value is in relation to initial state, not hover state*/
+    transform: scaleX(0.95) scaleY(0.95);
     box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.4);
     filter: grayscale(0%);
     transition: all ease-out 0.1s;
-    margin-bottom: 8px;
-    max-height: 60px;
+    // margin-bottom: 8px;
+    max-height: 56px;
+    height: 56px !important;
 }
 
-.modalPrefsNav_button__active img {
+.navMainBtn:hover .navMainBtn__icon {
     filter: grayscale(0%);
 }
 
-.modalPrefsNav_button__active p {
+.navMainBtnActive img {
+    filter: grayscale(0%);
+}
+
+.navMainBtn p {
+    font-size: 14px;
     margin-left: 20px;
 }
 
-.modalPrefsNav_button p {
-    font-size: 14px;
+.navMainBtnActive p {
     margin-left: 20px;
 }

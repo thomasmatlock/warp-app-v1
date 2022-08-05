@@ -98,14 +98,10 @@ const Nav = (props) => {
           <div
             onClick={AudioBtnHandler}
             id="navMainBtnAudio"
-            className={props.isAudioActive ? 'navMainBtnActive' : 'navMainBtn'}
+            className={audioMode ? 'navMainBtnActive' : 'navMainBtn'}
           >
             <img
-              className={
-                props.isGeneralActive
-                  ? 'modalPrefsNav_button__icon'
-                  : 'modalPrefsNav_button__icon'
-              }
+              className={audioMode ? 'navMainBtn__icon' : 'navMainBtn__icon'}
               src={iconAudio}
             />
             <p>Audio</p>
@@ -113,14 +109,10 @@ const Nav = (props) => {
           <div
             onClick={VideoBtnHandler}
             id="navMainBtnVideo"
-            className={props.isAudioActive ? 'navMainBtnActive' : 'navMainBtn'}
+            className={videoMode ? 'navMainBtnActive' : 'navMainBtn'}
           >
             <img
-              className={
-                props.isGeneralActive
-                  ? 'modalPrefsNav_button__icon'
-                  : 'modalPrefsNav_button__icon'
-              }
+              className={videoMode ? 'navMainBtn__icon' : 'navMainBtn__icon'}
               src={iconVideo}
             />
             <p>Video</p>
@@ -128,13 +120,11 @@ const Nav = (props) => {
           <div
             onClick={WarpstagramBtnHandler}
             id="navMainBtnWarpstagram"
-            className={props.isAudioActive ? 'navMainBtnActive' : 'navMainBtn'}
+            className={warpstagramMode ? 'navMainBtnActive' : 'navMainBtn'}
           >
             <img
               className={
-                props.isGeneralActive
-                  ? 'modalPrefsNav_button__icon'
-                  : 'modalPrefsNav_button__icon'
+                warpstagramMode ? 'navMainBtn__icon' : 'navMainBtn__icon'
               }
               src={iconWarpstagram}
             />
