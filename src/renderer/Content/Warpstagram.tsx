@@ -14,18 +14,10 @@ import dummy_post12 from '../../../assets/Content/Warpstagram/peaky/12.jpg';
 import './Warpstagram.scss';
 
 const Warpstagram = () => {
-  let items;
-  setTimeout(() => {
-    items = document.querySelectorAll('.filter-contentPanel');
-    // console.log(items);
-  }, 1000);
   const mouseEnterHandler = () => {
-    // console.log('mouse enter');
     window.electron.ipcRenderer.sendMessage('browserNotHovered');
   };
-  const mouseLeaveHandler = () => {
-    // console.log('mouse leave');
-  };
+  const mouseLeaveHandler = () => {};
   return (
     <Fragment>
       <div

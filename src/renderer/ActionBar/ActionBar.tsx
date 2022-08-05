@@ -10,41 +10,55 @@ const ActionBar = (props) => {
   const [audioMode, setAudioMode] = useState(true);
   const [videoMode, setVideoMode] = useState(false);
   const [warpstagramMode, setWarpstagramMode] = useState(false);
-  const [audioDownloadsTotal, setAudioDownloadsTotal] = useState(10);
-  const [videoDownloadsTotal, setVideoDownloadsTotal] = useState(12);
-  const [warpstagramDownloadsTotal, setWarpstagramDownloadsTotal] =
-    useState(13);
+  const [audioDownloadsTotal, setAudioDownloadsTotal] = useState(0);
+  const [videoDownloadsTotal, setVideoDownloadsTotal] = useState(0);
+  const [warpstagramDownloadsTotal, setWarpstagramDownloadsTotal] = useState(0);
+  const countAudioDownloads = () => {
+    setTimeout(() => {
+      let audioItems = document.querySelectorAll(
+        '.content__panel__downloads__list__item__audio'
+      );
+      setAudioDownloadsTotal(audioItems.length);
+    }, 50);
+  };
+  const countVideoDownloads = () => {
+    setTimeout(() => {
+      let videoItems = document.querySelectorAll(
+        '.content__panel__downloads__list__item__video'
+      );
+      setVideoDownloadsTotal(videoItems.length);
+    }, 50);
+  };
+  const countWarpstagramDownloads = () => {
+    setTimeout(() => {
+      let warpstagramItems = document.querySelectorAll(
+        '.content__panel__warpstagram__account'
+      );
+      setWarpstagramDownloadsTotal(warpstagramItems.length);
+    }, 50);
+  };
   window.electron.ipcRenderer.on('ready-to-show', (arg) => {
-    // count audio downloads
-    let audioItems = document.querySelectorAll(
-      '.content__panel__downloads__list__item__audio'
-    );
-    setAudioDownloadsTotal(audioItems.length);
-    // count video downloads
-    let videoItems = document.querySelectorAll(
-      '.content__panel__downloads__list__item__video'
-    );
-    setVideoDownloadsTotal(videoItems.length);
-    // count warpstagram downloads
-    let warpstagramItems = document.querySelectorAll(
-      '.content__panel__warpstagram__account'
-    );
-    setWarpstagramDownloadsTotal(warpstagramItems.length);
+    countAudioDownloads();
+    countVideoDownloads();
+    countWarpstagramDownloads();
   });
   window.electron.ipcRenderer.on('nav: mode: audio', (arg) => {
     setAudioMode(true);
     setVideoMode(false);
     setWarpstagramMode(false);
+    countAudioDownloads();
   });
   window.electron.ipcRenderer.on('nav: mode: video', (arg) => {
     setVideoMode(true);
     setAudioMode(false);
     setWarpstagramMode(false);
+    countVideoDownloads();
   });
   window.electron.ipcRenderer.on('nav: mode: warpstagram', (arg) => {
     setWarpstagramMode(true);
     setAudioMode(false);
     setVideoMode(false);
+    countWarpstagramDownloads();
   });
   const mouseEnterHandler = () => {
     // console.log('mouse enter');
