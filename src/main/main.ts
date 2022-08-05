@@ -190,7 +190,7 @@ ipcMain.on('settings: request', async (event, arg) => {
     // mainWindow.webContents.send('request-browserDimensions');
   });
   ipcMain.on('hideBrowserWindow', async (event, arg) => {
-    // console.log('hideBrowserWindow');
+    console.log('hideBrowserWindow');
     browserWindow.setAlwaysOnTop(false, 'screen');
     mainWindow.setAlwaysOnTop(true, 'screen');
     // stopUsingWhiteBackground;
@@ -204,10 +204,10 @@ ipcMain.on('settings: request', async (event, arg) => {
     }
   });
   ipcMain.on('showBrowserWindow', async (event, arg) => {
-    // console.log('showBrowserWindow');
+    console.log('showBrowserWindow');
     mainWindow.setAlwaysOnTop(false, 'screen');
-    if (browserWindow) browserWindow.setAlwaysOnTop(true, 'screen');
-    if (browserWindow) browserWindow.focus();
+    browserWindow.setAlwaysOnTop(true, 'screen');
+    browserWindow.focus();
     if (browserWindow.webContents.getURL().includes('pinterest')) {
       browserWindow.webContents.insertCSS(
         'html, body { background-color: #fff; }'
@@ -238,6 +238,7 @@ const windowController = {
       y: mainWindowBounds.y,
       minWidth: 850,
       minHeight: 500,
+      show: false,
       darkTheme: true,
       // titleBarStyle: 'hidden',
       // titleBarOverlay: {
@@ -258,6 +259,7 @@ const windowController = {
     const wc = mainWindow.webContents;
     wc.on('did-finish-load', (event, url) => {
       // console.log('mainWindow did-finish-load');
+      // mainWindow.show();
     });
     wc.on('dom-ready', (event, url) => {
       // console.log('mainWindow dom-ready');
@@ -368,13 +370,18 @@ const windowController = {
     }
     browserWindow.setAlwaysOnTop(true, 'screen');
 
-    browserWindow.once('ready-to-show', () => {});
+    browserWindow.once('ready-to-show', () => {
+      console.log('browserWindow ready-to-show');
+    });
     browserWindow.webContents.on('did-finish-load', () => {
+      console.log('browserWindow did-finish-load');
+      mainWindow.show();
+      browserWindow.show();
       browserWindowHandler.setScreenshot();
     });
     browserWindow.webContents.on('will-navigate', () => {});
     browserWindow.on('blur', () => browserWindowHandler.setScreenshot());
-    browserWindow.on('close', () => console.log('browserWindow close'));
+    // browserWindow.on('close', () => console.log('browserWindow close'));
     browserWindow.on('closed', () => (browserWindow = null));
     browserWindow.on('enter-full-screen', () => {});
     browserWindow.on('focus', () => {});
