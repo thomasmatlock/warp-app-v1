@@ -2,8 +2,7 @@ import { Fragment, useState, useContext } from 'react';
 import thumbnail from '../../../assets/Content/dummy_thumbnail.png';
 import iconLength from '../../../assets/Downloads/duration.svg';
 import iconFileSize from '../../../assets/Downloads/fileSize.svg';
-import iconFileResolution from '../../../assets/Downloads/resolution.svg';
-import IconFileTypeVideo from '../../../assets/Downloads/fileTypeVideo.svg';
+import IconFileTypeAudio from '../../../assets/Downloads/fileTypeAudio.svg';
 import ThemeContext from '../../storage/themeContext';
 import ActionBarContext from '../../storage/actionBarContext';
 
@@ -131,7 +130,7 @@ const DownloadsAudio = () => {
                   8.6MB
                 </div>
                 <img
-                  src={IconFileTypeVideo}
+                  src={IconFileTypeAudio}
                   className=" content__panel__downloads__list__item__img content__panel__downloads__list__item__file_length"
                   style={
                     themeCtx.isDarkTheme
