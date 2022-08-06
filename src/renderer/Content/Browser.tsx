@@ -1,8 +1,10 @@
-import { Fragment } from 'react';
+import { Fragment, useContext } from 'react';
 import './Browser.scss';
 import screenshotPlaceholder from '../../../assets/screenshot.png';
+import ThemeContext from '../../storage/themeContext';
 
 const Browser = () => {
+  const themeCtx = useContext(ThemeContext);
   let screenshot: any;
   let browserWindowDimensions = { x: 0, y: 0, width: 0, height: 0 };
   window.electron.ipcRenderer.on('request-browserDimensions', (arg) => {
@@ -31,7 +33,17 @@ const Browser = () => {
   // };
   return (
     <Fragment>
-      <div id="contentPanel__browser" className="contentPanel__browser">
+      <div
+        id="contentPanel__browser"
+        className="contentPanel__browser"
+        style={
+          themeCtx.isDarkTheme
+            ? { backgroundColor: themeCtx.content.dark.backgroundColor }
+            : {
+                backgroundColor: themeCtx.content.light.backgroundColor,
+              }
+        }
+      >
         <img
           // onMouseEnter={mouseEnterHandler}
           // onMouseLeave={mouseLeaveHandler}

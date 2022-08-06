@@ -11,13 +11,13 @@
     <g clip-path="url(#mask_1)">
       <g id="Group" transform="translate(0 31)">
         <g id="Group" transform="translate(15 15)">
-          <path d="M0 360L0 420L241 420L482 420L482 360L241 360L0 360Z" id="Shape" fill="#DFE7F4" stroke="none" />
-          <path d="M241 0L0 0L0 60L241 60L482 60L482 0L241 0Z" id="Shape" fill="#DFE7F4" stroke="none" />
+          <path d="M0 360L0 420L241 420L482 420L482 360L241 360L0 360Z" id="Shape" fill="#DFE7F4" fill-rule="evenodd" stroke="none" />
+          <path d="M241 0L0 0L0 60L241 60L482 60L482 0L241 0Z" id="Shape" fill="#DFE7F4" fill-rule="evenodd" stroke="none" />
         </g>
-        <path d="M256 15L497 15L497 75L256 75L256 15Z" id="Shape" fill="#C7CFE1" stroke="none" />
-        <path d="M256 375L497 375L497 435L256 435L256 375Z" id="Shape" fill="#C7CFE1" stroke="none" />
-        <path d="M256 75L30 75L30 375L256 375L482 375L482 75L256 75Z" id="Shape" fill="#FF641A" stroke="none" />
-        <path d="M256 75L482 75L482 375L256 375L256 75Z" id="Shape" fill="#F03800" stroke="none" />
+        <path d="M256 15L497 15L497 75L256 75L256 15Z" id="Shape" fill="#C7CFE1" fill-rule="evenodd" stroke="none" />
+        <path d="M256 375L497 375L497 435L256 435L256 375Z" id="Shape" fill="#C7CFE1" fill-rule="evenodd" stroke="none" />
+        <path d="M256 75L30 75L30 375L256 375L482 375L482 75L256 75Z" id="Shape" fill="#FF641A" fill-rule="evenodd" stroke="none" />
+        <path d="M256 75L482 75L482 375L256 375L256 75Z" id="Shape" fill="#F03800" fill-rule="evenodd" stroke="none" />
         <g id="Group">
           <g id="Group">
             <path d="M0 360L0 450L256 450L512 450L512 360L256 360L0 360ZM81 420L30 420L30 390L81 390L81 420ZM161 420L111 420L111 390L161 390L161 420ZM241 420L191 420L191 390L241 390L241 420ZM431 390L482 390L482 420L431 420L431 390ZM351 390L401 390L401 420L351 420L351 390ZM271 390L321 390L321 420L271 420L271 390Z" id="Shape" fill="#0463DB" fill-rule="evenodd" stroke="none" />
@@ -28,8 +28,8 @@
             <path d="M256 360L0 360L0 450L256 450L256 360ZM65 420L15 420L15 390L65 390L65 420ZM145 420L95 420L95 390L145 390L145 420ZM226 420L175 420L175 390L226 390L226 420Z" id="Shape" fill="#0463DB" fill-rule="evenodd" stroke="none" />
           </g>
         </g>
-        <path d="M256 166.976L211 136.978L211 313.022L256 283.024L343.041 225L256 166.976Z" id="Shape" fill="#F0F7FF" stroke="none" />
-        <path d="M256 166.976L256 283.024L343.041 225L256 166.976Z" id="Shape" fill="#DFE7F4" stroke="none" />
+        <path d="M256 166.976L211 136.978L211 313.022L256 283.024L343.041 225L256 166.976Z" id="Shape" fill="#F0F7FF" fill-rule="evenodd" stroke="none" />
+        <path d="M256 166.976L256 283.024L343.041 225L256 166.976Z" id="Shape" fill="#DFE7F4" fill-rule="evenodd" stroke="none" />
       </g>
     </g>
   </g>

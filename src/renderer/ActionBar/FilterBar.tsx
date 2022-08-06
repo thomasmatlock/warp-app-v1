@@ -1,8 +1,10 @@
-import { Fragment, useState } from 'react';
+import { Fragment, useState, useContext } from 'react';
 import sortIcon from '../../../assets/Content/Warpstagram/sort.svg';
 import searchIcon from '../../../assets/Content/Warpstagram/search.svg';
+import ThemeContext from '../../storage/themeContext';
 import './FilterBar.scss';
 const FilterBar = (props) => {
+  const themeCtx = useContext(ThemeContext);
   const [filterTypeAll, setFilterTypeAll] = useState(true);
   const [filterTypeUsers, setFilterTypeUsers] = useState(false);
   const [filterTypeHashtags, setFilterTypeHashtags] = useState(false);
@@ -109,7 +111,7 @@ const FilterBar = (props) => {
             <img src={searchIcon} />
           </div> */}
           <div className="filterBar__menu__item filterBar__menu__item__sort">
-            <img src={sortIcon} />
+            <img src={sortIcon} title="Sort" />
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react';
+import { Fragment, useState, useContext } from 'react';
 import './BrowserBar.scss';
 import browserBarDownloadSourceIcon1 from '../../../assets/ActionBar/youtube.svg';
 import browserBarDownloadSourceIcon2 from '../../../assets/ActionBar/caret-down.svg';
@@ -8,10 +8,12 @@ import downloadSourceIconTiktok from '../../../assets/BrowserBar/tiktok.svg';
 import downloadSourceIconTwitter from '../../../assets/BrowserBar/twitter.svg';
 import downloadSourceIconYoutube from '../../../assets/BrowserBar/youtube.svg';
 import BrowserBarDownloadSource from './BrowserBarDownloadSource';
+import ThemeContext from '../../storage/themeContext';
 
 // import browserBarDownloadSourceIcon1 from '../../../../assets/3rdparty/fontawesome/svgs/brands/youtube.svg';
 // import browserBarDownloadSourceIcon2 from '../../../../assets/3rdparty/fontawesome/svgs/solid/caret-down.svg';
 const BrowserBar = (props) => {
+  const themeCtx = useContext(ThemeContext);
   // const [audioMode, setAudioMode] = useState(true);
   // const [videoMode, setVideoMode] = useState(false);
   let audioMode = props.audioMode;

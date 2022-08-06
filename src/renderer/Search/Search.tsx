@@ -1,24 +1,28 @@
-import { Fragment, useState } from 'react';
+import { Fragment, useState, useContext } from 'react';
 import './Search.scss';
 // import SearchIcon from '../../assets/public/sections/wrapup/cards/lightning.svg';
-import SearchIcon from '../../../assets/Search/lightning.svg';
+import SearchIconLight from '../../../assets/Search/lightning light.svg';
+import SearchIconDark from '../../../assets/Search/lightning dark.svg';
 // import SunIcon from '../../../assets/Search/sun_colored.svg';
-import SunIcon from '../../../assets/Search/sun.svg';
+import SunIcon from '../../../assets/Search/sun3.svg';
 // import SunIcon from '../../../assets/Search/sun2.svg';
 // import MoonIcon from '../../../assets/Search/moon_colored.svg';
 // import MoonIcon from '../../../assets/Search/moon.svg';
 // import MoonIcon from '../../../assets/Search/moon2.svg';
 // import MoonAstronaut from '../../../assets/Search/moon_astronaut.svg';
-import MoonAstronaut from '../../../assets/astronauts/SVG/white/asset 6.svg';
-import SunAstronaut from '../../../assets/Search/sun_astronaut.svg';
-import MoonIcon from '../../../assets/Search/moon3.svg';
+// import MoonAstronaut from '../../../assets/astronauts/SVG/white/asset 6.svg';
+// import SunAstronaut from '../../../assets/Search/sun_astronaut.svg';
+import MoonIcon from '../../../assets/Search/moon.svg';
 import clearTextIcon from '../../../assets/Search/close.svg';
-import settingsIcon from '../../../assets/Search/settings_white.svg';
-import Modal from '../Modal/Modal';
+import settingsIconLight from '../../../assets/Search/gear dark.svg';
+import settingsIconDark from '../../../assets/Search/gear light.svg';
+// import Modal from '../Modal/Modal';
 import ModalPreferences from '../Modal/ModalPreferences';
-import { log } from 'console';
+import ThemeContext from '../../storage/themeContext';
 
 const Search = (props) => {
+  const themeCtx = useContext(ThemeContext);
+  // console.log(themeCtx);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const hideModalHandler = () => {
     setIsModalOpen(false);
@@ -177,6 +181,13 @@ const Search = (props) => {
       <form
         onMouseEnter={mouseEnterHandler}
         onMouseLeave={mouseLeaveHandler}
+        style={
+          themeCtx.isDarkTheme
+            ? { backgroundColor: themeCtx.search.dark.backgroundColor }
+            : {
+                backgroundColor: themeCtx.search.light.backgroundColor,
+              }
+        }
         className="search"
         onSubmit={searchInputSubmit}
         // onMouseEnter={userStartedInteracting}
@@ -185,12 +196,24 @@ const Search = (props) => {
         <img
           id="search__input__icon__unfocused"
           className="search__input__icon search__input__icon__unfocused"
-          src={SearchIcon}
+          // src={SearchIcon}
+          src={themeCtx.isDarkTheme ? SearchIconLight : SearchIconDark}
         />
         <input
           autoFocus
           id="search__input"
           className={isHovering ? 'search__input__hovering' : 'search__input'}
+          style={
+            themeCtx.isDarkTheme
+              ? {
+                  backgroundColor: themeCtx.search.dark.inputBackgroundColor,
+                  color: themeCtx.search.dark.color,
+                }
+              : {
+                  backgroundColor: themeCtx.search.light.inputBackgroundColor,
+                  color: themeCtx.search.light.color,
+                }
+          }
           type="text"
           value={searchText}
           onChange={searchInputChangeHandler}
@@ -209,23 +232,26 @@ const Search = (props) => {
           />
         )}
       </form>
-      {props.isDarkTheme && (
-        <div onClick={props.toggleTheme} className="theme">
+      {themeCtx.isDarkTheme && (
+        <div onClick={themeCtx.toggleTheme} className="theme">
           <img
             src={MoonIcon}
             // src={MoonAstronaut}
             className="theme__icon "
+            title="Change Theme"
             // className="theme__icon theme__icon__moon"
             // onClick={showModalHandler}
           />
         </div>
       )}{' '}
-      {!props.isDarkTheme && (
-        <div onClick={props.toggleTheme} className="theme">
+      {!themeCtx.isDarkTheme && (
+        <div onClick={themeCtx.toggleTheme} className="theme">
           <img
             src={SunIcon}
             // src={SunAstronaut}
             className="theme__icon"
+            title="Change Theme"
+
             // className="theme__icon theme__icon__sun"
             // onClick={showModalHandler}
           />
@@ -233,9 +259,10 @@ const Search = (props) => {
       )}
       <div className="settings">
         <img
-          src={settingsIcon}
+          src={themeCtx.isDarkTheme ? settingsIconDark : settingsIconLight}
           className="settings_icon"
           onClick={showModalHandler}
+          title="Open Preferences"
         />
       </div>
       {isModalOpen && (

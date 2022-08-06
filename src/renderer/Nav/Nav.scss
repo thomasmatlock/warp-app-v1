@@ -17,7 +17,6 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     align-items: center;
     flex-direction: row;
     //   border: 1px dotted rgb(146, 146, 146);
-    background-color: $gray-dark-dark;
     //   z-index: 10;
 }
 
@@ -93,7 +92,6 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     flex-direction: row;
     align-items: center;
     align-content: center;
-    color: #ffffff60;
     cursor: pointer;
     transition: all ease-out 0.1s !important;
     border-radius: 4px;

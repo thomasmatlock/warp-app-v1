@@ -7,7 +7,7 @@
     </clipPath>
   </defs>
   <g id="settings-(1)">
-    <path d="M0 0L100 0L100 100L0 100L0 0Z" id="Background" fill="#FFFFFF" fill-opacity="0" fill-rule="evenodd" stroke="none" />
+    <path d="M0 0L100 0L100 100L0 100L0 0Z" id="Background" fill="#fff" fill-opacity="0" fill-rule="evenodd" stroke="none" />
     <g clip-path="url(#mask_1)">
       <g id="Group" transform="translate(0 68.75)">
         <g id="Group">

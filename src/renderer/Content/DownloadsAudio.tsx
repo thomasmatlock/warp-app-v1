@@ -1,9 +1,11 @@
-import { Fragment, useState } from 'react';
+import { Fragment, useState, useContext } from 'react';
 import thumbnail from '../../../assets/Content/dummy_thumbnail.png';
+import ThemeContext from '../../storage/themeContext';
 
 import './Downloads.scss';
 
 const DownloadsAudio = () => {
+  const themeCtx = useContext(ThemeContext);
   const [searchInput, setSearchInput] = useState('');
 
   window.electron.ipcRenderer.on('Search: InputChange', (arg) => {
@@ -37,10 +39,26 @@ const DownloadsAudio = () => {
         // onMouseEnter={mouseEnterHandler}
         // onMouseLeave={mouseLeaveHandler}
         className="contentPanel"
+        style={
+          themeCtx.isDarkTheme
+            ? { backgroundColor: themeCtx.content.dark.backgroundColor }
+            : {
+                backgroundColor: themeCtx.content.light.backgroundColor,
+              }
+        }
       >
         {/* <div className="content__panel__toggle_collapse"></div> */}
         <ul className="content__panel__downloads__list">
-          <li className="content__panel__downloads__list__item content__panel__downloads__list__item__audio">
+          {/* <li
+            className="content__panel__downloads__list__item content__panel__downloads__list__item__audio"
+            style={
+              themeCtx.isDarkTheme
+                ? { backgroundColor: themeCtx.nav.dark.backgroundColor }
+                : {
+                    backgroundColor: themeCtx.nav.light.backgroundColor,
+                  }
+            }
+          >
             <img
               src={thumbnail}
               className="content__panel__downloads__list__item__thumbnail"
@@ -57,169 +75,7 @@ const DownloadsAudio = () => {
             <div className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_size">
               8.6MB
             </div>
-          </li>
-          <li className="content__panel__downloads__list__item content__panel__downloads__list__item__audio">
-            <img
-              src={thumbnail}
-              className="content__panel__downloads__list__item__thumbnail"
-            />
-            <div className="content__panel__downloads__list__item__text content__panel__downloads__list__item__title">
-              Magic of Hong Kong cyberpunk drone video
-            </div>
-            <div className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_length">
-              7:36
-            </div>
-            <div className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_type">
-              MP3
-            </div>
-            <div className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_size">
-              8.6MB
-            </div>
-          </li>
-          <li className="content__panel__downloads__list__item content__panel__downloads__list__item__audio">
-            <img
-              src={thumbnail}
-              className="content__panel__downloads__list__item__thumbnail"
-            />
-            <div className="content__panel__downloads__list__item__text content__panel__downloads__list__item__title">
-              Magic of Hong Kong cyberpunk drone video
-            </div>
-            <div className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_length">
-              7:36
-            </div>
-            <div className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_type">
-              MP3
-            </div>
-            <div className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_size">
-              8.6MB
-            </div>
-          </li>
-          <li className="content__panel__downloads__list__item content__panel__downloads__list__item__audio">
-            <img
-              src={thumbnail}
-              className="content__panel__downloads__list__item__thumbnail"
-            />
-            <div className="content__panel__downloads__list__item__text content__panel__downloads__list__item__title">
-              Magic of Hong Kong cyberpunk drone video
-            </div>
-            <div className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_length">
-              7:36
-            </div>
-            <div className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_type">
-              MP3
-            </div>
-            <div className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_size">
-              8.6MB
-            </div>
-          </li>
-          <li className="content__panel__downloads__list__item content__panel__downloads__list__item__audio">
-            <img
-              src={thumbnail}
-              className="content__panel__downloads__list__item__thumbnail"
-            />
-            <div className="content__panel__downloads__list__item__text content__panel__downloads__list__item__title">
-              Magic of Hong Kong cyberpunk drone video
-            </div>
-            <div className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_length">
-              7:36
-            </div>
-            <div className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_type">
-              MP3
-            </div>
-            <div className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_size">
-              8.6MB
-            </div>
-          </li>
-          <li className="content__panel__downloads__list__item content__panel__downloads__list__item__audio">
-            <img
-              src={thumbnail}
-              className="content__panel__downloads__list__item__thumbnail"
-            />
-            <div className="content__panel__downloads__list__item__text content__panel__downloads__list__item__title">
-              Magic of Hong Kong cyberpunk drone video
-            </div>
-            <div className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_length">
-              7:36
-            </div>
-            <div className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_type">
-              MP3
-            </div>
-            <div className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_size">
-              8.6MB
-            </div>
-          </li>
-          <li className="content__panel__downloads__list__item content__panel__downloads__list__item__audio">
-            <img
-              src={thumbnail}
-              className="content__panel__downloads__list__item__thumbnail"
-            />
-            <div className="content__panel__downloads__list__item__text content__panel__downloads__list__item__title">
-              Magic of Hong Kong cyberpunk drone video
-            </div>
-            <div className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_length">
-              7:36
-            </div>
-            <div className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_type">
-              MP3
-            </div>
-            <div className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_size">
-              8.6MB
-            </div>
-          </li>
-          <li className="content__panel__downloads__list__item content__panel__downloads__list__item__audio">
-            <img
-              src={thumbnail}
-              className="content__panel__downloads__list__item__thumbnail"
-            />
-            <div className="content__panel__downloads__list__item__text content__panel__downloads__list__item__title">
-              Magic of Hong Kong cyberpunk drone video
-            </div>
-            <div className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_length">
-              7:36
-            </div>
-            <div className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_type">
-              MP3
-            </div>
-            <div className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_size">
-              8.6MB
-            </div>
-          </li>
-          <li className="content__panel__downloads__list__item content__panel__downloads__list__item__audio">
-            <img
-              src={thumbnail}
-              className="content__panel__downloads__list__item__thumbnail"
-            />
-            <div className="content__panel__downloads__list__item__text content__panel__downloads__list__item__title">
-              Magic of Hong Kong cyberpunk drone video
-            </div>
-            <div className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_length">
-              7:36
-            </div>
-            <div className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_type">
-              MP3
-            </div>
-            <div className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_size">
-              8.6MB
-            </div>
-          </li>
-          <li className="content__panel__downloads__list__item content__panel__downloads__list__item__audio">
-            <img
-              src={thumbnail}
-              className="content__panel__downloads__list__item__thumbnail"
-            />
-            <div className="content__panel__downloads__list__item__text content__panel__downloads__list__item__title">
-              Magic of Hong Kong cyberpunk drone video
-            </div>
-            <div className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_length">
-              7:36
-            </div>
-            <div className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_type">
-              MP3
-            </div>
-            <div className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_size">
-              8.6MB
-            </div>
-          </li>
+          </li> */}
         </ul>
       </div>
     </Fragment>

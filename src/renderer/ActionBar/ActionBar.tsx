@@ -1,12 +1,15 @@
-import { Fragment, useState } from 'react';
+import { Fragment, useState, useContext } from 'react';
 import './ActionBar.scss';
 // import BrowserBar from '../ActionBar/BrowserBar/BrowserBar';
 import BrowserBar from './BrowserBar';
 import FilterBar from './FilterBar';
 import FilterBar_DownloadsAudio from './FilterBar_DownloadsAudio';
 import FilterBar_DownloadsVideo from './FilterBar_DownloadsVideo';
+import ThemeContext from '../../storage/themeContext';
 
 const ActionBar = (props) => {
+  const themeCtx = useContext(ThemeContext);
+
   const [audioMode, setAudioMode] = useState(true);
   const [videoMode, setVideoMode] = useState(false);
   const [warpstagramMode, setWarpstagramMode] = useState(false);
@@ -76,6 +79,13 @@ const ActionBar = (props) => {
         onMouseEnter={mouseEnterHandler}
         onMouseLeave={mouseLeaveHandler}
         className="actionBar"
+        style={
+          themeCtx.isDarkTheme
+            ? { backgroundColor: themeCtx.actionBar.dark.backgroundColor }
+            : {
+                backgroundColor: themeCtx.actionBar.light.backgroundColor,
+              }
+        }
       >
         {audioMode && <BrowserBar audioMode={audioMode} />}
         {videoMode && <BrowserBar videoMode={videoMode} />}

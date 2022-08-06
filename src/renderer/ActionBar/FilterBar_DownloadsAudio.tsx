@@ -1,8 +1,10 @@
-import { Fragment, useState } from 'react';
+import { Fragment, useState, useContext } from 'react';
 import sortIcon from '../../../assets/Content/Warpstagram/sort.svg';
 import searchIcon from '../../../assets/Content/Warpstagram/search.svg';
+import ThemeContext from '../../storage/themeContext';
 import './FilterBar.scss';
 const FilterBar = (props) => {
+  const themeCtx = useContext(ThemeContext);
   return (
     <Fragment>
       <div className="filterBar">

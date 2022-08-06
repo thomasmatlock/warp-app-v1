@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react';
+import { Fragment, useState, useContext } from 'react';
 // LOGO ICONS
 import NavLogoImg from '../../../assets/Nav/008-blackhole_lunacy.svg';
 import navLogoText from '../../../assets/Nav/logo_lowercase_extrabold.svg';
@@ -10,10 +10,12 @@ import iconWarpstagram from '../../../assets/Modals/settings/warpstagram.svg';
 import iconWindows from '../../../assets/Nav/windows.svg';
 import iconApple from '../../../assets/Nav/apple.svg';
 import iconLinux from '../../../assets/Nav/linux.svg';
+import ThemeContext from '../../storage/themeContext';
 import './Nav.scss';
 let appVersion: string = '1.0.0';
 
 const Nav = (props) => {
+  const themeCtx = useContext(ThemeContext);
   window.electron.ipcRenderer.sendMessage('package', [
     'Nav requesting package.json',
   ]);
@@ -87,6 +89,13 @@ const Nav = (props) => {
         // onMouseEnter={mouseEnterHandler}
         // onMouseLeave={mouseLeaveHandler}
         className="navMain"
+        style={
+          themeCtx.isDarkTheme
+            ? { backgroundColor: themeCtx.nav.dark.backgroundColor }
+            : {
+                backgroundColor: themeCtx.nav.light.backgroundColor,
+              }
+        }
       >
         <div className="logoContainer">
           <a className="navLogo">
