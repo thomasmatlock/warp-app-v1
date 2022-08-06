@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="384px" height="512px" viewBox="0 0 384 512" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <path d="M0 0L384 0L384 512L0 512L0 0Z" id="path_1" />
+    <clipPath id="mask_1">
+      <use xlink:href="#path_1" />
+    </clipPath>
+  </defs>
+  <g id="apple">
+    <path d="M0 0L384 0L384 512L0 512L0 0Z" id="Background" fill="#FFFFFF" fill-opacity="0" fill-rule="evenodd" stroke="none" />
+    <g clip-path="url(#mask_1)">
+      <path d="M318.7 268.7C318.5 232 335.1 204.3 368.7 183.9C349.9 157 321.5 142.2 284 139.3C248.5 136.5 209.7 160 195.5 160C180.5 160 146.1 140.3 119.1 140.3C63.3 141.2 4 184.8 4 273.5C4 299.7 8.8 326.767 18.4 354.7C31.2 391.4 77.4 481.4 125.6 479.9C150.8 479.3 168.6 462 201.4 462C233.2 462 249.7 479.9 277.8 479.9C326.4 479.2 368.2 397.4 380.4 360.6C315.2 329.9 318.7 270.6 318.7 268.7L318.7 268.7ZM262.1 104.5C289.4 72.1 286.9 42.6 286.1 32C262 33.4 234.1 48.4 218.2 66.9C200.7 86.7 190.4 111.2 192.6 138.8C218.7 140.8 242.5 127.4 262.1 104.5L262.1 104.5Z" id="Shape" fill="#000000" fill-rule="evenodd" stroke="none" />
+    </g>
+  </g>
+</svg>

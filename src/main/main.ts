@@ -584,7 +584,7 @@ app
   .whenReady()
   .then(() => {
     // windowController.createSplashWindow();
-    windowController.createBrowserWindow();
+    // windowController.createBrowserWindow();
     windowController.createMainWindow();
     app.on('activate', () => {
       if (mainWindow === null) windowController.createMainWindow();

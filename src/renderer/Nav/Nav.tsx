@@ -1,15 +1,20 @@
 import { Fragment, useState, useContext } from 'react';
 // LOGO ICONS
-import NavLogoImg from '../../../assets/Nav/008-blackhole_lunacy.svg';
-import navLogoText from '../../../assets/Nav/logo_lowercase_extrabold.svg';
+import NavLogoImgDark from '../../../assets/Nav/blackhole_dark.svg';
+import NavLogoImgLight from '../../../assets/Nav/blackhole_light.svg';
+import navLogoTextDark from '../../../assets/Nav/logo_light.svg';
+import navLogoTextLight from '../../../assets/Nav/logo_dark.svg';
 // NAV BUTTON ICONS
 import iconAudio from '../../../assets/Modals/settings/audio.svg';
 import iconVideo from '../../../assets/Modals/settings/video3.svg';
 import iconWarpstagram from '../../../assets/Modals/settings/warpstagram.svg';
 // PLATFORM ICONS
-import iconWindows from '../../../assets/Nav/windows.svg';
-import iconApple from '../../../assets/Nav/apple.svg';
-import iconLinux from '../../../assets/Nav/linux.svg';
+import iconWindowsDark from '../../../assets/Nav/windowsDark.svg';
+import iconWindowsLight from '../../../assets/Nav/windowsLight.svg';
+import iconAppleDark from '../../../assets/Nav/appleDark.svg';
+import iconAppleLight from '../../../assets/Nav/appleLight.svg';
+import iconLinuxDark from '../../../assets/Nav/linuxDark.svg';
+import iconLinuxLight from '../../../assets/Nav/linuxLight.svg';
 import ThemeContext from '../../storage/themeContext';
 import './Nav.scss';
 let appVersion: string = '1.0.0';
@@ -99,8 +104,17 @@ const Nav = (props) => {
       >
         <div className="logoContainer">
           <a className="navLogo">
-            <img className="navLogoImg" alt="icon" src={NavLogoImg} />
-            <img className="navLogoText" alt="icon" src={navLogoText} />
+            <img
+              className="navLogoImg"
+              alt="icon"
+              // src={NavLogoImg}
+              src={themeCtx.isDarkTheme ? NavLogoImgDark : NavLogoImgLight}
+            />
+            <img
+              className="navLogoText"
+              alt="icon"
+              src={themeCtx.isDarkTheme ? navLogoTextDark : navLogoTextLight}
+            />
           </a>
         </div>
         <div className="buttonContainer">
@@ -143,18 +157,41 @@ const Nav = (props) => {
         <div className="logoContainer">
           <a className="navLogo">
             {isWindows && (
-              <img className="platformImg" alt="icon" src={iconWindows} />
+              <img
+                className="platformImg"
+                alt="icon"
+                src={themeCtx.isDarkTheme ? iconWindowsDark : iconWindowsLight}
+              />
             )}
             {isApple && (
-              <img className="platformImg" alt="icon" src={iconApple} />
+              <img
+                className="platformImg"
+                alt="icon"
+                src={themeCtx.isDarkTheme ? iconAppleDark : iconAppleLight}
+              />
             )}
             {isLinux && (
-              <img className="platformImg" alt="icon" src={iconLinux} />
+              <img
+                className="platformImg"
+                alt="icon"
+                src={themeCtx.isDarkTheme ? iconLinuxDark : iconLinuxLight}
+              />
             )}
             {/* <img className="navLogoText" alt="icon" src={navLogoText} /> */}
           </a>
           <a className="navLogo">
-            <p className="navVersion">{`Version ` + appVersion}</p>
+            <p
+              className="navVersion"
+              style={
+                themeCtx.isDarkTheme
+                  ? { color: themeCtx.nav.dark.color }
+                  : {
+                      color: themeCtx.nav.light.color,
+                    }
+              }
+            >
+              {`Version ` + appVersion}
+            </p>
           </a>
         </div>
       </div>
