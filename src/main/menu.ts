@@ -555,6 +555,15 @@ export default class MenuBuilder {
             type: 'separator',
           },
           {
+            label: 'Change Theme',
+            enabled: false,
+            accelerator: 'CmdOrCtrl+T',
+            click: () => {
+              // app.relaunch();
+              // this.mainWindow.webContents.send('Menu: Shortcuts: Restart');
+            },
+          },
+          {
             label: 'Restart Warp',
             enabled: true,
             accelerator: 'CmdOrCtrl+R',

@@ -1,5 +1,8 @@
 import { Fragment, useContext } from 'react';
 import ThemeContext from '../../storage/themeContext';
+import refreshIcon from '../../../assets/Warpstagram/refresh1.svg';
+import pinIcon from '../../../assets/Warpstagram/pin.svg';
+import menuIcon from '../../../assets/Warpstagram/menu.svg';
 // import navLogoText from '../../../assets/Nav/logo_lowercase_extrabold.svg';
 
 import dummy_avatar from '../../../assets/Content/Warpstagram/peaky/6.jpg';
@@ -94,6 +97,53 @@ const Warpstagram = () => {
                 }
               >
                 posts, stories, highlights
+              </div>
+              <div className="filterBar__menu filterBar__menu__right">
+                <div className="filterBar__menu__item filterBar__menu__item__sort">
+                  <img
+                    title="Sort"
+                    src={refreshIcon}
+                    style={
+                      themeCtx.isDarkTheme
+                        ? { filter: 'invert(0%)' }
+                        : {
+                            filter: 'invert(100%)',
+                          }
+                    }
+                  />
+                </div>
+                <div
+                  // onClick={actionBarCtx.toggleAudioPanelCollapsed}
+                  className="filterBar__menu__item filterBar__menu__item__sort"
+                >
+                  <img
+                    title="Collapse audio downloads panel"
+                    src={pinIcon}
+                    style={
+                      themeCtx.isDarkTheme
+                        ? { filter: 'invert(0%)' }
+                        : {
+                            filter: 'invert(100%)',
+                          }
+                    }
+                  />
+                </div>
+                <div
+                  // onClick={actionBarCtx.toggleAudioPanelCollapsed}
+                  className="filterBar__menu__item filterBar__menu__item__sort"
+                >
+                  <img
+                    title="fill"
+                    src={menuIcon}
+                    style={
+                      themeCtx.isDarkTheme
+                        ? { filter: 'invert(0%)' }
+                        : {
+                            filter: 'invert(100%)',
+                          }
+                    }
+                  />
+                </div>
               </div>
             </div>
             <div className="content__panel__warpstagram__account__posts">
