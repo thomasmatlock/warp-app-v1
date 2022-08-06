@@ -56,11 +56,10 @@ const FilterBar = (props) => {
           {!actionBarCtx.isAudioPanelCollapsed && (
             <div
               onClick={actionBarCtx.toggleAudioPanelCollapsed}
-              // onClick={themeCtx.toggleTheme}
               className="filterBar__menu__item filterBar__menu__item__sort"
             >
               <img
-                title="Collapse downloads panel"
+                title="Collapse audio downloads panel"
                 src={collapseIcon}
                 style={
                   themeCtx.isDarkTheme
@@ -78,7 +77,7 @@ const FilterBar = (props) => {
               className="filterBar__menu__item filterBar__menu__item__sort"
             >
               <img
-                title="Expand downloads panel"
+                title="Expand audio downloads panel"
                 src={expandIcon}
                 style={
                   themeCtx.isDarkTheme

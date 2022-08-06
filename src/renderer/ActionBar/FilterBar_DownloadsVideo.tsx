@@ -26,47 +26,9 @@ const FilterBar = (props) => {
             : 'filterBar'
         }
       >
-        <div className="filterBar__menu filterBar__menu__left">
-          {!actionBarCtx.isAudioPanelCollapsed && (
-            <div
-              onClick={actionBarCtx.toggleVideoPanelCollapsed}
-              // onClick={themeCtx.toggleTheme}
-              className="filterBar__menu__item filterBar__menu__item__sort"
-            >
-              <img
-                title="Collapse downloads panel"
-                src={collapseIcon}
-                style={
-                  themeCtx.isDarkTheme
-                    ? { filter: 'invert(100%)' }
-                    : {
-                        filter: 'invert(0%)',
-                      }
-                }
-              />
-            </div>
-          )}
-          {actionBarCtx.isAudioPanelCollapsed && (
-            <div
-              onClick={actionBarCtx.toggleVideoPanelCollapsed}
-              className="filterBar__menu__item filterBar__menu__item__sort"
-            >
-              <img
-                title="Expand downloads panel"
-                src={expandIcon}
-                style={
-                  themeCtx.isDarkTheme
-                    ? { filter: 'invert(100%)' }
-                    : {
-                        filter: 'invert(0%)',
-                      }
-                }
-              />
-            </div>
-          )}
-        </div>
-        {!actionBarCtx.isVideoPanelCollapsed && (
-          <div className="filterBar__menu filterBar__menu__right">
+        <div className="filterBar__menu filterBar__menu__left"></div>
+        <div className="filterBar__menu filterBar__menu__right">
+          {!actionBarCtx.isVideoPanelCollapsed && (
             <div
               className="filterBar__menu__item filterBar__menu__item__accounts_total"
               style={
@@ -79,9 +41,11 @@ const FilterBar = (props) => {
             >
               {props.videoDownloadsTotal} video downloads
             </div>
-            {/* <div className="filterBar__menu__item filterBar__menu__item__find">
+          )}
+          {/* <div className="filterBar__menu__item filterBar__menu__item__find">
             <img src={searchIcon} />
           </div> */}
+          {!actionBarCtx.isVideoPanelCollapsed && (
             <div className="filterBar__menu__item filterBar__menu__item__sort">
               <img
                 title="Sort"
@@ -95,8 +59,44 @@ const FilterBar = (props) => {
                 }
               />
             </div>
-          </div>
-        )}
+          )}
+          {!actionBarCtx.isVideoPanelCollapsed && (
+            <div
+              onClick={actionBarCtx.toggleVideoPanelCollapsed}
+              className="filterBar__menu__item filterBar__menu__item__sort"
+            >
+              <img
+                title="Collapse video downloads panel"
+                src={collapseIcon}
+                style={
+                  themeCtx.isDarkTheme
+                    ? { filter: 'invert(100%)' }
+                    : {
+                        filter: 'invert(0%)',
+                      }
+                }
+              />
+            </div>
+          )}
+          {actionBarCtx.isVideoPanelCollapsed && (
+            <div
+              onClick={actionBarCtx.toggleVideoPanelCollapsed}
+              className="filterBar__menu__item filterBar__menu__item__sort"
+            >
+              <img
+                title="Expand video downloads panel"
+                src={expandIcon}
+                style={
+                  themeCtx.isDarkTheme
+                    ? { filter: 'invert(100%)' }
+                    : {
+                        filter: 'invert(0%)',
+                      }
+                }
+              />
+            </div>
+          )}
+        </div>
       </div>
     </Fragment>
   );
