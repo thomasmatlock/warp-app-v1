@@ -20,7 +20,39 @@ const FilterBar = (props) => {
             : 'filterBar'
         }
       >
-        <div className="filterBar__menu filterBar__menu__left">
+        {/* <div className="filterBar__menu filterBar__menu__left">
+         
+        </div> */}
+        <div className="filterBar__menu filterBar__menu__right">
+          {!actionBarCtx.isAudioPanelCollapsed && (
+            <div
+              className="filterBar__menu__item filterBar__menu__item__accounts_total"
+              style={
+                themeCtx.isDarkTheme
+                  ? { filter: 'invert(0%)' }
+                  : {
+                      filter: 'invert(100%)',
+                    }
+              }
+            >
+              {props.audioDownloadsTotal} audio downloads
+            </div>
+          )}
+          {!actionBarCtx.isAudioPanelCollapsed && (
+            <div className="filterBar__menu__item filterBar__menu__item__sort">
+              <img
+                title="Sort"
+                src={sortIcon}
+                style={
+                  themeCtx.isDarkTheme
+                    ? { filter: 'invert(0%)' }
+                    : {
+                        filter: 'invert(100%)',
+                      }
+                }
+              />
+            </div>
+          )}
           {!actionBarCtx.isAudioPanelCollapsed && (
             <div
               onClick={actionBarCtx.toggleAudioPanelCollapsed}
@@ -59,38 +91,6 @@ const FilterBar = (props) => {
             </div>
           )}
         </div>
-        {!actionBarCtx.isAudioPanelCollapsed && (
-          <div className="filterBar__menu filterBar__menu__right">
-            <div
-              className="filterBar__menu__item filterBar__menu__item__accounts_total"
-              style={
-                themeCtx.isDarkTheme
-                  ? { filter: 'invert(0%)' }
-                  : {
-                      filter: 'invert(100%)',
-                    }
-              }
-            >
-              {props.audioDownloadsTotal} audio downloads
-            </div>
-            {/* <div className="filterBar__menu__item filterBar__menu__item__find">
-            <img src={searchIcon} />
-          </div> */}
-            <div className="filterBar__menu__item filterBar__menu__item__sort">
-              <img
-                title="Sort"
-                src={sortIcon}
-                style={
-                  themeCtx.isDarkTheme
-                    ? { filter: 'invert(0%)' }
-                    : {
-                        filter: 'invert(100%)',
-                      }
-                }
-              />
-            </div>
-          </div>
-        )}
       </div>
     </Fragment>
   );
