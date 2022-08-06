@@ -21,25 +21,26 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
 }
 
 .contentPanel {
-    // border: 1px solid red;
     // height: 100%;
-    height: calc(100vh - 192px);
     // height: calc(100vh - 200px);
+    height: calc(100vh - 192px);
     // width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     flex: 1;
     // width: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: start;
-    // justify-content: center;
-    // overflow: hidden;
-    // overflow: scroll;
     &__collapsed {
+        height: calc(100vh - 192px);
+        // border: 1px solid red;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: start;
         width: 72px !important;
     }
 }
