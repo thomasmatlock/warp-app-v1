@@ -35,8 +35,8 @@ const Search = (props) => {
   const videoPlaceholder = 'video search...beep boop  ';
   const warpstagramPlaceholder =
     'Enter instagram username, hashtag, or location';
-  const [audioMode, setAudioMode] = useState(true);
-  const [videoMode, setVideoMode] = useState(false);
+  const [audioMode, setAudioMode] = useState(false);
+  const [videoMode, setVideoMode] = useState(true);
   const [warpstagramMode, setWarpstagramMode] = useState(false);
   const [generalMode, setGeneralMode] = useState(false);
   const [authsMode, setAuthsMode] = useState(false);

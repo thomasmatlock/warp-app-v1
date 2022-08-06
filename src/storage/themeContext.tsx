@@ -60,7 +60,7 @@ export const ThemeContextProvider = (props) => {
     light: {
       color: colors.black,
       placeholderColor: colors.dark1,
-      backgroundColor: colors.light1,
+      backgroundColor: colors.white,
       inputBackgroundColor: colors.light1,
       inputBorderColor: colors.light2,
     },
@@ -92,7 +92,7 @@ export const ThemeContextProvider = (props) => {
     light: {
       color: colors.black,
       placeholderColor: colors.dark1,
-      backgroundColor: colors.light2,
+      backgroundColor: colors.light1,
       inputBackgroundColor: colors.light1,
       inputBorderColor: colors.light2,
     },

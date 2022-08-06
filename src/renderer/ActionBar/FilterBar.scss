@@ -49,10 +49,11 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
             justify-content: flex-end !important;
         }
         &__item {
+            // border: 1px solid red;
             // height: 75%;
             height: 65%;
             display: flex;
-            margin: 0 12px;
+            margin: 0 16px;
             // margin-left: 16px;
             padding: 0 8px;
             // font-size: 12px;

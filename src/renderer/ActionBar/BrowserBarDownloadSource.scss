@@ -38,7 +38,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
 $gradient-orange: linear-gradient(to left, #da2c4d 0%, #f8ab37 100%);
 .browserBarDownloadSource {
     height: 48px;
-    width: clamp(20%, 20vw, 250px);
+    width: clamp(150px, 200px, 200px);
     margin: 8px 48px;
     border-radius: 3px;
     position: absolute;
@@ -172,7 +172,8 @@ $gradient-orange: linear-gradient(to left, #da2c4d 0%, #f8ab37 100%);
 .browserBarDownloadSource__hovering {
     //  height: 48px;
     // width: 300px;
-    width: clamp(20%, 20vw, 250px);
+    // width: clamp(20%, 20vw, 250px);
+    width: clamp(200px, 250px, 250px);
     margin: 8px 48px;
     border-radius: 3px;
     position: absolute;

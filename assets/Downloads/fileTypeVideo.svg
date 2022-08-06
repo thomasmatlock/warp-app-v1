@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="432px" height="432px" viewBox="0 0 432 432" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <path d="M0 0L432 0L432 432L0 432L0 0Z" id="path_1" />
+    <clipPath id="mask_1">
+      <use xlink:href="#path_1" />
+    </clipPath>
+  </defs>
+  <g id="fileTypeVideo">
+    <path d="M0 0L432 0L432 432L0 432L0 0Z" id="Background" fill="#FFFFFF" fill-opacity="0" fill-rule="evenodd" stroke="none" />
+    <g clip-path="url(#mask_1)">
+      <path d="M278.906 87L30 87C13.4375 87.0195 0.0195313 100.438 0 117L0 314.422C0.0195312 330.984 13.4375 344.402 30 344.422L278.906 344.422C295.465 344.402 308.887 330.984 308.906 314.422L308.906 117C308.887 100.438 295.465 87.0195 278.906 87L278.906 87Z" id="Shape" fill="#FFFFFF" fill-rule="evenodd" stroke="none" />
+      <path d="M328.906 256.801L432 313.086L432 118.98L328.906 175.266L328.906 256.801Z" id="Shape" fill="#FFFFFF" fill-rule="evenodd" stroke="none" />
+    </g>
+  </g>
+</svg>
