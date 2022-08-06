@@ -84,11 +84,12 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
 .content__panel__warpstagram__account {
     height: 230px !important;
     width: 99vw;
+    width: 96.5vw;
     display: flex;
-    margin-top: 12px;
+    margin-top: 1rem;
     // margin-bottom: 8px;
-    margin-left: 16px;
-    margin-right: 8px;
+    // margin-left: 24px;
+    // margin-right: 16px;
     // margin-right: 48px;
     // margin: 4px 16px;
     will-change: transform;
@@ -114,20 +115,28 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     &__info {
         display: flex;
         flex-direction: row;
-        justify-content: start flex;
+        justify-content: flex-start;
         align-items: center;
-        margin-top: 15px;
-        margin-left: 15px;
-        margin-right: 15px;
-        height: 20px;
+        align-content: center;
+        margin-top: 1rem;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        height: 24px;
+        letter-spacing: 0.01rem;
         // border: 1px dotted white;
         // height: auto;
         // width: 100%;
         &__text {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: flex-start;
+            align-content: center;
             color: rgb(162, 162, 162);
             font-size: 14px;
             // margin: 8px 0;
-            font-weight: 100 !important;
+            font-weight: 400 !important;
+            letter-spacing: 0.01rem;
             // border: 1px dotted white;
         }
         &__avatar {
@@ -138,11 +147,17 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
             cursor: pointer;
         }
         &__name {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
             font-size: 14px;
             margin-left: 8px;
             font-weight: 100 !important;
             cursor: pointer;
             color: #fff;
+            letter-spacing: 0.02rem;
             // border: 1px dotted white;
         }
         &__posts {
