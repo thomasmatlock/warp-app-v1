@@ -3,6 +3,7 @@ import iconLength from '../../../assets/Downloads/duration.svg';
 import iconFileSize from '../../../assets/Downloads/fileSize.svg';
 import iconFileResolution from '../../../assets/Downloads/resolution.svg';
 import IconFileTypeVideo from '../../../assets/Downloads/fileTypeVideo.svg';
+import IconFileFps from '../../../assets/Downloads/fps1.svg';
 import thumbnail from '../../../assets/Content/dummythumbnail2.jpg';
 import ThemeContext from '../../storage/themeContext';
 import ActionBarContext from '../../storage/actionBarContext';
@@ -150,6 +151,29 @@ const DownloadsVideo = () => {
                   }
                 >
                   1080p
+                </div>{' '}
+                <img
+                  src={IconFileFps}
+                  className=" content__panel__downloads__list__item__img content__panel__downloads__list__item__file_length"
+                  style={
+                    themeCtx.isDarkTheme
+                      ? { filter: 'invert(0%)' }
+                      : {
+                          filter: 'invert(100%)',
+                        }
+                  }
+                ></img>
+                <div
+                  className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_fps"
+                  style={
+                    themeCtx.isDarkTheme
+                      ? { filter: 'invert(0%)' }
+                      : {
+                          filter: 'invert(100%)',
+                        }
+                  }
+                >
+                  60fps
                 </div>
               </div>
             </div>
