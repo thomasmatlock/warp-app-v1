@@ -59,13 +59,40 @@ const Warpstagram = () => {
                 src={dummy_avatar}
                 className=" content__panel__warpstagram__account__info__avatar"
               ></img>
-              <div className="content__panel__warpstagram__account__info__text content__panel__warpstagram__account__info__name">
+              <div
+                className="content__panel__warpstagram__account__info__text content__panel__warpstagram__account__info__name"
+                style={
+                  themeCtx.isDarkTheme
+                    ? { filter: 'invert(0%)' }
+                    : {
+                        filter: 'invert(100%)',
+                      }
+                }
+              >
                 peakyblindersofficial
               </div>
-              <div className="content__panel__warpstagram__account__info__text content__panel__warpstagram__account__info__posts">
+              <div
+                className="content__panel__warpstagram__account__info__text content__panel__warpstagram__account__info__posts"
+                style={
+                  themeCtx.isDarkTheme
+                    ? { filter: 'invert(0%)' }
+                    : {
+                        filter: 'invert(100%)',
+                      }
+                }
+              >
                 143 items
               </div>
-              <div className="content__panel__warpstagram__account__info__text content__panel__warpstagram__account__info__posts-type">
+              <div
+                className="content__panel__warpstagram__account__info__text content__panel__warpstagram__account__info__posts-type"
+                style={
+                  themeCtx.isDarkTheme
+                    ? { filter: 'invert(0%)' }
+                    : {
+                        filter: 'invert(100%)',
+                      }
+                }
+              >
                 posts, stories, highlights
               </div>
             </div>

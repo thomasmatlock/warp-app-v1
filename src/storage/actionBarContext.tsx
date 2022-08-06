@@ -6,13 +6,16 @@ import React, { useState, useEffect } from 'react';
 // wrapping App in it, means everything in App will listen to it, and everything in App will be able to access it
 // need
 // put default contexts into this
-const ThemeContext = React.createContext({
-  isDarkTheme: true,
-  toggleTheme: () => {},
+const ActionBarContext = React.createContext({
+  isAudioPanelCollapsed: false,
+  isVideoPanelCollapsed: false,
+  toggleAudioPanelCollapsed: () => {},
+  toggleVideoPanelCollapsed: () => {},
 });
 
-export const ThemeContextProvider = (props) => {
-  const [isDarkTheme, setIsDarkTheme] = useState(true);
+export const ActionBarContextProvider = (props) => {
+  const [isAudioPanelCollapsed, setIsAudioPanelCollapsed] = useState(false);
+  const [isVideoPanelCollapsed, setIsVideoPanelCollapsed] = useState(false);
   const sources = {
     facebook: { URL: 'https://facebook.com', active: false, enabled: false },
     instagram: { URL: 'https://instagram.com', active: false, enabled: false },
@@ -29,27 +32,37 @@ export const ThemeContextProvider = (props) => {
     vimeo: { URL: 'https://vimeo.com', active: false, enabled: false },
     youtube: { URL: 'https://youtube.com', active: true, enabled: true },
   };
-  // const toggleTheme = () => {
-  //   console.log('changing theme');
 
-  //   if (isDarkTheme) {
-  //     setIsDarkTheme(false);
-  //   } else if (!isDarkTheme) {
-  //     setIsDarkTheme(true);
-  //   }
-  // };
+  const toggleAudioPanelCollapsed = () => {
+    console.log('toggling audio panel collapsed status');
+    if (isAudioPanelCollapsed) {
+      setIsAudioPanelCollapsed(false);
+    } else if (!isAudioPanelCollapsed) {
+      setIsAudioPanelCollapsed(true);
+    }
+  };
+  const toggleVideoPanelCollapsed = () => {
+    console.log('toggling video panel collapsed status');
+    if (isVideoPanelCollapsed) {
+      setIsVideoPanelCollapsed(false);
+    } else if (!isVideoPanelCollapsed) {
+      setIsVideoPanelCollapsed(true);
+    }
+  };
 
   return (
-    <ThemeContext.Provider
+    <ActionBarContext.Provider
       value={{
+        isAudioPanelCollapsed: isAudioPanelCollapsed,
+        isVideoPanelCollapsed: isVideoPanelCollapsed,
         sources: sources,
-        isDarkTheme: isDarkTheme,
-        toggleTheme: toggleTheme,
+        toggleAudioPanelCollapsed: toggleAudioPanelCollapsed,
+        toggleVideoPanelCollapsed: toggleVideoPanelCollapsed,
       }}
     >
       {props.children}
-    </ThemeContext.Provider>
+    </ActionBarContext.Provider>
   );
 };
 
-export default ThemeContext;
+export default ActionBarContext;

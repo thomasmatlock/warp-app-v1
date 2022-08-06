@@ -25,7 +25,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     // height: 100%;
     height: calc(100vh - 192px);
     // height: calc(100vh - 200px);
-    width: 100%;
+    // width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -39,4 +39,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     // justify-content: center;
     // overflow: hidden;
     // overflow: scroll;
+    &__collapsed {
+        width: 72px !important;
+    }
 }

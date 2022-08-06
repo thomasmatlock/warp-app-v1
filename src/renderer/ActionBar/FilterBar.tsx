@@ -1,10 +1,14 @@
 import { Fragment, useState, useContext } from 'react';
 import sortIcon from '../../../assets/Content/Warpstagram/sort.svg';
-import searchIcon from '../../../assets/Content/Warpstagram/search.svg';
 import ThemeContext from '../../storage/themeContext';
+import ActionBarContext from '../../storage/actionBarContext';
+
 import './FilterBar.scss';
 const FilterBar = (props) => {
   const themeCtx = useContext(ThemeContext);
+  const actionBarCtx = useContext(ActionBarContext);
+  console.log(actionBarCtx);
+
   const [filterTypeAll, setFilterTypeAll] = useState(true);
   const [filterTypeUsers, setFilterTypeUsers] = useState(false);
   const [filterTypeHashtags, setFilterTypeHashtags] = useState(false);
@@ -68,6 +72,13 @@ const FilterBar = (props) => {
                 ? 'filterBar__menu__item__active'
                 : 'filterBar__menu__item'
             }
+            style={
+              themeCtx.isDarkTheme
+                ? { filter: 'invert(0%)' }
+                : {
+                    filter: 'invert(100%)',
+                  }
+            }
             onClick={filterTypeAllHandler}
           >
             All
@@ -77,6 +88,13 @@ const FilterBar = (props) => {
               filterTypeUsers
                 ? 'filterBar__menu__item__active'
                 : 'filterBar__menu__item'
+            }
+            style={
+              themeCtx.isDarkTheme
+                ? { filter: 'invert(0%)' }
+                : {
+                    filter: 'invert(100%)',
+                  }
             }
             onClick={filterTypeUsersHandler}
           >
@@ -88,6 +106,13 @@ const FilterBar = (props) => {
                 ? 'filterBar__menu__item__active'
                 : 'filterBar__menu__item'
             }
+            style={
+              themeCtx.isDarkTheme
+                ? { filter: 'invert(0%)' }
+                : {
+                    filter: 'invert(100%)',
+                  }
+            }
             onClick={filterTypeHashtagsHandler}
           >
             Hashtags
@@ -98,20 +123,46 @@ const FilterBar = (props) => {
                 ? 'filterBar__menu__item__active'
                 : 'filterBar__menu__item'
             }
+            style={
+              themeCtx.isDarkTheme
+                ? { filter: 'invert(0%)' }
+                : {
+                    filter: 'invert(100%)',
+                  }
+            }
             onClick={filterTypeLocationsHandler}
           >
             Locations
           </div>
         </div>
         <div className="filterBar__menu filterBar__menu__right">
-          <div className="filterBar__menu__item filterBar__menu__item__accounts_total">
+          <div
+            className="filterBar__menu__item filterBar__menu__item__accounts_total"
+            style={
+              themeCtx.isDarkTheme
+                ? { filter: 'invert(0%)' }
+                : {
+                    filter: 'invert(100%)',
+                  }
+            }
+          >
             {props.warpstagramDownloadsTotal} accounts
           </div>
           {/* <div className="filterBar__menu__item filterBar__menu__item__find">
             <img src={searchIcon} />
           </div> */}
           <div className="filterBar__menu__item filterBar__menu__item__sort">
-            <img src={sortIcon} title="Sort" />
+            <img
+              src={sortIcon}
+              title="Sort"
+              style={
+                themeCtx.isDarkTheme
+                  ? { filter: 'invert(0%)' }
+                  : {
+                      filter: 'invert(100%)',
+                    }
+              }
+            />
           </div>
         </div>
       </div>

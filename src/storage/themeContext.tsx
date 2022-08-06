@@ -45,7 +45,7 @@ export const ThemeContextProvider = (props) => {
       color: colors.black,
       placeholderColor: colors.dark1,
       backgroundColor: colors.white,
-      inputBackgroundColor: colors.light1,
+      inputBackgroundColor: colors.white,
       inputBorderColor: colors.light2,
     },
   };
@@ -60,7 +60,7 @@ export const ThemeContextProvider = (props) => {
     light: {
       color: colors.black,
       placeholderColor: colors.dark1,
-      backgroundColor: colors.white,
+      backgroundColor: colors.light1,
       inputBackgroundColor: colors.light1,
       inputBorderColor: colors.light2,
     },
@@ -92,7 +92,7 @@ export const ThemeContextProvider = (props) => {
     light: {
       color: colors.black,
       placeholderColor: colors.dark1,
-      backgroundColor: colors.light3,
+      backgroundColor: colors.light2,
       inputBackgroundColor: colors.light1,
       inputBorderColor: colors.light2,
     },
@@ -108,13 +108,13 @@ export const ThemeContextProvider = (props) => {
     light: {
       color: colors.black,
       placeholderColor: colors.dark1,
-      backgroundColor: colors.light1,
+      backgroundColor: colors.white,
       inputBackgroundColor: colors.light1,
       inputBorderColor: colors.light2,
     },
   };
   const toggleTheme = () => {
-    console.log('changing theme');
+    console.log('toggleTheme');
 
     if (isDarkTheme) {
       setIsDarkTheme(false);
@@ -129,7 +129,6 @@ export const ThemeContextProvider = (props) => {
         search: search,
         actionBar: actionBar,
         content: content,
-
         downloads: downloads,
         nav: nav,
         isDarkTheme: isDarkTheme,

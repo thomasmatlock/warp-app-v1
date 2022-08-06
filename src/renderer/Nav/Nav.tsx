@@ -1,20 +1,15 @@
 import { Fragment, useState, useContext } from 'react';
 // LOGO ICONS
-import NavLogoImgDark from '../../../assets/Nav/logo/blackholeDark.svg';
-import NavLogoImgLight from '../../../assets/Nav/logo/blackholeLight.svg';
-import navLogoTextDark from '../../../assets/Nav/logo/logoDark.svg';
-import navLogoTextLight from '../../../assets/Nav/logo/logoLight.svg';
+import NavLogoImg from '../../../assets/Nav/logo/blackhole.svg';
+import navLogoText from '../../../assets/Nav/logo/logo.svg';
 // NAV BUTTON ICONS
 import iconAudio from '../../../assets/Modals/settings/audio.svg';
 import iconVideo from '../../../assets/Modals/settings/video3.svg';
 import iconWarpstagram from '../../../assets/Modals/settings/warpstagram.svg';
 // PLATFORM ICONS
-import iconWindowsDark from '../../../assets/Nav/platform/windowsDark.svg';
-import iconWindowsLight from '../../../assets/Nav/platform/windowsLight.svg';
-import iconAppleDark from '../../../assets/Nav/platform/appleDark.svg';
-import iconAppleLight from '../../../assets/Nav/platform/appleLight.svg';
-import iconLinuxDark from '../../../assets/Nav/platform/linuxDark.svg';
-import iconLinuxLight from '../../../assets/Nav/platform/linuxLight.svg';
+import iconWindows from '../../../assets/Nav/platform/windows.svg';
+import iconApple from '../../../assets/Nav/platform/apple.svg';
+import iconLinux from '../../../assets/Nav/platform/linux.svg';
 import ThemeContext from '../../storage/themeContext';
 import './Nav.scss';
 let appVersion: string = '1.0.0';
@@ -106,14 +101,27 @@ const Nav = (props) => {
           <a className="navLogo">
             <img
               className="navLogoImg"
+              style={
+                themeCtx.isDarkTheme
+                  ? { filter: 'invert(0%)' }
+                  : {
+                      filter: 'invert(100%)',
+                    }
+              }
               alt="icon"
-              // src={NavLogoImg}
-              src={themeCtx.isDarkTheme ? NavLogoImgDark : NavLogoImgLight}
+              src={NavLogoImg}
             />
             <img
               className="navLogoText"
+              style={
+                themeCtx.isDarkTheme
+                  ? { filter: 'invert(0%)' }
+                  : {
+                      filter: 'invert(100%)',
+                    }
+              }
               alt="icon"
-              src={themeCtx.isDarkTheme ? navLogoTextDark : navLogoTextLight}
+              src={navLogoText}
             />
           </a>
         </div>
@@ -159,22 +167,43 @@ const Nav = (props) => {
             {isWindows && (
               <img
                 className="platformImg"
+                src={iconWindows}
+                style={
+                  themeCtx.isDarkTheme
+                    ? { filter: 'invert(0%)' }
+                    : {
+                        filter: 'invert(100%)',
+                      }
+                }
                 alt="icon"
-                src={themeCtx.isDarkTheme ? iconWindowsDark : iconWindowsLight}
               />
             )}
             {isApple && (
               <img
                 className="platformImg"
+                src={iconApple}
+                style={
+                  themeCtx.isDarkTheme
+                    ? { filter: 'invert(0%)' }
+                    : {
+                        filter: 'invert(100%)',
+                      }
+                }
                 alt="icon"
-                src={themeCtx.isDarkTheme ? iconAppleDark : iconAppleLight}
               />
             )}
             {isLinux && (
               <img
                 className="platformImg"
+                src={iconLinux}
+                style={
+                  themeCtx.isDarkTheme
+                    ? { filter: 'invert(0%)' }
+                    : {
+                        filter: 'invert(100%)',
+                      }
+                }
                 alt="icon"
-                src={themeCtx.isDarkTheme ? iconLinuxDark : iconLinuxLight}
               />
             )}
             {/* <img className="navLogoText" alt="icon" src={navLogoText} /> */}

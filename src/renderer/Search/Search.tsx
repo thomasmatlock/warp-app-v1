@@ -1,10 +1,8 @@
 import { Fragment, useState, useContext } from 'react';
 import './Search.scss';
-// import SearchIcon from '../../assets/public/sections/wrapup/cards/lightning.svg';
-import SearchIconLight from '../../../assets/Search/lightning light.svg';
-import SearchIconDark from '../../../assets/Search/lightning dark.svg';
+import SearchIcon from '../../../assets/Search/lightning.svg';
 // import SunIcon from '../../../assets/Search/sun_colored.svg';
-import SunIcon from '../../../assets/Search/sun3.svg';
+import SunIcon from '../../../assets/Search/sun.svg';
 // import SunIcon from '../../../assets/Search/sun2.svg';
 // import MoonIcon from '../../../assets/Search/moon_colored.svg';
 // import MoonIcon from '../../../assets/Search/moon.svg';
@@ -14,8 +12,7 @@ import SunIcon from '../../../assets/Search/sun3.svg';
 // import SunAstronaut from '../../../assets/Search/sun_astronaut.svg';
 import MoonIcon from '../../../assets/Search/moon.svg';
 import clearTextIcon from '../../../assets/Search/close.svg';
-import settingsIconLight from '../../../assets/Search/gear dark.svg';
-import settingsIconDark from '../../../assets/Search/gear light.svg';
+import settingsIcon from '../../../assets/Search/gear.svg';
 // import Modal from '../Modal/Modal';
 import ModalPreferences from '../Modal/ModalPreferences';
 import ThemeContext from '../../storage/themeContext';
@@ -196,8 +193,14 @@ const Search = (props) => {
         <img
           id="search__input__icon__unfocused"
           className="search__input__icon search__input__icon__unfocused"
-          // src={SearchIcon}
-          src={themeCtx.isDarkTheme ? SearchIconLight : SearchIconDark}
+          style={
+            themeCtx.isDarkTheme
+              ? { filter: 'invert(0%)' }
+              : {
+                  filter: 'invert(100%)',
+                }
+          }
+          src={SearchIcon}
         />
         <input
           autoFocus
@@ -208,10 +211,12 @@ const Search = (props) => {
               ? {
                   backgroundColor: themeCtx.search.dark.inputBackgroundColor,
                   color: themeCtx.search.dark.color,
+                  // filter: 'invert(100%)',
                 }
               : {
                   backgroundColor: themeCtx.search.light.inputBackgroundColor,
                   color: themeCtx.search.light.color,
+                  // filter: 'invert(0%)',
                 }
           }
           type="text"
@@ -227,6 +232,13 @@ const Search = (props) => {
           <img
             id="search__input__icon__focused"
             className="search__input__icon search__input__icon__clearText"
+            style={
+              themeCtx.isDarkTheme
+                ? { filter: 'invert(0%)' }
+                : {
+                    filter: 'invert(100%)',
+                  }
+            }
             src={clearTextIcon}
             onClick={searchClearTextHandler}
           />
@@ -259,8 +271,15 @@ const Search = (props) => {
       )}
       <div className="settings">
         <img
-          src={themeCtx.isDarkTheme ? settingsIconDark : settingsIconLight}
+          src={settingsIcon}
           className="settings_icon"
+          style={
+            themeCtx.isDarkTheme
+              ? { filter: 'invert(0%)' }
+              : {
+                  filter: 'invert(100%)',
+                }
+          }
           onClick={showModalHandler}
           title="Open Preferences"
         />

@@ -22,7 +22,7 @@ import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
 import packageJSON from '../../package.json';
 import prefs from '../storage/preferences';
-import sources from '../storage/sources';
+// import sources from '../storage/sources';
 import downloads from '../storage/downloads';
 // console.log(prefs);
 if (process.env.NODE_ENV === 'production') {

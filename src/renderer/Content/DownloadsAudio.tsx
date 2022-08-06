@@ -1,11 +1,13 @@
 import { Fragment, useState, useContext } from 'react';
 import thumbnail from '../../../assets/Content/dummy_thumbnail.png';
 import ThemeContext from '../../storage/themeContext';
+import ActionBarContext from '../../storage/actionBarContext';
 
 import './Downloads.scss';
 
 const DownloadsAudio = () => {
   const themeCtx = useContext(ThemeContext);
+  const actionBarCtx = useContext(ActionBarContext);
   const [searchInput, setSearchInput] = useState('');
 
   window.electron.ipcRenderer.on('Search: InputChange', (arg) => {
@@ -14,9 +16,6 @@ const DownloadsAudio = () => {
   const mouseEnterHandler = () => {
     // console.log('mouse enter');
     window.electron.ipcRenderer.sendMessage('browserNotHovered');
-  };
-  const mouseLeaveHandler = () => {
-    // console.log('mouse leave');
   };
   //  const audioItems = (
   //    <ul className={classes['cart-items']}>
@@ -36,9 +35,12 @@ const DownloadsAudio = () => {
     <Fragment>
       {/* {audioItems} */}
       <div
-        // onMouseEnter={mouseEnterHandler}
-        // onMouseLeave={mouseLeaveHandler}
-        className="contentPanel"
+        // className="contentPanel"
+        className={
+          actionBarCtx.isAudioPanelCollapsed
+            ? 'contentPanel__collapsed'
+            : 'contentPanel'
+        }
         style={
           themeCtx.isDarkTheme
             ? { backgroundColor: themeCtx.content.dark.backgroundColor }
@@ -47,9 +49,8 @@ const DownloadsAudio = () => {
               }
         }
       >
-        {/* <div className="content__panel__toggle_collapse"></div> */}
         <ul className="content__panel__downloads__list">
-          {/* <li
+          <li
             className="content__panel__downloads__list__item content__panel__downloads__list__item__audio"
             style={
               themeCtx.isDarkTheme
@@ -63,19 +64,55 @@ const DownloadsAudio = () => {
               src={thumbnail}
               className="content__panel__downloads__list__item__thumbnail"
             />
-            <div className="content__panel__downloads__list__item__text content__panel__downloads__list__item__title">
+            <div
+              className="content__panel__downloads__list__item__text content__panel__downloads__list__item__title"
+              style={
+                themeCtx.isDarkTheme
+                  ? { filter: 'invert(0%)' }
+                  : {
+                      filter: 'invert(100%)',
+                    }
+              }
+            >
               Magic of Hong Kong cyberpunk drone video
             </div>
-            <div className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_length">
+            <div
+              className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_length"
+              style={
+                themeCtx.isDarkTheme
+                  ? { filter: 'invert(0%)' }
+                  : {
+                      filter: 'invert(100%)',
+                    }
+              }
+            >
               7:36
             </div>
-            <div className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_type">
+            <div
+              className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_type"
+              style={
+                themeCtx.isDarkTheme
+                  ? { filter: 'invert(0%)' }
+                  : {
+                      filter: 'invert(100%)',
+                    }
+              }
+            >
               MP3
             </div>
-            <div className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_size">
+            <div
+              className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_size"
+              style={
+                themeCtx.isDarkTheme
+                  ? { filter: 'invert(0%)' }
+                  : {
+                      filter: 'invert(100%)',
+                    }
+              }
+            >
               8.6MB
             </div>
-          </li> */}
+          </li>
         </ul>
       </div>
     </Fragment>

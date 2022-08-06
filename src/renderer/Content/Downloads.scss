@@ -75,6 +75,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
         animation: moveInLeftDownload 0.5s ease-in-out;
         // animation-delay: 0.5s;
         // border: 1px dotted red;
+        color: rgb(167, 167, 167);
         // z-index: 10;
         &:hover {
             border: 1px solid $gray-dark-lightest;
@@ -102,17 +103,14 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
             // font-size: 7px;
         }
         &__file_length {
-            color: rgb(92, 92, 92) !important;
-            // color: rgb(255, 255, 255);
-            // font-size: 7px;
+            color: rgb(162, 162, 162);
         }
         &__file_type {
-            color: rgb(92, 92, 92) !important;
+            color: rgb(162, 162, 162);
             // font-size: 7px;
         }
         &__file_size {
-            color: rgb(92, 92, 92) !important;
-            // font-size: 7px;
+            color: rgb(162, 162, 162);
         }
     }
 }

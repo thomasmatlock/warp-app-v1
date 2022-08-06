@@ -1,77 +1,102 @@
 import { Fragment, useState, useContext } from 'react';
 import sortIcon from '../../../assets/Content/Warpstagram/sort.svg';
-import searchIcon from '../../../assets/Content/Warpstagram/search.svg';
+import collapseIcon from '../../../assets/ActionBar/collapse.svg';
+import expandIcon from '../../../assets/ActionBar/expand.svg';
 import ThemeContext from '../../storage/themeContext';
+import ActionBarContext from '../../storage/actionBarContext';
+
 import './FilterBar.scss';
 const FilterBar = (props) => {
   const themeCtx = useContext(ThemeContext);
+  const actionBarCtx = useContext(ActionBarContext);
+  // console.log(actionBarCtx);
+
   const [filterTypeAll, setFilterTypeAll] = useState(true);
   const [filterTypeUsers, setFilterTypeUsers] = useState(false);
   const [filterTypeHashtags, setFilterTypeHashtags] = useState(false);
   const [filterTypeLocations, setFilterTypeLocations] = useState(false);
 
-  const filterTypeAllHandler = () => {
-    window.electron.ipcRenderer.sendMessage(
-      'FilterBar: Warpstagram: FilterTypeAll',
-      [`FilterBar: Warpstagram: FilterTypeAll`]
-    );
-    setFilterTypeAll(true);
-    setFilterTypeUsers(false);
-    setFilterTypeHashtags(false);
-    setFilterTypeLocations(false);
-  };
-  const filterTypeUsersHandler = () => {
-    window.electron.ipcRenderer.sendMessage(
-      'FilterBar: Warpstagram: FilterTypeUsers',
-      [`FilterBar: Warpstagram: FilterTypeUsers`]
-    );
-    setFilterTypeAll(false);
-    setFilterTypeUsers(true);
-    setFilterTypeHashtags(false);
-    setFilterTypeLocations(false);
-  };
-  const filterTypeHashtagsHandler = () => {
-    window.electron.ipcRenderer.sendMessage(
-      'FilterBar: Warpstagram: FilterTypeHashtags',
-      [`FilterBar: Warpstagram: FilterTypeHashtags`]
-    );
-    setFilterTypeAll(false);
-    setFilterTypeUsers(false);
-    setFilterTypeHashtags(true);
-    setFilterTypeLocations(false);
-  };
-  const filterTypeLocationsHandler = () => {
-    window.electron.ipcRenderer.sendMessage(
-      'FilterBar: Warpstagram: FilterTypeLocations',
-      [`FilterBar: Warpstagram: FilterTypeLocations`]
-    );
-    setFilterTypeAll(false);
-    setFilterTypeUsers(false);
-    setFilterTypeHashtags(false);
-    setFilterTypeLocations(true);
-  };
-  let items;
-  // document.querySelectorAll('.filter-content__panel__warpstagram__account');
-  // console.log(items);
-  setTimeout(() => {
-    items = document.querySelectorAll('.filter-filterBar__menu__item');
-    // console.log(items);
-  }, 1000);
-
   return (
     <Fragment>
-      <div className="filterBar">
-        <div className="filterBar__menu filterBar__menu__right">
-          <div className="filterBar__menu__item filterBar__menu__item__accounts_total">
-            {props.videoDownloadsTotal} video downloads
-          </div>
-          {/* <div className="filterBar__menu__item filterBar__menu__item__find">
+      <div
+        // className="filterBar"
+        className={
+          actionBarCtx.isVideoPanelCollapsed
+            ? 'filterBar__collapsed'
+            : 'filterBar'
+        }
+      >
+        <div className="filterBar__menu filterBar__menu__left">
+          {!actionBarCtx.isAudioPanelCollapsed && (
+            <div
+              onClick={actionBarCtx.toggleVideoPanelCollapsed}
+              // onClick={themeCtx.toggleTheme}
+              className="filterBar__menu__item filterBar__menu__item__sort"
+            >
+              <img
+                title="Collapse downloads panel"
+                src={collapseIcon}
+                style={
+                  themeCtx.isDarkTheme
+                    ? { filter: 'invert(100%)' }
+                    : {
+                        filter: 'invert(0%)',
+                      }
+                }
+              />
+            </div>
+          )}
+          {actionBarCtx.isAudioPanelCollapsed && (
+            <div
+              onClick={actionBarCtx.toggleVideoPanelCollapsed}
+              className="filterBar__menu__item filterBar__menu__item__sort"
+            >
+              <img
+                title="Expand downloads panel"
+                src={expandIcon}
+                style={
+                  themeCtx.isDarkTheme
+                    ? { filter: 'invert(100%)' }
+                    : {
+                        filter: 'invert(0%)',
+                      }
+                }
+              />
+            </div>
+          )}
+        </div>
+        {!actionBarCtx.isVideoPanelCollapsed && (
+          <div className="filterBar__menu filterBar__menu__right">
+            <div
+              className="filterBar__menu__item filterBar__menu__item__accounts_total"
+              style={
+                themeCtx.isDarkTheme
+                  ? { filter: 'invert(0%)' }
+                  : {
+                      filter: 'invert(100%)',
+                    }
+              }
+            >
+              {props.videoDownloadsTotal} video downloads
+            </div>
+            {/* <div className="filterBar__menu__item filterBar__menu__item__find">
             <img src={searchIcon} />
           </div> */}
-          <div className="filterBar__menu__item filterBar__menu__item__sort">
-            <img src={sortIcon} />
+            <div className="filterBar__menu__item filterBar__menu__item__sort">
+              <img
+                title="Sort"
+                src={sortIcon}
+                style={
+                  themeCtx.isDarkTheme
+                    ? { filter: 'invert(0%)' }
+                    : {
+                        filter: 'invert(100%)',
+                      }
+                }
+              />
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </Fragment>
   );
