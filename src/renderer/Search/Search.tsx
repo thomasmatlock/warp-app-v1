@@ -8,6 +8,9 @@ import SunIcon from '../../../assets/Search/sun.svg';
 // import MoonIcon from '../../../assets/Search/moon_colored.svg';
 // import MoonIcon from '../../../assets/Search/moon.svg';
 // import MoonIcon from '../../../assets/Search/moon2.svg';
+// import MoonAstronaut from '../../../assets/Search/moon_astronaut.svg';
+import MoonAstronaut from '../../../assets/astronauts/SVG/white/asset 6.svg';
+import SunAstronaut from '../../../assets/Search/sun_astronaut.svg';
 import MoonIcon from '../../../assets/Search/moon3.svg';
 import clearTextIcon from '../../../assets/Search/close.svg';
 import settingsIcon from '../../../assets/Search/settings_white.svg';
@@ -210,7 +213,9 @@ const Search = (props) => {
         <div onClick={props.toggleTheme} className="theme">
           <img
             src={MoonIcon}
-            className="theme__icon"
+            // src={MoonAstronaut}
+            className="theme__icon "
+            // className="theme__icon theme__icon__moon"
             // onClick={showModalHandler}
           />
         </div>
@@ -219,7 +224,9 @@ const Search = (props) => {
         <div onClick={props.toggleTheme} className="theme">
           <img
             src={SunIcon}
+            // src={SunAstronaut}
             className="theme__icon"
+            // className="theme__icon theme__icon__sun"
             // onClick={showModalHandler}
           />
         </div>

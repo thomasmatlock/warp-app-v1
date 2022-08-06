@@ -128,7 +128,7 @@ input[type='text'] {
     transition: all 0.25s ease-in-out;
     &:hover .theme__icon {
         transition: all 0.25s ease-in-out;
-        background-color: $gray-dark-dark;
+        // background-color: $gray-dark-dark;
         filter: grayscale(0);
     }
     &:hover {
@@ -137,6 +137,14 @@ input[type='text'] {
     &__icon {
         height: 24px;
         filter: grayscale(100%);
+        &__moon {
+            width: 60px;
+        }
+        &__sun {
+            // height: 56px;
+            width: 56px;
+            // margin-top: -16px !important;
+        }
     }
 }
 
@@ -147,7 +155,7 @@ input[type='text'] {
     margin-right: 32px;
     cursor: pointer;
     &:hover {
-        background-color: $gray-dark-dark;
+        // background-color: $gray-dark-dark;
     }
     &__icon {
         height: 24px;

@@ -1,5 +1,9 @@
 // theme.js
 export const lightTheme = {
+  search: {
+    background: '#fff',
+    color: '#000',
+  }
   body: '#E2E2E2',
   text: '#363537',
   toggleBorder: '#FFF',
