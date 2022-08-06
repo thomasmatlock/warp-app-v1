@@ -1,20 +1,20 @@
 import { Fragment, useState, useContext } from 'react';
 // LOGO ICONS
-import NavLogoImgDark from '../../../assets/Nav/blackholeDark.svg';
-import NavLogoImgLight from '../../../assets/Nav/blackholeLight.svg';
-import navLogoTextDark from '../../../assets/Nav/logoDark.svg';
-import navLogoTextLight from '../../../assets/Nav/logoLight.svg';
+import NavLogoImgDark from '../../../assets/Nav/logo/blackholeDark.svg';
+import NavLogoImgLight from '../../../assets/Nav/logo/blackholeLight.svg';
+import navLogoTextDark from '../../../assets/Nav/logo/logoDark.svg';
+import navLogoTextLight from '../../../assets/Nav/logo/logoLight.svg';
 // NAV BUTTON ICONS
 import iconAudio from '../../../assets/Modals/settings/audio.svg';
 import iconVideo from '../../../assets/Modals/settings/video3.svg';
 import iconWarpstagram from '../../../assets/Modals/settings/warpstagram.svg';
 // PLATFORM ICONS
-import iconWindowsDark from '../../../assets/Nav/windowsDark.svg';
-import iconWindowsLight from '../../../assets/Nav/windowsLight.svg';
-import iconAppleDark from '../../../assets/Nav/appleDark.svg';
-import iconAppleLight from '../../../assets/Nav/appleLight.svg';
-import iconLinuxDark from '../../../assets/Nav/linuxDark.svg';
-import iconLinuxLight from '../../../assets/Nav/linuxLight.svg';
+import iconWindowsDark from '../../../assets/Nav/platform/windowsDark.svg';
+import iconWindowsLight from '../../../assets/Nav/platform/windowsLight.svg';
+import iconAppleDark from '../../../assets/Nav/platform/appleDark.svg';
+import iconAppleLight from '../../../assets/Nav/platform/appleLight.svg';
+import iconLinuxDark from '../../../assets/Nav/platform/linuxDark.svg';
+import iconLinuxLight from '../../../assets/Nav/platform/linuxLight.svg';
 import ThemeContext from '../../storage/themeContext';
 import './Nav.scss';
 let appVersion: string = '1.0.0';
