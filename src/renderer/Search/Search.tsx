@@ -2,6 +2,13 @@ import { Fragment, useState } from 'react';
 import './Search.scss';
 // import SearchIcon from '../../assets/public/sections/wrapup/cards/lightning.svg';
 import SearchIcon from '../../../assets/Search/lightning.svg';
+// import SunIcon from '../../../assets/Search/sun_colored.svg';
+import SunIcon from '../../../assets/Search/sun.svg';
+// import SunIcon from '../../../assets/Search/sun2.svg';
+// import MoonIcon from '../../../assets/Search/moon_colored.svg';
+// import MoonIcon from '../../../assets/Search/moon.svg';
+// import MoonIcon from '../../../assets/Search/moon2.svg';
+import MoonIcon from '../../../assets/Search/moon3.svg';
 import clearTextIcon from '../../../assets/Search/close.svg';
 import settingsIcon from '../../../assets/Search/settings_white.svg';
 import Modal from '../Modal/Modal';
@@ -10,7 +17,14 @@ import { log } from 'console';
 
 const Search = (props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
+  const toggleTheme = () => {
+    if (isDarkTheme) {
+      setIsDarkTheme(false);
+    } else if (!isDarkTheme) {
+      setIsDarkTheme(true);
+    }
+  };
   const hideModalHandler = () => {
     setIsModalOpen(false);
     window.electron.ipcRenderer.sendMessage('showBrowserWindow');
@@ -200,6 +214,24 @@ const Search = (props) => {
           />
         )}
       </form>
+      {isDarkTheme && (
+        <div onClick={toggleTheme} className="theme">
+          <img
+            src={MoonIcon}
+            className="theme__icon"
+            // onClick={showModalHandler}
+          />
+        </div>
+      )}{' '}
+      {!isDarkTheme && (
+        <div onClick={toggleTheme} className="theme">
+          <img
+            src={SunIcon}
+            className="theme__icon"
+            // onClick={showModalHandler}
+          />
+        </div>
+      )}
       <div className="settings">
         <img
           src={settingsIcon}

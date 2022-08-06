@@ -203,9 +203,9 @@ const ModalPanelGeneral = () => {
     <Fragment>
       <div id="modalPrefsPanel_general" className="modalPrefsPanel">
         <div className="modalDropdownContainer">
-          <ModalDropdownList dropdownItem={dropdownGeneral1} />
-          <ModalDropdownList dropdownItem={dropdownGeneral2} />
+          {/* <ModalDropdownList dropdownItem={dropdownGeneral1} /> */}
           <ModalDropdownList dropdownItem={dropdownGeneral3} />
+          <ModalDropdownList dropdownItem={dropdownGeneral2} />
         </div>
 
         <ModalSpacer />

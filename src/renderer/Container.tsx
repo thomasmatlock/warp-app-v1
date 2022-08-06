@@ -4,6 +4,7 @@ import Search from './Search/Search';
 import ActionBar from './ActionBar/ActionBar';
 import Content from './Content/Content';
 import Nav from './Nav/Nav';
+import Theme from './Theme/Theme';
 import './Container.scss';
 
 const Container = (props) => {
