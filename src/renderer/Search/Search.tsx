@@ -17,14 +17,6 @@ import { log } from 'console';
 
 const Search = (props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isDarkTheme, setIsDarkTheme] = useState(false);
-  const toggleTheme = () => {
-    if (isDarkTheme) {
-      setIsDarkTheme(false);
-    } else if (!isDarkTheme) {
-      setIsDarkTheme(true);
-    }
-  };
   const hideModalHandler = () => {
     setIsModalOpen(false);
     window.electron.ipcRenderer.sendMessage('showBrowserWindow');
@@ -214,8 +206,8 @@ const Search = (props) => {
           />
         )}
       </form>
-      {isDarkTheme && (
-        <div onClick={toggleTheme} className="theme">
+      {props.isDarkTheme && (
+        <div onClick={props.toggleTheme} className="theme">
           <img
             src={MoonIcon}
             className="theme__icon"
@@ -223,8 +215,8 @@ const Search = (props) => {
           />
         </div>
       )}{' '}
-      {!isDarkTheme && (
-        <div onClick={toggleTheme} className="theme">
+      {!props.isDarkTheme && (
+        <div onClick={props.toggleTheme} className="theme">
           <img
             src={SunIcon}
             className="theme__icon"
