@@ -1,9 +1,9 @@
 import { Fragment, useState, useContext } from 'react';
 // LOGO ICONS
-import NavLogoImgDark from '../../../assets/Nav/blackhole_dark.svg';
-import NavLogoImgLight from '../../../assets/Nav/blackhole_light.svg';
-import navLogoTextDark from '../../../assets/Nav/logo_light.svg';
-import navLogoTextLight from '../../../assets/Nav/logo_dark.svg';
+import NavLogoImgDark from '../../../assets/Nav/blackholeDark.svg';
+import NavLogoImgLight from '../../../assets/Nav/blackholeLight.svg';
+import navLogoTextDark from '../../../assets/Nav/logoDark.svg';
+import navLogoTextLight from '../../../assets/Nav/logoLight.svg';
 // NAV BUTTON ICONS
 import iconAudio from '../../../assets/Modals/settings/audio.svg';
 import iconVideo from '../../../assets/Modals/settings/video3.svg';
