@@ -25,6 +25,10 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     // overflow: hidden;
     // overflow: scroll;
     // background-color: #fff;
+    &__collapsed {
+        width: 72px;
+        height: calc(100vh - 192px);
+    }
 }
 
 .contentPanel__browser img {

@@ -60,6 +60,25 @@ const FilterBar = (props) => {
               />
             </div>
           )}
+          {!actionBarCtx.isVideoPanelCollapsed &&
+            !actionBarCtx.isAudioPanelFullSize && (
+              <div
+                onClick={actionBarCtx.toggleAudioPanelFullsize}
+                className="filterBar__menu__item filterBar__menu__item__sort"
+              >
+                <img
+                  title="Expand audio downloads"
+                  src={expandIcon}
+                  style={
+                    themeCtx.isDarkTheme
+                      ? { filter: 'invert(100%)' }
+                      : {
+                          filter: 'invert(0%)',
+                        }
+                  }
+                />
+              </div>
+            )}
           {!actionBarCtx.isVideoPanelCollapsed && (
             <div
               onClick={actionBarCtx.toggleVideoPanelCollapsed}

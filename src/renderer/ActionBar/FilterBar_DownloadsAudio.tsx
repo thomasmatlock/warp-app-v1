@@ -53,13 +53,33 @@ const FilterBar = (props) => {
               />
             </div>
           )}
+          {!actionBarCtx.isAudioPanelCollapsed &&
+            !actionBarCtx.isAudioPanelFullSize && (
+              <div
+                onClick={actionBarCtx.toggleAudioPanelFullsize}
+                className="filterBar__menu__item filterBar__menu__item__sort"
+              >
+                <img
+                  title="Expand audio downloads"
+                  src={expandIcon}
+                  style={
+                    themeCtx.isDarkTheme
+                      ? { filter: 'invert(100%)' }
+                      : {
+                          filter: 'invert(0%)',
+                        }
+                  }
+                />
+              </div>
+            )}
+
           {!actionBarCtx.isAudioPanelCollapsed && (
             <div
               onClick={actionBarCtx.toggleAudioPanelCollapsed}
               className="filterBar__menu__item filterBar__menu__item__sort"
             >
               <img
-                title="Collapse audio downloads panel"
+                title="Collapse audio downloads"
                 src={collapseIcon}
                 style={
                   themeCtx.isDarkTheme

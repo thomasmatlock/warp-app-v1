@@ -2,9 +2,11 @@ import { Fragment, useContext } from 'react';
 import './Browser.scss';
 import screenshotPlaceholder from '../../../assets/screenshot.png';
 import ThemeContext from '../../storage/themeContext';
+import ActionBarContext from '../../storage/actionBarContext';
 
 const Browser = () => {
   const themeCtx = useContext(ThemeContext);
+  const actionBarCtx = useContext(ActionBarContext);
   let screenshot: any;
   let browserWindowDimensions = { x: 0, y: 0, width: 0, height: 0 };
   window.electron.ipcRenderer.on('request-browserDimensions', (arg) => {
@@ -36,6 +38,11 @@ const Browser = () => {
       <div
         id="contentPanel__browser"
         className="contentPanel__browser"
+        className={
+          actionBarCtx.isAudioPanelFullSize
+            ? 'contentPanel__browser__collapsed'
+            : 'contentPanel__browser'
+        }
         style={
           themeCtx.isDarkTheme
             ? { backgroundColor: themeCtx.content.dark.backgroundColor }
