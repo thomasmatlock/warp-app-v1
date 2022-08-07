@@ -1,39 +1,89 @@
 import React, { useState, useEffect } from 'react';
 const SourcesContext = React.createContext({
   activeSource: '',
-  toggleAudioPanelCollapsed: () => {},
-  toggleVideoPanelCollapsed: () => {},
+  enabledSources: [],
+  // toggleAudioPanelCollapsed: () => {},
+  // toggleVideoPanelCollapsed: () => {},
 });
 
 export const SourcesContextProvider = (props) => {
-  const [activeSource, setActiveSource] = useState('');
-  let sources = {
-    facebook: { URL: 'https://facebook.com', active: false, enabled: false },
-    instagram: { URL: 'https://instagram.com', active: false, enabled: false },
-    pinterest: { URL: 'https://pinterest.com', active: false, enabled: false },
-    snapchat: { URL: 'https://snapchat.com', active: false, enabled: false },
-    soundcloud: {
+  let sources = [
+    {
+      name: 'facebook',
+      URL: 'https://facebook.com',
+      active: false,
+      enabled: false,
+    },
+    {
+      name: 'instagram',
+      URL: 'https://instagram.com',
+      active: false,
+      enabled: false,
+    },
+    {
+      name: 'pinterest',
+      URL: 'https://pinterest.com',
+      active: false,
+      enabled: false,
+    },
+    {
+      name: 'snapchat',
+      URL: 'https://snapchat.com',
+      active: false,
+      enabled: true,
+    },
+    {
+      name: 'soundcloud',
       URL: 'https://soundcloud.com',
       active: false,
       enabled: true,
     },
-    tiktok: { URL: 'https://tiktok.com', active: false, enabled: false },
-    twitch: { URL: 'https://twitch.com', active: false, enabled: false },
-    twitter: { URL: 'https://twitter.com', active: false, enabled: false },
-    vimeo: { URL: 'https://vimeo.com', active: false, enabled: false },
-    youtube: { URL: 'https://youtube.com', active: true, enabled: true },
+    {
+      name: 'tiktok',
+      URL: 'https://tiktok.com',
+      active: false,
+      enabled: false,
+    },
+    {
+      name: 'twitch',
+      URL: 'https://twitch.com',
+      active: false,
+      enabled: false,
+    },
+    {
+      name: 'twitter',
+      URL: 'https://twitter.com',
+      active: false,
+      enabled: false,
+    },
+    { name: 'vimeo', URL: 'https://vimeo.com', active: false, enabled: false },
+    {
+      name: 'youtube',
+      URL: 'https://youtube.com',
+      active: true,
+      enabled: true,
+    },
+  ];
+  const getEnabledSources = (sources) => {
+    return sources.filter((source) => source.enabled);
   };
+  const getActiveSource = (sources) => {
+    return sources.filter((source) => source.active);
+  };
+  let enabledSources = getEnabledSources(sources);
+  let activeSource = getActiveSource(enabledSources);
+  // setIsActiveSource(activeSource[0].name);
+  // console.log(enabledSources);
+  // console.log(activeSource[0].name);
+  const [isActiveSource, setIsActiveSource] = useState(activeSource[0].name);
 
-  const toggleVideoPanelCollapsed = () =>
-    isVideoPanelCollapsed
-      ? setIsVideoPanelCollapsed(false)
-      : setIsVideoPanelCollapsed(true);
   return (
     <SourcesContext.Provider
       value={{
-        sources: sources,
+        enabledSources: enabledSources,
         activeSource: activeSource,
-        toggleVideoPanelCollapsed: toggleVideoPanelCollapsed,
+        setIsActiveSource: setIsActiveSource,
+        // toggleVideoPanelCollapsed: toggleVideoPanelCollapsed,
       }}
     >
       {props.children}

@@ -2,7 +2,7 @@ import { Fragment } from 'react';
 import iconAudio from '../../../../assets/Modals/settings/audio.svg';
 import iconVideo from '../../../../assets/Modals/settings/video3.svg';
 import iconWarpstagram from '../../../../assets/Modals/settings/warpstagram.svg';
-import iconGeneralDark from '../../../../assets/Modals/settings/general_dark.svg';
+import iconGeneralDark from '../../../../assets/Modals/settings/gear.svg';
 import iconLicenses from '../../../../assets/Modals/settings/shuttle.svg';
 import IconAuths from '../../../../assets/Modals/settings/auths1_white.svg';
 import './ModalPanelNav.scss';

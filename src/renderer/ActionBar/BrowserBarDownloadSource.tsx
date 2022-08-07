@@ -21,7 +21,12 @@ import downloadSourceIconYoutube from '../../../assets/BrowserBar/youtube.svg';
 const BrowserBarDownloadSource = () => {
   const themeCtx = useContext(ThemeContext);
   const sourcesCtx = useContext(SourcesContext);
-  console.log(sourcesCtx);
+  // console.log(sourcesCtx);
+  let sourcesCount = sourcesCtx.enabledSources.length;
+  let activeSource = sourcesCtx.activeSource;
+  console.log(activeSource[0].name);
+
+  // console.log(sourcesCount);
 
   const [sourceFacebookActive, setSourceFacebookActive] = useState(false);
   const [sourcePinterestActive, setSourcePinterestActive] = useState(false);
@@ -31,53 +36,13 @@ const BrowserBarDownloadSource = () => {
   const [sourceVimeoActive, setSourceVimeoActive] = useState(false);
   const [sourceYoutubeActive, setSourceYoutubeActive] = useState(false);
   const [isSourcesExpanded, setIsSourcesExpanded] = useState(false);
-  const disableAllSources = () => {
-    setSourceFacebookActive(false);
-    setSourcePinterestActive(false);
-    setSourceSoundcloudActive(false);
-    setSourceTiktokActive(false);
-    setSourceTwitterActive(false);
-    setSourceVimeoActive(false);
-    setSourceYoutubeActive(false);
-    console.log('disabledAllSources');
-  };
-  const selectedFacebookHandler = (event) => {
-    window.electron.ipcRenderer.sendMessage('source: change', 'facebook');
-    disableAllSources();
-    setSourceFacebookActive(true);
+  const sourceSelectedHandler = (event) => {
+    console.log(event.target);
+
+    // window.electron.ipcRenderer.sendMessage('source: change', 'tiktok');
     toggleSourceExpanded();
   };
-  const selectedPinterestHandler = (event) => {
-    window.electron.ipcRenderer.sendMessage('source: change', 'pinterest');
-    disableAllSources();
-    setSourcePinterestActive(true);
-    toggleSourceExpanded();
-  };
-  const selectedYoutubeHandler = (event) => {
-    window.electron.ipcRenderer.sendMessage('source: change', 'youtube');
-    disableAllSources();
-    setSourceYoutubeActive(true);
-    toggleSourceExpanded();
-  };
-  const selectedSoundcloudHandler = (event) => {
-    window.electron.ipcRenderer.sendMessage('source: change', 'soundcloud');
-    disableAllSources();
-    setSourceSoundcloudActive(true);
-    toggleSourceExpanded();
-  };
-  const selectedTwitterHandler = (event) => {
-    window.electron.ipcRenderer.sendMessage('source: change', 'twitter');
-    disableAllSources();
-    setSourceTwitterActive(true);
-    toggleSourceExpanded();
-  };
-  const selectedTiktokHandler = (event) => {
-    window.electron.ipcRenderer.sendMessage('source: change', 'tiktok');
-    disableAllSources();
-    setSourceTiktokActive(true);
-    toggleSourceExpanded();
-  };
-  const toggleSourceExpanded = (event) => {
+  const toggleSourceExpanded = () => {
     if (isSourcesExpanded) {
       setIsSourcesExpanded(false);
     } else if (!isSourcesExpanded) {
@@ -85,16 +50,12 @@ const BrowserBarDownloadSource = () => {
     }
   };
   const mouseEnterHandler = () => {
-    // window.electron.ipcRenderer.sendMessage('prepareToHideBrowserWindow');
-    // console.log('mouse enter');
     window.electron.ipcRenderer.sendMessage('hideBrowserWindow');
     setIsSourcesExpanded(true);
   };
   const mouseLeaveHandler = () => {
-    // toggleSourceExpanded();
     setIsSourcesExpanded(false);
     window.electron.ipcRenderer.sendMessage('showBrowserWindow');
-    // console.log('mouse leave');
   };
   return (
     <Fragment>
@@ -115,6 +76,7 @@ const BrowserBarDownloadSource = () => {
               : 'browserBarDownloadSource__hovering__list'
           }
         >
+          {/* this is the active source when list isnt being interacted with */}
           {!isSourcesExpanded && (
             <li
               // onClick={selectedFacebookHandler}
@@ -198,7 +160,7 @@ const BrowserBarDownloadSource = () => {
             </li>
           )}
           <li
-            onClick={selectedFacebookHandler}
+            onClick={sourceSelectedHandler}
             className={
               sourceFacebookActive
                 ? 'browserBarDownloadSource__list__item__active'
@@ -225,7 +187,7 @@ const BrowserBarDownloadSource = () => {
             </div>
           </li>
           <li
-            onClick={selectedPinterestHandler}
+            onClick={sourceSelectedHandler}
             className={
               sourcePinterestActive
                 ? 'browserBarDownloadSource__list__item__active'
@@ -250,7 +212,7 @@ const BrowserBarDownloadSource = () => {
             </div>
           </li>
           <li
-            onClick={selectedSoundcloudHandler}
+            onClick={sourceSelectedHandler}
             id="downloadSource__soundcloud"
             className={
               sourceSoundcloudActive
@@ -281,7 +243,7 @@ const BrowserBarDownloadSource = () => {
             </div>
           </li>
           <li
-            onClick={selectedSoundcloudHandler}
+            onClick={sourceSelectedHandler}
             id="downloadSource__soundcloud"
             className={
               sourceSoundcloudActive
@@ -312,7 +274,7 @@ const BrowserBarDownloadSource = () => {
             </div>
           </li>
           <li
-            onClick={selectedTiktokHandler}
+            onClick={sourceSelectedHandler}
             id="downloadSource__tiktok"
             className="browserBarDownloadSource__list__item "
             className={
@@ -339,7 +301,7 @@ const BrowserBarDownloadSource = () => {
             </div>
           </li>{' '}
           <li
-            onClick={selectedTiktokHandler}
+            onClick={sourceSelectedHandler}
             id="downloadSource__tiktok"
             className="browserBarDownloadSource__list__item "
             className={
@@ -366,7 +328,7 @@ const BrowserBarDownloadSource = () => {
             </div>
           </li>
           <li
-            onClick={selectedTwitterHandler}
+            onClick={sourceSelectedHandler}
             id="downloadSource__twitter"
             className={
               sourceTwitterActive
@@ -393,7 +355,7 @@ const BrowserBarDownloadSource = () => {
           </li>
           <li
             id="downloadSource__youtube"
-            onClick={selectedYoutubeHandler}
+            onClick={sourceSelectedHandler}
             className={
               sourceYoutubeActive
                 ? 'browserBarDownloadSource__list__item__active'
@@ -419,7 +381,7 @@ const BrowserBarDownloadSource = () => {
           </li>
           <li
             id="downloadSource__youtube"
-            onClick={selectedYoutubeHandler}
+            onClick={sourceSelectedHandler}
             className={
               sourceYoutubeActive
                 ? 'browserBarDownloadSource__list__item__active'

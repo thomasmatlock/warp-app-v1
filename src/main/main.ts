@@ -517,8 +517,10 @@ const browserWindowHandler = {
     // mainWindow.getBounds();
     if (browserWindow) browserWindow.setResizable(true);
     mainWindowBounds = mainWindow.getBounds();
-    browserWindowBounds.width = Math.round(mainWindowBounds.width / 2 - 9); //default/
-    browserWindowBounds.height = Math.round(mainWindowBounds.height - 258); //default
+    // browserWindowBounds.width = Math.round(mainWindowBounds.width / 2 - 9); //default/
+    browserWindowBounds.width = Math.round(mainWindowBounds.width / 2 - 9); //testing/
+    // browserWindowBounds.height = Math.round(mainWindowBounds.height - 258); //default
+    browserWindowBounds.height = Math.round(mainWindowBounds.height - 251); //testing
     if (browserWindow)
       browserWindow.setSize(
         browserWindowBounds.width,
@@ -527,7 +529,7 @@ const browserWindowHandler = {
     if (browserWindow)
       browserWindow.setPosition(
         mainWindowBounds.x + 8, // default
-        mainWindowBounds.y + 183 // default
+        mainWindowBounds.y + 181 // default
         // mainWindowBounds.y + 283 // testing
       );
     if (browserWindow) browserWindow.setResizable(false);
@@ -535,7 +537,7 @@ const browserWindowHandler = {
   setScreenshot: async function () {
     if (browserWindow.webContents.getURL().includes('pinterest')) {
       browserWindow.webContents.insertCSS(
-        'html, body { background-color: #fff; }'
+        'html, body, { background-color: #fff;  }'
       );
     }
     const RESOURCES_PATH = app.isPackaged
