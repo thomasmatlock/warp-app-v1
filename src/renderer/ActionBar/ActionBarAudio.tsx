@@ -5,7 +5,7 @@ import expandIcon from '../../../assets/ActionBar/expand.svg';
 import ThemeContext from '../../storage/themeContext';
 import ActionBarContext from '../../storage/actionBarContext';
 
-import './ActionBarWarpstagram';
+import './ActionBarMenu.scss';
 const FilterBar = (props) => {
   const themeCtx = useContext(ThemeContext);
   const actionBarCtx = useContext(ActionBarContext);
@@ -13,20 +13,19 @@ const FilterBar = (props) => {
   return (
     <Fragment>
       <div
-        // className="filterBar"
         className={
           actionBarCtx.isDownloadsPanelCollapsed
-            ? 'filterBar__collapsed'
-            : 'filterBar'
+            ? 'menuBar__collapsed'
+            : 'menuBar'
         }
       >
-        {/* <div className="filterBar__menu filterBar__menu__left">
+        {/* <div className="menuBar__menu menuBar__menu__left">
          
         </div> */}
-        <div className="filterBar__menu filterBar__menu__right">
+        <div className="menuBar__menu menuBar__menu__right">
           {!actionBarCtx.isDownloadsPanelCollapsed && (
             <div
-              className="filterBar__menu__item filterBar__menu__item__accounts_total"
+              className="menuBar__menu__item menuBar__menu__item__accounts_total"
               style={
                 themeCtx.isDarkTheme
                   ? { filter: 'invert(0%)' }
@@ -39,7 +38,7 @@ const FilterBar = (props) => {
             </div>
           )}
           {!actionBarCtx.isDownloadsPanelCollapsed && (
-            <div className="filterBar__menu__item filterBar__menu__item__sort">
+            <div className="menuBar__menu__item menuBar__menu__item__icon">
               <img
                 title="Sort"
                 src={sortIcon}
@@ -57,7 +56,7 @@ const FilterBar = (props) => {
             !actionBarCtx.isDownloadsPanelCollapsed && (
               <div
                 onClick={actionBarCtx.toggleBrowserPanelCollapsed}
-                className="filterBar__menu__item filterBar__menu__item__sort"
+                className="menuBar__menu__item menuBar__menu__item__icon"
               >
                 <img
                   title="Expand downloads panel"
@@ -75,7 +74,7 @@ const FilterBar = (props) => {
           {actionBarCtx.isBrowserPanelCollapsed && (
             <div
               onClick={actionBarCtx.toggleBrowserPanelCollapsed}
-              className="filterBar__menu__item filterBar__menu__item__sort"
+              className="menuBar__menu__item menuBar__menu__item__icon"
             >
               <img
                 title="Restore split view"
@@ -93,7 +92,7 @@ const FilterBar = (props) => {
           {actionBarCtx.isDownloadsPanelCollapsed && (
             <div
               onClick={actionBarCtx.toggleDownloadsPanelCollapsed}
-              className="filterBar__menu__item filterBar__menu__item__sort"
+              className="menuBar__menu__item menuBar__menu__item__icon"
             >
               <img
                 title="Restore split view"
@@ -112,7 +111,7 @@ const FilterBar = (props) => {
             !actionBarCtx.isBrowserPanelCollapsed && (
               <div
                 onClick={actionBarCtx.toggleDownloadsPanelCollapsed}
-                className="filterBar__menu__item filterBar__menu__item__sort"
+                className="menuBar__menu__item menuBar__menu__item__icon"
               >
                 <img
                   title="Collapse downloads panel"

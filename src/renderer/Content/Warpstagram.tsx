@@ -98,8 +98,8 @@ const Warpstagram = () => {
               >
                 posts, stories, highlights
               </div>
-              <div className="filterBar__menu filterBar__menu__right">
-                <div className="filterBar__menu__item filterBar__menu__item__sort">
+              <div className="menuBar__menu menuBar__menu__right">
+                <div className="menuBar__menu__item menuBar__menu__item__icon">
                   <img
                     title="Sort"
                     src={refreshIcon}
@@ -114,7 +114,7 @@ const Warpstagram = () => {
                 </div>
                 <div
                   // onClick={actionBarCtx.toggleAudioPanelCollapsed}
-                  className="filterBar__menu__item filterBar__menu__item__sort"
+                  className="menuBar__menu__item menuBar__menu__item__icon"
                 >
                   <img
                     title="Collapse audio downloads panel"
@@ -130,7 +130,7 @@ const Warpstagram = () => {
                 </div>
                 <div
                   // onClick={actionBarCtx.toggleAudioPanelCollapsed}
-                  className="filterBar__menu__item filterBar__menu__item__sort"
+                  className="menuBar__menu__item menuBar__menu__item__icon"
                 >
                   <img
                     title="fill"
