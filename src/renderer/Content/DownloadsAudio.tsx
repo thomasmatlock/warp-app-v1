@@ -24,7 +24,7 @@ const DownloadsAudio = () => {
     <Fragment>
       <div
         className={
-          actionBarCtx.isAudioPanelCollapsed
+          actionBarCtx.isDownloadsPanelCollapsed
             ? 'contentPanel__collapsed'
             : 'contentPanel'
         }

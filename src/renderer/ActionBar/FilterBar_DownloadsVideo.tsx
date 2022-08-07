@@ -21,14 +21,14 @@ const FilterBar = (props) => {
       <div
         // className="filterBar"
         className={
-          actionBarCtx.isVideoPanelCollapsed
+          actionBarCtx.isDownloadsPanelCollapsed
             ? 'filterBar__collapsed'
             : 'filterBar'
         }
       >
         <div className="filterBar__menu filterBar__menu__left"></div>
         <div className="filterBar__menu filterBar__menu__right">
-          {!actionBarCtx.isVideoPanelCollapsed && (
+          {!actionBarCtx.isDownloadsPanelCollapsed && (
             <div
               className="filterBar__menu__item filterBar__menu__item__accounts_total"
               style={
@@ -45,7 +45,7 @@ const FilterBar = (props) => {
           {/* <div className="filterBar__menu__item filterBar__menu__item__find">
             <img src={searchIcon} />
           </div> */}
-          {!actionBarCtx.isVideoPanelCollapsed && (
+          {!actionBarCtx.isDownloadsPanelCollapsed && (
             <div className="filterBar__menu__item filterBar__menu__item__sort">
               <img
                 title="Sort"
@@ -59,16 +59,15 @@ const FilterBar = (props) => {
                 }
               />
             </div>
-          )}
-          {/* FULL SIZE DOWNLOADS PANEL */}
-          {!actionBarCtx.isVideoPanelCollapsed &&
-            !actionBarCtx.isVideoPanelFullSize && (
+          )}{' '}
+          {!actionBarCtx.isBrowserPanelCollapsed &&
+            !actionBarCtx.isDownloadsPanelCollapsed && (
               <div
-                onClick={actionBarCtx.toggleVideoPanelFullsize}
+                onClick={actionBarCtx.toggleBrowserPanelCollapsed}
                 className="filterBar__menu__item filterBar__menu__item__sort"
               >
                 <img
-                  title="Full size audio downloads"
+                  title="collapse browser"
                   src={expandIcon}
                   style={
                     themeCtx.isDarkTheme
@@ -80,33 +79,13 @@ const FilterBar = (props) => {
                 />
               </div>
             )}
-          {/* REGULAR SIZE */}
-          {actionBarCtx.isVideoPanelCollapsed && (
+          {actionBarCtx.isBrowserPanelCollapsed && (
             <div
-              onClick={actionBarCtx.toggleVideoPanelCollapsed}
+              onClick={actionBarCtx.toggleBrowserPanelCollapsed}
               className="filterBar__menu__item filterBar__menu__item__sort"
             >
               <img
-                title="Expand video downloads panel"
-                src={expandIcon}
-                style={
-                  themeCtx.isDarkTheme
-                    ? { filter: 'invert(100%)' }
-                    : {
-                        filter: 'invert(0%)',
-                      }
-                }
-              />
-            </div>
-          )}
-          {/* COLLAPSE */}
-          {!actionBarCtx.isVideoPanelCollapsed && (
-            <div
-              onClick={actionBarCtx.toggleVideoPanelCollapsed}
-              className="filterBar__menu__item filterBar__menu__item__sort"
-            >
-              <img
-                title="Collapse video downloads panel"
+                title="reset browser"
                 src={collapseIcon}
                 style={
                   themeCtx.isDarkTheme
@@ -118,6 +97,43 @@ const FilterBar = (props) => {
               />
             </div>
           )}
+          {actionBarCtx.isDownloadsPanelCollapsed && (
+            <div
+              onClick={actionBarCtx.toggleDownloadsPanelCollapsed}
+              className="filterBar__menu__item filterBar__menu__item__sort"
+            >
+              <img
+                title="Collapse audio downloads panel"
+                src={expandIcon}
+                style={
+                  themeCtx.isDarkTheme
+                    ? { filter: 'invert(100%)' }
+                    : {
+                        filter: 'invert(0%)',
+                      }
+                }
+              />
+            </div>
+          )}{' '}
+          {!actionBarCtx.isDownloadsPanelCollapsed &&
+            !actionBarCtx.isBrowserPanelCollapsed && (
+              <div
+                onClick={actionBarCtx.toggleDownloadsPanelCollapsed}
+                className="filterBar__menu__item filterBar__menu__item__sort"
+              >
+                <img
+                  title="Expand audio downloads panel"
+                  src={collapseIcon}
+                  style={
+                    themeCtx.isDarkTheme
+                      ? { filter: 'invert(100%)' }
+                      : {
+                          filter: 'invert(0%)',
+                        }
+                  }
+                />
+              </div>
+            )}
         </div>
       </div>
     </Fragment>

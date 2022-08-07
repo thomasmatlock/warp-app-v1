@@ -15,7 +15,7 @@ const FilterBar = (props) => {
       <div
         // className="filterBar"
         className={
-          actionBarCtx.isAudioPanelCollapsed
+          actionBarCtx.isDownloadsPanelCollapsed
             ? 'filterBar__collapsed'
             : 'filterBar'
         }
@@ -24,7 +24,7 @@ const FilterBar = (props) => {
          
         </div> */}
         <div className="filterBar__menu filterBar__menu__right">
-          {!actionBarCtx.isAudioPanelCollapsed && (
+          {!actionBarCtx.isDownloadsPanelCollapsed && (
             <div
               className="filterBar__menu__item filterBar__menu__item__accounts_total"
               style={
@@ -38,7 +38,7 @@ const FilterBar = (props) => {
               {props.audioDownloadsTotal} audio downloads
             </div>
           )}
-          {!actionBarCtx.isAudioPanelCollapsed && (
+          {!actionBarCtx.isDownloadsPanelCollapsed && (
             <div className="filterBar__menu__item filterBar__menu__item__sort">
               <img
                 title="Sort"
@@ -53,14 +53,14 @@ const FilterBar = (props) => {
               />
             </div>
           )}
-          {!actionBarCtx.isAudioPanelCollapsed &&
-            !actionBarCtx.isAudioPanelFullSize && (
+          {!actionBarCtx.isBrowserPanelCollapsed &&
+            !actionBarCtx.isDownloadsPanelCollapsed && (
               <div
-                onClick={actionBarCtx.toggleAudioPanelFullsize}
+                onClick={actionBarCtx.toggleBrowserPanelCollapsed}
                 className="filterBar__menu__item filterBar__menu__item__sort"
               >
                 <img
-                  title="Full audio downloads"
+                  title="collapse browser"
                   src={expandIcon}
                   style={
                     themeCtx.isDarkTheme
@@ -72,14 +72,13 @@ const FilterBar = (props) => {
                 />
               </div>
             )}
-
-          {!actionBarCtx.isAudioPanelCollapsed && (
+          {actionBarCtx.isBrowserPanelCollapsed && (
             <div
-              onClick={actionBarCtx.toggleAudioPanelCollapsed}
+              onClick={actionBarCtx.toggleBrowserPanelCollapsed}
               className="filterBar__menu__item filterBar__menu__item__sort"
             >
               <img
-                title="Collapse audio downloads"
+                title="reset browser"
                 src={collapseIcon}
                 style={
                   themeCtx.isDarkTheme
@@ -91,13 +90,13 @@ const FilterBar = (props) => {
               />
             </div>
           )}
-          {actionBarCtx.isAudioPanelCollapsed && (
+          {actionBarCtx.isDownloadsPanelCollapsed && (
             <div
-              onClick={actionBarCtx.toggleAudioPanelCollapsed}
+              onClick={actionBarCtx.toggleDownloadsPanelCollapsed}
               className="filterBar__menu__item filterBar__menu__item__sort"
             >
               <img
-                title="Expand audio downloads panel"
+                title="Collapse audio downloads panel"
                 src={expandIcon}
                 style={
                   themeCtx.isDarkTheme
@@ -108,7 +107,26 @@ const FilterBar = (props) => {
                 }
               />
             </div>
-          )}
+          )}{' '}
+          {!actionBarCtx.isDownloadsPanelCollapsed &&
+            !actionBarCtx.isBrowserPanelCollapsed && (
+              <div
+                onClick={actionBarCtx.toggleDownloadsPanelCollapsed}
+                className="filterBar__menu__item filterBar__menu__item__sort"
+              >
+                <img
+                  title="Expand audio downloads panel"
+                  src={collapseIcon}
+                  style={
+                    themeCtx.isDarkTheme
+                      ? { filter: 'invert(100%)' }
+                      : {
+                          filter: 'invert(0%)',
+                        }
+                  }
+                />
+              </div>
+            )}
         </div>
       </div>
     </Fragment>

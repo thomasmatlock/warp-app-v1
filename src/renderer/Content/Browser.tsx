@@ -39,7 +39,7 @@ const Browser = () => {
         id="contentPanel__browser"
         className="contentPanel__browser"
         className={
-          actionBarCtx.isAudioPanelFullSize || actionBarCtx.isVideoPanelFullSize
+          actionBarCtx.isBrowserPanelCollapsed
             ? 'contentPanel__browser__collapsed'
             : 'contentPanel__browser'
         }

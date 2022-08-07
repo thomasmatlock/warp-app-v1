@@ -17,7 +17,7 @@ const DownloadsVideo = () => {
     <Fragment>
       <div
         className={
-          actionBarCtx.isVideoPanelCollapsed
+          actionBarCtx.isDownloadsPanelCollapsed
             ? 'contentPanel__collapsed'
             : 'contentPanel'
         }
