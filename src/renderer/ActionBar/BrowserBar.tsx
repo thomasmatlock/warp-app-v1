@@ -9,11 +9,13 @@ import downloadSourceIconTwitter from '../../../assets/BrowserBar/twitter.svg';
 import downloadSourceIconYoutube from '../../../assets/BrowserBar/youtube.svg';
 import BrowserBarDownloadSource from './BrowserBarDownloadSource';
 import ThemeContext from '../../storage/themeContext';
+import ActionBarContext from '../../storage/actionBarContext';
 
 // import browserBarDownloadSourceIcon1 from '../../../../assets/3rdparty/fontawesome/svgs/brands/youtube.svg';
 // import browserBarDownloadSourceIcon2 from '../../../../assets/3rdparty/fontawesome/svgs/solid/caret-down.svg';
 const BrowserBar = (props) => {
   const themeCtx = useContext(ThemeContext);
+  const actionBarCtx = useContext(ActionBarContext);
   // const [audioMode, setAudioMode] = useState(true);
   // const [videoMode, setVideoMode] = useState(false);
   let audioMode = props.audioMode;
@@ -48,8 +50,8 @@ const BrowserBar = (props) => {
   return (
     <Fragment>
       <div className="browserBar">
-        <BrowserBarDownloadSource />
-        {audioMode && (
+        {!actionBarCtx.isBrowserPanelCollapsed && <BrowserBarDownloadSource />}
+        {audioMode && !actionBarCtx.isBrowserPanelCollapsed && (
           <a
             onClick={downloadAudioHandler}
             className="browserBarDownloadBtn browserBarDownloadBtn__audio"
@@ -57,7 +59,7 @@ const BrowserBar = (props) => {
             Download Audio MP3
           </a>
         )}
-        {videoMode && (
+        {videoMode && !actionBarCtx.isBrowserPanelCollapsed && (
           <a
             onClick={downloadVideoHandler}
             className="browserBarDownloadBtn browserBarDownloadBtn__video"
