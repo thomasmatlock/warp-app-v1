@@ -30,13 +30,21 @@ const Search = (props) => {
 
     setIsModalOpen(true);
   };
+  // const countWarpstagramDownloads = () => {
+  //   setTimeout(() => {
+  //     let warpstagramItems = document.querySelectorAll(
+  //       '.content__panel__warpstagram__account'
+  //     );
+  //     setWarpstagramDownloadsTotal(warpstagramItems.length);
+  //   }, 50);
+  // };
   const restoreInputDefaultWidthDelay = 3000;
   const audioPlaceholder = 'audio search...beep boop  ';
   const videoPlaceholder = 'video search...beep boop  ';
   const warpstagramPlaceholder =
     'Enter instagram username, hashtag, or location';
-  const [audioMode, setAudioMode] = useState(false);
-  const [videoMode, setVideoMode] = useState(true);
+  const [audioMode, setAudioMode] = useState(true);
+  const [videoMode, setVideoMode] = useState(false);
   const [warpstagramMode, setWarpstagramMode] = useState(false);
   const [generalMode, setGeneralMode] = useState(false);
   const [authsMode, setAuthsMode] = useState(false);
@@ -60,7 +68,9 @@ const Search = (props) => {
     setAuthsMode(false);
     setLicenseMode(false);
   };
-
+  window.electron.ipcRenderer.on('ready-to-show', (arg) => {
+    setPlaceholderController();
+  });
   window.electron.ipcRenderer.on('nav: mode: audio', (arg) => {
     setAllModesToFalse();
     setAudioMode(true);
