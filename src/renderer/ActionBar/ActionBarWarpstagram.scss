@@ -5,7 +5,7 @@ $gray-dark-dark: #202020;
 $gray-dark-light: #252525;
 $gray-dark-lightest: #313131;
 $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, #19d2fc 100%);
-.menuBar {
+.filterBar {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -26,7 +26,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
         // border: 1px dotted red;
         justify-content: center !important;
     }
-    &__collapsed .menuBar__menu__left {
+    &__collapsed .filterBar__menu__left {
         justify-content: center !important;
     }
     &__menu {
@@ -43,12 +43,6 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
         &__left {
             margin-left: 8px;
             justify-content: flex-start !important;
-            // flex: 1;
-            left: 0;
-            position: absolute;
-            // position: relative;
-            max-width: 128px !important;
-            // border: 1px dotted red;
         }
         &__right {
             margin-right: 8px;
@@ -86,13 +80,20 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
                 // background-color: rgb(82, 82, 82);
                 border-radius: 1px;
             }
-            &__icon {
+            &__find {
+                height: 35px !important;
+                border-radius: 90px;
+            }
+            &__find img {
+                height: 20px !important;
+            }
+            &__sort {
                 height: 35px !important;
                 // height: auto;
                 border-radius: 90px;
                 margin-right: 8px;
             }
-            &__icon img {
+            &__sort img {
                 // width: 20px;
                 height: 20px;
                 fill: rgb(255, 0, 0);
@@ -102,7 +103,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     }
 }
 
-.menuBar__menu__item__active {
+.filterBar__menu__item__active {
     // height: 75%;
     height: 65%;
     display: flex;
@@ -126,7 +127,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     }
 }
 
-.menuBar__menu__item__accounts_total {
+.filterBar__menu__item__accounts_total {
     &:hover {
         background-color: transparent;
         color: rgb(167, 167, 167);
@@ -134,14 +135,13 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     }
 }
 
-.menuBarMenu2 {
+.filterBarMenu {
     border-radius: 3px;
     height: 100%;
     margin: 15px 10px;
     // padding: 15px 10px;
     border: 1px solid $gray-dark-lightest;
     // background-color: $gray-dark-lightest;
-    border: 1px solid red;
     flex: 1;
     display: flex;
     flex-direction: row;

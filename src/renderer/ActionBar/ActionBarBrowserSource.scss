@@ -38,19 +38,10 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
 $gradient-orange: linear-gradient(to left, #da2c4d 0%, #f8ab37 100%);
 .browserBarDownloadSource {
     height: 48px;
-    // width: clamp(150px, 200px, 200px);
-    // width: clamp(150px, 50%, 50%);
-    width: 50%;
-    flex: 1;
-    // margin: 8px 48px;
-    margin-top: 8px;
-    margin-bottom: 8px;
-    margin-left: 142px;
-    // margin-right: 280px;
-    // margin-right: 648px;
+    width: clamp(150px, 200px, 200px);
+    margin: 8px 48px;
     border-radius: 3px;
     position: absolute;
-    position: relative;
     overflow: hidden;
     top: 0;
     left: 0;

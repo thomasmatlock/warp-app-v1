@@ -3,7 +3,7 @@ import sortIcon from '../../../assets/Content/Warpstagram/sort.svg';
 import ThemeContext from '../../storage/themeContext';
 import ActionBarContext from '../../storage/actionBarContext';
 
-import './ActionBarMenu.scss';
+import './ActionBarWarpstagram.scss';
 const FilterBar = (props) => {
   const themeCtx = useContext(ThemeContext);
   const actionBarCtx = useContext(ActionBarContext);
@@ -58,19 +58,19 @@ const FilterBar = (props) => {
   // document.querySelectorAll('.filter-content__panel__warpstagram__account');
   // console.log(items);
   setTimeout(() => {
-    items = document.querySelectorAll('.filter-menuBar__menu__item');
+    items = document.querySelectorAll('.filter-filterBar__menu__item');
     // console.log(items);
   }, 1000);
 
   return (
     <Fragment>
-      <div className="menuBar">
-        <div className="menuBar__menu menuBar__menu__left">
+      <div className="filterBar">
+        <div className="filterBar__menu filterBar__menu__left">
           <div
             className={
               filterTypeAll
-                ? 'menuBar__menu__item__active'
-                : 'menuBar__menu__item'
+                ? 'filterBar__menu__item__active'
+                : 'filterBar__menu__item'
             }
             style={
               themeCtx.isDarkTheme
@@ -86,8 +86,8 @@ const FilterBar = (props) => {
           <div
             className={
               filterTypeUsers
-                ? 'menuBar__menu__item__active'
-                : 'menuBar__menu__item'
+                ? 'filterBar__menu__item__active'
+                : 'filterBar__menu__item'
             }
             style={
               themeCtx.isDarkTheme
@@ -103,8 +103,8 @@ const FilterBar = (props) => {
           <div
             className={
               filterTypeHashtags
-                ? 'menuBar__menu__item__active'
-                : 'menuBar__menu__item'
+                ? 'filterBar__menu__item__active'
+                : 'filterBar__menu__item'
             }
             style={
               themeCtx.isDarkTheme
@@ -120,8 +120,8 @@ const FilterBar = (props) => {
           <div
             className={
               filterTypeLocations
-                ? 'menuBar__menu__item__active'
-                : 'menuBar__menu__item'
+                ? 'filterBar__menu__item__active'
+                : 'filterBar__menu__item'
             }
             style={
               themeCtx.isDarkTheme
@@ -135,9 +135,9 @@ const FilterBar = (props) => {
             Locations
           </div>
         </div>
-        <div className="menuBar__menu menuBar__menu__right">
+        <div className="filterBar__menu filterBar__menu__right">
           <div
-            className="menuBar__menu__item menuBar__menu__item__accounts_total"
+            className="filterBar__menu__item filterBar__menu__item__accounts_total"
             style={
               themeCtx.isDarkTheme
                 ? { filter: 'invert(0%)' }
@@ -148,10 +148,10 @@ const FilterBar = (props) => {
           >
             {props.warpstagramDownloadsTotal} accounts
           </div>
-          {/* <div className="menuBar__menu__item menuBar__menu__item__find">
+          {/* <div className="filterBar__menu__item filterBar__menu__item__find">
             <img src={searchIcon} />
           </div> */}
-          <div className="menuBar__menu__item menuBar__menu__item__icon">
+          <div className="filterBar__menu__item filterBar__menu__item__sort">
             <img
               src={sortIcon}
               title="Sort"
