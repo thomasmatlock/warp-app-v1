@@ -3,7 +3,7 @@ import sortIcon from '../../../assets/Content/Warpstagram/sort.svg';
 import ThemeContext from '../../storage/themeContext';
 import ActionBarContext from '../../storage/actionBarContext';
 
-import './FilterBar.scss';
+import './ActionBarWarpstagram.scss';
 const FilterBar = (props) => {
   const themeCtx = useContext(ThemeContext);
   const actionBarCtx = useContext(ActionBarContext);

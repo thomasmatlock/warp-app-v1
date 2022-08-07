@@ -1,30 +1,16 @@
 import { Fragment, useState, useContext } from 'react';
-import './BrowserBar.scss';
+import './ActionBarBrowser.scss';
 import backIcon from '../../../assets/BrowserBar/browser/back.svg';
 import forwardIcon from '../../../assets/BrowserBar/browser/forward.svg';
-import BrowserBarDownloadSource from './BrowserBarDownloadSource';
+import BrowserBarDownloadSource from './ActionBarBrowserSource';
 import ThemeContext from '../../storage/themeContext';
 import ActionBarContext from '../../storage/actionBarContext';
 
-// import browserBarDownloadSourceIcon1 from '../../../../assets/3rdparty/fontawesome/svgs/brands/youtube.svg';
-// import browserBarDownloadSourceIcon2 from '../../../../assets/3rdparty/fontawesome/svgs/solid/caret-down.svg';
 const BrowserBar = (props) => {
   const themeCtx = useContext(ThemeContext);
   const actionBarCtx = useContext(ActionBarContext);
-  // const [audioMode, setAudioMode] = useState(true);
-  // const [videoMode, setVideoMode] = useState(false);
   let audioMode = props.audioMode;
   let videoMode = props.videoMode;
-  // const [warpstagramMode, setWarpstagramMode] = useState(false);
-
-  // window.electron.ipcRenderer.on('nav: mode: audio', (arg) => {
-  //   setAudioMode(true);
-  //   setVideoMode(false);
-  // });
-  // window.electron.ipcRenderer.on('nav: mode: video', (arg) => {
-  //   setVideoMode(true);
-  //   setAudioMode(false);
-  // });
 
   const downloadAudioHandler = () => {
     window.electron.ipcRenderer.sendMessage('screenshotting');

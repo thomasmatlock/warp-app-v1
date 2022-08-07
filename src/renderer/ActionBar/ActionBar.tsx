@@ -1,10 +1,10 @@
 import { Fragment, useState, useContext } from 'react';
 import './ActionBar.scss';
 // import BrowserBar from '../ActionBar/BrowserBar/BrowserBar';
-import BrowserBar from './BrowserBar';
-import FilterBar from './FilterBar';
-import FilterBar_DownloadsAudio from './FilterBar_DownloadsAudio';
-import FilterBar_DownloadsVideo from './FilterBar_DownloadsVideo';
+import BrowserBar from './ActionBarBrowser';
+import FilterBar from './ActionBarWarpstagram';
+import FilterBar_DownloadsAudio from './ActionBarAudio';
+import FilterBar_DownloadsVideo from './ActionBarVideo';
 import ThemeContext from '../../storage/themeContext';
 import ActionBarContext from '../../storage/actionBarContext';
 

@@ -3,7 +3,7 @@ import ThemeContext from '../../storage/themeContext';
 import ActionBarContext from '../../storage/actionBarContext';
 import SourcesContext from '../../storage/sourcesContext';
 
-import './BrowserBarDownloadSource.scss';
+import './ActionBarBrowserSource.scss';
 import browserBarDownloadSourceIcon1 from '../../../assets/ActionBar/youtube.svg';
 import browserBarDownloadSourceIcon2 from '../../../assets/ActionBar/caret-down.svg';
 import downloadSourceIcon__available from '../../../assets/BrowserBar/check.svg';

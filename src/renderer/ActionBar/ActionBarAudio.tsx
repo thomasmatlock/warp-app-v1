@@ -5,16 +5,10 @@ import expandIcon from '../../../assets/ActionBar/expand.svg';
 import ThemeContext from '../../storage/themeContext';
 import ActionBarContext from '../../storage/actionBarContext';
 
-import './FilterBar.scss';
+import './ActionBarWarpstagram';
 const FilterBar = (props) => {
   const themeCtx = useContext(ThemeContext);
   const actionBarCtx = useContext(ActionBarContext);
-  // console.log(actionBarCtx);
-
-  const [filterTypeAll, setFilterTypeAll] = useState(true);
-  const [filterTypeUsers, setFilterTypeUsers] = useState(false);
-  const [filterTypeHashtags, setFilterTypeHashtags] = useState(false);
-  const [filterTypeLocations, setFilterTypeLocations] = useState(false);
 
   return (
     <Fragment>
@@ -26,7 +20,9 @@ const FilterBar = (props) => {
             : 'filterBar'
         }
       >
-        <div className="filterBar__menu filterBar__menu__left"></div>
+        {/* <div className="filterBar__menu filterBar__menu__left">
+         
+        </div> */}
         <div className="filterBar__menu filterBar__menu__right">
           {!actionBarCtx.isDownloadsPanelCollapsed && (
             <div
@@ -39,12 +35,9 @@ const FilterBar = (props) => {
                     }
               }
             >
-              {props.videoDownloadsTotal} video downloads
+              {props.audioDownloadsTotal} audio downloads
             </div>
           )}
-          {/* <div className="filterBar__menu__item filterBar__menu__item__find">
-            <img src={searchIcon} />
-          </div> */}
           {!actionBarCtx.isDownloadsPanelCollapsed && (
             <div className="filterBar__menu__item filterBar__menu__item__sort">
               <img
@@ -59,7 +52,7 @@ const FilterBar = (props) => {
                 }
               />
             </div>
-          )}{' '}
+          )}
           {!actionBarCtx.isBrowserPanelCollapsed &&
             !actionBarCtx.isDownloadsPanelCollapsed && (
               <div
@@ -67,7 +60,7 @@ const FilterBar = (props) => {
                 className="filterBar__menu__item filterBar__menu__item__sort"
               >
                 <img
-                  title="collapse browser"
+                  title="Expand downloads panel"
                   src={expandIcon}
                   style={
                     themeCtx.isDarkTheme
@@ -85,7 +78,7 @@ const FilterBar = (props) => {
               className="filterBar__menu__item filterBar__menu__item__sort"
             >
               <img
-                title="reset browser"
+                title="Restore split view"
                 src={collapseIcon}
                 style={
                   themeCtx.isDarkTheme
@@ -103,7 +96,7 @@ const FilterBar = (props) => {
               className="filterBar__menu__item filterBar__menu__item__sort"
             >
               <img
-                title="Collapse audio downloads panel"
+                title="Restore split view"
                 src={expandIcon}
                 style={
                   themeCtx.isDarkTheme
@@ -122,7 +115,7 @@ const FilterBar = (props) => {
                 className="filterBar__menu__item filterBar__menu__item__sort"
               >
                 <img
-                  title="Expand audio downloads panel"
+                  title="Collapse downloads panel"
                   src={collapseIcon}
                   style={
                     themeCtx.isDarkTheme
