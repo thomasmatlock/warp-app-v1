@@ -32,32 +32,36 @@ const BrowserBar = (props) => {
     <Fragment>
       <div className="browserBar">
         <div className="filterBar__menu filterBar__menu__left">
-          <div className="filterBar__menu__item filterBar__menu__item__sort">
-            <img
-              src={backIcon}
-              title="Sort"
-              style={
-                themeCtx.isDarkTheme
-                  ? { filter: 'invert(100%)' }
-                  : {
-                      filter: 'invert(0%)',
-                    }
-              }
-            />
-          </div>{' '}
-          <div className="filterBar__menu__item filterBar__menu__item__sort">
-            <img
-              src={forwardIcon}
-              title="Sort"
-              style={
-                themeCtx.isDarkTheme
-                  ? { filter: 'invert(100%)' }
-                  : {
-                      filter: 'invert(0%)',
-                    }
-              }
-            />
-          </div>
+          {!actionBarCtx.isBrowserPanelCollapsed && (
+            <div className="filterBar__menu__item filterBar__menu__item__sort">
+              <img
+                src={backIcon}
+                title="Sort"
+                style={
+                  themeCtx.isDarkTheme
+                    ? { filter: 'invert(100%)' }
+                    : {
+                        filter: 'invert(0%)',
+                      }
+                }
+              />
+            </div>
+          )}
+          {!actionBarCtx.isBrowserPanelCollapsed && (
+            <div className="filterBar__menu__item filterBar__menu__item__sort">
+              <img
+                src={forwardIcon}
+                title="Sort"
+                style={
+                  themeCtx.isDarkTheme
+                    ? { filter: 'invert(100%)' }
+                    : {
+                        filter: 'invert(0%)',
+                      }
+                }
+              />
+            </div>
+          )}
         </div>
         {!actionBarCtx.isBrowserPanelCollapsed && <BrowserBarDownloadSource />}
         {audioMode && !actionBarCtx.isBrowserPanelCollapsed && (
