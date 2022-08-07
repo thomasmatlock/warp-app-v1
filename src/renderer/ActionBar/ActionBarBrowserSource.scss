@@ -39,7 +39,8 @@ $gradient-orange: linear-gradient(to left, #da2c4d 0%, #f8ab37 100%);
 .browserBarDownloadSource {
     height: 48px;
     width: clamp(150px, 200px, 200px);
-    margin: 8px 48px;
+    width: calc(100% - 440px);
+    margin: 8px 148px;
     border-radius: 3px;
     position: absolute;
     overflow: hidden;
