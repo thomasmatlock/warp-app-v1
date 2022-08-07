@@ -26,11 +26,11 @@ export const ActionBarContextProvider = (props) => {
     }
   };
   const toggleVideoPanelCollapsed = () => {
-    if (isAudioPanelFullSize) {
-      setIsAudioPanelFullSize(false);
+    if (isVideoPanelFullSize) {
+      setIsVideoPanelFullSize(false);
     }
-    if (!isAudioPanelFullSize) {
-      setIsAudioPanelFullSize(false);
+    if (!isVideoPanelFullSize) {
+      setIsVideoPanelFullSize(false);
       isVideoPanelCollapsed
         ? setIsVideoPanelCollapsed(false)
         : setIsVideoPanelCollapsed(true);

@@ -60,7 +60,7 @@ const FilterBar = (props) => {
                 className="filterBar__menu__item filterBar__menu__item__sort"
               >
                 <img
-                  title="Expand audio downloads"
+                  title="Full audio downloads"
                   src={expandIcon}
                   style={
                     themeCtx.isDarkTheme

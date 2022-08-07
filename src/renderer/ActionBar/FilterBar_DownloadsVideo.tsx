@@ -60,14 +60,15 @@ const FilterBar = (props) => {
               />
             </div>
           )}
+          {/* FULL SIZE DOWNLOADS PANEL */}
           {!actionBarCtx.isVideoPanelCollapsed &&
-            !actionBarCtx.isAudioPanelFullSize && (
+            !actionBarCtx.isVideoPanelFullSize && (
               <div
-                onClick={actionBarCtx.toggleAudioPanelFullsize}
+                onClick={actionBarCtx.toggleVideoPanelFullsize}
                 className="filterBar__menu__item filterBar__menu__item__sort"
               >
                 <img
-                  title="Expand audio downloads"
+                  title="Full size audio downloads"
                   src={expandIcon}
                   style={
                     themeCtx.isDarkTheme
@@ -79,14 +80,15 @@ const FilterBar = (props) => {
                 />
               </div>
             )}
-          {!actionBarCtx.isVideoPanelCollapsed && (
+          {/* REGULAR SIZE */}
+          {actionBarCtx.isVideoPanelCollapsed && (
             <div
               onClick={actionBarCtx.toggleVideoPanelCollapsed}
               className="filterBar__menu__item filterBar__menu__item__sort"
             >
               <img
-                title="Collapse video downloads panel"
-                src={collapseIcon}
+                title="Expand video downloads panel"
+                src={expandIcon}
                 style={
                   themeCtx.isDarkTheme
                     ? { filter: 'invert(100%)' }
@@ -97,14 +99,15 @@ const FilterBar = (props) => {
               />
             </div>
           )}
-          {actionBarCtx.isVideoPanelCollapsed && (
+          {/* COLLAPSE */}
+          {!actionBarCtx.isVideoPanelCollapsed && (
             <div
               onClick={actionBarCtx.toggleVideoPanelCollapsed}
               className="filterBar__menu__item filterBar__menu__item__sort"
             >
               <img
-                title="Expand video downloads panel"
-                src={expandIcon}
+                title="Collapse video downloads panel"
+                src={collapseIcon}
                 style={
                   themeCtx.isDarkTheme
                     ? { filter: 'invert(100%)' }
