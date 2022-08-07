@@ -60,7 +60,7 @@ const FilterBar = (props) => {
                 className="filterBar__menu__item filterBar__menu__item__sort"
               >
                 <img
-                  title="collapse browser"
+                  title="Expand downloads panel"
                   src={expandIcon}
                   style={
                     themeCtx.isDarkTheme
@@ -78,7 +78,7 @@ const FilterBar = (props) => {
               className="filterBar__menu__item filterBar__menu__item__sort"
             >
               <img
-                title="reset browser"
+                title="Restore split view"
                 src={collapseIcon}
                 style={
                   themeCtx.isDarkTheme
@@ -96,7 +96,7 @@ const FilterBar = (props) => {
               className="filterBar__menu__item filterBar__menu__item__sort"
             >
               <img
-                title="Collapse audio downloads panel"
+                title="Restore split view"
                 src={expandIcon}
                 style={
                   themeCtx.isDarkTheme
@@ -115,7 +115,7 @@ const FilterBar = (props) => {
                 className="filterBar__menu__item filterBar__menu__item__sort"
               >
                 <img
-                  title="Expand audio downloads panel"
+                  title="Collapse downloads panel"
                   src={collapseIcon}
                   style={
                     themeCtx.isDarkTheme

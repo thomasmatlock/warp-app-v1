@@ -65,9 +65,9 @@ const DownloadsVideo = () => {
                   className=" content__panel__downloads__list__item__img content__panel__downloads__list__item__file_length"
                   style={
                     themeCtx.isDarkTheme
-                      ? { filter: 'invert(0%)' }
+                      ? { filter: 'invert(100%)' }
                       : {
-                          filter: 'invert(100%)',
+                          filter: 'invert(0%)',
                         }
                   }
                 ></img>
@@ -75,9 +75,9 @@ const DownloadsVideo = () => {
                   className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_length"
                   style={
                     themeCtx.isDarkTheme
-                      ? { filter: 'invert(0%)' }
+                      ? { filter: 'invert(100%)' }
                       : {
-                          filter: 'invert(100%)',
+                          filter: 'invert(0%)',
                         }
                   }
                 >
@@ -88,9 +88,9 @@ const DownloadsVideo = () => {
                   className=" content__panel__downloads__list__item__img content__panel__downloads__list__item__file_length"
                   style={
                     themeCtx.isDarkTheme
-                      ? { filter: 'invert(0%)' }
+                      ? { filter: 'invert(100%)' }
                       : {
-                          filter: 'invert(100%)',
+                          filter: 'invert(0%)',
                         }
                   }
                 ></img>
@@ -98,9 +98,9 @@ const DownloadsVideo = () => {
                   className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_size"
                   style={
                     themeCtx.isDarkTheme
-                      ? { filter: 'invert(0%)' }
+                      ? { filter: 'invert(100%)' }
                       : {
-                          filter: 'invert(100%)',
+                          filter: 'invert(0%)',
                         }
                   }
                 >
@@ -111,9 +111,9 @@ const DownloadsVideo = () => {
                   className=" content__panel__downloads__list__item__img content__panel__downloads__list__item__file_length"
                   style={
                     themeCtx.isDarkTheme
-                      ? { filter: 'invert(0%)' }
+                      ? { filter: 'invert(100%)' }
                       : {
-                          filter: 'invert(100%)',
+                          filter: 'invert(0%)',
                         }
                   }
                 ></img>
@@ -121,9 +121,9 @@ const DownloadsVideo = () => {
                   className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_type"
                   style={
                     themeCtx.isDarkTheme
-                      ? { filter: 'invert(0%)' }
+                      ? { filter: 'invert(100%)' }
                       : {
-                          filter: 'invert(100%)',
+                          filter: 'invert(0%)',
                         }
                   }
                 >
@@ -134,9 +134,9 @@ const DownloadsVideo = () => {
                   className=" content__panel__downloads__list__item__img content__panel__downloads__list__item__file_length"
                   style={
                     themeCtx.isDarkTheme
-                      ? { filter: 'invert(0%)' }
+                      ? { filter: 'invert(100%)' }
                       : {
-                          filter: 'invert(100%)',
+                          filter: 'invert(0%)',
                         }
                   }
                 ></img>
@@ -144,9 +144,9 @@ const DownloadsVideo = () => {
                   className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_resolution"
                   style={
                     themeCtx.isDarkTheme
-                      ? { filter: 'invert(0%)' }
+                      ? { filter: 'invert(100%)' }
                       : {
-                          filter: 'invert(100%)',
+                          filter: 'invert(0%)',
                         }
                   }
                 >
@@ -157,9 +157,9 @@ const DownloadsVideo = () => {
                   className=" content__panel__downloads__list__item__img content__panel__downloads__list__item__file_length"
                   style={
                     themeCtx.isDarkTheme
-                      ? { filter: 'invert(0%)' }
+                      ? { filter: 'invert(100%)' }
                       : {
-                          filter: 'invert(100%)',
+                          filter: 'invert(0%)',
                         }
                   }
                 ></img>
@@ -167,9 +167,9 @@ const DownloadsVideo = () => {
                   className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_fps"
                   style={
                     themeCtx.isDarkTheme
-                      ? { filter: 'invert(0%)' }
+                      ? { filter: 'invert(100%)' }
                       : {
-                          filter: 'invert(100%)',
+                          filter: 'invert(0%)',
                         }
                   }
                 >

@@ -7,7 +7,7 @@ import './FilterBar.scss';
 const FilterBar = (props) => {
   const themeCtx = useContext(ThemeContext);
   const actionBarCtx = useContext(ActionBarContext);
-  console.log(actionBarCtx);
+  // console.log(actionBarCtx);
 
   const [filterTypeAll, setFilterTypeAll] = useState(true);
   const [filterTypeUsers, setFilterTypeUsers] = useState(false);

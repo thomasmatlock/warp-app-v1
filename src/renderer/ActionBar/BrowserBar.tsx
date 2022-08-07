@@ -1,12 +1,7 @@
 import { Fragment, useState, useContext } from 'react';
 import './BrowserBar.scss';
-import browserBarDownloadSourceIcon1 from '../../../assets/ActionBar/youtube.svg';
-import browserBarDownloadSourceIcon2 from '../../../assets/ActionBar/caret-down.svg';
-import downloadSourceIconFacebook from '../../../assets/BrowserBar/facebook.svg';
-import downloadSourceIconSoundcloud from '../../../assets/BrowserBar/soundcloud.svg';
-import downloadSourceIconTiktok from '../../../assets/BrowserBar/tiktok.svg';
-import downloadSourceIconTwitter from '../../../assets/BrowserBar/twitter.svg';
-import downloadSourceIconYoutube from '../../../assets/BrowserBar/youtube.svg';
+import backIcon from '../../../assets/BrowserBar/browser/back.svg';
+import forwardIcon from '../../../assets/BrowserBar/browser/forward.svg';
 import BrowserBarDownloadSource from './BrowserBarDownloadSource';
 import ThemeContext from '../../storage/themeContext';
 import ActionBarContext from '../../storage/actionBarContext';
@@ -50,6 +45,34 @@ const BrowserBar = (props) => {
   return (
     <Fragment>
       <div className="browserBar">
+        <div className="filterBar__menu filterBar__menu__left">
+          <div className="filterBar__menu__item filterBar__menu__item__sort">
+            <img
+              src={backIcon}
+              title="Sort"
+              style={
+                themeCtx.isDarkTheme
+                  ? { filter: 'invert(100%)' }
+                  : {
+                      filter: 'invert(0%)',
+                    }
+              }
+            />
+          </div>{' '}
+          <div className="filterBar__menu__item filterBar__menu__item__sort">
+            <img
+              src={forwardIcon}
+              title="Sort"
+              style={
+                themeCtx.isDarkTheme
+                  ? { filter: 'invert(100%)' }
+                  : {
+                      filter: 'invert(0%)',
+                    }
+              }
+            />
+          </div>
+        </div>
         {!actionBarCtx.isBrowserPanelCollapsed && <BrowserBarDownloadSource />}
         {audioMode && !actionBarCtx.isBrowserPanelCollapsed && (
           <a
