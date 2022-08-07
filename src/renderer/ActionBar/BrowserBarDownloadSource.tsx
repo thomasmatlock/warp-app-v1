@@ -1,4 +1,8 @@
-import { Fragment, useState } from 'react';
+import { Fragment, useState, useContext } from 'react';
+import ThemeContext from '../../storage/themeContext';
+import ActionBarContext from '../../storage/actionBarContext';
+import SourcesContext from '../../storage/sourcesContext';
+
 import './BrowserBarDownloadSource.scss';
 import browserBarDownloadSourceIcon1 from '../../../assets/ActionBar/youtube.svg';
 import browserBarDownloadSourceIcon2 from '../../../assets/ActionBar/caret-down.svg';
@@ -7,18 +11,24 @@ import downloadSourceIcon__unavailable from '../../../assets/BrowserBar/remove.s
 import downloadSourceIconFacebook from '../../../assets/BrowserBar/facebook.svg';
 import downloadSourceIconPinterest from '../../../assets/BrowserBar/pinterest.svg';
 import downloadSourceIconSoundcloud from '../../../assets/BrowserBar/soundcloud.svg';
+import downloadSourceIconSnapchat from '../../../assets/BrowserBar/snapchat.svg';
 import downloadSourceIconTiktok from '../../../assets/BrowserBar/tiktok.svg';
+import downloadSourceIconTwitch from '../../../assets/BrowserBar/twitch.svg';
 import downloadSourceIconTwitter from '../../../assets/BrowserBar/twitter.svg';
+import downloadSourceIconVimeo from '../../../assets/BrowserBar/vimeo.svg';
 import downloadSourceIconYoutube from '../../../assets/BrowserBar/youtube.svg';
 
-// import browserBarDownloadSourceIcon1 from '../../../../assets/3rdparty/fontawesome/svgs/brands/youtube.svg';
-// import browserBarDownloadSourceIcon2 from '../../../../assets/3rdparty/fontawesome/svgs/solid/caret-down.svg';
 const BrowserBarDownloadSource = () => {
+  const themeCtx = useContext(ThemeContext);
+  const sourcesCtx = useContext(SourcesContext);
+  console.log(sourcesCtx);
+
   const [sourceFacebookActive, setSourceFacebookActive] = useState(false);
   const [sourcePinterestActive, setSourcePinterestActive] = useState(false);
   const [sourceSoundcloudActive, setSourceSoundcloudActive] = useState(false);
   const [sourceTiktokActive, setSourceTiktokActive] = useState(false);
   const [sourceTwitterActive, setSourceTwitterActive] = useState(false);
+  const [sourceVimeoActive, setSourceVimeoActive] = useState(false);
   const [sourceYoutubeActive, setSourceYoutubeActive] = useState(false);
   const [isSourcesExpanded, setIsSourcesExpanded] = useState(false);
   const disableAllSources = () => {
@@ -27,6 +37,7 @@ const BrowserBarDownloadSource = () => {
     setSourceSoundcloudActive(false);
     setSourceTiktokActive(false);
     setSourceTwitterActive(false);
+    setSourceVimeoActive(false);
     setSourceYoutubeActive(false);
     console.log('disabledAllSources');
   };
@@ -249,6 +260,37 @@ const BrowserBarDownloadSource = () => {
           >
             <div className="browserBarDownloadSource__list__item__container1">
               <img
+                src={downloadSourceIconSnapchat}
+                alt=""
+                loading="lazy"
+                className="browserBarDownloadSource__list__item__icon"
+              />
+
+              <div className="browserBarDownloadSource__list__item__text browserBarDownloadSource__list__item__title">
+                Snapchat
+              </div>
+            </div>
+            <div className="browserBarDownloadSource__list__item__container2">
+              <img
+                id="browserBarDownloadSource__list__item__icon__status__2"
+                src={downloadSourceIcon__available}
+                alt=""
+                loading="lazy"
+                className="browserBarDownloadSource__list__item__icon browserBarDownloadSource__list__item__icon__status browserBarDownloadSource__list__item__icon__status__2"
+              />
+            </div>
+          </li>
+          <li
+            onClick={selectedSoundcloudHandler}
+            id="downloadSource__soundcloud"
+            className={
+              sourceSoundcloudActive
+                ? 'browserBarDownloadSource__list__item__active'
+                : 'browserBarDownloadSource__list__item'
+            }
+          >
+            <div className="browserBarDownloadSource__list__item__container1">
+              <img
                 src={downloadSourceIconSoundcloud}
                 alt=""
                 loading="lazy"
@@ -295,6 +337,33 @@ const BrowserBarDownloadSource = () => {
                 className="browserBarDownloadSource__list__item__icon browserBarDownloadSource__list__item__icon__status browserBarDownloadSource__list__item__icon__status__3"
               />
             </div>
+          </li>{' '}
+          <li
+            onClick={selectedTiktokHandler}
+            id="downloadSource__tiktok"
+            className="browserBarDownloadSource__list__item "
+            className={
+              sourceTiktokActive
+                ? 'browserBarDownloadSource__list__item__active'
+                : 'browserBarDownloadSource__list__item'
+            }
+          >
+            <div className="browserBarDownloadSource__list__item__container1">
+              <img
+                src={downloadSourceIconTwitch}
+                className="browserBarDownloadSource__list__item__icon"
+              />
+
+              <div className="browserBarDownloadSource__list__item__text browserBarDownloadSource__list__item__title">
+                Twitch
+              </div>
+            </div>
+            <div className="browserBarDownloadSource__list__item__container2">
+              <img
+                src={downloadSourceIcon__available}
+                className="browserBarDownloadSource__list__item__icon browserBarDownloadSource__list__item__icon__status browserBarDownloadSource__list__item__icon__status__3"
+              />
+            </div>
           </li>
           <li
             onClick={selectedTwitterHandler}
@@ -319,6 +388,32 @@ const BrowserBarDownloadSource = () => {
               <img
                 src={downloadSourceIcon__available}
                 className="browserBarDownloadSource__list__item__icon browserBarDownloadSource__list__item__icon__status browserBarDownloadSource__list__item__icon__status__4"
+              />
+            </div>
+          </li>
+          <li
+            id="downloadSource__youtube"
+            onClick={selectedYoutubeHandler}
+            className={
+              sourceYoutubeActive
+                ? 'browserBarDownloadSource__list__item__active'
+                : 'browserBarDownloadSource__list__item'
+            }
+          >
+            <div className="browserBarDownloadSource__list__item__container1">
+              <img
+                src={downloadSourceIconVimeo}
+                className="browserBarDownloadSource__list__item__icon"
+              />
+
+              <div className="browserBarDownloadSource__list__item__text browserBarDownloadSource__list__item__title">
+                Vimeo
+              </div>
+            </div>
+            <div className="browserBarDownloadSource__list__item__container2">
+              <img
+                src={downloadSourceIcon__available}
+                className="browserBarDownloadSource__list__item__icon browserBarDownloadSource__list__item__icon__status browserBarDownloadSource__list__item__icon__status__5"
               />
             </div>
           </li>
