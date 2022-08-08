@@ -11,14 +11,23 @@ export const ActionBarContextProvider = (props) => {
     useState(false);
   const [isBrowserPanelCollapsed, setIsBrowserPanelCollapsed] = useState(false);
   const toggleDownloadsPanelCollapsed = () => {
-    isDownloadsPanelCollapsed
-      ? setIsDownloadsPanelCollapsed(false)
-      : setIsDownloadsPanelCollapsed(true);
+    if (isDownloadsPanelCollapsed) {
+      setIsDownloadsPanelCollapsed(false);
+
+      window.electron.ipcRenderer.sendMessage('browserPanelSize', 'default');
+    } else if (!isBrowserPanelCollapsed) {
+      setIsDownloadsPanelCollapsed(true);
+      window.electron.ipcRenderer.sendMessage('browserPanelSize', 'expand');
+    }
   };
   const toggleBrowserPanelCollapsed = () => {
-    isBrowserPanelCollapsed
-      ? setIsBrowserPanelCollapsed(false)
-      : setIsBrowserPanelCollapsed(true);
+    if (isBrowserPanelCollapsed) {
+      setIsBrowserPanelCollapsed(false);
+      window.electron.ipcRenderer.sendMessage('browserPanelSize', 'default');
+    } else if (!isBrowserPanelCollapsed) {
+      setIsBrowserPanelCollapsed(true);
+      window.electron.ipcRenderer.sendMessage('browserPanelSize', 'collapse');
+    }
   };
   return (
     <ActionBarContext.Provider

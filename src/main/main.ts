@@ -54,14 +54,6 @@ let allWindowsBlur = {
   main: false,
   browser: false,
 };
-const checkWindowsBlur = () => {
-  if (allWindowsBlur.main && allWindowsBlur.browser) {
-    browserWindow.hide();
-  }
-  if (allWindowsBlur.main) {
-    browserWindow.show();
-  }
-};
 const contextMenu = require('electron-context-menu');
 contextMenu({});
 const Store = require('electron-store');
@@ -88,6 +80,7 @@ let browserWindowBounds = {
   width: mainWindowBounds.width / 2 - 250,
   height: mainWindowBounds.height - 250, // default
 };
+let browserPanelState = 'default';
 const updateSource = (updatedSource: any) => {
   // clear all active sources
   for (const key in sources) {
@@ -155,6 +148,13 @@ const updateSource = (updatedSource: any) => {
   });
   ipcMain.on('BrowserBar: button: downloadVideo', async (event, arg) => {
     event.reply('BrowserBar: button: downloadVideo successful'); // sends message to renderer
+  });
+  ipcMain.on('browserPanelSize', async (event, arg) => {
+    // console.log('browserPanelSize', arg);
+    browserPanelState = arg;
+    browserWindowHandler.resize(arg);
+
+    // event.reply('BrowserBar: button: downloadVideo successful'); // sends message to renderer
   });
   // FILTERBAR LISTENERS
   ipcMain.on('FilterBar: Warpstagram: FilterTypeAll', async (event, arg) => {
@@ -264,10 +264,10 @@ const windowController = {
       // console.log('mainWindow dom-ready');
     });
     wc.on('blur', (event, url) => {
-      console.log('mainWindow webContents blur');
+      // console.log('mainWindow webContents blur');
     });
     wc.on('focus', (event, url) => {
-      console.log('mainWindow webContents focus');
+      // console.log('mainWindow webContents focus');
     });
 
     const menuBuilder = new MenuBuilder(mainWindow);
@@ -278,7 +278,7 @@ const windowController = {
       console.log('mainWindow app-command');
     });
     mainWindow.on('blur', () => {
-      console.log('mainWindow blur');
+      // console.log('mainWindow blur');
       // allWindowsBlur.main = true;
       // checkWindowsBlur();
     });
@@ -287,21 +287,26 @@ const windowController = {
     mainWindow.on('enter-full-screen', () => {});
     mainWindow.on('enter-html-full-screen', () => {});
     mainWindow.on('focus', () => {
-      console.log('mainWindow focus');
+      // console.log('mainWindow focus');
+      // console.log('mainWindow focus');
 
-      browserWindowHandler.resize();
+      browserWindowHandler.resize(browserPanelState);
     });
     mainWindow.on('hide', () => {
       console.log('mainWindow hide');
     });
     mainWindow.on('leave-full-screen', () => {});
     mainWindow.on('leave-html-full-screen', () => {});
-    mainWindow.on('maximize', () => browserWindowHandler.resize());
+    mainWindow.on('maximize', () =>
+      browserWindowHandler.resize(browserPanelState)
+    );
     mainWindow.on('minimize', () => {
       if (browserWindow) browserWindow.minimize();
     });
-    mainWindow.on('move', () => browserWindowHandler.resize());
-    mainWindow.on('moved', () => browserWindowHandler.resize());
+    mainWindow.on('move', () => browserWindowHandler.resize(browserPanelState));
+    mainWindow.on('moved', () =>
+      browserWindowHandler.resize(browserPanelState)
+    );
     mainWindow.on('new-window-for-tab', () => {});
     mainWindow.on('ready-to-show', () => {
       mainWindow.webContents.send('ready-to-show');
@@ -325,22 +330,22 @@ const windowController = {
       mainWindow.webContents.send('package', packageJSON);
     });
     mainWindow.on('resize', () => {
-      browserWindowHandler.resize();
+      browserWindowHandler.resize(browserPanelState);
     });
     mainWindow.on('resized', (e) => {
-      browserWindowHandler.resize();
+      browserWindowHandler.resize(browserPanelState);
     });
     mainWindow.on('responsive', () => {
       console.log('mainWindow responsive');
     });
     mainWindow.on('restore', () => {
-      browserWindowHandler.resize();
+      browserWindowHandler.resize(browserPanelState);
     });
     mainWindow.on('session-end', () => {});
     mainWindow.on('sheet-begin', () => {});
     mainWindow.on('sheet-end', () => {});
     mainWindow.on('show', () => {
-      browserWindowHandler.resize();
+      browserWindowHandler.resize(browserPanelState);
     });
     mainWindow.on('system-context-menu', () => {
       console.log('system-context-menu');
@@ -350,9 +355,11 @@ const windowController = {
       console.log('unresponsive');
     });
     mainWindow.on('will-move', () => {
-      browserWindowHandler.resize();
+      browserWindowHandler.resize(browserPanelState);
     });
-    mainWindow.on('will-resize', () => browserWindowHandler.resize());
+    mainWindow.on('will-resize', () =>
+      browserWindowHandler.resize(browserPanelState)
+    );
   },
   createBrowserWindow: async function () {
     // if (isDebug) {
@@ -414,7 +421,7 @@ const windowController = {
     browserWindow.webContents.on('will-navigate', () => {});
     browserWindow.on('always-on-top-changed', () => {});
     browserWindow.on('blur', () => {
-      console.log('browserWindow blur');
+      // console.log('browserWindow blur');
       browserWindowHandler.setScreenshot();
       // allWindowsBlur.browser = true;
       // checkWindowsBlur();
@@ -423,7 +430,7 @@ const windowController = {
     browserWindow.on('closed', () => (browserWindow = null));
     browserWindow.on('enter-full-screen', () => {});
     browserWindow.on('focus', () => {
-      console.log('browserWindow focus');
+      // console.log('browserWindow focus');
     });
     browserWindow.on('hide', () => {
       console.log('browserWindow hide');
@@ -439,7 +446,9 @@ const windowController = {
     browserWindow.on('resize', () => {});
     browserWindow.on('resized', () => console.log('browserWindow resized'));
     browserWindow.on('responsive', () => {});
-    browserWindow.on('restore', () => browserWindowHandler.resize());
+    browserWindow.on('restore', () =>
+      browserWindowHandler.resize(browserPanelState)
+    );
     browserWindow.on('session-end', () => {});
     browserWindow.on('sheet-begin', () => {});
     browserWindow.on('sheet-end', () => {});
@@ -506,7 +515,9 @@ const windowController = {
   // view.setBounds({ x: 0, y: 0, width: 800, height: 800 });
 };
 const browserWindowHandler = {
-  resize: async function () {
+  resize: async function (browserWidth) {
+    console.log(browserWidth);
+
     if (browserWindow) {
       if (browserWindow.webContents.getURL().includes('pinterest')) {
         browserWindow.webContents.insertCSS(
@@ -515,12 +526,22 @@ const browserWindowHandler = {
       }
     }
     // mainWindow.getBounds();
+    let defaultWidthDifference = mainWindowBounds.width / 2 - 9;
+    let collapsedWidthDifference = 72;
+    let expandedWidthDifference = mainWindowBounds.width - 91;
     if (browserWindow) browserWindow.setResizable(true);
     mainWindowBounds = mainWindow.getBounds();
-    // browserWindowBounds.width = Math.round(mainWindowBounds.width / 2 - 9); //default/
-    browserWindowBounds.width = Math.round(mainWindowBounds.width / 2 - 9); //testing/
-    // browserWindowBounds.height = Math.round(mainWindowBounds.height - 258); //default
-    browserWindowBounds.height = Math.round(mainWindowBounds.height - 251); //testing
+    browserWindowBounds.height = Math.round(mainWindowBounds.height - 251);
+    if (browserWidth === 'collapse')
+      browserWindowBounds.width = Math.round(collapsedWidthDifference); // collapsed view
+    if (browserWidth === 'expand')
+      browserWindowBounds.width = Math.round(expandedWidthDifference); // collapsed view
+    if (browserWidth === 'default')
+      browserWindowBounds.width = Math.round(defaultWidthDifference); // split view
+    if (browserWidth === undefined)
+      browserWindowBounds.width = Math.round(defaultWidthDifference); // split view
+    // browserWindowBounds.width = Math.round(mainWindowBounds.width / 2 - 9); // split view
+    // browserWindowBounds.width = Math.round(mainWindowBounds.width - 91); // expanded view
     if (browserWindow)
       browserWindow.setSize(
         browserWindowBounds.width,
@@ -586,7 +607,7 @@ app
   .whenReady()
   .then(() => {
     // windowController.createSplashWindow();
-    // windowController.createBrowserWindow();
+    windowController.createBrowserWindow();
     windowController.createMainWindow();
     app.on('activate', () => {
       if (mainWindow === null) windowController.createMainWindow();
