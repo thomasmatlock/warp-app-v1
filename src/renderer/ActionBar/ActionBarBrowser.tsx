@@ -2,6 +2,7 @@ import { Fragment, useState, useContext } from 'react';
 import './ActionBarBrowser.scss';
 import backIcon from '../../../assets/BrowserBar/browser/back.svg';
 import forwardIcon from '../../../assets/BrowserBar/browser/forward.svg';
+import reloadIcon from '../../../assets/BrowserBar/browser/reload.svg';
 import BrowserBarDownloadSource from './ActionBarBrowserSource';
 import ThemeContext from '../../storage/themeContext';
 import ActionBarContext from '../../storage/actionBarContext';
@@ -27,13 +28,25 @@ const BrowserBar = (props) => {
       [`Download Video`]
     );
   };
+  const browserGoBackHandler = () => {
+    window.electron.ipcRenderer.sendMessage('BrowserBar: button: goBack');
+  };
+  const browserGoForwardHandler = () => {
+    window.electron.ipcRenderer.sendMessage('BrowserBar: button: goForward');
+  };
+  const browserReloadHandler = () => {
+    window.electron.ipcRenderer.sendMessage('BrowserBar: button: reload');
+  };
 
   return (
     <Fragment>
       <div className="browserBar">
         <div className="filterBar__menu filterBar__menu__left">
           {!actionBarCtx.isBrowserPanelCollapsed && (
-            <div className="filterBar__menu__item filterBar__menu__item__sort">
+            <div
+              onClick={browserGoBackHandler}
+              className="filterBar__menu__item filterBar__menu__item__sort"
+            >
               <img
                 src={backIcon}
                 title="Sort"
@@ -48,9 +61,30 @@ const BrowserBar = (props) => {
             </div>
           )}
           {!actionBarCtx.isBrowserPanelCollapsed && (
-            <div className="filterBar__menu__item filterBar__menu__item__sort">
+            <div
+              onClick={browserGoForwardHandler}
+              className="filterBar__menu__item filterBar__menu__item__sort"
+            >
               <img
                 src={forwardIcon}
+                title="Sort"
+                style={
+                  themeCtx.isDarkTheme
+                    ? { filter: 'invert(100%)' }
+                    : {
+                        filter: 'invert(0%)',
+                      }
+                }
+              />
+            </div>
+          )}{' '}
+          {!actionBarCtx.isBrowserPanelCollapsed && (
+            <div
+              onClick={browserReloadHandler}
+              className="filterBar__menu__item filterBar__menu__item__sort"
+            >
+              <img
+                src={reloadIcon}
                 title="Sort"
                 style={
                   themeCtx.isDarkTheme

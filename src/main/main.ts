@@ -135,8 +135,8 @@ const updateSource = (updatedSource: any) => {
   ipcMain.on('nav: mode: warpstagram', async (event, arg) => {
     console.log('nav: mode: warpstagram');
 
-    event.reply('nav: mode: warpstagram', 'nav: mode: warpstagram successful'); // sends message to renderer
     if (browserWindow) browserWindow.hide();
+    event.reply('nav: mode: warpstagram', 'nav: mode: warpstagram successful'); // sends message to renderer
   });
   // BROWSERBAR DOWNLOAD SOURCE LISTENERS
   ipcMain.on('source: change', async (event, arg) => {
@@ -153,6 +153,29 @@ const updateSource = (updatedSource: any) => {
     // console.log('browserPanelSize', arg);
     browserPanelState = arg;
     browserWindowHandler.resize(arg);
+    setTimeout(() => {
+      browserWindowHandler.setScreenshot();
+      if (arg != 'collapse') browserWindow.focus();
+    }, 500);
+
+    // event.reply('BrowserBar: button: downloadVideo successful'); // sends message to renderer
+  });
+  ipcMain.on('BrowserBar: button: goBack', async (event, arg) => {
+    console.log('BrowserBar: button: goBack');
+    browserWindow.webContents.goBack();
+
+    // event.reply('BrowserBar: button: downloadVideo successful'); // sends message to renderer
+  });
+  ipcMain.on('BrowserBar: button: goForward', async (event, arg) => {
+    console.log('BrowserBar: button: goForward');
+    browserWindow.webContents.goForward();
+
+    // event.reply('BrowserBar: button: downloadVideo successful'); // sends message to renderer
+  });
+  ipcMain.on('BrowserBar: button: reload', async (event, arg) => {
+    console.log('BrowserBar: button: reload');
+    browserWindow.webContents.reload();
+    browserWindowHandler.setScreenshot();
 
     // event.reply('BrowserBar: button: downloadVideo successful'); // sends message to renderer
   });
@@ -205,13 +228,17 @@ ipcMain.on('settings: request', async (event, arg) => {
     // mainWindow.webContents.send('request-browserDimensions');
   });
   ipcMain.on('hideBrowserWindow', async (event, arg) => {
-    if (browserWindow) browserWindow.setAlwaysOnTop(false);
-    mainWindow.setAlwaysOnTop(true);
-    mainWindow.focus();
+    let opacity = browserWindow.getOpacity();
+    console.log('hideBrowserWindow', opacity);
+    browserWindow.setOpacity(0);
+    // if (browserWindow) browserWindow.setAlwaysOnTop(false);
+    // mainWindow.setAlwaysOnTop(true);
+    // mainWindow.focus();
   });
   ipcMain.on('showBrowserWindow', async (event, arg) => {
-    if (browserWindow) browserWindow.setAlwaysOnTop(true);
-    mainWindow.setAlwaysOnTop(false);
+    browserWindow.setOpacity(1);
+    // if (browserWindow) browserWindow.setAlwaysOnTop(true);
+    // mainWindow.setAlwaysOnTop(false);
     if (browserWindow) browserWindow.focus();
   });
 })();
@@ -275,7 +302,7 @@ const windowController = {
 
     mainWindow.on('always-on-top-changed', () => {});
     mainWindow.on('app-command', () => {
-      console.log('mainWindow app-command');
+      // console.log('mainWindow app-command');
     });
     mainWindow.on('blur', () => {
       // console.log('mainWindow blur');
@@ -409,20 +436,28 @@ const windowController = {
       }
     }
 
-    browserWindow.once('ready-to-show', () => {
+    browserWindow.on('ready-to-show', () => {
       console.log('browserWindow ready-to-show');
     });
     browserWindow.webContents.on('did-finish-load', () => {
       console.log('browserWindow did-finish-load');
+
       mainWindow.show();
       browserWindow.show();
-      browserWindowHandler.setScreenshot();
+      setTimeout(() => {
+        browserWindowHandler.setScreenshot();
+      }, 250);
     });
-    browserWindow.webContents.on('will-navigate', () => {});
+    browserWindow.webContents.on('did-navigate-in-page', () => {
+      let currentURL = browserWindow.webContents.getURL();
+      console.log('currentURL', currentURL);
+    });
     browserWindow.on('always-on-top-changed', () => {});
     browserWindow.on('blur', () => {
       // console.log('browserWindow blur');
-      browserWindowHandler.setScreenshot();
+      setTimeout(() => {
+        browserWindowHandler.setScreenshot();
+      }, 250);
       // allWindowsBlur.browser = true;
       // checkWindowsBlur();
     });
@@ -437,7 +472,7 @@ const windowController = {
     });
     browserWindow.on('maximize', () => {});
     browserWindow.on('minimize', () => {
-      console.log('browserWindow minimize');
+      // console.log('browserWindow minimize');
     });
     browserWindow.on('move', () => {});
     browserWindow.on('moved', () => {});
@@ -445,7 +480,9 @@ const windowController = {
     browserWindow.on('ready-to-show', () => {});
     browserWindow.on('resize', () => {});
     browserWindow.on('resized', () => console.log('browserWindow resized'));
-    browserWindow.on('responsive', () => {});
+    browserWindow.on('responsive', () => {
+      console.log('browserWindow responsive');
+    });
     browserWindow.on('restore', () =>
       browserWindowHandler.resize(browserPanelState)
     );
@@ -516,7 +553,7 @@ const windowController = {
 };
 const browserWindowHandler = {
   resize: async function (browserWidth) {
-    console.log(browserWidth);
+    // console.log(browserWidth);
 
     if (browserWindow) {
       if (browserWindow.webContents.getURL().includes('pinterest')) {
@@ -536,12 +573,10 @@ const browserWindowHandler = {
       browserWindowBounds.width = Math.round(collapsedWidthDifference); // collapsed view
     if (browserWidth === 'expand')
       browserWindowBounds.width = Math.round(expandedWidthDifference); // collapsed view
-    if (browserWidth === 'default')
+    if (browserWidth === 'default' || browserWidth === undefined)
       browserWindowBounds.width = Math.round(defaultWidthDifference); // split view
-    if (browserWidth === undefined)
-      browserWindowBounds.width = Math.round(defaultWidthDifference); // split view
-    // browserWindowBounds.width = Math.round(mainWindowBounds.width / 2 - 9); // split view
-    // browserWindowBounds.width = Math.round(mainWindowBounds.width - 91); // expanded view
+    // if (browserWidth === undefined)
+    //   browserWindowBounds.width = Math.round(defaultWidthDifference); // split view
     if (browserWindow)
       browserWindow.setSize(
         browserWindowBounds.width,
