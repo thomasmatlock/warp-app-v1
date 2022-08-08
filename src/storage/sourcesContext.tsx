@@ -1,66 +1,103 @@
 import React, { useState, useEffect } from 'react';
+import downloadSourceIconFacebook from '../../assets/BrowserBar/facebook.svg';
+import downloadSourceIconInstagram from '../../assets/BrowserBar/instagram.svg';
+import downloadSourceIconPinterest from '../../assets/BrowserBar/pinterest.svg';
+import downloadSourceIconSoundcloud from '../../assets/BrowserBar/soundcloud.svg';
+import downloadSourceIconSnapchat from '../../assets/BrowserBar/snapchat.svg';
+import downloadSourceIconTiktok from '../../assets/BrowserBar/tiktok.svg';
+import downloadSourceIconTwitch from '../../assets/BrowserBar/twitch.svg';
+import downloadSourceIconTwitter from '../../assets/BrowserBar/twitter.svg';
+import downloadSourceIconVimeo from '../../assets/BrowserBar/vimeo.svg';
+import downloadSourceIconYoutube from '../../assets/BrowserBar/youtube.svg';
 const SourcesContext = React.createContext({
   activeSource: '',
   enabledSources: [],
   // toggleAudioPanelCollapsed: () => {},
+  setActiveSource: () => {},
+  removeAllActiveSources: () => {},
   // toggleVideoPanelCollapsed: () => {},
 });
 
 export const SourcesContextProvider = (props) => {
   let sources = [
     {
-      name: 'facebook',
+      name: 'Facebook',
+      id: 'facebook',
+      src: downloadSourceIconFacebook,
       URL: 'https://facebook.com',
       active: false,
       enabled: false,
     },
     {
-      name: 'instagram',
+      name: 'Instagram',
+      id: 'instagram',
+      src: downloadSourceIconInstagram,
       URL: 'https://instagram.com',
       active: false,
       enabled: false,
     },
     {
-      name: 'pinterest',
+      name: 'Pinterest',
+      id: 'pinterest',
+      src: downloadSourceIconPinterest,
       URL: 'https://pinterest.com',
-      active: false,
-      enabled: false,
+      active: true,
+      enabled: true,
     },
     {
-      name: 'snapchat',
+      name: 'Snapchat',
+      id: 'snapchat',
+      src: downloadSourceIconSnapchat,
       URL: 'https://snapchat.com',
       active: false,
       enabled: true,
     },
     {
-      name: 'soundcloud',
+      name: 'Soundcloud',
+      id: 'soundcloud',
+      src: downloadSourceIconSoundcloud,
       URL: 'https://soundcloud.com',
       active: false,
-      enabled: true,
+      enabled: false,
     },
     {
-      name: 'tiktok',
+      name: 'Tiktok',
+      id: 'tiktok',
+      src: downloadSourceIconTiktok,
       URL: 'https://tiktok.com',
       active: false,
       enabled: false,
     },
     {
-      name: 'twitch',
+      name: 'Twitch',
+      id: 'twitch',
+      src: downloadSourceIconTwitch,
       URL: 'https://twitch.com',
       active: false,
-      enabled: false,
+      enabled: true,
     },
     {
-      name: 'twitter',
+      name: 'Twitter',
+      id: 'twitter',
+      src: downloadSourceIconTwitter,
       URL: 'https://twitter.com',
       active: false,
-      enabled: false,
+      enabled: true,
     },
-    { name: 'vimeo', URL: 'https://vimeo.com', active: false, enabled: false },
     {
-      name: 'youtube',
+      name: 'Vimeo',
+      id: 'vimeo',
+      src: downloadSourceIconVimeo,
+      URL: 'https://vimeo.com',
+      active: false,
+      enabled: true,
+    },
+    {
+      name: 'Youtube',
+      id: 'youtube',
+      src: downloadSourceIconYoutube,
       URL: 'https://youtube.com',
-      active: true,
+      active: false,
       enabled: true,
     },
   ];
@@ -69,6 +106,28 @@ export const SourcesContextProvider = (props) => {
   };
   const getActiveSource = (sources) => {
     return sources.filter((source) => source.active);
+  };
+  const removeAllActiveSources = (id) => {
+    sources = sources
+      .map((source) => {
+        source.active = false;
+        return source;
+      })
+      .filter((source) => source.enabled);
+  };
+  const setActiveSource = (id) => {
+    // console.log(id);
+    removeAllActiveSources(id);
+    sources.forEach((source) => {
+      if (source.id === id) {
+        source.active = true;
+      }
+    });
+    enabledSources = getEnabledSources(sources);
+    activeSource = getActiveSource(enabledSources);
+    console.log(activeSource[0].name);
+    setIsActiveSource(activeSource[0].name);
+    // return (activeSource = getActiveSource(enabledSources));
   };
   let enabledSources = getEnabledSources(sources);
   let activeSource = getActiveSource(enabledSources);
@@ -82,7 +141,9 @@ export const SourcesContextProvider = (props) => {
       value={{
         enabledSources: enabledSources,
         activeSource: activeSource,
+        setActiveSource: setActiveSource,
         setIsActiveSource: setIsActiveSource,
+        removeAllActiveSources: removeAllActiveSources,
         // toggleVideoPanelCollapsed: toggleVideoPanelCollapsed,
       }}
     >

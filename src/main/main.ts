@@ -35,7 +35,7 @@ const isDebug =
   process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true';
 
 if (isDebug) {
-  // require('electron-debug')(); // ENABLE FOR DEVTOOLS
+  require('electron-debug')(); // ENABLE FOR DEVTOOLS
 }
 
 const installExtensions = async () => {
@@ -161,7 +161,7 @@ const updateSource = (updatedSource: any) => {
     browserWindowHandler.resize(arg);
     setTimeout(() => {
       browserWindowHandler.setScreenshot();
-      if (arg != 'collapse') browserWindow.focus();
+      if (arg != 'collapse' && browserWindow) browserWindow.focus();
     }, 500);
 
     // event.reply('BrowserBar: button: downloadVideo successful'); // sends message to renderer
@@ -358,7 +358,7 @@ const windowController = {
       if (process.env.START_MINIMIZED) {
         mainWindow.minimize();
       } else {
-        // mainWindow.show();
+        mainWindow.show();
       }
       mainWindow.webContents.send('package', packageJSON);
     });
@@ -460,7 +460,7 @@ const windowController = {
       console.log('currentURL', currentURL);
       setTimeout(() => {
         browserWindowHandler.setScreenshot();
-      }, 250);
+      }, 1500);
     });
     browserWindow.on('always-on-top-changed', () => {});
     browserWindow.on('blur', () => {
@@ -660,10 +660,10 @@ app
     mainWindowBounds.width = display.width;
     // mainWindowBounds.height = display.height; // default
     mainWindowBounds.height = display.height - 100; // testing
-    console.log(mainWindowBounds);
+    // console.log(mainWindowBounds);
 
     // windowController.createSplashWindow();
-    windowController.createBrowserWindow();
+    // windowController.createBrowserWindow();
     windowController.createMainWindow();
     app.on('activate', () => {
       if (mainWindow === null) windowController.createMainWindow();
