@@ -14,6 +14,7 @@ import {
   dialog,
   shell,
   ipcMain,
+  screen,
   Tray,
 } from 'electron';
 import { autoUpdater } from 'electron-updater';
@@ -40,7 +41,12 @@ if (isDebug) {
 const installExtensions = async () => {
   const installer = require('electron-devtools-installer');
   const forceDownload = !!process.env.UPGRADE_EXTENSIONS;
-  const extensions = ['REACT_DEVELOPER_TOOLS'];
+  // console.log(process.env.UPGRADE_EXTENSIONS);
+
+  const extensions = [
+    'REACT_DEVELOPER_TOOLS',
+    // 'cjpalhdlnbpafiamejdnhcphjbkeiagm',
+  ];
 
   return installer
     .default(
@@ -352,7 +358,7 @@ const windowController = {
       if (process.env.START_MINIMIZED) {
         mainWindow.minimize();
       } else {
-        mainWindow.show();
+        // mainWindow.show();
       }
       mainWindow.webContents.send('package', packageJSON);
     });
@@ -390,7 +396,7 @@ const windowController = {
   },
   createBrowserWindow: async function () {
     // if (isDebug) {
-    //   await installExtensions();
+    // await installExtensions();
     // }
 
     // const RESOURCES_PATH = app.isPackaged
@@ -443,6 +449,7 @@ const windowController = {
       console.log('browserWindow did-finish-load');
 
       mainWindow.show();
+      // mainWindow.maximize();
       browserWindow.show();
       setTimeout(() => {
         browserWindowHandler.setScreenshot();
@@ -502,6 +509,7 @@ const windowController = {
   createSplashWindow: async function () {
     if (isDebug) {
       await installExtensions();
+      // installExtensions('YOUR_ID_HERE');
     }
 
     const RESOURCES_PATH = app.isPackaged
@@ -644,6 +652,16 @@ app.on('window-all-closed', () => {
 app
   .whenReady()
   .then(() => {
+    let display = screen.getAllDisplays()[0].workArea;
+    // console.log(display);
+
+    mainWindowBounds.x = display.x;
+    mainWindowBounds.y = display.y;
+    mainWindowBounds.width = display.width;
+    // mainWindowBounds.height = display.height; // default
+    mainWindowBounds.height = display.height - 100; // testing
+    console.log(mainWindowBounds);
+
     // windowController.createSplashWindow();
     windowController.createBrowserWindow();
     windowController.createMainWindow();
