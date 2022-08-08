@@ -19,6 +19,10 @@ const SourcesContext = React.createContext({
 });
 
 export const SourcesContextProvider = (props) => {
+  // const [isActiveSource, setISActiveSource] = useState(activeSource[0].name);
+  const [isActiveSource, setIsActiveSource] = useState();
+  let enabledSources;
+  let activeSource;
   let sources = [
     {
       name: 'Facebook',
@@ -102,11 +106,16 @@ export const SourcesContextProvider = (props) => {
     },
   ];
   const getEnabledSources = (sources) => {
+    console.log('getEnabledSources');
+
     return sources.filter((source) => source.enabled);
   };
   const getActiveSource = (sources) => {
+    console.log('getActiveSource');
     return sources.filter((source) => source.active);
   };
+  // enabledSources = getEnabledSources(sources);
+  // activeSource = getActiveSource(enabledSources);
   const removeAllActiveSources = (id) => {
     sources = sources
       .map((source) => {
@@ -119,22 +128,19 @@ export const SourcesContextProvider = (props) => {
     // console.log(id);
     removeAllActiveSources(id);
     sources.forEach((source) => {
+      // console.log(source.id);
+
       if (source.id === id) {
         source.active = true;
+        setIsActiveSource(source);
       }
     });
-    enabledSources = getEnabledSources(sources);
-    activeSource = getActiveSource(enabledSources);
-    console.log(activeSource[0].name);
-    setIsActiveSource(activeSource[0].name);
-    // return (activeSource = getActiveSource(enabledSources));
+    sources.forEach((source) => {
+      console.log(source.id, source.active);
+    });
   };
-  let enabledSources = getEnabledSources(sources);
-  let activeSource = getActiveSource(enabledSources);
-  // setIsActiveSource(activeSource[0].name);
-  // console.log(enabledSources);
-  // console.log(activeSource[0].name);
-  const [isActiveSource, setIsActiveSource] = useState(activeSource[0].name);
+
+  console.log(activeSource[0].name);
 
   return (
     <SourcesContext.Provider
@@ -144,6 +150,7 @@ export const SourcesContextProvider = (props) => {
         setActiveSource: setActiveSource,
         setIsActiveSource: setIsActiveSource,
         removeAllActiveSources: removeAllActiveSources,
+        // setIsActiveSource: setIsActiveSource,
         // toggleVideoPanelCollapsed: toggleVideoPanelCollapsed,
       }}
     >
