@@ -228,17 +228,17 @@ ipcMain.on('settings: request', async (event, arg) => {
     // mainWindow.webContents.send('request-browserDimensions');
   });
   ipcMain.on('hideBrowserWindow', async (event, arg) => {
-    let opacity = browserWindow.getOpacity();
-    console.log('hideBrowserWindow', opacity);
-    browserWindow.setOpacity(0);
-    // if (browserWindow) browserWindow.setAlwaysOnTop(false);
-    // mainWindow.setAlwaysOnTop(true);
+    // let opacity = browserWindow.getOpacity();
+    // console.log('hideBrowserWindow', opacity);
+    // browserWindow.setOpacity(0);
+    if (browserWindow) browserWindow.setAlwaysOnTop(false);
+    mainWindow.setAlwaysOnTop(true);
     // mainWindow.focus();
   });
   ipcMain.on('showBrowserWindow', async (event, arg) => {
-    browserWindow.setOpacity(1);
-    // if (browserWindow) browserWindow.setAlwaysOnTop(true);
-    // mainWindow.setAlwaysOnTop(false);
+    // browserWindow.setOpacity(1);
+    if (browserWindow) browserWindow.setAlwaysOnTop(true);
+    mainWindow.setAlwaysOnTop(false);
     if (browserWindow) browserWindow.focus();
   });
 })();
@@ -451,6 +451,9 @@ const windowController = {
     browserWindow.webContents.on('did-navigate-in-page', () => {
       let currentURL = browserWindow.webContents.getURL();
       console.log('currentURL', currentURL);
+      setTimeout(() => {
+        browserWindowHandler.setScreenshot();
+      }, 250);
     });
     browserWindow.on('always-on-top-changed', () => {});
     browserWindow.on('blur', () => {
