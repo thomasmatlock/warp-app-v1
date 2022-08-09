@@ -25,7 +25,7 @@ const BrowserBarDownloadSource = () => {
   const sourcesCtx = useContext(SourcesContext);
   let sourcesCount = sourcesCtx.enabledSources.length;
   // let activeSource = sourcesCtx.activeSource;
-  console.log(sourcesCtx.activeSource[0].name);
+  // console.log(sourcesCtx.activeSource[0].name);
   // console.log(sourcesCtx.activeSource[0].name);
 
   // console.log(sourcesCtx.enabledSources);

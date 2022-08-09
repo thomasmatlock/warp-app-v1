@@ -17,103 +17,105 @@ const SourcesContext = React.createContext({
   removeAllActiveSources: () => {},
   // toggleVideoPanelCollapsed: () => {},
 });
+let sources = [
+  {
+    name: 'Facebook',
+    id: 'facebook',
+    src: downloadSourceIconFacebook,
+    URL: 'https://facebook.com',
+    active: false,
+    enabled: false,
+  },
+  {
+    name: 'Instagram',
+    id: 'instagram',
+    src: downloadSourceIconInstagram,
+    URL: 'https://instagram.com',
+    active: false,
+    enabled: false,
+  },
+  {
+    name: 'Pinterest',
+    id: 'pinterest',
+    src: downloadSourceIconPinterest,
+    URL: 'https://pinterest.com',
+    active: true,
+    enabled: true,
+  },
+  {
+    name: 'Snapchat',
+    id: 'snapchat',
+    src: downloadSourceIconSnapchat,
+    URL: 'https://snapchat.com',
+    active: false,
+    enabled: true,
+  },
+  {
+    name: 'Soundcloud',
+    id: 'soundcloud',
+    src: downloadSourceIconSoundcloud,
+    URL: 'https://soundcloud.com',
+    active: false,
+    enabled: false,
+  },
+  {
+    name: 'Tiktok',
+    id: 'tiktok',
+    src: downloadSourceIconTiktok,
+    URL: 'https://tiktok.com',
+    active: false,
+    enabled: false,
+  },
+  {
+    name: 'Twitch',
+    id: 'twitch',
+    src: downloadSourceIconTwitch,
+    URL: 'https://twitch.com',
+    active: false,
+    enabled: true,
+  },
+  {
+    name: 'Twitter',
+    id: 'twitter',
+    src: downloadSourceIconTwitter,
+    URL: 'https://twitter.com',
+    active: false,
+    enabled: true,
+  },
+  {
+    name: 'Vimeo',
+    id: 'vimeo',
+    src: downloadSourceIconVimeo,
+    URL: 'https://vimeo.com',
+    active: false,
+    enabled: true,
+  },
+  {
+    name: 'Youtube',
+    id: 'youtube',
+    src: downloadSourceIconYoutube,
+    URL: 'https://youtube.com',
+    active: false,
+    enabled: true,
+  },
+];
+const getEnabledSources = (sources) => {
+  // console.log('getEnabledSources');
 
+  return sources.filter((source) => source.enabled);
+};
+const getActiveSource = (sources) => {
+  // console.log('getActiveSource');
+  return sources.filter((source) => source.active);
+};
+let enabledSources;
+let activeSource;
 export const SourcesContextProvider = (props) => {
   // const [isActiveSource, setISActiveSource] = useState(activeSource[0].name);
-  const [isActiveSource, setIsActiveSource] = useState();
-  let enabledSources;
-  let activeSource;
-  let sources = [
-    {
-      name: 'Facebook',
-      id: 'facebook',
-      src: downloadSourceIconFacebook,
-      URL: 'https://facebook.com',
-      active: false,
-      enabled: false,
-    },
-    {
-      name: 'Instagram',
-      id: 'instagram',
-      src: downloadSourceIconInstagram,
-      URL: 'https://instagram.com',
-      active: false,
-      enabled: false,
-    },
-    {
-      name: 'Pinterest',
-      id: 'pinterest',
-      src: downloadSourceIconPinterest,
-      URL: 'https://pinterest.com',
-      active: true,
-      enabled: true,
-    },
-    {
-      name: 'Snapchat',
-      id: 'snapchat',
-      src: downloadSourceIconSnapchat,
-      URL: 'https://snapchat.com',
-      active: false,
-      enabled: true,
-    },
-    {
-      name: 'Soundcloud',
-      id: 'soundcloud',
-      src: downloadSourceIconSoundcloud,
-      URL: 'https://soundcloud.com',
-      active: false,
-      enabled: false,
-    },
-    {
-      name: 'Tiktok',
-      id: 'tiktok',
-      src: downloadSourceIconTiktok,
-      URL: 'https://tiktok.com',
-      active: false,
-      enabled: false,
-    },
-    {
-      name: 'Twitch',
-      id: 'twitch',
-      src: downloadSourceIconTwitch,
-      URL: 'https://twitch.com',
-      active: false,
-      enabled: true,
-    },
-    {
-      name: 'Twitter',
-      id: 'twitter',
-      src: downloadSourceIconTwitter,
-      URL: 'https://twitter.com',
-      active: false,
-      enabled: true,
-    },
-    {
-      name: 'Vimeo',
-      id: 'vimeo',
-      src: downloadSourceIconVimeo,
-      URL: 'https://vimeo.com',
-      active: false,
-      enabled: true,
-    },
-    {
-      name: 'Youtube',
-      id: 'youtube',
-      src: downloadSourceIconYoutube,
-      URL: 'https://youtube.com',
-      active: false,
-      enabled: true,
-    },
-  ];
-  const getEnabledSources = (sources) => {
-    console.log('getEnabledSources');
+  const [isActiveSource, setIsActiveSource] = useState(
+    sources.filter((source) => source.active)
+  );
 
-    return sources.filter((source) => source.enabled);
-  };
-  const getActiveSource = (sources) => {
-    console.log('getActiveSource');
-    return sources.filter((source) => source.active);
-  };
   enabledSources = getEnabledSources(sources);
   activeSource = getActiveSource(enabledSources);
   const removeAllActiveSources = (id) => {
@@ -136,17 +138,18 @@ export const SourcesContextProvider = (props) => {
       }
     });
     sources.forEach((source) => {
-      console.log(source.id, source.active);
+      // console.log(source.id, source.active);
     });
   };
 
-  console.log(activeSource[0].name);
+  // console.log(activeSource[0].name);
 
   return (
     <SourcesContext.Provider
       value={{
         enabledSources: enabledSources,
         activeSource: activeSource,
+        isActiveSource: isActiveSource,
         setActiveSource: setActiveSource,
         setIsActiveSource: setIsActiveSource,
         removeAllActiveSources: removeAllActiveSources,
