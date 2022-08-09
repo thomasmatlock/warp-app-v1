@@ -5,8 +5,8 @@ import expandIcon from '../../../assets/ActionBar/expand.svg';
 import ThemeContext from '../../storage/themeContext';
 import ActionBarContext from '../../storage/actionBarContext';
 
-import ContextMenu from '../Content/ContextMenu';
-import ContextMenuSortOptions from '../Content/ContextMenuSortOptions';
+import ContextMenu from '../ContextMenu/ContextMenu';
+import ContextMenuSortOptions from '../ContextMenu/ContextMenuSortOptions';
 
 import './ActionBarWarpstagram.scss';
 const FilterBar = (props) => {

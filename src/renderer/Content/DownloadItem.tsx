@@ -21,8 +21,8 @@ import ThemeContext from 'storage/themeContext';
 import DownloadsContext from 'storage/downloadsContext';
 import menuIcon from '../../../assets/Warpstagram/menu.svg';
 import iconFolder from '../../../assets/Downloads/folder1.svg';
-import ContextMenu from './ContextMenu';
-import ContextMenuDownloadItemOptions from './ContextMenuDownloadItemOptions';
+import ContextMenu from '../ContextMenu/ContextMenu';
+import ContextMenuDownloadItemOptions from '../ContextMenu/ContextMenuDownloadItemOptions';
 
 const DownloadItem = (props) => {
   const [isContentMenuVisible, setisContentMenuVisible] = useState(false);

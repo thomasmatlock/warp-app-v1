@@ -2,12 +2,26 @@ import { Fragment, useState, useContext } from 'react';
 import sortIcon from '../../../assets/Content/Warpstagram/sort.svg';
 import ThemeContext from '../../storage/themeContext';
 import ActionBarContext from '../../storage/actionBarContext';
+import ContextMenu from '../ContextMenu/ContextMenu';
+import ContextMenuSortOptions from '../ContextMenu/ContextMenuSortOptions';
 
 import './ActionBarWarpstagram.scss';
 const FilterBar = (props) => {
   const themeCtx = useContext(ThemeContext);
   const actionBarCtx = useContext(ActionBarContext);
   // console.log(actionBarCtx);
+
+  const [isContextMenuVisible, setisContextMenuVisible] = useState(false);
+  const toggleContextMenuSort = () => {
+    if (isContextMenuVisible) {
+      setisContextMenuVisible(false);
+    } else {
+      setisContextMenuVisible(true);
+    }
+  };
+  const turnOffContextMenu = () => {
+    setisContextMenuVisible(false);
+  };
 
   const [filterTypeAll, setFilterTypeAll] = useState(true);
   const [filterTypeUsers, setFilterTypeUsers] = useState(false);
@@ -151,7 +165,10 @@ const FilterBar = (props) => {
           {/* <div className="filterBar__menu__item filterBar__menu__item__find">
             <img src={searchIcon} />
           </div> */}
-          <div className="filterBar__menu__item filterBar__menu__item__sort">
+          <div
+            onClick={toggleContextMenuSort}
+            className="filterBar__menu__item filterBar__menu__item__sort"
+          >
             <img
               src={sortIcon}
               title="Sort"
@@ -163,6 +180,9 @@ const FilterBar = (props) => {
                     }
               }
             />
+            {isContextMenuVisible && (
+              <ContextMenu options={ContextMenuSortOptions} />
+            )}
           </div>
         </div>
       </div>
