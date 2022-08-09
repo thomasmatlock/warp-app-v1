@@ -108,22 +108,17 @@ let browserPanelState = 'default';
 (function appListeners() {
   // MENU LISTENERS
   ipcMain.on('Menu: Shortcuts: Restart', async (event, arg) => {
-    console.log('Menu: Shortcuts: Restart', arg);
+    // console.log('Menu: Shortcuts: Restart', arg);
     event.reply('Menu: Shortcuts: Restart', arg);
   });
   ipcMain.on('modal: preferences', async (event, arg) => {
     event.reply('modal: preferences', prefs);
   });
-  // MENU LISTENERS
-  ipcMain.on('Menu: Shortcuts: Restart', async (event, arg) => {
-    console.log('Menu: Shortcuts: Restart', arg);
-    event.reply('Menu: Shortcuts: Restart', arg);
-  });
-  ipcMain.on('modal: preferences', async (event, arg) => {
-    // console.log('modal: preferences', arg);
-    // console.log(prefs);
-
-    event.reply('modal: preferences', prefs);
+  // SEARCH LISTENERS
+  ipcMain.on('Search: InputChange', async (event, arg) => {
+    // console.log('Search: InputChange', arg);
+    // console.log('Menu: Shortcuts: Restart', arg);
+    event.reply('Search: InputChange', arg);
   });
   // NAV BAR LISTENERS
   ipcMain.on('package', async (event, arg) => {
@@ -660,12 +655,12 @@ app
     mainWindowBounds.x = display.x;
     mainWindowBounds.y = display.y;
     mainWindowBounds.width = display.width;
-    mainWindowBounds.height = display.height; // default
-    // mainWindowBounds.height = display.height - 100; // testing
+    // mainWindowBounds.height = display.height; // default
+    mainWindowBounds.height = display.height - 100; // testing
     // console.log(mainWindowBounds);
 
     // windowController.createSplashWindow();
-    windowController.createBrowserWindow();
+    // windowController.createBrowserWindow();
     windowController.createMainWindow();
     app.on('activate', () => {
       if (mainWindow === null) windowController.createMainWindow();

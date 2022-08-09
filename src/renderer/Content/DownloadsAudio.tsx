@@ -15,6 +15,7 @@ const DownloadsAudio = () => {
 
   window.electron.ipcRenderer.on('Search: InputChange', (arg) => {
     setSearchInput(arg[0]);
+    console.log(arg[0]);
   });
   const mouseEnterHandler = () => {
     // console.log('mouse enter');
@@ -64,6 +65,210 @@ const DownloadsAudio = () => {
                   }
                 >
                   Magic of Hong Kong cyberpunk drone video
+                </div>
+              </div>
+              <div className="content__panel__downloads__list__item__info__container">
+                <img
+                  src={iconLength}
+                  className=" content__panel__downloads__list__item__img content__panel__downloads__list__item__file_length"
+                  style={
+                    themeCtx.isDarkTheme
+                      ? { filter: 'invert(100%)' }
+                      : {
+                          filter: 'invert(0%)',
+                        }
+                  }
+                ></img>
+                <div
+                  className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_length"
+                  style={
+                    themeCtx.isDarkTheme
+                      ? { filter: 'invert(100%)' }
+                      : {
+                          filter: 'invert(0%)',
+                        }
+                  }
+                >
+                  7:36
+                </div>
+                <img
+                  src={iconFileSize}
+                  className=" content__panel__downloads__list__item__img content__panel__downloads__list__item__file_length"
+                  style={
+                    themeCtx.isDarkTheme
+                      ? { filter: 'invert(100%)' }
+                      : {
+                          filter: 'invert(0%)',
+                        }
+                  }
+                ></img>
+                <div
+                  className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_size"
+                  style={
+                    themeCtx.isDarkTheme
+                      ? { filter: 'invert(100%)' }
+                      : {
+                          filter: 'invert(0%)',
+                        }
+                  }
+                >
+                  8.6MB
+                </div>
+                <img
+                  src={IconFileTypeAudio}
+                  className=" content__panel__downloads__list__item__img content__panel__downloads__list__item__file_length"
+                  style={
+                    themeCtx.isDarkTheme
+                      ? { filter: 'invert(100%)' }
+                      : {
+                          filter: 'invert(0%)',
+                        }
+                  }
+                ></img>
+                <div
+                  className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_type"
+                  style={
+                    themeCtx.isDarkTheme
+                      ? { filter: 'invert(100%)' }
+                      : {
+                          filter: 'invert(0%)',
+                        }
+                  }
+                >
+                  MP3
+                </div>
+              </div>
+            </div>
+          </li>{' '}
+          <li
+            className="content__panel__downloads__list__item content__panel__downloads__list__item__audio"
+            style={
+              themeCtx.isDarkTheme
+                ? { backgroundColor: themeCtx.nav.dark.backgroundColor }
+                : {
+                    backgroundColor: themeCtx.nav.light.backgroundColor,
+                  }
+            }
+          >
+            <img
+              src={thumbnail}
+              className="content__panel__downloads__list__item__thumbnail"
+            />
+            <div className="content__panel__downloads__list__item__info">
+              <div className="content__panel__downloads__list__item__info__container">
+                <div
+                  className="content__panel__downloads__list__item__text content__panel__downloads__list__item__title"
+                  style={
+                    themeCtx.isDarkTheme
+                      ? { filter: 'invert(0%)' }
+                      : {
+                          filter: 'invert(100%)',
+                        }
+                  }
+                >
+                  Wonder of Hong Kong cyberpunk drone video
+                </div>
+              </div>
+              <div className="content__panel__downloads__list__item__info__container">
+                <img
+                  src={iconLength}
+                  className=" content__panel__downloads__list__item__img content__panel__downloads__list__item__file_length"
+                  style={
+                    themeCtx.isDarkTheme
+                      ? { filter: 'invert(100%)' }
+                      : {
+                          filter: 'invert(0%)',
+                        }
+                  }
+                ></img>
+                <div
+                  className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_length"
+                  style={
+                    themeCtx.isDarkTheme
+                      ? { filter: 'invert(100%)' }
+                      : {
+                          filter: 'invert(0%)',
+                        }
+                  }
+                >
+                  7:36
+                </div>
+                <img
+                  src={iconFileSize}
+                  className=" content__panel__downloads__list__item__img content__panel__downloads__list__item__file_length"
+                  style={
+                    themeCtx.isDarkTheme
+                      ? { filter: 'invert(100%)' }
+                      : {
+                          filter: 'invert(0%)',
+                        }
+                  }
+                ></img>
+                <div
+                  className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_size"
+                  style={
+                    themeCtx.isDarkTheme
+                      ? { filter: 'invert(100%)' }
+                      : {
+                          filter: 'invert(0%)',
+                        }
+                  }
+                >
+                  8.6MB
+                </div>
+                <img
+                  src={IconFileTypeAudio}
+                  className=" content__panel__downloads__list__item__img content__panel__downloads__list__item__file_length"
+                  style={
+                    themeCtx.isDarkTheme
+                      ? { filter: 'invert(100%)' }
+                      : {
+                          filter: 'invert(0%)',
+                        }
+                  }
+                ></img>
+                <div
+                  className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_type"
+                  style={
+                    themeCtx.isDarkTheme
+                      ? { filter: 'invert(100%)' }
+                      : {
+                          filter: 'invert(0%)',
+                        }
+                  }
+                >
+                  MP3
+                </div>
+              </div>
+            </div>
+          </li>
+          <li
+            className="content__panel__downloads__list__item content__panel__downloads__list__item__audio"
+            style={
+              themeCtx.isDarkTheme
+                ? { backgroundColor: themeCtx.nav.dark.backgroundColor }
+                : {
+                    backgroundColor: themeCtx.nav.light.backgroundColor,
+                  }
+            }
+          >
+            <img
+              src={thumbnail}
+              className="content__panel__downloads__list__item__thumbnail"
+            />
+            <div className="content__panel__downloads__list__item__info">
+              <div className="content__panel__downloads__list__item__info__container">
+                <div
+                  className="content__panel__downloads__list__item__text content__panel__downloads__list__item__title"
+                  style={
+                    themeCtx.isDarkTheme
+                      ? { filter: 'invert(0%)' }
+                      : {
+                          filter: 'invert(100%)',
+                        }
+                  }
+                >
+                  Joy of Hong Kong cyberpunk drone video
                 </div>
               </div>
               <div className="content__panel__downloads__list__item__info__container">
