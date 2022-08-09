@@ -20,6 +20,7 @@ import {
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
+import Title from './title';
 import { resolveHtmlPath } from './util';
 import packageJSON from '../../package.json';
 import prefs from '../storage/preferences';
@@ -342,12 +343,22 @@ const windowController = {
       mainWindow.webContents.send('ready-to-show');
       if (process.platform === 'win32') {
         mainWindow.webContents.send('platform', 'windows');
+        // Title.setWindowsTitle();
+        mainWindow.setTitle(
+          `${app.getName()} | Download Anything | Windows Version ${app.getVersion()} | Professional Audio Edition`
+        );
       }
       if (process.platform === 'darwin') {
         mainWindow.webContents.send('platform', 'darwin');
+        mainWindow.setTitle(
+          `${app.getName()} | Download Anything | MacOS Version ${app.getVersion()} | Professional Audio Edition`
+        );
       }
       if (process.platform === 'linux') {
         mainWindow.webContents.send('platform', 'linux');
+        mainWindow.setTitle(
+          `${app.getName()} | Download Anything | Linux Version ${app.getVersion()} | Professional Audio Edition`
+        );
       }
       if (!mainWindow) {
         throw new Error('"mainWindow" is not defined');

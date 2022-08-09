@@ -1,5 +1,5 @@
 // import classes from './CartItem.module.css';
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import iconSourceFacebook from '../../../assets/BrowserBar/facebook.svg';
 import iconSourceInstagram from '../../../assets/BrowserBar/instagram.svg';
 import iconSourcePinterest from '../../../assets/BrowserBar/pinterest.svg';
@@ -21,8 +21,12 @@ import ThemeContext from 'storage/themeContext';
 import DownloadsContext from 'storage/downloadsContext';
 import menuIcon from '../../../assets/Warpstagram/menu.svg';
 import iconFolder from '../../../assets/Downloads/folder1.svg';
+import ContextMenu from './ContextMenu';
+import ContextMenuDownloadItemOptions from './ContextMenuDownloadItemOptions';
 
 const DownloadItem = (props) => {
+  const [isContentMenuVisible, setisContentMenuVisible] = useState(false);
+  const options = 'downloadItemContextMenu';
   const sourcesCtx = useContext(SourcesContext);
   const themeCtx = useContext(ThemeContext);
   const downloadsCtx = useContext(DownloadsContext);
@@ -53,10 +57,6 @@ const DownloadItem = (props) => {
       return iconSourceYoutube;
     }
   }
-  // return string.charAt(0).toUpperCase() + string.slice(1);
-
-  // findSourceIcon(props.source);
-  // console.log(capitalizeFirstLetter('foo')); // Foo
   const title = `${props.title}`;
   const length = `${props.length}`;
   const size = `${props.size}`;
@@ -65,13 +65,25 @@ const DownloadItem = (props) => {
   const sourceIcon = findSourceIcon(props.source);
   const resolution = `${props.resolution}`;
   const fps = `${props.fps}`;
-
+  const toggleContextMenu = () => {
+    if (isContentMenuVisible) {
+      setisContentMenuVisible(false);
+    } else {
+      setisContentMenuVisible(true);
+    }
+  };
+  const turnOffContextMenu = () => {
+    setisContentMenuVisible(false);
+  };
   return (
     <li
       //   onClick={() => {
       //     // getSourceID(props.id);
       //     sourcesCtx.setActiveSource(props.id);
       //   }}
+      onMouseEnter={turnOffContextMenu}
+      onMouseLeave={turnOffContextMenu}
+      // onClick={turnOffContextMenu}
       className={
         props.type === 'audio'
           ? 'content__panel__downloads__list__item content__panel__downloads__list__item__audio'
@@ -270,10 +282,7 @@ const DownloadItem = (props) => {
         </div>
       </div>
       <div className="filterBar__menu filterBar__menu__right">
-        <div
-          // onClick={actionBarCtx.toggleDownloadsPanelCollapsed}
-          className="filterBar__menu__item filterBar__menu__item__sort"
-        >
+        <div className="filterBar__menu__item filterBar__menu__item__sort">
           <img
             title="Show in folder"
             src={iconFolder}
@@ -287,7 +296,7 @@ const DownloadItem = (props) => {
           />
         </div>
         <div
-          // onClick={actionBarCtx.toggleDownloadsPanelCollapsed}
+          onClick={toggleContextMenu}
           className="filterBar__menu__item filterBar__menu__item__sort"
         >
           <img
@@ -301,6 +310,9 @@ const DownloadItem = (props) => {
                   }
             }
           />
+          {isContentMenuVisible && (
+            <ContextMenu options={ContextMenuDownloadItemOptions} />
+          )}
         </div>
       </div>
     </li>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="512px" height="512px" viewBox="0 0 512 512" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <path d="M0 0L512 0L512 512L0 512L0 0Z" id="path_1" />
+    <clipPath id="mask_1">
+      <use xlink:href="#path_1" />
+    </clipPath>
+  </defs>
+  <g id="removeAll2">
+    <path d="M0 0L512 0L512 512L0 512L0 0Z" id="Background" fill="#FFFFFF" fill-opacity="0" fill-rule="evenodd" stroke="none" />
+    <g clip-path="url(#mask_1)">
+      <g id="Group" transform="translate(0 1.5258789E-05)">
+        <path d="M45.2125 299.451L72.6851 271.979L239.941 439.234L212.468 466.707L45.2125 299.451Z" id="Shape" fill="#1A1A1A" stroke="none" />
+        <path d="M512 167.281L380.069 131.93L344.719 0L221.424 123.295L236.588 179.889C223.023 177.453 209.06 177.41 195.232 179.823C171.191 184.018 149.335 195.386 132.025 212.696L93.942 250.779L261.223 418.06L299.306 379.977C316.617 362.667 327.984 340.81 332.179 316.769C334.592 302.939 334.548 288.977 332.113 275.412L388.707 290.577L512 167.281Z" id="Shape" fill="#1A1A1A" stroke="none" />
+        <path d="M24.703 321.345C8.684 341.972 0 367.175 0 393.714C0 425.309 12.304 455.013 34.646 477.355C56.986 499.696 86.69 512 118.286 512C144.825 512 170.028 503.316 190.655 487.297L24.703 321.345Z" id="Shape" fill="#1A1A1A" stroke="none" />
+      </g>
+    </g>
+  </g>
+</svg>

@@ -5,8 +5,22 @@ import expandIcon from '../../../assets/ActionBar/expand.svg';
 import ThemeContext from '../../storage/themeContext';
 import ActionBarContext from '../../storage/actionBarContext';
 
+import ContextMenu from '../Content/ContextMenu';
+import ContextMenuSortOptions from '../Content/ContextMenuSortOptions';
+
 import './ActionBarWarpstagram';
 const FilterBar = (props) => {
+  const [isContextMenuVisible, setisContextMenuVisible] = useState(false);
+  const toggleContextMenuSort = () => {
+    if (isContextMenuVisible) {
+      setisContextMenuVisible(false);
+    } else {
+      setisContextMenuVisible(true);
+    }
+  };
+  const turnOffContextMenu = () => {
+    setisContextMenuVisible(false);
+  };
   const themeCtx = useContext(ThemeContext);
   const actionBarCtx = useContext(ActionBarContext);
 
@@ -14,6 +28,7 @@ const FilterBar = (props) => {
     <Fragment>
       <div
         // className="filterBar"
+        onMouseLeave={turnOffContextMenu}
         className={
           actionBarCtx.isDownloadsPanelCollapsed
             ? 'filterBar__collapsed'
@@ -39,7 +54,10 @@ const FilterBar = (props) => {
             </div>
           )}
           {!actionBarCtx.isDownloadsPanelCollapsed && (
-            <div className="filterBar__menu__item filterBar__menu__item__sort">
+            <div
+              onClick={toggleContextMenuSort}
+              className="filterBar__menu__item filterBar__menu__item__sort"
+            >
               <img
                 title="Sort"
                 src={sortIcon}
@@ -51,6 +69,9 @@ const FilterBar = (props) => {
                       }
                 }
               />
+              {isContextMenuVisible && (
+                <ContextMenu options={ContextMenuSortOptions} />
+              )}
             </div>
           )}
           {!actionBarCtx.isBrowserPanelCollapsed &&
