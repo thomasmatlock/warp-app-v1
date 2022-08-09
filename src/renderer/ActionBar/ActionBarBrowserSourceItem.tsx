@@ -3,9 +3,11 @@ import React, { useState, useContext } from 'react';
 import downloadSourceIcon__available from '../../../assets/BrowserBar/check.svg';
 import downloadSourceIcon__unavailable from '../../../assets/BrowserBar/remove.svg';
 import SourcesContext from '../../storage/sourcesContext';
+import ThemeContext from 'storage/themeContext';
 
 const ActionBarBrowserSourceItem = (props) => {
   const sourcesCtx = useContext(SourcesContext);
+  const themeCtx = useContext(ThemeContext);
 
   const name = `${props.name}`;
   return (
@@ -25,8 +27,24 @@ const ActionBarBrowserSourceItem = (props) => {
         <img
           src={props.src}
           className="browserBarDownloadSource__list__item__icon"
+          style={
+            themeCtx.isDarkTheme
+              ? { filter: 'invert(0%)' }
+              : {
+                  filter: 'invert(100%)',
+                }
+          }
         />
-        <div className="browserBarDownloadSource__list__item__text browserBarDownloadSource__list__item__title">
+        <div
+          className="browserBarDownloadSource__list__item__text browserBarDownloadSource__list__item__title"
+          style={
+            themeCtx.isDarkTheme
+              ? { filter: 'invert(0%)' }
+              : {
+                  filter: 'invert(100%)',
+                }
+          }
+        >
           {name}
         </div>
       </div>

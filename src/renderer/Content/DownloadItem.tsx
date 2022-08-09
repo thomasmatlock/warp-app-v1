@@ -97,6 +97,13 @@ const DownloadItem = (props) => {
               backgroundColor: themeCtx.nav.light.backgroundColor,
             }
       }
+      // style={
+      //   themeCtx.isDarkTheme
+      //     ? { filter: 'invert(0%)' }
+      //     : {
+      //         filter: 'invert(100%)',
+      //       }
+      // }
     >
       <img
         src={props.thumbnail}

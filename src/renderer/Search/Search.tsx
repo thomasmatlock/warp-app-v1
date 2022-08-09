@@ -205,9 +205,9 @@ const Search = (props) => {
           className="search__input__icon search__input__icon__unfocused"
           style={
             themeCtx.isDarkTheme
-              ? { filter: 'invert(0%)' }
+              ? { filter: 'invert(100%)' }
               : {
-                  filter: 'invert(100%)',
+                  filter: 'invert(0%)',
                 }
           }
           src={SearchIcon}
@@ -244,9 +244,9 @@ const Search = (props) => {
             className="search__input__icon search__input__icon__clearText"
             style={
               themeCtx.isDarkTheme
-                ? { filter: 'invert(0%)' }
+                ? { filter: 'invert(100%)' }
                 : {
-                    filter: 'invert(100%)',
+                    filter: 'invert(0%)',
                   }
             }
             src={clearTextIcon}
@@ -260,6 +260,13 @@ const Search = (props) => {
             src={MoonIcon}
             // src={MoonAstronaut}
             className="theme__icon "
+            style={
+              themeCtx.isDarkTheme
+                ? { filter: 'invert(100%)' }
+                : {
+                    filter: 'invert(0%)',
+                  }
+            }
             title="Change Theme"
             // className="theme__icon theme__icon__moon"
             // onClick={showModalHandler}
@@ -272,6 +279,13 @@ const Search = (props) => {
             src={SunIcon}
             // src={SunAstronaut}
             className="theme__icon"
+            style={
+              themeCtx.isDarkTheme
+                ? { filter: 'invert(100%)' }
+                : {
+                    filter: 'invert(0%)',
+                  }
+            }
             title="Change Theme"
 
             // className="theme__icon theme__icon__sun"
@@ -285,9 +299,9 @@ const Search = (props) => {
           className="settings_icon"
           style={
             themeCtx.isDarkTheme
-              ? { filter: 'invert(0%)' }
+              ? { filter: 'invert(100%)' }
               : {
-                  filter: 'invert(100%)',
+                  filter: 'invert(0%)',
                 }
           }
           onClick={showModalHandler}
