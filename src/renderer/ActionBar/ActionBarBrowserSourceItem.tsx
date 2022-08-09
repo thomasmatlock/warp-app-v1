@@ -7,9 +7,6 @@ import SourcesContext from '../../storage/sourcesContext';
 const ActionBarBrowserSourceItem = (props) => {
   const sourcesCtx = useContext(SourcesContext);
 
-  const getSourceID = (id) => {
-    sourcesCtx.setActiveSource(id);
-  };
   const name = `${props.name}`;
   return (
     <li

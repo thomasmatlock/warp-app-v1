@@ -35,7 +35,7 @@ const isDebug =
   process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true';
 
 if (isDebug) {
-  require('electron-debug')(); // ENABLE FOR DEVTOOLS
+  // require('electron-debug')(); // ENABLE FOR DEVTOOLS
 }
 
 const installExtensions = async () => {
@@ -87,24 +87,24 @@ let browserWindowBounds = {
   height: mainWindowBounds.height - 250, // default
 };
 let browserPanelState = 'default';
-const updateSource = (updatedSource: any) => {
-  // clear all active sources
-  for (const key in sources) {
-    if (sources[key].active === true) {
-      sources[key].active = false;
-    }
-  }
-  // set new active source
-  sources[updatedSource].active = true;
-  console.log(sources[updatedSource].URL);
-  for (const key in sources) {
-    if (sources[key].active === true) {
-      console.log(sources[key].URL);
-      browserWindow.loadURL(sources[key].URL);
-    }
-  }
-  settings.set('sources', sources);
-};
+// const updateSource = (updatedSource: any) => {
+//   // clear all active sources
+//   for (const key in sources) {
+//     if (sources[key].active === true) {
+//       sources[key].active = false;
+//     }
+//   }
+//   // set new active source
+//   sources[updatedSource].active = true;
+//   console.log(sources[updatedSource].URL);
+//   for (const key in sources) {
+//     if (sources[key].active === true) {
+//       console.log(sources[key].URL);
+//       browserWindow.loadURL(sources[key].URL);
+//     }
+//   }
+//   settings.set('sources', sources);
+// };
 (function appListeners() {
   // MENU LISTENERS
   ipcMain.on('Menu: Shortcuts: Restart', async (event, arg) => {
@@ -146,7 +146,9 @@ const updateSource = (updatedSource: any) => {
   });
   // BROWSERBAR DOWNLOAD SOURCE LISTENERS
   ipcMain.on('source: change', async (event, arg) => {
-    updateSource(arg);
+    // console.log('source: change', arg);
+    if (browserWindow) browserWindow.loadURL(arg);
+    // updateSource(arg);
   });
   // BROWSERBAR DOWNLOAD BUTTON LISTENERS
   ipcMain.on('BrowserBar: button: downloadAudio', async (event, arg) => {
@@ -658,12 +660,12 @@ app
     mainWindowBounds.x = display.x;
     mainWindowBounds.y = display.y;
     mainWindowBounds.width = display.width;
-    // mainWindowBounds.height = display.height; // default
-    mainWindowBounds.height = display.height - 100; // testing
+    mainWindowBounds.height = display.height; // default
+    // mainWindowBounds.height = display.height - 100; // testing
     // console.log(mainWindowBounds);
 
     // windowController.createSplashWindow();
-    // windowController.createBrowserWindow();
+    windowController.createBrowserWindow();
     windowController.createMainWindow();
     app.on('activate', () => {
       if (mainWindow === null) windowController.createMainWindow();

@@ -24,7 +24,7 @@ let sources = [
     src: downloadSourceIconFacebook,
     URL: 'https://facebook.com',
     active: false,
-    enabled: false,
+    enabled: true,
   },
   {
     name: 'Instagram',
@@ -32,14 +32,14 @@ let sources = [
     src: downloadSourceIconInstagram,
     URL: 'https://instagram.com',
     active: false,
-    enabled: false,
+    enabled: true,
   },
   {
     name: 'Pinterest',
     id: 'pinterest',
     src: downloadSourceIconPinterest,
     URL: 'https://pinterest.com',
-    active: true,
+    active: false,
     enabled: true,
   },
   {
@@ -56,7 +56,7 @@ let sources = [
     src: downloadSourceIconSoundcloud,
     URL: 'https://soundcloud.com',
     active: false,
-    enabled: false,
+    enabled: true,
   },
   {
     name: 'Tiktok',
@@ -64,7 +64,7 @@ let sources = [
     src: downloadSourceIconTiktok,
     URL: 'https://tiktok.com',
     active: false,
-    enabled: false,
+    enabled: true,
   },
   {
     name: 'Twitch',
@@ -80,7 +80,7 @@ let sources = [
     src: downloadSourceIconTwitter,
     URL: 'https://twitter.com',
     active: false,
-    enabled: true,
+    enabled: false,
   },
   {
     name: 'Vimeo',
@@ -95,7 +95,7 @@ let sources = [
     id: 'youtube',
     src: downloadSourceIconYoutube,
     URL: 'https://youtube.com',
-    active: false,
+    active: true,
     enabled: true,
   },
 ];
@@ -134,7 +134,10 @@ export const SourcesContextProvider = (props) => {
 
       if (source.id === id) {
         source.active = true;
+        // console.log(source.URL);
+        // source: change;
         setIsActiveSource(source);
+        window.electron.ipcRenderer.sendMessage('source: change', source.URL);
       }
     });
     sources.forEach((source) => {
