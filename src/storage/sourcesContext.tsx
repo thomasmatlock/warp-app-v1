@@ -114,8 +114,8 @@ export const SourcesContextProvider = (props) => {
     console.log('getActiveSource');
     return sources.filter((source) => source.active);
   };
-  // enabledSources = getEnabledSources(sources);
-  // activeSource = getActiveSource(enabledSources);
+  enabledSources = getEnabledSources(sources);
+  activeSource = getActiveSource(enabledSources);
   const removeAllActiveSources = (id) => {
     sources = sources
       .map((source) => {
