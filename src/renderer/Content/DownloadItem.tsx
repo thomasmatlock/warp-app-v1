@@ -211,7 +211,7 @@ const DownloadItem = (props) => {
           className="filterBar__menu__item filterBar__menu__item__sort"
         >
           <img
-            title="Expand audio downloads panel"
+            title="Show in folder"
             src={iconFolder}
             style={
               themeCtx.isDarkTheme
@@ -227,7 +227,7 @@ const DownloadItem = (props) => {
           className="filterBar__menu__item filterBar__menu__item__sort"
         >
           <img
-            title="Expand audio downloads panel"
+            title="More"
             src={menuIcon}
             style={
               themeCtx.isDarkTheme
