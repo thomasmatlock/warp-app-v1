@@ -5,14 +5,44 @@ import iconFileResolution from '../../../assets/Downloads/resolution.svg';
 import IconFileTypeVideo from '../../../assets/Downloads/fileTypeVideo.svg';
 import IconFileFps from '../../../assets/Downloads/fps1.svg';
 import thumbnail from '../../../assets/Content/dummythumbnail2.jpg';
+
+import DownloadItem from './DownloadItem';
+
 import ThemeContext from '../../storage/themeContext';
 import ActionBarContext from '../../storage/actionBarContext';
+import DownloadsContext from '../../storage/downloadsContext';
 
 import './Downloads.scss';
 
 const DownloadsVideo = () => {
   const themeCtx = useContext(ThemeContext);
   const actionBarCtx = useContext(ActionBarContext);
+  const downloadsCtx = useContext(DownloadsContext);
+
+  // window.electron.ipcRenderer.on('Search: InputChange', (arg) => {
+  //   setSearchInput(arg[0]);
+  //   console.log(arg[0]);
+  // });
+  const videoDownloads = (
+    <ul className="content__panel__downloads__list">
+      {downloadsCtx.downloadsVideo.map((item) => (
+        <DownloadItem
+          key={item.id}
+          id={item.id}
+          title={item.title}
+          thumbnail={item.thumbnail}
+          length={item.length}
+          size={item.size}
+          type={item.type}
+          format={item.format}
+          resolution={item.resolution}
+          fps={item.fps}
+
+          // onClick={() => sourceSelectedHandler(item.id)}
+        />
+      ))}
+    </ul>
+  );
   return (
     <Fragment>
       <div
@@ -29,156 +59,7 @@ const DownloadsVideo = () => {
               }
         }
       >
-        <ul className="content__panel__downloads__list">
-          <li
-            className="content__panel__downloads__list__item content__panel__downloads__list__item__video"
-            style={
-              themeCtx.isDarkTheme
-                ? { backgroundColor: themeCtx.downloads.dark.backgroundColor }
-                : {
-                    backgroundColor: themeCtx.downloads.light.backgroundColor,
-                  }
-            }
-          >
-            <img
-              src={thumbnail}
-              className="content__panel__downloads__list__item__thumbnail"
-            />
-            <div className="content__panel__downloads__list__item__info">
-              <div className="content__panel__downloads__list__item__info__container">
-                <div
-                  className="content__panel__downloads__list__item__text content__panel__downloads__list__item__title"
-                  style={
-                    themeCtx.isDarkTheme
-                      ? { filter: 'invert(0%)' }
-                      : {
-                          filter: 'invert(100%)',
-                        }
-                  }
-                >
-                  Peaky Blinders Season 7: The Movie
-                </div>
-              </div>
-              <div className="content__panel__downloads__list__item__info__container">
-                <img
-                  src={iconLength}
-                  className=" content__panel__downloads__list__item__img content__panel__downloads__list__item__file_length"
-                  style={
-                    themeCtx.isDarkTheme
-                      ? { filter: 'invert(100%)' }
-                      : {
-                          filter: 'invert(0%)',
-                        }
-                  }
-                ></img>
-                <div
-                  className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_length"
-                  style={
-                    themeCtx.isDarkTheme
-                      ? { filter: 'invert(100%)' }
-                      : {
-                          filter: 'invert(0%)',
-                        }
-                  }
-                >
-                  7:36
-                </div>
-                <img
-                  src={iconFileSize}
-                  className=" content__panel__downloads__list__item__img content__panel__downloads__list__item__file_length"
-                  style={
-                    themeCtx.isDarkTheme
-                      ? { filter: 'invert(100%)' }
-                      : {
-                          filter: 'invert(0%)',
-                        }
-                  }
-                ></img>
-                <div
-                  className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_size"
-                  style={
-                    themeCtx.isDarkTheme
-                      ? { filter: 'invert(100%)' }
-                      : {
-                          filter: 'invert(0%)',
-                        }
-                  }
-                >
-                  8.6MB
-                </div>
-                <img
-                  src={IconFileTypeVideo}
-                  className=" content__panel__downloads__list__item__img content__panel__downloads__list__item__file_length"
-                  style={
-                    themeCtx.isDarkTheme
-                      ? { filter: 'invert(100%)' }
-                      : {
-                          filter: 'invert(0%)',
-                        }
-                  }
-                ></img>
-                <div
-                  className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_type"
-                  style={
-                    themeCtx.isDarkTheme
-                      ? { filter: 'invert(100%)' }
-                      : {
-                          filter: 'invert(0%)',
-                        }
-                  }
-                >
-                  MP4
-                </div>
-                <img
-                  src={iconFileResolution}
-                  className=" content__panel__downloads__list__item__img content__panel__downloads__list__item__file_length"
-                  style={
-                    themeCtx.isDarkTheme
-                      ? { filter: 'invert(100%)' }
-                      : {
-                          filter: 'invert(0%)',
-                        }
-                  }
-                ></img>
-                <div
-                  className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_resolution"
-                  style={
-                    themeCtx.isDarkTheme
-                      ? { filter: 'invert(100%)' }
-                      : {
-                          filter: 'invert(0%)',
-                        }
-                  }
-                >
-                  1080p
-                </div>{' '}
-                <img
-                  src={IconFileFps}
-                  className=" content__panel__downloads__list__item__img content__panel__downloads__list__item__file_length"
-                  style={
-                    themeCtx.isDarkTheme
-                      ? { filter: 'invert(100%)' }
-                      : {
-                          filter: 'invert(0%)',
-                        }
-                  }
-                ></img>
-                <div
-                  className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_fps"
-                  style={
-                    themeCtx.isDarkTheme
-                      ? { filter: 'invert(100%)' }
-                      : {
-                          filter: 'invert(0%)',
-                        }
-                  }
-                >
-                  60fps
-                </div>
-              </div>
-            </div>
-          </li>
-        </ul>
+        {videoDownloads}
       </div>
     </Fragment>
   );

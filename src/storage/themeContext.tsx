@@ -114,8 +114,6 @@ export const ThemeContextProvider = (props) => {
     },
   };
   const toggleTheme = () => {
-    console.log('toggleTheme');
-
     if (isDarkTheme) {
       setIsDarkTheme(false);
     } else if (!isDarkTheme) {

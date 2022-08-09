@@ -3,24 +3,43 @@ import thumbnail from '../../../assets/Content/dummy_thumbnail.png';
 import iconLength from '../../../assets/Downloads/duration.svg';
 import iconFileSize from '../../../assets/Downloads/fileSize.svg';
 import IconFileTypeAudio from '../../../assets/Downloads/fileTypeAudio.svg';
+import DownloadItem from './DownloadItem';
+
 import ThemeContext from '../../storage/themeContext';
 import ActionBarContext from '../../storage/actionBarContext';
+import DownloadsContext from '../../storage/downloadsContext';
 
 import './Downloads.scss';
 
 const DownloadsAudio = () => {
+  const [searchInput, setSearchInput] = useState('');
   const themeCtx = useContext(ThemeContext);
   const actionBarCtx = useContext(ActionBarContext);
-  const [searchInput, setSearchInput] = useState('');
+  const downloadsCtx = useContext(DownloadsContext);
+  // console.log(downloadsCtx.downloadsAudio);
 
-  window.electron.ipcRenderer.on('Search: InputChange', (arg) => {
-    setSearchInput(arg[0]);
-    console.log(arg[0]);
-  });
-  const mouseEnterHandler = () => {
-    // console.log('mouse enter');
-    window.electron.ipcRenderer.sendMessage('browserNotHovered');
-  };
+  // window.electron.ipcRenderer.on('Search: InputChange', (arg) => {
+  //   setSearchInput(arg[0]);
+  //   console.log(arg[0]);
+  // });
+  const audioDownloads = (
+    <ul className="content__panel__downloads__list">
+      {downloadsCtx.downloadsAudio.map((item) => (
+        <DownloadItem
+          key={item.id}
+          id={item.id}
+          title={item.title}
+          thumbnail={item.thumbnail}
+          length={item.length}
+          size={item.size}
+          type={item.type}
+          format={item.format}
+
+          // onClick={() => sourceSelectedHandler(item.id)}
+        />
+      ))}
+    </ul>
+  );
   return (
     <Fragment>
       <div
@@ -37,8 +56,9 @@ const DownloadsAudio = () => {
               }
         }
       >
-        <ul className="content__panel__downloads__list">
-          <li
+        {audioDownloads}
+        {/* <ul className="content__panel__downloads__list"> */}
+        {/* <li
             className="content__panel__downloads__list__item content__panel__downloads__list__item__audio"
             style={
               themeCtx.isDarkTheme
@@ -139,7 +159,7 @@ const DownloadsAudio = () => {
                 </div>
               </div>
             </div>
-          </li>{' '}
+          </li>
           <li
             className="content__panel__downloads__list__item content__panel__downloads__list__item__audio"
             style={
@@ -343,8 +363,8 @@ const DownloadsAudio = () => {
                 </div>
               </div>
             </div>
-          </li>
-        </ul>
+          </li> */}
+        {/* </ul> */}
       </div>
     </Fragment>
   );

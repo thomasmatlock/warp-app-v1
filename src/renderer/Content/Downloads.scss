@@ -92,6 +92,9 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
             // background-image: $gradient-blue;
             cursor: pointer;
         }
+        &:hover .filterBar__menu__item {
+            opacity: 1;
+        }
         &__thumbnail {
             border-radius: 1px;
             // height: 100%;
@@ -150,4 +153,8 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
             color: rgb(162, 162, 162);
         }
     }
+}
+
+.content__panel__downloads__list__item .filterBar__menu__item {
+    opacity: 0;
 }

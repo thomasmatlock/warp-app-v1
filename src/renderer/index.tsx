@@ -3,15 +3,18 @@ import App from './App';
 import { ThemeContextProvider } from '../storage/themeContext';
 import { ActionBarContextProvider } from '../storage/actionBarContext';
 import { SourcesContextProvider } from '../storage/sourcesContext';
+import { DownloadsContextProvider } from '../storage/downloadsContext';
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
 root.render(
   <ThemeContextProvider>
-    <SourcesContextProvider>
-      <ActionBarContextProvider>
-        <App />
-      </ActionBarContextProvider>
-    </SourcesContextProvider>
+    <DownloadsContextProvider>
+      <SourcesContextProvider>
+        <ActionBarContextProvider>
+          <App />
+        </ActionBarContextProvider>
+      </SourcesContextProvider>
+    </DownloadsContextProvider>
   </ThemeContextProvider>
 );

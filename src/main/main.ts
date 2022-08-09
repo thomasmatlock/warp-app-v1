@@ -24,7 +24,7 @@ import { resolveHtmlPath } from './util';
 import packageJSON from '../../package.json';
 import prefs from '../storage/preferences';
 // import sources from '../storage/sources';
-import downloads from '../storage/downloads';
+// import downloads from '../storage/downloadsContext';
 // console.log(prefs);
 if (process.env.NODE_ENV === 'production') {
   const sourceMapSupport = require('source-map-support');
@@ -64,7 +64,7 @@ const contextMenu = require('electron-context-menu');
 contextMenu({});
 const Store = require('electron-store');
 const settings = new Store();
-settings.set('downloads', downloads);
+// settings.set('downloads', downloads);
 // settings.set('sources', sources);
 settings.set('prefs', prefs);
 
@@ -599,11 +599,12 @@ const browserWindowHandler = {
     if (browserWindow) browserWindow.setResizable(false);
   },
   setScreenshot: async function () {
-    if (browserWindow.webContents.getURL().includes('pinterest')) {
-      browserWindow.webContents.insertCSS(
-        'html, body, { background-color: #fff;  }'
-      );
-    }
+    if (browserWindow)
+      if (browserWindow.webContents.getURL().includes('pinterest')) {
+        browserWindow.webContents.insertCSS(
+          'html, body, { background-color: #fff;  }'
+        );
+      }
     const RESOURCES_PATH = app.isPackaged
       ? path.join(process.resourcesPath, 'assets')
       : path.join(__dirname, '../../assets');
@@ -655,8 +656,8 @@ app
     mainWindowBounds.x = display.x;
     mainWindowBounds.y = display.y;
     mainWindowBounds.width = display.width;
-    // mainWindowBounds.height = display.height; // default
-    mainWindowBounds.height = display.height - 100; // testing
+    mainWindowBounds.height = display.height; // default
+    // mainWindowBounds.height = display.height - 100; // testing
     // console.log(mainWindowBounds);
 
     // windowController.createSplashWindow();
