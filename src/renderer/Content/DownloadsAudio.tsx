@@ -26,14 +26,15 @@ const DownloadsAudio = () => {
     <ul className="content__panel__downloads__list">
       {downloadsCtx.downloadsAudio.map((item) => (
         <DownloadItem
-          key={item.id}
+          format={item.format}
           id={item.id}
-          title={item.title}
-          thumbnail={item.thumbnail}
+          key={item.id}
           length={item.length}
           size={item.size}
+          source={item.source}
+          thumbnail={item.thumbnail}
+          title={item.title}
           type={item.type}
-          format={item.format}
 
           // onClick={() => sourceSelectedHandler(item.id)}
         />

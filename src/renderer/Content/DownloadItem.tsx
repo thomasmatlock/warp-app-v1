@@ -1,5 +1,15 @@
 // import classes from './CartItem.module.css';
 import React, { useContext } from 'react';
+import iconSourceFacebook from '../../../assets/BrowserBar/facebook.svg';
+import iconSourceInstagram from '../../../assets/BrowserBar/instagram.svg';
+import iconSourcePinterest from '../../../assets/BrowserBar/pinterest.svg';
+import iconSourceSoundcloud from '../../../assets/BrowserBar/soundcloud.svg';
+import iconSourceSnapchat from '../../../assets/BrowserBar/snapchat.svg';
+import iconSourceTiktok from '../../../assets/BrowserBar/tiktok.svg';
+import iconSourceTwitch from '../../../assets/BrowserBar/twitch.svg';
+import iconSourceTwitter from '../../../assets/BrowserBar/twitter.svg';
+import iconSourceVimeo from '../../../assets/BrowserBar/vimeo.svg';
+import iconSourceYoutube from '../../../assets/BrowserBar/youtube.svg';
 import iconLength from '../../../assets/Downloads/duration.svg';
 import iconFileSize from '../../../assets/Downloads/fileSize.svg';
 import IconFileTypeAudio from '../../../assets/Downloads/fileTypeAudio.svg';
@@ -16,12 +26,43 @@ const DownloadItem = (props) => {
   const sourcesCtx = useContext(SourcesContext);
   const themeCtx = useContext(ThemeContext);
   const downloadsCtx = useContext(DownloadsContext);
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+  function findSourceIcon(source) {
+    // console.log(source);
+    if (source === 'facebook') {
+      return iconSourceFacebook;
+    } else if (source === 'instagram') {
+      return iconSourceInstagram;
+    } else if (source === 'pinterest') {
+      return iconSourcePinterest;
+    } else if (source === 'soundcloud') {
+      return iconSourceSoundcloud;
+    } else if (source === 'snapchat') {
+      return iconSourceSnapchat;
+    } else if (source === 'tiktok') {
+      return iconSourceTiktok;
+    } else if (source === 'twitch') {
+      return iconSourceTwitch;
+    } else if (source === 'twitter') {
+      return iconSourceTwitter;
+    } else if (source === 'vimeo') {
+      return iconSourceVimeo;
+    } else if (source === 'youtube') {
+      return iconSourceYoutube;
+    }
+  }
+  // return string.charAt(0).toUpperCase() + string.slice(1);
 
+  // findSourceIcon(props.source);
+  // console.log(capitalizeFirstLetter('foo')); // Foo
   const title = `${props.title}`;
   const length = `${props.length}`;
   const size = `${props.size}`;
-  const type = `${props.type}`;
   const format = props.format.toUpperCase();
+  const source = capitalizeFirstLetter(props.source);
+  const sourceIcon = findSourceIcon(props.source);
   const resolution = `${props.resolution}`;
   const fps = `${props.fps}`;
 
@@ -65,6 +106,29 @@ const DownloadItem = (props) => {
           </div>
         </div>
         <div className="content__panel__downloads__list__item__info__container">
+          <img
+            src={sourceIcon}
+            className=" content__panel__downloads__list__item__img content__panel__downloads__list__item__file_length"
+            style={
+              themeCtx.isDarkTheme
+                ? { filter: 'invert(0%)' }
+                : {
+                    filter: 'invert(100%)',
+                  }
+            }
+          ></img>
+          <div
+            className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_length"
+            style={
+              themeCtx.isDarkTheme
+                ? { filter: 'invert(100%)' }
+                : {
+                    filter: 'invert(0%)',
+                  }
+            }
+          >
+            {source}
+          </div>{' '}
           <img
             src={iconLength}
             className=" content__panel__downloads__list__item__img content__panel__downloads__list__item__file_length"
