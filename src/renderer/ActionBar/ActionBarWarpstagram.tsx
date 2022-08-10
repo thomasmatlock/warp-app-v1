@@ -3,7 +3,7 @@ import sortIcon from '../../../assets/Content/Warpstagram/sort.svg';
 import ThemeContext from '../../storage/themeContext';
 import ActionBarContext from '../../storage/actionBarContext';
 import ContextMenu from '../ContextMenu/ContextMenu';
-import ContextMenuSortOptions from '../ContextMenu/ContextMenuSortOptions';
+import ContextMenuSortOptions from '../ContextMenu/ContextMenuOptionsSort';
 
 import './ActionBarWarpstagram.scss';
 const FilterBar = (props) => {
