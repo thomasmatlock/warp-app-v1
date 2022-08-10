@@ -53,6 +53,7 @@ const BrowserBarDownloadSource = () => {
   // console.log(isSourcesExpanded);
   const sourceItems = (
     <ul
+      onMouseLeave={mouseLeaveHandler}
       className={
         !isSourcesExpanded
           ? 'browserBarDownloadSource__list'

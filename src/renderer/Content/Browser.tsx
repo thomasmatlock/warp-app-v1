@@ -1,6 +1,6 @@
 import { Fragment, useContext } from 'react';
 import './Browser.scss';
-import screenshotPlaceholder from '../../../assets/screenshot.png';
+// import screenshotPlaceholder from '../../../assets/screenshot.png';
 import ThemeContext from '../../storage/themeContext';
 import ActionBarContext from '../../storage/actionBarContext';
 
@@ -22,7 +22,11 @@ const Browser = () => {
   });
 
   window.electron.ipcRenderer.on('SET_SOURCE', (arg) => {
-    document.getElementById('contentPanel__browser__screenshot').src = arg;
+    // document.getElementById('contentPanel__browser__screenshot').src = arg;
+  });
+  window.electron.ipcRenderer.on('capturePage', (arg) => {
+    // console.log(arg[0]);
+    document.getElementById('contentPanel__browser__screenshot').src = arg[0];
   });
 
   // const mouseEnterHandler = () => {
@@ -52,10 +56,13 @@ const Browser = () => {
         }
       >
         <img
-          // onMouseEnter={mouseEnterHandler}
-          // onMouseLeave={mouseLeaveHandler}
+          style={
+            themeCtx.isDarkTheme
+              ? { backgroundColor: themeCtx.content.dark.backgroundColor }
+              : { backgroundColor: themeCtx.content.light.backgroundColor }
+          }
           id="contentPanel__browser__screenshot"
-          src={screenshotPlaceholder}
+          src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA"
         />
       </div>
     </Fragment>

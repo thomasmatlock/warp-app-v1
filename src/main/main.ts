@@ -126,9 +126,19 @@ let browserPanelState = 'default';
   // BROWSERBAR DOWNLOAD SOURCE LISTENERS
   ipcMain.on('loadActiveSource', async (event, arg) => {
     if (browserWindow) browserWindow.loadURL(arg);
+    if (browserWindow.webContents.getURL().includes('pinterest')) {
+      browserWindow.webContents.insertCSS(
+        'html, body, { background-color: #fff;  }'
+      );
+    }
   });
   ipcMain.on('source: change', async (event, arg) => {
     if (browserWindow) browserWindow.loadURL(arg);
+    if (browserWindow.webContents.getURL().includes('pinterest')) {
+      browserWindow.webContents.insertCSS(
+        'html, body, { background-color: #fff;  }'
+      );
+    }
   });
   // BROWSERBAR DOWNLOAD BUTTON LISTENERS
   ipcMain.on('BrowserBar: button: downloadAudio', async (event, arg) => {
@@ -142,7 +152,7 @@ let browserPanelState = 'default';
     browserPanelState = arg;
     browserWindowHandler.resize(arg);
     setTimeout(() => {
-      browserWindowHandler.setScreenshot();
+      // browserWindowHandler.setScreenshot();
       if (arg != 'collapse' && browserWindow) browserWindow.focus();
     }, 500);
 
@@ -163,7 +173,7 @@ let browserPanelState = 'default';
   ipcMain.on('BrowserBar: button: reload', async (event, arg) => {
     console.log('BrowserBar: button: reload');
     browserWindow.webContents.reload();
-    browserWindowHandler.setScreenshot();
+    // browserWindowHandler.setScreenshot();
 
     // event.reply('BrowserBar: button: downloadVideo successful'); // sends message to renderer
   });
@@ -203,7 +213,7 @@ ipcMain.on('settings: request', async (event, arg) => {
         browserWindowBounds.height
       );
     if (browserWindow) browserWindow.setResizable(false);
-    browserWindowHandler.setScreenshot();
+    // browserWindowHandler.setScreenshot();
   });
   ipcMain.on('browserHovered', async (event, arg) => {
     if (browserWindow) browserWindow.focus();
@@ -350,7 +360,7 @@ const windowController = {
       if (process.env.START_MINIMIZED) {
         mainWindow.minimize();
       } else {
-        mainWindow.show();
+        // mainWindow.show();
       }
       mainWindow.webContents.send('package', packageJSON);
     });
@@ -436,7 +446,7 @@ const windowController = {
 
     browserWindow.on('ready-to-show', () => {
       console.log('browserWindow ready-to-show');
-      mainWindow.maximize();
+      // mainWindow.maximize();
     });
     browserWindow.webContents.on('did-finish-load', () => {
       console.log('browserWindow did-finish-load');
@@ -445,7 +455,7 @@ const windowController = {
       mainWindow.maximize();
       browserWindow.show();
       setTimeout(() => {
-        browserWindowHandler.setScreenshot();
+        // browserWindowHandler.setScreenshot();
       }, 250);
     });
     browserWindow.webContents.on('did-navigate-in-page', () => {
@@ -453,14 +463,14 @@ const windowController = {
       // console.log('currentURL', currentURL);
       mainWindow.webContents.send('did-navigate-in-page', currentURL);
       setTimeout(() => {
-        browserWindowHandler.setScreenshot();
+        // browserWindowHandler.setScreenshot();
       }, 1500);
     });
     browserWindow.on('always-on-top-changed', () => {});
     browserWindow.on('blur', () => {
       // console.log('browserWindow blur');
       setTimeout(() => {
-        browserWindowHandler.setScreenshot();
+        // browserWindowHandler.setScreenshot();
       }, 250);
       // allWindowsBlur.browser = true;
       // checkWindowsBlur();
@@ -568,9 +578,9 @@ const browserWindowHandler = {
       }
     }
     // mainWindow.getBounds();
-    let defaultWidthDifference = mainWindowBounds.width / 2 - 9;
+    let defaultWidthDifference = mainWindowBounds.width / 2 - 8;
     let collapsedWidthDifference = 72;
-    let expandedWidthDifference = mainWindowBounds.width - 91;
+    let expandedWidthDifference = mainWindowBounds.width - 88;
     if (browserWindow) browserWindow.setResizable(true);
     mainWindowBounds = mainWindow.getBounds();
     browserWindowBounds.height = Math.round(mainWindowBounds.height - 251);
@@ -594,48 +604,26 @@ const browserWindowHandler = {
         // mainWindowBounds.y + 283 // testing
       );
     if (browserWindow) browserWindow.setResizable(false);
+    setTimeout(() => {
+      browserWindowHandler.setScreenshot();
+    }, 100);
   },
   setScreenshot: async function () {
     if (browserWindow)
-      if (browserWindow.webContents.getURL().includes('pinterest')) {
-        browserWindow.webContents.insertCSS(
-          'html, body, { background-color: #fff;  }'
-        );
-      }
-    const RESOURCES_PATH = app.isPackaged
-      ? path.join(process.resourcesPath, 'assets')
-      : path.join(__dirname, '../../assets');
-
-    const getAssetPath = (...paths: string[]): string => {
-      return path.join(RESOURCES_PATH, ...paths);
-    };
-
-    if (browserWindow)
-      browserWindow.webContents
-        .capturePage({
-          x: 0,
-          y: 0,
-          width: browserWindowBounds.width,
-          height: browserWindowBounds.height,
-        })
-        .then((img) => {
-          // console.log('capturePage');
-
-          // let defaultPath: path.join(__dirname, '../assets/image.png');
-          // console.log('captured');
-          fs.writeFile(
-            getAssetPath('screenshot.png'),
-            img.toPNG(),
-            'base64',
-            function (err) {
-              if (err) throw err;
-              // console.log('Saved!');
-            }
-          );
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      if (browserWindow)
+        browserWindow.webContents
+          .capturePage({
+            x: 0,
+            y: 0,
+            width: browserWindowBounds.width,
+            height: browserWindowBounds.height,
+          })
+          .then((img) => {
+            mainWindow.webContents.send('capturePage', [img.toDataURL()]);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
   },
 };
 app.on('window-all-closed', () => {
