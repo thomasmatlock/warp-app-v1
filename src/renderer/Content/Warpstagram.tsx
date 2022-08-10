@@ -6,15 +6,29 @@ import menuIcon from '../../../assets/Warpstagram/menu.svg';
 // import navLogoText from '../../../assets/Nav/logo_lowercase_extrabold.svg';
 
 import dummy_avatar from '../../../assets/Content/Warpstagram/peaky/6.jpg';
-import dummy_post3 from '../../../assets/Content/Warpstagram/peaky/3.jpg';
-import dummy_post4 from '../../../assets/Content/Warpstagram/peaky/4.jpg';
-import dummy_post5 from '../../../assets/Content/Warpstagram/peaky/5.jpg';
-import dummy_post6 from '../../../assets/Content/Warpstagram/peaky/6.jpg';
-import dummy_post7 from '../../../assets/Content/Warpstagram/peaky/7.jpg';
-import dummy_post8 from '../../../assets/Content/Warpstagram/peaky/8.jpg';
-import dummy_post9 from '../../../assets/Content/Warpstagram/peaky/9.jpg';
-import dummy_post11 from '../../../assets/Content/Warpstagram/peaky/11.jpg';
-import dummy_post12 from '../../../assets/Content/Warpstagram/peaky/12.jpg';
+// import dummy_post3 from '../../../assets/Content/Warpstagram/peaky/3.jpg';
+// import dummy_post4 from '../../../assets/Content/Warpstagram/peaky/4.jpg';
+// import dummy_post5 from '../../../assets/Content/Warpstagram/peaky/5.jpg';
+// import dummy_post6 from '../../../assets/Content/Warpstagram/peaky/6.jpg';
+// import dummy_post7 from '../../../assets/Content/Warpstagram/peaky/7.jpg';
+// import dummy_post8 from '../../../assets/Content/Warpstagram/peaky/8.jpg';
+// import dummy_post9 from '../../../assets/Content/Warpstagram/peaky/9.jpg';
+// import dummy_post11 from '../../../assets/Content/Warpstagram/peaky/11.jpg';
+// import dummy_post12 from '../../../assets/Content/Warpstagram/peaky/12.jpg';
+
+import dummy_post3 from '../../../assets/Content/Warpstagram/nintendoswitch/3.jpg';
+import dummy_post4 from '../../../assets/Content/Warpstagram/nintendoswitch/4.jpg';
+import dummy_post5 from '../../../assets/Content/Warpstagram/nintendoswitch/5.jpg';
+import dummy_post6 from '../../../assets/Content/Warpstagram/nintendoswitch/6.jpg';
+import dummy_post7 from '../../../assets/Content/Warpstagram/nintendoswitch/7.jpg';
+import dummy_post8 from '../../../assets/Content/Warpstagram/nintendoswitch/8.jpg';
+import dummy_post9 from '../../../assets/Content/Warpstagram/nintendoswitch/9.jpg';
+import dummy_post11 from '../../../assets/Content/Warpstagram/nintendoswitch/11.jpg';
+import dummy_post12 from '../../../assets/Content/Warpstagram/nintendoswitch/12.jpg';
+import dummy_post13 from '../../../assets/Content/Warpstagram/nintendoswitch/13.jpg';
+import dummy_post14 from '../../../assets/Content/Warpstagram/nintendoswitch/14.jpg';
+import dummy_post15 from '../../../assets/Content/Warpstagram/nintendoswitch/15.jpg';
+
 import './Warpstagram.scss';
 
 import ContextMenu from '../ContextMenu/ContextMenu';
@@ -35,11 +49,10 @@ const Warpstagram = () => {
     setisContextMenuVisible(false);
   };
 
-  const mouseLeaveHandler = () => {};
+  // const mouseLeaveHandler = () => {};
   return (
     <Fragment>
       <div
-        onMouseLeave={turnOffContextMenu}
         // onMouseEnter={mouseEnterHandler}
         className="contentPanel"
         style={
@@ -61,6 +74,7 @@ const Warpstagram = () => {
           }
         >
           <li
+            onMouseLeave={turnOffContextMenu}
             className="content__panel__warpstagram__account"
             style={
               themeCtx.isDarkTheme
@@ -207,17 +221,17 @@ const Warpstagram = () => {
                 className="content__panel__warpstagram__account__posts__item"
               />
               <img
-                src={dummy_post11}
+                src={dummy_post13}
                 alt="null"
                 className="content__panel__warpstagram__account__posts__item"
               />
               <img
-                src={dummy_post11}
+                src={dummy_post14}
                 alt="null"
                 className="content__panel__warpstagram__account__posts__item"
               />{' '}
               <img
-                src={dummy_post11}
+                src={dummy_post15}
                 alt="null"
                 className="content__panel__warpstagram__account__posts__item"
               />
