@@ -88,24 +88,6 @@ let browserWindowBounds = {
   height: mainWindowBounds.height - 250, // default
 };
 let browserPanelState = 'default';
-// const updateSource = (updatedSource: any) => {
-//   // clear all active sources
-//   for (const key in sources) {
-//     if (sources[key].active === true) {
-//       sources[key].active = false;
-//     }
-//   }
-//   // set new active source
-//   sources[updatedSource].active = true;
-//   console.log(sources[updatedSource].URL);
-//   for (const key in sources) {
-//     if (sources[key].active === true) {
-//       console.log(sources[key].URL);
-//       browserWindow.loadURL(sources[key].URL);
-//     }
-//   }
-//   settings.set('sources', sources);
-// };
 (function appListeners() {
   // MENU LISTENERS
   ipcMain.on('Menu: Shortcuts: Restart', async (event, arg) => {
@@ -142,10 +124,11 @@ let browserPanelState = 'default';
     event.reply('nav: mode: warpstagram', 'nav: mode: warpstagram successful'); // sends message to renderer
   });
   // BROWSERBAR DOWNLOAD SOURCE LISTENERS
-  ipcMain.on('source: change', async (event, arg) => {
-    // console.log('source: change', arg);
+  ipcMain.on('loadActiveSource', async (event, arg) => {
     if (browserWindow) browserWindow.loadURL(arg);
-    // updateSource(arg);
+  });
+  ipcMain.on('source: change', async (event, arg) => {
+    if (browserWindow) browserWindow.loadURL(arg);
   });
   // BROWSERBAR DOWNLOAD BUTTON LISTENERS
   ipcMain.on('BrowserBar: button: downloadAudio', async (event, arg) => {
