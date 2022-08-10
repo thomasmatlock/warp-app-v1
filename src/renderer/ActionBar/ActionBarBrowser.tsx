@@ -18,7 +18,7 @@ const BrowserBar = (props) => {
   const actionBarCtx = useContext(ActionBarContext);
   let audioMode = props.audioMode;
   let videoMode = props.videoMode;
-  console.log(actionBarCtx);
+  // console.log(actionBarCtx);
 
   const youtubeParser = (url: string) => {
     console.log(url);

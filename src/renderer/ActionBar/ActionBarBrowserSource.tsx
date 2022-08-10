@@ -24,11 +24,12 @@ const BrowserBarDownloadSource = () => {
   const themeCtx = useContext(ThemeContext);
   const sourcesCtx = useContext(SourcesContext);
   let sourcesCount = sourcesCtx.enabledSources.length;
-  // let activeSource = sourcesCtx.activeSource;
-  // console.log(sourcesCtx.activeSource[0].name);
-  // console.log(sourcesCtx.activeSource[0].name);
-
-  // console.log(sourcesCtx.enabledSources);
+  window.electron.ipcRenderer.on('ready-to-show', (arg) => {
+    window.electron.ipcRenderer.sendMessage(
+      'loadActiveSource',
+      sourcesCtx.activeSource[0].URL
+    );
+  });
   let height_browserBarDownloadSource__hovering = sourcesCount * 48 + 6 + 'px';
   const [isSourcesExpanded, setIsSourcesExpanded] = useState(false);
   const sourceSelectedHandler = (id) => {
