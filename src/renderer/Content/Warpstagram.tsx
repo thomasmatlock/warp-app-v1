@@ -221,7 +221,7 @@ const Warpstagram = () => {
                 className="content__panel__warpstagram__account__posts__item"
               />
               <img
-                src={dummy_post13}
+                src={dummy_post11}
                 alt="null"
                 className="content__panel__warpstagram__account__posts__item"
               />

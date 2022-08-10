@@ -94,9 +94,12 @@ const DownloadsContext = React.createContext({
   downloadsAudio: [],
   downloadsVideo: [],
   downloadsWarpstagram: {},
-  setActiveSource: () => {},
-  removeAllActiveSources: () => {},
+  getDownloadID: () => {},
+  // removeAllActiveSources: () => {},
 });
+const getDownloadID = (id) => {
+  console.log(id);
+};
 export const DownloadsContextProvider = (props) => {
   return (
     <DownloadsContext.Provider
@@ -104,6 +107,7 @@ export const DownloadsContextProvider = (props) => {
         downloadsAudio: downloadsAudio,
         downloadsVideo: downloadsVideo,
         downloadsWarpstagram: downloadsWarpstagram,
+        getDownloadID: getDownloadID,
       }}
     >
       {props.children}

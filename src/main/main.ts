@@ -119,10 +119,11 @@ let browserPanelState = 'default';
   ipcMain.on('Search: InputChange', async (event, arg) => {
     // console.log('Search: InputChange', arg);
     // console.log('Menu: Shortcuts: Restart', arg);
-    event.reply('Search: InputChange', arg);
+    event.reply('Search: InputChange', [arg]);
   });
   // NAV BAR LISTENERS
   ipcMain.on('package', async (event, arg) => {
+    app.getVersion();
     event.reply('package', packageJSON); // sends message to renderer
   });
   ipcMain.on('nav: mode: audio', async (event, arg) => {

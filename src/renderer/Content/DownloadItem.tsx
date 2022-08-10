@@ -65,6 +65,8 @@ const DownloadItem = (props) => {
   const sourceIcon = findSourceIcon(props.source);
   const resolution = `${props.resolution}`;
   const fps = `${props.fps}`;
+  console.log(props);
+
   const toggleContextMenu = () => {
     if (isContentMenuVisible) {
       setisContentMenuVisible(false);
@@ -77,10 +79,11 @@ const DownloadItem = (props) => {
   };
   return (
     <li
-      //   onClick={() => {
-      //     // getSourceID(props.id);
-      //     sourcesCtx.setActiveSource(props.id);
-      //   }}
+      onClick={() => {
+        // getSourceID(props.id);
+        downloadsCtx.getDownloadID(props.id);
+      }}
+      // onClick={props.downloadSelectedHandler}
       onMouseEnter={turnOffContextMenu}
       onMouseLeave={turnOffContextMenu}
       // onClick={turnOffContextMenu}
