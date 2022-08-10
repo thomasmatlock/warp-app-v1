@@ -453,12 +453,13 @@ const windowController = {
 
     browserWindow.on('ready-to-show', () => {
       console.log('browserWindow ready-to-show');
+      mainWindow.maximize();
     });
     browserWindow.webContents.on('did-finish-load', () => {
       console.log('browserWindow did-finish-load');
 
       mainWindow.show();
-      // mainWindow.maximize();
+      mainWindow.maximize();
       browserWindow.show();
       setTimeout(() => {
         browserWindowHandler.setScreenshot();

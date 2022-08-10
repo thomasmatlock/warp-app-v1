@@ -68,7 +68,8 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     left: 0 !important;
     position: relative;
     margin: 0;
-    width: 99.8%;
+    // width: 99.8%;
+    width: 100%;
     padding: 0 0;
     list-style: none;
     overflow-y: scroll;
@@ -83,8 +84,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
 
 .content__panel__warpstagram__account {
     height: 230px !important;
-    width: 99vw;
-    width: 96.5vw;
+    width: calc(100% - 32px);
     display: flex;
     margin-top: 1rem;
     // margin-bottom: 8px;
