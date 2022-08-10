@@ -78,7 +78,7 @@ const FilterBar = (props) => {
 
   return (
     <Fragment>
-      <div className="filterBar">
+      <div onMouseLeave={turnOffContextMenu} className="filterBar">
         <div className="filterBar__menu filterBar__menu__left">
           <div
             className={

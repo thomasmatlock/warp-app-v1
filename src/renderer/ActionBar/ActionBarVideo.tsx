@@ -32,6 +32,7 @@ const FilterBar = (props) => {
   return (
     <Fragment>
       <div
+        onMouseLeave={turnOffContextMenu}
         // className="filterBar"
         className={
           actionBarCtx.isDownloadsPanelCollapsed
