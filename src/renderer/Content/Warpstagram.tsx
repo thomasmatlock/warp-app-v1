@@ -1,4 +1,4 @@
-import { Fragment, useContext } from 'react';
+import { Fragment, useState, useContext } from 'react';
 import ThemeContext from '../../storage/themeContext';
 import refreshIcon from '../../../assets/Warpstagram/refresh1.svg';
 import pinIcon from '../../../assets/Warpstagram/pin.svg';
@@ -17,17 +17,30 @@ import dummy_post11 from '../../../assets/Content/Warpstagram/peaky/11.jpg';
 import dummy_post12 from '../../../assets/Content/Warpstagram/peaky/12.jpg';
 import './Warpstagram.scss';
 
+import ContextMenu from '../ContextMenu/ContextMenu';
+import ContextMenuOptionsWarpstagramAccount from '../ContextMenu/ContextMenuOptionsWarpstagramAccount';
+
 const Warpstagram = () => {
   const themeCtx = useContext(ThemeContext);
-  const mouseEnterHandler = () => {
-    window.electron.ipcRenderer.sendMessage('browserNotHovered');
+
+  const [isContextMenuVisible, setisContextMenuVisible] = useState(false);
+  const toggleContextMenuSort = () => {
+    if (isContextMenuVisible) {
+      setisContextMenuVisible(false);
+    } else {
+      setisContextMenuVisible(true);
+    }
   };
+  const turnOffContextMenu = () => {
+    setisContextMenuVisible(false);
+  };
+
   const mouseLeaveHandler = () => {};
   return (
     <Fragment>
       <div
-        onMouseEnter={mouseEnterHandler}
-        onMouseLeave={mouseLeaveHandler}
+        onMouseLeave={turnOffContextMenu}
+        // onMouseEnter={mouseEnterHandler}
         className="contentPanel"
         style={
           themeCtx.isDarkTheme
@@ -129,6 +142,7 @@ const Warpstagram = () => {
                   />
                 </div>
                 <div
+                  onClick={toggleContextMenuSort}
                   // onClick={actionBarCtx.toggleAudioPanelCollapsed}
                   className="filterBar__menu__item filterBar__menu__item__sort"
                 >
@@ -143,6 +157,11 @@ const Warpstagram = () => {
                           }
                     }
                   />
+                  {isContextMenuVisible && (
+                    <ContextMenu
+                      options={ContextMenuOptionsWarpstagramAccount}
+                    />
+                  )}
                 </div>
               </div>
             </div>

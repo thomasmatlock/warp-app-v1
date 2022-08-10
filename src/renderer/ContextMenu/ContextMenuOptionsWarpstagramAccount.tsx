@@ -4,35 +4,35 @@ import iconSortNewOld from '../../../assets/ContextMenu/sortOldNew.svg';
 import iconSortOldNew from '../../../assets/ContextMenu/sortNewOld.svg';
 const ContextMenuSortOptions = [
   {
-    name: 'Sort by name (A-Z)',
-    id: 'sort_by_name_asc',
+    name: 'Show details',
+    id: 'show_details',
     icon: iconSortAZ,
     onClick: () => {
-      console.log('sort_by_name_asc');
+      console.log('show_details');
     },
   },
   {
-    name: 'Sort by name (Z-A)',
-    id: 'sort_by_name_z_a',
+    name: 'Show on Instagram',
+    id: 'show_on_instagram',
     icon: iconSortZA,
     onClick: () => {
-      console.log('sort_by_name_z_a');
+      console.log('show_on_instagram');
     },
   },
   {
-    name: 'Sort by newest to oldest',
-    id: 'sort_newest_oldest',
+    name: 'Copy link',
+    id: 'copy_warpstagram_link',
+    icon: iconSortZA,
+    onClick: () => {
+      console.log('copy_warpstagram_link');
+    },
+  },
+  {
+    name: 'Remove',
+    id: 'remove_from_warpstagram',
     icon: iconSortOldNew,
     onClick: () => {
-      console.log('sort_by_name_z_a');
-    },
-  },
-  {
-    name: 'Sort by oldest to newest',
-    id: 'sort_oldest_newest',
-    icon: iconSortNewOld,
-    onClick: () => {
-      console.log('sort_by_name_z_a');
+      console.log('remove_from_warpstagram');
     },
   },
 ];
