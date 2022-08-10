@@ -1,39 +1,48 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect } from 'react';
+import sketch from './sketch.min.js';
+// const Canvas = (props) => {
+//   const canvasRef = useRef(null);
+//   const canvas = canvasRef.current;
+//   const context = canvas.getContext('2d');
 
-const Canvas = props => {
-  
-  const canvasRef = useRef(null)
-  
+//   return <canvas ref={canvasRef} {...props} />;
+// };
+const Canvas = (props) => {
+  const canvasRef = useRef(null);
+
   const draw = (ctx, frameCount) => {
-    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
-    ctx.fillStyle = '#000000'
-    ctx.beginPath()
-    ctx.arc(50, 100, 20*Math.sin(frameCount*0.05)**2, 0, 2*Math.PI)
-    ctx.fill()
-  }
-  
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    ctx.fillStyle = '#000000';
+    ctx.beginPath();
+    ctx.arc(50, 100, 20 * Math.sin(frameCount * 0.05) ** 2, 0, 2 * Math.PI);
+    ctx.fill();
+  };
+  ///////////////////////////////////////////////////////
+
+  ///////////////////////////////////////////////////////
   useEffect(() => {
-    
-    const canvas = canvasRef.current
-    const context = canvas.getContext('2d')
+    const canvas = canvasRef.current;
+    const context = canvas.getContext('2d');
+    canvas.style.position = 'relative';
     canvas.style.position = 'absolute';
-    let frameCount = 0
+    canvas.style.top = '0';
+    let frameCount = 0;
     let animationFrameId: number;
-    
+
     //Our draw came here
     const render = () => {
-      frameCount++
-      draw(context, frameCount)
-      animationFrameId = window.requestAnimationFrame(render)
-    }
-    render()
-    
-    return () => {
-      window.cancelAnimationFrame(animationFrameId)
-    }
-  }, [draw])
-  
-  return <canvas ref={canvasRef} {...props}/>
-}
+      frameCount++;
+      draw(context, frameCount);
+      animationFrameId = window.requestAnimationFrame(render);
+    };
+    render();
 
-export default Canvas
+    return () => {
+      window.cancelAnimationFrame(animationFrameId);
+    };
+  }, [draw]);
+
+  return <canvas ref={canvasRef} {...props} />;
+};
+
+export default Canvas;

@@ -1,6 +1,7 @@
 import { Fragment, useContext } from 'react';
 import Search from './Search/Search';
 import ActionBar from './ActionBar/ActionBar';
+import Canvas from './BlackHole/BlackHole';
 import Content from './Content/Content';
 import Nav from './Nav/Nav';
 import './Container.scss';
@@ -13,6 +14,7 @@ const Container = (props) => {
       <div className="container">
         <Search />
         <ActionBar />
+        <Canvas />
         <Content />
         <Nav />
       </div>

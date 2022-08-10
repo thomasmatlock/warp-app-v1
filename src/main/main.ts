@@ -160,19 +160,19 @@ let browserPanelState = 'default';
   });
   ipcMain.on('BrowserBar: button: goBack', async (event, arg) => {
     console.log('BrowserBar: button: goBack');
-    browserWindow.webContents.goBack();
+    if (browserWindow) browserWindow.webContents.goBack();
 
     // event.reply('BrowserBar: button: downloadVideo successful'); // sends message to renderer
   });
   ipcMain.on('BrowserBar: button: goForward', async (event, arg) => {
     console.log('BrowserBar: button: goForward');
-    browserWindow.webContents.goForward();
+    if (browserWindow) browserWindow.webContents.goForward();
 
     // event.reply('BrowserBar: button: downloadVideo successful'); // sends message to renderer
   });
   ipcMain.on('BrowserBar: button: reload', async (event, arg) => {
     console.log('BrowserBar: button: reload');
-    browserWindow.webContents.reload();
+    if (browserWindow) browserWindow.webContents.reload();
     // browserWindowHandler.setScreenshot();
 
     // event.reply('BrowserBar: button: downloadVideo successful'); // sends message to renderer
@@ -360,7 +360,7 @@ const windowController = {
       if (process.env.START_MINIMIZED) {
         mainWindow.minimize();
       } else {
-        // mainWindow.show();
+        mainWindow.show();
       }
       mainWindow.webContents.send('package', packageJSON);
     });
@@ -436,13 +436,13 @@ const windowController = {
         //   : path.join(__dirname, '../../.erb/dll/preload.js'),
       },
     });
-    let sources = settings.get('sources');
+    // let sources = settings.get('sources');
 
-    for (const key in sources) {
-      if (sources[key].active === true) {
-        browserWindow.loadURL(sources[key].URL);
-      }
-    }
+    // for (const key in sources) {
+    //   if (sources[key].active === true) {
+    //     browserWindow.loadURL(sources[key].URL);
+    //   }
+    // }
 
     browserWindow.on('ready-to-show', () => {
       console.log('browserWindow ready-to-show');
@@ -454,9 +454,6 @@ const windowController = {
       mainWindow.show();
       mainWindow.maximize();
       browserWindow.show();
-      setTimeout(() => {
-        // browserWindowHandler.setScreenshot();
-      }, 250);
     });
     browserWindow.webContents.on('did-navigate-in-page', () => {
       let currentURL = browserWindow.webContents.getURL();
@@ -646,7 +643,7 @@ app
     // console.log(mainWindowBounds);
 
     // windowController.createSplashWindow();
-    windowController.createBrowserWindow();
+    // windowController.createBrowserWindow();
     windowController.createMainWindow();
     app.on('activate', () => {
       if (mainWindow === null) windowController.createMainWindow();
