@@ -65,7 +65,7 @@ const DownloadItem = (props) => {
   const sourceIcon = findSourceIcon(props.source);
   const resolution = `${props.resolution}`;
   const fps = `${props.fps}`;
-  console.log(props);
+  // console.log(props);
 
   const toggleContextMenu = () => {
     if (isContentMenuVisible) {

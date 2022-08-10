@@ -467,7 +467,8 @@ const windowController = {
     });
     browserWindow.webContents.on('did-navigate-in-page', () => {
       let currentURL = browserWindow.webContents.getURL();
-      console.log('currentURL', currentURL);
+      // console.log('currentURL', currentURL);
+      mainWindow.webContents.send('did-navigate-in-page', currentURL);
       setTimeout(() => {
         browserWindowHandler.setScreenshot();
       }, 1500);
@@ -674,7 +675,7 @@ app
     // console.log(mainWindowBounds);
 
     // windowController.createSplashWindow();
-    // windowController.createBrowserWindow();
+    windowController.createBrowserWindow();
     windowController.createMainWindow();
     app.on('activate', () => {
       if (mainWindow === null) windowController.createMainWindow();

@@ -12,7 +12,56 @@ const BrowserBar = (props) => {
   const actionBarCtx = useContext(ActionBarContext);
   let audioMode = props.audioMode;
   let videoMode = props.videoMode;
+  const [videoExists, setVideoExists] = useState(false);
+  const [playlistExists, setPlaylistExists] = useState(false);
+  const [channelExists, setChannelExists] = useState(false);
+  const disableAllStates = () => {
+    setChannelExists(false);
+    setVideoExists(false);
+    setPlaylistExists(false);
+  };
 
+  const youtubeParser = (url: string) => {
+    // let videoKeyword = 'watch?v=';
+
+    console.log(url);
+    if (url.includes('watch')) {
+      console.log('this is a video');
+      setVideoExists(true);
+    }
+    if (url.includes('watch') && url.includes('&list=')) {
+      console.log('this is a video in a playlist');
+      setPlaylistExists(true);
+    }
+
+    if (
+      url.includes('/c/') ||
+      url.includes('/channel/') ||
+      (url.includes('/user/') && !url.includes('/channels'))
+    ) {
+      console.log('this is a channel');
+      if (url.includes('channel')) {
+        console.log('this is your channel');
+      }
+      if (url.includes('playlists')) {
+        console.log('this channel has multiple playlists');
+      }
+    }
+  };
+  const getURLpageType = (url: string) => {
+    disableAllStates();
+    if (url.includes('youtube')) {
+      youtubeParser(url);
+    }
+  };
+  window.electron.ipcRenderer.on('did-navigate-in-page', (arg) => {
+    // setSearchInput(arg[0]);
+    // console.log(arg);
+    getURLpageType(arg);
+    // getURLtype(arg);
+    // let domain = getURLdomain(arg);
+    // console.log(domain);
+  });
   const downloadAudioHandler = () => {
     window.electron.ipcRenderer.sendMessage('screenshotting');
     // window.electron.ipcRenderer.on('nav: mode: warpstagram', (arg) => {
@@ -106,12 +155,22 @@ const BrowserBar = (props) => {
             Download Audio MP3
           </a>
         )}
-        {videoMode && !actionBarCtx.isBrowserPanelCollapsed && (
+        {videoMode && !actionBarCtx.isBrowserPanelCollapsed && videoExists && (
           <a
             onClick={downloadVideoHandler}
             className="browserBarDownloadBtn browserBarDownloadBtn__video"
           >
             Download Video MP4
+            {/* {playlistExists && 'Download Video Playlist'} */}
+          </a>
+        )}
+        {videoMode && !actionBarCtx.isBrowserPanelCollapsed && playlistExists && (
+          <a
+            onClick={downloadVideoHandler}
+            className="browserBarDownloadBtn browserBarDownloadBtn__video"
+          >
+            {/* {videoExists && 'Download Video MP4'} */}
+            Download Video Playlist
           </a>
         )}
       </div>
