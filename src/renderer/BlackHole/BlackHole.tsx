@@ -9,7 +9,9 @@ import sketch from './sketch.min.js';
 // };
 const Canvas = (props) => {
   const canvasRef = useRef(null);
+  ///////////////////////////////////////////////////////
 
+  ///////////////////////////////////////////////////////
   const draw = (ctx, frameCount) => {
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
     ctx.fillStyle = '#000000';
@@ -17,9 +19,7 @@ const Canvas = (props) => {
     ctx.arc(50, 100, 20 * Math.sin(frameCount * 0.05) ** 2, 0, 2 * Math.PI);
     ctx.fill();
   };
-  ///////////////////////////////////////////////////////
 
-  ///////////////////////////////////////////////////////
   useEffect(() => {
     const canvas = canvasRef.current;
     const context = canvas.getContext('2d');
@@ -28,6 +28,8 @@ const Canvas = (props) => {
     canvas.style.top = '0';
     let frameCount = 0;
     let animationFrameId: number;
+    // console.log('canvas', canvas);
+    console.log(context);
 
     //Our draw came here
     const render = () => {
