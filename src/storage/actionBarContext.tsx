@@ -1,15 +1,46 @@
 import React, { useState, useEffect } from 'react';
 const ActionBarContext = React.createContext({
-  isDownloadsPanelCollapsed: false,
+  // PLAYLISTS
+  videoExists: false,
+  singlePlaylistExists: false,
+  multiplePlaylistsExist: false,
+  channelExists: false,
+  channelVideoExists: false,
+
+  setVideoExists: false,
+  setSinglePlaylistExists: false,
+  setMultiplePlaylistsExist: false,
+  setChannelExists: false,
+  setChannelVideoExists: false,
+
+  disableAllStates: () => {},
+
   isBrowserPanelCollapsed: false,
+  isDownloadsPanelCollapsed: false,
   toggleDownloadsPanelCollapsed: () => {},
   toggleBrowserPanelCollapsed: () => {},
 });
-
 export const ActionBarContextProvider = (props) => {
+  // PANELS
   const [isDownloadsPanelCollapsed, setIsDownloadsPanelCollapsed] =
     useState(false);
   const [isBrowserPanelCollapsed, setIsBrowserPanelCollapsed] = useState(false);
+  // VIDEOS
+  const [videoExists, setVideoExists] = useState(false);
+  // PLAYLISTS
+  const [singlePlaylistExists, setSinglePlaylistExists] = useState(false);
+  const [multiplePlaylistsExist, setMultiplePlaylistsExist] = useState(false);
+  // CHANNELS
+  const [channelExists, setChannelExists] = useState(false);
+  const [channelVideoExists, setChannelVideoExists] = useState(false);
+
+  const disableAllStates = () => {
+    setVideoExists(false);
+    setSinglePlaylistExists(false);
+    setMultiplePlaylistsExist(false);
+    setChannelExists(false);
+    setChannelVideoExists(false);
+  };
   const toggleDownloadsPanelCollapsed = () => {
     if (isDownloadsPanelCollapsed) {
       setIsDownloadsPanelCollapsed(false);
@@ -32,8 +63,22 @@ export const ActionBarContextProvider = (props) => {
   return (
     <ActionBarContext.Provider
       value={{
-        isDownloadsPanelCollapsed: isDownloadsPanelCollapsed,
+        videoExists: videoExists,
+        singlePlaylistExists: singlePlaylistExists,
+        multiplePlaylistsExist: multiplePlaylistsExist,
+        channelExists: channelExists,
+        channelVideoExists: channelVideoExists,
+
+        setVideoExists: setVideoExists,
+        setSinglePlaylistExists: setSinglePlaylistExists,
+        setMultiplePlaylistsExist: setMultiplePlaylistsExist,
+        setChannelExists: setChannelExists,
+        setChannelVideoExists: setChannelVideoExists,
+
+        disableAllStates: disableAllStates,
+
         isBrowserPanelCollapsed: isBrowserPanelCollapsed,
+        isDownloadsPanelCollapsed: isDownloadsPanelCollapsed,
         toggleDownloadsPanelCollapsed: toggleDownloadsPanelCollapsed,
         toggleBrowserPanelCollapsed: toggleBrowserPanelCollapsed,
       }}

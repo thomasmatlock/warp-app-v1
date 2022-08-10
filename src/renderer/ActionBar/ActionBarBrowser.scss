@@ -39,22 +39,26 @@ $gradient-orange: linear-gradient(to left, #da2c4d 0%, #f8ab37 100%);
     // width: 50%;
     display: flex;
     height: 100%;
+    min-height: 64px;
+    max-height: 64px;
     flex: 1;
     position: relative;
     flex-direction: row;
     align-items: center;
+    // border: 1px solid red;
     // border: 1px solid $gray-dark-lightest;
     // border: 1px dotted red;
 }
 
 // https://www.w3schools.com/howto/howto_custom_select.asp
 .browserBarDownloadBtn {
-    width: clamp(150px, 200px, 200px);
+    width: clamp(150px, 14rem, 14rem);
     // max-width: 250px;
     justify-content: center !important;
     background-image: $gradient-blue;
     top: 0;
-    margin: 8px 48px;
+    // margin: 8px 48px;
+    margin: 8px 16px;
     height: 48px;
     border-radius: 3px;
     font-size: 14px;
@@ -64,10 +68,16 @@ $gradient-orange: linear-gradient(to left, #da2c4d 0%, #f8ab37 100%);
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-around !important;
+    align-content: center;
+    justify-content: center !important;
     cursor: pointer;
     animation: flipInX 0.5s ease-in-out;
     // transition: all 0.1s ease-in-out;
+    &.browserBarDownloadBtn img {
+        width: 1rem;
+        margin-right: 1rem;
+        filter: invert(1);
+    }
     &__audio {
         background-image: $gradient-orange;
         &:hover {
@@ -92,7 +102,7 @@ $gradient-orange: linear-gradient(to left, #da2c4d 0%, #f8ab37 100%);
         transform: scale(0.99);
     }
     & p {
-        transform: translate(-90px) translateY(0px);
+        // transform: translate(-90px) translateY(0px);
         // border: 1px dotted red;
     }
 }
