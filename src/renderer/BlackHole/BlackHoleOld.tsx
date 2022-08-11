@@ -23,7 +23,7 @@ const Canvas = (props) => {
   useEffect(() => {
     const canvas = canvasRef.current;
     const context = canvas.getContext('2d');
-    canvas.style.position = 'relative';
+    // canvas.style.position = 'relative';
     canvas.style.position = 'absolute';
 
     canvas.style.top = '129px';

@@ -16,7 +16,7 @@ const Container = (props) => {
         <Search />
         <ActionBar />
         {/* <BlackHole /> */}
-        <BlackHoleOld />
+        {/* <BlackHoleOld /> */}
         <Content />
         <Nav />
       </div>
