@@ -1,42 +1,20 @@
-import { Fragment, useState } from 'react';
+import { useContext } from 'react';
 import Browser from './Browser';
 import DownloadsAudio from './DownloadsAudio';
 import DownloadsVideo from './DownloadsVideo';
 import Warpstagram from './Warpstagram';
-// import thumbnail from '../../../assets/Content/thumbnail.png'
+import NavContext from '../../storage/navContext';
 import './Content.scss';
-import { log } from 'console';
-const Content = (props) => {
-  const [audioMode, setAudioMode] = useState(true);
-  const [videoMode, setVideoMode] = useState(false);
-  const [warpstagramMode, setWarpstagramMode] = useState(false);
-
-  window.electron.ipcRenderer.on('nav: mode: audio', (arg) => {
-    // console.log(arg);
-    setAudioMode(true);
-    setVideoMode(false);
-    setWarpstagramMode(false);
-  });
-  window.electron.ipcRenderer.on('nav: mode: video', (arg) => {
-    setVideoMode(true);
-    setAudioMode(false);
-    setWarpstagramMode(false);
-    // console.log(videoMode);
-  });
-  window.electron.ipcRenderer.on('nav: mode: warpstagram', (arg) => {
-    // console.log(arg);
-    setWarpstagramMode(true);
-    setAudioMode(false);
-    setVideoMode(false);
-  });
+const Content = () => {
+  const navCtx = useContext(NavContext);
 
   return (
     <div className="content">
-      {audioMode && <Browser />}
-      {audioMode && <DownloadsAudio />}
-      {videoMode && <Browser />}
-      {videoMode && <DownloadsVideo />}
-      {warpstagramMode && <Warpstagram />}
+      {navCtx.audioMode && <Browser />}
+      {navCtx.audioMode && <DownloadsAudio />}
+      {navCtx.videoMode && <Browser />}
+      {navCtx.videoMode && <DownloadsVideo />}
+      {navCtx.warpstagramMode && <Warpstagram />}
     </div>
   );
 };

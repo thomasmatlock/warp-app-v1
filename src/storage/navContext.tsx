@@ -21,25 +21,34 @@ export const NavContextProvider = (props) => {
   const audioModeHandler = () => {
     disableAllStates();
     setAudioMode(true);
+    window.electron.ipcRenderer.sendMessage('nav: mode: audio', [
+      `Nav change: Audio Mode`,
+    ]);
   };
   const videoModeHandler = () => {
     disableAllStates();
     setVideoMode(true);
+    window.electron.ipcRenderer.sendMessage('nav: mode: video', []);
   };
   const warpstagramModeHandler = () => {
     disableAllStates();
     setWarpstagramMode(true);
+    window.electron.ipcRenderer.sendMessage('nav: mode: warpstagram', [
+      `Nav change: Warpstagram Mode`,
+    ]);
   };
-  //     window.electron.ipcRenderer.sendMessage('nav: mode: audio', [
-  //       `Nav change: Audio Mode`,
-  //     ]);
-  //     window.electron.ipcRenderer.sendMessage('nav: mode: video', []);
-  //     window.electron.ipcRenderer.sendMessage('nav: mode: warpstagram', [
-  //       `Nav change: Warpstagram Mode`,
-  //     ]);
-  //   window.electron.ipcRenderer.on('nav: mode: audio', (arg) => {});
-  //   window.electron.ipcRenderer.on('nav: mode: video', (arg) => {});
-  //   window.electron.ipcRenderer.on('nav: mode: warpstagram', (arg) => {});
+  window.electron.ipcRenderer.on('nav: mode: audio', (arg) => {
+    disableAllStates();
+    setAudioMode(true);
+  });
+  window.electron.ipcRenderer.on('nav: mode: video', (arg) => {
+    disableAllStates();
+    setVideoMode(true);
+  });
+  window.electron.ipcRenderer.on('nav: mode: warpstagram', (arg) => {
+    disableAllStates();
+    setWarpstagramMode(true);
+  });
   return (
     <NavContext.Provider
       value={{

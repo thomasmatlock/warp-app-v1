@@ -7,11 +7,12 @@ import FilterBar_DownloadsAudio from './ActionBarAudio';
 import FilterBar_DownloadsVideo from './ActionBarVideo';
 import ThemeContext from '../../storage/themeContext';
 import ActionBarContext from '../../storage/actionBarContext';
+import NavContext from '../../storage/navContext';
 
 const ActionBar = (props) => {
   const themeCtx = useContext(ThemeContext);
+  const navCtx = useContext(NavContext);
   const actionBarCtx = useContext(ActionBarContext);
-  // console.log(actionBarCtx);
 
   const [audioMode, setAudioMode] = useState(true);
   const [videoMode, setVideoMode] = useState(false);
