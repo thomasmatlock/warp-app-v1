@@ -73,6 +73,38 @@ class AppUpdater {
   }
 }
 const windowsVisibilityManager = () => {
+  // browserWindow
+  if (bWin && bWin.isFocused() === true) {
+    console.log('bWin focused');
+  } else {
+    console.log('bWin not focused');
+  }
+  if (bWin && bWin.isVisible() === true) {
+    console.log('bWin visible');
+  } else {
+    console.log('bWin not visible');
+  }
+  if (bWin && bWin.isMaximized() === true) {
+    console.log('bWin maximized');
+  } else {
+    console.log('bWin not maximized');
+  }
+  if (bWin && bWin.isMinimized() === true) {
+    console.log('bWin minimized');
+  } else {
+    console.log('bWin not minimized');
+  }
+  if (bWin && bWin.isAlwaysOnTop() === true) {
+    console.log('bWin always on top');
+  } else {
+    console.log('bWin not always on top');
+  }
+  if (bWin && bWin.isVisibleOnAllWorkspaces() === true) {
+    console.log('bWin visible on all workspaces');
+  } else {
+    console.log('bWin not visible on all workspaces');
+  }
+  // mainWindow
   if (bWin && bWin.isFocused() === true) {
     console.log('bWin focused');
   } else {
@@ -244,15 +276,6 @@ ipcMain.on('settings: request', async (event, arg) => {
     bWinHandler.setScreenshot();
     // mainWindow.webContents.send('request-browserDimensions');
   });
-  const togglebWinOnTop = () => {
-    if (bWin) {
-      if (bWin.isAlwaysOnTop()) {
-        bWin.setAlwaysOnTop(false);
-      } else {
-        bWin.setAlwaysOnTop(true);
-      }
-    }
-  };
   ipcMain.on('hidebWin', async (event, arg) => {
     // let opacity = bWin.getOpacity();
     // console.log('hidebWin', opacity);
@@ -454,18 +477,8 @@ const windowController = {
         //   : path.join(__dirname, '../../.erb/dll/preload.js'),
       },
     });
-    // let sources = settings.get('sources');
 
-    // for (const key in sources) {
-    //   if (sources[key].active === true) {
-    //     bWin.loadURL(sources[key].URL);
-    //   }
-    // }
-
-    bWin.on('ready-to-show', () => {
-      console.log('bWin ready-to-show');
-      // mainWindow.maximize();
-    });
+    bWin.on('ready-to-show', () => {});
     bWin.webContents.on('did-finish-load', () => {
       console.log('bWin did-finish-load');
 
@@ -475,11 +488,7 @@ const windowController = {
     });
     bWin.webContents.on('did-navigate-in-page', () => {
       let currentURL = bWin.webContents.getURL();
-      // console.log('currentURL', currentURL);
       mainWindow.webContents.send('did-navigate-in-page', currentURL);
-      setTimeout(() => {
-        // bWinHandler.setScreenshot();
-      }, 1500);
     });
     bWin.on('always-on-top-changed', () => {});
     bWin.on('blur', () => {
@@ -488,7 +497,7 @@ const windowController = {
     bWin.webContents.on('blur', () => {
       windowsVisibilityManager();
     });
-    // bWin.on('close', () => console.log('bWin close'));
+    bWin.on('close', () => {});
     bWin.on('closed', () => (bWin = null));
     bWin.on('enter-full-screen', () => {});
     bWin.on('focus', () => {
@@ -497,22 +506,16 @@ const windowController = {
     bWin.webContents.on('focus', () => {
       windowsVisibilityManager();
     });
-    bWin.on('hide', () => {
-      console.log('bWin hide');
-    });
+    bWin.on('hide', () => {});
     bWin.on('maximize', () => {});
-    bWin.on('minimize', () => {
-      // console.log('bWin minimize');
-    });
+    bWin.on('minimize', () => {});
     bWin.on('move', () => {});
     bWin.on('moved', () => {});
     bWin.on('new-window-for-tab', () => {});
     bWin.on('ready-to-show', () => {});
     bWin.on('resize', () => {});
-    bWin.on('resized', () => console.log('bWin resized'));
-    bWin.on('responsive', () => {
-      console.log('bWin responsive');
-    });
+    bWin.on('resized', () => {});
+    bWin.on('responsive', () => {});
     bWin.on('restore', () => bWinHandler.resize(browserPanelState));
     bWin.on('session-end', () => {});
     bWin.on('sheet-begin', () => {});
@@ -650,7 +653,7 @@ app
     mainWindowBounds.y = display.y;
     mainWindowBounds.width = display.width;
     // mainWindowBounds.height = display.height; // default
-    mainWindowBounds.height = display.height - 100; // testing
+    mainWindowBounds.height = display.height - 250; // testing
     // console.log(mainWindowBounds);
 
     // windowController.createSplashWindow();

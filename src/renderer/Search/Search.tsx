@@ -23,10 +23,10 @@ const Search = (props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const hideModalHandler = () => {
     setIsModalOpen(false);
-    window.electron.ipcRenderer.sendMessage('showBrowserWindow');
+    window.electron.ipcRenderer.sendMessage('showbWin');
   };
   const showModalHandler = () => {
-    window.electron.ipcRenderer.sendMessage('hideBrowserWindow');
+    window.electron.ipcRenderer.sendMessage('hidebWin');
 
     setIsModalOpen(true);
   };
@@ -177,10 +177,10 @@ const Search = (props) => {
   });
   const mouseEnterHandler = () => {
     // console.log('mouse enter');
-    window.electron.ipcRenderer.sendMessage('prepareToHideBrowserWindow');
+    window.electron.ipcRenderer.sendMessage('prepareTobWin');
   };
   const mouseLeaveHandler = () => {
-    window.electron.ipcRenderer.sendMessage('showBrowserWindow');
+    window.electron.ipcRenderer.sendMessage('showbWin');
     // console.log('mouse leave');
   };
   return (

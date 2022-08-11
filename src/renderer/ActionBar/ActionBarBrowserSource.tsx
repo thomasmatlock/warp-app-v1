@@ -43,12 +43,12 @@ const BrowserBarDownloadSource = () => {
     }
   };
   const mouseEnterHandler = () => {
-    window.electron.ipcRenderer.sendMessage('hideBrowserWindow');
+    window.electron.ipcRenderer.sendMessage('bWin');
     setIsSourcesExpanded(true);
   };
   const mouseLeaveHandler = () => {
     setIsSourcesExpanded(false);
-    window.electron.ipcRenderer.sendMessage('showBrowserWindow');
+    window.electron.ipcRenderer.sendMessage('showbWin');
   };
   // console.log(isSourcesExpanded);
   const sourceItems = (
