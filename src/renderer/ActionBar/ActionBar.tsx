@@ -14,9 +14,6 @@ const ActionBar = (props) => {
   const navCtx = useContext(NavContext);
   const actionBarCtx = useContext(ActionBarContext);
 
-  const [audioMode, setAudioMode] = useState(true);
-  const [videoMode, setVideoMode] = useState(false);
-  const [warpstagramMode, setWarpstagramMode] = useState(false);
   const [audioDownloadsTotal, setAudioDownloadsTotal] = useState(0);
   const [videoDownloadsTotal, setVideoDownloadsTotal] = useState(0);
   const [warpstagramDownloadsTotal, setWarpstagramDownloadsTotal] = useState(0);
@@ -50,24 +47,9 @@ const ActionBar = (props) => {
     countVideoDownloads();
     countWarpstagramDownloads();
   });
-  window.electron.ipcRenderer.on('nav: mode: audio', (arg) => {
-    setAudioMode(true);
-    setVideoMode(false);
-    setWarpstagramMode(false);
-    countAudioDownloads();
-  });
-  window.electron.ipcRenderer.on('nav: mode: video', (arg) => {
-    setVideoMode(true);
-    setAudioMode(false);
-    setWarpstagramMode(false);
-    countVideoDownloads();
-  });
-  window.electron.ipcRenderer.on('nav: mode: warpstagram', (arg) => {
-    setWarpstagramMode(true);
-    setAudioMode(false);
-    setVideoMode(false);
-    countWarpstagramDownloads();
-  });
+  if (navCtx.audioMode) countAudioDownloads();
+  if (navCtx.videoMode) countVideoDownloads();
+  if (navCtx.warpstagramMode) countWarpstagramDownloads();
   const mouseEnterHandler = () => {
     if (shouldSendScreenshot) {
       window.electron.ipcRenderer.sendMessage('screenshot', 'from actionBar');
@@ -76,7 +58,6 @@ const ActionBar = (props) => {
   };
   const mouseLeaveHandler = () => {
     setShouldSendScreenshot(true);
-    // window.electron.ipcRenderer.sendMessage('showbWin', 'from actionBar');
   };
   return (
     <Fragment>
@@ -92,21 +73,21 @@ const ActionBar = (props) => {
               }
         }
       >
-        {audioMode && <BrowserBar audioMode={audioMode} />}
-        {videoMode && <BrowserBar videoMode={videoMode} />}
-        {audioMode && (
+        {navCtx.audioMode && <BrowserBar audioMode={navCtx.audioMode} />}
+        {navCtx.videoMode && <BrowserBar videoMode={navCtx.videoMode} />}
+        {navCtx.audioMode && (
           <FilterBar_DownloadsAudio
-            audioMode={audioMode}
+            audioMode={navCtx.audioMode}
             audioDownloadsTotal={audioDownloadsTotal}
           />
         )}
-        {videoMode && (
+        {navCtx.videoMode && (
           <FilterBar_DownloadsVideo
-            videoMode={videoMode}
+            videoMode={navCtx.videoMode}
             videoDownloadsTotal={videoDownloadsTotal}
           />
         )}
-        {warpstagramMode && (
+        {navCtx.warpstagramMode && (
           <FilterBar warpstagramDownloadsTotal={warpstagramDownloadsTotal} />
         )}
       </div>
