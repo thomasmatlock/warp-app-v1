@@ -24,9 +24,6 @@ import Title from './title';
 import { resolveHtmlPath } from './util';
 import packageJSON from '../../package.json';
 import prefs from '../storage/preferences';
-// import sources from '../storage/sources';
-// import downloads from '../storage/downloadsContext';
-// console.log(prefs);
 if (process.env.NODE_ENV === 'production') {
   const sourceMapSupport = require('source-map-support');
   sourceMapSupport.install();
@@ -42,12 +39,8 @@ if (isDebug) {
 const installExtensions = async () => {
   const installer = require('electron-devtools-installer');
   const forceDownload = !!process.env.UPGRADE_EXTENSIONS;
-  // console.log(process.env.UPGRADE_EXTENSIONS);
 
-  const extensions = [
-    'REACT_DEVELOPER_TOOLS',
-    // 'cjpalhdlnbpafiamejdnhcphjbkeiagm',
-  ];
+  const extensions = ['REACT_DEVELOPER_TOOLS'];
 
   return installer
     .default(
@@ -59,11 +52,11 @@ const installExtensions = async () => {
 
 const contextMenu = require('electron-context-menu');
 contextMenu({});
-const Store = require('electron-store');
-const settings = new Store();
+// const Store = require('electron-store');
+// const settings = new Store();
 // settings.set('downloads', downloads);
 // settings.set('sources', sources);
-settings.set('prefs', prefs);
+// settings.set('prefs', prefs);
 
 class AppUpdater {
   constructor() {
@@ -83,12 +76,23 @@ let mWinBounds = { x: 0, y: 0, width: 1600, height: 900 };
 //   width: mWinBounds.width / 2 - 250,
 //   height: mWinBounds.height - 250, // default
 // };
+const hideView = () => {
+  if (view) view.setBounds({ x: 0, y: 0, width: 0, height: 0 });
+};
+const showView = () => {
+  if (view)
+    view.setBounds({
+      x: viewBounds.x,
+      y: viewBounds.y,
+      width: mWin.getContentBounds().width / 2,
+      height: mWin.getContentBounds().height - 192,
+    });
+};
 let viewBounds = {
   x: 0,
   y: 130,
-  // width: mWinBounds.width / 2 - 75,
-  width: mWinBounds.width / 2 + 150,
-  height: mWinBounds.height - 350, // default
+  // width: mWinBounds.width / 2 + 150,
+  // height: mWinBounds.height - 350, // default
 };
 let browserPanelState = 'default';
 (function appListeners() {
@@ -114,16 +118,15 @@ let browserPanelState = 'default';
   ipcMain.on('nav: mode: audio', async (event, arg) => {
     mWin.webContents.send('count-downloads', arg);
     event.reply('nav: mode: audio', 'nav: mode: audio successful'); // sends message to renderer
-    if (bWin) bWin.show();
+    showView();
   });
   ipcMain.on('nav: mode: video', async (event, arg) => {
+    showView();
     event.reply('nav: mode: video', 'nav: mode: video successful'); // sends message to renderer
-    if (bWin) bWin.show();
   });
   ipcMain.on('nav: mode: warpstagram', async (event, arg) => {
     console.log('nav: mode: warpstagram');
-
-    if (bWin) bWin.hide();
+    hideView();
     event.reply('nav: mode: warpstagram', 'nav: mode: warpstagram successful'); // sends message to renderer
   });
   // BROWSERBAR DOWNLOAD SOURCE LISTENERS
@@ -154,7 +157,7 @@ let browserPanelState = 'default';
   ipcMain.on('browserPanelSize', async (event, arg) => {
     // console.log('browserPanelSize', arg);
     browserPanelState = arg;
-    // bWinHandler.resize(arg);
+    bWinHandler.resize(arg);
     setTimeout(() => {
       // bWinHandler.setScreenshot();
       if (arg != 'collapse' && bWin) bWin.focus();
@@ -164,19 +167,19 @@ let browserPanelState = 'default';
   });
   ipcMain.on('BrowserBar: button: goBack', async (event, arg) => {
     console.log('BrowserBar: button: goBack');
-    if (bWin) bWin.webContents.goBack();
+    if (view) view.webContents.goBack();
 
     // event.reply('BrowserBar: button: downloadVideo successful'); // sends message to renderer
   });
   ipcMain.on('BrowserBar: button: goForward', async (event, arg) => {
     console.log('BrowserBar: button: goForward');
-    if (bWin) bWin.webContents.goForward();
+    if (view) view.webContents.goForward();
 
     // event.reply('BrowserBar: button: downloadVideo successful'); // sends message to renderer
   });
   ipcMain.on('BrowserBar: button: reload', async (event, arg) => {
     console.log('BrowserBar: button: reload');
-    if (bWin) bWin.webContents.reload();
+    if (view) view.webContents.reload();
     // bWinHandler.setScreenshot();
 
     // event.reply('BrowserBar: button: downloadVideo successful'); // sends message to renderer
@@ -207,33 +210,14 @@ ipcMain.on('settings: request', async (event, arg) => {
   event.reply('settings-broadcast', settings); // sends message to renderer
 });
 (function bWinListeners() {
-  // ipcMain.on('bWinDimensions', async (event, arg) => {
-  //   if (bWin) bWin.setResizable(true);
-  //   bWinBounds.width = Math.round(arg.width);
-  //   bWinBounds.height = Math.round(arg.height);
-  //   if (bWin) bWin.setSize(bWinBounds.width, bWinBounds.height);
-  //   if (bWin) bWin.setResizable(false);
-  //   // bWinHandler.setScreenshot();
-  // });
   ipcMain.on('screenshot', async (event, arg) => {
-    // console.log('//////////////////////////////////////////////');
-    // console.log('screenshot', arg);
-
     bWinHandler.setScreenshot();
   });
   ipcMain.on('hidebWin', async (event, arg) => {
-    // console.log('hidebWin', arg);
-    view.setBounds({ x: 0, y: 0, width: 0, height: 0 });
+    hideView();
   });
   ipcMain.on('showbWin', async (event, arg) => {
-    // console.log('showbWin', arg);
-    view.setBounds({
-      x: viewBounds.x,
-      y: viewBounds.y,
-      width: mWin.getContentBounds().width / 2,
-      height: mWin.getContentBounds().height - 192,
-      // height: viewBounds.height,
-    });
+    showView();
   });
 })();
 
@@ -277,68 +261,51 @@ const windowController = {
     mWin.loadURL(resolveHtmlPath('index.html'));
 
     const wc = mWin.webContents;
-    wc.on('did-finish-load', (event, url) => {
-      // console.log('mWin did-finish-load');
-      // mWin.show();
-    });
-    wc.on('dom-ready', (event, url) => {
-      // console.log('mWin dom-ready');
-    });
-    wc.on('blur', (event, url) => {
-      // windowsVisibilityManager();
-    });
-    wc.on('focus', (event, url) => {
-      // windowsVisibilityManager();
-    });
+    wc.on('did-finish-load', (event, url) => {});
+    wc.on('dom-ready', (event, url) => {});
+    wc.on('blur', (event, url) => {});
+    wc.on('focus', (event, url) => {});
 
     const menuBuilder = new MenuBuilder(mWin);
     menuBuilder.buildMenu();
 
     mWin.on('always-on-top-changed', () => {});
-    mWin.on('app-command', () => {
-      // console.log('mWin app-command');
-    });
-    mWin.on('blur', () => {
-      // windowsVisibilityManager();
-    });
+    mWin.on('app-command', () => {});
+    mWin.on('blur', () => {});
     mWin.on('close', () => {});
     mWin.on('closed', () => (mWin = null));
-    mWin.on('enter-full-screen', () => {});
-    mWin.on('enter-html-full-screen', () => {});
+    mWin.on('enter-full-screen', () => {
+      console.log('enter-full-screen');
+    });
+    mWin.on('enter-html-full-screen', () => {
+      console.log('enter-html-full-screen');
+    });
     mWin.on('focus', () => {
-      // windowsVisibilityManager();
       // bWinHandler.resize(browserPanelState);
     });
     mWin.on('hide', () => {});
-    mWin.on('leave-full-screen', () => {});
-    mWin.on('leave-html-full-screen', () => {});
-    // mWin.on('maximize', () => bWinHandler.resize(browserPanelState));
-    mWin.on('minimize', () => {
-      if (bWin) bWin.minimize();
+    mWin.on('leave-full-screen', () => {
+      console.log('leave-full-screen');
     });
-    // mWin.on('move', () => bWinHandler.resize(browserPanelState));
-    // mWin.on('moved', () => bWinHandler.resize(browserPanelState));
-    mWin.on('new-window-for-tab', () => {});
+    mWin.on('leave-html-full-screen', () => {
+      console.log('leave-html-full-screen');
+    });
+    mWin.on('maximize', () => bWinHandler.resize(browserPanelState));
+    mWin.on('minimize', () => {});
     mWin.on('ready-to-show', () => {
       mWin.webContents.send('ready-to-show');
       if (process.platform === 'win32') {
         mWin.webContents.send('platform', 'windows');
         // Title.setWindowsTitle();
-        mWin.setTitle(
-          `${app.getName()} | Download Anything | Windows Version ${app.getVersion()} | Professional Audio Edition`
-        );
+        mWin.setTitle(`${app.getName()} | Professional Audio Edition`);
       }
       if (process.platform === 'darwin') {
         mWin.webContents.send('platform', 'darwin');
-        mWin.setTitle(
-          `${app.getName()} | Download Anything | MacOS Version ${app.getVersion()} | Professional Audio Edition`
-        );
+        mWin.setTitle(`${app.getName()} | Professional Audio Edition`);
       }
       if (process.platform === 'linux') {
         mWin.webContents.send('platform', 'linux');
-        mWin.setTitle(
-          `${app.getName()} | Download Anything | Linux Version ${app.getVersion()} | Professional Audio Edition`
-        );
+        mWin.setTitle(`${app.getName()} | Professional Audio Edition`);
       }
       if (!mWin) {
         throw new Error('"mWin" is not defined');
@@ -350,238 +317,67 @@ const windowController = {
       }
       mWin.webContents.send('package', packageJSON);
     });
-    mWin.on('resize', () => {
-      // bWinHandler.resize(browserPanelState);
-    });
     mWin.on('resized', (e) => {
-      // bWinHandler.resize(browserPanelState);
-    });
-    mWin.on('responsive', () => {
-      console.log('mWin responsive');
+      bWinHandler.resize(browserPanelState);
     });
     mWin.on('restore', () => {
-      // bWinHandler.resize(browserPanelState);
+      bWinHandler.resize(browserPanelState);
     });
-    mWin.on('session-end', () => {});
-    mWin.on('sheet-begin', () => {});
-    mWin.on('sheet-end', () => {});
     mWin.on('show', () => {
-      // bWinHandler.resize(browserPanelState);
+      bWinHandler.resize(browserPanelState);
     });
-    mWin.on('system-context-menu', () => {
-      console.log('system-context-menu');
-    });
-    mWin.on('unmaximize', () => {});
-    mWin.on('unresponsive', () => {
-      console.log('unresponsive');
-    });
-    mWin.on('will-move', () => {
-      // bWinHandler.resize(browserPanelState);
-    });
-    // mWin.on('will-resize', () => bWinHandler.resize(browserPanelState));
-  },
-  // createbWin: async function () {
-  //   // if (isDebug) {
-  //   // await installExtensions();
-  //   // }
-
-  //   // const RESOURCES_PATH = app.isPackaged
-  //   //   ? path.join(process.resourcesPath, 'assets')
-  //   //   : path.join(__dirname, '../../assets');
-
-  //   // const getAssetPath = (...paths: string[]): string => {
-  //   //   return path.join(RESOURCES_PATH, ...paths);
-  //   // };
-
-  //   bWin = new BrowserWindow({
-  //     height: bWinBounds.height,
-  //     width: bWinBounds.width,
-  //     x: bWinBounds.x,
-  //     y: bWinBounds.y,
-  //     // x: 100,
-  //     // y: 100,
-  //     frame: false,
-  //     transparent: true,
-  //     parent: mWin,
-  //     hasShadow: false,
-  //     isAlwaysOnTop: false,
-  //     resizable: false,
-  //     skipTaskbar: true,
-  //     movable: false,
-  //     show: false,
-  //     // minimizable: false,
-  //     // maximizable: false,
-  //     useContentSize: true,
-  //     devTools: false,
-  //     // icon: getAssetPath('icon.png'),
-  //     webPreferences: {
-  //       // preload: app.isPackaged
-  //       //   ? path.join(__dirname, 'preload.js')
-  //       //   : path.join(__dirname, '../../.erb/dll/preload.js'),
-  //     },
-  //   });
-
-  //   bWin.on('ready-to-show', () => {});
-  //   bWin.webContents.on('did-finish-load', () => {
-  //     console.log('bWin did-finish-load');
-
-  //     mWin.show();
-  //     // mWin.maximize();
-  //     bWin.show();
-  //   });
-  //   bWin.webContents.on('did-navigate-in-page', () => {
-  //     let currentURL = bWin.webContents.getURL();
-  //     mWin.webContents.send('did-navigate-in-page', currentURL);
-  //   });
-  //   bWin.on('always-on-top-changed', () => {});
-  //   bWin.on('blur', () => {
-  //     // windowsVisibilityManager();
-  //   });
-  //   bWin.webContents.on('blur', () => {
-  //     // windowsVisibilityManager();
-  //   });
-  //   bWin.on('close', () => {});
-  //   bWin.on('closed', () => (bWin = null));
-  //   bWin.on('enter-full-screen', () => {});
-  //   bWin.on('focus', () => {
-  //     // windowsVisibilityManager();
-  //   });
-  //   bWin.webContents.on('focus', () => {
-  //     // windowsVisibilityManager();
-  //   });
-  //   bWin.on('hide', () => {});
-  //   bWin.on('maximize', () => {});
-  //   bWin.on('minimize', () => {});
-  //   bWin.on('move', () => {});
-  //   bWin.on('moved', () => {});
-  //   bWin.on('new-window-for-tab', () => {});
-  //   bWin.on('ready-to-show', () => {});
-  //   bWin.on('resize', () => {});
-  //   bWin.on('resized', () => {});
-  //   bWin.on('responsive', () => {});
-  //   bWin.on('restore', () => bWinHandler.resize(browserPanelState));
-  //   bWin.on('session-end', () => {});
-  //   bWin.on('sheet-begin', () => {});
-  //   bWin.on('sheet-end', () => {});
-  //   bWin.on('show', () => {});
-  //   bWin.on('system-context-menu', () => {});
-  //   bWin.on('unmaximize', () => {});
-  //   bWin.on('unresponsive', () => {});
-  //   bWin.on('will-move', () => {});
-  //   bWin.on('will-resize', () => {});
-  // },
-  createSplashWindow: async function () {
-    if (isDebug) {
-      await installExtensions();
-      // installExtensions('YOUR_ID_HERE');
-    }
-
-    const RESOURCES_PATH = app.isPackaged
-      ? path.join(process.resourcesPath, 'assets')
-      : path.join(__dirname, '../../assets');
-
-    const getAssetPath = (...paths: string[]): string => {
-      return path.join(RESOURCES_PATH, ...paths);
-    };
-
-    splashWindow = new BrowserWindow({
-      height: 400,
-      width: 980,
-      // x: 100,
-      // y: 100,
-      frame: false,
-      transparent: true,
-      show: true,
-      // resizable: false,
-      // movable: false,
-      // minimizable: false,
-      // maximizable: false,
-      // icon: getAssetPath('icon.png'),
-      webPreferences: {
-        preload: app.isPackaged
-          ? path.join(__dirname, 'preload.js')
-          : path.join(__dirname, '../../.erb/dll/preload.js'),
-      },
-    });
-
-    splashWindow.loadURL(resolveHtmlPath('splash.html'));
-
-    splashWindow.webContents.setWindowOpenHandler((edata) => {
-      shell.openExternal(edata.url);
-      return { action: 'deny' };
-    });
-
-    // Remove this if your app does not use auto updates
   },
 };
 const bWinHandler = {
-  // resize: async function (browserWidth) {
-  //   // console.log(browserWidth);
+  resize: async function (browserWidth) {
+    // console.log(browserWidth);
+    let defaultWidthDifference = mWin.getContentBounds().width / 2;
+    let collapsedWidthDifference = 72;
+    let expandedWidthDifference = mWin.getContentBounds().width - 72;
+    // COLLAPSED VIEW
+    if (browserWidth === 'collapse') {
+      if (view && mWin)
+        view.setBounds({
+          x: viewBounds.x,
+          y: viewBounds.y,
+          width: collapsedWidthDifference,
+          height: mWin.getContentBounds().height - 192,
+        });
+    }
+    // EXPANDED VIEW
+    if (browserWidth === 'expand') {
+      if (view && mWin)
+        view.setBounds({
+          x: viewBounds.x,
+          y: viewBounds.y,
+          width: expandedWidthDifference,
+          height: mWin.getContentBounds().height - 192,
+        });
+    }
+    // DEFAULT SPLIT VIEW
+    if (browserWidth === 'default' || browserWidth === undefined) {
+      if (view && mWin)
+        view.setBounds({
+          x: viewBounds.x,
+          y: viewBounds.y,
+          width: defaultWidthDifference,
+          height: mWin.getContentBounds().height - 192,
+        });
+    }
 
-  //   if (bWin) {
-  //     if (bWin.webContents.getURL().includes('pinterest')) {
-  //       bWin.webContents.insertCSS('html, body { background-color: #fff; }');
-  //     }
-  //   }
-  //   // mWin.getBounds();
-  //   let defaultWidthDifference = mWinBounds.width / 2 - 8;
-  //   let collapsedWidthDifference = 72;
-  //   let expandedWidthDifference = mWinBounds.width - 88;
-  //   if (bWin) bWin.setResizable(true);
-  //   mWinBounds = mWin.getBounds();
-  //   bWinBounds.height = Math.round(mWinBounds.height - 251);
-  //   if (browserWidth === 'collapse')
-  //     bWinBounds.width = Math.round(collapsedWidthDifference); // collapsed view
-  //   if (browserWidth === 'expand')
-  //     bWinBounds.width = Math.round(expandedWidthDifference); // collapsed view
-  //   if (browserWidth === 'default' || browserWidth === undefined)
-  //     bWinBounds.width = Math.round(defaultWidthDifference); // split view
-  //   // if (browserWidth === undefined)
-  //   //   bWinBounds.width = Math.round(defaultWidthDifference); // split view
-  //   if (bWin) bWin.setSize(bWinBounds.width, bWinBounds.height);
-  //   if (bWin)
-  //     bWin.setPosition(
-  //       mWinBounds.x + 8, // default
-  //       mWinBounds.y + 181 // default
-  //       // mWinBounds.y + 283 // testing
-  //     );
-  //   if (bWin) bWin.setResizable(false);
-  //   setTimeout(() => {
-  //     bWinHandler.setScreenshot();
-  //   }, 100);
-  // },
+    setTimeout(() => {
+      bWinHandler.setScreenshot();
+    }, 1000);
+  },
   setScreenshot: async function () {
-    // console.log('screenshot');
-    // if (bWin)
-    //   if (bWin)
-    //     bWin.webContents
-    //       .capturePage({
-    //         x: 0,
-    //         y: 0,
-    //         width: bWinBounds.width,
-    //         height: bWinBounds.height,
-    //       })
-    //       .then((img) => {
-    //         // mWin.webContents.send('capturePage', [img.toDataURL()]);
-    //       })
-    //       .catch((err) => {
-    //         console.log(err);
-    //       });
-
     if (view)
       if (view)
         view.webContents
           .capturePage({
             x: 0,
             y: 0,
-            // x: viewBounds.x,
-            // y: viewBounds.y,
             width: mWin.getContentBounds().width / 2,
             height: mWin.getContentBounds().height - 192,
-            // width: viewBounds.width,
-            // height: viewBounds.height,
-            // width: 900,
-            // height: 800,
           })
           .then((img) => {
             mWin.webContents.send('capturePage', [img.toDataURL()]);
@@ -606,27 +402,8 @@ app
     mWinBounds.x = display.x;
     mWinBounds.y = display.y;
     mWinBounds.width = display.width;
-    // mWinBounds.height = display.height; // default
-    mWinBounds.height = display.height - 250; // testing
-    // console.log(mWinBounds);
-
-    // const win = new BrowserWindow({
-    //   x: 0,
-    //   y: 0,
-    //   width: 800,
-    //   height: 600,
-    //   frame: false,
-    //   parent: mWin,
-    //   skipTaskbar: true,
-    //   // alwaysOnTop: true,
-    // });
-
-    // const view = new BrowserView();
-    // win.setBrowserView(view);
-    // view.setBounds({ x: 0, y: 0, width: 800, height: 800 });
-
-    // windowController.createSplashWindow();
-    // windowController.createbWin();
+    mWinBounds.height = display.height; // default
+    // mWinBounds.height = display.height - 250; // testing
     windowController.createmWin();
     view = new BrowserView();
     mWin.setBrowserView(view);
@@ -635,16 +412,14 @@ app
       y: viewBounds.y,
       width: mWin.getContentBounds().width / 2,
       height: mWin.getContentBounds().height - 192,
-      // height: viewBounds.height,
     });
-    // console.log(viewBounds);
 
     view.setAutoResize({ width: true, height: true });
     view.setBackgroundColor('#1a1a1a');
-    // view.on('ready-to-show', () => {
-    //   mWin.webContents.send('view ready-to-show', true);
-    // }),
     view.webContents.loadURL('https://youtube.com');
+    view.webContents.loadURL(
+      'https://www.youtube.com/channel/UCpCtwRCG1hHcijgy82wt8Ng'
+    );
     app.on('activate', () => {
       if (mWin === null) windowController.createmWin();
     });
