@@ -18,15 +18,7 @@ let appVersion: string = '1.0.0';
 const Nav = (props) => {
   const themeCtx = useContext(ThemeContext);
   const navCtx = useContext(NavContext);
-  console.log(navCtx);
-  navCtx.disableAllStates();
 
-  window.electron.ipcRenderer.sendMessage('package', [
-    'Nav requesting package.json',
-  ]);
-  const [audioMode, setAudioMode] = useState(true);
-  const [videoMode, setVideoMode] = useState(false);
-  const [warpstagramMode, setWarpstagramMode] = useState(false);
   const [isWindows, setIsWindows] = useState(false);
   const [isApple, setIsApple] = useState(false);
   const [isLinux, setIsLinux] = useState(false);
@@ -36,48 +28,14 @@ const Nav = (props) => {
     if (arg === 'darwin') setIsApple(true);
     if (arg === 'linux') setIsLinux(true);
   });
-  const AudioBtnHandler = () => {
-    setAudioMode(true);
-    setVideoMode(false);
-    setWarpstagramMode(false);
-    window.electron.ipcRenderer.sendMessage('nav: mode: audio', [
-      `Nav change: Audio Mode`,
-    ]);
-  };
-  const VideoBtnHandler = () => {
-    setVideoMode(true);
-    setAudioMode(false);
-    setWarpstagramMode(false);
-    window.electron.ipcRenderer.sendMessage('nav: mode: video', [
-      `Nav change: Video Mode`,
-    ]);
-  };
-  const WarpstagramBtnHandler = () => {
-    setWarpstagramMode(true);
-    setAudioMode(false);
-    setVideoMode(false);
-    window.electron.ipcRenderer.sendMessage('nav: mode: warpstagram', [
-      `Nav change: Warpstagram Mode`,
-    ]);
-  };
+
+  window.electron.ipcRenderer.sendMessage('package', [
+    'Nav requesting package.json',
+  ]);
   window.electron.ipcRenderer.on('package', (arg: string) => {
     appVersion = arg;
   });
-  window.electron.ipcRenderer.on('nav: mode: audio', (arg) => {
-    setAudioMode(true);
-    setVideoMode(false);
-    setWarpstagramMode(false);
-  });
-  window.electron.ipcRenderer.on('nav: mode: video', (arg) => {
-    setAudioMode(false);
-    setVideoMode(true);
-    setWarpstagramMode(false);
-  });
-  window.electron.ipcRenderer.on('nav: mode: warpstagram', (arg) => {
-    setAudioMode(false);
-    setVideoMode(false);
-    setWarpstagramMode(true);
-  });
+
   const mouseEnterHandler = () => {};
   const mouseLeaveHandler = () => {};
   return (
@@ -124,35 +82,41 @@ const Nav = (props) => {
         </div>
         <div className="buttonContainer">
           <div
-            onClick={AudioBtnHandler}
+            onClick={navCtx.audioModeHandler}
             id="navMainBtnAudio"
-            className={audioMode ? 'navMainBtnActive' : 'navMainBtn'}
+            className={navCtx.audioMode ? 'navMainBtnActive' : 'navMainBtn'}
           >
             <img
-              className={audioMode ? 'navMainBtn__icon' : 'navMainBtn__icon'}
+              className={
+                navCtx.audioMode ? 'navMainBtn__icon' : 'navMainBtn__icon'
+              }
               src={iconAudio}
             />
             <p>Audio</p>
           </div>
           <div
-            onClick={VideoBtnHandler}
+            onClick={navCtx.videoModeHandler}
             id="navMainBtnVideo"
-            className={videoMode ? 'navMainBtnActive' : 'navMainBtn'}
+            className={navCtx.videoMode ? 'navMainBtnActive' : 'navMainBtn'}
           >
             <img
-              className={videoMode ? 'navMainBtn__icon' : 'navMainBtn__icon'}
+              className={
+                navCtx.videoMode ? 'navMainBtn__icon' : 'navMainBtn__icon'
+              }
               src={iconVideo}
             />
             <p>Video</p>
           </div>
           <div
-            onClick={WarpstagramBtnHandler}
+            onClick={navCtx.warpstagramModeHandler}
             id="navMainBtnWarpstagram"
-            className={warpstagramMode ? 'navMainBtnActive' : 'navMainBtn'}
+            className={
+              navCtx.warpstagramMode ? 'navMainBtnActive' : 'navMainBtn'
+            }
           >
             <img
               className={
-                warpstagramMode ? 'navMainBtn__icon' : 'navMainBtn__icon'
+                navCtx.warpstagramMode ? 'navMainBtn__icon' : 'navMainBtn__icon'
               }
               src={iconWarpstagram}
             />

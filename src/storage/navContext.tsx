@@ -3,9 +3,6 @@ const NavContext = React.createContext({
   audioMode: true,
   videoMode: false,
   warpstagramMode: false,
-  //   setAudioMode: false,
-  //   setVideoMode: false,
-  //   setWarpstagramMode: false,
   audioModeHandler: () => {},
   videoModeHandler: () => {},
   warpstagramModeHandler: () => {},
@@ -16,6 +13,11 @@ export const NavContextProvider = (props) => {
   const [videoMode, setVideoMode] = useState(false);
   const [warpstagramMode, setWarpstagramMode] = useState(false);
 
+  const disableAllStates = () => {
+    setAudioMode(false);
+    setVideoMode(false);
+    setWarpstagramMode(false);
+  };
   const audioModeHandler = () => {
     disableAllStates();
     setAudioMode(true);
@@ -28,11 +30,16 @@ export const NavContextProvider = (props) => {
     disableAllStates();
     setWarpstagramMode(true);
   };
-  const disableAllStates = () => {
-    setAudioMode(false);
-    setVideoMode(false);
-    setWarpstagramMode(false);
-  };
+  //     window.electron.ipcRenderer.sendMessage('nav: mode: audio', [
+  //       `Nav change: Audio Mode`,
+  //     ]);
+  //     window.electron.ipcRenderer.sendMessage('nav: mode: video', []);
+  //     window.electron.ipcRenderer.sendMessage('nav: mode: warpstagram', [
+  //       `Nav change: Warpstagram Mode`,
+  //     ]);
+  //   window.electron.ipcRenderer.on('nav: mode: audio', (arg) => {});
+  //   window.electron.ipcRenderer.on('nav: mode: video', (arg) => {});
+  //   window.electron.ipcRenderer.on('nav: mode: warpstagram', (arg) => {});
   return (
     <NavContext.Provider
       value={{
