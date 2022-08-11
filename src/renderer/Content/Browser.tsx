@@ -29,14 +29,6 @@ const Browser = () => {
     document.getElementById('contentPanel__browser__screenshot').src = arg[0];
   });
 
-  // const mouseEnterHandler = () => {
-  //   // console.log('mouse enter');
-  //   window.electron.ipcRenderer.sendMessage('browserHovered');
-  // };
-  // const mouseLeaveHandler = () => {
-  //   window.electron.ipcRenderer.sendMessage('browserNotHovered');
-  //   // console.log('mouse leave');
-  // };
   return (
     <Fragment>
       <div

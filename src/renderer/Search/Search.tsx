@@ -23,21 +23,13 @@ const Search = (props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const hideModalHandler = () => {
     setIsModalOpen(false);
-    window.electron.ipcRenderer.sendMessage('showbWin');
+    window.electron.ipcRenderer.sendMessage('showbWin', 'from search');
   };
   const showModalHandler = () => {
-    window.electron.ipcRenderer.sendMessage('hidebWin');
+    window.electron.ipcRenderer.sendMessage('hidebWin', 'from search');
 
     setIsModalOpen(true);
   };
-  // const countWarpstagramDownloads = () => {
-  //   setTimeout(() => {
-  //     let warpstagramItems = document.querySelectorAll(
-  //       '.content__panel__warpstagram__account'
-  //     );
-  //     setWarpstagramDownloadsTotal(warpstagramItems.length);
-  //   }, 50);
-  // };
   const restoreInputDefaultWidthDelay = 3000;
   const audioPlaceholder = 'audio search...beep boop  ';
   const videoPlaceholder = 'video search...beep boop  ';
@@ -177,10 +169,10 @@ const Search = (props) => {
   });
   const mouseEnterHandler = () => {
     // console.log('mouse enter');
-    window.electron.ipcRenderer.sendMessage('prepareTobWin');
+    window.electron.ipcRenderer.sendMessage('screenshot', 'from search');
   };
   const mouseLeaveHandler = () => {
-    window.electron.ipcRenderer.sendMessage('showbWin');
+    // window.electron.ipcRenderer.sendMessage('showbWin');
     // console.log('mouse leave');
   };
   return (

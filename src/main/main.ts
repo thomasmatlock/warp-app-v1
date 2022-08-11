@@ -72,105 +72,23 @@ class AppUpdater {
     autoUpdater.checkForUpdatesAndNotify();
   }
 }
-const windowsVisibilityManager = () => {
-  console.log('/////////////////////////////////////////////////////////////');
-
-  // browserWindow
-  if (bWin && bWin.isFocused() === true) {
-    // console.log('bWin focused');
-  } else {
-    // console.log('bWin not focused');
-  }
-  if (bWin && bWin.isVisible() === true) {
-    // console.log('bWin visible');
-  } else {
-    // console.log('bWin not visible');
-  }
-  if (bWin && bWin.isMaximized() === true) {
-    // console.log('bWin maximized');
-  } else {
-    // console.log('bWin not maximized');
-  }
-  if (bWin && bWin.isMinimized() === true) {
-    // console.log('bWin minimized');
-  } else {
-    // console.log('bWin not minimized');
-  }
-  if (bWin && bWin.isAlwaysOnTop() === true) {
-    // console.log('bWin always on top');
-  } else {
-    // console.log('bWin not always on top');
-  }
-  if (bWin && bWin.isVisibleOnAllWorkspaces() === true) {
-    // console.log('bWin visible on all workspaces');
-  } else {
-    // console.log('bWin not visible on all workspaces');
-  }
-  if (bWin && bWin.isResizable() === true) {
-    // console.log('bWin resizable');
-  } else {
-    // console.log('bWin not resizable');
-  }
-
-  // mWin
-  if (mWin.isFocused() === true) {
-    console.log('mWin focused');
-  } else {
-    console.log('mWin not focused');
-  }
-  if (mWin.isVisible() === true) {
-    console.log('mWin visible');
-  } else {
-    console.log('mWin not visible');
-  }
-  if (mWin.isMaximized() === true) {
-    // console.log('mWin maximized');
-  } else {
-    // console.log('mWin not maximized');
-  }
-  if (mWin.isMinimized() === true) {
-    // console.log('mWin minimized');
-  } else {
-    // console.log('mWin not minimized');
-  }
-  if (mWin.isAlwaysOnTop() === true) {
-    console.log('mWin always on top');
-  } else {
-    console.log('mWin not always on top');
-  }
-  if (mWin.isVisibleOnAllWorkspaces() === true) {
-    console.log('bWin visible on all workspaces');
-  } else {
-    console.log('mWin not visible on all workspaces');
-  }
-  if (mWin.isResizable() === true) {
-    // console.log('mWin resizable');
-  } else {
-    // console.log('mWin not resizable');
-  }
-  let focusedWindow = BrowserWindow.getFocusedWindow();
-  console.log(BrowserWindow.getFocusedWindow());
-  if (focusedWindow !== null) {
-    console.log('focusedWindow is null');
-    // bWin.moveTop();
-    // bWin.restore();
-    // mWin.getBounds
-  } else {
-    // bWin.minimize();
-    console.log('focusedWindow is not null');
-  }
-  // mWin.webContents.on('')
-};
 let mWin: BrowserWindow | null = null;
 let splashWindow: BrowserWindow | null = null;
 let view: BrowserView | null = null;
 let bWin: BrowserWindow | null = null;
 let mWinBounds = { x: 0, y: 0, width: 1600, height: 900 };
-let bWinBounds = {
-  x: mWinBounds.x + 8,
-  y: mWinBounds.y + 183,
-  width: mWinBounds.width / 2 - 250,
-  height: mWinBounds.height - 250, // default
+// let bWinBounds = {
+//   x: mWinBounds.x + 8,
+//   y: mWinBounds.y + 183,
+//   width: mWinBounds.width / 2 - 250,
+//   height: mWinBounds.height - 250, // default
+// };
+let viewBounds = {
+  x: 0,
+  y: 130,
+  // width: mWinBounds.width / 2 - 75,
+  width: mWinBounds.width / 2 + 150,
+  height: mWinBounds.height - 350, // default
 };
 let browserPanelState = 'default';
 (function appListeners() {
@@ -210,16 +128,22 @@ let browserPanelState = 'default';
   });
   // BROWSERBAR DOWNLOAD SOURCE LISTENERS
   ipcMain.on('loadActiveSource', async (event, arg) => {
-    if (bWin) bWin.loadURL(arg);
-    if (bWin.webContents.getURL().includes('pinterest')) {
-      bWin.webContents.insertCSS('html, body, { background-color: #fff;  }');
-    }
+    console.log('loadActiveSource', arg);
+
+    // if (bWin) bWin.loadURL(arg);
+    // if (view) view.webContents.loadURL(arg);
+    // if (bWin.webContents.getURL().includes('pinterest')) {
+    //   bWin.webContents.insertCSS('html, body, { background-color: #fff;  }');
+    // }
   });
   ipcMain.on('source: change', async (event, arg) => {
-    if (bWin) bWin.loadURL(arg);
-    if (bWin.webContents.getURL().includes('pinterest')) {
-      bWin.webContents.insertCSS('html, body, { background-color: #fff;  }');
-    }
+    console.log('source: change', arg);
+
+    // if (bWin) bWin.loadURL(arg);
+    if (view) view.webContents.loadURL(arg);
+    // if (bWin.webContents.getURL().includes('pinterest')) {
+    //   bWin.webContents.insertCSS('html, body, { background-color: #fff;  }');
+    // }
   });
   // BROWSERBAR DOWNLOAD BUTTON LISTENERS
   ipcMain.on('BrowserBar: button: downloadAudio', async (event, arg) => {
@@ -231,7 +155,7 @@ let browserPanelState = 'default';
   ipcMain.on('browserPanelSize', async (event, arg) => {
     // console.log('browserPanelSize', arg);
     browserPanelState = arg;
-    bWinHandler.resize(arg);
+    // bWinHandler.resize(arg);
     setTimeout(() => {
       // bWinHandler.setScreenshot();
       if (arg != 'collapse' && bWin) bWin.focus();
@@ -284,52 +208,46 @@ ipcMain.on('settings: request', async (event, arg) => {
   event.reply('settings-broadcast', settings); // sends message to renderer
 });
 (function bWinListeners() {
-  ipcMain.on('bWinDimensions', async (event, arg) => {
-    if (bWin) bWin.setResizable(true);
-    bWinBounds.width = Math.round(arg.width);
-    bWinBounds.height = Math.round(arg.height);
-    if (bWin) bWin.setSize(bWinBounds.width, bWinBounds.height);
-    if (bWin) bWin.setResizable(false);
-    // bWinHandler.setScreenshot();
-  });
-  ipcMain.on('browserHovered', async (event, arg) => {
-    if (bWin) bWin.focus();
-  });
-  ipcMain.on('browserNotHovered', async (event, arg) => {
-    if (bWin) bWin.blur();
-  });
-  ipcMain.on('prepareToHidebWin', async (event, arg) => {
+  // ipcMain.on('bWinDimensions', async (event, arg) => {
+  //   if (bWin) bWin.setResizable(true);
+  //   bWinBounds.width = Math.round(arg.width);
+  //   bWinBounds.height = Math.round(arg.height);
+  //   if (bWin) bWin.setSize(bWinBounds.width, bWinBounds.height);
+  //   if (bWin) bWin.setResizable(false);
+  //   // bWinHandler.setScreenshot();
+  // });
+  ipcMain.on('screenshot', async (event, arg) => {
+    console.log('//////////////////////////////////////////////');
+    console.log('screenshot', arg);
+    console.log('mWinContentBounds', mWin.getContentBounds());
+
     bWinHandler.setScreenshot();
-    // mWin.webContents.send('request-browserDimensions');
   });
   ipcMain.on('hidebWin', async (event, arg) => {
-    console.log('hidebWin');
+    console.log('hidebWin', arg);
+    // console.log(view.getBounds());
+    // viewBounds = view.getBounds();
+    // console.log(view.getBounds());
 
-    // let opacity = bWin.getOpacity();
-    // console.log('hidebWin', opacity);
-    // bWin.setOpacity(0);
-    // view.setOpacity(0);
-    // view.setOpacity(0);
-    // view.hide();
+    console.log('viewBounds', viewBounds);
     view.setBounds({ x: 0, y: 0, width: 0, height: 0 });
-    // if (view) view.setAlwaysOnTop(false);
-    if (bWin) bWin.setAlwaysOnTop(false);
-    // togglebWinOnTop();
-    // togglebWinOnTop();
-    mWin.setAlwaysOnTop(true);
-    mWin.focus();
   });
   ipcMain.on('showbWin', async (event, arg) => {
-    // bWin.setOpacity(1);
-    // view.show();
-    // view.setBounds({ x: 0, y: 0, width: 800, height: 0 });
-    view.setBounds({ x: 0, y: 132, width: 800, height: 550 });
-    // view.setOpacity(1);
-    // if (view) view.setAlwaysOnTop(true);
-    if (bWin) bWin.setAlwaysOnTop(true);
-    // togglebWinOnTop();
-    mWin.setAlwaysOnTop(false);
-    if (bWin) bWin.focus();
+    console.log('showbWin', arg);
+    console.log('viewBounds', viewBounds);
+    view.setBounds({
+      x: viewBounds.x,
+      y: viewBounds.y,
+      width: mWin.getContentBounds().width / 2,
+      height: mWin.getContentBounds().height - 192,
+      // height: viewBounds.height,
+    });
+    // view.setBounds({
+    //   x: viewBounds.x,
+    //   y: viewBounds.x,
+    //   width: viewBounds.width,
+    //   height: viewBounds.height,
+    // });
   });
 })();
 
@@ -381,10 +299,10 @@ const windowController = {
       // console.log('mWin dom-ready');
     });
     wc.on('blur', (event, url) => {
-      windowsVisibilityManager();
+      // windowsVisibilityManager();
     });
     wc.on('focus', (event, url) => {
-      windowsVisibilityManager();
+      // windowsVisibilityManager();
     });
 
     const menuBuilder = new MenuBuilder(mWin);
@@ -395,25 +313,25 @@ const windowController = {
       // console.log('mWin app-command');
     });
     mWin.on('blur', () => {
-      windowsVisibilityManager();
+      // windowsVisibilityManager();
     });
     mWin.on('close', () => {});
     mWin.on('closed', () => (mWin = null));
     mWin.on('enter-full-screen', () => {});
     mWin.on('enter-html-full-screen', () => {});
     mWin.on('focus', () => {
-      windowsVisibilityManager();
-      bWinHandler.resize(browserPanelState);
+      // windowsVisibilityManager();
+      // bWinHandler.resize(browserPanelState);
     });
     mWin.on('hide', () => {});
     mWin.on('leave-full-screen', () => {});
     mWin.on('leave-html-full-screen', () => {});
-    mWin.on('maximize', () => bWinHandler.resize(browserPanelState));
+    // mWin.on('maximize', () => bWinHandler.resize(browserPanelState));
     mWin.on('minimize', () => {
       if (bWin) bWin.minimize();
     });
-    mWin.on('move', () => bWinHandler.resize(browserPanelState));
-    mWin.on('moved', () => bWinHandler.resize(browserPanelState));
+    // mWin.on('move', () => bWinHandler.resize(browserPanelState));
+    // mWin.on('moved', () => bWinHandler.resize(browserPanelState));
     mWin.on('new-window-for-tab', () => {});
     mWin.on('ready-to-show', () => {
       mWin.webContents.send('ready-to-show');
@@ -447,22 +365,22 @@ const windowController = {
       mWin.webContents.send('package', packageJSON);
     });
     mWin.on('resize', () => {
-      bWinHandler.resize(browserPanelState);
+      // bWinHandler.resize(browserPanelState);
     });
     mWin.on('resized', (e) => {
-      bWinHandler.resize(browserPanelState);
+      // bWinHandler.resize(browserPanelState);
     });
     mWin.on('responsive', () => {
       console.log('mWin responsive');
     });
     mWin.on('restore', () => {
-      bWinHandler.resize(browserPanelState);
+      // bWinHandler.resize(browserPanelState);
     });
     mWin.on('session-end', () => {});
     mWin.on('sheet-begin', () => {});
     mWin.on('sheet-end', () => {});
     mWin.on('show', () => {
-      bWinHandler.resize(browserPanelState);
+      // bWinHandler.resize(browserPanelState);
     });
     mWin.on('system-context-menu', () => {
       console.log('system-context-menu');
@@ -472,100 +390,100 @@ const windowController = {
       console.log('unresponsive');
     });
     mWin.on('will-move', () => {
-      bWinHandler.resize(browserPanelState);
+      // bWinHandler.resize(browserPanelState);
     });
-    mWin.on('will-resize', () => bWinHandler.resize(browserPanelState));
+    // mWin.on('will-resize', () => bWinHandler.resize(browserPanelState));
   },
-  createbWin: async function () {
-    // if (isDebug) {
-    // await installExtensions();
-    // }
+  // createbWin: async function () {
+  //   // if (isDebug) {
+  //   // await installExtensions();
+  //   // }
 
-    // const RESOURCES_PATH = app.isPackaged
-    //   ? path.join(process.resourcesPath, 'assets')
-    //   : path.join(__dirname, '../../assets');
+  //   // const RESOURCES_PATH = app.isPackaged
+  //   //   ? path.join(process.resourcesPath, 'assets')
+  //   //   : path.join(__dirname, '../../assets');
 
-    // const getAssetPath = (...paths: string[]): string => {
-    //   return path.join(RESOURCES_PATH, ...paths);
-    // };
+  //   // const getAssetPath = (...paths: string[]): string => {
+  //   //   return path.join(RESOURCES_PATH, ...paths);
+  //   // };
 
-    bWin = new BrowserWindow({
-      height: bWinBounds.height,
-      width: bWinBounds.width,
-      x: bWinBounds.x,
-      y: bWinBounds.y,
-      // x: 100,
-      // y: 100,
-      frame: false,
-      transparent: true,
-      parent: mWin,
-      hasShadow: false,
-      isAlwaysOnTop: false,
-      resizable: false,
-      skipTaskbar: true,
-      movable: false,
-      show: false,
-      // minimizable: false,
-      // maximizable: false,
-      useContentSize: true,
-      devTools: false,
-      // icon: getAssetPath('icon.png'),
-      webPreferences: {
-        // preload: app.isPackaged
-        //   ? path.join(__dirname, 'preload.js')
-        //   : path.join(__dirname, '../../.erb/dll/preload.js'),
-      },
-    });
+  //   bWin = new BrowserWindow({
+  //     height: bWinBounds.height,
+  //     width: bWinBounds.width,
+  //     x: bWinBounds.x,
+  //     y: bWinBounds.y,
+  //     // x: 100,
+  //     // y: 100,
+  //     frame: false,
+  //     transparent: true,
+  //     parent: mWin,
+  //     hasShadow: false,
+  //     isAlwaysOnTop: false,
+  //     resizable: false,
+  //     skipTaskbar: true,
+  //     movable: false,
+  //     show: false,
+  //     // minimizable: false,
+  //     // maximizable: false,
+  //     useContentSize: true,
+  //     devTools: false,
+  //     // icon: getAssetPath('icon.png'),
+  //     webPreferences: {
+  //       // preload: app.isPackaged
+  //       //   ? path.join(__dirname, 'preload.js')
+  //       //   : path.join(__dirname, '../../.erb/dll/preload.js'),
+  //     },
+  //   });
 
-    bWin.on('ready-to-show', () => {});
-    bWin.webContents.on('did-finish-load', () => {
-      console.log('bWin did-finish-load');
+  //   bWin.on('ready-to-show', () => {});
+  //   bWin.webContents.on('did-finish-load', () => {
+  //     console.log('bWin did-finish-load');
 
-      mWin.show();
-      // mWin.maximize();
-      bWin.show();
-    });
-    bWin.webContents.on('did-navigate-in-page', () => {
-      let currentURL = bWin.webContents.getURL();
-      mWin.webContents.send('did-navigate-in-page', currentURL);
-    });
-    bWin.on('always-on-top-changed', () => {});
-    bWin.on('blur', () => {
-      windowsVisibilityManager();
-    });
-    bWin.webContents.on('blur', () => {
-      windowsVisibilityManager();
-    });
-    bWin.on('close', () => {});
-    bWin.on('closed', () => (bWin = null));
-    bWin.on('enter-full-screen', () => {});
-    bWin.on('focus', () => {
-      windowsVisibilityManager();
-    });
-    bWin.webContents.on('focus', () => {
-      windowsVisibilityManager();
-    });
-    bWin.on('hide', () => {});
-    bWin.on('maximize', () => {});
-    bWin.on('minimize', () => {});
-    bWin.on('move', () => {});
-    bWin.on('moved', () => {});
-    bWin.on('new-window-for-tab', () => {});
-    bWin.on('ready-to-show', () => {});
-    bWin.on('resize', () => {});
-    bWin.on('resized', () => {});
-    bWin.on('responsive', () => {});
-    bWin.on('restore', () => bWinHandler.resize(browserPanelState));
-    bWin.on('session-end', () => {});
-    bWin.on('sheet-begin', () => {});
-    bWin.on('sheet-end', () => {});
-    bWin.on('show', () => {});
-    bWin.on('system-context-menu', () => {});
-    bWin.on('unmaximize', () => {});
-    bWin.on('unresponsive', () => {});
-    bWin.on('will-move', () => {});
-    bWin.on('will-resize', () => {});
-  },
+  //     mWin.show();
+  //     // mWin.maximize();
+  //     bWin.show();
+  //   });
+  //   bWin.webContents.on('did-navigate-in-page', () => {
+  //     let currentURL = bWin.webContents.getURL();
+  //     mWin.webContents.send('did-navigate-in-page', currentURL);
+  //   });
+  //   bWin.on('always-on-top-changed', () => {});
+  //   bWin.on('blur', () => {
+  //     // windowsVisibilityManager();
+  //   });
+  //   bWin.webContents.on('blur', () => {
+  //     // windowsVisibilityManager();
+  //   });
+  //   bWin.on('close', () => {});
+  //   bWin.on('closed', () => (bWin = null));
+  //   bWin.on('enter-full-screen', () => {});
+  //   bWin.on('focus', () => {
+  //     // windowsVisibilityManager();
+  //   });
+  //   bWin.webContents.on('focus', () => {
+  //     // windowsVisibilityManager();
+  //   });
+  //   bWin.on('hide', () => {});
+  //   bWin.on('maximize', () => {});
+  //   bWin.on('minimize', () => {});
+  //   bWin.on('move', () => {});
+  //   bWin.on('moved', () => {});
+  //   bWin.on('new-window-for-tab', () => {});
+  //   bWin.on('ready-to-show', () => {});
+  //   bWin.on('resize', () => {});
+  //   bWin.on('resized', () => {});
+  //   bWin.on('responsive', () => {});
+  //   bWin.on('restore', () => bWinHandler.resize(browserPanelState));
+  //   bWin.on('session-end', () => {});
+  //   bWin.on('sheet-begin', () => {});
+  //   bWin.on('sheet-end', () => {});
+  //   bWin.on('show', () => {});
+  //   bWin.on('system-context-menu', () => {});
+  //   bWin.on('unmaximize', () => {});
+  //   bWin.on('unresponsive', () => {});
+  //   bWin.on('will-move', () => {});
+  //   bWin.on('will-resize', () => {});
+  // },
   createSplashWindow: async function () {
     if (isDebug) {
       await installExtensions();
@@ -611,50 +529,73 @@ const windowController = {
   },
 };
 const bWinHandler = {
-  resize: async function (browserWidth) {
-    // console.log(browserWidth);
+  // resize: async function (browserWidth) {
+  //   // console.log(browserWidth);
 
-    if (bWin) {
-      if (bWin.webContents.getURL().includes('pinterest')) {
-        bWin.webContents.insertCSS('html, body { background-color: #fff; }');
-      }
-    }
-    // mWin.getBounds();
-    let defaultWidthDifference = mWinBounds.width / 2 - 8;
-    let collapsedWidthDifference = 72;
-    let expandedWidthDifference = mWinBounds.width - 88;
-    if (bWin) bWin.setResizable(true);
-    mWinBounds = mWin.getBounds();
-    bWinBounds.height = Math.round(mWinBounds.height - 251);
-    if (browserWidth === 'collapse')
-      bWinBounds.width = Math.round(collapsedWidthDifference); // collapsed view
-    if (browserWidth === 'expand')
-      bWinBounds.width = Math.round(expandedWidthDifference); // collapsed view
-    if (browserWidth === 'default' || browserWidth === undefined)
-      bWinBounds.width = Math.round(defaultWidthDifference); // split view
-    // if (browserWidth === undefined)
-    //   bWinBounds.width = Math.round(defaultWidthDifference); // split view
-    if (bWin) bWin.setSize(bWinBounds.width, bWinBounds.height);
-    if (bWin)
-      bWin.setPosition(
-        mWinBounds.x + 8, // default
-        mWinBounds.y + 181 // default
-        // mWinBounds.y + 283 // testing
-      );
-    if (bWin) bWin.setResizable(false);
-    setTimeout(() => {
-      bWinHandler.setScreenshot();
-    }, 100);
-  },
+  //   if (bWin) {
+  //     if (bWin.webContents.getURL().includes('pinterest')) {
+  //       bWin.webContents.insertCSS('html, body { background-color: #fff; }');
+  //     }
+  //   }
+  //   // mWin.getBounds();
+  //   let defaultWidthDifference = mWinBounds.width / 2 - 8;
+  //   let collapsedWidthDifference = 72;
+  //   let expandedWidthDifference = mWinBounds.width - 88;
+  //   if (bWin) bWin.setResizable(true);
+  //   mWinBounds = mWin.getBounds();
+  //   bWinBounds.height = Math.round(mWinBounds.height - 251);
+  //   if (browserWidth === 'collapse')
+  //     bWinBounds.width = Math.round(collapsedWidthDifference); // collapsed view
+  //   if (browserWidth === 'expand')
+  //     bWinBounds.width = Math.round(expandedWidthDifference); // collapsed view
+  //   if (browserWidth === 'default' || browserWidth === undefined)
+  //     bWinBounds.width = Math.round(defaultWidthDifference); // split view
+  //   // if (browserWidth === undefined)
+  //   //   bWinBounds.width = Math.round(defaultWidthDifference); // split view
+  //   if (bWin) bWin.setSize(bWinBounds.width, bWinBounds.height);
+  //   if (bWin)
+  //     bWin.setPosition(
+  //       mWinBounds.x + 8, // default
+  //       mWinBounds.y + 181 // default
+  //       // mWinBounds.y + 283 // testing
+  //     );
+  //   if (bWin) bWin.setResizable(false);
+  //   setTimeout(() => {
+  //     bWinHandler.setScreenshot();
+  //   }, 100);
+  // },
   setScreenshot: async function () {
-    if (bWin)
-      if (bWin)
-        bWin.webContents
+    // console.log('screenshot');
+    // if (bWin)
+    //   if (bWin)
+    //     bWin.webContents
+    //       .capturePage({
+    //         x: 0,
+    //         y: 0,
+    //         width: bWinBounds.width,
+    //         height: bWinBounds.height,
+    //       })
+    //       .then((img) => {
+    //         // mWin.webContents.send('capturePage', [img.toDataURL()]);
+    //       })
+    //       .catch((err) => {
+    //         console.log(err);
+    //       });
+
+    if (view)
+      if (view)
+        view.webContents
           .capturePage({
             x: 0,
             y: 0,
-            width: bWinBounds.width,
-            height: bWinBounds.height,
+            // x: viewBounds.x,
+            // y: viewBounds.y,
+            width: mWin.getContentBounds().width / 2,
+            height: mWin.getContentBounds().height - 192,
+            // width: viewBounds.width,
+            // height: viewBounds.height,
+            // width: 900,
+            // height: 800,
           })
           .then((img) => {
             mWin.webContents.send('capturePage', [img.toDataURL()]);
@@ -699,13 +640,25 @@ app
     // view.setBounds({ x: 0, y: 0, width: 800, height: 800 });
 
     // windowController.createSplashWindow();
-    windowController.createbWin();
+    // windowController.createbWin();
     windowController.createmWin();
     view = new BrowserView();
     mWin.setBrowserView(view);
-    view.setBounds({ x: 0, y: 132, width: 800, height: 550 });
+    view.setBounds({
+      x: viewBounds.x,
+      y: viewBounds.y,
+      width: mWin.getContentBounds().width / 2,
+      height: mWin.getContentBounds().height - 192,
+      // height: viewBounds.height,
+    });
+    console.log(viewBounds);
+
     view.setAutoResize({ width: true, height: true });
-    view.webContents.loadURL('https://electronjs.org');
+    view.setBackgroundColor('#1a1a1a');
+    // view.on('ready-to-show', () => {
+    //   mWin.webContents.send('view ready-to-show', true);
+    // }),
+    view.webContents.loadURL('https://youtube.com');
     app.on('activate', () => {
       if (mWin === null) windowController.createmWin();
     });

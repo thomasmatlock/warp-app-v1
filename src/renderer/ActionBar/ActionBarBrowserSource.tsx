@@ -25,6 +25,7 @@ const BrowserBarDownloadSource = () => {
   const sourcesCtx = useContext(SourcesContext);
   let sourcesCount = sourcesCtx.enabledSources.length;
   window.electron.ipcRenderer.on('ready-to-show', (arg) => {
+    // window.electron.ipcRenderer.on('view ready-to-show', (arg) => {
     window.electron.ipcRenderer.sendMessage(
       'loadActiveSource',
       sourcesCtx.activeSource[0].URL
@@ -43,17 +44,18 @@ const BrowserBarDownloadSource = () => {
     }
   };
   const mouseEnterHandler = () => {
-    window.electron.ipcRenderer.sendMessage('hidebWin');
+    window.electron.ipcRenderer.sendMessage('hidebWin', 'from browserSource');
     setIsSourcesExpanded(true);
   };
   const mouseLeaveHandler = () => {
+    window.electron.ipcRenderer.sendMessage('showbWin', 'from browserSource');
     setIsSourcesExpanded(false);
-    window.electron.ipcRenderer.sendMessage('showbWin');
   };
   // console.log(isSourcesExpanded);
   const sourceItems = (
     <ul
-      onMouseLeave={mouseLeaveHandler}
+      onMouseEnter={mouseEnterHandler}
+      // onMouseLeave={mouseLeaveHandler}
       className={
         !isSourcesExpanded
           ? 'browserBarDownloadSource__list'
@@ -86,7 +88,7 @@ const BrowserBarDownloadSource = () => {
   return (
     <Fragment>
       <div
-        onMouseEnter={mouseEnterHandler}
+        // onMouseEnter={mouseEnterHandler}
         onMouseLeave={mouseLeaveHandler}
         onClick={sourceSelectedHandler}
         className={

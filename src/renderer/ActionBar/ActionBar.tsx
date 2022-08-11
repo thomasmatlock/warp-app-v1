@@ -67,21 +67,16 @@ const ActionBar = (props) => {
     countWarpstagramDownloads();
   });
   const mouseEnterHandler = () => {
-    // console.log('mouse enter');
-    // window.electron.ipcRenderer.sendMessage('browserNotHovered');
-    window.electron.ipcRenderer.sendMessage('prepareTobWin');
-    // window.electron.ipcRenderer.sendMessage('hidebWin');
+    // window.electron.ipcRenderer.sendMessage('screenshot', 'from actionBar');
   };
   const mouseLeaveHandler = () => {
-    // console.log('mouse leave');
-    window.electron.ipcRenderer.sendMessage('showbWin');
+    window.electron.ipcRenderer.sendMessage('showbWin', 'from actionBar');
   };
-  // window.electron.ipcRenderer.sendMessage('package', ['Nav requesting package.json']); // send message to main process
   return (
     <Fragment>
       <div
         onMouseEnter={mouseEnterHandler}
-        onMouseLeave={mouseLeaveHandler}
+        // onMouseLeave={mouseLeaveHandler}
         className="actionBar"
         style={
           themeCtx.isDarkTheme
