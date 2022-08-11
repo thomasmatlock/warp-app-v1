@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-import sketch from './sketch.min.js';
+import Sketch from './sketch.min.js';
 // const Canvas = (props) => {
 //   const canvasRef = useRef(null);
 //   const canvas = canvasRef.current;
