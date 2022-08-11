@@ -149,10 +149,9 @@ const windowsVisibilityManager = () => {
     // console.log('mWin not resizable');
   }
   let focusedWindow = BrowserWindow.getFocusedWindow();
+  console.log(BrowserWindow.getFocusedWindow());
   if (focusedWindow === null) {
     console.log('focusedWindow is null');
-
-    // console.log(BrowserWindow.getFocusedWindow());
   }
   // mWin.webContents.on('')
 };
