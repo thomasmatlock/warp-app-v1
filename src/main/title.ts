@@ -1,26 +1,26 @@
 import { app, BrowserWindow } from 'electron';
 
 export default class Title {
-  mainWindow: BrowserWindow;
+  mWin: BrowserWindow;
 
-  constructor(mainWindow: BrowserWindow) {
-    this.mainWindow = mainWindow;
+  constructor(mWin: BrowserWindow) {
+    this.mWin = mWin;
   }
   setWindowsTitle():  {
     if (process.platform === 'win32') {
-      mainWindow.setTitle(
+      mWin.setTitle(
         `${app.getName()} | Download Anything | Windows Version ${app.getVersion()} | Professional Audio Edition`
       );
     }
     if (process.platform === 'darwin') {
-      mainWindow.webContents.send('platform', 'darwin');
-      mainWindow.setTitle(
+      mWin.webContents.send('platform', 'darwin');
+      mWin.setTitle(
         `${app.getName()} | Download Anything | MacOS Version ${app.getVersion()} | Professional Audio Edition`
       );
     }
     if (process.platform === 'linux') {
-      mainWindow.webContents.send('platform', 'linux');
-      mainWindow.setTitle(
+      mWin.webContents.send('platform', 'linux');
+      mWin.setTitle(
         `${app.getName()} | Download Anything | Linux Version ${app.getVersion()} | Professional Audio Edition`
       );
     }

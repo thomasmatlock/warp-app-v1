@@ -27,8 +27,8 @@ let panelTransitionSpeed = 'height 1s';
     ipcRenderer.on('storage-sync-success', (e, storageReceived) => {
         storage = storageReceived;
     });
-    ipcRenderer.on('mainWindow-resized', (e, storageReceived) => {
-        console.log('mainWindow-resized');
+    ipcRenderer.on('mWin-resized', (e, storageReceived) => {
+        console.log('mWin-resized');
     });
 })();
 

@@ -1,28 +1,25 @@
 const { clipboard, ipcRenderer } = require('electron');
-const elements = require('./views/elements')
+const elements = require('./views/elements');
 
 let storage;
 (function init() {
-    ipcRenderer.on(
-        'window-ready',
-        (e, storageSentFromMain) => {
-            storage = storageSentFromMain;
-        }
-    );
+    ipcRenderer.on('window-ready', (e, storageSentFromMain) => {
+        storage = storageSentFromMain;
+    });
     ipcRenderer.on('storage-sync-success', (e, storageReceived) => {
         storage = storageReceived;
     });
-    ipcRenderer.on('mainWindow-resized', (e, storageReceived) => {
-        console.log('mainWindow-resized');
+    ipcRenderer.on('mWin-resized', (e, storageReceived) => {
+        console.log('mWin-resized');
     });
 })();
 
-const injectModalLoginToCurrentSlide = () => {}
+const injectModalLoginToCurrentSlide = () => {};
 const toggleLoginVisibility = (storageReceived, id) => {
     storage = storageReceived;
     let activeTab = storage.state.activeTab;
-    let markup = storage.markups.modals.login
-        // console.log(`toggling visibility of ${id}`);
+    let markup = storage.markups.modals.login;
+    // console.log(`toggling visibility of ${id}`);
     let modalContainerAudio = elements.modalContainerAudio; // selects target list to add item markup to
     let modalContainerVideo = elements.modalContainerVideo; // selects target list to add item markup to
     let modalContainerWarpstagram = elements.modalContainerWarpstagram; // selects target list to add item markup to
@@ -48,9 +45,9 @@ const toggleLoginVisibility = (storageReceived, id) => {
         modalContainerWarpstagram.appendChild(markupNodeWarpstagram); // Append item node
         // markupNodeWarpstagram.id = 'modalPrefsID';
     }
-}
+};
 
 module.exports = {
     injectModalLoginToCurrentSlide,
     toggleLoginVisibility,
-}
+};

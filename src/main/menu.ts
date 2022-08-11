@@ -12,10 +12,10 @@ interface DarwinMenuItemConstructorOptions extends MenuItemConstructorOptions {
 }
 
 export default class MenuBuilder {
-  mainWindow: BrowserWindow;
+  mWin: BrowserWindow;
 
-  constructor(mainWindow: BrowserWindow) {
-    this.mainWindow = mainWindow;
+  constructor(mWin: BrowserWindow) {
+    this.mWin = mWin;
   }
 
   buildMenu(): Menu {
@@ -38,17 +38,17 @@ export default class MenuBuilder {
   }
 
   setupDevelopmentEnvironment(): void {
-    this.mainWindow.webContents.on('context-menu', (_, props) => {
+    this.mWin.webContents.on('context-menu', (_, props) => {
       const { x, y } = props;
 
       Menu.buildFromTemplate([
         {
           label: 'Inspect element',
           click: () => {
-            this.mainWindow.webContents.inspectElement(x, y);
+            this.mWin.webContents.inspectElement(x, y);
           },
         },
-      ]).popup({ window: this.mainWindow });
+      ]).popup({ window: this.mWin });
     });
   }
 
@@ -107,21 +107,21 @@ export default class MenuBuilder {
           label: 'Reload',
           accelerator: 'Command+R',
           click: () => {
-            this.mainWindow.webContents.reload();
+            this.mWin.webContents.reload();
           },
         },
         {
           label: 'Toggle Full Screen',
           accelerator: 'Ctrl+Command+F',
           click: () => {
-            this.mainWindow.setFullScreen(!this.mainWindow.isFullScreen());
+            this.mWin.setFullScreen(!this.mWin.isFullScreen());
           },
         },
         {
           label: 'Toggle Developer Tools',
           accelerator: 'Alt+Command+I',
           click: () => {
-            this.mainWindow.webContents.toggleDevTools();
+            this.mWin.webContents.toggleDevTools();
           },
         },
       ],
@@ -133,7 +133,7 @@ export default class MenuBuilder {
           label: 'Toggle Full Screen',
           accelerator: 'Ctrl+Command+F',
           click: () => {
-            this.mainWindow.setFullScreen(!this.mainWindow.isFullScreen());
+            this.mWin.setFullScreen(!this.mWin.isFullScreen());
           },
         },
       ],
@@ -201,7 +201,7 @@ export default class MenuBuilder {
             label: '&Quit',
             accelerator: 'CmdOrCtrl+Q',
             click: () => {
-              this.mainWindow.close();
+              this.mWin.close();
             },
           },
         ],
@@ -486,7 +486,7 @@ export default class MenuBuilder {
             enabled: true,
             accelerator: 'CmdOrCtrl+P',
             click: () => {
-              this.mainWindow.webContents.send('modal: preferences');
+              this.mWin.webContents.send('modal: preferences');
             },
           },
           {
@@ -498,7 +498,7 @@ export default class MenuBuilder {
             enabled: true,
             accelerator: 'CmdOrCtrl+Alt+L',
             click: () => {
-              this.mainWindow.webContents.send('modal: preferences: auths');
+              this.mWin.webContents.send('modal: preferences: auths');
             },
           },
           {
@@ -510,7 +510,7 @@ export default class MenuBuilder {
             enabled: true,
             accelerator: 'CmdOrCtrl+L',
             click: () => {
-              this.mainWindow.webContents.send('modal: preferences: license');
+              this.mWin.webContents.send('modal: preferences: license');
             },
           },
           {
@@ -527,7 +527,7 @@ export default class MenuBuilder {
             enabled: true,
             accelerator: 'Shift+1',
             click: () => {
-              this.mainWindow.webContents.send('nav: mode: audio');
+              this.mWin.webContents.send('nav: mode: audio');
             },
           },
           {
@@ -535,7 +535,7 @@ export default class MenuBuilder {
             enabled: true,
             accelerator: 'Shift+2',
             click: () => {
-              this.mainWindow.webContents.send('nav: mode: video');
+              this.mWin.webContents.send('nav: mode: video');
             },
           },
           {
@@ -543,7 +543,7 @@ export default class MenuBuilder {
             enabled: true,
             accelerator: 'Shift+3',
             click: () => {
-              this.mainWindow.webContents.send('nav: mode: warpstagram');
+              this.mWin.webContents.send('nav: mode: warpstagram');
               // window.electron.ipcRenderer.sendMessage(
               //   'nav: mode: warpstagram',
               //   [`Nav change: Warpstagram Mode`]
@@ -560,7 +560,7 @@ export default class MenuBuilder {
             accelerator: 'CmdOrCtrl+T',
             click: () => {
               // app.relaunch();
-              // this.mainWindow.webContents.send('Menu: Shortcuts: Restart');
+              // this.mWin.webContents.send('Menu: Shortcuts: Restart');
             },
           },
           {
@@ -569,7 +569,7 @@ export default class MenuBuilder {
             accelerator: 'CmdOrCtrl+R',
             click: () => {
               app.relaunch();
-              // this.mainWindow.webContents.send('Menu: Shortcuts: Restart');
+              // this.mWin.webContents.send('Menu: Shortcuts: Restart');
             },
           },
         ],
@@ -595,23 +595,21 @@ export default class MenuBuilder {
                   label: '&Reload',
                   accelerator: 'Ctrl+R',
                   click: () => {
-                    this.mainWindow.webContents.reload();
+                    this.mWin.webContents.reload();
                   },
                 },
                 {
                   label: 'Toggle &Full Screen',
                   accelerator: 'F11',
                   click: () => {
-                    this.mainWindow.setFullScreen(
-                      !this.mainWindow.isFullScreen()
-                    );
+                    this.mWin.setFullScreen(!this.mWin.isFullScreen());
                   },
                 },
                 {
                   label: 'Toggle &Developer Tools',
                   accelerator: 'Alt+Ctrl+I',
                   click: () => {
-                    this.mainWindow.webContents.toggleDevTools();
+                    this.mWin.webContents.toggleDevTools();
                   },
                 },
               ]
@@ -620,9 +618,7 @@ export default class MenuBuilder {
                   label: 'Toggle &Full Screen',
                   accelerator: 'F11',
                   click: () => {
-                    this.mainWindow.setFullScreen(
-                      !this.mainWindow.isFullScreen()
-                    );
+                    this.mWin.setFullScreen(!this.mWin.isFullScreen());
                   },
                 },
               ],

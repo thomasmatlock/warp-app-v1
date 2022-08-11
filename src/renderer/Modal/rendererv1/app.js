@@ -30,7 +30,7 @@ const addIpcListeners = () => {
         console.log('state-sync-success');
     });
     ipcRenderer.on('resize', () => {
-        ipcRenderer.send('mainWindow-resized');
+        ipcRenderer.send('mWin-resized');
         // CLICK ACTIVE NAV A
         var clickDelay = 50;
 
@@ -55,18 +55,18 @@ const addIpcListeners = () => {
     ipcRenderer.on('paste-new-url', (event, itemURL, avType, platform) => {
         items.downloadItem(itemURL, avType, platform);
     });
-}
+};
 
 (function init() {
     ipcRenderer.on('window-ready', (e, storage) => {
         addEventListeners(); // activates DOM event listeners
         storage.state.activeTab = global.discoverStartupTab(storage);
         nav_B.init(storage);
-        auto.click_nav_A_INIT(storage)
+        auto.click_nav_A_INIT(storage);
         ipcRenderer.send('menu-change', storage.state.activeTab);
         if (defaults.dev.clearStorage) items.resetStorage(); // clears localStorage if active
         items.defaultsAddAllItems(storage); // loads items stored in settings to UIK
-        ipcRenderer.send('mainWindow-ready');
+        ipcRenderer.send('mWin-ready');
         ipcRenderer.on('modal-window-ready', () => {
             console.log('attaching event listeners');
         });
@@ -169,12 +169,13 @@ const addEventListeners = () => {
 const addNavAListeners = () => {
     // Nav A LISTENERS
     let orangeGradient = 'linear-gradient(268deg, #da2c4d, #f8ab37)';
-    let blueGradient = 'linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, #19d2fc 100%)';
+    let blueGradient =
+        'linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, #19d2fc 100%)';
     elements.nav_A.addEventListener('click', (e) => {
         const id = e.target.id;
         // nav_A.clearActive();
         nav_A.updateHighlighted(id);
-        let avType = id.substr(6, id.length)
+        let avType = id.substr(6, id.length);
         ipcRenderer.send('menu-change', avType);
         defaults.env.nav_A_active = avType;
         ipcRenderer.send(id);
@@ -203,7 +204,7 @@ const addNavAListeners = () => {
     elements.nav_A_warpstagram.addEventListener('mouseleave', (e) => {
         theme.setTheme(storage);
     });
-}
+};
 const addNavBListeners = () => {
     elements.nav_B_audio.addEventListener('click', (e) => {
         let id = nav_B.getID(e);
@@ -218,14 +219,14 @@ const addNavBListeners = () => {
         if (id.includes('paste')) {
             userInput.validateURL(clipboard.readText(), storage.state.activeTab);
         }
-    })
+    });
     elements.searchAudio.addEventListener('keyup', (e) => {
         search.audioItems();
     });
     elements.searchVideo.addEventListener('keyup', (e) => {
         search.videoItems();
     });
-}
+};
 const addDownloadListListeners = () => {
     elements.download__list_audio_ID.addEventListener('click', (e) => {
         let itemID, action;
@@ -242,26 +243,19 @@ const addDownloadListListeners = () => {
         }
         // OPEN MORE ACTIONS MENU
         else if (
-            e.target.parentNode.parentNode.parentNode.parentNode.id.length ===
-            36
+            e.target.parentNode.parentNode.parentNode.parentNode.id.length === 36
         ) {
             if (e.target.className === iconGearClassName) {
-                itemID =
-                    e.target.parentNode.parentNode.parentNode.parentNode.id;
+                itemID = e.target.parentNode.parentNode.parentNode.parentNode.id;
                 actionMenuContainer =
-                    e.target.parentNode.parentNode.parentNode.parentNode
-                    .childNodes[3].childNodes[3].childNodes[1]
-                    .childNodes[3];
+                    e.target.parentNode.parentNode.parentNode.parentNode.childNodes[3]
+                    .childNodes[3].childNodes[1].childNodes[3];
                 actionMenuContainer.style.visibility = 'visible';
                 Array.from(
-                    actionMenuContainer.getElementsByClassName(
-                        'downloadItemMenu_option'
-                    )
+                    actionMenuContainer.getElementsByClassName('downloadItemMenu_option')
                 ).forEach((item) => {
                     item.addEventListener('click', (e) => {
-                        if (
-                            e.target.className === 'downloadItemMenu_optionText'
-                        ) {
+                        if (e.target.className === 'downloadItemMenu_optionText') {
                             action = e.target.outerText;
                             actionMenuContainer.style.visibility = 'hidden';
                             // console.log(itemID, action);
@@ -276,9 +270,7 @@ const addDownloadListListeners = () => {
                     });
                 });
                 Array.from(
-                    actionMenuContainer.getElementsByClassName(
-                        'downloadItemMenu_option'
-                    )
+                    actionMenuContainer.getElementsByClassName('downloadItemMenu_option')
                 ).forEach((item) => {
                     item.removeEventListener('click', (e) => {});
                 });
@@ -302,26 +294,19 @@ const addDownloadListListeners = () => {
         }
         // OPEN MORE ACTIONS MENU
         else if (
-            e.target.parentNode.parentNode.parentNode.parentNode.id.length ===
-            36
+            e.target.parentNode.parentNode.parentNode.parentNode.id.length === 36
         ) {
             if (e.target.className === iconGearClassName) {
-                itemID =
-                    e.target.parentNode.parentNode.parentNode.parentNode.id;
+                itemID = e.target.parentNode.parentNode.parentNode.parentNode.id;
                 actionMenuContainer =
-                    e.target.parentNode.parentNode.parentNode.parentNode
-                    .childNodes[3].childNodes[3].childNodes[1]
-                    .childNodes[3];
+                    e.target.parentNode.parentNode.parentNode.parentNode.childNodes[3]
+                    .childNodes[3].childNodes[1].childNodes[3];
                 actionMenuContainer.style.visibility = 'visible';
                 Array.from(
-                    actionMenuContainer.getElementsByClassName(
-                        'downloadItemMenu_option'
-                    )
+                    actionMenuContainer.getElementsByClassName('downloadItemMenu_option')
                 ).forEach((item) => {
                     item.addEventListener('click', (e) => {
-                        if (
-                            e.target.className === 'downloadItemMenu_optionText'
-                        ) {
+                        if (e.target.className === 'downloadItemMenu_optionText') {
                             action = e.target.outerText;
                             actionMenuContainer.style.visibility = 'hidden';
                             // console.log(itemID, action);
@@ -336,16 +321,14 @@ const addDownloadListListeners = () => {
                     });
                 });
                 Array.from(
-                    actionMenuContainer.getElementsByClassName(
-                        'downloadItemMenu_option'
-                    )
+                    actionMenuContainer.getElementsByClassName('downloadItemMenu_option')
                 ).forEach((item) => {
                     item.removeEventListener('click', (e) => {});
                 });
             }
         }
     });
-}
+};
 const addKeyboardListeners = () => {
     window.addEventListener('keydown', (e) => {
         const { key } = e;
@@ -384,4 +367,4 @@ const addKeyboardListeners = () => {
             console.log('ctrl L pressed');
         }
     });
-}
+};
