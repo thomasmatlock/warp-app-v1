@@ -111,7 +111,7 @@ let browserPanelState = 'default';
     event.reply('Search: InputChange', [arg]);
   });
   // NAV BAR LISTENERS
-  ipcMain.on('package', async (event, arg) => {
+  ipcMain.on('package', async (event) => {
     app.getVersion();
     event.reply('package', packageJSON); // sends message to renderer
   });
@@ -120,32 +120,32 @@ let browserPanelState = 'default';
     event.reply('nav: mode: audio', 'nav: mode: audio successful'); // sends message to renderer
     showView();
   });
-  ipcMain.on('nav: mode: video', async (event, arg) => {
+  ipcMain.on('nav: mode: video', async (event) => {
     showView();
     event.reply('nav: mode: video', 'nav: mode: video successful'); // sends message to renderer
   });
-  ipcMain.on('nav: mode: warpstagram', async (event, arg) => {
+  ipcMain.on('nav: mode: warpstagram', async (event) => {
     console.log('nav: mode: warpstagram');
     hideView();
     event.reply('nav: mode: warpstagram', 'nav: mode: warpstagram successful'); // sends message to renderer
   });
   // BROWSERBAR DOWNLOAD SOURCE LISTENERS
-  ipcMain.on('loadActiveSource', async (event, arg) => {
+  ipcMain.on('loadActiveSource', async () => {
     // console.log('loadActiveSource', arg);
     // if (bWin) bWin.loadURL(arg);
     // if (view) view.webContents.loadURL(arg);
-    // if (bWin.webContents.getURL().includes('pinterest')) {
-    //   bWin.webContents.insertCSS('html, body, { background-color: #fff;  }');
-    // }
+    if (view.webContents.getURL().includes('pinterest')) {
+      view.webContents.insertCSS('html, body, { background-color: #fff;  }');
+    }
   });
   ipcMain.on('source: change', async (event, arg) => {
-    console.log('source: change', arg);
+    // console.log('source: change', arg);
 
     // if (bWin) bWin.loadURL(arg);
     if (view) view.webContents.loadURL(arg);
-    // if (bWin.webContents.getURL().includes('pinterest')) {
-    //   bWin.webContents.insertCSS('html, body, { background-color: #fff;  }');
-    // }
+    if (view.webContents.getURL().includes('pinterest')) {
+      view.webContents.insertCSS('html, body, { background-color: #fff;  }');
+    }
   });
   // BROWSERBAR DOWNLOAD BUTTON LISTENERS
   ipcMain.on('BrowserBar: button: downloadAudio', async (event, arg) => {
@@ -275,21 +275,20 @@ const windowController = {
     mWin.on('close', () => {});
     mWin.on('closed', () => (mWin = null));
     mWin.on('enter-full-screen', () => {
-      console.log('enter-full-screen');
+      let displayBounds = screen.getAllDisplays()[0].bounds;
+      if (mWin) mWin.menuBarVisible = false;
+      if (view) view.setBounds(displayBounds);
     });
-    mWin.on('enter-html-full-screen', () => {
-      console.log('enter-html-full-screen');
-    });
+    mWin.on('enter-html-full-screen', () => {});
     mWin.on('focus', () => {
-      // bWinHandler.resize(browserPanelState);
+      bWinHandler.resize(browserPanelState);
     });
     mWin.on('hide', () => {});
     mWin.on('leave-full-screen', () => {
-      console.log('leave-full-screen');
+      if (mWin) mWin.menuBarVisible = true;
+      if (view) showView();
     });
-    mWin.on('leave-html-full-screen', () => {
-      console.log('leave-html-full-screen');
-    });
+    mWin.on('leave-html-full-screen', () => {});
     mWin.on('maximize', () => bWinHandler.resize(browserPanelState));
     mWin.on('minimize', () => {});
     mWin.on('ready-to-show', () => {
@@ -314,8 +313,12 @@ const windowController = {
         mWin.minimize();
       } else {
         mWin.show();
+        mWin.maximize();
       }
       mWin.webContents.send('package', packageJSON);
+    });
+    mWin.on('resize', (e) => {
+      // bWinHandler.resize(browserPanelState);
     });
     mWin.on('resized', (e) => {
       bWinHandler.resize(browserPanelState);
@@ -402,8 +405,8 @@ app
     mWinBounds.x = display.x;
     mWinBounds.y = display.y;
     mWinBounds.width = display.width;
-    mWinBounds.height = display.height; // default
-    // mWinBounds.height = display.height - 250; // testing
+    // mWinBounds.height = display.height; // default
+    mWinBounds.height = display.height - 250; // testing
     windowController.createmWin();
     view = new BrowserView();
     mWin.setBrowserView(view);
@@ -417,11 +420,14 @@ app
     view.setAutoResize({ width: true, height: true });
     view.setBackgroundColor('#1a1a1a');
     view.webContents.loadURL('https://youtube.com');
-    view.webContents.loadURL(
-      'https://www.youtube.com/channel/UCpCtwRCG1hHcijgy82wt8Ng'
-    );
-    app.on('activate', () => {
-      if (mWin === null) windowController.createmWin();
-    });
+    // view.webContents.loadURL(
+    //   'https://www.youtube.com/channel/UCpCtwRCG1hHcijgy82wt8Ng'
+    // );
+    view.webContents.on('did-navigate-in-page', (e, url) => {
+      mWin.webContents.send('did-navigate-in-page', url);
+    }),
+      app.on('activate', () => {
+        if (mWin === null) windowController.createmWin();
+      });
   })
   .catch(console.log);
