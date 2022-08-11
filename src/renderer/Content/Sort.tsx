@@ -1,5 +1,3 @@
-// import { Fragment } from 'react';
-// import './RenameThis.scss';
 const Sort = {
   byAZ: (arr, propertyToSortBy) => {
     arr.sort((a, b) => {
@@ -10,8 +8,8 @@ const Sort = {
         return 1;
       }
       return 0;
-    }),
-      console.log(arr);
+    });
+    // console.log(arr);
   },
   byZA: (arr, propertyToSortBy) => {
     arr.sort((a, b) => {
@@ -22,8 +20,8 @@ const Sort = {
         return 1;
       }
       return 0;
-    }),
-      console.log(arr);
+    });
+    // console.log(arr);
   },
 };
 
