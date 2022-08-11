@@ -6,6 +6,7 @@ const NavContext = React.createContext({
   generalMode: false,
   authsMode: false,
   licenseMode: false,
+  placeholder: '',
   audioModeHandler: () => {},
   videoModeHandler: () => {},
   warpstagramModeHandler: () => {},
@@ -18,6 +19,16 @@ export const NavContextProvider = (props) => {
   const [generalMode, setGeneralMode] = useState(false);
   const [authsMode, setAuthsMode] = useState(false);
   const [licenseMode, setLicenseMode] = useState(false);
+  const [placeholder, setPlaceholder] = useState('');
+  const audioSearchPlaceholder = 'audio search...beep boop';
+  const videoSearchPlaceholder = 'video search...beep boop';
+  const warpstagramSearchPlaceholder =
+    'Enter instagram username, hashtag, or location';
+  window.electron.ipcRenderer.on('ready-to-show', (arg) => {
+    if (audioMode) setPlaceholder(audioSearchPlaceholder);
+    if (videoMode) setPlaceholder(videoSearchPlaceholder);
+    if (warpstagramMode) setPlaceholder(warpstagramSearchPlaceholder);
+  });
 
   const disableAllStates = () => {
     setAudioMode(false);
@@ -47,14 +58,17 @@ export const NavContextProvider = (props) => {
     ]);
   };
   window.electron.ipcRenderer.on('nav: mode: audio', (arg) => {
+    setPlaceholder(audioSearchPlaceholder);
     disableAllStates();
     setAudioMode(true);
   });
   window.electron.ipcRenderer.on('nav: mode: video', (arg) => {
+    setPlaceholder(videoSearchPlaceholder);
     disableAllStates();
     setVideoMode(true);
   });
   window.electron.ipcRenderer.on('nav: mode: warpstagram', (arg) => {
+    setPlaceholder(warpstagramSearchPlaceholder);
     disableAllStates();
     setWarpstagramMode(true);
   });
@@ -67,6 +81,7 @@ export const NavContextProvider = (props) => {
         generalMode: generalMode,
         authsMode: authsMode,
         licenseMode: licenseMode,
+        placeholder: placeholder,
         audioModeHandler: audioModeHandler,
         videoModeHandler: videoModeHandler,
         warpstagramModeHandler: warpstagramModeHandler,

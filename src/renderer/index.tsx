@@ -6,21 +6,24 @@ import { SourcesContextProvider } from '../storage/sourcesContext';
 import { DownloadsContextProvider } from '../storage/downloadsContext';
 import { NavContextProvider } from '../storage/navContext';
 import { InputContextProvider } from '../storage/inputContext';
+import { ModalsContextProvider } from '../storage/modalsContext';
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
 root.render(
   <ThemeContextProvider>
     <NavContextProvider>
-      <InputContextProvider>
-        <DownloadsContextProvider>
-          <SourcesContextProvider>
-            <ActionBarContextProvider>
-              <App />
-            </ActionBarContextProvider>
-          </SourcesContextProvider>
-        </DownloadsContextProvider>
-      </InputContextProvider>
+      <ModalsContextProvider>
+        <InputContextProvider>
+          <DownloadsContextProvider>
+            <SourcesContextProvider>
+              <ActionBarContextProvider>
+                <App />
+              </ActionBarContextProvider>
+            </SourcesContextProvider>
+          </DownloadsContextProvider>
+        </InputContextProvider>
+      </ModalsContextProvider>
     </NavContextProvider>
   </ThemeContextProvider>
 );

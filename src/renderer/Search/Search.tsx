@@ -18,11 +18,13 @@ import ModalPreferences from '../Modal/ModalPreferences';
 import ThemeContext from '../../storage/themeContext';
 import NavContext from '../../storage/navContext';
 import InputContext from '../../storage/inputContext';
+import ModalsContext from '../../storage/modalsContext';
 
 const Search = (props) => {
   const themeCtx = useContext(ThemeContext);
   const navCtx = useContext(NavContext);
   const inputCtx = useContext(InputContext);
+  const modalsCtx = useContext(ModalsContext);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const hideModalHandler = () => {
@@ -34,58 +36,20 @@ const Search = (props) => {
     setIsModalOpen(true);
   };
   const restoreInputDefaultWidthDelay = 3000;
-  const audioPlaceholder = 'audio search...beep boop  ';
-  const videoPlaceholder = 'video search...beep boop  ';
-  const warpstagramPlaceholder =
-    'Enter instagram username, hashtag, or location';
-  const [generalMode, setGeneralMode] = useState(false);
-  const [authsMode, setAuthsMode] = useState(false);
-  const [licenseMode, setLicenseMode] = useState(false);
+  // const [generalMode, setGeneralMode] = useState(false);
+  // const [authsMode, setAuthsMode] = useState(false);
+  // const [licenseMode, setLicenseMode] = useState(false);
 
-  const [placeholder, setPlaceholder] = useState('input search...beep boop');
+  // const [placeholder, setPlaceholder] = useState('input search...beep boop');
   const [clearIcon, setClearIcon] = useState(false);
 
   const [isHovering, setIsHovering] = useState(false);
-  // if (navCtx.audioMode) setPlaceholder(audioPlaceholder);
-  // if (navCtx.videoMode) setPlaceholder(videoPlaceholder);
-  // if (navCtx.warpstagramMode) setPlaceholder(warpstagramPlaceholder);
-  const setPlaceholderController = () => {
-    if (navCtx.warpstagramMode) {
-      setPlaceholder(warpstagramPlaceholder);
-    } else if (navCtx.videoMode) {
-      setPlaceholder(videoPlaceholder);
-    } else if (navCtx.audioMode) {
-      setPlaceholder(audioPlaceholder);
-    }
-  };
-  const setAllModesToFalse = () => {
-    // setAudioMode(false);
-    // setVideoMode(false);
-    // setWarpstagramMode(false);
-    setGeneralMode(false);
-    setAuthsMode(false);
-    setLicenseMode(false);
-  };
-  window.electron.ipcRenderer.on('ready-to-show', (arg) => {
-    setPlaceholderController();
-  });
-  window.electron.ipcRenderer.on('nav: mode: audio', (arg) => {
-    setAllModesToFalse();
-    // setAudioMode(true);
-    setPlaceholder(audioPlaceholder);
-  });
-  window.electron.ipcRenderer.on('nav: mode: video', (arg) => {
-    setAllModesToFalse();
-    // setVideoMode(true);
-    setPlaceholder(videoPlaceholder);
-  });
-  window.electron.ipcRenderer.on('nav: mode: warpstagram', (arg) => {
-    setAllModesToFalse();
-    // setWarpstagramMode(true);
-    setPlaceholder(warpstagramPlaceholder);
-  });
+
+  // window.electron.ipcRenderer.on('ready-to-show', (arg) => {
+  //   // setPlaceholderController();
+  // });
   window.electron.ipcRenderer.on('modal: preferences: license', (arg) => {
-    setAllModesToFalse();
+    navCtx.disableAllStates();
     setLicenseMode(true);
     if (isModalOpen) {
       hideModalHandler();
@@ -94,7 +58,7 @@ const Search = (props) => {
     }
   });
   window.electron.ipcRenderer.on('modal: preferences: auths', (arg) => {
-    setAllModesToFalse();
+    navCtx.disableAllStates();
     setAuthsMode(true);
     if (isModalOpen) {
       hideModalHandler();
@@ -108,8 +72,6 @@ const Search = (props) => {
     } else if (!isModalOpen) {
       showModalHandler();
     }
-
-    // setPlaceholderController();
   });
 
   const searchInputChangeHandler = (event) => {
@@ -145,7 +107,7 @@ const Search = (props) => {
   const userStoppedInteracting = () => {
     // let inputContainsText = searchText.length > 0;
     if (clearIcon == false && inputCtx.searchText.length === 0) {
-      setPlaceholderController();
+      // setPlaceholderController();
       setTimeout(() => {
         // userStoppedInteracting();
         setIsHovering(false);
@@ -220,7 +182,7 @@ const Search = (props) => {
           onMouseEnter={userStartedInteracting}
           onMouseLeave={userStartedInteracting}
           onBlur={searchInputBlurHandler}
-          placeholder={placeholder}
+          placeholder={navCtx.placeholder}
           spellCheck="false"
         />
         {clearIcon && (
@@ -300,8 +262,8 @@ const Search = (props) => {
           isAudioMode={navCtx.audioMode}
           isVideoMode={navCtx.videoMode}
           isWarpstagramMode={navCtx.warpstagramMode}
-          isAuthsMode={authsMode}
-          isLicenseMode={licenseMode}
+          isAuthsMode={navCtx.authsMode}
+          isLicenseMode={navCtx.licenseMode}
         />
       )}
     </Fragment>
