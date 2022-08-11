@@ -73,41 +73,43 @@ class AppUpdater {
   }
 }
 const windowsVisibilityManager = () => {
+  console.log('/////////////////////////////////////////////////////////////');
+
   // browserWindow
   if (bWin && bWin.isFocused() === true) {
-    console.log('bWin focused');
+    // console.log('bWin focused');
   } else {
-    console.log('bWin not focused');
+    // console.log('bWin not focused');
   }
   if (bWin && bWin.isVisible() === true) {
-    console.log('bWin visible');
+    // console.log('bWin visible');
   } else {
-    console.log('bWin not visible');
+    // console.log('bWin not visible');
   }
   if (bWin && bWin.isMaximized() === true) {
-    console.log('bWin maximized');
+    // console.log('bWin maximized');
   } else {
-    console.log('bWin not maximized');
+    // console.log('bWin not maximized');
   }
   if (bWin && bWin.isMinimized() === true) {
-    console.log('bWin minimized');
+    // console.log('bWin minimized');
   } else {
-    console.log('bWin not minimized');
+    // console.log('bWin not minimized');
   }
   if (bWin && bWin.isAlwaysOnTop() === true) {
-    console.log('bWin always on top');
+    // console.log('bWin always on top');
   } else {
-    console.log('bWin not always on top');
+    // console.log('bWin not always on top');
   }
   if (bWin && bWin.isVisibleOnAllWorkspaces() === true) {
-    console.log('bWin visible on all workspaces');
+    // console.log('bWin visible on all workspaces');
   } else {
-    console.log('bWin not visible on all workspaces');
+    // console.log('bWin not visible on all workspaces');
   }
   if (bWin && bWin.isResizable() === true) {
-    console.log('bWin resizable');
+    // console.log('bWin resizable');
   } else {
-    console.log('bWin not resizable');
+    // console.log('bWin not resizable');
   }
 
   // mWin
@@ -122,14 +124,14 @@ const windowsVisibilityManager = () => {
     console.log('mWin not visible');
   }
   if (mWin.isMaximized() === true) {
-    console.log('mWin maximized');
+    // console.log('mWin maximized');
   } else {
-    console.log('mWin not maximized');
+    // console.log('mWin not maximized');
   }
   if (mWin.isMinimized() === true) {
-    console.log('mWin minimized');
+    // console.log('mWin minimized');
   } else {
-    console.log('mWin not minimized');
+    // console.log('mWin not minimized');
   }
   if (mWin.isAlwaysOnTop() === true) {
     console.log('mWin always on top');
@@ -139,13 +141,20 @@ const windowsVisibilityManager = () => {
   if (mWin.isVisibleOnAllWorkspaces() === true) {
     console.log('bWin visible on all workspaces');
   } else {
-    console.log('bWin not visible on all workspaces');
+    console.log('mWin not visible on all workspaces');
   }
   if (mWin.isResizable() === true) {
-    console.log('mWin resizable');
+    // console.log('mWin resizable');
   } else {
-    console.log('mWin not resizable');
+    // console.log('mWin not resizable');
   }
+  let focusedWindow = BrowserWindow.getFocusedWindow();
+  if (focusedWindow === null) {
+    console.log('focusedWindow is null');
+
+    // console.log(BrowserWindow.getFocusedWindow());
+  }
+  // mWin.webContents.on('')
 };
 let mWin: bWin | null = null;
 let splashWindow: bWin | null = null;
