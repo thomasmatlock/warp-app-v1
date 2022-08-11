@@ -57,10 +57,6 @@ const installExtensions = async () => {
     .catch(console.log);
 };
 
-let allWindowsBlur = {
-  main: false,
-  browser: false,
-};
 const contextMenu = require('electron-context-menu');
 contextMenu({});
 const Store = require('electron-store');
@@ -76,7 +72,38 @@ class AppUpdater {
     autoUpdater.checkForUpdatesAndNotify();
   }
 }
-
+const windowsVisibilityManager = () => {
+  if (browserWindow && browserWindow.isFocused() === true) {
+    console.log('bWin focused');
+  } else {
+    console.log('bWin not focused');
+  }
+  if (browserWindow && browserWindow.isVisible() === true) {
+    console.log('bWin visible');
+  } else {
+    console.log('bWin not visible');
+  }
+  if (browserWindow && browserWindow.isMaximized() === true) {
+    console.log('bWin maximized');
+  } else {
+    console.log('bWin not maximized');
+  }
+  if (browserWindow && browserWindow.isMinimized() === true) {
+    console.log('bWin minimized');
+  } else {
+    console.log('bWin not minimized');
+  }
+  if (browserWindow && browserWindow.isAlwaysOnTop() === true) {
+    console.log('bWin always on top');
+  } else {
+    console.log('bWin not always on top');
+  }
+  if (browserWindow && browserWindow.isVisibleOnAllWorkspaces() === true) {
+    console.log('bWin visible on all workspaces');
+  } else {
+    console.log('bWin not visible on all workspaces');
+  }
+};
 let mainWindow: BrowserWindow | null = null;
 let splashWindow: BrowserWindow | null = null;
 let browserWindow: BrowserWindow | null = null;
@@ -300,18 +327,10 @@ const windowController = {
       // console.log('mainWindow dom-ready');
     });
     wc.on('blur', (event, url) => {
-      console.log('mainWindow webContents blur');
-      // console.log(browserWindow.isAlwaysOnTop());
-
-      if (browserWindow)
-        if (browserWindow.isAlwaysOnTop() === true) {
-          console.log('its on top');
-        } else {
-          console.log('its not on top');
-        }
+      windowsVisibilityManager();
     });
     wc.on('focus', (event, url) => {
-      console.log('mainWindow webContents focus');
+      windowsVisibilityManager();
     });
 
     const menuBuilder = new MenuBuilder(mainWindow);
@@ -322,34 +341,17 @@ const windowController = {
       // console.log('mainWindow app-command');
     });
     mainWindow.on('blur', () => {
-      console.log('mainWindow blur');
-      if (browserWindow)
-        if (browserWindow.isAlwaysOnTop() === true) {
-          console.log('its on top');
-        } else {
-          console.log('its not on top');
-        }
-      // if (browserWindow) toggleBrowserWindowOnTop();
-      // allWindowsBlur.main = true;
-      // checkWindowsBlur();
+      windowsVisibilityManager();
     });
     mainWindow.on('close', () => {});
     mainWindow.on('closed', () => (mainWindow = null));
     mainWindow.on('enter-full-screen', () => {});
     mainWindow.on('enter-html-full-screen', () => {});
     mainWindow.on('focus', () => {
-      console.log('mainWindow focus');
-      // console.log('mainWindow focus');
-      browserWindow.setAlwaysOnTop(true);
-      browserWindow.show();
-
-      // if (browserWindow) browserWindow.focus();
-
+      windowsVisibilityManager();
       browserWindowHandler.resize(browserPanelState);
     });
-    mainWindow.on('hide', () => {
-      console.log('mainWindow hide');
-    });
+    mainWindow.on('hide', () => {});
     mainWindow.on('leave-full-screen', () => {});
     mainWindow.on('leave-html-full-screen', () => {});
     mainWindow.on('maximize', () =>
@@ -495,25 +497,19 @@ const windowController = {
     });
     browserWindow.on('always-on-top-changed', () => {});
     browserWindow.on('blur', () => {
-      console.log('browserWindow blur');
-      setTimeout(() => {
-        // browserWindowHandler.setScreenshot();
-      }, 250);
-      // console.log('hello', mainWindow.isBlurred());
-
-      if (mainWindow.isFocused() === false) {
-        console.log('mainWindow also blur');
-        browserWindow.setAlwaysOnTop(false);
-        browserWindow.hide();
-      }
-      // allWindowsBlur.browser = true;
-      // checkWindowsBlur();
+      windowsVisibilityManager();
+    });
+    browserWindow.webContents.on('blur', () => {
+      windowsVisibilityManager();
     });
     // browserWindow.on('close', () => console.log('browserWindow close'));
     browserWindow.on('closed', () => (browserWindow = null));
     browserWindow.on('enter-full-screen', () => {});
     browserWindow.on('focus', () => {
-      console.log('browserWindow focus');
+      windowsVisibilityManager();
+    });
+    browserWindow.webContents.on('focus', () => {
+      windowsVisibilityManager();
     });
     browserWindow.on('hide', () => {
       console.log('browserWindow hide');
