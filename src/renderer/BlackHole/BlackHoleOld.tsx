@@ -26,11 +26,12 @@ const Canvas = (props) => {
     canvas.style.position = 'relative';
     canvas.style.position = 'absolute';
 
-    canvas.style.top = '128px';
+    canvas.style.top = '129px';
     canvas.style.right = '0';
     canvas.style.zIndex = '1';
     canvas.style.width = '50%';
-    canvas.style.height = 'calc(100% - 192px)';
+    canvas.style.boxSizing = 'border-box';
+    canvas.style.height = 'calc(100% - 193px)';
     canvas.style.pointerEvents = 'none';
     canvas.style.border = '1px solid #4a4a4a';
     let frameCount = 0;
@@ -46,10 +47,10 @@ const Canvas = (props) => {
     };
     render();
 
-    return () => {
-      window.cancelAnimationFrame(animationFrameId);
-    };
-  }, [draw]);
+    // return () => {
+    //   window.cancelAnimationFrame(animationFrameId);
+    // };
+  }, []);
 
   return <canvas ref={canvasRef} {...props} />;
 };
