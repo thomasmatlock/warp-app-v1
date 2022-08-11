@@ -12,12 +12,12 @@ import channelIcon from '../../../assets/BrowserBar/browser/channel2.svg';
 import BrowserBarDownloadSource from './ActionBarBrowserSource';
 import ThemeContext from '../../storage/themeContext';
 import ActionBarContext from '../../storage/actionBarContext';
+import NavContext from '../../storage/navContext';
 
-const BrowserBar = (props) => {
+const BrowserBar = () => {
   const themeCtx = useContext(ThemeContext);
   const actionBarCtx = useContext(ActionBarContext);
-  let audioMode = props.audioMode;
-  let videoMode = props.videoMode;
+  const navCtx = useContext(NavContext);
   // console.log(actionBarCtx);
 
   const youtubeParser = (url: string) => {
@@ -70,16 +70,10 @@ const BrowserBar = (props) => {
     }
   };
   window.electron.ipcRenderer.on('did-navigate-in-page', (arg) => {
-    // setSearchInput(arg[0]);
-    // console.log(arg);
     getURLpageType(arg);
-    // getURLtype(arg);
-    // let domain = getURLdomain(arg);
-    // console.log(domain);
   });
   const downloadAudioHandler = () => {
     window.electron.ipcRenderer.sendMessage('screenshotting');
-    // window.electron.ipcRenderer.on('nav: mode: warpstagram', (arg) => {
     window.electron.ipcRenderer.sendMessage(
       'BrowserBar: button: downloadAudio',
       [`Download Audio`]
@@ -162,15 +156,7 @@ const BrowserBar = (props) => {
           )}
         </div>
         {!actionBarCtx.isBrowserPanelCollapsed && <BrowserBarDownloadSource />}
-        {/* {audioMode && !actionBarCtx.isBrowserPanelCollapsed && (
-          <div
-            onClick={downloadAudioHandler}
-            className="browserBarDownloadBtn browserBarDownloadBtn__audio"
-          >
-            Download Audio MP3
-          </div>
-        )} */}
-        {audioMode &&
+        {navCtx.audioMode &&
           !actionBarCtx.isBrowserPanelCollapsed &&
           actionBarCtx.channelExists && (
             <div
@@ -181,7 +167,7 @@ const BrowserBar = (props) => {
               {actionBarCtx.channelExists && <p> Download Channel Audio</p>}
             </div>
           )}
-        {audioMode &&
+        {navCtx.audioMode &&
           !actionBarCtx.isBrowserPanelCollapsed &&
           actionBarCtx.singlePlaylistExists && (
             <div
@@ -194,7 +180,7 @@ const BrowserBar = (props) => {
               )}
             </div>
           )}
-        {audioMode &&
+        {navCtx.audioMode &&
           !actionBarCtx.isBrowserPanelCollapsed &&
           actionBarCtx.multiplePlaylistsExist && (
             <div
@@ -207,7 +193,7 @@ const BrowserBar = (props) => {
               )}
             </div>
           )}
-        {audioMode &&
+        {navCtx.audioMode &&
           !actionBarCtx.isBrowserPanelCollapsed &&
           actionBarCtx.videoExists && (
             <div
@@ -218,7 +204,7 @@ const BrowserBar = (props) => {
               {actionBarCtx.videoExists && <p> Download Audio MP3</p>}
             </div>
           )}{' '}
-        {videoMode &&
+        {navCtx.videoMode &&
           !actionBarCtx.isBrowserPanelCollapsed &&
           actionBarCtx.channelExists && (
             <div
@@ -229,7 +215,7 @@ const BrowserBar = (props) => {
               {actionBarCtx.channelExists && <p> Download Channel Videos</p>}
             </div>
           )}
-        {videoMode &&
+        {navCtx.videoMode &&
           !actionBarCtx.isBrowserPanelCollapsed &&
           actionBarCtx.singlePlaylistExists && (
             <div
@@ -242,7 +228,7 @@ const BrowserBar = (props) => {
               )}
             </div>
           )}
-        {videoMode &&
+        {navCtx.videoMode &&
           !actionBarCtx.isBrowserPanelCollapsed &&
           actionBarCtx.multiplePlaylistsExist && (
             <div
@@ -255,7 +241,7 @@ const BrowserBar = (props) => {
               )}
             </div>
           )}
-        {videoMode &&
+        {navCtx.videoMode &&
           !actionBarCtx.isBrowserPanelCollapsed &&
           actionBarCtx.videoExists && (
             <div

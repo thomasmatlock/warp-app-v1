@@ -6,13 +6,13 @@ import FilterBar from './ActionBarWarpstagram';
 import FilterBar_DownloadsAudio from './ActionBarAudio';
 import FilterBar_DownloadsVideo from './ActionBarVideo';
 import ThemeContext from '../../storage/themeContext';
-import ActionBarContext from '../../storage/actionBarContext';
+// import ActionBarContext from '../../storage/actionBarContext';
 import NavContext from '../../storage/navContext';
 
 const ActionBar = (props) => {
   const themeCtx = useContext(ThemeContext);
   const navCtx = useContext(NavContext);
-  const actionBarCtx = useContext(ActionBarContext);
+  // const actionBarCtx = useContext(ActionBarContext);
 
   const [audioDownloadsTotal, setAudioDownloadsTotal] = useState(0);
   const [videoDownloadsTotal, setVideoDownloadsTotal] = useState(0);
@@ -73,19 +73,13 @@ const ActionBar = (props) => {
               }
         }
       >
-        {navCtx.audioMode && <BrowserBar audioMode={navCtx.audioMode} />}
-        {navCtx.videoMode && <BrowserBar videoMode={navCtx.videoMode} />}
+        {navCtx.audioMode && <BrowserBar />}
+        {navCtx.videoMode && <BrowserBar />}
         {navCtx.audioMode && (
-          <FilterBar_DownloadsAudio
-            audioMode={navCtx.audioMode}
-            audioDownloadsTotal={audioDownloadsTotal}
-          />
+          <FilterBar_DownloadsAudio audioDownloadsTotal={audioDownloadsTotal} />
         )}
         {navCtx.videoMode && (
-          <FilterBar_DownloadsVideo
-            videoMode={navCtx.videoMode}
-            videoDownloadsTotal={videoDownloadsTotal}
-          />
+          <FilterBar_DownloadsVideo videoDownloadsTotal={videoDownloadsTotal} />
         )}
         {navCtx.warpstagramMode && (
           <FilterBar warpstagramDownloadsTotal={warpstagramDownloadsTotal} />
