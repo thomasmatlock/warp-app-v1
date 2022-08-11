@@ -128,8 +128,7 @@ let browserPanelState = 'default';
   });
   // BROWSERBAR DOWNLOAD SOURCE LISTENERS
   ipcMain.on('loadActiveSource', async (event, arg) => {
-    console.log('loadActiveSource', arg);
-
+    // console.log('loadActiveSource', arg);
     // if (bWin) bWin.loadURL(arg);
     // if (view) view.webContents.loadURL(arg);
     // if (bWin.webContents.getURL().includes('pinterest')) {
@@ -217,24 +216,17 @@ ipcMain.on('settings: request', async (event, arg) => {
   //   // bWinHandler.setScreenshot();
   // });
   ipcMain.on('screenshot', async (event, arg) => {
-    console.log('//////////////////////////////////////////////');
-    console.log('screenshot', arg);
-    console.log('mWinContentBounds', mWin.getContentBounds());
+    // console.log('//////////////////////////////////////////////');
+    // console.log('screenshot', arg);
 
     bWinHandler.setScreenshot();
   });
   ipcMain.on('hidebWin', async (event, arg) => {
-    console.log('hidebWin', arg);
-    // console.log(view.getBounds());
-    // viewBounds = view.getBounds();
-    // console.log(view.getBounds());
-
-    console.log('viewBounds', viewBounds);
+    // console.log('hidebWin', arg);
     view.setBounds({ x: 0, y: 0, width: 0, height: 0 });
   });
   ipcMain.on('showbWin', async (event, arg) => {
-    console.log('showbWin', arg);
-    console.log('viewBounds', viewBounds);
+    // console.log('showbWin', arg);
     view.setBounds({
       x: viewBounds.x,
       y: viewBounds.y,
@@ -242,12 +234,6 @@ ipcMain.on('settings: request', async (event, arg) => {
       height: mWin.getContentBounds().height - 192,
       // height: viewBounds.height,
     });
-    // view.setBounds({
-    //   x: viewBounds.x,
-    //   y: viewBounds.x,
-    //   width: viewBounds.width,
-    //   height: viewBounds.height,
-    // });
   });
 })();
 
@@ -651,7 +637,7 @@ app
       height: mWin.getContentBounds().height - 192,
       // height: viewBounds.height,
     });
-    console.log(viewBounds);
+    // console.log(viewBounds);
 
     view.setAutoResize({ width: true, height: true });
     view.setBackgroundColor('#1a1a1a');

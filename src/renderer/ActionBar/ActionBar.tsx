@@ -19,6 +19,7 @@ const ActionBar = (props) => {
   const [audioDownloadsTotal, setAudioDownloadsTotal] = useState(0);
   const [videoDownloadsTotal, setVideoDownloadsTotal] = useState(0);
   const [warpstagramDownloadsTotal, setWarpstagramDownloadsTotal] = useState(0);
+  const [shouldSendScreenshot, setShouldSendScreenshot] = useState(true);
   const countAudioDownloads = () => {
     setTimeout(() => {
       let audioItems = document.querySelectorAll(
@@ -67,16 +68,20 @@ const ActionBar = (props) => {
     countWarpstagramDownloads();
   });
   const mouseEnterHandler = () => {
-    // window.electron.ipcRenderer.sendMessage('screenshot', 'from actionBar');
+    if (shouldSendScreenshot) {
+      window.electron.ipcRenderer.sendMessage('screenshot', 'from actionBar');
+    }
+    setShouldSendScreenshot(false);
   };
   const mouseLeaveHandler = () => {
-    window.electron.ipcRenderer.sendMessage('showbWin', 'from actionBar');
+    setShouldSendScreenshot(true);
+    // window.electron.ipcRenderer.sendMessage('showbWin', 'from actionBar');
   };
   return (
     <Fragment>
       <div
         onMouseEnter={mouseEnterHandler}
-        // onMouseLeave={mouseLeaveHandler}
+        onMouseLeave={mouseLeaveHandler}
         className="actionBar"
         style={
           themeCtx.isDarkTheme
