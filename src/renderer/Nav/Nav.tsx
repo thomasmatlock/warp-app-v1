@@ -29,10 +29,7 @@ const Nav = (props) => {
     if (arg === 'linux') setIsLinux(true);
   });
 
-  window.electron.ipcRenderer.sendMessage('package', [
-    'Nav requesting package.json',
-  ]);
-  window.electron.ipcRenderer.on('package', (arg: string) => {
+  window.electron.ipcRenderer.on('appVersion', (arg: string) => {
     appVersion = arg;
   });
 

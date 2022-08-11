@@ -20,9 +20,7 @@ import {
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
-import Title from './title';
 import { resolveHtmlPath } from './util';
-import packageJSON from '../../package.json';
 import prefs from '../storage/preferences';
 if (process.env.NODE_ENV === 'production') {
   const sourceMapSupport = require('source-map-support');
@@ -109,9 +107,6 @@ let browserPanelState = 'default';
     // event.reply('Search: Submit', [arg]);
   });
   // NAV BAR LISTENERS
-  ipcMain.on('package', async (event) => {
-    event.reply('package', app.getVersion());
-  });
   ipcMain.on('nav: mode: audio', async (event, arg) => {
     mWin.webContents.send('count-downloads', arg);
     event.reply('nav: mode: audio', 'nav: mode: audio successful'); // sends message to renderer
@@ -282,6 +277,7 @@ const windowController = {
         mWin.minimize();
       } else {
         mWin.show();
+        mWin.webContents.send('appVersion', app.getVersion());
         // mWin.maximize();
       }
     });
