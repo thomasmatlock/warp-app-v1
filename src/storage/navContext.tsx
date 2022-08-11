@@ -3,6 +3,9 @@ const NavContext = React.createContext({
   audioMode: true,
   videoMode: false,
   warpstagramMode: false,
+  generalMode: false,
+  authsMode: false,
+  licenseMode: false,
   audioModeHandler: () => {},
   videoModeHandler: () => {},
   warpstagramModeHandler: () => {},
@@ -12,11 +15,17 @@ export const NavContextProvider = (props) => {
   const [audioMode, setAudioMode] = useState(true);
   const [videoMode, setVideoMode] = useState(false);
   const [warpstagramMode, setWarpstagramMode] = useState(false);
+  const [generalMode, setGeneralMode] = useState(false);
+  const [authsMode, setAuthsMode] = useState(false);
+  const [licenseMode, setLicenseMode] = useState(false);
 
   const disableAllStates = () => {
     setAudioMode(false);
     setVideoMode(false);
     setWarpstagramMode(false);
+    setGeneralMode(false);
+    setAuthsMode(false);
+    setLicenseMode(false);
   };
   const audioModeHandler = () => {
     disableAllStates();
@@ -55,6 +64,9 @@ export const NavContextProvider = (props) => {
         audioMode: audioMode,
         videoMode: videoMode,
         warpstagramMode: warpstagramMode,
+        generalMode: generalMode,
+        authsMode: authsMode,
+        licenseMode: licenseMode,
         audioModeHandler: audioModeHandler,
         videoModeHandler: videoModeHandler,
         warpstagramModeHandler: warpstagramModeHandler,

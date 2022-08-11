@@ -5,19 +5,22 @@ import { ActionBarContextProvider } from '../storage/actionBarContext';
 import { SourcesContextProvider } from '../storage/sourcesContext';
 import { DownloadsContextProvider } from '../storage/downloadsContext';
 import { NavContextProvider } from '../storage/navContext';
+import { InputContextProvider } from '../storage/inputContext';
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
 root.render(
   <ThemeContextProvider>
     <NavContextProvider>
-      <DownloadsContextProvider>
-        <SourcesContextProvider>
-          <ActionBarContextProvider>
-            <App />
-          </ActionBarContextProvider>
-        </SourcesContextProvider>
-      </DownloadsContextProvider>
+      <InputContextProvider>
+        <DownloadsContextProvider>
+          <SourcesContextProvider>
+            <ActionBarContextProvider>
+              <App />
+            </ActionBarContextProvider>
+          </SourcesContextProvider>
+        </DownloadsContextProvider>
+      </InputContextProvider>
     </NavContextProvider>
   </ThemeContextProvider>
 );

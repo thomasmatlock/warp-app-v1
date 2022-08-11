@@ -8,6 +8,7 @@ import DownloadItem from './DownloadItem';
 import ThemeContext from '../../storage/themeContext';
 import ActionBarContext from '../../storage/actionBarContext';
 import DownloadsContext from '../../storage/downloadsContext';
+import InputContext from '../../storage/inputContext';
 
 import './Downloads.scss';
 
@@ -16,13 +17,8 @@ const DownloadsAudio = () => {
   const themeCtx = useContext(ThemeContext);
   const actionBarCtx = useContext(ActionBarContext);
   const downloadsCtx = useContext(DownloadsContext);
-  // console.log(downloadsCtx.downloadsAudio);
+  const inputCtx = useContext(InputContext);
 
-  window.electron.ipcRenderer.on('Search: InputChange', (arg) => {
-    // setSearchInput(arg[0]);
-    // console.log(arg[0]);
-    // console.log(arg);
-  });
   const downloadSelectedHandler = (id) => {
     console.log(id);
   };

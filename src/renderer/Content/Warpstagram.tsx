@@ -33,9 +33,11 @@ import './Warpstagram.scss';
 
 import ContextMenu from '../ContextMenu/ContextMenu';
 import ContextMenuOptionsWarpstagramAccount from '../ContextMenu/ContextMenuOptionsWarpstagramAccount';
+import InputContext from '../../storage/inputContext';
 
 const Warpstagram = () => {
   const themeCtx = useContext(ThemeContext);
+  const inputCtx = useContext(InputContext);
 
   const [isContextMenuVisible, setisContextMenuVisible] = useState(false);
   const toggleContextMenuSort = () => {

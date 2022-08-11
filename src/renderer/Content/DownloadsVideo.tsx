@@ -3,6 +3,7 @@ import { Fragment, useContext } from 'react';
 import ThemeContext from '../../storage/themeContext';
 import ActionBarContext from '../../storage/actionBarContext';
 import DownloadsContext from '../../storage/downloadsContext';
+import InputContext from '../../storage/inputContext';
 
 import DownloadItem from './DownloadItem';
 import Sort from './Sort';
@@ -13,15 +14,10 @@ const DownloadsVideo = () => {
   const themeCtx = useContext(ThemeContext);
   const actionBarCtx = useContext(ActionBarContext);
   const downloadsCtx = useContext(DownloadsContext);
+  const inputCtx = useContext(InputContext);
   Sort.byAZ(downloadsCtx.downloadsVideo, 'title');
   Sort.byZA(downloadsCtx.downloadsVideo, 'title');
 
-  // console.log(downloadsCtx.downloads);
-
-  // window.electron.ipcRenderer.on('Search: InputChange', (arg) => {
-  //   setSearchInput(arg[0]);
-  //   console.log(arg[0]);
-  // });
   const videoDownloads = (
     <ul className="content__panel__downloads__list">
       {downloadsCtx.downloadsVideo.map((item) => (

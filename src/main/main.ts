@@ -101,7 +101,12 @@ let browserPanelState = 'default';
   ipcMain.on('Search: InputChange', async (event, arg) => {
     // console.log('Search: InputChange', arg);
     // console.log('Menu: Shortcuts: Restart', arg);
-    event.reply('Search: InputChange', [arg]);
+    // event.reply('Search: InputChange', [arg]);
+  });
+  ipcMain.on('Search: Submit', async (event, arg) => {
+    // console.log('Search: Submit', arg);
+    // console.log('Menu: Shortcuts: Restart', arg);
+    // event.reply('Search: Submit', [arg]);
   });
   // NAV BAR LISTENERS
   ipcMain.on('package', async (event) => {
@@ -123,12 +128,13 @@ let browserPanelState = 'default';
   });
   // BROWSERBAR DOWNLOAD SOURCE LISTENERS
   ipcMain.on('loadActiveSource', async () => {
-    if (view.webContents.getURL().includes('pinterest')) {
-      view.webContents.insertCSS('html, body, { background-color: #fff;  }');
-    }
+    if (view)
+      if (view.webContents.getURL().includes('pinterest')) {
+        view.webContents.insertCSS('html, body, { background-color: #fff;  }');
+      }
   });
   ipcMain.on('source: change', async (event, arg) => {
-    if (view) view.webContents.loadURL(arg);
+    if (view) if (view) view.webContents.loadURL(arg);
     if (view.webContents.getURL().includes('pinterest')) {
       view.webContents.insertCSS('html, body, { background-color: #fff;  }');
     }
@@ -276,7 +282,7 @@ const windowController = {
         mWin.minimize();
       } else {
         mWin.show();
-        mWin.maximize();
+        // mWin.maximize();
       }
     });
     mWin.on('resize', () => {});
