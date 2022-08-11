@@ -1,50 +1,41 @@
-import React, { useRef, useEffect } from 'react';
-import Sketch from './sketch.min.js';
-// const Canvas = (props) => {
-//   const canvasRef = useRef(null);
-//   const canvas = canvasRef.current;
-//   const context = canvas.getContext('2d');
+// import ScriptTag from 'react-script-tag';
+import React from 'react';
+// import './App.css';
 
-//   return <canvas ref={canvasRef} {...props} />;
-// };
-const Canvas = (props) => {
-  const canvasRef = useRef(null);
-  ///////////////////////////////////////////////////////
+const BlackHole = () => {
+  React.useEffect(() => {
+    const c = document.getElementById('myCanvas');
+    const ctx = c.getContext('2d');
+    ctx.moveTo(0, 0);
+    ctx.lineTo(200, 100);
+    ctx.stroke();
+  }, []);
 
-  ///////////////////////////////////////////////////////
-  const draw = (ctx, frameCount) => {
-    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-    ctx.fillStyle = '#000000';
+  const addPoint = () => {
+    const ctx = document.getElementById('myCanvas').getContext('2d');
     ctx.beginPath();
-    ctx.arc(50, 100, 20 * Math.sin(frameCount * 0.05) ** 2, 0, 2 * Math.PI);
+    ctx.arc(100, 50, 10, 0, 2 * Math.PI, false);
+    ctx.fillStyle = 'green';
     ctx.fill();
+    ctx.lineWidth = 5;
+    ctx.strokeStyle = '#003300';
+    ctx.stroke();
   };
 
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    const context = canvas.getContext('2d');
-    canvas.style.position = 'relative';
-    canvas.style.position = 'absolute';
-    canvas.style.top = '0';
-    let frameCount = 0;
-    let animationFrameId: number;
-    // console.log('canvas', canvas);
-    console.log(context);
-
-    //Our draw came here
-    const render = () => {
-      frameCount++;
-      draw(context, frameCount);
-      animationFrameId = window.requestAnimationFrame(render);
-    };
-    render();
-
-    return () => {
-      window.cancelAnimationFrame(animationFrameId);
-    };
-  }, [draw]);
-
-  return <canvas ref={canvasRef} {...props} />;
+  return (
+    <div>
+      {/* <h1>HTML5 Canvas + React.js</h1> */}
+      <canvas
+        id="myCanvas"
+        position="absolute"
+        width="1000px"
+        height="500px"
+        style={{ border: '1px solid #d3d3d3' }}
+      >
+        Your browser does not support the HTML canvas tag.
+      </canvas>
+      {/* <button onClick={() => addPoint()}>Add Point</button> */}
+    </div>
+  );
 };
-
-export default Canvas;
+export default BlackHole;

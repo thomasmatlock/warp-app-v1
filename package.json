@@ -118,19 +118,22 @@
         "nanoid": "^4.0.0",
         "react": "^18.1.0",
         "react-dom": "^18.1.0",
-        "react-router-dom": "^6.3.0"
+        "react-router-dom": "^6.3.0",
+        "react-script-tag": "^1.1.2"
     },
     "prettier": {
         "singleQuote": true,
-        "overrides": [{
-            "files": [
-                ".prettierrc",
-                ".eslintrc"
-            ],
-            "options": {
-                "parser": "json"
+        "overrides": [
+            {
+                "files": [
+                    ".prettierrc",
+                    ".eslintrc"
+                ],
+                "options": {
+                    "parser": "json"
+                }
             }
-        }]
+        ]
     },
     "jest": {
         "moduleDirectories": [
@@ -188,7 +191,8 @@
             "gatekeeperAssess": false
         },
         "dmg": {
-            "contents": [{
+            "contents": [
+                {
                     "x": 130,
                     "y": 220
                 },
