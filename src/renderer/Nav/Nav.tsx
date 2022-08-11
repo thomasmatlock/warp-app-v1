@@ -11,11 +11,16 @@ import iconWindows from '../../../assets/Nav/platform/windows.svg';
 import iconApple from '../../../assets/Nav/platform/apple.svg';
 import iconLinux from '../../../assets/Nav/platform/linux.svg';
 import ThemeContext from '../../storage/themeContext';
+import NavContext from '../../storage/navContext';
 import './Nav.scss';
 let appVersion: string = '1.0.0';
 
 const Nav = (props) => {
   const themeCtx = useContext(ThemeContext);
+  const navCtx = useContext(NavContext);
+  console.log(navCtx);
+  navCtx.disableAllStates();
+
   window.electron.ipcRenderer.sendMessage('package', [
     'Nav requesting package.json',
   ]);
@@ -55,8 +60,8 @@ const Nav = (props) => {
       `Nav change: Warpstagram Mode`,
     ]);
   };
-  window.electron.ipcRenderer.on('package', (arg) => {
-    appVersion = arg.version;
+  window.electron.ipcRenderer.on('package', (arg: string) => {
+    appVersion = arg;
   });
   window.electron.ipcRenderer.on('nav: mode: audio', (arg) => {
     setAudioMode(true);
@@ -69,20 +74,12 @@ const Nav = (props) => {
     setWarpstagramMode(false);
   });
   window.electron.ipcRenderer.on('nav: mode: warpstagram', (arg) => {
-    // window.electron.ipcRenderer.sendMessage('nav: mode: warpstagram', [
-    //   `Nav change: Warpstagram Mode`,
-    // ]);
     setAudioMode(false);
     setVideoMode(false);
     setWarpstagramMode(true);
   });
-  const mouseEnterHandler = () => {
-    // console.log('mouse enter');
-    window.electron.ipcRenderer.sendMessage('browserNotHovered');
-  };
-  const mouseLeaveHandler = () => {
-    // console.log('mouse leave');
-  };
+  const mouseEnterHandler = () => {};
+  const mouseLeaveHandler = () => {};
   return (
     <Fragment>
       <div

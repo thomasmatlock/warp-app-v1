@@ -33,7 +33,7 @@ const isDebug =
   process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true';
 
 if (isDebug) {
-  // require('electron-debug')(); // ENABLE FOR DEVTOOLS
+  require('electron-debug')(); // ENABLE FOR DEVTOOLS
 }
 
 const installExtensions = async () => {
@@ -68,14 +68,7 @@ class AppUpdater {
 let mWin: BrowserWindow | null = null;
 let splashWindow: BrowserWindow | null = null;
 let view: BrowserView | null = null;
-let bWin: BrowserWindow | null = null;
 let mWinBounds = { x: 0, y: 0, width: 1600, height: 900 };
-// let bWinBounds = {
-//   x: mWinBounds.x + 8,
-//   y: mWinBounds.y + 183,
-//   width: mWinBounds.width / 2 - 250,
-//   height: mWinBounds.height - 250, // default
-// };
 const hideView = () => {
   if (view) view.setBounds({ x: 0, y: 0, width: 0, height: 0 });
 };
@@ -112,8 +105,7 @@ let browserPanelState = 'default';
   });
   // NAV BAR LISTENERS
   ipcMain.on('package', async (event) => {
-    app.getVersion();
-    event.reply('package', packageJSON); // sends message to renderer
+    event.reply('package', app.getVersion());
   });
   ipcMain.on('nav: mode: audio', async (event, arg) => {
     mWin.webContents.send('count-downloads', arg);
@@ -131,17 +123,11 @@ let browserPanelState = 'default';
   });
   // BROWSERBAR DOWNLOAD SOURCE LISTENERS
   ipcMain.on('loadActiveSource', async () => {
-    // console.log('loadActiveSource', arg);
-    // if (bWin) bWin.loadURL(arg);
-    // if (view) view.webContents.loadURL(arg);
     if (view.webContents.getURL().includes('pinterest')) {
       view.webContents.insertCSS('html, body, { background-color: #fff;  }');
     }
   });
   ipcMain.on('source: change', async (event, arg) => {
-    // console.log('source: change', arg);
-
-    // if (bWin) bWin.loadURL(arg);
     if (view) view.webContents.loadURL(arg);
     if (view.webContents.getURL().includes('pinterest')) {
       view.webContents.insertCSS('html, body, { background-color: #fff;  }');
@@ -155,34 +141,20 @@ let browserPanelState = 'default';
     event.reply('BrowserBar: button: downloadVideo successful'); // sends message to renderer
   });
   ipcMain.on('browserPanelSize', async (event, arg) => {
-    // console.log('browserPanelSize', arg);
     browserPanelState = arg;
     bWinHandler.resize(arg);
-    setTimeout(() => {
-      // bWinHandler.setScreenshot();
-      if (arg != 'collapse' && bWin) bWin.focus();
-    }, 500);
-
-    // event.reply('BrowserBar: button: downloadVideo successful'); // sends message to renderer
   });
   ipcMain.on('BrowserBar: button: goBack', async (event, arg) => {
     console.log('BrowserBar: button: goBack');
     if (view) view.webContents.goBack();
-
-    // event.reply('BrowserBar: button: downloadVideo successful'); // sends message to renderer
   });
   ipcMain.on('BrowserBar: button: goForward', async (event, arg) => {
     console.log('BrowserBar: button: goForward');
     if (view) view.webContents.goForward();
-
-    // event.reply('BrowserBar: button: downloadVideo successful'); // sends message to renderer
   });
   ipcMain.on('BrowserBar: button: reload', async (event, arg) => {
     console.log('BrowserBar: button: reload');
     if (view) view.webContents.reload();
-    // bWinHandler.setScreenshot();
-
-    // event.reply('BrowserBar: button: downloadVideo successful'); // sends message to renderer
   });
   // FILTERBAR LISTENERS
   ipcMain.on('FilterBar: Warpstagram: FilterTypeAll', async (event, arg) => {
@@ -261,48 +233,39 @@ const windowController = {
     mWin.loadURL(resolveHtmlPath('index.html'));
 
     const wc = mWin.webContents;
-    wc.on('did-finish-load', (event, url) => {});
-    wc.on('dom-ready', (event, url) => {});
-    wc.on('blur', (event, url) => {});
-    wc.on('focus', (event, url) => {});
 
     const menuBuilder = new MenuBuilder(mWin);
     menuBuilder.buildMenu();
 
-    mWin.on('always-on-top-changed', () => {});
-    mWin.on('app-command', () => {});
-    mWin.on('blur', () => {});
-    mWin.on('close', () => {});
     mWin.on('closed', () => (mWin = null));
-    mWin.on('enter-full-screen', () => {
+    mWin.on('enter-full-screen', () => {});
+    mWin.on('enter-html-full-screen', () => {
       let displayBounds = screen.getAllDisplays()[0].bounds;
       if (mWin) mWin.menuBarVisible = false;
       if (view) view.setBounds(displayBounds);
     });
-    mWin.on('enter-html-full-screen', () => {});
     mWin.on('focus', () => {
       bWinHandler.resize(browserPanelState);
     });
-    mWin.on('hide', () => {});
-    mWin.on('leave-full-screen', () => {
+    mWin.on('leave-full-screen', () => {});
+    mWin.on('leave-html-full-screen', () => {
       if (mWin) mWin.menuBarVisible = true;
       if (view) showView();
     });
-    mWin.on('leave-html-full-screen', () => {});
     mWin.on('maximize', () => bWinHandler.resize(browserPanelState));
     mWin.on('minimize', () => {});
     mWin.on('ready-to-show', () => {
-      mWin.webContents.send('ready-to-show');
-      if (process.platform === 'win32') {
+      if (mWin) mWin.webContents.send('ready-to-show');
+      if (process.platform === 'win32' && mWin) {
         mWin.webContents.send('platform', 'windows');
         // Title.setWindowsTitle();
         mWin.setTitle(`${app.getName()} | Professional Audio Edition`);
       }
-      if (process.platform === 'darwin') {
+      if (process.platform === 'darwin' && mWin) {
         mWin.webContents.send('platform', 'darwin');
         mWin.setTitle(`${app.getName()} | Professional Audio Edition`);
       }
-      if (process.platform === 'linux') {
+      if (process.platform === 'linux' && mWin) {
         mWin.webContents.send('platform', 'linux');
         mWin.setTitle(`${app.getName()} | Professional Audio Edition`);
       }
@@ -315,12 +278,9 @@ const windowController = {
         mWin.show();
         mWin.maximize();
       }
-      mWin.webContents.send('package', packageJSON);
     });
-    mWin.on('resize', (e) => {
-      // bWinHandler.resize(browserPanelState);
-    });
-    mWin.on('resized', (e) => {
+    mWin.on('resize', () => {});
+    mWin.on('resized', () => {
       bWinHandler.resize(browserPanelState);
     });
     mWin.on('restore', () => {
@@ -333,7 +293,6 @@ const windowController = {
 };
 const bWinHandler = {
   resize: async function (browserWidth) {
-    // console.log(browserWidth);
     let defaultWidthDifference = mWin.getContentBounds().width / 2;
     let collapsedWidthDifference = 72;
     let expandedWidthDifference = mWin.getContentBounds().width - 72;
@@ -408,26 +367,26 @@ app
     // mWinBounds.height = display.height; // default
     mWinBounds.height = display.height - 250; // testing
     windowController.createmWin();
-    view = new BrowserView();
-    mWin.setBrowserView(view);
-    view.setBounds({
-      x: viewBounds.x,
-      y: viewBounds.y,
-      width: mWin.getContentBounds().width / 2,
-      height: mWin.getContentBounds().height - 192,
-    });
+    // view = new BrowserView();
+    // mWin.setBrowserView(view);
+    // view.setBounds({
+    //   x: viewBounds.x,
+    //   y: viewBounds.y,
+    //   width: mWin.getContentBounds().width / 2,
+    //   height: mWin.getContentBounds().height - 192,
+    // });
 
-    view.setAutoResize({ width: true, height: true });
-    view.setBackgroundColor('#1a1a1a');
-    view.webContents.loadURL('https://youtube.com');
-    // view.webContents.loadURL(
-    //   'https://www.youtube.com/channel/UCpCtwRCG1hHcijgy82wt8Ng'
-    // );
-    view.webContents.on('did-navigate-in-page', (e, url) => {
-      mWin.webContents.send('did-navigate-in-page', url);
-    }),
-      app.on('activate', () => {
-        if (mWin === null) windowController.createmWin();
-      });
+    // view.setAutoResize({ width: true, height: true });
+    // view.setBackgroundColor('#1a1a1a');
+    // view.webContents.loadURL('https://youtube.com');
+    // // view.webContents.loadURL(
+    // //   'https://www.youtube.com/channel/UCpCtwRCG1hHcijgy82wt8Ng'
+    // // );
+    // view.webContents.on('did-navigate-in-page', (e, url) => {
+    //   mWin.webContents.send('did-navigate-in-page', url);
+    // }),
+    app.on('activate', () => {
+      if (mWin === null) windowController.createmWin();
+    });
   })
   .catch(console.log);
