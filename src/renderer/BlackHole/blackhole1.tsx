@@ -162,7 +162,7 @@ sketch.draw = function () {
   if (maxSpeedReached && opt.speed > initialSpeed) {
     // opt.speed = opt.speed - 10; // UNCOMMENT THIS TO MAKE THE SPEED DECREASE
   }
-  sketch.translate(center.x + 5, center.y - 80); // only X calculated, Y is literal
+  sketch.translate(center.x + window.innerWidth / 5, center.y - 80); // only X calculated, Y is literal
   sketch.scale(opt.scale / 2.75, opt.scale / 2.75); // size of spinners container
   sketch.scale(1.33, 1.33);
   var i = orbs.length;
@@ -172,4 +172,12 @@ sketch.draw = function () {
 
   turnOnMove();
   sketch.restore();
+};
+
+window.setInterval(function () {
+  // statusController();
+  // sketch.scale(1.01, 1);
+}, 250);
+document.onselectstart = function () {
+  // return false;
 };

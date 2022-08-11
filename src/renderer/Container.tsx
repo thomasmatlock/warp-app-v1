@@ -12,11 +12,11 @@ const Container = (props) => {
   return (
     <Fragment>
       <div className="container">
-        {/* <Search /> */}
-        {/* <ActionBar /> */}
-        <Content />
+        <Search />
+        <ActionBar />
         <Canvas />
-        {/* <Nav /> */}
+        <Content />
+        <Nav />
       </div>
     </Fragment>
   );
