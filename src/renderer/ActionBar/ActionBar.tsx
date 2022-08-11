@@ -70,6 +70,7 @@ const ActionBar = (props) => {
     // console.log('mouse enter');
     // window.electron.ipcRenderer.sendMessage('browserNotHovered');
     window.electron.ipcRenderer.sendMessage('prepareTobWin');
+    // window.electron.ipcRenderer.sendMessage('hidebWin');
   };
   const mouseLeaveHandler = () => {
     // console.log('mouse leave');

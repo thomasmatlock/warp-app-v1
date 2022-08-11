@@ -150,14 +150,21 @@ const windowsVisibilityManager = () => {
   }
   let focusedWindow = BrowserWindow.getFocusedWindow();
   console.log(BrowserWindow.getFocusedWindow());
-  if (focusedWindow === null) {
+  if (focusedWindow !== null) {
     console.log('focusedWindow is null');
+    // bWin.moveTop();
+    // bWin.restore();
+    // mWin.getBounds
+  } else {
+    // bWin.minimize();
+    console.log('focusedWindow is not null');
   }
   // mWin.webContents.on('')
 };
-let mWin: bWin | null = null;
-let splashWindow: bWin | null = null;
-let bWin: bWin | null = null;
+let mWin: BrowserWindow | null = null;
+let splashWindow: BrowserWindow | null = null;
+let view: BrowserView | null = null;
+let bWin: BrowserWindow | null = null;
 let mWinBounds = { x: 0, y: 0, width: 1600, height: 900 };
 let bWinBounds = {
   x: mWinBounds.x + 8,
@@ -296,16 +303,29 @@ ipcMain.on('settings: request', async (event, arg) => {
     // mWin.webContents.send('request-browserDimensions');
   });
   ipcMain.on('hidebWin', async (event, arg) => {
+    console.log('hidebWin');
+
     // let opacity = bWin.getOpacity();
     // console.log('hidebWin', opacity);
     // bWin.setOpacity(0);
+    // view.setOpacity(0);
+    // view.setOpacity(0);
+    // view.hide();
+    view.setBounds({ x: 0, y: 0, width: 0, height: 0 });
+    // if (view) view.setAlwaysOnTop(false);
     if (bWin) bWin.setAlwaysOnTop(false);
+    // togglebWinOnTop();
     // togglebWinOnTop();
     mWin.setAlwaysOnTop(true);
     mWin.focus();
   });
   ipcMain.on('showbWin', async (event, arg) => {
     // bWin.setOpacity(1);
+    // view.show();
+    // view.setBounds({ x: 0, y: 0, width: 800, height: 0 });
+    view.setBounds({ x: 0, y: 132, width: 800, height: 550 });
+    // view.setOpacity(1);
+    // if (view) view.setAlwaysOnTop(true);
     if (bWin) bWin.setAlwaysOnTop(true);
     // togglebWinOnTop();
     mWin.setAlwaysOnTop(false);
@@ -589,18 +609,6 @@ const windowController = {
 
     // Remove this if your app does not use auto updates
   },
-  // const win = new bWin({
-  //   x: 400,
-  //   y: 400,
-  //   width: 800,
-  //   height: 600,
-  //   frame: false,
-  //   skipTaskbar: true,
-  // });
-
-  // const view = new BrowserView();
-  // win.setBrowserView(view);
-  // view.setBounds({ x: 0, y: 0, width: 800, height: 800 });
 };
 const bWinHandler = {
   resize: async function (browserWidth) {
@@ -675,9 +683,29 @@ app
     mWinBounds.height = display.height - 250; // testing
     // console.log(mWinBounds);
 
+    // const win = new BrowserWindow({
+    //   x: 0,
+    //   y: 0,
+    //   width: 800,
+    //   height: 600,
+    //   frame: false,
+    //   parent: mWin,
+    //   skipTaskbar: true,
+    //   // alwaysOnTop: true,
+    // });
+
+    // const view = new BrowserView();
+    // win.setBrowserView(view);
+    // view.setBounds({ x: 0, y: 0, width: 800, height: 800 });
+
     // windowController.createSplashWindow();
     windowController.createbWin();
     windowController.createmWin();
+    view = new BrowserView();
+    mWin.setBrowserView(view);
+    view.setBounds({ x: 0, y: 132, width: 800, height: 550 });
+    view.setAutoResize({ width: true, height: true });
+    view.webContents.loadURL('https://electronjs.org');
     app.on('activate', () => {
       if (mWin === null) windowController.createmWin();
     });

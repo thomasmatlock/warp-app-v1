@@ -43,7 +43,7 @@ const BrowserBarDownloadSource = () => {
     }
   };
   const mouseEnterHandler = () => {
-    window.electron.ipcRenderer.sendMessage('bWin');
+    window.electron.ipcRenderer.sendMessage('hidebWin');
     setIsSourcesExpanded(true);
   };
   const mouseLeaveHandler = () => {
