@@ -36,7 +36,7 @@ const isDebug =
   process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true';
 
 if (isDebug) {
-  require('electron-debug')(); // ENABLE FOR DEVTOOLS
+  // require('electron-debug')(); // ENABLE FOR DEVTOOLS
 }
 
 const installExtensions = async () => {
@@ -225,17 +225,28 @@ ipcMain.on('settings: request', async (event, arg) => {
     browserWindowHandler.setScreenshot();
     // mainWindow.webContents.send('request-browserDimensions');
   });
+  const toggleBrowserWindowOnTop = () => {
+    if (browserWindow) {
+      if (browserWindow.isAlwaysOnTop()) {
+        browserWindow.setAlwaysOnTop(false);
+      } else {
+        browserWindow.setAlwaysOnTop(true);
+      }
+    }
+  };
   ipcMain.on('hideBrowserWindow', async (event, arg) => {
     // let opacity = browserWindow.getOpacity();
     // console.log('hideBrowserWindow', opacity);
     // browserWindow.setOpacity(0);
     if (browserWindow) browserWindow.setAlwaysOnTop(false);
+    // toggleBrowserWindowOnTop();
     mainWindow.setAlwaysOnTop(true);
-    // mainWindow.focus();
+    mainWindow.focus();
   });
   ipcMain.on('showBrowserWindow', async (event, arg) => {
     // browserWindow.setOpacity(1);
     if (browserWindow) browserWindow.setAlwaysOnTop(true);
+    // toggleBrowserWindowOnTop();
     mainWindow.setAlwaysOnTop(false);
     if (browserWindow) browserWindow.focus();
   });
@@ -289,10 +300,18 @@ const windowController = {
       // console.log('mainWindow dom-ready');
     });
     wc.on('blur', (event, url) => {
-      // console.log('mainWindow webContents blur');
+      console.log('mainWindow webContents blur');
+      // console.log(browserWindow.isAlwaysOnTop());
+
+      if (browserWindow)
+        if (browserWindow.isAlwaysOnTop() === true) {
+          console.log('its on top');
+        } else {
+          console.log('its not on top');
+        }
     });
     wc.on('focus', (event, url) => {
-      // console.log('mainWindow webContents focus');
+      console.log('mainWindow webContents focus');
     });
 
     const menuBuilder = new MenuBuilder(mainWindow);
@@ -303,7 +322,14 @@ const windowController = {
       // console.log('mainWindow app-command');
     });
     mainWindow.on('blur', () => {
-      // console.log('mainWindow blur');
+      console.log('mainWindow blur');
+      if (browserWindow)
+        if (browserWindow.isAlwaysOnTop() === true) {
+          console.log('its on top');
+        } else {
+          console.log('its not on top');
+        }
+      // if (browserWindow) toggleBrowserWindowOnTop();
       // allWindowsBlur.main = true;
       // checkWindowsBlur();
     });
@@ -312,8 +338,12 @@ const windowController = {
     mainWindow.on('enter-full-screen', () => {});
     mainWindow.on('enter-html-full-screen', () => {});
     mainWindow.on('focus', () => {
+      console.log('mainWindow focus');
       // console.log('mainWindow focus');
-      // console.log('mainWindow focus');
+      browserWindow.setAlwaysOnTop(true);
+      browserWindow.show();
+
+      // if (browserWindow) browserWindow.focus();
 
       browserWindowHandler.resize(browserPanelState);
     });
@@ -452,7 +482,7 @@ const windowController = {
       console.log('browserWindow did-finish-load');
 
       mainWindow.show();
-      mainWindow.maximize();
+      // mainWindow.maximize();
       browserWindow.show();
     });
     browserWindow.webContents.on('did-navigate-in-page', () => {
@@ -465,10 +495,17 @@ const windowController = {
     });
     browserWindow.on('always-on-top-changed', () => {});
     browserWindow.on('blur', () => {
-      // console.log('browserWindow blur');
+      console.log('browserWindow blur');
       setTimeout(() => {
         // browserWindowHandler.setScreenshot();
       }, 250);
+      // console.log('hello', mainWindow.isBlurred());
+
+      if (mainWindow.isFocused() === false) {
+        console.log('mainWindow also blur');
+        browserWindow.setAlwaysOnTop(false);
+        browserWindow.hide();
+      }
       // allWindowsBlur.browser = true;
       // checkWindowsBlur();
     });
@@ -476,7 +513,7 @@ const windowController = {
     browserWindow.on('closed', () => (browserWindow = null));
     browserWindow.on('enter-full-screen', () => {});
     browserWindow.on('focus', () => {
-      // console.log('browserWindow focus');
+      console.log('browserWindow focus');
     });
     browserWindow.on('hide', () => {
       console.log('browserWindow hide');
@@ -638,8 +675,8 @@ app
     mainWindowBounds.x = display.x;
     mainWindowBounds.y = display.y;
     mainWindowBounds.width = display.width;
-    mainWindowBounds.height = display.height; // default
-    // mainWindowBounds.height = display.height - 100; // testing
+    // mainWindowBounds.height = display.height; // default
+    mainWindowBounds.height = display.height - 100; // testing
     // console.log(mainWindowBounds);
 
     // windowController.createSplashWindow();
