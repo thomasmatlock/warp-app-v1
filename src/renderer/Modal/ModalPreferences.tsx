@@ -20,7 +20,7 @@ import ThemeContext from '../../storage/themeContext';
 import NavContext from '../../storage/navContext';
 import InputContext from '../../storage/inputContext';
 import ModalsContext from '../../storage/modalsContext';
-
+let audioModeOnly: boolean;
 const ModalPreferences = () => {
   const themeCtx = useContext(ThemeContext);
   const navCtx = useContext(NavContext);
@@ -39,6 +39,17 @@ const ModalPreferences = () => {
   );
   const [isModalPanelMorph, setModalPanelMorph] = useState(false);
   const [isModalPanelAuths, setModalPanelAuths] = useState(navCtx.authsMode);
+  // console.log(navCtx.licenseMode, 'licenseMode', navCtx.authsMode, 'authsMode');
+
+  audioModeOnly = !navCtx.authsMode;
+  audioModeOnly = !navCtx.licenseMode;
+  videoModeOnly = !navCtx.authsMode;
+  videoModeOnly = !navCtx.licenseMode;
+  warpstagramModeOnly = !navCtx.authsMode;
+  warpstagramModeOnly = !navCtx.licenseMode;
+  console.log(`${audioModeOnly}, 'audioModeOnly'`);
+  console.log(`${videoModeOnly}, 'videoModeOnly'`);
+  console.log(`${warpstagramModeOnly}, 'warpstagramModeOnly'`);
 
   const hideAllPanels = () => {
     setModalPanelAudio(false);
@@ -85,6 +96,7 @@ const ModalPreferences = () => {
         <div className="modal_preferences__content">
           <div className="modal_preferences__content__panel modal_preferences__content__panel__nav">
             <ModalNav
+              // shows which nav buttons are active/highlighted
               isAudioActive={isModalPanelAudio}
               isVideoActive={isModalPanelVideo}
               isWarpstagramActive={isModalPanelWarpstagram}

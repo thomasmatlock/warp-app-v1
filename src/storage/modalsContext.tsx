@@ -29,6 +29,7 @@ export const ModalsContextProvider = (props) => {
   };
   window.electron.ipcRenderer.on('modal: preferences', (prefs) => {
     // console.log('prefs modal');
+    // navCtx.disableAllStates();
 
     if (isModalOpen) {
       hideModalHandler();
