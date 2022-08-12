@@ -25,6 +25,7 @@ const Search = (props) => {
   const navCtx = useContext(NavContext);
   const inputCtx = useContext(InputContext);
   const modalsCtx = useContext(ModalsContext);
+  // console.log(props.settings);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const hideModalHandler = () => {
@@ -160,7 +161,7 @@ const Search = (props) => {
           src={SearchIcon}
         />
         <input
-          autoFocus
+          // autoFocus
           id="search__input"
           className={isHovering ? 'search__input__hovering' : 'search__input'}
           style={

@@ -277,8 +277,8 @@ const windowController = {
         mWin.minimize();
       } else {
         mWin.show();
-        mWin.webContents.send('appVersion', app.getVersion());
         // mWin.maximize();
+        mWin.webContents.send('appVersion', app.getVersion());
       }
     });
     mWin.on('resize', () => {});
