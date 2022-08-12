@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import './ModalPreferences.scss';
 import './Components/ModalCheckbox.scss';
 import './Components/ModalDropdownList.scss';
@@ -16,23 +16,29 @@ import ModalPanelMorph from './Panels/ModalPanelMorph';
 import ModalPanelVideo from './Panels/ModalPanelVideo';
 import ModalPanelAuths from './Panels/ModalPanelAuths';
 import ModalPanelWarpstagram from './Panels/ModalPanelWarpstagram';
+import ThemeContext from '../../storage/themeContext';
+import NavContext from '../../storage/navContext';
+import InputContext from '../../storage/inputContext';
+import ModalsContext from '../../storage/modalsContext';
 
-const ModalPreferences = (props) => {
-  // console.log(props.settings);
+const ModalPreferences = () => {
+  const themeCtx = useContext(ThemeContext);
+  const navCtx = useContext(NavContext);
+  const inputCtx = useContext(InputContext);
+  const modalsCtx = useContext(ModalsContext);
+  // console.log(navCtx);
 
-  const [isModalPanelAudio, setModalPanelAudio] = useState(props.isAudioMode);
-  const [isModalPanelVideo, setModalPanelVideo] = useState(props.isVideoMode);
+  const [isModalPanelAudio, setModalPanelAudio] = useState(navCtx.audioMode);
+  const [isModalPanelVideo, setModalPanelVideo] = useState(navCtx.videoMode);
   const [isModalPanelWarpstagram, setModalPanelWarpstagram] = useState(
-    props.isWarpstagramMode
+    navCtx.warpstagramMode
   );
-  // console.log(props.isAuthsMode);
-
   const [isModalPanelGeneral, setModalPanelGeneral] = useState(false);
   const [isModalPanelLicenses, setModalPanelLicenses] = useState(
-    props.isLicenseMode
+    navCtx.licenseMode
   );
   const [isModalPanelMorph, setModalPanelMorph] = useState(false);
-  const [isModalPanelAuths, setModalPanelAuths] = useState(props.isAuthsMode);
+  const [isModalPanelAuths, setModalPanelAuths] = useState(navCtx.authsMode);
 
   const hideAllPanels = () => {
     setModalPanelAudio(false);
@@ -73,9 +79,9 @@ const ModalPreferences = (props) => {
   };
 
   return (
-    <Modal onClose={props.onClose}>
+    <Modal onClose={modalsCtx.hideModalHandler}>
       <div className="modal_preferences">
-        <ModalHeader onClose={props.onClose} />
+        <ModalHeader onClose={modalsCtx.hideModalHandler} />
         <div className="modal_preferences__content">
           <div className="modal_preferences__content__panel modal_preferences__content__panel__nav">
             <ModalNav
@@ -86,6 +92,7 @@ const ModalPreferences = (props) => {
               isGeneralActive={isModalPanelGeneral}
               isAuthsActive={isModalPanelAuths}
               isLicensesActive={isModalPanelLicenses}
+              // content panels below
               showAudio={showPanelAudio}
               showVideo={showPanelVideo}
               showMorph={showPanelMorph}

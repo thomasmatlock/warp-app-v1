@@ -10,6 +10,9 @@ const NavContext = React.createContext({
   audioModeHandler: () => {},
   videoModeHandler: () => {},
   warpstagramModeHandler: () => {},
+  generalModeHandler: () => {},
+  authsModeHandler: () => {},
+  licenseModeHandler: () => {},
   disableAllStates: () => {},
 });
 export const NavContextProvider = (props) => {
@@ -21,7 +24,7 @@ export const NavContextProvider = (props) => {
   const [licenseMode, setLicenseMode] = useState(false);
   const [placeholder, setPlaceholder] = useState('');
   const audioSearchPlaceholder = 'audio search...beep boop';
-  const videoSearchPlaceholder = 'video search...beep boop';
+  const videoSearchPlaceholder = 'video search...boop beep';
   const warpstagramSearchPlaceholder =
     'Enter instagram username, hashtag, or location';
   window.electron.ipcRenderer.on('ready-to-show', (arg) => {
@@ -57,6 +60,23 @@ export const NavContextProvider = (props) => {
       `Nav change: Warpstagram Mode`,
     ]);
   };
+  const generalModeHandler = () => {
+    // disableAllStates();
+    setGeneralMode(true);
+    // console.log(generalMode);
+  };
+  const authsModeHandler = () => {
+    // disableAllStates();
+    // setGeneralMode(false);
+    // setLicenseMode(false);
+    setAuthsMode(true);
+  };
+  const licenseModeHandler = () => {
+    // disableAllStates();
+    // setGeneralMode(false);
+    // setAuthsMode(false);
+    setLicenseMode(true);
+  };
   window.electron.ipcRenderer.on('nav: mode: audio', (arg) => {
     setPlaceholder(audioSearchPlaceholder);
     disableAllStates();
@@ -72,6 +92,7 @@ export const NavContextProvider = (props) => {
     disableAllStates();
     setWarpstagramMode(true);
   });
+
   return (
     <NavContext.Provider
       value={{
@@ -82,6 +103,9 @@ export const NavContextProvider = (props) => {
         authsMode: authsMode,
         licenseMode: licenseMode,
         placeholder: placeholder,
+        generalModeHandler: generalModeHandler,
+        licenseModeHandler: licenseModeHandler,
+        authsModeHandler: authsModeHandler,
         audioModeHandler: audioModeHandler,
         videoModeHandler: videoModeHandler,
         warpstagramModeHandler: warpstagramModeHandler,

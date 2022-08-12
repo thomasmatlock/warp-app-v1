@@ -25,55 +25,13 @@ const Search = (props) => {
   const navCtx = useContext(NavContext);
   const inputCtx = useContext(InputContext);
   const modalsCtx = useContext(ModalsContext);
-  // console.log(props.settings);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const hideModalHandler = () => {
-    setIsModalOpen(false);
-    window.electron.ipcRenderer.sendMessage('showbWin', 'from search');
-  };
-  const showModalHandler = () => {
-    window.electron.ipcRenderer.sendMessage('hidebWin', 'from search');
-    setIsModalOpen(true);
-  };
   const restoreInputDefaultWidthDelay = 3000;
-  // const [generalMode, setGeneralMode] = useState(false);
-  // const [authsMode, setAuthsMode] = useState(false);
-  // const [licenseMode, setLicenseMode] = useState(false);
 
-  // const [placeholder, setPlaceholder] = useState('input search...beep boop');
   const [clearIcon, setClearIcon] = useState(false);
 
   const [isHovering, setIsHovering] = useState(false);
-
-  // window.electron.ipcRenderer.on('ready-to-show', (arg) => {
-  //   // setPlaceholderController();
-  // });
-  window.electron.ipcRenderer.on('modal: preferences: license', (arg) => {
-    navCtx.disableAllStates();
-    setLicenseMode(true);
-    if (isModalOpen) {
-      hideModalHandler();
-    } else if (!isModalOpen) {
-      showModalHandler();
-    }
-  });
-  window.electron.ipcRenderer.on('modal: preferences: auths', (arg) => {
-    navCtx.disableAllStates();
-    setAuthsMode(true);
-    if (isModalOpen) {
-      hideModalHandler();
-    } else if (!isModalOpen) {
-      showModalHandler();
-    }
-  });
-  window.electron.ipcRenderer.on('modal: preferences', (prefs) => {
-    if (isModalOpen) {
-      hideModalHandler();
-    } else if (!isModalOpen) {
-      showModalHandler();
-    }
-  });
 
   const searchInputChangeHandler = (event) => {
     if (event.target.value.length > 0) {
@@ -117,9 +75,9 @@ const Search = (props) => {
   };
   window.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
-      setIsModalOpen(false);
+      modalsCtx.modalStateHandler(false);
     }
-    if (event.key === 'Escape' && !isModalOpen) {
+    if (event.key === 'Escape' && !modalsCtx.isModalOpen) {
       searchClearTextHandler();
     }
   });
@@ -252,19 +210,18 @@ const Search = (props) => {
                   filter: 'invert(0%)',
                 }
           }
-          onClick={showModalHandler}
+          onClick={modalsCtx.showModalHandler}
           title="Open Preferences"
         />
       </div>
-      {isModalOpen && (
+      {modalsCtx.isModalOpen && (
         <ModalPreferences
-          settings={props.settings}
-          onClose={hideModalHandler}
-          isAudioMode={navCtx.audioMode}
-          isVideoMode={navCtx.videoMode}
-          isWarpstagramMode={navCtx.warpstagramMode}
-          isAuthsMode={navCtx.authsMode}
-          isLicenseMode={navCtx.licenseMode}
+        // onClose={modalsCtx.hideModalHandler}
+        // isAudioMode={navCtx.audioMode}
+        // isVideoMode={navCtx.videoMode}
+        // isWarpstagramMode={navCtx.warpstagramMode}
+        // isAuthsMode={navCtx.authsMode}
+        // isLicenseMode={navCtx.licenseMode}
         />
       )}
     </Fragment>
