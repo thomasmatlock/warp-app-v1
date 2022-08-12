@@ -574,10 +574,6 @@ export default class MenuBuilder {
             accelerator: 'Shift+3',
             click: () => {
               this.mWin.webContents.send('nav: mode: warpstagram');
-              // window.electron.ipcRenderer.sendMessage(
-              //   'nav: mode: warpstagram',
-              //   [`Nav change: Warpstagram Mode`]
-              // );
             },
           },
           {

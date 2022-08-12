@@ -67,25 +67,26 @@ export const NavContextProvider = (props) => {
     disableAllPrefs();
     setAudioMode(true);
     setAudioModePrefs(true);
-    // window.electron.ipcRenderer.sendMessage('nav: mode: audio', [
-    //   `Nav change: Audio Mode`,
-    // ]);
+    setPlaceholder(audioSearchPlaceholder);
+    window.electron.ipcRenderer.sendMessage('nav: mode: audio');
   };
   const videoModeHandler = () => {
     disableMainModes();
     disableAllPrefs();
     setVideoMode(true);
     setVideoModePrefs(true);
-    // window.electron.ipcRenderer.sendMessage('nav: mode: video', []);
+    setPlaceholder(videoSearchPlaceholder);
+
+    window.electron.ipcRenderer.sendMessage('nav: mode: video', []);
   };
   const warpstagramModeHandler = () => {
     disableMainModes();
     disableAllPrefs();
     setWarpstagramMode(true);
     setWarpstagramModePrefs(true);
-    // window.electron.ipcRenderer.sendMessage('nav: mode: warpstagram', [
-    //   `Nav change: Warpstagram Mode`,
-    // ]);
+    setPlaceholder(warpstagramSearchPlaceholder);
+
+    window.electron.ipcRenderer.sendMessage('nav: mode: warpstagram');
   };
   // PREFS MODES HANDLERS
 
@@ -121,21 +122,6 @@ export const NavContextProvider = (props) => {
     disableAllPrefs();
     setLicenseModePrefs(true);
   };
-  window.electron.ipcRenderer.on('nav: mode: audio', (arg) => {
-    setPlaceholder(audioSearchPlaceholder);
-    disableMainModes();
-    setAudioMode(true);
-  });
-  window.electron.ipcRenderer.on('nav: mode: video', (arg) => {
-    setPlaceholder(videoSearchPlaceholder);
-    disableMainModes();
-    setVideoMode(true);
-  });
-  window.electron.ipcRenderer.on('nav: mode: warpstagram', (arg) => {
-    setPlaceholder(warpstagramSearchPlaceholder);
-    disableMainModes();
-    setWarpstagramMode(true);
-  });
 
   return (
     <NavContext.Provider

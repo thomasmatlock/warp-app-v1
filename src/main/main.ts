@@ -108,19 +108,14 @@ let browserPanelState = 'default';
     // event.reply('Search: Submit', [arg]);
   });
   // NAV BAR LISTENERS
-  ipcMain.on('nav: mode: audio', async (event, arg) => {
-    mWin.webContents.send('count-downloads', arg);
-    event.reply('nav: mode: audio', 'nav: mode: audio successful'); // sends message to renderer
+  ipcMain.on('nav: mode: audio', async () => {
     showView();
   });
-  ipcMain.on('nav: mode: video', async (event) => {
+  ipcMain.on('nav: mode: video', async () => {
     showView();
-    event.reply('nav: mode: video', 'nav: mode: video successful'); // sends message to renderer
   });
-  ipcMain.on('nav: mode: warpstagram', async (event) => {
-    console.log('nav: mode: warpstagram');
+  ipcMain.on('nav: mode: warpstagram', async () => {
     hideView();
-    event.reply('nav: mode: warpstagram', 'nav: mode: warpstagram successful'); // sends message to renderer
   });
   // BROWSERBAR DOWNLOAD SOURCE LISTENERS
   ipcMain.on('loadActiveSource', async () => {
@@ -305,7 +300,10 @@ const windowController = {
 
     view.setAutoResize({ width: true, height: true });
     view.setBackgroundColor('#1a1a1a');
-    view.webContents.loadURL('https://youtube.com');
+    // view.webContents.loadURL('https://youtube.com');
+    view.webContents.loadURL(
+      'https://www.youtube.com/channel/UCpCtwRCG1hHcijgy82wt8Ng/videos'
+    );
     view.webContents.on('did-navigate-in-page', (e, url) => {
       mWin.webContents.send('did-navigate-in-page', url);
     });
@@ -396,16 +394,19 @@ app
       if (view) view.webContents.goForward();
     });
     globalShortcut.register('Shift+1', () => {
-      // if (view) view.webContents.goForward();
-      mWin.webContents.send('count-downloads', arg);
+      if (mWin) mWin.webContents.send('count-downloads');
+      if (mWin) mWin.webContents.send('nav: mode: audio');
+      showView();
     });
     globalShortcut.register('Shift+2', () => {
-      // if (view) view.webContents.goForward();
-      mWin.webContents.send('count-downloads', arg);
+      if (mWin) mWin.webContents.send('count-downloads');
+      if (mWin) mWin.webContents.send('nav: mode: video');
+      showView();
     });
     globalShortcut.register('Shift+3', () => {
-      // if (view) view.webContents.goForward();
-      mWin.webContents.send('count-downloads', arg);
+      if (mWin) mWin.webContents.send('count-downloads');
+      if (mWin) mWin.webContents.send('nav: mode: warpstagram');
+      hideView();
     });
     app.on('activate', () => {
       if (mWin === null) windowController.createmWin();

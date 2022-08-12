@@ -42,11 +42,6 @@ const ActionBar = (props) => {
       setWarpstagramDownloadsTotal(warpstagramItems.length);
     }, 50);
   };
-  window.electron.ipcRenderer.on('ready-to-show', (arg) => {
-    countAudioDownloads();
-    countVideoDownloads();
-    countWarpstagramDownloads();
-  });
   if (navCtx.audioMode) countAudioDownloads();
   if (navCtx.videoMode) countVideoDownloads();
   if (navCtx.warpstagramMode) countWarpstagramDownloads();

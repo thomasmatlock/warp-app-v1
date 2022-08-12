@@ -25,7 +25,6 @@ const BrowserBarDownloadSource = () => {
   const sourcesCtx = useContext(SourcesContext);
   let sourcesCount = sourcesCtx.enabledSources.length;
   window.electron.ipcRenderer.on('ready-to-show', (arg) => {
-    // window.electron.ipcRenderer.on('view ready-to-show', (arg) => {
     window.electron.ipcRenderer.sendMessage(
       'loadActiveSource',
       sourcesCtx.activeSource[0].URL
