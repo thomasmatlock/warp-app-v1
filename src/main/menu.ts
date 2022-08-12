@@ -207,6 +207,32 @@ export default class MenuBuilder {
         ],
       },
       {
+        label: '&Browser',
+        submenu: [
+          {
+            label: 'Go Back',
+            // enabled: true,
+            accelerator: 'Alt+Left',
+            click: async () => {
+              const { app } = require('electron');
+              // await shell.openExternal('https://electronjs.org');
+              // window.electron.ipcRenderer.sendMessage('nav: mode: audio', [
+              //   `Nav change: Audio Mode`,
+              // ]);
+              //   appWin.send('Audio: File: Import Download Links');
+            },
+          },
+          {
+            label: 'Go Forward',
+            // enabled: true,
+            accelerator: 'Alt+Right',
+            // click: () => {
+            //   appWin.send('Audio: File: Export Download Links');
+            // },
+          },
+        ],
+      },
+      {
         label: '&Audio',
         submenu: [
           {

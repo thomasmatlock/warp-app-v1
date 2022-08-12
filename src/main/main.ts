@@ -12,6 +12,7 @@ import {
   BrowserWindow,
   desktopCapturer,
   dialog,
+  globalShortcut,
   shell,
   ipcMain,
   screen,
@@ -387,7 +388,13 @@ app
     mWinBounds.height = display.height - 250; // testing
     windowController.createmWin();
     windowController.createbView();
-
+    // Register a 'CommandOrControl+X' shortcut listener.
+    globalShortcut.register('Alt+Left', () => {
+      if (view) view.webContents.goBack();
+    });
+    globalShortcut.register('Alt+Right', () => {
+      if (view) view.webContents.goForward();
+    });
     app.on('activate', () => {
       if (mWin === null) windowController.createmWin();
     });
