@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import NavContext from './navContext';
+
 const ActionBarContext = React.createContext({
   // PLAYLISTS
   videoExists: false,
@@ -21,6 +23,9 @@ const ActionBarContext = React.createContext({
   toggleBrowserPanelCollapsed: () => {},
 });
 export const ActionBarContextProvider = (props) => {
+  const navCtx = useContext(NavContext);
+  // console.log(navCtx);
+
   // PANELS
   const [isDownloadsPanelCollapsed, setIsDownloadsPanelCollapsed] =
     useState(false);
