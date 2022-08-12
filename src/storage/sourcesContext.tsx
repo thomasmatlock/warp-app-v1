@@ -9,6 +9,7 @@ import downloadSourceIconTwitch from '../../assets/BrowserBar/twitch.svg';
 import downloadSourceIconTwitter from '../../assets/BrowserBar/twitter.svg';
 import downloadSourceIconVimeo from '../../assets/BrowserBar/vimeo.svg';
 import downloadSourceIconYoutube from '../../assets/BrowserBar/youtube.svg';
+// settings.get('sources');
 const SourcesContext = React.createContext({
   activeSource: '',
   enabledSources: [],

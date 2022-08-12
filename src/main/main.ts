@@ -23,6 +23,18 @@ import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
 import prefs from '../storage/preferences';
+import sourcesDefaults from '../storage/sourcesDefaults';
+
+const Store = require('electron-store');
+const settings = new Store();
+let test = settings.get('sources');
+if (test === undefined) {
+  console.log('undefined');
+}
+
+const contextMenu = require('electron-context-menu');
+contextMenu({});
+
 if (process.env.NODE_ENV === 'production') {
   const sourceMapSupport = require('source-map-support');
   sourceMapSupport.install();
@@ -48,14 +60,6 @@ const installExtensions = async () => {
     )
     .catch(console.log);
 };
-
-const contextMenu = require('electron-context-menu');
-contextMenu({});
-// const Store = require('electron-store');
-// const settings = new Store();
-// settings.set('downloads', downloads);
-// settings.set('sources', sources);
-// settings.set('prefs', prefs);
 
 class AppUpdater {
   constructor() {
@@ -95,6 +99,15 @@ let browserPanelState = 'default';
   });
   ipcMain.on('modal: preferences', async (event, arg) => {
     event.reply('modal: preferences', prefs);
+  }); // nav listeners
+  ipcMain.on('nav: mode: audio', async (event, arg) => {
+    if (mWin) mWin.webContents.send('count-downloads');
+  });
+  ipcMain.on('nav: mode: video', async (event, arg) => {
+    if (mWin) mWin.webContents.send('count-downloads');
+  });
+  ipcMain.on('nav: mode: warpstagram', async (event, arg) => {
+    if (mWin) mWin.webContents.send('count-downloads');
   });
   // SEARCH LISTENERS
   ipcMain.on('Search: InputChange', async (event, arg) => {
@@ -389,7 +402,7 @@ app
     // mWinBounds.height = display.height; // default
     mWinBounds.height = display.height - 250; // testing
     windowController.createmWin();
-    windowController.createbView();
+    // windowController.createbView();
     // Register a 'CommandOrControl+X' shortcut listener.
     globalShortcut.register('Alt+Left', () => {
       if (view) view.webContents.goBack();
@@ -397,21 +410,21 @@ app
     globalShortcut.register('Alt+Right', () => {
       if (view) view.webContents.goForward();
     });
-    globalShortcut.register('Shift+1', () => {
-      if (mWin) mWin.webContents.send('count-downloads');
-      if (mWin) mWin.webContents.send('nav: mode: audio');
-      showView();
-    });
-    globalShortcut.register('Shift+2', () => {
-      if (mWin) mWin.webContents.send('count-downloads');
-      if (mWin) mWin.webContents.send('nav: mode: video');
-      showView();
-    });
-    globalShortcut.register('Shift+3', () => {
-      if (mWin) mWin.webContents.send('count-downloads');
-      if (mWin) mWin.webContents.send('nav: mode: warpstagram');
-      hideView();
-    });
+    // globalShortcut.register('Shift+1', () => {
+    //   if (mWin) mWin.webContents.send('count-downloads');
+    //   if (mWin) mWin.webContents.send('nav: mode: audio');
+    //   showView();
+    // });
+    // globalShortcut.register('Shift+2', () => {
+    //   if (mWin) mWin.webContents.send('count-downloads');
+    //   if (mWin) mWin.webContents.send('nav: mode: video');
+    //   showView();
+    // });
+    // globalShortcut.register('Shift+3', () => {
+    //   if (mWin) mWin.webContents.send('count-downloads');
+    //   if (mWin) mWin.webContents.send('nav: mode: warpstagram');
+    //   hideView();
+    // });
     app.on('activate', () => {
       if (mWin === null) windowController.createmWin();
     });
