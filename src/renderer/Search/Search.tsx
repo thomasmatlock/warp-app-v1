@@ -214,7 +214,16 @@ const Search = (props) => {
           title="Open Preferences"
         />
       </div>
-      {modalsCtx.isModalOpen && <ModalPreferences />}
+      {modalsCtx.isModalOpen && (
+        <ModalPreferences
+        // onClose={modalsCtx.hideModalHandler}
+        // isAudioMode={navCtx.audioMode}
+        // isVideoMode={navCtx.videoMode}
+        // isWarpstagramMode={navCtx.warpstagramMode}
+        // isAuthsMode={navCtx.authsMode}
+        // isLicenseMode={navCtx.licenseMode}
+        />
+      )}
     </Fragment>
   );
 };
