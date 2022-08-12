@@ -28,17 +28,25 @@ const ModalPreferences = () => {
   const modalsCtx = useContext(ModalsContext);
   // console.log(navCtx);
 
-  const [isModalPanelAudio, setModalPanelAudio] = useState(navCtx.audioMode);
-  const [isModalPanelVideo, setModalPanelVideo] = useState(navCtx.videoMode);
-  const [isModalPanelWarpstagram, setModalPanelWarpstagram] = useState(
-    navCtx.warpstagramMode
+  const [isModalPanelAudio, setModalPanelAudio] = useState(
+    navCtx.audioModePrefs
   );
-  const [isModalPanelGeneral, setModalPanelGeneral] = useState(false);
+  const [isModalPanelVideo, setModalPanelVideo] = useState(
+    navCtx.videoModePrefs
+  );
+  const [isModalPanelWarpstagram, setModalPanelWarpstagram] = useState(
+    navCtx.warpstagramModePrefs
+  );
+  const [isModalPanelGeneral, setModalPanelGeneral] = useState(
+    navCtx.generalModePrefs
+  );
   const [isModalPanelLicenses, setModalPanelLicenses] = useState(
-    navCtx.licenseMode
+    navCtx.licenseModePrefs
   );
   const [isModalPanelMorph, setModalPanelMorph] = useState(false);
-  const [isModalPanelAuths, setModalPanelAuths] = useState(navCtx.authsMode);
+  const [isModalPanelAuths, setModalPanelAuths] = useState(
+    navCtx.authsModePrefs
+  );
 
   const hideAllPanels = () => {
     setModalPanelAudio(false);

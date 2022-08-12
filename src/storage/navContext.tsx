@@ -3,93 +3,137 @@ const NavContext = React.createContext({
   audioMode: true,
   videoMode: false,
   warpstagramMode: false,
-  generalMode: false,
-  authsMode: false,
-  licenseMode: false,
-  placeholder: '',
+  //
+  disableMainModes: () => {},
   audioModeHandler: () => {},
   videoModeHandler: () => {},
   warpstagramModeHandler: () => {},
-  generalModeHandler: () => {},
-  authsModeHandler: () => {},
-  licenseModeHandler: () => {},
-  disableAllStates: () => {},
+  //
+  audioModePrefs: true,
+  videoModePrefs: false,
+  warpstagramModePrefs: false,
+  generalModePrefs: false,
+  licenseModePrefs: false,
+  authsModePrefs: false,
+  audioModePrefsHandler: () => {},
+  videoModePrefsHandler: () => {},
+  warpstagramModePrefsHandler: () => {},
+  generalModePrefsHandler: () => {},
+  authsModePrefsHandler: () => {},
+  licenseModePrefsHandler: () => {},
+  //
+  placeholder: '',
+
+  // warpstagramModeHandler: () => {},
 });
 export const NavContextProvider = (props) => {
+  // main mode states
   const [audioMode, setAudioMode] = useState(true);
   const [videoMode, setVideoMode] = useState(false);
   const [warpstagramMode, setWarpstagramMode] = useState(false);
-  const [generalMode, setGeneralMode] = useState(false);
-  const [authsMode, setAuthsMode] = useState(false);
-  const [licenseMode, setLicenseMode] = useState(false);
+  // modal pref nav states
+  const [audioModePrefs, setAudioModePrefs] = useState(true);
+  const [videoModePrefs, setVideoModePrefs] = useState(false);
+  const [warpstagramModePrefs, setWarpstagramModePrefs] = useState(false);
+  const [generalModePrefs, setGeneralModePrefs] = useState(false);
+  const [authsModePrefs, setAuthsModePrefs] = useState(false);
+  const [licenseModePrefs, setLicenseModePrefs] = useState(false);
+  // search placeholder states
   const [placeholder, setPlaceholder] = useState('');
   const audioSearchPlaceholder = 'audio search...beep boop';
   const videoSearchPlaceholder = 'video search...boop beep';
   const warpstagramSearchPlaceholder =
     'Enter instagram username, hashtag, or location';
+
   window.electron.ipcRenderer.on('ready-to-show', (arg) => {
     if (audioMode) setPlaceholder(audioSearchPlaceholder);
     if (videoMode) setPlaceholder(videoSearchPlaceholder);
     if (warpstagramMode) setPlaceholder(warpstagramSearchPlaceholder);
   });
-
-  const disableAllStates = () => {
+  // MAIN MODES HANDLERS
+  const disableMainModes = () => {
     setAudioMode(false);
     setVideoMode(false);
     setWarpstagramMode(false);
-    setGeneralMode(false);
-    setAuthsMode(false);
-    setLicenseMode(false);
   };
+  window.electron.ipcRenderer.on('nav: mode: audio', () => audioModeHandler());
+  window.electron.ipcRenderer.on('nav: mode: video', () => videoModeHandler());
+  window.electron.ipcRenderer.on('nav: mode: warpstagram', () =>
+    warpstagramModeHandler()
+  );
+
   const audioModeHandler = () => {
-    disableAllStates();
+    disableMainModes();
+    disableAllPrefs();
     setAudioMode(true);
-    window.electron.ipcRenderer.sendMessage('nav: mode: audio', [
-      `Nav change: Audio Mode`,
-    ]);
+    setAudioModePrefs(true);
+    // window.electron.ipcRenderer.sendMessage('nav: mode: audio', [
+    //   `Nav change: Audio Mode`,
+    // ]);
   };
   const videoModeHandler = () => {
-    disableAllStates();
+    disableMainModes();
+    disableAllPrefs();
     setVideoMode(true);
-    window.electron.ipcRenderer.sendMessage('nav: mode: video', []);
+    setVideoModePrefs(true);
+    // window.electron.ipcRenderer.sendMessage('nav: mode: video', []);
   };
   const warpstagramModeHandler = () => {
-    disableAllStates();
+    disableMainModes();
+    disableAllPrefs();
     setWarpstagramMode(true);
-    window.electron.ipcRenderer.sendMessage('nav: mode: warpstagram', [
-      `Nav change: Warpstagram Mode`,
-    ]);
+    setWarpstagramModePrefs(true);
+    // window.electron.ipcRenderer.sendMessage('nav: mode: warpstagram', [
+    //   `Nav change: Warpstagram Mode`,
+    // ]);
   };
-  const generalModeHandler = () => {
-    // disableAllStates();
-    setGeneralMode(true);
-    // console.log(generalMode);
+  // PREFS MODES HANDLERS
+
+  const disableAllPrefs = () => {
+    setAudioModePrefs(false);
+    setVideoModePrefs(false);
+    setWarpstagramModePrefs(false);
+    setGeneralModePrefs(false);
+    setAuthsModePrefs(false);
+    setLicenseModePrefs(false);
   };
-  const authsModeHandler = () => {
-    // disableAllStates();
-    // setGeneralMode(false);
-    // setLicenseMode(false);
-    setAuthsMode(true);
+  const audioModePrefsHandler = () => {
+    disableAllPrefs();
+    setAudioModePrefs(true);
   };
-  const licenseModeHandler = () => {
-    // disableAllStates();
-    // setGeneralMode(false);
-    // setAuthsMode(false);
-    setLicenseMode(true);
+  const videoModePrefsHandler = () => {
+    disableAllPrefs();
+    setVideoModePrefs(true);
+  };
+  const warpstagramModePrefsHandler = () => {
+    disableAllPrefs();
+    setLicenseModePrefs(true);
+  };
+  const generalModePrefsHandler = () => {
+    disableAllPrefs();
+    setGeneralModePrefs(true);
+  };
+  const authsModePrefsHandler = () => {
+    disableAllPrefs();
+    setAuthsModePrefs(true);
+  };
+  const licenseModePrefsHandler = () => {
+    disableAllPrefs();
+    setLicenseModePrefs(true);
   };
   window.electron.ipcRenderer.on('nav: mode: audio', (arg) => {
     setPlaceholder(audioSearchPlaceholder);
-    disableAllStates();
+    disableMainModes();
     setAudioMode(true);
   });
   window.electron.ipcRenderer.on('nav: mode: video', (arg) => {
     setPlaceholder(videoSearchPlaceholder);
-    disableAllStates();
+    disableMainModes();
     setVideoMode(true);
   });
   window.electron.ipcRenderer.on('nav: mode: warpstagram', (arg) => {
     setPlaceholder(warpstagramSearchPlaceholder);
-    disableAllStates();
+    disableMainModes();
     setWarpstagramMode(true);
   });
 
@@ -99,17 +143,26 @@ export const NavContextProvider = (props) => {
         audioMode: audioMode,
         videoMode: videoMode,
         warpstagramMode: warpstagramMode,
-        generalMode: generalMode,
-        authsMode: authsMode,
-        licenseMode: licenseMode,
-        placeholder: placeholder,
-        generalModeHandler: generalModeHandler,
-        licenseModeHandler: licenseModeHandler,
-        authsModeHandler: authsModeHandler,
         audioModeHandler: audioModeHandler,
         videoModeHandler: videoModeHandler,
         warpstagramModeHandler: warpstagramModeHandler,
-        disableAllStates: disableAllStates,
+        disableMainModes: disableMainModes,
+        //
+        audioModePrefs: audioModePrefs,
+        videoModePrefs: videoModePrefs,
+        warpstagramModePrefs: warpstagramModePrefs,
+        generalModePrefs: generalModePrefs,
+        authsModePrefs: authsModePrefs,
+        licenseModePrefs: licenseModePrefs,
+        //
+        audioModePrefsHandler: audioModePrefsHandler,
+        videoModePrefsHandler: videoModePrefsHandler,
+        warpstagramModePrefsHandler: warpstagramModePrefsHandler,
+        generalModePrefsHandler: generalModePrefsHandler,
+        authsModePrefsHandler: authsModePrefsHandler,
+        licenseModePrefsHandler: licenseModePrefsHandler,
+        //
+        placeholder: placeholder,
       }}
     >
       {props.children}

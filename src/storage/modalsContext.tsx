@@ -27,27 +27,17 @@ export const ModalsContextProvider = (props) => {
     window.electron.ipcRenderer.sendMessage('hidebWin', 'from search');
     setIsModalOpen(true);
   };
-  window.electron.ipcRenderer.on('modal: preferences', (prefs) => {
-    // console.log('prefs modal');
-
-    if (isModalOpen) {
-      hideModalHandler();
-    } else if (!isModalOpen) {
-      showModalHandler();
-    }
+  window.electron.ipcRenderer.on('modal: preferences', () => {
+    isModalOpen ? hideModalHandler() : showModalHandler();
   });
-  window.electron.ipcRenderer.on('modal: preferences: license', (arg) => {
+  window.electron.ipcRenderer.on('modal: preferences: license', () => {
     // navCtx.disableAllStates();
-    navCtx.licenseModeHandler();
-    if (isModalOpen) {
-      hideModalHandler();
-    } else if (!isModalOpen) {
-      showModalHandler();
-    }
+    navCtx.licenseModePrefsHandler();
+    isModalOpen ? hideModalHandler() : showModalHandler();
   });
-  window.electron.ipcRenderer.on('modal: preferences: auths', (arg) => {
+  window.electron.ipcRenderer.on('modal: preferences: auths', () => {
     // navCtx.disableAllStates();
-    navCtx.authsModeHandler();
+    navCtx.authsModePrefsHandler();
     if (isModalOpen) {
       hideModalHandler();
     } else if (!isModalOpen) {
