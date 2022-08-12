@@ -82,13 +82,9 @@ const Search = (props) => {
     }
   });
   const mouseEnterHandler = () => {
-    // console.log('mouse enter');
     window.electron.ipcRenderer.sendMessage('screenshot', 'from search');
   };
-  const mouseLeaveHandler = () => {
-    // window.electron.ipcRenderer.sendMessage('showbWin');
-    // console.log('mouse leave');
-  };
+  const mouseLeaveHandler = () => {};
   return (
     <Fragment>
       <form

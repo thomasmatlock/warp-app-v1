@@ -292,6 +292,7 @@ const windowController = {
       bWinHandler.resize(browserPanelState);
     });
   },
+  createbView: async function () {},
 };
 const bWinHandler = {
   resize: async function (browserWidth) {
@@ -369,26 +370,26 @@ app
     // mWinBounds.height = display.height; // default
     mWinBounds.height = display.height - 250; // testing
     windowController.createmWin();
-    // view = new BrowserView();
-    // mWin.setBrowserView(view);
-    // view.setBounds({
-    //   x: viewBounds.x,
-    //   y: viewBounds.y,
-    //   width: mWin.getContentBounds().width / 2,
-    //   height: mWin.getContentBounds().height - 192,
-    // });
-
-    // view.setAutoResize({ width: true, height: true });
-    // view.setBackgroundColor('#1a1a1a');
-    // view.webContents.loadURL('https://youtube.com');
-    // // view.webContents.loadURL(
-    // //   'https://www.youtube.com/channel/UCpCtwRCG1hHcijgy82wt8Ng'
-    // // );
-    // view.webContents.on('did-navigate-in-page', (e, url) => {
-    //   mWin.webContents.send('did-navigate-in-page', url);
-    // }),
-    app.on('activate', () => {
-      if (mWin === null) windowController.createmWin();
+    view = new BrowserView();
+    mWin.setBrowserView(view);
+    view.setBounds({
+      x: viewBounds.x,
+      y: viewBounds.y,
+      width: mWin.getContentBounds().width / 2,
+      height: mWin.getContentBounds().height - 192,
     });
+
+    view.setAutoResize({ width: true, height: true });
+    view.setBackgroundColor('#1a1a1a');
+    view.webContents.loadURL('https://youtube.com');
+    // view.webContents.loadURL(
+    //   'https://www.youtube.com/channel/UCpCtwRCG1hHcijgy82wt8Ng'
+    // );
+    view.webContents.on('did-navigate-in-page', (e, url) => {
+      mWin.webContents.send('did-navigate-in-page', url);
+    }),
+      app.on('activate', () => {
+        if (mWin === null) windowController.createmWin();
+      });
   })
   .catch(console.log);
