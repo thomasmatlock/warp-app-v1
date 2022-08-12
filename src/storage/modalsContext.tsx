@@ -19,7 +19,9 @@ export const ModalsContextProvider = (props) => {
     // console.log('hideModalHandler');
 
     setIsModalOpen(false);
-    window.electron.ipcRenderer.sendMessage('showbWin', 'from search');
+    if (!navCtx.warpstagramMode) {
+      window.electron.ipcRenderer.sendMessage('showbWin', 'from search');
+    }
   };
   const showModalHandler = () => {
     // console.log('showModalHandler');

@@ -324,6 +324,10 @@ const bWinHandler = {
           height: mWin.getContentBounds().height - 192,
         });
     }
+    // HIDDEN VIEW
+    if (browserWidth === 'hidden') {
+      // hideView();
+    }
     // EXPANDED VIEW
     if (browserWidth === 'expand') {
       if (view && mWin)

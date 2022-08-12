@@ -85,7 +85,7 @@ export const NavContextProvider = (props) => {
     setWarpstagramMode(true);
     setWarpstagramModePrefs(true);
     setPlaceholder(warpstagramSearchPlaceholder);
-
+    window.electron.ipcRenderer.sendMessage('browserPanelSize', 'hidden');
     window.electron.ipcRenderer.sendMessage('nav: mode: warpstagram');
   };
   // PREFS MODES HANDLERS
