@@ -206,32 +206,36 @@ export default class MenuBuilder {
           },
         ],
       },
-      {
-        label: '&Browser',
-        submenu: [
-          {
-            label: 'Go Back',
-            // enabled: true,
-            accelerator: 'Alt+Left',
-            click: async () => {
-              const { app } = require('electron');
-              // await shell.openExternal('https://electronjs.org');
-              // window.electron.ipcRenderer.sendMessage('nav: mode: audio', [
-              //   `Nav change: Audio Mode`,
-              // ]);
-              //   appWin.send('Audio: File: Import Download Links');
-            },
-          },
-          {
-            label: 'Go Forward',
-            // enabled: true,
-            accelerator: 'Alt+Right',
-            // click: () => {
-            //   appWin.send('Audio: File: Export Download Links');
-            // },
-          },
-        ],
-      },
+      // {
+      //   label: '&Browser',
+      //   submenu: [
+      //     {
+      //       label: 'Go Back',
+      //       enabled: true,
+      //       accelerator: 'Alt+Left',
+      //       click: () => {
+      //         const { app, BrowserWindow, BrowserView } = require('electron');
+      //         if (view) view.webContents.goBack();
+      //         // if (view) view.webContents.goBack();
+      //         // this.mWin.webContents.send('modal: preferences: auths');
+      //         // this.view.webContents.goBack();
+      //         // await shell.openExternal('https://electronjs.org');
+      //         // window.electron.ipcRenderer.sendMessage('nav: mode: audio', [
+      //         //   `Nav change: Audio Mode`,
+      //         // ]);
+      //         //   appWin.send('Audio: File: Import Download Links');
+      //       },
+      //     },
+      //     {
+      //       label: 'Go Forward',
+      //       enabled: true,
+      //       accelerator: 'Alt+Right',
+      //       // click: () => {
+      //       //   appWin.send('Audio: File: Export Download Links');
+      //       // },
+      //     },
+      //   ],
+      // },
       {
         label: '&Audio',
         submenu: [

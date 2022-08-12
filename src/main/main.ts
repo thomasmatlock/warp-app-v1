@@ -395,6 +395,18 @@ app
     globalShortcut.register('Alt+Right', () => {
       if (view) view.webContents.goForward();
     });
+    globalShortcut.register('Shift+1', () => {
+      // if (view) view.webContents.goForward();
+      mWin.webContents.send('count-downloads', arg);
+    });
+    globalShortcut.register('Shift+2', () => {
+      // if (view) view.webContents.goForward();
+      mWin.webContents.send('count-downloads', arg);
+    });
+    globalShortcut.register('Shift+3', () => {
+      // if (view) view.webContents.goForward();
+      mWin.webContents.send('count-downloads', arg);
+    });
     app.on('activate', () => {
       if (mWin === null) windowController.createmWin();
     });
