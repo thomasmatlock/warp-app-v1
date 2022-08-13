@@ -40,7 +40,7 @@ const getPrefs = () => {
 const setPrefs = (arg: any) => {
   settings.set('prefs', arg);
 };
-// settings.delete('prefs'); // testing only, REMOVE for production
+settings.delete('prefs'); // testing only, REMOVE for production
 let prefs = getPrefs();
 // console.log(prefs);
 //////////////////////////////////////////////////////
@@ -318,7 +318,7 @@ const windowController = {
       } else {
         mWin.show();
         if (view) mWin.maximize();
-        // mWin.maximize();
+        mWin.maximize();
         mWin.webContents.send('appVersion', app.getVersion());
         mWin.webContents.send('main: prefs', prefs);
       }
