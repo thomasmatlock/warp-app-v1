@@ -1,9 +1,8 @@
 import { Fragment } from 'react';
 import './ModalDropdownListItem.scss';
+// import ModalDropdownListItemOption from './ModalDropdownListItemOption';
 
 const ModalDropdownListItem = (props) => {
-  // console.log(props);
-
   return (
     <Fragment>
       <div className="modalDropdownContent">
@@ -11,10 +10,11 @@ const ModalDropdownListItem = (props) => {
           <p>{props.item.title}</p>
         </div>
         <div className="modalDropdown modalDropdown_child">
-          <select id={props.item.selectID} name="modalDropdown_select">
+          {/* <select id={props.item.selectID} name="modalDropdown_select"> 
             {props.item.options[0].enabled && (
               <option
                 id={props.item.options[0].id}
+                onClick={clickHandler}
                 value={props.item.options[0].value}
               >
                 {props.item.options[0].label}
@@ -108,7 +108,7 @@ const ModalDropdownListItem = (props) => {
                 {props.item.options[11].label}
               </option>
             )}
-          </select>
+          </select>  */}
         </div>
       </div>
     </Fragment>
