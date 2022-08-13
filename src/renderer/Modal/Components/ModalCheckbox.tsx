@@ -3,14 +3,25 @@ import './ModalCheckbox.scss';
 // import PreferencesContext from '../../../../../../../storage/PreferencesContext';
 const ModalCheckbox = (props) => {
   const [checkedValue, setCheckedValue] = useState(props.item.checked);
+  // const [checkedValue, setCheckedValue] = useState('checked');
+  // console.log(checkedValue);
+
   // const { prefsCtx } = useContext(PreferencesContext);
   // console.log(prefsCtx);
-  // console.log(props.item);
+  // document.getElementById(props.item.id).addEventListener('click', () => {
+  //   setCheckedValue(!checkedValue);
+  // });
+  // console.log(props.item.title, props.item.checked);
 
-  const changeHandler = () => {
-    console.log(props.item.checked);
+  const changeHandler = (e) => {
+    // console.log(props.item);
+    // console.log(e.target);
+    // console.log(e.target.value);
 
-    props.item.checked ? setCheckedValue(false) : setCheckedValue(true);
+    // props.item.checked ? setCheckedValue(false) : setCheckedValue(true);
+    checkedValue ? setCheckedValue(false) : setCheckedValue(true);
+    // console.log(checkedValue);
+
     props.getID(props.item.id);
   };
 
@@ -26,12 +37,13 @@ const ModalCheckbox = (props) => {
             id="modalPrefsCheckbox_autostartWarp"
           >
             <input
-              // onClick={props.getID(props.item.id)}
               onChange={changeHandler}
               type="checkbox"
               className="checkbox"
-              // checked={false}
+              // checked={true}
               checked={checkedValue}
+              value={checkedValue}
+              // value={props.item.checked}
               id="modalPrefsCheckbox_autostartWarp_checkbox"
             />
             <div className="knobs "></div>

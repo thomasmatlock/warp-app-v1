@@ -37,7 +37,10 @@ const getPrefs = () => {
     return prefs;
   }
 };
-settings.delete('prefs'); // testing only, REMOVE for production
+const setPrefs = (arg: any) => {
+  settings.set('prefs', arg);
+};
+// settings.delete('prefs'); // testing only, REMOVE for production
 let prefs = getPrefs();
 // console.log(prefs);
 //////////////////////////////////////////////////////
@@ -200,6 +203,7 @@ let browserPanelState = 'default';
     prefs = arg;
     // console.log('main: prefs', arg.general.checkboxes);
     // console.log('main: prefs', prefs.general.checkboxes);
+    setPrefs(prefs);
     event.reply('main: prefs', prefs);
     //  event.reply('FilterBar: Warpstagram: FilterTypeLocations successful'); // sends message to renderer
   });
