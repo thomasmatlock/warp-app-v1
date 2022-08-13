@@ -13,6 +13,7 @@ import {
   desktopCapturer,
   dialog,
   globalShortcut,
+  nativeTheme,
   shell,
   ipcMain,
   screen,
@@ -39,7 +40,6 @@ const getPrefs = () => {
 settings.delete('prefs'); // testing only, REMOVE for production
 let prefs = getPrefs();
 // console.log(prefs);
-
 //////////////////////////////////////////////////////
 
 const contextMenu = require('electron-context-menu');
@@ -242,7 +242,16 @@ const windowController = {
       //   symbolColor: '#eee',
       //   height: 40,
       // },
-      icon: getAssetPath('icon.png'),
+      // if (nativeTheme.shouldUseDarkColors === true) {
+      //   mWin.setBackgroundColor('#1a1a1a');
+      // } else {
+      //   mWin.setBackgroundColor('#fff');
+      // }
+
+      // nativeTheme.shouldUseDarkColors ? mWin.setBackgroundColor('#1a1a1a') : mWin.setBackgroundColor('#fff'),
+      icon: nativeTheme.shouldUseDarkColors
+        ? getAssetPath('iconDarkTheme.png')
+        : getAssetPath('iconLightTheme.png'),
       webPreferences: {
         preload: app.isPackaged
           ? path.join(__dirname, 'preload.js')
