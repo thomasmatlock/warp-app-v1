@@ -8,7 +8,8 @@ const ModalCheckbox = (props) => {
   // console.log(props.item);
 
   const changeHandler = () => {
-    // setCheckedValue;
+    console.log(props.item.checked);
+
     props.item.checked ? setCheckedValue(false) : setCheckedValue(true);
     props.getID(props.item.id);
   };
@@ -29,7 +30,7 @@ const ModalCheckbox = (props) => {
               onChange={changeHandler}
               type="checkbox"
               className="checkbox"
-              // value="checked"
+              // checked={false}
               checked={checkedValue}
               id="modalPrefsCheckbox_autostartWarp_checkbox"
             />

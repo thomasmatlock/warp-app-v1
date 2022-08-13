@@ -13,10 +13,9 @@ const ModalsContext = React.createContext({
 export const ModalsContextProvider = (props) => {
   const navCtx = useContext(NavContext);
   // console.log(navCtx);
+  // console.log(prefs);
+
   // let prefs;
-  setTimeout(() => {
-    // showModalHandler();
-  }, 500);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const modalStateHandler = (value: boolean) => {

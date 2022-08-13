@@ -7,15 +7,27 @@ const PrefsContext = React.createContext({
 export const PrefsContextProvider = (props) => {
   window.electron.ipcRenderer.on('main: prefs', (arg) => {
     prefs = arg;
-    // console.log(prefs);
   });
+  const checkboxHandler = (id) => {
+    // console.log(id);
+    let newPrefs = { ...prefs };
+    newPrefs.general.checkboxes.forEach((checkbox) => {
+      // console.log(checkbox.id, checkbox.checked);
+
+      if (checkbox.id === id) {
+        checkbox.checked = !checkbox.checked;
+      }
+    });
+    // console.log(newPrefs.general.checkboxes);
+    window.electron.ipcRenderer.sendMessage('main: prefs', newPrefs);
+  };
   const parseID = (id) => {
     // console.log(id);
     if (id.includes('dropdown')) {
       console.log('dropdown', id);
     }
     if (id.includes('checkbox')) {
-      console.log('checkbox', id);
+      checkboxHandler(id);
     }
     if (id.includes('outputFolder')) {
       console.log('outputFolder', id);

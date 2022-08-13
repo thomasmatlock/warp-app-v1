@@ -195,6 +195,14 @@ let browserPanelState = 'default';
       event.reply('FilterBar: Warpstagram: FilterTypeLocations successful'); // sends message to renderer
     }
   );
+  // MODAL PREFSLISTENERS
+  ipcMain.on('main: prefs', async (event, arg) => {
+    prefs = arg;
+    // console.log('main: prefs', arg.general.checkboxes);
+    // console.log('main: prefs', prefs.general.checkboxes);
+    event.reply('main: prefs', prefs);
+    //  event.reply('FilterBar: Warpstagram: FilterTypeLocations successful'); // sends message to renderer
+  });
 })();
 
 ipcMain.on('settings: request', async (event, arg) => {
@@ -306,7 +314,7 @@ const windowController = {
       } else {
         mWin.show();
         if (view) mWin.maximize();
-        mWin.maximize();
+        // mWin.maximize();
         mWin.webContents.send('appVersion', app.getVersion());
         mWin.webContents.send('main: prefs', prefs);
       }

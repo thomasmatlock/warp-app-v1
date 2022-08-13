@@ -39,7 +39,9 @@ const Search = (props) => {
   const [isHovering, setIsHovering] = useState(false);
   let prefs;
   window.electron.ipcRenderer.on('main: prefs', (arg) => {
-    // console.log(arg);
+    console.log(arg.general.checkboxes[0].checked);
+    console.log(arg.general.checkboxes[1].checked);
+
     setTimeout(() => {
       prefs = arg;
     }, 500);
