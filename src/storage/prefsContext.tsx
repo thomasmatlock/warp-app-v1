@@ -9,8 +9,21 @@ export const PrefsContextProvider = (props) => {
     prefs = arg;
     // console.log(prefs);
   });
+  const parseID = (id) => {
+    // console.log(id);
+    if (id.includes('dropdown')) {
+      console.log('dropdown', id);
+    }
+    if (id.includes('checkbox')) {
+      console.log('checkbox', id);
+    }
+    if (id.includes('outputFolder')) {
+      console.log('outputFolder', id);
+    }
+  };
   const getID = (id: string) => {
-    console.log(id);
+    parseID(id);
+    // console.log(prefs);
   };
   return (
     <PrefsContext.Provider

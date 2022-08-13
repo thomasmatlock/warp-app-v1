@@ -9,7 +9,10 @@ const ModalPanelAudio = (props) => {
   return (
     <Fragment>
       <div id="modalPrefsPanel_audio" className="modalPrefsPanel">
-        <ModalOutputFolder item={props.prefs.audio.folders[0]} />
+        <ModalOutputFolder
+          getID={props.getID}
+          item={props.prefs.audio.folders[0]}
+        />
         <div className="modalDropdownContainer">
           {/* <ModalDropdownList dropdownItem={dropdownAudio1} /> */}
           {/* <ModalDropdownList dropdownItem={dropdownAudio2} /> */}

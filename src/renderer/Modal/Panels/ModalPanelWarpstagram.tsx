@@ -16,7 +16,10 @@ const ModalPanelWarpstagram = (props) => {
   return (
     <Fragment>
       <div id="modalPrefsPanel_warpstagram" className="modalPrefsPanel">
-        <ModalOutputFolder item={props.prefs.warpstagram.folders[0]} />
+        <ModalOutputFolder
+          getID={props.getID}
+          item={props.prefs.warpstagram.folders[0]}
+        />
         <div className="modalDropdownContainer">
           <ModalDropdownList
             getID={props.getID}

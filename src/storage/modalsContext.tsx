@@ -14,6 +14,9 @@ export const ModalsContextProvider = (props) => {
   const navCtx = useContext(NavContext);
   // console.log(navCtx);
   // let prefs;
+  setTimeout(() => {
+    // showModalHandler();
+  }, 500);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const modalStateHandler = (value: boolean) => {
@@ -54,6 +57,7 @@ export const ModalsContextProvider = (props) => {
   // let prefs;
   window.electron.ipcRenderer.on('main: prefs', (arg) => {
     prefs = arg;
+    showModalHandler(); // TESTING ONLY, REMOVE FOR PRODUCTION
   });
   const getID = (id: string) => {
     console.log(id);

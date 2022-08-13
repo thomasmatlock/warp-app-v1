@@ -4,7 +4,7 @@ import './ModalCheckbox.scss';
 const ModalCheckbox = (props) => {
   // const { prefsCtx } = useContext(PreferencesContext);
   // console.log(prefsCtx);
-  // console.log(props);
+  // console.log(props.item);
 
   const clickHandler = (e) => {
     props.getID(props.item.id);
@@ -23,9 +23,11 @@ const ModalCheckbox = (props) => {
           >
             <input
               // onClick={props.getID(props.item.id)}
-              onClick={clickHandler}
+              onChange={clickHandler}
               type="checkbox"
               className="checkbox"
+              // value="checked"
+              checked={props.item.checked}
               id="modalPrefsCheckbox_autostartWarp_checkbox"
             />
             <div className="knobs "></div>

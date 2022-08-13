@@ -5,7 +5,7 @@ const ModalOutputFolder = (props) => {
   // console.log(props);
 
   const clickHandler = (e) => {
-    console.log(props.item.id);
+    props.getID(props.item.id);
   };
   return (
     <Fragment>
