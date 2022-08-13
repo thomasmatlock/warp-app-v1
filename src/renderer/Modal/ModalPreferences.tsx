@@ -113,15 +113,19 @@ const ModalPreferences = (props) => {
             />
           </div>
           <div className="modal_preferences__content__panel modal_preferences__content__panel__content">
-            {isModalPanelAudio && (
-              <ModalPanelAudio prefsAudio={modalsCtx.prefs.audio} />
+            {isModalPanelAudio && <ModalPanelAudio prefs={modalsCtx.prefs} />}
+            {isModalPanelVideo && <ModalPanelVideo prefs={modalsCtx.prefs} />}
+            {isModalPanelWarpstagram && (
+              <ModalPanelWarpstagram prefs={modalsCtx.prefs} />
             )}
-            {isModalPanelVideo && <ModalPanelVideo />}
-            {isModalPanelWarpstagram && <ModalPanelWarpstagram />}
-            {isModalPanelMorph && <ModalPanelMorph />}
-            {isModalPanelGeneral && <ModalPanelGeneral />}
-            {isModalPanelAuths && <ModalPanelAuths />}
-            {isModalPanelLicenses && <ModalPanelLicenses />}
+            {isModalPanelMorph && <ModalPanelMorph prefs={modalsCtx.prefs} />}
+            {isModalPanelGeneral && (
+              <ModalPanelGeneral prefs={modalsCtx.prefs} />
+            )}
+            {isModalPanelAuths && <ModalPanelAuths prefs={modalsCtx.prefs} />}
+            {isModalPanelLicenses && (
+              <ModalPanelLicenses prefs={modalsCtx.prefs} />
+            )}
           </div>
         </div>
       </div>

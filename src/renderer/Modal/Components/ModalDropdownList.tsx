@@ -6,7 +6,7 @@ const ModalDropdownList = (props) => {
   return (
     <Fragment>
       {/* <div className="modalDropdownContainer"> */}
-      <ModalDropdownListItem item={props.dropdownItem} />
+      <ModalDropdownListItem item={props.item} />
       {/* </div> */}
     </Fragment>
   );
