@@ -2,6 +2,11 @@ import { Fragment } from 'react';
 import './ModalOutputFolder.scss';
 
 const ModalOutputFolder = (props) => {
+  // console.log(props);
+
+  const clickHandler = (e) => {
+    // console.log(props.id);
+  };
   return (
     <Fragment>
       <div id={props.id} className="modalOutputFolder">
@@ -14,9 +19,10 @@ const ModalOutputFolder = (props) => {
           </div>
           <div
             id="modalOutputFolderBtn_audio"
+            onClick={clickHandler}
             className="modalOutputFolder_userInput__button"
           >
-            <p>Browse</p>
+            <p>Change folder</p>
           </div>
         </div>
       </div>

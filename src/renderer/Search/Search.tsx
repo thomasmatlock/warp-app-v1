@@ -19,12 +19,17 @@ import ThemeContext from '../../storage/themeContext';
 import NavContext from '../../storage/navContext';
 import InputContext from '../../storage/inputContext';
 import ModalsContext from '../../storage/modalsContext';
+import PrefsContext from '../../storage/prefsContext';
 
 const Search = (props) => {
   const themeCtx = useContext(ThemeContext);
   const navCtx = useContext(NavContext);
   const inputCtx = useContext(InputContext);
   const modalsCtx = useContext(ModalsContext);
+  // console.log(modalsCtx.prefs);
+
+  const prefsCtx = useContext(PrefsContext);
+  // console.log(prefsCtx.prefs);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const restoreInputDefaultWidthDelay = 3000;

@@ -20,12 +20,16 @@ import ThemeContext from '../../storage/themeContext';
 import NavContext from '../../storage/navContext';
 import InputContext from '../../storage/inputContext';
 import ModalsContext from '../../storage/modalsContext';
+import PrefsContext from 'storage/prefsContext';
 
 const ModalPreferences = (props) => {
   const themeCtx = useContext(ThemeContext);
   const navCtx = useContext(NavContext);
   const inputCtx = useContext(InputContext);
   const modalsCtx = useContext(ModalsContext);
+  const prefsCtx = useContext(PrefsContext);
+  // console.log(prefsCtx);
+
   // console.log(modalsCtx.getID);
   // console.log(modalsCtx.prefs.audio.dropdowns[1]);
   // console.log(props.prefs);
@@ -114,44 +118,32 @@ const ModalPreferences = (props) => {
           </div>
           <div className="modal_preferences__content__panel modal_preferences__content__panel__content">
             {isModalPanelAudio && (
-              <ModalPanelAudio
-                getID={modalsCtx.getID}
-                prefs={modalsCtx.prefs}
-              />
+              <ModalPanelAudio getID={prefsCtx.getID} prefs={modalsCtx.prefs} />
             )}
             {isModalPanelVideo && (
-              <ModalPanelVideo
-                getID={modalsCtx.getID}
-                prefs={modalsCtx.prefs}
-              />
+              <ModalPanelVideo getID={prefsCtx.getID} prefs={modalsCtx.prefs} />
             )}
             {isModalPanelWarpstagram && (
               <ModalPanelWarpstagram
-                getID={modalsCtx.getID}
+                getID={prefsCtx.getID}
                 prefs={modalsCtx.prefs}
               />
             )}
             {isModalPanelMorph && (
-              <ModalPanelMorph
-                getID={modalsCtx.getID}
-                prefs={modalsCtx.prefs}
-              />
+              <ModalPanelMorph getID={prefsCtx.getID} prefs={modalsCtx.prefs} />
             )}
             {isModalPanelGeneral && (
               <ModalPanelGeneral
-                getID={modalsCtx.getID}
+                getID={prefsCtx.getID}
                 prefs={modalsCtx.prefs}
               />
             )}
             {isModalPanelAuths && (
-              <ModalPanelAuths
-                getID={modalsCtx.getID}
-                prefs={modalsCtx.prefs}
-              />
+              <ModalPanelAuths getID={prefsCtx.getID} prefs={modalsCtx.prefs} />
             )}
             {isModalPanelLicenses && (
               <ModalPanelLicenses
-                getID={modalsCtx.getID}
+                getID={prefsCtx.getID}
                 prefs={modalsCtx.prefs}
               />
             )}

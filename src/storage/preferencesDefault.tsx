@@ -3,7 +3,7 @@ const prefs = {
     dropdowns: [
       {
         title: 'Audio Quality',
-        selectID: 'audioQuality',
+        id: 'audioQuality',
         options: [
           {
             enabled: true,
@@ -75,7 +75,7 @@ const prefs = {
       },
       {
         title: 'Audio Format',
-        selectID: 'audioFormat',
+        id: 'audioFormat',
         options: [
           {
             enabled: true,
@@ -151,7 +151,7 @@ const prefs = {
     dropdowns: [
       {
         title: 'Video Quality',
-        selectID: 'modalDropdown_videoQuality',
+        id: 'modalDropdown_videoQuality',
         options: [
           {
             enabled: true,
@@ -230,7 +230,7 @@ const prefs = {
       },
       {
         title: 'Video Format',
-        selectID: 'modalDropdown_videoFormat',
+        id: 'modalDropdown_videoFormat',
         options: [
           {
             enabled: true,
@@ -295,7 +295,7 @@ const prefs = {
     dropdowns: [
       {
         title: 'Auto update',
-        selectID: 'modalDropdown_warpstagram_updateSelected',
+        id: 'modalDropdown_warpstagram_updateSelected',
         options: [
           {
             enabled: true,
@@ -355,7 +355,7 @@ const prefs = {
       },
       {
         title: 'Post sorting',
-        selectID: 'modalDropdown_warpstagram_postSorting',
+        id: 'modalDropdown_warpstagram_postSorting',
         options: [
           {
             enabled: true,
@@ -409,7 +409,7 @@ const prefs = {
       },
       {
         title: 'Auto update frequency',
-        selectID: 'modalDropdown_warpstagram_autoUpdateFrequency',
+        id: 'modalDropdown_warpstagram_autoUpdateFrequency',
         options: [
           {
             enabled: true,
@@ -491,7 +491,7 @@ const prefs = {
     dropdowns: [
       {
         title: 'Startup mode on launch',
-        selectID: 'modalDropdown_general_startupTab',
+        id: 'modalDropdown_general_startupTab',
         options: [
           {
             enabled: true,
@@ -551,7 +551,7 @@ const prefs = {
       },
       {
         title: 'Browser source on startup',
-        selectID: 'modalDropdown_general_startupSource',
+        id: 'modalDropdown_general_startupSource',
         options: [
           {
             enabled: true,

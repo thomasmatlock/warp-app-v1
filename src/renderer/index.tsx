@@ -7,14 +7,14 @@ import { DownloadsContextProvider } from '../storage/downloadsContext';
 import { NavContextProvider } from '../storage/navContext';
 import { InputContextProvider } from '../storage/inputContext';
 import { ModalsContextProvider } from '../storage/modalsContext';
-import { PreferencesContextProvider } from '../storage/preferencesContext';
+import { PrefsContextProvider } from '../storage/prefsContext';
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
 root.render(
-  <ThemeContextProvider>
-    <NavContextProvider>
-      <PreferencesContextProvider>
+  <PrefsContextProvider>
+    <ThemeContextProvider>
+      <NavContextProvider>
         <ModalsContextProvider>
           <InputContextProvider>
             <DownloadsContextProvider>
@@ -26,7 +26,7 @@ root.render(
             </DownloadsContextProvider>
           </InputContextProvider>
         </ModalsContextProvider>
-      </PreferencesContextProvider>
-    </NavContextProvider>
-  </ThemeContextProvider>
+      </NavContextProvider>
+    </ThemeContextProvider>
+  </PrefsContextProvider>
 );

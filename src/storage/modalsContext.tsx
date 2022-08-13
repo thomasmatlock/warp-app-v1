@@ -55,7 +55,7 @@ export const ModalsContextProvider = (props) => {
   window.electron.ipcRenderer.on('main: prefs', (arg) => {
     prefs = arg;
   });
-  const getID = (id) => {
+  const getID = (id: string) => {
     console.log(id);
   };
   return (
