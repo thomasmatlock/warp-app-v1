@@ -2,7 +2,7 @@ import { Fragment } from 'react';
 import './ModalOutputFolder.scss';
 
 const ModalOutputFolder = (props) => {
-  console.log(props);
+  // console.log(props);
 
   const clickHandler = (e) => {
     console.log(props.item.id);

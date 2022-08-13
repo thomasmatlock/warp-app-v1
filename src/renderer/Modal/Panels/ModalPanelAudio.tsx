@@ -6,7 +6,7 @@ import ModalSpacerLine from '../Components/ModalSpacerLine';
 import ModalDropdownList from '../Components/ModalDropdownList';
 
 const ModalPanelAudio = (props) => {
-  console.log(props.prefs.audio.folders[0]);
+  // console.log(props.prefs.audio.folders[0]);
 
   const outputFolder = {
     label: 'Audio Downloads Folder',
