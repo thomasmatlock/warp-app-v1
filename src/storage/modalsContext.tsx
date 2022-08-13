@@ -7,6 +7,7 @@ const ModalsContext = React.createContext({
   hideModalHandler: () => {},
   showModalHandler: () => {},
   modalStateHandler: () => {},
+  getID: () => {},
   //   searchInputChangeHandler: () => {},
 });
 export const ModalsContextProvider = (props) => {
@@ -54,12 +55,16 @@ export const ModalsContextProvider = (props) => {
   window.electron.ipcRenderer.on('main: prefs', (arg) => {
     prefs = arg;
   });
+  const getID = (id) => {
+    console.log(id);
+  };
   return (
     <ModalsContext.Provider
       value={{
         prefs: prefs,
         isModalOpen: isModalOpen,
         hideModalHandler: hideModalHandler,
+        getID: getID,
         showModalHandler: showModalHandler,
         modalStateHandler: modalStateHandler,
       }}

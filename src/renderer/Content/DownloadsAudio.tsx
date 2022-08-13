@@ -35,7 +35,6 @@ const DownloadsAudio = () => {
           thumbnail={item.thumbnail}
           title={item.title}
           type={item.type}
-          // onClick={() => DownloadsContext.getDownloadID(item.id)}
         />
       ))}
     </ul>

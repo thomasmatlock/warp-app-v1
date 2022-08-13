@@ -6,6 +6,10 @@ import ModalDropdownList from '../Components/ModalDropdownList';
 import ModalSpacerLine from '../Components/ModalSpacerLine';
 
 const ModalPanelGeneral = (props) => {
+  // console.log(props);
+
+  // console.log(props.prefs.general.checkboxes);
+
   const checkboxes = {
     autostartWarpLabel: 'Automatically start Warp on system start',
     minimizeToTrayOnCloseLabel:
@@ -15,15 +19,27 @@ const ModalPanelGeneral = (props) => {
     <Fragment>
       <div id="modalPrefsPanel_general" className="modalPrefsPanel">
         <div className="modalDropdownContainer">
-          <ModalDropdownList item={props.prefs.general.dropdowns[0]} />
-          <ModalDropdownList item={props.prefs.general.dropdowns[1]} />
+          <ModalDropdownList
+            getID={props.getID}
+            item={props.prefs.general.dropdowns[0]}
+          />
+          <ModalDropdownList
+            getID={props.getID}
+            item={props.prefs.general.dropdowns[1]}
+          />
         </div>
 
         <ModalSpacer />
         <ModalSpacerLine />
         <ModalSpacer />
-        <ModalCheckbox label={checkboxes.autostartWarpLabel} />
-        <ModalCheckbox label={checkboxes.minimizeToTrayOnCloseLabel} />
+        <ModalCheckbox
+          getID={props.getID}
+          item={props.prefs.general.checkboxes[0]}
+        />
+        <ModalCheckbox
+          getID={props.getID}
+          item={props.prefs.general.checkboxes[1]}
+        />
       </div>
     </Fragment>
   );

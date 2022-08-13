@@ -7,23 +7,26 @@ import { DownloadsContextProvider } from '../storage/downloadsContext';
 import { NavContextProvider } from '../storage/navContext';
 import { InputContextProvider } from '../storage/inputContext';
 import { ModalsContextProvider } from '../storage/modalsContext';
+import { PreferencesContextProvider } from '../storage/preferencesContext';
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
 root.render(
   <ThemeContextProvider>
     <NavContextProvider>
-      <ModalsContextProvider>
-        <InputContextProvider>
-          <DownloadsContextProvider>
-            <SourcesContextProvider>
-              <ActionBarContextProvider>
-                <App />
-              </ActionBarContextProvider>
-            </SourcesContextProvider>
-          </DownloadsContextProvider>
-        </InputContextProvider>
-      </ModalsContextProvider>
+      <PreferencesContextProvider>
+        <ModalsContextProvider>
+          <InputContextProvider>
+            <DownloadsContextProvider>
+              <SourcesContextProvider>
+                <ActionBarContextProvider>
+                  <App />
+                </ActionBarContextProvider>
+              </SourcesContextProvider>
+            </DownloadsContextProvider>
+          </InputContextProvider>
+        </ModalsContextProvider>
+      </PreferencesContextProvider>
     </NavContextProvider>
   </ThemeContextProvider>
 );

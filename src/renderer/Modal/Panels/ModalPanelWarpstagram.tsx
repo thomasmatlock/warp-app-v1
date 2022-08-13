@@ -7,8 +7,6 @@ import ModalDropdownList from '../Components/ModalDropdownList';
 import ModalSpacerLine from '../Components/ModalSpacerLine';
 
 const ModalPanelWarpstagram = (props) => {
-  console.log(props.prefs.warpstagram.dropdowns[0]);
-  console.log(props.prefs.warpstagram.dropdowns[1]);
   const outputFolders = {
     label: 'Warpstagram Downloads Folder',
     id: 'modalPrefsOutputFolder_warpstagram',

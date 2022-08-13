@@ -476,7 +476,18 @@ const prefs = {
     ],
   },
   general: {
-    checkboxes: [{ autostartWarp: false }, { minimizeToTrayOnClose: false }],
+    checkboxes: [
+      {
+        title: 'Automatically start Warp on system start',
+        id: 'autostartWarpOnSystemStart',
+        active: false,
+      },
+      {
+        title: 'Warp will minimize to your system tray when you close it',
+        id: 'minimizeToTrayOnClose',
+        active: false,
+      },
+    ],
     dropdowns: [
       {
         title: 'Startup mode on launch',
