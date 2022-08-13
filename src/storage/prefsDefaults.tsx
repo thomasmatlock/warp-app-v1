@@ -3,62 +3,62 @@ const prefs = {
     dropdowns: [
       {
         title: 'Audio Quality',
-        id: 'audioQuality',
+        id: 'modalDropdown_audioQuality',
         defaultValue: {
-          id: 'audioQuality_high',
-          value: 'audioQuality_high',
+          id: 'modalDropdown_audioQuality_high',
+          value: 'modalDropdown_audioQuality_high',
           label: 'High quality (320kbps)',
         },
         options: [
           {
-            id: 'audioQuality_best',
-            value: 'audioQuality_best',
+            id: 'modalDropdown_audioQuality_best',
+            value: 'modalDropdown_audioQuality_best',
             label: 'Best Available (default)',
           },
           {
-            id: 'audioQuality_high',
-            value: 'audioQuality_high',
+            id: 'modalDropdown_audioQuality_high',
+            value: 'modalDropdown_audioQuality_high',
             label: 'High quality (320kbps)',
           },
           {
-            id: 'audioQuality_medium',
-            value: 'audioQuality_medium',
+            id: 'modalDropdown_audioQuality_medium',
+            value: 'modalDropdown_audioQuality_medium',
             label: 'Medium quality (256kbps)',
           },
           {
-            id: 'audioQuality_low',
-            value: 'audioQuality_low',
+            id: 'modalDropdown_audioQuality_low',
+            value: 'modalDropdown_audioQuality_low',
             label: 'Low quality (128kbps)',
           },
         ],
       },
       {
         title: 'Audio Format',
-        id: 'audioFormat',
+        id: 'modalDropdown_audioFormat',
         defaultValue: {
-          id: 'audioFormat_M4A',
-          value: 'audioFormat_M4A',
+          id: 'modalDropdown_audioFormat_M4A',
+          value: 'modalDropdown_audioFormat_M4A',
           label: 'M4A',
         },
         options: [
           {
-            id: 'audioFormat_MP3',
-            value: 'audioFormat_MP3',
+            id: 'modalDropdown_audioFormat_MP3',
+            value: 'modalDropdown_audioFormat_MP3',
             label: 'MP3 (default)',
           },
           {
-            id: 'audioFormat_M4A',
-            value: 'audioFormat_M4A',
+            id: 'modalDropdown_audioFormat_M4A',
+            value: 'modalDropdown_audioFormat_M4A',
             label: 'M4A',
           },
           {
-            id: 'audioFormat_WAV',
-            value: 'audioFormat_WAV',
+            id: 'modalDropdown_audioFormat_WAV',
+            value: 'modalDropdown_audioFormat_WAV',
             label: 'WAV',
           },
           {
-            id: 'audioFormat_OGG',
-            value: 'audioFormat_OGG',
+            id: 'modalDropdown_audioFormat_OGG',
+            value: 'modalDropdown_audioFormat_OGG',
             label: 'OGG',
           },
         ],
@@ -187,6 +187,11 @@ const prefs = {
       {
         title: 'Auto update',
         id: 'modalDropdown_warpstagram_updateSelected',
+        defaultValue: {
+          id: 'modalDropdown_warpstagram_updateSelected_all',
+          value: 'warpstagram_updateSelected_all',
+          label: 'Update All (default)',
+        },
         options: [
           {
             id: 'modalDropdown_warpstagram_updateSelected_all',
@@ -208,6 +213,11 @@ const prefs = {
       {
         title: 'Post sorting',
         id: 'modalDropdown_warpstagram_postSorting',
+        defaultValue: {
+          id: 'modalDropdown_warpstagram_postSorting_new_to_old',
+          value: 'warpstagram_postSorting_new_to_old',
+          label: 'Newest to oldest (default)',
+        },
         options: [
           {
             id: 'modalDropdown_warpstagram_postSorting_new_to_old',
@@ -234,6 +244,11 @@ const prefs = {
       {
         title: 'Auto update frequency',
         id: 'modalDropdown_warpstagram_autoUpdateFrequency',
+        defaultValue: {
+          id: 'modalDropdown_warpstagram_autoUpdateFrequency_24',
+          value: 'warpstagram_autoUpdateFrequency_24',
+          label: 'Daily (default)',
+        },
         options: [
           {
             id: 'modalDropdown_warpstagram_autoUpdateFrequency_24',
@@ -276,6 +291,11 @@ const prefs = {
       {
         title: 'Startup mode on launch',
         id: 'modalDropdown_general_startupTab',
+        defaultValue: {
+          id: 'modalDropdown_general_startupTab_recent',
+          value: 'general_startupTab_recent',
+          label: 'Most recently used (default)',
+        },
         options: [
           {
             id: 'modalDropdown_general_startupTab_recent',
@@ -302,6 +322,11 @@ const prefs = {
       {
         title: 'Browser source on startup',
         id: 'modalDropdown_general_startupSource',
+        defaultValue: {
+          id: 'modalDropdown_general_startupSource_recent',
+          value: 'general_startupSource_recent',
+          label: 'Most recently used source (default)',
+        },
         options: [
           {
             id: 'modalDropdown_general_startupSource_recent',
