@@ -3,12 +3,12 @@ import ModalDropdownListItem from './ModalDropdownListItem';
 import './ModalDropdownList.scss';
 
 const ModalDropdownList = (props) => {
-  // console.log(props.item);
+  // console.log(props.getID);
 
   return (
     <Fragment>
       {/* <div className="modalDropdownContainer"> */}
-      <ModalDropdownListItem item={props.item} />
+      <ModalDropdownListItem getID={props.getID} item={props.item} />
       {/* </div> */}
     </Fragment>
   );

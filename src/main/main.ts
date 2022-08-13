@@ -22,7 +22,7 @@ import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
-import prefsDefault from '../storage/preferencesDefault';
+import prefsDefault from '../storage/prefsDefaults';
 import sourcesDefaults from '../storage/sourcesDefault';
 //////////////////////////////////////////////////////
 const Store = require('electron-store');

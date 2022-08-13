@@ -17,8 +17,14 @@ const ModalPanelVideo = (props) => {
       <div id="modalPrefsPanel_video" className="modalPrefsPanel">
         <ModalOutputFolder item={props.prefs.video.folders[0]} />
         <div className="modalDropdownContainer">
-          <ModalDropdownList item={props.prefs.video.dropdowns[0]} />
-          <ModalDropdownList item={props.prefs.video.dropdowns[1]} />
+          <ModalDropdownList
+            getID={props.getID}
+            item={props.prefs.video.dropdowns[0]}
+          />
+          <ModalDropdownList
+            getID={props.getID}
+            item={props.prefs.video.dropdowns[1]}
+          />
         </div>
       </div>
     </Fragment>
