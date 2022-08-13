@@ -1,12 +1,15 @@
-import { Fragment, useContext } from 'react';
+import { Fragment, useState, useContext } from 'react';
 import './ModalCheckbox.scss';
 // import PreferencesContext from '../../../../../../../storage/PreferencesContext';
 const ModalCheckbox = (props) => {
+  const [checkedValue, setCheckedValue] = useState(props.item.checked);
   // const { prefsCtx } = useContext(PreferencesContext);
   // console.log(prefsCtx);
   // console.log(props.item);
 
-  const clickHandler = (e) => {
+  const changeHandler = () => {
+    // setCheckedValue;
+    props.item.checked ? setCheckedValue(false) : setCheckedValue(true);
     props.getID(props.item.id);
   };
 
@@ -23,11 +26,11 @@ const ModalCheckbox = (props) => {
           >
             <input
               // onClick={props.getID(props.item.id)}
-              onChange={clickHandler}
+              onChange={changeHandler}
               type="checkbox"
               className="checkbox"
               // value="checked"
-              checked={props.item.checked}
+              checked={checkedValue}
               id="modalPrefsCheckbox_autostartWarp_checkbox"
             />
             <div className="knobs "></div>
