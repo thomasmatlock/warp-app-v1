@@ -17,14 +17,6 @@ export const PrefsContextProvider = (props) => {
     });
     window.electron.ipcRenderer.sendMessage('main: prefs', newPrefs);
   };
-  const disableDropdownOptions = (arr) => {
-    arr.forEach((list) => {
-      console.log(list);
-      list.options.forEach((option) => {
-        // option.disabled = true;
-      });
-    });
-  };
   const getMatchingDropdownOption = (id: string, options: boolean[]) => {
     let newDefault;
     options.forEach((option) => {
@@ -40,72 +32,143 @@ export const PrefsContextProvider = (props) => {
     listKeyword: string,
     dropdowns: boolean[]
   ) => {
-    let newDefault;
+    let matchingDropdown;
 
     dropdowns.forEach((dropdown) => {
       if (dropdown.id.includes(mode) && dropdown.id.includes(listKeyword)) {
-        console.log(dropdown);
-        newDefault = getMatchingDropdownOption(id, dropdown.options);
-        console.log(newDefault);
+        matchingDropdown = dropdown;
+        // newDefault = getMatchingDropdownOption(id, dropdown.options);
+        // console.log(newDefault);
       }
     });
+    return matchingDropdown;
+  };
+  const setNewDefault = (newPrefs, mode, listKeyword: string, newDefault) => {
+    for (let key in newPrefs) {
+      if (key === mode) {
+        newPrefs[key].dropdowns.forEach((dropdown, index) => {
+          if (dropdown.id.includes(listKeyword)) {
+            newPrefs[key].dropdowns[index].defaultValue = newDefault;
+          }
+        });
+      }
+    }
+    window.electron.ipcRenderer.sendMessage('main: prefs', newPrefs);
   };
   const dropdownHandler = (id: string) => {
-    // console.log(id);
-
+    let mode;
+    let listKeyword;
     let newPrefs = { ...prefs };
+    let matchingDropdown;
+    let newDefault;
 
     if (id.includes('audio') && id.includes('quality')) {
-      getMatchingDropdown(id, 'audio', 'quality', newPrefs.audio.dropdowns);
+      mode = 'audio';
+      listKeyword = 'quality';
+      matchingDropdown = getMatchingDropdown(
+        id,
+        mode,
+        listKeyword,
+        newPrefs.audio.dropdowns
+      );
+      newDefault = getMatchingDropdownOption(id, matchingDropdown.options);
+      setNewDefault(newPrefs, mode, listKeyword, newDefault);
     }
     if (id.includes('audio') && id.includes('format')) {
-      getMatchingDropdown(id, 'audio', 'format', newPrefs.audio.dropdowns);
+      mode = 'audio';
+      listKeyword = 'format';
+      matchingDropdown = getMatchingDropdown(
+        id,
+        mode,
+        listKeyword,
+        newPrefs.audio.dropdowns
+      );
+      newDefault = getMatchingDropdownOption(id, matchingDropdown.options);
+      setNewDefault(newPrefs, mode, listKeyword, newDefault);
     }
     if (id.includes('video') && id.includes('quality')) {
-      getMatchingDropdown(id, 'video', 'quality', newPrefs.video.dropdowns);
+      mode = 'video';
+      listKeyword = 'quality';
+      matchingDropdown = getMatchingDropdown(
+        id,
+        mode,
+        listKeyword,
+        newPrefs.video.dropdowns
+      );
+      newDefault = getMatchingDropdownOption(id, matchingDropdown.options);
+      setNewDefault(newPrefs, mode, listKeyword, newDefault);
     }
     if (id.includes('video') && id.includes('format')) {
-      getMatchingDropdown(id, 'video', 'format', newPrefs.video.dropdowns);
+      mode = 'video';
+      listKeyword = 'format';
+      matchingDropdown = getMatchingDropdown(
+        id,
+        mode,
+        listKeyword,
+        newPrefs.video.dropdowns
+      );
+      newDefault = getMatchingDropdownOption(id, matchingDropdown.options);
+      setNewDefault(newPrefs, mode, listKeyword, newDefault);
     }
     if (id.includes('warpstagram') && id.includes('update')) {
-      getMatchingDropdown(
+      mode = 'warpstagram';
+      listKeyword = 'update';
+      matchingDropdown = getMatchingDropdown(
         id,
-        'warpstagram',
-        'update',
+        mode,
+        listKeyword,
         newPrefs.warpstagram.dropdowns
       );
+      newDefault = getMatchingDropdownOption(id, matchingDropdown.options);
+      setNewDefault(newPrefs, mode, listKeyword, newDefault);
     }
     if (id.includes('warpstagram') && id.includes('postSorting')) {
-      getMatchingDropdown(
+      mode = 'warpstagram';
+      listKeyword = 'postSorting';
+      matchingDropdown = getMatchingDropdown(
         id,
-        'warpstagram',
-        'postSorting',
+        mode,
+        listKeyword,
         newPrefs.warpstagram.dropdowns
       );
+      newDefault = getMatchingDropdownOption(id, matchingDropdown.options);
+      setNewDefault(newPrefs, mode, listKeyword, newDefault);
     }
     if (id.includes('warpstagram') && id.includes('autoUpdate')) {
-      getMatchingDropdown(
+      mode = 'warpstagram';
+      listKeyword = 'autoUpdate';
+      matchingDropdown = getMatchingDropdown(
         id,
-        'warpstagram',
-        'autoUpdate',
+        mode,
+        listKeyword,
         newPrefs.warpstagram.dropdowns
       );
+      newDefault = getMatchingDropdownOption(id, matchingDropdown.options);
+      setNewDefault(newPrefs, mode, listKeyword, newDefault);
     }
     if (id.includes('general') && id.includes('startupMode')) {
-      getMatchingDropdown(
+      mode = 'general';
+      listKeyword = 'startupMode';
+      matchingDropdown = getMatchingDropdown(
         id,
-        'general',
-        'startupMode',
+        mode,
+        listKeyword,
         newPrefs.general.dropdowns
       );
+      newDefault = getMatchingDropdownOption(id, matchingDropdown.options);
+      setNewDefault(newPrefs, mode, listKeyword, newDefault);
     }
     if (id.includes('general') && id.includes('startupSource')) {
-      getMatchingDropdown(
+      mode = 'general';
+      listKeyword = 'startupSource';
+      matchingDropdown = getMatchingDropdown(
         id,
-        'general',
-        'startupSource',
+        mode,
+        listKeyword,
         newPrefs.general.dropdowns
       );
+      newDefault = getMatchingDropdownOption(id, matchingDropdown.options);
+      setNewDefault(newPrefs, mode, listKeyword, newDefault);
     }
   };
   const parseID = (id) => {

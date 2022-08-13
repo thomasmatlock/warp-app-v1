@@ -39,6 +39,8 @@ const Search = (props) => {
   const [isHovering, setIsHovering] = useState(false);
   let prefs;
   window.electron.ipcRenderer.on('main: prefs', (arg) => {
+    // console.log(arg.audio.dropdowns);
+
     prefs = arg;
   });
   const searchInputChangeHandler = (event) => {
