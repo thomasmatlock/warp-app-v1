@@ -25,39 +25,37 @@ export const PrefsContextProvider = (props) => {
       });
     });
   };
-  const getDropdownSelectedOption = () => {};
-  const dropdownHandler = (id, value) => {
-    // console.log(id);
+  const audioDropdownHandler = (id) => {
+    let newPrefs = { ...prefs };
+    if (id.includes('quality')) {
+      console.log(newPrefs.audio.dropdowns);
+    }
+    if (id.includes('format')) {
+      console.log(newPrefs.audio.dropdowns);
+    }
+  };
+
+  const getDropdown = (mode, listKeyword, dropdowns) => {
+    dropdowns.forEach((dropdown) => {
+      if (dropdown.id.includes(mode) && dropdown.id.includes(listKeyword)) {
+        console.log(dropdown);
+
+        // return dropdown;
+      }
+      // console.log(dropdown.id);
+    });
+  };
+  const dropdownHandler = (id: string) => {
+    console.log(id);
 
     let newPrefs = { ...prefs };
-    if (id.includes('audio')) {
-      // console.log(newPrefs.audio.dropdowns);
-      if (id.includes('quality')) {
-        console.log(newPrefs.audio.dropdowns);
-      }
-      if (id.includes('format')) {
-        console.log(newPrefs.audio.dropdowns);
-      }
-    }
-    if (id.includes('video')) {
-      console.log('video dropdown');
-    }
-    if (id.includes('warpstagram')) {
-      console.log('warpstagram dropdown');
-    }
-    if (id.includes('general')) {
-      console.log('general dropdown');
-    }
 
-    // console.log(newPrefs);
-
-    newPrefs.general.dropdowns.forEach((dropdown) => {
-      console.log();
-
-      if (dropdown.id === id) {
-        dropdown.value = value;
-      }
-    });
+    if (id.includes('audio') && id.includes('quality')) {
+      getDropdown('audio', 'quality', newPrefs.audio.dropdowns);
+    }
+    if (id.includes('audio') && id.includes('format')) {
+      getDropdown('audio', 'format', newPrefs.audio.dropdowns);
+    }
   };
   const parseID = (id) => {
     // console.log(id);
