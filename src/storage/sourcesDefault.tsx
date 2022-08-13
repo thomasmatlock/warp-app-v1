@@ -2,7 +2,7 @@ const sources = [
   {
     name: 'Facebook',
     id: 'facebook',
-    src: downloadSourceIconFacebook,
+    // src: downloadSourceIconFacebook,
     URL: 'https://facebook.com',
     active: false,
     enabled: true,
@@ -10,7 +10,7 @@ const sources = [
   {
     name: 'Instagram',
     id: 'instagram',
-    src: downloadSourceIconInstagram,
+    // src: downloadSourceIconInstagram,
     URL: 'https://instagram.com',
     active: false,
     enabled: true,
@@ -18,7 +18,7 @@ const sources = [
   {
     name: 'Pinterest',
     id: 'pinterest',
-    src: downloadSourceIconPinterest,
+    // src: downloadSourceIconPinterest,
     URL: 'https://pinterest.com',
     active: false,
     enabled: true,
@@ -26,7 +26,7 @@ const sources = [
   {
     name: 'Snapchat',
     id: 'snapchat',
-    src: downloadSourceIconSnapchat,
+    // src: downloadSourceIconSnapchat,
     URL: 'https://snapchat.com',
     active: false,
     enabled: true,
@@ -34,7 +34,7 @@ const sources = [
   {
     name: 'Soundcloud',
     id: 'soundcloud',
-    src: downloadSourceIconSoundcloud,
+    // src: downloadSourceIconSoundcloud,
     URL: 'https://soundcloud.com',
     active: false,
     enabled: true,
@@ -42,7 +42,7 @@ const sources = [
   {
     name: 'Tiktok',
     id: 'tiktok',
-    src: downloadSourceIconTiktok,
+    // src: downloadSourceIconTiktok,
     URL: 'https://tiktok.com',
     active: false,
     enabled: true,
@@ -50,7 +50,7 @@ const sources = [
   {
     name: 'Twitch',
     id: 'twitch',
-    src: downloadSourceIconTwitch,
+    // src: downloadSourceIconTwitch,
     URL: 'https://twitch.com',
     active: false,
     enabled: true,
@@ -58,7 +58,7 @@ const sources = [
   {
     name: 'Twitter',
     id: 'twitter',
-    src: downloadSourceIconTwitter,
+    // src: downloadSourceIconTwitter,
     URL: 'https://twitter.com',
     active: false,
     enabled: false,
@@ -66,7 +66,7 @@ const sources = [
   {
     name: 'Vimeo',
     id: 'vimeo',
-    src: downloadSourceIconVimeo,
+    // src: downloadSourceIconVimeo,
     URL: 'https://vimeo.com',
     active: false,
     enabled: true,
@@ -74,7 +74,7 @@ const sources = [
   {
     name: 'Youtube',
     id: 'youtube',
-    src: downloadSourceIconYoutube,
+    // src: downloadSourceIconYoutube,
     URL: 'https://youtube.com',
     active: true,
     enabled: true,

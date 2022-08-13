@@ -32,7 +32,13 @@ const Search = (props) => {
   const [clearIcon, setClearIcon] = useState(false);
 
   const [isHovering, setIsHovering] = useState(false);
-
+  let prefs;
+  window.electron.ipcRenderer.on('main: prefs', (arg) => {
+    console.log(arg);
+    setTimeout(() => {
+      prefs = arg;
+    }, 500);
+  });
   const searchInputChangeHandler = (event) => {
     if (event.target.value.length > 0) {
       setClearIcon(true);
@@ -85,6 +91,7 @@ const Search = (props) => {
     window.electron.ipcRenderer.sendMessage('screenshot', 'from search');
   };
   const mouseLeaveHandler = () => {};
+
   return (
     <Fragment>
       <form
@@ -212,12 +219,8 @@ const Search = (props) => {
       </div>
       {modalsCtx.isModalOpen && (
         <ModalPreferences
-        // onClose={modalsCtx.hideModalHandler}
-        // isAudioMode={navCtx.audioMode}
-        // isVideoMode={navCtx.videoMode}
-        // isWarpstagramMode={navCtx.warpstagramMode}
-        // isAuthsMode={navCtx.authsMode}
-        // isLicenseMode={navCtx.licenseMode}
+          prefs={prefs}
+          // isLicenseMode={navCtx.licenseMode}
         />
       )}
     </Fragment>

@@ -22,15 +22,25 @@ import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
-import prefs from '../storage/preferences';
-import sourcesDefaults from '../storage/sourcesDefaults';
-
+import prefsDefault from '../storage/preferencesDefault';
+import sourcesDefaults from '../storage/sourcesDefault';
+//////////////////////////////////////////////////////
 const Store = require('electron-store');
 const settings = new Store();
-let test = settings.get('sources');
-if (test === undefined) {
-  console.log('undefined');
-}
+const getPrefs = () => {
+  let prefs = settings.get('prefs');
+  if (prefs === undefined) {
+    settings.set('prefs', prefsDefault);
+    return prefsDefault;
+  } else {
+    return prefs;
+  }
+};
+
+let prefs = getPrefs();
+// console.log(prefs);
+
+//////////////////////////////////////////////////////
 
 const contextMenu = require('electron-context-menu');
 contextMenu({});
@@ -287,7 +297,9 @@ const windowController = {
       } else {
         mWin.show();
         if (view) mWin.maximize();
+        mWin.maximize();
         mWin.webContents.send('appVersion', app.getVersion());
+        mWin.webContents.send('main: prefs', prefs);
       }
     });
     mWin.on('resize', () => {});

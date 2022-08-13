@@ -1,6 +1,8 @@
 import React, { useState, useContext } from 'react';
 import NavContext from './navContext';
+let prefs;
 const ModalsContext = React.createContext({
+  prefs: {},
   isModalOpen: false,
   hideModalHandler: () => {},
   showModalHandler: () => {},
@@ -10,6 +12,7 @@ const ModalsContext = React.createContext({
 export const ModalsContextProvider = (props) => {
   const navCtx = useContext(NavContext);
   // console.log(navCtx);
+  // let prefs;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const modalStateHandler = (value: boolean) => {
@@ -37,6 +40,7 @@ export const ModalsContextProvider = (props) => {
     navCtx.licenseModePrefsHandler();
     isModalOpen ? hideModalHandler() : showModalHandler();
   });
+
   window.electron.ipcRenderer.on('modal: preferences: auths', () => {
     // navCtx.disableAllStates();
     navCtx.authsModePrefsHandler();
@@ -46,9 +50,16 @@ export const ModalsContextProvider = (props) => {
       showModalHandler();
     }
   });
+  // let prefs;
+  window.electron.ipcRenderer.on('main: prefs', (arg) => {
+    prefs = arg;
+    console.log(arg);
+    setTimeout(() => {}, 500);
+  });
   return (
     <ModalsContext.Provider
       value={{
+        prefs: prefs,
         isModalOpen: isModalOpen,
         hideModalHandler: hideModalHandler,
         showModalHandler: showModalHandler,

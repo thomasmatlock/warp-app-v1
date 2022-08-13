@@ -21,12 +21,13 @@ import NavContext from '../../storage/navContext';
 import InputContext from '../../storage/inputContext';
 import ModalsContext from '../../storage/modalsContext';
 
-const ModalPreferences = () => {
+const ModalPreferences = (props) => {
   const themeCtx = useContext(ThemeContext);
   const navCtx = useContext(NavContext);
   const inputCtx = useContext(InputContext);
   const modalsCtx = useContext(ModalsContext);
-  // console.log(navCtx);
+  console.log(modalsCtx);
+  // console.log(props.prefs);
 
   const [isModalPanelAudio, setModalPanelAudio] = useState(
     navCtx.audioModePrefs
