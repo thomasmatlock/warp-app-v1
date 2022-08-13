@@ -34,7 +34,7 @@ const Search = (props) => {
   const [isHovering, setIsHovering] = useState(false);
   let prefs;
   window.electron.ipcRenderer.on('main: prefs', (arg) => {
-    console.log(arg);
+    // console.log(arg);
     setTimeout(() => {
       prefs = arg;
     }, 500);

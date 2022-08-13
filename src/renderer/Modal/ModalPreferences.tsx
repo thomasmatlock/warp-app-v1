@@ -26,7 +26,8 @@ const ModalPreferences = (props) => {
   const navCtx = useContext(NavContext);
   const inputCtx = useContext(InputContext);
   const modalsCtx = useContext(ModalsContext);
-  console.log(modalsCtx);
+  // console.log(modalsCtx.prefs);
+  // console.log(modalsCtx.prefs.audio.dropdowns[1]);
   // console.log(props.prefs);
 
   const [isModalPanelAudio, setModalPanelAudio] = useState(
@@ -112,7 +113,9 @@ const ModalPreferences = (props) => {
             />
           </div>
           <div className="modal_preferences__content__panel modal_preferences__content__panel__content">
-            {isModalPanelAudio && <ModalPanelAudio />}
+            {isModalPanelAudio && (
+              <ModalPanelAudio prefsAudio={modalsCtx.prefs.audio} />
+            )}
             {isModalPanelVideo && <ModalPanelVideo />}
             {isModalPanelWarpstagram && <ModalPanelWarpstagram />}
             {isModalPanelMorph && <ModalPanelMorph />}

@@ -36,7 +36,7 @@ const getPrefs = () => {
     return prefs;
   }
 };
-
+// settings.delete('prefs');
 let prefs = getPrefs();
 // console.log(prefs);
 

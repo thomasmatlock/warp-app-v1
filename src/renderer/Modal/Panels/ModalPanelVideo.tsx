@@ -6,7 +6,9 @@ import ModalDropdownList from '../Components/ModalDropdownList';
 
 import ModalSpacerLine from '../Components/ModalSpacerLine';
 
-const ModalPanelVideo = () => {
+const ModalPanelVideo = (props) => {
+  console.log(props.prefsAudio.dropdowns[0]);
+  console.log(props.prefsAudio.dropdowns[1]);
   const outputFolders = {
     label: 'Video Downloads Folder',
     id: 'modalPrefsOutputFolder_video',
@@ -161,6 +163,8 @@ const ModalPanelVideo = () => {
           placeholder={outputFolders.placeholder}
         />
         <div className="modalDropdownContainer">
+          <ModalDropdownList dropdownItem={dropdownVideol1} />
+          <ModalDropdownList dropdownItem={dropdownVideo2} />
           <ModalDropdownList dropdownItem={dropdownVideol1} />
           <ModalDropdownList dropdownItem={dropdownVideo2} />
         </div>

@@ -53,8 +53,6 @@ export const ModalsContextProvider = (props) => {
   // let prefs;
   window.electron.ipcRenderer.on('main: prefs', (arg) => {
     prefs = arg;
-    console.log(arg);
-    setTimeout(() => {}, 500);
   });
   return (
     <ModalsContext.Provider

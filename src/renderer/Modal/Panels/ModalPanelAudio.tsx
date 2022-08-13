@@ -6,6 +6,9 @@ import ModalSpacerLine from '../Components/ModalSpacerLine';
 import ModalDropdownList from '../Components/ModalDropdownList';
 
 const ModalPanelAudio = (props) => {
+  console.log(props.prefsAudio.dropdowns[0]);
+  console.log(props.prefsAudio.dropdowns[1]);
+
   const outputFolders = {
     label: 'Audio Downloads Folder',
     id: 'modalPrefsOutputFolder_audio',
@@ -164,8 +167,10 @@ const ModalPanelAudio = (props) => {
           placeholder={outputFolders.placeholder}
         />
         <div className="modalDropdownContainer">
-          <ModalDropdownList dropdownItem={dropdownAudio1} />
-          <ModalDropdownList dropdownItem={dropdownAudio2} />
+          {/* <ModalDropdownList dropdownItem={dropdownAudio1} /> */}
+          {/* <ModalDropdownList dropdownItem={dropdownAudio2} /> */}
+          <ModalDropdownList dropdownItem={props.prefsAudio.dropdowns[0]} />
+          <ModalDropdownList dropdownItem={props.prefsAudio.dropdowns[1]} />
         </div>
       </div>
     </Fragment>
