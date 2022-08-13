@@ -146,6 +146,13 @@ const prefs = {
         ],
       },
     ],
+    folders: [
+      {
+        title: 'Audio Downloads Folder',
+        id: 'modalPrefsOutputFolder_audio',
+        placeholder: 'C:/Users/Tommy/Documents/Warp Downloader/Audio',
+      },
+    ],
   },
   video: {
     dropdowns: [
@@ -288,6 +295,13 @@ const prefs = {
             label: 'changeThis',
           },
         ],
+      },
+    ],
+    folders: [
+      {
+        title: 'Video Downloads Folder',
+        id: 'modalPrefsOutputFolder_video',
+        placeholder: 'C:/Users/Tommy/Documents/Warp Downloader/Video',
       },
     ],
   },
@@ -472,6 +486,13 @@ const prefs = {
             label: 'changeThis',
           },
         ],
+      },
+    ],
+    folders: [
+      {
+        title: 'Warpstagram Downloads Folder',
+        id: 'modalPrefsOutputFolder_warpstagram',
+        placeholder: 'C:/Users/Tommy/Documents/Warp Downloader/Warpstagram',
       },
     ],
   },
