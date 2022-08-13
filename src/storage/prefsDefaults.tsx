@@ -186,26 +186,26 @@ const prefs = {
     dropdowns: [
       {
         title: 'Auto update',
-        id: 'modal_dropdown_warpstagram_updateSelected',
+        id: 'modal_dropdown_warpstagram_update',
         defaultValue: {
-          id: 'modal_dropdown_warpstagram_updateSelected_all',
-          value: 'warpstagram_updateSelected_all',
+          id: 'modal_dropdown_warpstagram_update_all',
+          value: 'warpstagram_update_all',
           label: 'Update All (default)',
         },
         options: [
           {
-            id: 'modal_dropdown_warpstagram_updateSelected_all',
-            value: 'warpstagram_updateSelected_all',
+            id: 'modal_dropdown_warpstagram_update_all',
+            value: 'warpstagram_update_all',
             label: 'Update All (default)',
           },
           {
-            id: 'modal_dropdown_warpstagram_updateSelected_pinned',
-            value: 'warpstagram_updateSelected_pinned',
+            id: 'modal_dropdown_warpstagram_update_pinned',
+            value: 'warpstagram_update_pinned',
             label: 'Update Pinned',
           },
           {
-            id: 'modal_dropdown_warpstagram_updateSelected_disabled',
-            value: 'warpstagram_updateSelected_disabled',
+            id: 'modal_dropdown_warpstagram_update_disabled',
+            value: 'warpstagram_update_disabled',
             label: 'Disabled',
           },
         ],
@@ -292,31 +292,31 @@ const prefs = {
     dropdowns: [
       {
         title: 'Startup mode on launch',
-        id: 'modal_dropdown_general_startupTab',
+        id: 'modal_dropdown_general_startupMode',
         defaultValue: {
-          id: 'modal_dropdown_general_startupTab_recent',
-          value: 'general_startupTab_recent',
+          id: 'modal_dropdown_general_startupMode_recent',
+          value: 'general_startupMode_recent',
           label: 'Most recently used (default)',
         },
         options: [
           {
-            id: 'modal_dropdown_general_startupTab_recent',
-            value: 'general_startupTab_recent',
+            id: 'modal_dropdown_general_startupMode_recent',
+            value: 'general_startupMode_recent',
             label: 'Most recently used (default)',
           },
           {
-            id: 'modal_dropdown_general_startupTab_audio',
-            value: 'general_startupTab_audio',
+            id: 'modal_dropdown_general_startupMode_audio',
+            value: 'general_startupMode_audio',
             label: 'Audio',
           },
           {
-            id: 'modal_dropdown_general_startupTab_video',
-            value: 'general_startupTab_video',
+            id: 'modal_dropdown_general_startupMode_video',
+            value: 'general_startupMode_video',
             label: 'Video',
           },
           {
-            id: 'modal_dropdown_general_startupTab_warpstagram',
-            value: 'general_startupTab_warpstagram',
+            id: 'modal_dropdown_general_startupMode_warpstagram',
+            value: 'general_startupMode_warpstagram',
             label: 'Warpstagram',
           },
         ],

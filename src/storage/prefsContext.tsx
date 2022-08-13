@@ -25,36 +25,87 @@ export const PrefsContextProvider = (props) => {
       });
     });
   };
-  const audioDropdownHandler = (id) => {
-    let newPrefs = { ...prefs };
-    if (id.includes('quality')) {
-      console.log(newPrefs.audio.dropdowns);
-    }
-    if (id.includes('format')) {
-      console.log(newPrefs.audio.dropdowns);
-    }
+  const getMatchingDropdownOption = (id: string, options: boolean[]) => {
+    let newDefault;
+    options.forEach((option) => {
+      if (option.id === id) {
+        newDefault = option;
+      }
+    });
+    return newDefault;
   };
+  const getMatchingDropdown = (
+    id: string,
+    mode: string,
+    listKeyword: string,
+    dropdowns: boolean[]
+  ) => {
+    let newDefault;
 
-  const getDropdown = (mode, listKeyword, dropdowns) => {
     dropdowns.forEach((dropdown) => {
       if (dropdown.id.includes(mode) && dropdown.id.includes(listKeyword)) {
         console.log(dropdown);
-
-        // return dropdown;
+        newDefault = getMatchingDropdownOption(id, dropdown.options);
+        console.log(newDefault);
       }
-      // console.log(dropdown.id);
     });
   };
   const dropdownHandler = (id: string) => {
-    console.log(id);
+    // console.log(id);
 
     let newPrefs = { ...prefs };
 
     if (id.includes('audio') && id.includes('quality')) {
-      getDropdown('audio', 'quality', newPrefs.audio.dropdowns);
+      getMatchingDropdown(id, 'audio', 'quality', newPrefs.audio.dropdowns);
     }
     if (id.includes('audio') && id.includes('format')) {
-      getDropdown('audio', 'format', newPrefs.audio.dropdowns);
+      getMatchingDropdown(id, 'audio', 'format', newPrefs.audio.dropdowns);
+    }
+    if (id.includes('video') && id.includes('quality')) {
+      getMatchingDropdown(id, 'video', 'quality', newPrefs.video.dropdowns);
+    }
+    if (id.includes('video') && id.includes('format')) {
+      getMatchingDropdown(id, 'video', 'format', newPrefs.video.dropdowns);
+    }
+    if (id.includes('warpstagram') && id.includes('update')) {
+      getMatchingDropdown(
+        id,
+        'warpstagram',
+        'update',
+        newPrefs.warpstagram.dropdowns
+      );
+    }
+    if (id.includes('warpstagram') && id.includes('postSorting')) {
+      getMatchingDropdown(
+        id,
+        'warpstagram',
+        'postSorting',
+        newPrefs.warpstagram.dropdowns
+      );
+    }
+    if (id.includes('warpstagram') && id.includes('autoUpdate')) {
+      getMatchingDropdown(
+        id,
+        'warpstagram',
+        'autoUpdate',
+        newPrefs.warpstagram.dropdowns
+      );
+    }
+    if (id.includes('general') && id.includes('startupMode')) {
+      getMatchingDropdown(
+        id,
+        'general',
+        'startupMode',
+        newPrefs.general.dropdowns
+      );
+    }
+    if (id.includes('general') && id.includes('startupSource')) {
+      getMatchingDropdown(
+        id,
+        'general',
+        'startupSource',
+        newPrefs.general.dropdowns
+      );
     }
   };
   const parseID = (id) => {
