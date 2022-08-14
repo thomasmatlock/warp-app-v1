@@ -20,23 +20,23 @@ const DownloadsVideo = () => {
 
   const videoDownloads = (
     <ul className="content__panel__downloads__list">
-      {downloadsCtx.downloadsVideo.map((item) => (
-        <DownloadItem
-          format={item.format}
-          fps={item.fps}
-          id={item.id}
-          key={item.id}
-          length={item.length}
-          resolution={item.resolution}
-          size={item.size}
-          source={item.source}
-          thumbnail={item.thumbnail}
-          title={item.title}
-          type={item.type}
-
-          // onClick={() => sourceSelectedHandler(item.id)}
-        />
-      ))}
+      {/* item.title.includes(inputCtx.searchText) && */}
+      {downloadsCtx.downloadsVideo.map(
+        (item) =>
+          item.title.includes(inputCtx.searchText) && (
+            <DownloadItem
+              format={item.format}
+              id={item.id}
+              key={item.id}
+              length={item.length}
+              size={item.size}
+              source={item.source}
+              thumbnail={item.thumbnail}
+              title={item.title}
+              type={item.type}
+            />
+          )
+      )}
     </ul>
   );
   return (

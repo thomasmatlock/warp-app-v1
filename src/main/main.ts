@@ -345,7 +345,7 @@ const windowController = {
       } else {
         mWin.show();
         if (view) mWin.maximize();
-        // mWin.maximize();
+        mWin.maximize();
         mWin.webContents.send('appVersion', app.getVersion());
         mWin.webContents.send('main: prefs', prefs);
       }
@@ -465,7 +465,7 @@ app
     // mWinBounds.height = display.height; // default
     mWinBounds.height = display.height - 250; // testing
     windowController.createmWin();
-    windowController.createbView();
+    // windowController.createbView();
     // Register a 'CommandOrControl+X' shortcut listener.
     globalShortcut.register('Alt+Left', () => {
       if (view) view.webContents.goBack();

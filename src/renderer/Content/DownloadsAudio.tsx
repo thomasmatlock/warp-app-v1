@@ -18,25 +18,30 @@ const DownloadsAudio = () => {
   const actionBarCtx = useContext(ActionBarContext);
   const downloadsCtx = useContext(DownloadsContext);
   const inputCtx = useContext(InputContext);
+  console.log(inputCtx.searchText);
 
   const downloadSelectedHandler = (id) => {
     console.log(id);
   };
   const audioDownloads = (
     <ul className="content__panel__downloads__list">
-      {downloadsCtx.downloadsAudio.map((item) => (
-        <DownloadItem
-          format={item.format}
-          id={item.id}
-          key={item.id}
-          length={item.length}
-          size={item.size}
-          source={item.source}
-          thumbnail={item.thumbnail}
-          title={item.title}
-          type={item.type}
-        />
-      ))}
+      {/* item.title.includes(inputCtx.searchText) && */}
+      {downloadsCtx.downloadsAudio.map(
+        (item) =>
+          item.title.includes(inputCtx.searchText) && (
+            <DownloadItem
+              format={item.format}
+              id={item.id}
+              key={item.id}
+              length={item.length}
+              size={item.size}
+              source={item.source}
+              thumbnail={item.thumbnail}
+              title={item.title}
+              type={item.type}
+            />
+          )
+      )}
     </ul>
   );
   return (
