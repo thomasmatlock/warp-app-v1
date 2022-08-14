@@ -95,7 +95,6 @@ const DownloadsContext = React.createContext({
   downloadsVideo: [],
   downloadsWarpstagram: {},
   getDownloadID: () => {},
-  // removeAllActiveSources: () => {},
 });
 const getDownloadID = (id) => {
   console.log(id);
