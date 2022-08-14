@@ -22,7 +22,7 @@ const SourcesContext = React.createContext({
 let sources = [
   {
     name: 'Facebook',
-    id: 'facebook',
+    id: 'modal_dropdown_general_startupSource_facebook',
     src: downloadSourceIconFacebook,
     URL: 'https://facebook.com',
     active: false,
@@ -30,7 +30,7 @@ let sources = [
   },
   {
     name: 'Instagram',
-    id: 'instagram',
+    id: 'modal_dropdown_general_startupSource_instagram',
     src: downloadSourceIconInstagram,
     URL: 'https://instagram.com',
     active: false,
@@ -38,7 +38,7 @@ let sources = [
   },
   {
     name: 'Pinterest',
-    id: 'pinterest',
+    id: 'modal_dropdown_general_startupSource_pinterest',
     src: downloadSourceIconPinterest,
     URL: 'https://pinterest.com',
     active: false,
@@ -46,7 +46,7 @@ let sources = [
   },
   {
     name: 'Snapchat',
-    id: 'snapchat',
+    id: 'modal_dropdown_general_startupSource_snapchat',
     src: downloadSourceIconSnapchat,
     URL: 'https://snapchat.com',
     active: false,
@@ -54,7 +54,7 @@ let sources = [
   },
   {
     name: 'Soundcloud',
-    id: 'soundcloud',
+    id: 'modal_dropdown_general_startupSource_soundcloud',
     src: downloadSourceIconSoundcloud,
     URL: 'https://soundcloud.com',
     active: false,
@@ -62,7 +62,7 @@ let sources = [
   },
   {
     name: 'Tiktok',
-    id: 'tiktok',
+    id: 'modal_dropdown_general_startupSource_tiktok',
     src: downloadSourceIconTiktok,
     URL: 'https://tiktok.com',
     active: false,
@@ -70,7 +70,7 @@ let sources = [
   },
   {
     name: 'Twitch',
-    id: 'twitch',
+    id: 'modal_dropdown_general_startupSource_twitch',
     src: downloadSourceIconTwitch,
     URL: 'https://twitch.com',
     active: false,
@@ -78,7 +78,7 @@ let sources = [
   },
   {
     name: 'Twitter',
-    id: 'twitter',
+    id: 'modal_dropdown_general_startupSource_twitter',
     src: downloadSourceIconTwitter,
     URL: 'https://twitter.com',
     active: false,
@@ -86,7 +86,7 @@ let sources = [
   },
   {
     name: 'Vimeo',
-    id: 'vimeo',
+    id: 'modal_dropdown_general_startupSource_vimeo',
     src: downloadSourceIconVimeo,
     URL: 'https://vimeo.com',
     active: false,
@@ -94,7 +94,7 @@ let sources = [
   },
   {
     name: 'Youtube',
-    id: 'youtube',
+    id: 'modal_dropdown_general_startupSource_youtube',
     src: downloadSourceIconYoutube,
     URL: 'https://youtube.com',
     active: true,
@@ -131,7 +131,7 @@ export const SourcesContextProvider = (props) => {
       .filter((source) => source.enabled);
   };
   const setActiveSource = (id) => {
-    // console.log(id);
+    console.log(id);
     removeAllActiveSources(id);
     sources.forEach((source) => {
       // console.log(source.id);
@@ -177,6 +177,7 @@ export const SourcesContextProvider = (props) => {
         if (dropdown.defaultValue.id.includes('youtube'))
           setActiveSource(dropdown.defaultValue.id);
       }
+      console.log(activeSource[0].name);
     });
   });
   return (

@@ -23,14 +23,18 @@ import { log } from 'console';
 const BrowserBarDownloadSource = () => {
   const themeCtx = useContext(ThemeContext);
   const sourcesCtx = useContext(SourcesContext);
+  console.log(sourcesCtx);
+
   let sourcesCount = sourcesCtx.enabledSources.length;
   window.electron.ipcRenderer.on('ready-to-show', (arg) => {
     // console.log(sourcesCtx.activeSource[0].URL);
-    window.electron.ipcRenderer.sendMessage(
-      'loadActiveSource',
+    setTimeout(() => {
+      window.electron.ipcRenderer.sendMessage(
+        'loadActiveSource',
 
-      sourcesCtx.activeSource[0].URL
-    );
+        sourcesCtx.activeSource[0].URL
+      );
+    }, 1000);
   });
   let height_browserBarDownloadSource__hovering = sourcesCount * 48 + 6 + 'px';
   const [isSourcesExpanded, setIsSourcesExpanded] = useState(false);

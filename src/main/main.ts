@@ -40,7 +40,7 @@ const getPrefs = () => {
 const setPrefs = (arg: any) => {
   settings.set('prefs', arg);
 };
-// settings.delete('prefs'); // testing only, REMOVE for production
+settings.delete('prefs'); // testing only, REMOVE for production
 let prefs = getPrefs();
 // console.log(prefs);
 //////////////////////////////////////////////////////

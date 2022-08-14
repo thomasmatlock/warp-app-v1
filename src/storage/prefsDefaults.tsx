@@ -341,9 +341,19 @@ const prefs = {
             label: 'Facebook',
           },
           {
+            id: 'modal_dropdown_general_startupSource_instagram',
+            value: 'general_startupSource_instagram',
+            label: 'Instagram',
+          },
+          {
             id: 'modal_dropdown_general_startupSource_pinterest',
             value: 'general_startupSource_pinterest',
             label: 'Pinterest',
+          },
+          {
+            id: 'modal_dropdown_general_startupSource_snapchat',
+            value: 'general_startupSource_snapchat',
+            label: 'Snapchat',
           },
           {
             id: 'modal_dropdown_general_startupSource_soundcloud',
@@ -351,14 +361,24 @@ const prefs = {
             label: 'Soundcloud',
           },
           {
+            id: 'modal_dropdown_general_startupSource_tiktok',
+            value: 'general_startupSource_tiktok',
+            label: 'Tiktok',
+          },
+          {
+            id: 'modal_dropdown_general_startupSource_twitch',
+            value: 'general_startupSource_twitch',
+            label: 'Twitch',
+          },
+          {
             id: 'modal_dropdown_general_startupSource_twitter',
             value: 'general_startupSource_twitter',
             label: 'Twitter',
           },
           {
-            id: 'modal_dropdown_general_startupSource_tiktok',
-            value: 'general_startupSource_tiktok',
-            label: 'Tiktok',
+            id: 'modal_dropdown_general_startupSource_vimeo',
+            value: 'general_startupSource_vimeo',
+            label: 'Vimeo',
           },
           {
             id: 'modal_dropdown_general_startupSource_youtube',
