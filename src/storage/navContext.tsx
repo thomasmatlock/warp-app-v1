@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+let prefs;
 const NavContext = React.createContext({
   audioMode: true,
   videoMode: false,
@@ -27,6 +28,20 @@ const NavContext = React.createContext({
   // warpstagramModeHandler: () => {},
 });
 export const NavContextProvider = (props) => {
+  window.electron.ipcRenderer.on('main: prefs', (arg) => {
+    prefs = arg;
+    // console.log(prefs.general.dropdowns);
+    prefs.general.dropdowns.forEach((dropdown) => {
+      if (dropdown.id.includes('startupMode')) {
+        // console.log(dropdown);
+        // console.log(dropdown.defaultValue.id);
+        if (dropdown.defaultValue.id.includes('audio')) audioModeHandler();
+        if (dropdown.defaultValue.id.includes('video')) videoModeHandler();
+        if (dropdown.defaultValue.id.includes('warpstagram'))
+          warpstagramModeHandler();
+      }
+    });
+  });
   // main mode states
   const [audioMode, setAudioMode] = useState(true);
   const [videoMode, setVideoMode] = useState(false);

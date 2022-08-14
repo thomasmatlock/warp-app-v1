@@ -172,21 +172,18 @@ export const PrefsContextProvider = (props) => {
     }
   };
   const parseID = (id) => {
-    // console.log(id);
     if (id.includes('dropdown')) {
-      // console.log('dropdown', id);
       dropdownHandler(id);
     }
     if (id.includes('checkbox')) {
       checkboxHandler(id);
     }
     if (id.includes('outputFolder')) {
-      // console.log('outputFolder', id);
+      console.log('outputFolder', id);
     }
   };
   const getID = (id: string) => {
     parseID(id);
-    // console.log(prefs);
   };
   return (
     <PrefsContext.Provider

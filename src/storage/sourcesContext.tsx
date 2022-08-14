@@ -10,6 +10,7 @@ import downloadSourceIconTwitter from '../../assets/BrowserBar/twitter.svg';
 import downloadSourceIconVimeo from '../../assets/BrowserBar/vimeo.svg';
 import downloadSourceIconYoutube from '../../assets/BrowserBar/youtube.svg';
 // settings.get('sources');
+let prefs;
 const SourcesContext = React.createContext({
   activeSource: '',
   enabledSources: [],
@@ -100,6 +101,7 @@ let sources = [
     enabled: true,
   },
 ];
+
 const getEnabledSources = (sources) => {
   // console.log('getEnabledSources');
 
@@ -111,6 +113,7 @@ const getActiveSource = (sources) => {
 };
 let enabledSources;
 let activeSource;
+
 export const SourcesContextProvider = (props) => {
   // const [isActiveSource, setISActiveSource] = useState(activeSource[0].name);
   const [isActiveSource, setIsActiveSource] = useState(
@@ -147,7 +150,35 @@ export const SourcesContextProvider = (props) => {
   };
 
   // console.log(activeSource[0].name);
-
+  window.electron.ipcRenderer.on('main: prefs', (arg) => {
+    prefs = arg;
+    // console.log(prefs.general.dropdowns);
+    prefs.general.dropdowns.forEach((dropdown) => {
+      if (dropdown.id.includes('source') || dropdown.id.includes('Source')) {
+        // console.log(dropdown.defaultValue.id);
+        if (dropdown.defaultValue.id.includes('facebook'))
+          setActiveSource(dropdown.defaultValue.id);
+        if (dropdown.defaultValue.id.includes('instagram'))
+          setActiveSource(dropdown.defaultValue.id);
+        if (dropdown.defaultValue.id.includes('pinterest'))
+          setActiveSource(dropdown.defaultValue.id);
+        if (dropdown.defaultValue.id.includes('snapchat'))
+          setActiveSource(dropdown.defaultValue.id);
+        if (dropdown.defaultValue.id.includes('soundcloud'))
+          setActiveSource(dropdown.defaultValue.id);
+        if (dropdown.defaultValue.id.includes('tiktok'))
+          setActiveSource(dropdown.defaultValue.id);
+        if (dropdown.defaultValue.id.includes('twitch'))
+          setActiveSource(dropdown.defaultValue.id);
+        if (dropdown.defaultValue.id.includes('twitter'))
+          setActiveSource(dropdown.defaultValue.id);
+        if (dropdown.defaultValue.id.includes('vimeo'))
+          setActiveSource(dropdown.defaultValue.id);
+        if (dropdown.defaultValue.id.includes('youtube'))
+          setActiveSource(dropdown.defaultValue.id);
+      }
+    });
+  });
   return (
     <SourcesContext.Provider
       value={{

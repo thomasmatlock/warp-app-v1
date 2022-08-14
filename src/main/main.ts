@@ -40,7 +40,7 @@ const getPrefs = () => {
 const setPrefs = (arg: any) => {
   settings.set('prefs', arg);
 };
-settings.delete('prefs'); // testing only, REMOVE for production
+// settings.delete('prefs'); // testing only, REMOVE for production
 let prefs = getPrefs();
 // console.log(prefs);
 //////////////////////////////////////////////////////
@@ -144,14 +144,17 @@ let browserPanelState = 'default';
     hideView();
   });
   // BROWSERBAR DOWNLOAD SOURCE LISTENERS
-  ipcMain.on('loadActiveSource', async () => {
+  ipcMain.on('loadActiveSource', async (arg) => {
+    console.log(arg);
+
+    // if (view) view.webContents.loadURL(arg);
     if (view)
       if (view.webContents.getURL().includes('pinterest')) {
         view.webContents.insertCSS('html, body, { background-color: #fff;  }');
       }
   });
   ipcMain.on('source: change', async (event, arg) => {
-    if (view) if (view) view.webContents.loadURL(arg);
+    if (view) view.webContents.loadURL(arg);
     if (view.webContents.getURL().includes('pinterest')) {
       view.webContents.insertCSS('html, body, { background-color: #fff;  }');
     }
@@ -317,8 +320,8 @@ const windowController = {
         mWin.minimize();
       } else {
         mWin.show();
-        if (view) mWin.maximize();
-        mWin.maximize();
+        // if (view) mWin.maximize();
+        // mWin.maximize();
         mWin.webContents.send('appVersion', app.getVersion());
         mWin.webContents.send('main: prefs', prefs);
       }
@@ -346,10 +349,10 @@ const windowController = {
 
     view.setAutoResize({ width: true, height: true });
     view.setBackgroundColor('#1a1a1a');
-    // view.webContents.loadURL('https://youtube.com');
-    view.webContents.loadURL(
-      'https://www.youtube.com/channel/UCpCtwRCG1hHcijgy82wt8Ng/videos'
-    );
+    view.webContents.loadURL('https://youtube.com');
+    // view.webContents.loadURL(
+    //   'https://www.youtube.com/channel/UCpCtwRCG1hHcijgy82wt8Ng/videos'
+    // );
     view.webContents.on('did-navigate-in-page', (e, url) => {
       mWin.webContents.send('did-navigate-in-page', url);
     });
@@ -435,7 +438,7 @@ app
     // mWinBounds.height = display.height; // default
     mWinBounds.height = display.height - 250; // testing
     windowController.createmWin();
-    // windowController.createbView();
+    windowController.createbView();
     // Register a 'CommandOrControl+X' shortcut listener.
     globalShortcut.register('Alt+Left', () => {
       if (view) view.webContents.goBack();
