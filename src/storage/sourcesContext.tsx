@@ -156,26 +156,26 @@ export const SourcesContextProvider = (props) => {
     prefs.general.dropdowns.forEach((dropdown) => {
       if (dropdown.id.includes('source') || dropdown.id.includes('Source')) {
         // console.log(dropdown.defaultValue.id);
-        if (dropdown.defaultValue.id.includes('facebook'))
-          setActiveSource(dropdown.defaultValue.id);
-        if (dropdown.defaultValue.id.includes('instagram'))
-          setActiveSource(dropdown.defaultValue.id);
-        if (dropdown.defaultValue.id.includes('pinterest'))
-          setActiveSource(dropdown.defaultValue.id);
-        if (dropdown.defaultValue.id.includes('snapchat'))
-          setActiveSource(dropdown.defaultValue.id);
-        if (dropdown.defaultValue.id.includes('soundcloud'))
-          setActiveSource(dropdown.defaultValue.id);
-        if (dropdown.defaultValue.id.includes('tiktok'))
-          setActiveSource(dropdown.defaultValue.id);
-        if (dropdown.defaultValue.id.includes('twitch'))
-          setActiveSource(dropdown.defaultValue.id);
-        if (dropdown.defaultValue.id.includes('twitter'))
-          setActiveSource(dropdown.defaultValue.id);
-        if (dropdown.defaultValue.id.includes('vimeo'))
-          setActiveSource(dropdown.defaultValue.id);
-        if (dropdown.defaultValue.id.includes('youtube'))
-          setActiveSource(dropdown.defaultValue.id);
+        // if (dropdown.defaultValue.id.includes('facebook'))
+        //   setActiveSource(dropdown.defaultValue.id);
+        // if (dropdown.defaultValue.id.includes('instagram'))
+        //   setActiveSource(dropdown.defaultValue.id);
+        // if (dropdown.defaultValue.id.includes('pinterest'))
+        //   setActiveSource(dropdown.defaultValue.id);
+        // if (dropdown.defaultValue.id.includes('snapchat'))
+        //   setActiveSource(dropdown.defaultValue.id);
+        // if (dropdown.defaultValue.id.includes('soundcloud'))
+        //   setActiveSource(dropdown.defaultValue.id);
+        // if (dropdown.defaultValue.id.includes('tiktok'))
+        //   setActiveSource(dropdown.defaultValue.id);
+        // if (dropdown.defaultValue.id.includes('twitch'))
+        //   setActiveSource(dropdown.defaultValue.id);
+        // if (dropdown.defaultValue.id.includes('twitter'))
+        //   setActiveSource(dropdown.defaultValue.id);
+        // if (dropdown.defaultValue.id.includes('vimeo'))
+        //   setActiveSource(dropdown.defaultValue.id);
+        // if (dropdown.defaultValue.id.includes('youtube'))
+        //   setActiveSource(dropdown.defaultValue.id);
       }
       // console.log(activeSource[0].name);
     });

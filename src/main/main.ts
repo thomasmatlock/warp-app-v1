@@ -40,8 +40,40 @@ const getPrefs = () => {
 const setPrefs = (arg: any) => {
   settings.set('prefs', arg);
 };
-settings.delete('prefs'); // testing only, REMOVE for production
+// settings.delete('prefs'); // testing only, REMOVE for production
 let prefs = getPrefs();
+// console.log(prefs.general.dropdowns[1].defaultValue);
+let activeURL: string;
+const setActiveURL = () => {
+  // console.log(prefs.general.dropdowns[1].defaultValue);
+
+  if (prefs.general.dropdowns[1].defaultValue.id.includes('facebook'))
+    activeURL = 'http://facebook.com';
+  if (prefs.general.dropdowns[1].defaultValue.id.includes('instagram'))
+    activeURL = 'http://instagram.com';
+  if (prefs.general.dropdowns[1].defaultValue.id.includes('pinterest'))
+    activeURL = 'http://pinterest.com';
+  if (prefs.general.dropdowns[1].defaultValue.id.includes('soundcloud'))
+    activeURL = 'http://soundcloud.com';
+  if (prefs.general.dropdowns[1].defaultValue.id.includes('snapchat'))
+    activeURL = 'http://snapchat.com';
+  if (prefs.general.dropdowns[1].defaultValue.id.includes('tiktok'))
+    activeURL = 'http://tiktok.com';
+  if (prefs.general.dropdowns[1].defaultValue.id.includes('twitch'))
+    activeURL = 'http://twitch.com';
+  if (prefs.general.dropdowns[1].defaultValue.id.includes('twitter'))
+    activeURL = 'http://twitter.com';
+  if (prefs.general.dropdowns[1].defaultValue.id.includes('vimeo'))
+    activeURL = 'http://vimeo.com';
+  if (prefs.general.dropdowns[1].defaultValue.id.includes('youtube'))
+    activeURL = 'http://youtube.com';
+  // if (prefs.general.dropdowns[1].defaultValue.id.includes('bandcamp'))      view.webContents.loadURL('https://bandcamp.com');
+  // if (prefs.general.dropdowns[1].defaultValue.id.includes('mixer'))         view.webContents.loadURL('https://mixer.com');
+  // if (prefs.general.dropdowns[1].defaultValue.id.includes('spotify'))       view.webContents.loadURL('https://spotify.com');
+  // if (prefs.general.dropdowns[1].defaultValue.id.includes('reddit'))        view.webContents.loadURL('https://reddit.com');
+  // if (prefs.general.dropdowns[1].defaultValue.id.includes('deviantart'))    view.webContents.loadURL('https://deviantart.com');
+};
+setActiveURL();
 //////////////////////////////////////////////////////
 
 const contextMenu = require('electron-context-menu');
@@ -56,7 +88,7 @@ const isDebug =
   process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true';
 
 if (isDebug) {
-  require('electron-debug')(); // ENABLE FOR DEVTOOLS
+  // require('electron-debug')(); // ENABLE FOR DEVTOOLS
 }
 
 const installExtensions = async () => {
@@ -341,12 +373,15 @@ const windowController = {
 
     view.setAutoResize({ width: true, height: true });
     view.setBackgroundColor('#1a1a1a');
-    view.webContents.loadURL('https://youtube.com');
+    // view.webContents.loadURL('https://youtube.com');
+    view.webContents.loadURL(activeURL);
+    // if (prefs.general.dropdowns[0].defaultValue)
+
     // view.webContents.loadURL(
     //   'https://www.youtube.com/channel/UCpCtwRCG1hHcijgy82wt8Ng/videos'
     // );
     view.webContents.on('did-navigate-in-page', (e, url) => {
-      mWin.webContents.send('did-navigate-in-page', url);
+      if (mWin) mWin.webContents.send('did-navigate-in-page', url);
     });
   },
 };
@@ -430,7 +465,7 @@ app
     // mWinBounds.height = display.height; // default
     mWinBounds.height = display.height - 250; // testing
     windowController.createmWin();
-    // windowController.createbView();
+    windowController.createbView();
     // Register a 'CommandOrControl+X' shortcut listener.
     globalShortcut.register('Alt+Left', () => {
       if (view) view.webContents.goBack();
