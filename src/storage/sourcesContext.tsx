@@ -113,9 +113,37 @@ const getActiveSource = (sources) => {
 };
 let enabledSources;
 let activeSource;
-
+window.electron.ipcRenderer.on('main: prefs', (arg) => {
+  prefs = arg;
+  // console.log(prefs.general.dropdowns);
+  prefs.general.dropdowns.forEach((dropdown) => {
+    if (dropdown.id.includes('source') || dropdown.id.includes('Source')) {
+      console.log(dropdown.defaultValue.id);
+      // if (dropdown.defaultValue.id.includes('facebook'))
+      //   setActiveSource(dropdown.defaultValue.id);
+      // if (dropdown.defaultValue.id.includes('instagram'))
+      //   setActiveSource(dropdown.defaultValue.id);
+      // if (dropdown.defaultValue.id.includes('pinterest'))
+      //   setActiveSource(dropdown.defaultValue.id);
+      // if (dropdown.defaultValue.id.includes('snapchat'))
+      //   setActiveSource(dropdown.defaultValue.id);
+      // if (dropdown.defaultValue.id.includes('soundcloud'))
+      //   setActiveSource(dropdown.defaultValue.id);
+      // if (dropdown.defaultValue.id.includes('tiktok'))
+      //   setActiveSource(dropdown.defaultValue.id);
+      // if (dropdown.defaultValue.id.includes('twitch'))
+      //   setActiveSource(dropdown.defaultValue.id);
+      // if (dropdown.defaultValue.id.includes('twitter'))
+      //   setActiveSource(dropdown.defaultValue.id);
+      // if (dropdown.defaultValue.id.includes('vimeo'))
+      //   setActiveSource(dropdown.defaultValue.id);
+      // if (dropdown.defaultValue.id.includes('youtube'))
+      //   setActiveSource(dropdown.defaultValue.id);
+    }
+    // console.log(activeSource[0].name);
+  });
+});
 export const SourcesContextProvider = (props) => {
-  // const [isActiveSource, setISActiveSource] = useState(activeSource[0].name);
   const [isActiveSource, setIsActiveSource] = useState(
     sources.filter((source) => source.active)
   );
@@ -149,48 +177,12 @@ export const SourcesContextProvider = (props) => {
     });
   };
 
-  // console.log(activeSource[0].name);
-  window.electron.ipcRenderer.on('main: prefs', (arg) => {
-    prefs = arg;
-    // console.log(prefs.general.dropdowns);
-    prefs.general.dropdowns.forEach((dropdown) => {
-      if (dropdown.id.includes('source') || dropdown.id.includes('Source')) {
-        // console.log(dropdown.defaultValue.id);
-        // if (dropdown.defaultValue.id.includes('facebook'))
-        //   setActiveSource(dropdown.defaultValue.id);
-        // if (dropdown.defaultValue.id.includes('instagram'))
-        //   setActiveSource(dropdown.defaultValue.id);
-        // if (dropdown.defaultValue.id.includes('pinterest'))
-        //   setActiveSource(dropdown.defaultValue.id);
-        // if (dropdown.defaultValue.id.includes('snapchat'))
-        //   setActiveSource(dropdown.defaultValue.id);
-        // if (dropdown.defaultValue.id.includes('soundcloud'))
-        //   setActiveSource(dropdown.defaultValue.id);
-        // if (dropdown.defaultValue.id.includes('tiktok'))
-        //   setActiveSource(dropdown.defaultValue.id);
-        // if (dropdown.defaultValue.id.includes('twitch'))
-        //   setActiveSource(dropdown.defaultValue.id);
-        // if (dropdown.defaultValue.id.includes('twitter'))
-        //   setActiveSource(dropdown.defaultValue.id);
-        // if (dropdown.defaultValue.id.includes('vimeo'))
-        //   setActiveSource(dropdown.defaultValue.id);
-        // if (dropdown.defaultValue.id.includes('youtube'))
-        //   setActiveSource(dropdown.defaultValue.id);
-      }
-      // console.log(activeSource[0].name);
-    });
-  });
   return (
     <SourcesContext.Provider
       value={{
         enabledSources: enabledSources,
         activeSource: activeSource,
-        isActiveSource: isActiveSource,
         setActiveSource: setActiveSource,
-        setIsActiveSource: setIsActiveSource,
-        removeAllActiveSources: removeAllActiveSources,
-        // setIsActiveSource: setIsActiveSource,
-        // toggleVideoPanelCollapsed: toggleVideoPanelCollapsed,
       }}
     >
       {props.children}
