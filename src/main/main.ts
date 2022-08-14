@@ -42,7 +42,6 @@ const setPrefs = (arg: any) => {
 };
 settings.delete('prefs'); // testing only, REMOVE for production
 let prefs = getPrefs();
-// console.log(prefs);
 //////////////////////////////////////////////////////
 
 const contextMenu = require('electron-context-menu');
@@ -107,7 +106,6 @@ let browserPanelState = 'default';
 (function appListeners() {
   // MENU LISTENERS
   ipcMain.on('Menu: Shortcuts: Restart', async (event, arg) => {
-    // console.log('Menu: Shortcuts: Restart', arg);
     event.reply('Menu: Shortcuts: Restart', arg);
   });
   ipcMain.on('modal: preferences', async (event, arg) => {
@@ -145,7 +143,7 @@ let browserPanelState = 'default';
   });
   // BROWSERBAR DOWNLOAD SOURCE LISTENERS
   ipcMain.on('loadActiveSource', async (arg) => {
-    console.log(arg);
+    // console.log(arg);
 
     // if (view) view.webContents.loadURL(arg);
     if (view)
@@ -171,15 +169,12 @@ let browserPanelState = 'default';
     bWinHandler.resize(arg);
   });
   ipcMain.on('BrowserBar: button: goBack', async (event, arg) => {
-    console.log('BrowserBar: button: goBack');
     if (view) view.webContents.goBack();
   });
   ipcMain.on('BrowserBar: button: goForward', async (event, arg) => {
-    console.log('BrowserBar: button: goForward');
     if (view) view.webContents.goForward();
   });
   ipcMain.on('BrowserBar: button: reload', async (event, arg) => {
-    console.log('BrowserBar: button: reload');
     if (view) view.webContents.reload();
   });
   // FILTERBAR LISTENERS
@@ -204,8 +199,6 @@ let browserPanelState = 'default';
   // MODAL PREFSLISTENERS
   ipcMain.on('main: prefs', async (event, arg) => {
     prefs = arg;
-    // console.log('main: prefs', arg.general.checkboxes);
-    // console.log('main: prefs', prefs.general.checkboxes);
     setPrefs(prefs);
     event.reply('main: prefs', prefs);
     //  event.reply('FilterBar: Warpstagram: FilterTypeLocations successful'); // sends message to renderer
@@ -213,7 +206,6 @@ let browserPanelState = 'default';
 })();
 
 ipcMain.on('settings: request', async (event, arg) => {
-  console.log('settings: request', arg);
   event.reply('settings-broadcast', settings); // sends message to renderer
 });
 (function bWinListeners() {
@@ -320,7 +312,7 @@ const windowController = {
         mWin.minimize();
       } else {
         mWin.show();
-        // if (view) mWin.maximize();
+        if (view) mWin.maximize();
         // mWin.maximize();
         mWin.webContents.send('appVersion', app.getVersion());
         mWin.webContents.send('main: prefs', prefs);
@@ -438,7 +430,7 @@ app
     // mWinBounds.height = display.height; // default
     mWinBounds.height = display.height - 250; // testing
     windowController.createmWin();
-    windowController.createbView();
+    // windowController.createbView();
     // Register a 'CommandOrControl+X' shortcut listener.
     globalShortcut.register('Alt+Left', () => {
       if (view) view.webContents.goBack();

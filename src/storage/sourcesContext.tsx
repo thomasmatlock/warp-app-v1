@@ -177,7 +177,7 @@ export const SourcesContextProvider = (props) => {
         if (dropdown.defaultValue.id.includes('youtube'))
           setActiveSource(dropdown.defaultValue.id);
       }
-      console.log(activeSource[0].name);
+      // console.log(activeSource[0].name);
     });
   });
   return (

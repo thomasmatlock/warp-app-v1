@@ -23,7 +23,7 @@ import { log } from 'console';
 const BrowserBarDownloadSource = () => {
   const themeCtx = useContext(ThemeContext);
   const sourcesCtx = useContext(SourcesContext);
-  console.log(sourcesCtx);
+  // console.log(sourcesCtx);
 
   let sourcesCount = sourcesCtx.enabledSources.length;
   window.electron.ipcRenderer.on('ready-to-show', (arg) => {
