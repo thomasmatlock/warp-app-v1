@@ -89,21 +89,37 @@ const Search = (props) => {
     if (event.key === 'Escape') {
       modalsCtx.modalStateHandler(false);
     }
+    if (event.key === 'Escape' && inputCtx.searchText.length > 0) {
+      // modalsCtx.modalStateHandler(false);
+      searchClearTextHandler();
+    }
     if (event.key === 'Escape' && !modalsCtx.isModalOpen) {
       searchClearTextHandler();
     }
+  });
+  window.addEventListener('keydown', (event) => {
+    console.log(event.key);
     Array.from(document.getElementsByClassName('search__input')).forEach(
       (item) => {
-        item.focus();
-
-        // blur if no text in input
-        if (event.key === 'Escape' && inputCtx.searchText.length === 0) {
+        if (inputCtx.searchText.length === 0 && event.key === 'Shift') {
           item.blur();
-          // console.log('blur 1');
-        }
-        if (event.key === 'Shift' || '1' || '2' || '3') {
-          // item.blur();
           // console.log('blur 2');
+        } else if (
+          inputCtx.searchText.length === 0 &&
+          event.key === 'Control'
+        ) {
+          item.blur();
+        } else if (inputCtx.searchText.length === 0 && event.key === '!') {
+          // item.focus();
+          item.blur();
+        } else if (inputCtx.searchText.length === 0 && event.key === '@') {
+          item.blur();
+        } else if (inputCtx.searchText.length === 0 && event.key === '#') {
+          item.blur();
+        } else if (inputCtx.searchText.length === 0 && event.key === 'Escape') {
+          item.blur();
+        } else {
+          item.focus();
         }
       }
     );
