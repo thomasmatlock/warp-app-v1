@@ -29,14 +29,16 @@ import dummy_post13 from '../../../assets/Content/Warpstagram/nintendoswitch/13.
 import dummy_post14 from '../../../assets/Content/Warpstagram/nintendoswitch/14.jpg';
 import dummy_post15 from '../../../assets/Content/Warpstagram/nintendoswitch/15.jpg';
 
-import './Warpstagram.scss';
-
 import ContextMenu from '../ContextMenu/ContextMenu';
 import ContextMenuOptionsWarpstagramAccount from '../ContextMenu/ContextMenuOptionsWarpstagramAccount';
 import InputContext from '../../storage/inputContext';
+import DownloadsContext from '../../storage/downloadsContext';
+
+import './Warpstagram.scss';
 
 const Warpstagram = () => {
   const themeCtx = useContext(ThemeContext);
+  const downloadsCtx = useContext(DownloadsContext);
   const inputCtx = useContext(InputContext);
 
   const [isContextMenuVisible, setisContextMenuVisible] = useState(false);
@@ -51,6 +53,26 @@ const Warpstagram = () => {
     setisContextMenuVisible(false);
   };
 
+  // const warpstagramAccounts = (
+  //   <ul className="content__panel__warpstagram__accounts">
+  //     {downloadsCtx.downloadsAudio.map(
+  //       (item) =>
+  //         item.title.toLowerCase().includes(inputCtx.searchText) && (
+  //           <DownloadItem
+  //             format={item.format}
+  //             id={item.id}
+  //             key={item.id}
+  //             length={item.length}
+  //             size={item.size}
+  //             source={item.source}
+  //             thumbnail={item.thumbnail}
+  //             title={item.title}
+  //             type={item.type}
+  //           />
+  //         )
+  //     )}
+  //   </ul>
+  // );
   // const mouseLeaveHandler = () => {};
   return (
     <Fragment>

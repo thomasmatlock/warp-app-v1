@@ -84,6 +84,8 @@ const Search = (props) => {
     }
   };
   window.addEventListener('keydown', (event) => {
+    // console.log(event.key);
+
     if (event.key === 'Escape') {
       modalsCtx.modalStateHandler(false);
     }
@@ -92,11 +94,16 @@ const Search = (props) => {
     }
     Array.from(document.getElementsByClassName('search__input')).forEach(
       (item) => {
+        item.focus();
+
         // blur if no text in input
         if (event.key === 'Escape' && inputCtx.searchText.length === 0) {
           item.blur();
-        } else if (event.key != 'Shift' && event.key != 'Control') {
-          item.focus();
+          // console.log('blur 1');
+        }
+        if (event.key === 'Shift' || '1' || '2' || '3') {
+          // item.blur();
+          // console.log('blur 2');
         }
       }
     );

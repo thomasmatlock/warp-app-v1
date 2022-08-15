@@ -23,30 +23,6 @@ const DownloadsAudio = () => {
   const downloadSelectedHandler = (id) => {
     console.log(id);
   };
-  // DOM EVENT LISTENERS
-  // Filter items with "search"
-  // window.addEventListener('keyup', (e) => {
-  //   // console.log(e.key);
-
-  //   // Loop items
-  //   // getElementsByClassName returns an object of type HTML collection, very similar to normal JS array
-  //   // we cant loop the object directly, but pass it to Array.from essentially converts its type to a standard array
-  //   // this obv means we can now loop it. The elements in this array stay the same, so we can still use them
-  //   Array.from(
-  //     document.getElementsByClassName(
-  //       'content__panel__downloads__list__item__audio'
-  //     )
-  //   ).forEach((item) => {
-  //     // console.log(item);
-
-  //     // Hide items that dont match the search value
-  //     // let hasMatch = item.innerText.toLowerCase().includes(search.value); // hasMatch will now hold a boolean value based on whether the item text matches the search text
-  //     let hasMatch = item.title.toLowerCase().includes(inputCtx.searchText); // hasMatch will now hold a boolean value based on whether the item text matches the search text
-  //     // console.log(hasMatch);
-
-  //     // item.style.display = hasMatch ? 'flex' : 'none'; // if item text matches search text, display, else set display to none
-  //   });
-  // });
   const audioDownloads = (
     <ul className="content__panel__downloads__list">
       {downloadsCtx.downloadsAudio.map(

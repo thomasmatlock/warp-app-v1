@@ -87,7 +87,7 @@ const downloadsVideo = [
   },
 ];
 const downloadsWarpstagram = {
-  subscribed: [],
+  subscribed: [{}],
   pinned: [],
 };
 const DownloadsContext = React.createContext({
