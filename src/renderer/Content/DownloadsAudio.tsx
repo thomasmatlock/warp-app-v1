@@ -29,6 +29,7 @@ const DownloadsAudio = () => {
         (item) =>
           item.title.toLowerCase().includes(inputCtx.searchText) && (
             <DownloadItem
+              date={item.date}
               format={item.format}
               id={item.id}
               key={item.id}

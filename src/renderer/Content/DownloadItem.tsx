@@ -16,6 +16,8 @@ import IconFileTypeAudio from '../../../assets/Downloads/fileTypeAudio.svg';
 import IconFileTypeVideo from '../../../assets/Downloads/fileTypeVideo.svg';
 import iconFileResolution from '../../../assets/Downloads/resolution.svg';
 import IconFileFps from '../../../assets/Downloads/fps1.svg';
+import IconDate from '../../../assets/Downloads/calendar.svg';
+// import IconDate
 import SourcesContext from '../../storage/sourcesContext';
 import ThemeContext from 'storage/themeContext';
 import DownloadsContext from 'storage/downloadsContext';
@@ -67,7 +69,50 @@ const DownloadItem = (props) => {
   const sourceIcon = findSourceIcon(props.source);
   const resolution = `${props.resolution}`;
   const fps = `${props.fps}`;
-  // console.log(props);
+  // const date = new Date();
+  // console.log(props.date.getFullYear());
+  let itemDay;
+  let itemMonth;
+  let itemDate;
+  let itemYear = props.date.getFullYear();
+
+  function convertDayToWeekday() {
+    var weekday = new Array(
+      'Sunday',
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday'
+    );
+    itemDay = `${weekday[props.date.getDay()]}`;
+  }
+  function convertMonthToMonthName() {
+    var month = new Array(
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December'
+    );
+    itemMonth = `${month[props.date.getMonth()]}`;
+  }
+
+  function convertDateToDate() {
+    itemDate = `${props.date.getDate()}`;
+  }
+  convertDayToWeekday();
+  convertDateToDate();
+  convertMonthToMonthName();
+  console.log(itemDay, itemDate, itemMonth);
 
   const toggleContextMenu = () => {
     if (isContentMenuVisible) {
@@ -289,6 +334,35 @@ const DownloadItem = (props) => {
               }
             >
               {fps} fps
+            </div>
+          )}
+          {props.date != undefined && (
+            <img
+              src={IconDate}
+              className=" content__panel__downloads__list__item__img content__panel__downloads__list__item__file_length"
+              style={
+                themeCtx.isDarkTheme
+                  ? { filter: 'invert(100%)' }
+                  : {
+                      filter: 'invert(0%)',
+                    }
+              }
+            ></img>
+          )}
+          {props.date != undefined && (
+            // {props.type === 'video' && (
+            <div
+              className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_fps"
+              style={
+                themeCtx.isDarkTheme
+                  ? { filter: 'invert(100%)' }
+                  : {
+                      filter: 'invert(0%)',
+                    }
+              }
+            >
+              {itemDay}, {itemMonth}
+              {itemDate}, {itemYear}
             </div>
           )}
         </div>

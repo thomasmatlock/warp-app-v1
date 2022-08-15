@@ -17,7 +17,7 @@ const DownloadsVideo = () => {
   const inputCtx = useContext(InputContext);
   Sort.byAZ(downloadsCtx.downloadsVideo, 'title');
   Sort.byZA(downloadsCtx.downloadsVideo, 'title');
-  const [downloads, setDownloads] = useState(downloadsCtx.downloadsAudio);
+  const [downloads, setDownloads] = useState(downloadsCtx.downloadsVideo);
 
   const videoDownloads = (
     <ul className="content__panel__downloads__list">
@@ -26,8 +26,9 @@ const DownloadsVideo = () => {
         (item) =>
           item.title.toLowerCase().includes(inputCtx.searchText) && (
             <DownloadItem
+              date={item.date}
               format={item.format}
-              // fps={item.fps}
+              fps={item.fps}
               id={item.id}
               key={item.id}
               length={item.length}
