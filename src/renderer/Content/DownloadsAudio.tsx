@@ -16,7 +16,7 @@ const DownloadsAudio = () => {
   const [searchInput, setSearchInput] = useState('');
   const themeCtx = useContext(ThemeContext);
   const actionBarCtx = useContext(ActionBarContext);
-  console.log(actionBarCtx);
+  // console.log(actionBarCtx);
 
   const downloadsCtx = useContext(DownloadsContext);
   const inputCtx = useContext(InputContext);

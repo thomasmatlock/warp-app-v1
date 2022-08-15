@@ -1,4 +1,4 @@
-import { Fragment, useContext } from 'react';
+import { Fragment, useState, useContext } from 'react';
 
 import ThemeContext from '../../storage/themeContext';
 import ActionBarContext from '../../storage/actionBarContext';
@@ -17,18 +17,21 @@ const DownloadsVideo = () => {
   const inputCtx = useContext(InputContext);
   Sort.byAZ(downloadsCtx.downloadsVideo, 'title');
   Sort.byZA(downloadsCtx.downloadsVideo, 'title');
+  const [downloads, setDownloads] = useState(downloadsCtx.downloadsAudio);
 
   const videoDownloads = (
     <ul className="content__panel__downloads__list">
       {/* item.title.includes(inputCtx.searchText) && */}
-      {downloadsCtx.downloadsVideo.map(
+      {downloads.map(
         (item) =>
           item.title.toLowerCase().includes(inputCtx.searchText) && (
             <DownloadItem
               format={item.format}
+              // fps={item.fps}
               id={item.id}
               key={item.id}
               length={item.length}
+              resolution={item.resolution}
               size={item.size}
               source={item.source}
               thumbnail={item.thumbnail}

@@ -25,6 +25,8 @@ import ContextMenu from '../ContextMenu/ContextMenu';
 import ContextMenuDownloadItemOptions from '../ContextMenu/ContextMenuDownloadItemOptions';
 
 const DownloadItem = (props) => {
+  // console.log(props);
+
   const [isContentMenuVisible, setisContentMenuVisible] = useState(false);
   const options = 'downloadItemContextMenu';
   const sourcesCtx = useContext(SourcesContext);
@@ -235,7 +237,7 @@ const DownloadItem = (props) => {
           >
             {format}
           </div>
-          {props.type === 'video' && (
+          {props.type === 'video' && props.resolution != undefined && (
             <img
               src={iconFileResolution}
               className=" content__panel__downloads__list__item__img content__panel__downloads__list__item__file_length"
@@ -248,7 +250,7 @@ const DownloadItem = (props) => {
               }
             />
           )}
-          {props.type === 'video' && (
+          {props.type === 'video' && props.resolution != undefined && (
             <div
               className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_resolution"
               style={
@@ -262,7 +264,7 @@ const DownloadItem = (props) => {
               {resolution}
             </div>
           )}
-          {props.type === 'video' && (
+          {props.type === 'video' && props.fps != undefined && (
             <img
               src={IconFileFps}
               className=" content__panel__downloads__list__item__img content__panel__downloads__list__item__file_length"
@@ -275,7 +277,7 @@ const DownloadItem = (props) => {
               }
             ></img>
           )}
-          {props.type === 'video' && (
+          {props.type === 'video' && props.fps != undefined && (
             <div
               className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_fps"
               style={
