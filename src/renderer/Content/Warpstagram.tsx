@@ -59,19 +59,22 @@ const Warpstagram = () => {
 
   const warpstagramAccounts = (
     <ul className="content__panel__warpstagram__accounts">
-      {downloads.map((item) => (
-        <WarpstagramItem
-          // format={item.format}
-          id={item.id}
-          key={item.id}
-          // length={item.length}
-          // size={item.size}
-          // source={item.source}
-          // thumbnail={item.thumbnail}
-          title={item.title}
-          // type={item.type}
-        />
-      ))}
+      {downloads.map(
+        (item) =>
+          item.title.toLowerCase().includes(inputCtx.searchText) && (
+            <WarpstagramItem
+              // format={item.format}
+              id={item.id}
+              key={item.id}
+              // length={item.length}
+              // size={item.size}
+              // source={item.source}
+              // thumbnail={item.thumbnail}
+              title={item.title}
+              // type={item.type}
+            />
+          )
+      )}
     </ul>
   );
   // const mouseLeaveHandler = () => {};

@@ -97,7 +97,7 @@ const downloadsWarpstagram = {
       // size: '1.2 MB',
       // source: 'vimeo',
       // thumbnail: 'https://i3.ytimg.com/vi/F02Y3C16Uwg/maxresdefault.jpg',
-      title: 'peakyblindersofficial',
+      title: 'thedreamsetup',
       type: 'warpstagram',
       url: 'https://www.youtube.com/watch?v=uq-_-RJt-E8',
     },
