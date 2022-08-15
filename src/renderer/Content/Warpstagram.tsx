@@ -62,7 +62,7 @@ const Warpstagram = () => {
       {downloads.map((item) => (
         <WarpstagramItem
           // format={item.format}
-          // id={item.id}
+          id={item.id}
           key={item.id}
           // length={item.length}
           // size={item.size}

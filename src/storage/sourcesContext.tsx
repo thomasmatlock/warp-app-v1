@@ -118,7 +118,7 @@ window.electron.ipcRenderer.on('main: prefs', (arg) => {
   // console.log(prefs.general.dropdowns);
   prefs.general.dropdowns.forEach((dropdown) => {
     if (dropdown.id.includes('source') || dropdown.id.includes('Source')) {
-      console.log(dropdown.defaultValue.id);
+      // console.log(dropdown.defaultValue.id);
       // if (dropdown.defaultValue.id.includes('facebook'))
       //   setActiveSource(dropdown.defaultValue.id);
       // if (dropdown.defaultValue.id.includes('instagram'))
