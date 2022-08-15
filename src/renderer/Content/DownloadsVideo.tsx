@@ -23,7 +23,7 @@ const DownloadsVideo = () => {
       {/* item.title.includes(inputCtx.searchText) && */}
       {downloadsCtx.downloadsVideo.map(
         (item) =>
-          item.title.includes(inputCtx.searchText) && (
+          item.title.toLowerCase().includes(inputCtx.searchText) && (
             <DownloadItem
               format={item.format}
               id={item.id}
