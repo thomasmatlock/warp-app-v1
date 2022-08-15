@@ -92,9 +92,10 @@ const Search = (props) => {
     }
     Array.from(document.getElementsByClassName('search__input')).forEach(
       (item) => {
+        // blur if no text in input
         if (event.key === 'Escape' && inputCtx.searchText.length === 0) {
           item.blur();
-        } else {
+        } else if (event.key != 'Shift' && event.key != 'Control') {
           item.focus();
         }
       }
