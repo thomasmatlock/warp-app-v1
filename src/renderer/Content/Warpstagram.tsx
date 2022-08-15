@@ -35,44 +35,45 @@ import InputContext from '../../storage/inputContext';
 import DownloadsContext from '../../storage/downloadsContext';
 
 import './Warpstagram.scss';
+import WarpstagramItem from './WarpstagramItem';
 
 const Warpstagram = () => {
   const themeCtx = useContext(ThemeContext);
   const downloadsCtx = useContext(DownloadsContext);
   const inputCtx = useContext(InputContext);
 
-  const [isContextMenuVisible, setisContextMenuVisible] = useState(false);
-  const toggleContextMenuSort = () => {
-    if (isContextMenuVisible) {
-      setisContextMenuVisible(false);
-    } else {
-      setisContextMenuVisible(true);
-    }
-  };
-  const turnOffContextMenu = () => {
-    setisContextMenuVisible(false);
-  };
+  // const [isContextMenuVisible, setisContextMenuVisible] = useState(false);
+  const [downloads, setDownloads] = useState(
+    downloadsCtx.downloadsWarpstagram.subscribed
+  );
+  // const toggleContextMenuSort = () => {
+  //   if (isContextMenuVisible) {
+  //     setisContextMenuVisible(false);
+  //   } else {
+  //     setisContextMenuVisible(true);
+  //   }
+  // };
+  // const turnOffContextMenu = () => {
+  //   setisContextMenuVisible(false);
+  // };
 
-  // const warpstagramAccounts = (
-  //   <ul className="content__panel__warpstagram__accounts">
-  //     {downloadsCtx.downloadsAudio.map(
-  //       (item) =>
-  //         item.title.toLowerCase().includes(inputCtx.searchText) && (
-  //           <DownloadItem
-  //             format={item.format}
-  //             id={item.id}
-  //             key={item.id}
-  //             length={item.length}
-  //             size={item.size}
-  //             source={item.source}
-  //             thumbnail={item.thumbnail}
-  //             title={item.title}
-  //             type={item.type}
-  //           />
-  //         )
-  //     )}
-  //   </ul>
-  // );
+  const warpstagramAccounts = (
+    <ul className="content__panel__warpstagram__accounts">
+      {downloads.map((item) => (
+        <WarpstagramItem
+          // format={item.format}
+          // id={item.id}
+          key={item.id}
+          // length={item.length}
+          // size={item.size}
+          // source={item.source}
+          // thumbnail={item.thumbnail}
+          title={item.title}
+          // type={item.type}
+        />
+      ))}
+    </ul>
+  );
   // const mouseLeaveHandler = () => {};
   return (
     <Fragment>
@@ -87,7 +88,8 @@ const Warpstagram = () => {
               }
         }
       >
-        <ul
+        {warpstagramAccounts}
+        {/* <ul
           className="content__panel__warpstagram__accounts"
           style={
             themeCtx.isDarkTheme
@@ -261,7 +263,7 @@ const Warpstagram = () => {
               />
             </div>
           </li>
-        </ul>
+        </ul> */}
       </div>
     </Fragment>
   );

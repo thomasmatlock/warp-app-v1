@@ -16,16 +16,16 @@ const DownloadsAudio = () => {
   const [searchInput, setSearchInput] = useState('');
   const themeCtx = useContext(ThemeContext);
   const actionBarCtx = useContext(ActionBarContext);
+  // console.log(actionBarCtx);
+
   const downloadsCtx = useContext(DownloadsContext);
   const inputCtx = useContext(InputContext);
+  const [downloads, setDownloads] = useState(downloadsCtx.downloadsAudio);
   // console.log(inputCtx.searchText);
 
-  const downloadSelectedHandler = (id) => {
-    console.log(id);
-  };
   const audioDownloads = (
     <ul className="content__panel__downloads__list">
-      {downloadsCtx.downloadsAudio.map(
+      {downloads.map(
         (item) =>
           item.title.toLowerCase().includes(inputCtx.searchText) && (
             <DownloadItem
