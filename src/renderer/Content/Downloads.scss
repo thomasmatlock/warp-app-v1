@@ -168,7 +168,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
 @media (min-width: 800px) and (max-width: 1650px) {
     .content__panel__downloads__list__item__file_source,
     .content__panel__downloads__list__item__file_date {
-        display: none;
+        // display: none;
     }
 }
 

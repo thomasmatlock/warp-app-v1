@@ -9,6 +9,7 @@ import ThemeContext from '../../storage/themeContext';
 import ActionBarContext from '../../storage/actionBarContext';
 import DownloadsContext from '../../storage/downloadsContext';
 import InputContext from '../../storage/inputContext';
+import Sort from './Sort';
 
 import './Downloads.scss';
 
@@ -20,8 +21,10 @@ const DownloadsAudio = () => {
 
   const downloadsCtx = useContext(DownloadsContext);
   const inputCtx = useContext(InputContext);
-  const [downloads, setDownloads] = useState(downloadsCtx.downloadsAudio);
-  // console.log(inputCtx.searchText);
+  // const [downloads, setDownloads] = useState(downloadsCtx.downloadsAudio);
+  const [downloads, setDownloads] = useState(
+    Sort.byAZ(downloadsCtx.downloadsAudio, 'format')
+  );
 
   const audioDownloads = (
     <ul className="content__panel__downloads__list">

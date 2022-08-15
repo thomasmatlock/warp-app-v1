@@ -13,12 +13,14 @@ import './Downloads.scss';
 const DownloadsVideo = () => {
   const themeCtx = useContext(ThemeContext);
   const actionBarCtx = useContext(ActionBarContext);
+  console.log(actionBarCtx);
+
   const downloadsCtx = useContext(DownloadsContext);
   const inputCtx = useContext(InputContext);
-  Sort.byAZ(downloadsCtx.downloadsVideo, 'title');
-  Sort.byZA(downloadsCtx.downloadsVideo, 'title');
-  const [downloads, setDownloads] = useState(downloadsCtx.downloadsVideo);
-
+  // const [downloads, setDownloads] = useState(downloadsCtx.downloadsAudio);
+  const [downloads, setDownloads] = useState(
+    Sort.byAZ(downloadsCtx.downloadsVideo, 'source')
+  );
   const videoDownloads = (
     <ul className="content__panel__downloads__list">
       {/* item.title.includes(inputCtx.searchText) && */}
