@@ -23,7 +23,7 @@ const DownloadsAudio = () => {
   const inputCtx = useContext(InputContext);
   // const [downloads, setDownloads] = useState(downloadsCtx.downloadsAudio);
   const [downloads, setDownloads] = useState(
-    Sort.byAZ(downloadsCtx.downloadsAudio, 'format')
+    Sort.byDateNewToOld(downloadsCtx.downloadsAudio, 'date')
   );
 
   const audioDownloads = (

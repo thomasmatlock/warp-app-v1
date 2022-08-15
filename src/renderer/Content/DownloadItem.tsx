@@ -16,7 +16,8 @@ import IconFileTypeAudio from '../../../assets/Downloads/fileTypeAudio.svg';
 import IconFileTypeVideo from '../../../assets/Downloads/fileTypeVideo.svg';
 import iconFileResolution from '../../../assets/Downloads/resolution.svg';
 import IconFileFps from '../../../assets/Downloads/fps1.svg';
-import IconDate from '../../../assets/Downloads/calendar.svg';
+import IconDate from '../../../assets/Downloads/date.svg';
+// import IconDate from '../../../assets/Downloads/date2.svg';
 // import IconDate
 import SourcesContext from '../../storage/sourcesContext';
 import ThemeContext from 'storage/themeContext';
@@ -71,13 +72,15 @@ const DownloadItem = (props) => {
   const fps = `${props.fps}`;
   // const date = new Date();
   // console.log(props.date);
-  let itemDay;
   let itemMonth;
   let itemDate;
   let itemYear = props.date.getFullYear();
+  let itemDay;
   let itemHour = props.date.getHours();
   let itemMinute = props.date.getMinutes();
   let itemSecond = props.date.getSeconds();
+  let timeSuffix = itemHour >= 12 ? 'PM' : 'AM';
+  itemHour = itemHour % 12;
   // console.log(itemHour);
 
   function convertDayToWeekday() {
@@ -117,7 +120,8 @@ const DownloadItem = (props) => {
   convertDateToDate();
   convertMonthToMonthName();
   // console.log(itemDay, itemDate, itemMonth);
-  const dateString = `${itemDay}, ${itemMonth} ${itemDate}, ${itemYear}, ${itemHour}:${itemMinute}:${itemSecond}`;
+  // const dateString = `${itemMonth} ${itemDate}, ${itemYear}, ${itemDay}, ${itemHour}:${itemMinute}:${itemSecond} ${timeSuffix}`;
+  const dateString = `${itemMonth} ${itemDate}, ${itemYear}, ${itemDay}, ${itemHour}:${itemMinute} ${timeSuffix}`;
   const toggleContextMenu = () => {
     if (isContentMenuVisible) {
       setisContentMenuVisible(false);
