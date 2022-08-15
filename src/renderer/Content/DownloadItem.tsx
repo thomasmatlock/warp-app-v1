@@ -70,11 +70,15 @@ const DownloadItem = (props) => {
   const resolution = `${props.resolution}`;
   const fps = `${props.fps}`;
   // const date = new Date();
-  // console.log(props.date.getFullYear());
+  // console.log(props.date);
   let itemDay;
   let itemMonth;
   let itemDate;
   let itemYear = props.date.getFullYear();
+  let itemHour = props.date.getHours();
+  let itemMinute = props.date.getMinutes();
+  let itemSecond = props.date.getSeconds();
+  // console.log(itemHour);
 
   function convertDayToWeekday() {
     var weekday = new Array(
@@ -112,8 +116,8 @@ const DownloadItem = (props) => {
   convertDayToWeekday();
   convertDateToDate();
   convertMonthToMonthName();
-  console.log(itemDay, itemDate, itemMonth);
-
+  // console.log(itemDay, itemDate, itemMonth);
+  const dateString = `${itemDay}, ${itemMonth} ${itemDate}, ${itemYear}, ${itemHour}:${itemMinute}:${itemSecond}`;
   const toggleContextMenu = () => {
     if (isContentMenuVisible) {
       setisContentMenuVisible(false);
@@ -177,7 +181,7 @@ const DownloadItem = (props) => {
         <div className="content__panel__downloads__list__item__info__container">
           <img
             src={sourceIcon}
-            className=" content__panel__downloads__list__item__img content__panel__downloads__list__item__file_length"
+            className=" content__panel__downloads__list__item__img content__panel__downloads__list__item__file_source"
             style={
               themeCtx.isDarkTheme
                 ? { filter: 'invert(0%)' }
@@ -187,7 +191,7 @@ const DownloadItem = (props) => {
             }
           ></img>
           <div
-            className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_length"
+            className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_source"
             style={
               themeCtx.isDarkTheme
                 ? { filter: 'invert(100%)' }
@@ -312,7 +316,7 @@ const DownloadItem = (props) => {
           {props.type === 'video' && props.fps != undefined && (
             <img
               src={IconFileFps}
-              className=" content__panel__downloads__list__item__img content__panel__downloads__list__item__file_length"
+              className=" content__panel__downloads__list__item__img content__panel__downloads__list__item__file_fps"
               style={
                 themeCtx.isDarkTheme
                   ? { filter: 'invert(100%)' }
@@ -339,7 +343,7 @@ const DownloadItem = (props) => {
           {props.date != undefined && (
             <img
               src={IconDate}
-              className=" content__panel__downloads__list__item__img content__panel__downloads__list__item__file_length"
+              className=" content__panel__downloads__list__item__img content__panel__downloads__list__item__file_date"
               style={
                 themeCtx.isDarkTheme
                   ? { filter: 'invert(100%)' }
@@ -352,7 +356,7 @@ const DownloadItem = (props) => {
           {props.date != undefined && (
             // {props.type === 'video' && (
             <div
-              className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_fps"
+              className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_date"
               style={
                 themeCtx.isDarkTheme
                   ? { filter: 'invert(100%)' }
@@ -361,8 +365,7 @@ const DownloadItem = (props) => {
                     }
               }
             >
-              {itemDay}, {itemMonth}
-              {itemDate}, {itemYear}
+              {dateString}
             </div>
           )}
         </div>

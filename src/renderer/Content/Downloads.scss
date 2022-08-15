@@ -140,6 +140,9 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
             margin-left: 0px;
             font-size: 14px;
         }
+        &__file_source {
+            color: rgb(162, 162, 162);
+        }
         &__file_length {
             color: rgb(162, 162, 162);
         }
@@ -156,6 +159,16 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
         &__file_fps {
             color: rgb(162, 162, 162);
         }
+        &__file_date {
+            color: rgb(162, 162, 162);
+        }
+    }
+}
+
+@media (min-width: 800px) and (max-width: 1650px) {
+    .content__panel__downloads__list__item__file_source,
+    .content__panel__downloads__list__item__file_date {
+        display: none;
     }
 }
 
