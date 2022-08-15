@@ -90,6 +90,15 @@ const Search = (props) => {
     if (event.key === 'Escape' && !modalsCtx.isModalOpen) {
       searchClearTextHandler();
     }
+    Array.from(document.getElementsByClassName('search__input')).forEach(
+      (item) => {
+        if (event.key === 'Escape' && inputCtx.searchText.length === 0) {
+          item.blur();
+        } else {
+          item.focus();
+        }
+      }
+    );
   });
   const mouseEnterHandler = () => {
     window.electron.ipcRenderer.sendMessage('screenshot', 'from search');
