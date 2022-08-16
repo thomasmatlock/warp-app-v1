@@ -8,6 +8,15 @@ const ContextMenu = (props) => {
   const themeCtx = useContext(ThemeContext);
   const actionBarCtx = useContext(ActionBarContext);
   const listHeight = props.options.length * 40;
+  const clickHandler = (id) => {
+    // actionBarCtx;
+    if (id.toLowerCase().includes('az')) actionBarCtx.sortAZhandler();
+    if (id.toLowerCase().includes('za')) actionBarCtx.sortZAhandler();
+    if (id.toLowerCase().includes('new_old')) actionBarCtx.sortNewOldhandler();
+    if (id.toLowerCase().includes('old_new')) actionBarCtx.sortOldNewhandler();
+
+    // console.log(id);
+  };
   const contextMenu = (
     <ul
       className="context_menu context_menu__downloadItem"
@@ -19,12 +28,12 @@ const ContextMenu = (props) => {
           id={item.id}
           key={item.id}
           icon={item.icon}
-          onClick={item.onClick}
-          onSortAZ={actionBarCtx.sortAZhandler}
-          onSortZA={actionBarCtx.sortZAhandler}
-          onSortOldNew={actionBarCtx.sortOldNewhandler}
-          onSortNewOld={actionBarCtx.sortNewOldhandler}
-          // onClick={() => sourceSelectedHandler(item.id)}
+          // onClick={item.onClick}
+          sortAZ={actionBarCtx.sortAZhandler}
+          sortZA={actionBarCtx.sortZAhandler}
+          sortNewOld={actionBarCtx.sortNewOldhandler}
+          sortOldNew={actionBarCtx.sortOldNewhandler}
+          onClick={() => clickHandler(item.id)}
         />
       ))}
     </ul>

@@ -23,7 +23,7 @@ const FilterBar = (props) => {
   };
   const themeCtx = useContext(ThemeContext);
   const actionBarCtx = useContext(ActionBarContext);
-  console.log(actionBarCtx);
+  // console.log(actionBarCtx);
 
   return (
     <Fragment>

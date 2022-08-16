@@ -40,13 +40,12 @@ export const ActionBarContextProvider = (props) => {
     setSortOldNew(false);
   };
   const sortAZhandler = () => {
-    console.log('sortAZ');
+    // console.log('sortAZ');
 
     disableAllSortMethods();
     setSortAZ(true);
   };
   const sortZAhandler = () => {
-    console.log('sortZA');
     disableAllSortMethods();
     setSortZA(true);
   };
