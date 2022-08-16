@@ -35,7 +35,7 @@ export const ActionBarContextProvider = (props) => {
   // console.log(navCtx);
   const [sortAZ, setSortAZ] = useState(false);
   const [sortZA, setSortZA] = useState(false);
-  const [sortNewOld, setSortNewOld] = useState(false);
+  const [sortNewOld, setSortNewOld] = useState(true);
   const [sortOldNew, setSortOldNew] = useState(false);
   const disableAllSortMethods = () => {
     setSortAZ(false);
@@ -46,19 +46,19 @@ export const ActionBarContextProvider = (props) => {
   const sortAZhandler = () => {
     // console.log('sortAZ');
 
-    // disableAllSortMethods();
+    disableAllSortMethods();
     setSortAZ(true);
   };
   const sortZAhandler = () => {
-    // disableAllSortMethods();
+    disableAllSortMethods();
     setSortZA(true);
   };
   const sortNewOldhandler = () => {
-    // disableAllSortMethods();
+    disableAllSortMethods();
     setSortNewOld(true);
   };
   const sortOldNewhandler = () => {
-    // disableAllSortMethods();
+    disableAllSortMethods();
     setSortOldNew(true);
   };
   // PANELS

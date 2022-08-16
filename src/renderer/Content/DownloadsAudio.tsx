@@ -17,20 +17,11 @@ const DownloadsAudio = () => {
   const [searchInput, setSearchInput] = useState('');
   const themeCtx = useContext(ThemeContext);
   const actionBarCtx = useContext(ActionBarContext);
-  
   const downloadsCtx = useContext(DownloadsContext);
   const inputCtx = useContext(InputContext);
-  
-  console.log(actionBarCtx.sortAZ);
-  console.log(actionBarCtx.sortZA);
-  console.log(actionBarCtx.sortNewest);
-  console.log(actionBarCtx.sortOldest);
-
-
 
   const audioDownloads = (
     <ul className="content__panel__downloads__list">
-      {/* {actionBarCtx.sortAZ && */}
       {downloadsCtx.downloadsAudio.map(
         (item) =>
           item.title.toLowerCase().includes(inputCtx.searchText) && (
