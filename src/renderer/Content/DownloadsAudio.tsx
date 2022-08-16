@@ -23,21 +23,21 @@ const DownloadsAudio = () => {
   const inputCtx = useContext(InputContext);
   console.log(downloadsCtx.downloadsAudio[0].title);
 
-  const [downloads, setDownloads] = useState(downloadsCtx.downloadsAudio);
+  // const [downloads, setDownloads] = useState(downloadsCtx.downloadsAudio);
   const [downloadsAZ, setDownloadsAZ] = useState(
     Sort.byAZ(downloadsCtx.downloadsAudio, 'title')
   );
-  const [downloadsZA, setDownloadsZA] = useState(
-    Sort.byZA(downloadsCtx.downloadsAudio, 'title')
-  );
-  const [downloadsNewOld, setDownloadsNewOld] = useState(
-    Sort.byDateNewToOld(downloadsCtx.downloadsAudio, 'date')
-  );
-  const [downloadsOldNew, setDownloadsOldNew] = useState(
-    Sort.byDateOldToNew(downloadsCtx.downloadsAudio, 'date')
-  );
+  // const [downloadsZA, setDownloadsZA] = useState(
+  //   Sort.byZA(downloadsCtx.downloadsAudio, 'title')
+  // );
+  // const [downloadsNewOld, setDownloadsNewOld] = useState(
+  //   Sort.byDateNewToOld(downloadsCtx.downloadsAudio, 'date')
+  // );
+  // const [downloadsOldNew, setDownloadsOldNew] = useState(
+  //   Sort.byDateOldToNew(downloadsCtx.downloadsAudio, 'date')
+  // );
   // console.log(downloads);
-  // console.log(downloadsAZ[0].title);
+  console.log(downloadsAZ[0].title);
   // console.log(downloadsZA[0].title);
   // // console.log(downloadsZA);
   // console.log(downloadsNewOld[0].date);
@@ -46,7 +46,7 @@ const DownloadsAudio = () => {
   const audioDownloads = (
     <ul className="content__panel__downloads__list">
       {/* {actionBarCtx.sortAZ && */}
-      {downloads.map(
+      {downloadsAZ.map(
         (item) =>
           item.title.toLowerCase().includes(inputCtx.searchText) && (
             <DownloadItem
@@ -63,7 +63,7 @@ const DownloadsAudio = () => {
             />
           )
       )}
-      {actionBarCtx.sortZA &&
+      {/* {actionBarCtx.sortZA &&
         downloadsZA.map(
           (item) =>
             item.title.toLowerCase().includes(inputCtx.searchText) && (
@@ -80,8 +80,8 @@ const DownloadsAudio = () => {
                 type={item.type}
               />
             )
-        )}{' '}
-      {actionBarCtx.sortNewOld &&
+        )} */}
+      {/* {actionBarCtx.sortNewOld &&
         downloadsNewOld.map(
           (item) =>
             item.title.toLowerCase().includes(inputCtx.searchText) && (
@@ -98,8 +98,8 @@ const DownloadsAudio = () => {
                 type={item.type}
               />
             )
-        )}{' '}
-      {actionBarCtx.sortOldNew &&
+        )} */}
+      {/* {actionBarCtx.sortOldNew &&
         downloadsOldNew.map(
           (item) =>
             item.title.toLowerCase().includes(inputCtx.searchText) && (
@@ -116,7 +116,7 @@ const DownloadsAudio = () => {
                 type={item.type}
               />
             )
-        )}
+        )} */}
     </ul>
   );
   return (
