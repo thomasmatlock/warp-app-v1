@@ -25,12 +25,19 @@ import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
 import prefsDefault from '../storage/prefsDefaults';
 import downloadsAudioDefaults from '../storage/downloadsAudioDefaults';
+import downloadsVideoDefaults from '../storage/downloadsVideoDefaults';
+import downloadsWarpstagramDefaults from '../storage/downloadsWarpstagramDefaults';
 import Youtube from '../downloaders/youtube/Youtube';
 import testUrls from '../downloaders/youtube/testURLS';
 
+// let testItem;
 let randomYoutubeURL =
   testUrls.youtube[Math.floor(Math.random() * testUrls.youtube.length)];
-Youtube.download(randomYoutubeURL);
+(async () => {
+  let testItem = await Youtube(randomYoutubeURL);
+  // console.log(testItem.title);
+})();
+
 //////////////////////////////////////////////////////
 const Store = require('electron-store');
 const settings = new Store();
@@ -106,7 +113,7 @@ const isDebug =
   process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true';
 
 if (isDebug) {
-  // require('electron-debug')(); // ENABLE FOR DEVTOOLS
+  require('electron-debug')(); // ENABLE FOR DEVTOOLS
 }
 
 const installExtensions = async () => {
@@ -212,6 +219,7 @@ let browserPanelState = 'default';
     event.reply('BrowserBar: button: downloadAudio successful');
   });
   ipcMain.on('BrowserBar: button: downloadVideo', async (event, arg) => {
+    if (view) console.log(view.webContents.getURL());
     event.reply('BrowserBar: button: downloadVideo successful'); // sends message to renderer
   });
   ipcMain.on('browserPanelSize', async (event, arg) => {
@@ -362,8 +370,8 @@ const windowController = {
         mWin.minimize();
       } else {
         mWin.show();
-        if (view) mWin.maximize();
-        mWin.maximize();
+        // if (view) mWin.maximize();
+        // mWin.maximize();
         mWin.webContents.send('appVersion', app.getVersion());
         mWin.webContents.send('main: prefs', prefs);
       }
@@ -392,7 +400,8 @@ const windowController = {
     view.setAutoResize({ width: true, height: true });
     view.setBackgroundColor('#1a1a1a');
     // view.webContents.loadURL('https://youtube.com');
-    view.webContents.loadURL(activeURL);
+    // view.webContents.loadURL(activeURL);
+    view.webContents.loadURL(randomYoutubeURL);
     // if (prefs.general.dropdowns[0].defaultValue)
 
     // view.webContents.loadURL(
@@ -400,6 +409,10 @@ const windowController = {
     // );
     view.webContents.on('did-navigate-in-page', (e, url) => {
       if (mWin) mWin.webContents.send('did-navigate-in-page', url);
+    });
+    view.webContents.on('ready-to-show', (e, url) => {
+      if (mWin)
+        mWin.webContents.send('bView ready-to-show', view.webContents.getURL());
     });
   },
 };
@@ -482,8 +495,8 @@ app
     mWinBounds.width = display.width;
     // mWinBounds.height = display.height; // default
     mWinBounds.height = display.height - 250; // testing
-    // windowController.createmWin();
-    // windowController.createbView();
+    windowController.createmWin();
+    windowController.createbView();
     globalShortcut.register('Alt+Left', () => {
       if (view) view.webContents.goBack();
     });

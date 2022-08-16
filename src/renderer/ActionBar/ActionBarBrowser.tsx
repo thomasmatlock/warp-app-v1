@@ -69,6 +69,9 @@ const BrowserBar = () => {
       youtubeParser(url);
     }
   };
+  window.electron.ipcRenderer.on('bView ready-to-show', (url) => {
+    getURLpageType(url);
+  });
   window.electron.ipcRenderer.on('did-navigate-in-page', (arg) => {
     getURLpageType(arg);
   });

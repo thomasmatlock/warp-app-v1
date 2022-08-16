@@ -18,7 +18,6 @@ const downloadsAudioDefaults = [
     length: '00:07:32',
     size: '7.8 MB',
     source: 'youtube',
-    // thumbnail: 'https://i3.ytimg.com/vi/06RlyZxUnVM/maxresdefault.jpg',
     thumbnail:
       'https://i.ytimg.com/vi/6bNZI2GG6Yo/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBtyTUDYVEOE9jk2NeMsJ8zBR5G1Q',
     title: 'Beatles - Abbey Road',
