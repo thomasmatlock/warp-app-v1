@@ -17,9 +17,10 @@ const DownloadsVideo = () => {
 
   const downloadsCtx = useContext(DownloadsContext);
   const inputCtx = useContext(InputContext);
+  const [downloads, setDownloads] = useState(downloadsCtx.downloadsVideo);
   const videoDownloads = (
     <ul className="content__panel__downloads__list">
-      {downloadsCtx.downloadsVideo.map(
+      {downloads.map(
         (item) =>
           item.title.toLowerCase().includes(inputCtx.searchText) && (
             <DownloadItem

@@ -19,29 +19,34 @@ const DownloadsAudio = () => {
   const actionBarCtx = useContext(ActionBarContext);
   const downloadsCtx = useContext(DownloadsContext);
   const inputCtx = useContext(InputContext);
-  let downloads2;
-  const [downloads, setDownloads] = useState(downloadsCtx.downloadsAudio);
+
+  // const [downloads, setDownloads] = useState(downloadsCtx.downloadsAudio);
+  let downloads = downloadsCtx.downloadsAudio;
   useEffect(() => {
     if (actionBarCtx.sortAZ) {
-      setDownloads(Sort.byZA(downloadsCtx.downloadsAudio, 'title'));
-      // downloads2 = Sort.byAZ(downloadsCtx.downloadsAudio, 'title');
+      if (actionBarCtx.sortAZ) console.log('sortAZ', actionBarCtx.sortAZ);
+      // setDownloads(Sort.byAZ(downloadsCtx.downloadsAudio, 'title'));
+      downloads = Sort.byAZ(downloadsCtx.downloadsAudio, 'title');
     }
     if (actionBarCtx.sortZA) {
-      // downloads2 = Sort.byZA(downloadsCtx.downloadsAudio, 'title');
-      setDownloads(Sort.byAZ(downloadsCtx.downloadsAudio, 'title'));
+      if (actionBarCtx.sortZA) console.log('sortZA', actionBarCtx.sortZA);
+      // setDownloads(Sort.byZA(downloadsCtx.downloadsAudio, 'title'));
+      downloads = Sort.byZA(downloadsCtx.downloadsAudio, 'title');
     }
     if (actionBarCtx.sortNewOld) {
-      // downloads2 = Sort.byDateNewToOld(downloadsCtx.downloadsAudio, 'date');
-      setDownloads(Sort.byDateNewToOld(downloadsCtx.downloadsAudio, 'date'));
+      if (actionBarCtx.sortNewOld)
+        console.log('NewOld', actionBarCtx.sortNewOld);
+      // setDownloads(Sort.byDateNewToOld(downloadsCtx.downloadsAudio, 'date'));
+      downloads = Sort.byDateNewToOld(downloadsCtx.downloadsAudio, 'date');
     }
     if (actionBarCtx.sortOldNew) {
-      // downloads2 = Sort.byDateOldToNew(downloadsCtx.downloadsAudio, 'date');
-      setDownloads(Sort.byDateOldToNew(downloadsCtx.downloadsAudio, 'date'));
+      if (actionBarCtx.sortOldNew)
+        console.log('OldNew', actionBarCtx.sortOldNew);
+      downloads = Sort.byDateOldToNew(downloadsCtx.downloadsAudio, 'date');
+      // setDownloads(Sort.byDateOldToNew(downloadsCtx.downloadsAudio, 'date'));
     }
-    // console.log(downloads[0].title);
-    // console.log(downloads[0].date);
-
-    //And any time any dependency value changes
+    console.log(downloads[0].title);
+    console.log(downloads[0].date);
   }, [
     actionBarCtx.sortAZ,
     actionBarCtx.sortZA,
