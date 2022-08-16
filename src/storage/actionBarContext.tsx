@@ -15,6 +15,10 @@ const ActionBarContext = React.createContext({
   setChannelExists: false,
   setChannelVideoExists: false,
 
+  sortAZhandler: () => {},
+  sortZAhandler: () => {},
+  sortNewOldhandler: () => {},
+  sortOldNewhandler: () => {},
   disableAllStates: () => {},
 
   isBrowserPanelCollapsed: false,
@@ -25,7 +29,35 @@ const ActionBarContext = React.createContext({
 export const ActionBarContextProvider = (props) => {
   const navCtx = useContext(NavContext);
   // console.log(navCtx);
+  const [sortAZ, setSortAZ] = useState(true);
+  const [sortZA, setSortZA] = useState(false);
+  const [sortNewOld, setSortNewOld] = useState(false);
+  const [sortOldNew, setSortOldNew] = useState(false);
+  const disableAllSortMethods = () => {
+    setSortAZ(false);
+    setSortZA(false);
+    setSortNewOld(false);
+    setSortOldNew(false);
+  };
+  const sortAZhandler = () => {
+    console.log('sortAZ');
 
+    disableAllSortMethods();
+    setSortAZ(true);
+  };
+  const sortZAhandler = () => {
+    console.log('sortZA');
+    disableAllSortMethods();
+    setSortZA(true);
+  };
+  const sortNewOldhandler = () => {
+    disableAllSortMethods();
+    setSortNewOld(true);
+  };
+  const sortOldNewhandler = () => {
+    disableAllSortMethods();
+    setSortOldNew(true);
+  };
   // PANELS
   const [isDownloadsPanelCollapsed, setIsDownloadsPanelCollapsed] =
     useState(false);
@@ -80,6 +112,10 @@ export const ActionBarContextProvider = (props) => {
         setChannelExists: setChannelExists,
         setChannelVideoExists: setChannelVideoExists,
 
+        sortAZhandler: sortAZhandler,
+        sortZAhandler: sortZAhandler,
+        sortNewOldhandler: sortNewOldhandler,
+        sortOldNewhandler: sortOldNewhandler,
         disableAllStates: disableAllStates,
 
         isBrowserPanelCollapsed: isBrowserPanelCollapsed,

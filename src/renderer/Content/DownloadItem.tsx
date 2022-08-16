@@ -18,7 +18,6 @@ import iconFileResolution from '../../../assets/Downloads/resolution.svg';
 import IconFileFps from '../../../assets/Downloads/fps1.svg';
 import IconDate from '../../../assets/Downloads/date.svg';
 // import IconDate from '../../../assets/Downloads/date2.svg';
-// import IconDate
 import SourcesContext from '../../storage/sourcesContext';
 import ThemeContext from 'storage/themeContext';
 import DownloadsContext from 'storage/downloadsContext';

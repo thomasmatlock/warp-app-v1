@@ -2,6 +2,7 @@ import iconSortAZ from '../../../assets/ContextMenu/sortAZ.svg';
 import iconSortZA from '../../../assets/ContextMenu/sortZA.svg';
 import iconSortNewOld from '../../../assets/ContextMenu/sortOldNew.svg';
 import iconSortOldNew from '../../../assets/ContextMenu/sortNewOld.svg';
+// import
 const ContextMenuSortOptions = [
   {
     name: 'Sort by name (A-Z)',
