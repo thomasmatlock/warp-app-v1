@@ -13,11 +13,8 @@ import './Downloads.scss';
 const DownloadsVideo = () => {
   const themeCtx = useContext(ThemeContext);
   const actionBarCtx = useContext(ActionBarContext);
-  // console.log(actionBarCtx);
-
   const downloadsCtx = useContext(DownloadsContext);
   const inputCtx = useContext(InputContext);
-  const [downloads, setDownloads] = useState(downloadsCtx.downloadsVideo);
   const videoDownloads = (
     <ul className="content__panel__downloads__list">
       {actionBarCtx.sortAZ &&
