@@ -23,15 +23,15 @@ const BrowserBar = () => {
   const youtubeParser = (url: string) => {
     console.log(url);
     if (url.includes('watch')) {
-      console.log('this is a video');
+      // console.log('this is a video');
       actionBarCtx.setVideoExists(true);
     }
     if (url.includes('featured')) {
-      console.log('this is a featured video');
+      // console.log('this is a featured video');
       actionBarCtx.setVideoExists(true);
     }
     if (url.includes('watch') && url.includes('&list=')) {
-      console.log('this is a video in a playlist');
+      // console.log('this is a video in a playlist');
       // actionBarCtx.setVideoExists(true);
       actionBarCtx.setSinglePlaylistExists(true);
     }
@@ -42,19 +42,19 @@ const BrowserBar = () => {
       (url.includes('/user/') && !url.includes('/channels'))
     ) {
       actionBarCtx.setChannelExists(true);
-      console.log('this is a channel');
+      // console.log('this is a channel');
     }
     if (url.includes('channel')) {
-      console.log('this is your channel');
+      // console.log('this is your channel');
     }
     if (url.includes('playlist')) {
       actionBarCtx.setMultiplePlaylistsExist(false);
       actionBarCtx.setSinglePlaylistExists(true);
-      console.log(' a playlist exists');
+      // console.log(' a playlist exists');
       if (url.includes('+playlist')) {
         actionBarCtx.setMultiplePlaylistsExist(false);
         actionBarCtx.setSinglePlaylistExists(false);
-        console.log(' a playlist exists');
+        // console.log(' a playlist exists');
       }
     }
     if (url.includes('playlists')) {
