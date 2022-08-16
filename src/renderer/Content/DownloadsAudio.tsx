@@ -17,11 +17,13 @@ const DownloadsAudio = () => {
   const [searchInput, setSearchInput] = useState('');
   const themeCtx = useContext(ThemeContext);
   const actionBarCtx = useContext(ActionBarContext);
-  console.log(actionBarCtx);
+  // console.log(actionBarCtx);
 
   const downloadsCtx = useContext(DownloadsContext);
   const inputCtx = useContext(InputContext);
-  // const [downloads, setDownloads] = useState(downloadsCtx.downloadsAudio);
+  console.log(downloadsCtx.downloadsAudio[0].title);
+
+  const [downloads, setDownloads] = useState(downloadsCtx.downloadsAudio);
   const [downloadsAZ, setDownloadsAZ] = useState(
     Sort.byAZ(downloadsCtx.downloadsAudio, 'title')
   );
@@ -34,31 +36,33 @@ const DownloadsAudio = () => {
   const [downloadsOldNew, setDownloadsOldNew] = useState(
     Sort.byDateOldToNew(downloadsCtx.downloadsAudio, 'date')
   );
-  console.log(downloadsAZ);
-  console.log(downloadsZA);
-  console.log(downloadsNewOld);
-  console.log(downloadsOldNew);
+  // console.log(downloads);
+  // console.log(downloadsAZ[0].title);
+  // console.log(downloadsZA[0].title);
+  // // console.log(downloadsZA);
+  // console.log(downloadsNewOld[0].date);
+  // console.log(downloadsOldNew[0].date);
 
   const audioDownloads = (
     <ul className="content__panel__downloads__list">
-      {actionBarCtx.sortAZ &&
-        downloadsAZ.map(
-          (item) =>
-            item.title.toLowerCase().includes(inputCtx.searchText) && (
-              <DownloadItem
-                date={item.date}
-                format={item.format}
-                id={item.id}
-                key={item.id}
-                length={item.length}
-                size={item.size}
-                source={item.source}
-                thumbnail={item.thumbnail}
-                title={item.title}
-                type={item.type}
-              />
-            )
-        )}
+      {/* {actionBarCtx.sortAZ && */}
+      {downloads.map(
+        (item) =>
+          item.title.toLowerCase().includes(inputCtx.searchText) && (
+            <DownloadItem
+              date={item.date}
+              format={item.format}
+              id={item.id}
+              key={item.id}
+              length={item.length}
+              size={item.size}
+              source={item.source}
+              thumbnail={item.thumbnail}
+              title={item.title}
+              type={item.type}
+            />
+          )
+      )}
       {actionBarCtx.sortZA &&
         downloadsZA.map(
           (item) =>

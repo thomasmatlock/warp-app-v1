@@ -13,18 +13,27 @@ import './Downloads.scss';
 const DownloadsVideo = () => {
   const themeCtx = useContext(ThemeContext);
   const actionBarCtx = useContext(ActionBarContext);
-  console.log(actionBarCtx);
+  // console.log(actionBarCtx);
 
   const downloadsCtx = useContext(DownloadsContext);
   const inputCtx = useContext(InputContext);
   // const [downloads, setDownloads] = useState(downloadsCtx.downloadsAudio);
-  const [downloads, setDownloads] = useState(
-    Sort.byAZ(downloadsCtx.downloadsVideo, 'source')
+  const [downloadsAZ, setDownloadsAZ] = useState(
+    Sort.byAZ(downloadsCtx.downloadsVideo, 'title')
+  );
+  const [downloadsZA, setDownloadsZA] = useState(
+    Sort.byZA(downloadsCtx.downloadsVideo, 'title')
+  );
+  const [downloadsNewOld, setDownloadsNewOld] = useState(
+    Sort.byDateNewToOld(downloadsCtx.downloadsVideo, 'date')
+  );
+  const [downloadsOldNew, setDownloadsOldNew] = useState(
+    Sort.byDateOldToNew(downloadsCtx.downloadsVideo, 'date')
   );
   const videoDownloads = (
     <ul className="content__panel__downloads__list">
       {/* item.title.includes(inputCtx.searchText) && */}
-      {downloads.map(
+      {downloadsAZ.map(
         (item) =>
           item.title.toLowerCase().includes(inputCtx.searchText) && (
             <DownloadItem
