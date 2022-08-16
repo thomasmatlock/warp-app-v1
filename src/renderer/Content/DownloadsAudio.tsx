@@ -22,19 +22,6 @@ const DownloadsAudio = () => {
   let downloads2;
   const [downloads, setDownloads] = useState(downloadsCtx.downloadsAudio);
   useEffect(() => {
-    // if (actionBarCtx.sortAZ) {
-    //   downloads2 = Sort.byAZ(downloadsCtx.downloadsAudio, 'title');
-    // }
-    // if (actionBarCtx.sortZA) {
-    //   downloads2 = Sort.byZA(downloadsCtx.downloadsAudio, 'title');
-    // }
-    // if (actionBarCtx.sortNewOld) {
-    //   downloads2 = Sort.byDateNewToOld(downloadsCtx.downloadsAudio, 'date');
-    // }
-    // if (actionBarCtx.sortOldNew) {
-    //   downloads2 = Sort.byDateOldToNew(downloadsCtx.downloadsAudio, 'date');
-    // }
-    //////////////////////
     if (actionBarCtx.sortAZ) {
       setDownloads(Sort.byZA(downloadsCtx.downloadsAudio, 'title'));
       // downloads2 = Sort.byAZ(downloadsCtx.downloadsAudio, 'title');
@@ -64,78 +51,6 @@ const DownloadsAudio = () => {
 
   const audioDownloads = (
     <ul className="content__panel__downloads__list">
-      {/* {actionBarCtx.sortAZ &&
-        Sort.byAZ(downloadsCtx.downloadsAudio, 'title').map(
-          (item) =>
-            item.title.toLowerCase().includes(inputCtx.searchText) && (
-              <DownloadItem
-                date={item.date}
-                format={item.format}
-                id={item.id}
-                key={item.id}
-                length={item.length}
-                size={item.size}
-                source={item.source}
-                thumbnail={item.thumbnail}
-                title={item.title}
-                type={item.type}
-              />
-            )
-        )}{' '} */}
-      {/* {actionBarCtx.sortZA &&
-        Sort.byZA(downloadsCtx.downloadsAudio, 'title').map(
-          (item) =>
-            item.title.toLowerCase().includes(inputCtx.searchText) && (
-              <DownloadItem
-                date={item.date}
-                format={item.format}
-                id={item.id}
-                key={item.id}
-                length={item.length}
-                size={item.size}
-                source={item.source}
-                thumbnail={item.thumbnail}
-                title={item.title}
-                type={item.type}
-              />
-            )
-        )}{' '} */}
-      {/* {actionBarCtx.sortNewOld &&
-        Sort.byDateNewToOld(downloadsCtx.downloadsAudio, 'date').map(
-          (item) =>
-            item.title.toLowerCase().includes(inputCtx.searchText) && (
-              <DownloadItem
-                date={item.date}
-                format={item.format}
-                id={item.id}
-                key={item.id}
-                length={item.length}
-                size={item.size}
-                source={item.source}
-                thumbnail={item.thumbnail}
-                title={item.title}
-                type={item.type}
-              />
-            )
-        )}{' '} */}
-      {/* {actionBarCtx.sortOldNew &&
-        Sort.byDateOldToNew(downloadsCtx.downloadsAudio, 'title').map(
-          (item) =>
-            item.title.toLowerCase().includes(inputCtx.searchText) && (
-              <DownloadItem
-                date={item.date}
-                format={item.format}
-                id={item.id}
-                key={item.id}
-                length={item.length}
-                size={item.size}
-                source={item.source}
-                thumbnail={item.thumbnail}
-                title={item.title}
-                type={item.type}
-              />
-            )
-        )}  */}
       {downloads.map(
         (item) =>
           item.title.toLowerCase().includes(inputCtx.searchText) && (

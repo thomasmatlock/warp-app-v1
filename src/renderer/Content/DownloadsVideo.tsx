@@ -19,78 +19,25 @@ const DownloadsVideo = () => {
   const inputCtx = useContext(InputContext);
   const videoDownloads = (
     <ul className="content__panel__downloads__list">
-      {actionBarCtx.sortAZ &&
-        Sort.byAZ(downloadsCtx.downloadsVideo, 'title').map(
-          (item) =>
-            item.title.toLowerCase().includes(inputCtx.searchText) && (
-              <DownloadItem
-                date={item.date}
-                format={item.format}
-                id={item.id}
-                key={item.id}
-                length={item.length}
-                size={item.size}
-                source={item.source}
-                thumbnail={item.thumbnail}
-                title={item.title}
-                type={item.type}
-              />
-            )
-        )}{' '}
-      {actionBarCtx.sortZA &&
-        Sort.byZA(downloadsCtx.downloadsVideo, 'title').map(
-          (item) =>
-            item.title.toLowerCase().includes(inputCtx.searchText) && (
-              <DownloadItem
-                date={item.date}
-                format={item.format}
-                id={item.id}
-                key={item.id}
-                length={item.length}
-                size={item.size}
-                source={item.source}
-                thumbnail={item.thumbnail}
-                title={item.title}
-                type={item.type}
-              />
-            )
-        )}
-      {actionBarCtx.sortNewOld &&
-        Sort.byDateNewToOld(downloadsCtx.downloadsVideo, 'date').map(
-          (item) =>
-            item.title.toLowerCase().includes(inputCtx.searchText) && (
-              <DownloadItem
-                date={item.date}
-                format={item.format}
-                id={item.id}
-                key={item.id}
-                length={item.length}
-                size={item.size}
-                source={item.source}
-                thumbnail={item.thumbnail}
-                title={item.title}
-                type={item.type}
-              />
-            )
-        )}{' '}
-      {actionBarCtx.sortOldNew &&
-        Sort.byDateOldToNew(downloadsCtx.downloadsVideo, 'title').map(
-          (item) =>
-            item.title.toLowerCase().includes(inputCtx.searchText) && (
-              <DownloadItem
-                date={item.date}
-                format={item.format}
-                id={item.id}
-                key={item.id}
-                length={item.length}
-                size={item.size}
-                source={item.source}
-                thumbnail={item.thumbnail}
-                title={item.title}
-                type={item.type}
-              />
-            )
-        )}
+      {downloadsCtx.downloadsVideo.map(
+        (item) =>
+          item.title.toLowerCase().includes(inputCtx.searchText) && (
+            <DownloadItem
+              date={item.date}
+              format={item.format}
+              fps={item.fps}
+              id={item.id}
+              key={item.id}
+              length={item.length}
+              resolution={item.resolution}
+              size={item.size}
+              source={item.source}
+              thumbnail={item.thumbnail}
+              title={item.title}
+              type={item.type}
+            />
+          )
+      )}
     </ul>
   );
   return (
