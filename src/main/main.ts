@@ -24,7 +24,10 @@ import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
 import prefsDefault from '../storage/prefsDefaults';
+import youtubeDL from '../downloaders/youtube/youtubeHandler';
 import sourcesDefaults from '../storage/sourcesDefault';
+let url: string = 'http://www.youtube.com/watch?v=aqz-KE-bpKQ';
+youtubeDL.getInfo(url);
 //////////////////////////////////////////////////////
 const Store = require('electron-store');
 const settings = new Store();
@@ -76,6 +79,8 @@ const setActiveURL = () => {
 setActiveURL();
 //////////////////////////////////////////////////////
 
+//////////////////////////////////////////////////////
+
 const contextMenu = require('electron-context-menu');
 contextMenu({});
 
@@ -88,7 +93,7 @@ const isDebug =
   process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true';
 
 if (isDebug) {
-  require('electron-debug')(); // ENABLE FOR DEVTOOLS
+  // require('electron-debug')(); // ENABLE FOR DEVTOOLS
 }
 
 const installExtensions = async () => {
@@ -464,7 +469,7 @@ app
     mWinBounds.width = display.width;
     // mWinBounds.height = display.height; // default
     mWinBounds.height = display.height - 250; // testing
-    windowController.createmWin();
+    // windowController.createmWin();
     // windowController.createbView();
     // Register a 'CommandOrControl+X' shortcut listener.
     globalShortcut.register('Alt+Left', () => {

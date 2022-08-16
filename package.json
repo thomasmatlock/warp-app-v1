@@ -119,7 +119,8 @@
         "react": "^18.1.0",
         "react-dom": "^18.1.0",
         "react-router-dom": "^6.3.0",
-        "react-script-tag": "^1.1.2"
+        "react-script-tag": "^1.1.2",
+        "ytdl-core": "^4.11.0"
     },
     "prettier": {
         "singleQuote": true,
