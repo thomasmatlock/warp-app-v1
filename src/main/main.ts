@@ -24,10 +24,13 @@ import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
 import prefsDefault from '../storage/prefsDefaults';
-import youtubeDL from '../downloaders/youtube/youtubeHandler';
-import sourcesDefaults from '../storage/sourcesDefault';
-let url: string = 'http://www.youtube.com/watch?v=aqz-KE-bpKQ';
-youtubeDL.getInfo(url);
+import downloadsAudioDefaults from '../storage/downloadsAudioDefaults';
+import Youtube from '../downloaders/youtube/Youtube';
+import testUrls from '../downloaders/youtube/testURLS';
+
+let randomYoutubeURL =
+  testUrls.youtube[Math.floor(Math.random() * testUrls.youtube.length)];
+Youtube.download(randomYoutubeURL);
 //////////////////////////////////////////////////////
 const Store = require('electron-store');
 const settings = new Store();
@@ -43,6 +46,16 @@ const getPrefs = () => {
 const setPrefs = (arg: any) => {
   settings.set('prefs', arg);
 };
+const getAudioDownloads = () => {
+  let audioDownloads = settings.get('audioDownloads');
+  if (audioDownloads === undefined) {
+    settings.set('audioDownloads', downloadsAudioDefaults);
+    return downloadsAudioDefaults;
+  } else {
+    return audioDownloads;
+  }
+};
+
 // settings.delete('prefs'); // testing only, REMOVE for production
 let prefs = getPrefs();
 // console.log(prefs.general.dropdowns[1].defaultValue);
@@ -471,28 +484,12 @@ app
     mWinBounds.height = display.height - 250; // testing
     // windowController.createmWin();
     // windowController.createbView();
-    // Register a 'CommandOrControl+X' shortcut listener.
     globalShortcut.register('Alt+Left', () => {
       if (view) view.webContents.goBack();
     });
     globalShortcut.register('Alt+Right', () => {
       if (view) view.webContents.goForward();
     });
-    // globalShortcut.register('Shift+1', () => {
-    //   if (mWin) mWin.webContents.send('count-downloads');
-    //   if (mWin) mWin.webContents.send('nav: mode: audio');
-    //   showView();
-    // });
-    // globalShortcut.register('Shift+2', () => {
-    //   if (mWin) mWin.webContents.send('count-downloads');
-    //   if (mWin) mWin.webContents.send('nav: mode: video');
-    //   showView();
-    // });
-    // globalShortcut.register('Shift+3', () => {
-    //   if (mWin) mWin.webContents.send('count-downloads');
-    //   if (mWin) mWin.webContents.send('nav: mode: warpstagram');
-    //   hideView();
-    // });
     app.on('activate', () => {
       if (mWin === null) windowController.createmWin();
     });
