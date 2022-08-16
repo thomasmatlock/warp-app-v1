@@ -33,9 +33,9 @@ const ActionBarContext = React.createContext({
 export const ActionBarContextProvider = (props) => {
   const navCtx = useContext(NavContext);
   // console.log(navCtx);
-  const [sortAZ, setSortAZ] = useState(false);
+  const [sortAZ, setSortAZ] = useState(true);
   const [sortZA, setSortZA] = useState(false);
-  const [sortNewOld, setSortNewOld] = useState(true);
+  const [sortNewOld, setSortNewOld] = useState(false);
   const [sortOldNew, setSortOldNew] = useState(false);
   const disableAllSortMethods = () => {
     setSortAZ(false);
@@ -44,8 +44,6 @@ export const ActionBarContextProvider = (props) => {
     setSortOldNew(false);
   };
   const sortAZhandler = () => {
-    // console.log('sortAZ');
-
     disableAllSortMethods();
     setSortAZ(true);
   };

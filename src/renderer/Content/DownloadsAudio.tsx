@@ -20,59 +20,84 @@ const DownloadsAudio = () => {
   const downloadsCtx = useContext(DownloadsContext);
   const inputCtx = useContext(InputContext);
 
-  // const [downloads, setDownloads] = useState(downloadsCtx.downloadsAudio);
-  let downloads = downloadsCtx.downloadsAudio;
-  useEffect(() => {
-    if (actionBarCtx.sortAZ) {
-      if (actionBarCtx.sortAZ) console.log('sortAZ', actionBarCtx.sortAZ);
-      // setDownloads(Sort.byAZ(downloadsCtx.downloadsAudio, 'title'));
-      downloads = Sort.byAZ(downloadsCtx.downloadsAudio, 'title');
-    }
-    if (actionBarCtx.sortZA) {
-      if (actionBarCtx.sortZA) console.log('sortZA', actionBarCtx.sortZA);
-      // setDownloads(Sort.byZA(downloadsCtx.downloadsAudio, 'title'));
-      downloads = Sort.byZA(downloadsCtx.downloadsAudio, 'title');
-    }
-    if (actionBarCtx.sortNewOld) {
-      if (actionBarCtx.sortNewOld)
-        console.log('NewOld', actionBarCtx.sortNewOld);
-      // setDownloads(Sort.byDateNewToOld(downloadsCtx.downloadsAudio, 'date'));
-      downloads = Sort.byDateNewToOld(downloadsCtx.downloadsAudio, 'date');
-    }
-    if (actionBarCtx.sortOldNew) {
-      if (actionBarCtx.sortOldNew)
-        console.log('OldNew', actionBarCtx.sortOldNew);
-      downloads = Sort.byDateOldToNew(downloadsCtx.downloadsAudio, 'date');
-      // setDownloads(Sort.byDateOldToNew(downloadsCtx.downloadsAudio, 'date'));
-    }
-    console.log(downloads[0].title);
-    console.log(downloads[0].date);
-  }, [
-    actionBarCtx.sortAZ,
-    actionBarCtx.sortZA,
-    actionBarCtx.sortNewOld,
-    actionBarCtx.sortOldNew,
-  ]);
-
   const audioDownloads = (
     <ul className="content__panel__downloads__list">
-      {downloads.map(
-        (item) =>
-          item.title.toLowerCase().includes(inputCtx.searchText) && (
-            <DownloadItem
-              date={item.date}
-              format={item.format}
-              id={item.id}
-              key={item.id}
-              length={item.length}
-              size={item.size}
-              source={item.source}
-              thumbnail={item.thumbnail}
-              title={item.title}
-              type={item.type}
-            />
-          )
-      )}
+      {actionBarCtx.sortAZ &&
+        // downloads.map(
+        Sort.byAZ(downloadsCtx.downloadsAudio, 'title').map(
+          (item) =>
+            item.title.toLowerCase().includes(inputCtx.searchText) && (
+              <DownloadItem
+                date={item.date}
+                format={item.format}
+                id={item.id}
+                key={item.id}
+                length={item.length}
+                size={item.size}
+                source={item.source}
+                thumbnail={item.thumbnail}
+                title={item.title}
+                type={item.type}
+              />
+            )
+        )}{' '}
+      {actionBarCtx.sortZA &&
+        // downloads.map(
+        Sort.byZA(downloadsCtx.downloadsAudio, 'title').map(
+          (item) =>
+            item.title.toLowerCase().includes(inputCtx.searchText) && (
+              <DownloadItem
+                date={item.date}
+                format={item.format}
+                id={item.id}
+                key={item.id}
+                length={item.length}
+                size={item.size}
+                source={item.source}
+                thumbnail={item.thumbnail}
+                title={item.title}
+                type={item.type}
+              />
+            )
+        )}{' '}
+      {actionBarCtx.sortNewOld &&
+        // downloads.map(
+        Sort.byDateNewToOld(downloadsCtx.downloadsAudio, 'date').map(
+          (item) =>
+            item.title.toLowerCase().includes(inputCtx.searchText) && (
+              <DownloadItem
+                date={item.date}
+                format={item.format}
+                id={item.id}
+                key={item.id}
+                length={item.length}
+                size={item.size}
+                source={item.source}
+                thumbnail={item.thumbnail}
+                title={item.title}
+                type={item.type}
+              />
+            )
+        )}{' '}
+      {actionBarCtx.sortOldNew &&
+        // downloads.map(
+        Sort.byDateOldToNew(downloadsCtx.downloadsAudio, 'date').map(
+          (item) =>
+            item.title.toLowerCase().includes(inputCtx.searchText) && (
+              <DownloadItem
+                date={item.date}
+                format={item.format}
+                id={item.id}
+                key={item.id}
+                length={item.length}
+                size={item.size}
+                source={item.source}
+                thumbnail={item.thumbnail}
+                title={item.title}
+                type={item.type}
+              />
+            )
+        )}
     </ul>
   );
   return (
