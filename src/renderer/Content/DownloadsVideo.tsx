@@ -17,41 +17,80 @@ const DownloadsVideo = () => {
 
   const downloadsCtx = useContext(DownloadsContext);
   const inputCtx = useContext(InputContext);
-  // const [downloads, setDownloads] = useState(downloadsCtx.downloadsAudio);
-  const [downloadsAZ, setDownloadsAZ] = useState(
-    Sort.byAZ(downloadsCtx.downloadsVideo, 'title')
-  );
-  const [downloadsZA, setDownloadsZA] = useState(
-    Sort.byZA(downloadsCtx.downloadsVideo, 'title')
-  );
-  const [downloadsNewOld, setDownloadsNewOld] = useState(
-    Sort.byDateNewToOld(downloadsCtx.downloadsVideo, 'date')
-  );
-  const [downloadsOldNew, setDownloadsOldNew] = useState(
-    Sort.byDateOldToNew(downloadsCtx.downloadsVideo, 'date')
-  );
   const videoDownloads = (
     <ul className="content__panel__downloads__list">
-      {/* item.title.includes(inputCtx.searchText) && */}
-      {downloadsAZ.map(
-        (item) =>
-          item.title.toLowerCase().includes(inputCtx.searchText) && (
-            <DownloadItem
-              date={item.date}
-              format={item.format}
-              fps={item.fps}
-              id={item.id}
-              key={item.id}
-              length={item.length}
-              resolution={item.resolution}
-              size={item.size}
-              source={item.source}
-              thumbnail={item.thumbnail}
-              title={item.title}
-              type={item.type}
-            />
-          )
-      )}
+      {actionBarCtx.sortAZ &&
+        Sort.byAZ(downloadsCtx.downloadsVideo, 'title').map(
+          (item) =>
+            item.title.toLowerCase().includes(inputCtx.searchText) && (
+              <DownloadItem
+                date={item.date}
+                format={item.format}
+                id={item.id}
+                key={item.id}
+                length={item.length}
+                size={item.size}
+                source={item.source}
+                thumbnail={item.thumbnail}
+                title={item.title}
+                type={item.type}
+              />
+            )
+        )}{' '}
+      {actionBarCtx.sortZA &&
+        Sort.byZA(downloadsCtx.downloadsVideo, 'title').map(
+          (item) =>
+            item.title.toLowerCase().includes(inputCtx.searchText) && (
+              <DownloadItem
+                date={item.date}
+                format={item.format}
+                id={item.id}
+                key={item.id}
+                length={item.length}
+                size={item.size}
+                source={item.source}
+                thumbnail={item.thumbnail}
+                title={item.title}
+                type={item.type}
+              />
+            )
+        )}{' '}
+      {actionBarCtx.sortNewOld &&
+        Sort.byDateNewToOld(downloadsCtx.downloadsVideo, 'date').map(
+          (item) =>
+            item.title.toLowerCase().includes(inputCtx.searchText) && (
+              <DownloadItem
+                date={item.date}
+                format={item.format}
+                id={item.id}
+                key={item.id}
+                length={item.length}
+                size={item.size}
+                source={item.source}
+                thumbnail={item.thumbnail}
+                title={item.title}
+                type={item.type}
+              />
+            )
+        )}{' '}
+      {actionBarCtx.sortOldNew &&
+        Sort.byDateOldToNew(downloadsCtx.downloadsVideo, 'title').map(
+          (item) =>
+            item.title.toLowerCase().includes(inputCtx.searchText) && (
+              <DownloadItem
+                date={item.date}
+                format={item.format}
+                id={item.id}
+                key={item.id}
+                length={item.length}
+                size={item.size}
+                source={item.source}
+                thumbnail={item.thumbnail}
+                title={item.title}
+                type={item.type}
+              />
+            )
+        )}
     </ul>
   );
   return (
