@@ -33,11 +33,19 @@ import testUrls from '../downloaders/youtube/testURLS';
 // let testItem;
 let randomYoutubeURL =
   testUrls.youtube[Math.floor(Math.random() * testUrls.youtube.length)];
-(async () => {
-  let testItem = await Youtube(randomYoutubeURL);
-  // console.log(testItem.title);
-})();
+// (async () => {
+//   let testItem = await Youtube(randomYoutubeURL);
+//   // console.log(testItem.title);
+// })();
+// async function  downloadItem  (url: string) => {}
 
+async function downloadItem(url, mode) {
+  // console.log('calling');
+  let item = await Youtube(url);
+  if (mWin && item != undefined)
+    mWin.webContents.send('main: item-downloaded', item);
+  // console.log(item);
+}
 //////////////////////////////////////////////////////
 const Store = require('electron-store');
 const settings = new Store();
@@ -216,10 +224,12 @@ let browserPanelState = 'default';
   });
   // BROWSERBAR DOWNLOAD BUTTON LISTENERS
   ipcMain.on('BrowserBar: button: downloadAudio', async (event, arg) => {
+    // if (view) console.log(view.webContents.getURL());
     event.reply('BrowserBar: button: downloadAudio successful');
   });
   ipcMain.on('BrowserBar: button: downloadVideo', async (event, arg) => {
-    if (view) console.log(view.webContents.getURL());
+    // if (view) console.log(view.webContents.getURL());
+    downloadItem(view.webContents.getURL());
     event.reply('BrowserBar: button: downloadVideo successful'); // sends message to renderer
   });
   ipcMain.on('browserPanelSize', async (event, arg) => {

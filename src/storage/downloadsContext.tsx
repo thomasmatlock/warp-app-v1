@@ -145,6 +145,10 @@ const getDownloadID = (id) => {
   console.log(id);
 };
 export const DownloadsContextProvider = (props) => {
+  window.electron.ipcRenderer.on('main: item-downloaded', (item) => {
+    console.log(item);
+  });
+
   return (
     <DownloadsContext.Provider
       value={{

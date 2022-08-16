@@ -123,7 +123,6 @@ const urls = {
     'https://www.youtube.com/watch?v=FbZj4o6IYbo',
     'https://www.youtube.com/watch?v=zfRs_Gfe4Go',
     'https://www.youtube.com/watch?v=vNPd0j0seAI',
-    'https://www.youtube.com/watch?v=kM-aBgfe2jA',
     'https://www.youtube.com/watch?v=RtS8GgzwjiE',
     'https://www.youtube.com/watch?v=5NkrllCPEO4',
     'https://www.youtube.com/watch?v=np4cO56aWRo',

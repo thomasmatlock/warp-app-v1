@@ -21,7 +21,7 @@ const BrowserBar = () => {
   // console.log(actionBarCtx);
 
   const youtubeParser = (url: string) => {
-    console.log(url);
+    // console.log(url);
     if (url.includes('watch')) {
       // console.log('this is a video');
       actionBarCtx.setVideoExists(true);

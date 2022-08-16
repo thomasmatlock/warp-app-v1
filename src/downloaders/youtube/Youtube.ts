@@ -30,6 +30,10 @@ export default async function Youtube(itemURL, avType, platform, storage) {
       itemDetails = info.videoDetails;
       itemDetails.titleFS = formatTitle(itemDetails.title);
       itemDetails.date = new Date();
+      itemDetails.lengthDisplay = formatLength(itemDetails.lengthSeconds);
+      // console.log(itemDetails.lengthDisplay);
+
+      itemDetails.source = 'youtube';
       // itemDetails.thumbnail = itemDetails.thumbnails[0].url;
 
       // console.log(itemDetails.title);
