@@ -1,4 +1,4 @@
-import { Fragment, useState, useContext } from 'react';
+import { Fragment, useState, useEffect, useContext } from 'react';
 
 import ThemeContext from '../../storage/themeContext';
 import ActionBarContext from '../../storage/actionBarContext';
@@ -54,7 +54,7 @@ const DownloadsVideo = () => {
                 type={item.type}
               />
             )
-        )}{' '}
+        )}
       {actionBarCtx.sortNewOld &&
         Sort.byDateNewToOld(downloadsCtx.downloadsVideo, 'date').map(
           (item) =>

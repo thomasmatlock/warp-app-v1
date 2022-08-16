@@ -1,4 +1,4 @@
-import { Fragment, useState, useContext } from 'react';
+import { Fragment, useState, useEffect, useContext } from 'react';
 import thumbnail from '../../../assets/Content/dummy_thumbnail.png';
 import iconLength from '../../../assets/Downloads/duration.svg';
 import iconFileSize from '../../../assets/Downloads/fileSize.svg';
@@ -19,10 +19,52 @@ const DownloadsAudio = () => {
   const actionBarCtx = useContext(ActionBarContext);
   const downloadsCtx = useContext(DownloadsContext);
   const inputCtx = useContext(InputContext);
-  Sort.byAZ(downloadsCtx.downloadsAudio, 'title');
+  let downloads2;
+  const [downloads, setDownloads] = useState(downloadsCtx.downloadsAudio);
+  useEffect(() => {
+    // if (actionBarCtx.sortAZ) {
+    //   downloads2 = Sort.byAZ(downloadsCtx.downloadsAudio, 'title');
+    // }
+    // if (actionBarCtx.sortZA) {
+    //   downloads2 = Sort.byZA(downloadsCtx.downloadsAudio, 'title');
+    // }
+    // if (actionBarCtx.sortNewOld) {
+    //   downloads2 = Sort.byDateNewToOld(downloadsCtx.downloadsAudio, 'date');
+    // }
+    // if (actionBarCtx.sortOldNew) {
+    //   downloads2 = Sort.byDateOldToNew(downloadsCtx.downloadsAudio, 'date');
+    // }
+    //////////////////////
+    if (actionBarCtx.sortAZ) {
+      setDownloads(Sort.byZA(downloadsCtx.downloadsAudio, 'title'));
+      // downloads2 = Sort.byAZ(downloadsCtx.downloadsAudio, 'title');
+    }
+    if (actionBarCtx.sortZA) {
+      // downloads2 = Sort.byZA(downloadsCtx.downloadsAudio, 'title');
+      setDownloads(Sort.byAZ(downloadsCtx.downloadsAudio, 'title'));
+    }
+    if (actionBarCtx.sortNewOld) {
+      // downloads2 = Sort.byDateNewToOld(downloadsCtx.downloadsAudio, 'date');
+      setDownloads(Sort.byDateNewToOld(downloadsCtx.downloadsAudio, 'date'));
+    }
+    if (actionBarCtx.sortOldNew) {
+      // downloads2 = Sort.byDateOldToNew(downloadsCtx.downloadsAudio, 'date');
+      setDownloads(Sort.byDateOldToNew(downloadsCtx.downloadsAudio, 'date'));
+    }
+    // console.log(downloads[0].title);
+    // console.log(downloads[0].date);
+
+    //And any time any dependency value changes
+  }, [
+    actionBarCtx.sortAZ,
+    actionBarCtx.sortZA,
+    actionBarCtx.sortNewOld,
+    actionBarCtx.sortOldNew,
+  ]);
+
   const audioDownloads = (
     <ul className="content__panel__downloads__list">
-      {actionBarCtx.sortAZ &&
+      {/* {actionBarCtx.sortAZ &&
         Sort.byAZ(downloadsCtx.downloadsAudio, 'title').map(
           (item) =>
             item.title.toLowerCase().includes(inputCtx.searchText) && (
@@ -39,8 +81,8 @@ const DownloadsAudio = () => {
                 type={item.type}
               />
             )
-        )}{' '}
-      {actionBarCtx.sortZA &&
+        )}{' '} */}
+      {/* {actionBarCtx.sortZA &&
         Sort.byZA(downloadsCtx.downloadsAudio, 'title').map(
           (item) =>
             item.title.toLowerCase().includes(inputCtx.searchText) && (
@@ -57,8 +99,8 @@ const DownloadsAudio = () => {
                 type={item.type}
               />
             )
-        )}{' '}
-      {actionBarCtx.sortNewOld &&
+        )}{' '} */}
+      {/* {actionBarCtx.sortNewOld &&
         Sort.byDateNewToOld(downloadsCtx.downloadsAudio, 'date').map(
           (item) =>
             item.title.toLowerCase().includes(inputCtx.searchText) && (
@@ -75,8 +117,8 @@ const DownloadsAudio = () => {
                 type={item.type}
               />
             )
-        )}{' '}
-      {actionBarCtx.sortOldNew &&
+        )}{' '} */}
+      {/* {actionBarCtx.sortOldNew &&
         Sort.byDateOldToNew(downloadsCtx.downloadsAudio, 'title').map(
           (item) =>
             item.title.toLowerCase().includes(inputCtx.searchText) && (
@@ -93,7 +135,24 @@ const DownloadsAudio = () => {
                 type={item.type}
               />
             )
-        )}
+        )}  */}
+      {downloads.map(
+        (item) =>
+          item.title.toLowerCase().includes(inputCtx.searchText) && (
+            <DownloadItem
+              date={item.date}
+              format={item.format}
+              id={item.id}
+              key={item.id}
+              length={item.length}
+              size={item.size}
+              source={item.source}
+              thumbnail={item.thumbnail}
+              title={item.title}
+              type={item.type}
+            />
+          )
+      )}
     </ul>
   );
   return (
