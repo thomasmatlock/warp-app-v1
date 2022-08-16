@@ -15,6 +15,10 @@ const ActionBarContext = React.createContext({
   setChannelExists: false,
   setChannelVideoExists: false,
 
+  sortAZ: false,
+  sortZA: false,
+  sortNewOld: false,
+  sortOldNew: false,
   sortAZhandler: () => {},
   sortZAhandler: () => {},
   sortNewOldhandler: () => {},
@@ -111,6 +115,10 @@ export const ActionBarContextProvider = (props) => {
         setChannelExists: setChannelExists,
         setChannelVideoExists: setChannelVideoExists,
 
+        sortAZ: sortAZ,
+        sortZA: sortZA,
+        sortNewOld: sortNewOld,
+        sortOldNew: sortOldNew,
         sortAZhandler: sortAZhandler,
         sortZAhandler: sortZAhandler,
         sortNewOldhandler: sortNewOldhandler,
