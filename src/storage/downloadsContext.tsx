@@ -84,7 +84,6 @@ export const DownloadsContextProvider = (props) => {
     for (const download of downloadsAudio) {
       if (download.id === downloadID) {
         downloadsAudio = [];
-        //  downloadsAudio.splice(downloadsAudio.indexOf(download), 1);
         setDownloadsAudioState(downloadsAudio.length);
         return;
       }
@@ -92,7 +91,6 @@ export const DownloadsContextProvider = (props) => {
     for (const download of downloadsVideo) {
       if (download.id === downloadID) {
         downloadsVideo = [];
-        //  downloadsVideo.splice(downloadsVideo.indexOf(download), 1);
         setDownloadsVideoState(downloadsVideo.length);
         return;
       }
@@ -122,10 +120,12 @@ export const DownloadsContextProvider = (props) => {
     }
     if (contextActionID.includes('remove_all')) {
       removeAllDownloads(downloadID);
-      window.electron.ipcRenderer.sendMessage(
-        'context: remove_all',
-        matchingDownload
-      );
+      setTimeout(() => {
+        window.electron.ipcRenderer.sendMessage(
+          'context: remove_all',
+          downloadID
+        );
+      }, 100);
     }
     if (contextActionID.includes('delete_file')) {
       window.electron.ipcRenderer.sendMessage(

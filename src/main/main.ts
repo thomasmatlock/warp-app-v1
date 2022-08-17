@@ -84,6 +84,7 @@ const setAudioDownloads = (items) => {
 const setVideoDownloads = (items) => {
   settings.set('videoDownloads', items);
 };
+
 // settings.delete('audioDownloads'); // testing only, REMOVE for production
 // settings.delete('videoDownloads'); // testing only, REMOVE for production
 let prefs = getPrefs();
@@ -108,6 +109,42 @@ async function downloadItem(url, mode) {
     mWin.webContents.send('main: item-downloaded', [item, 'video']);
   }
 }
+
+const removeMatchingDownload = (downloadID) => {
+  for (const download of audioDownloads) {
+    if (download.id === downloadID) {
+      audioDownloads.splice(audioDownloads.indexOf(download), 1);
+      setAudioDownloads(audioDownloads);
+      return;
+    }
+  }
+  for (const download of videoDownloads) {
+    if (download.id === downloadID) {
+      videoDownloads.splice(videoDownloads.indexOf(download), 1);
+      setVideoDownloads(videoDownloads);
+      // setDownloadsVideoState(downloadsVideo.length);
+      return;
+    }
+  }
+};
+const removeAllDownloads = (downloadID) => {
+  for (const download of audioDownloads) {
+    if (download.id === downloadID) {
+      audioDownloads = [];
+      setAudioDownloads(audioDownloads);
+      // setDownloadsAudioState(downloadsAudio.length);/
+      return;
+    }
+  }
+  for (const download of videoDownloads) {
+    if (download.id === downloadID) {
+      videoDownloads = [];
+      setVideoDownloads(videoDownloads);
+      // setDownloadsVideoState(downloadsVideo.length);
+      return;
+    }
+  }
+};
 async function submitSearchQuery(currentURL, query) {
   let joinedQuery = await BrowserQuery(currentURL, query);
   // console.log(joinedQuery);
@@ -329,9 +366,12 @@ let browserPanelState = 'default';
   });
   ipcMain.on('context: remove_item', async (event, matchingDownload) => {
     console.log(matchingDownload);
+    removeMatchingDownload(matchingDownload.id);
   });
-  ipcMain.on('context: remove_all', async (event, matchingDownload) => {
-    console.log(matchingDownload);
+  ipcMain.on('context: remove_all', async (event, matchingDownloadID) => {
+    console.log(matchingDownloadID);
+
+    removeAllDownloads(matchingDownloadID);
   });
   ipcMain.on('context: delete_file', async (event, matchingDownload) => {
     console.log(matchingDownload);
