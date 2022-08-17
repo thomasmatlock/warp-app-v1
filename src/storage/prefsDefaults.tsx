@@ -36,15 +36,15 @@ const prefs = {
         title: 'Audio Format',
         id: 'modal_dropdown_audio_format',
         defaultValue: {
-          id: 'modal_dropdown_audio_format_M4A',
-          value: 'modal_dropdown_audio_format_M4A',
-          label: 'M4A',
+          id: 'modal_dropdown_audio_format_MP3',
+          value: 'modal_dropdown_audio_format_MP3',
+          label: 'MP3',
         },
         options: [
           {
             id: 'modal_dropdown_audio_format_MP3',
             value: 'modal_dropdown_audio_format_MP3',
-            label: 'MP3 (default)',
+            label: 'MP3',
           },
           {
             id: 'modal_dropdown_audio_format_M4A',
@@ -152,13 +152,13 @@ const prefs = {
         defaultValue: {
           id: 'modal_dropdown_video_format_MP4',
           value: 'video_format_MP4',
-          label: 'MP4 (default)',
+          label: 'MP4',
         },
         options: [
           {
             id: 'modal_dropdown_video_format_MP4',
             value: 'video_format_MP4',
-            label: 'MP4 (default)',
+            label: 'MP4',
           },
           {
             id: 'modal_dropdown_video_format_MKV',

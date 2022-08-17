@@ -1,4 +1,4 @@
-import { Fragment, useState, useContext } from 'react';
+import { Fragment, useState, useEffect, useContext } from 'react';
 import './ActionBarBrowser.scss';
 import backIcon from '../../../assets/BrowserBar/browser/back.svg';
 import forwardIcon from '../../../assets/BrowserBar/browser/forward.svg';
@@ -20,12 +20,21 @@ const BrowserBar = () => {
   const actionBarCtx = useContext(ActionBarContext);
   const navCtx = useContext(NavContext);
   const prefsCtx = useContext(PrefsContext);
-  console.log(prefsCtx.prefs.audio.dropdowns[0].defaultValue);
-  console.log(prefsCtx.prefs.audio.dropdowns[1].defaultValue);
-  // console.log(prefsCtx.prefs.audio.dropdowns[1]);
+  // console.log(prefsCtx.prefs);
 
-  // console.log(actionBarCtx);
+  const [audioFormat, setAudioFormat] = useState('MP3');
+  const [videoFormat, setVideoFormat] = useState('MP4');
+  // console.log(prefsCtx.prefs.audio.dropdowns[0].defaultValue);
+  // console.log(prefsCtx.prefs.audio.dropdowns[1].defaultValue);
+  // console.log(prefsCtx.prefs.video.dropdowns[1].defaultValue);
 
+  useEffect(() => {
+    if (prefsCtx.prefs === undefined || null) {
+    } else {
+      setAudioFormat(prefsCtx.prefs.audio.dropdowns[1].defaultValue.label);
+      setVideoFormat(prefsCtx.prefs.video.dropdowns[1].defaultValue.label);
+    }
+  }, [prefsCtx.prefs]);
   const youtubeParser = (url: string) => {
     // console.log(url);
     if (url.includes('watch')) {
@@ -210,7 +219,7 @@ const BrowserBar = () => {
               className="browserBarDownloadBtn browserBarDownloadBtn__audio"
             >
               <img src={IconFileTypeAudio} alt="playlistVideoIcon" />
-              {actionBarCtx.videoExists && <p> Download Audio MP3</p>}
+              {actionBarCtx.videoExists && <p> Download Audio {audioFormat}</p>}
             </div>
           )}{' '}
         {navCtx.videoMode &&
@@ -258,7 +267,7 @@ const BrowserBar = () => {
               className="browserBarDownloadBtn browserBarDownloadBtn__video"
             >
               <img src={videoIcon} alt="playlistVideoIcon" />
-              {actionBarCtx.videoExists && <p> Download Video MP4</p>}
+              {actionBarCtx.videoExists && <p> Download Video {videoFormat}</p>}
             </div>
           )}
       </div>

@@ -32,6 +32,7 @@ const ActionBarContext = React.createContext({
 });
 export const ActionBarContextProvider = (props) => {
   const navCtx = useContext(NavContext);
+
   // console.log(navCtx);
   const [sortAZ, setSortAZ] = useState(false);
   const [sortZA, setSortZA] = useState(false);
