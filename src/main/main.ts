@@ -28,6 +28,7 @@ import downloadsAudioDefaults from '../storage/downloadsAudioDefaults';
 import downloadsVideoDefaults from '../storage/downloadsVideoDefaults';
 import downloadsWarpstagramDefaults from '../storage/downloadsWarpstagramDefaults';
 import Youtube from '../downloaders/youtube/Youtube';
+import BrowserQuery from './browserQuery';
 import testUrls from '../downloaders/youtube/testURLS';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -83,7 +84,7 @@ const setVideoDownloads = (items) => {
   settings.set('videoDownloads', items);
 };
 // settings.delete('audioDownloads'); // testing only, REMOVE for production
-settings.delete('videoDownloads'); // testing only, REMOVE for production
+// settings.delete('videoDownloads'); // testing only, REMOVE for production
 let prefs = getPrefs();
 let audioDownloads = getAudioDownloads();
 let videoDownloads = getVideoDownloads();
@@ -105,6 +106,11 @@ async function downloadItem(url, mode) {
     // mWin.webContents.send('main: item-downloaded', [item, 'video']);
     mWin.webContents.send('main: item-downloaded', [item, 'video']);
   }
+}
+async function submitSearchQuery(currentURL, query) {
+  let joinedQuery = await BrowserQuery(currentURL, query);
+  // console.log(joinedQuery);
+  if (view) view.webContents.loadURL(joinedQuery);
 }
 
 // console.log(prefs.general.dropdowns[1].defaultValue);
@@ -227,6 +233,11 @@ let browserPanelState = 'default';
   });
   ipcMain.on('Search: Submit', async (event, arg) => {
     // console.log('Search: Submit', arg);
+
+    // console.log('Search: Submit', arg);
+    if (view) {
+      submitSearchQuery(view.webContents.getURL(), arg);
+    }
     // console.log('Menu: Shortcuts: Restart', arg);
     // event.reply('Search: Submit', [arg]);
   });
