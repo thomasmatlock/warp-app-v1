@@ -485,7 +485,7 @@ const windowController = {
         mWin.minimize();
       } else {
         mWin.show();
-        // if (view) mWin.maximize();
+        if (view) mWin.maximize();
         // mWin.maximize();
         mWin.webContents.send('appVersion', app.getVersion());
         mWin.webContents.send('main: prefs', prefs);
