@@ -1,57 +1,55 @@
 import React, { useState, useEffect } from 'react';
-// import path from 'path';
-// console.log(path);
 
 let downloadsAudio = [
-  {
-    date: new Date(2021, 11, 26, 16, 44, 10),
-    format: 'wav',
-    id: '2',
-    lengthDisplay: '00:54:32',
-    size: '3.2 MB',
-    source: 'vimeo',
-    thumbnailDisplay: 'https://i3.ytimg.com/vi/OulXMB4W5B0/maxresdefault.jpg',
-    title: 'The Wonder Years',
-    type: 'audio',
-    url: 'https://www.youtube.com/watch?v=uq-_-RJt-E8',
-  },
-  {
-    date: new Date(2020, 10, 1, 9, 40, 0),
-    format: 'mp3',
-    id: '1',
-    lengthDisplay: '00:07:32',
-    size: '7.8 MB',
-    source: 'youtube',
-    thumbnailDisplay:
-      'https://i.ytimg.com/vi/6bNZI2GG6Yo/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBtyTUDYVEOE9jk2NeMsJ8zBR5G1Q',
-    title: 'Beatles - Abbey Road',
-    type: 'audio',
-    url: 'https://www.youtube.com/watch?v=uq-_-RJt-E8',
-  },
-  {
-    date: new Date(2022, 1, 22, 14, 22, 10),
-    format: 'ogg',
-    id: '3',
-    lengthDisplay: '00:01:32',
-    size: '10.6 MB',
-    source: 'vimeo',
-    thumbnailDisplay: 'https://i3.ytimg.com/vi/3Jw3JdX7KjA/maxresdefault.jpg',
-    title: 'The Lion, the Witch and the Wardrobe',
-    type: 'audio',
-    url: 'https://www.youtube.com/watch?v=uq-_-RJt-E8',
-  },
-  {
-    date: new Date(2020, 11, 25, 9, 44, 10),
-    format: 'm4a',
-    id: '4',
-    lengthDisplay: '00:01:32',
-    size: '20.5 MB',
-    source: 'youtube',
-    thumbnailDisplay: 'https://i3.ytimg.com/vi/vpO8chg3HK4/maxresdefault.jpg',
-    title: 'Villa Encanto Airbnb 4K NXTLVL HOME  Santa Barbara, CA',
-    type: 'audio',
-    url: 'https://www.youtube.com/watch?v=uq-_-RJt-E8',
-  },
+  // {
+  //   date: new Date(2021, 11, 26, 16, 44, 10),
+  //   format: 'wav',
+  //   id: '2',
+  //   lengthDisplay: '00:54:32',
+  //   size: '3.2 MB',
+  //   source: 'vimeo',
+  //   thumbnailDisplay: 'https://i3.ytimg.com/vi/OulXMB4W5B0/maxresdefault.jpg',
+  //   title: 'The Wonder Years',
+  //   type: 'audio',
+  //   url: 'https://www.youtube.com/watch?v=uq-_-RJt-E8',
+  // },
+  // {
+  //   date: new Date(2020, 10, 1, 9, 40, 0),
+  //   format: 'mp3',
+  //   id: '1',
+  //   lengthDisplay: '00:07:32',
+  //   size: '7.8 MB',
+  //   source: 'youtube',
+  //   thumbnailDisplay:
+  //     'https://i.ytimg.com/vi/6bNZI2GG6Yo/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBtyTUDYVEOE9jk2NeMsJ8zBR5G1Q',
+  //   title: 'Beatles - Abbey Road',
+  //   type: 'audio',
+  //   url: 'https://www.youtube.com/watch?v=uq-_-RJt-E8',
+  // },
+  // {
+  //   date: new Date(2022, 1, 22, 14, 22, 10),
+  //   format: 'ogg',
+  //   id: '3',
+  //   lengthDisplay: '00:01:32',
+  //   size: '10.6 MB',
+  //   source: 'vimeo',
+  //   thumbnailDisplay: 'https://i3.ytimg.com/vi/3Jw3JdX7KjA/maxresdefault.jpg',
+  //   title: 'The Lion, the Witch and the Wardrobe',
+  //   type: 'audio',
+  //   url: 'https://www.youtube.com/watch?v=uq-_-RJt-E8',
+  // },
+  // {
+  //   date: new Date(2020, 11, 25, 9, 44, 10),
+  //   format: 'm4a',
+  //   id: '4',
+  //   lengthDisplay: '00:01:32',
+  //   size: '20.5 MB',
+  //   source: 'youtube',
+  //   thumbnailDisplay: 'https://i3.ytimg.com/vi/vpO8chg3HK4/maxresdefault.jpg',
+  //   title: 'Villa Encanto Airbnb 4K NXTLVL HOME  Santa Barbara, CA',
+  //   type: 'audio',
+  //   url: 'https://www.youtube.com/watch?v=uq-_-RJt-E8',
+  // },
 ];
 let downloadsVideo = [
   // {
@@ -137,6 +135,7 @@ let downloadsWarpstagram = {
 const DownloadsContext = React.createContext({
   downloadsAudio: [],
   downloadsVideo: [],
+  downloadsAudioState: {},
   downloadsVideoState: {},
   downloadsWarpstagram: {},
   getDownloadID: () => {},
@@ -144,28 +143,45 @@ const DownloadsContext = React.createContext({
 const getDownloadID = (id) => {
   console.log(id);
 };
-let pushed = false;
+let audioDownloadsPushed = false;
+let videoDownloadsPushed = false;
+let lastDownloadID = 0;
 export const DownloadsContextProvider = (props) => {
+  const [downloadsAudioState, setDownloadsAudioState] = useState(0);
   const [downloadsVideoState, setDownloadsVideoState] = useState(0);
-  window.electron.ipcRenderer.on('main: item-downloaded', (item, mode) => {
-    downloadsVideo.push(item);
-    if (!pushed) {
-      pushed = true;
+  window.electron.ipcRenderer.on('main: item-downloaded', (arg) => {
+    let item = arg[0];
+    let mode = arg[1];
+    // console.log(item, mode);
+
+    if (mode === 'audio' && item.id != lastDownloadID) {
+      downloadsAudio.push(item);
+      setDownloadsAudioState(downloadsAudio.length);
+      lastDownloadID = item.id;
     }
-    // pushed = false;
+    if (mode === 'video' && item.id != lastDownloadID) {
+      downloadsVideo.push(item);
+      setDownloadsVideoState(downloadsVideo.length);
+      lastDownloadID = item.id;
+    }
   });
   window.electron.ipcRenderer.on('main: audioDownloads', (items) => {
     // console.log(items);
     // console.log(items[0].date);
     // items.forEach((item) => downloadsAudio.push(item));
     // downloadsVideo.push(item);
+    if (!audioDownloadsPushed) {
+      items.forEach((item) => downloadsAudio.push(item));
+      setDownloadsAudioState(downloadsAudio.length);
+      audioDownloadsPushed = true;
+    }
   });
   window.electron.ipcRenderer.on('main: videoDownloads', (items) => {
     // console.log(items);
-    if (!pushed) {
+    if (!videoDownloadsPushed) {
       items.forEach((item) => downloadsVideo.push(item));
       setDownloadsVideoState(downloadsVideo.length);
-      pushed = true;
+      videoDownloadsPushed = true;
     }
     // downloadsVideo.push(item);
   });
@@ -180,6 +196,7 @@ export const DownloadsContextProvider = (props) => {
       value={{
         downloadsAudio: downloadsAudio,
         downloadsVideo: downloadsVideo,
+        downloadsAudioState: downloadsAudioState,
         downloadsVideoState: downloadsVideoState,
         downloadsWarpstagram: downloadsWarpstagram,
         getDownloadID: getDownloadID,

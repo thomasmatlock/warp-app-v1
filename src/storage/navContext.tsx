@@ -47,8 +47,8 @@ export const NavContextProvider = (props) => {
   const [videoMode, setVideoMode] = useState(true);
   const [warpstagramMode, setWarpstagramMode] = useState(false);
   // modal pref nav states
-  const [audioModePrefs, setAudioModePrefs] = useState(false);
-  const [videoModePrefs, setVideoModePrefs] = useState(true);
+  const [audioModePrefs, setAudioModePrefs] = useState(true);
+  const [videoModePrefs, setVideoModePrefs] = useState(false);
   const [warpstagramModePrefs, setWarpstagramModePrefs] = useState(false);
   const [generalModePrefs, setGeneralModePrefs] = useState(false);
   const [authsModePrefs, setAuthsModePrefs] = useState(false);

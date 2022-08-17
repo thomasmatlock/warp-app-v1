@@ -57,6 +57,7 @@ const DownloadsVideo = () => {
     actionBarCtx.sortNewOld,
     actionBarCtx.sortOldNew,
     inputCtx.searchText,
+    downloadsCtx.downloadsVideoState,
     // FIXME: this is a hack to make the component re-render when the downloads change
     // downloadsCtx.downloadsVideoState,
   ]);

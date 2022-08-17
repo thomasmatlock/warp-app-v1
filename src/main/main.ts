@@ -31,15 +31,8 @@ import Youtube from '../downloaders/youtube/Youtube';
 import testUrls from '../downloaders/youtube/testURLS';
 import { v4 as uuidv4 } from 'uuid';
 
-// let testItem;
 let randomYoutubeURL =
   testUrls.youtube[Math.floor(Math.random() * testUrls.youtube.length)];
-// (async () => {
-//   let testItem = await Youtube(randomYoutubeURL);
-//   // console.log(testItem.title);
-// })();
-// async function  downloadItem  (url: string) => {}
-
 //////////////////////////////////////////////////////
 const Store = require('electron-store');
 const settings = new Store();
@@ -82,26 +75,35 @@ const getWarpstagramDownloads = () => {
     return warpstagramDownloads;
   }
 };
+const setAudioDownloads = (items) => {
+  settings.set('audioDownloads', items);
+};
 const setVideoDownloads = (items) => {
   settings.set('videoDownloads', items);
 };
+// settings.delete('audioDownloads'); // testing only, REMOVE for production
 settings.delete('videoDownloads'); // testing only, REMOVE for production
 let prefs = getPrefs();
 let audioDownloads = getAudioDownloads();
 let videoDownloads = getVideoDownloads();
 let warpstagramDownloads = getWarpstagramDownloads();
 async function downloadItem(url, mode) {
-  // console.log('calling');
   let item = await Youtube(url);
-  // item.id = nanoid(10);
   item.id = uuidv4();
   console.log(item.id);
 
   if (mWin && item != undefined)
-    mWin.webContents.send('main: item-downloaded', item);
-  videoDownloads.push(item);
-  setVideoDownloads(videoDownloads);
-  // console.log(item);
+    if (mode === 'audio') {
+      audioDownloads.push(item);
+      setAudioDownloads(audioDownloads);
+      mWin.webContents.send('main: item-downloaded', [item, 'audio']);
+    }
+  if (mode === 'video') {
+    videoDownloads.push(item);
+    setVideoDownloads(videoDownloads);
+    // mWin.webContents.send('main: item-downloaded', [item, 'video']);
+    mWin.webContents.send('main: item-downloaded', [item, 'video']);
+  }
 }
 
 // console.log(prefs.general.dropdowns[1].defaultValue);
@@ -256,11 +258,12 @@ let browserPanelState = 'default';
   // BROWSERBAR DOWNLOAD BUTTON LISTENERS
   ipcMain.on('BrowserBar: button: downloadAudio', async (event, arg) => {
     // if (view) console.log(view.webContents.getURL());
+    downloadItem(view.webContents.getURL(), 'audio');
     event.reply('BrowserBar: button: downloadAudio successful');
   });
   ipcMain.on('BrowserBar: button: downloadVideo', async (event, arg) => {
     // if (view) console.log(view.webContents.getURL());
-    downloadItem(view.webContents.getURL());
+    downloadItem(view.webContents.getURL(), 'video');
     event.reply('BrowserBar: button: downloadVideo successful'); // sends message to renderer
   });
   ipcMain.on('browserPanelSize', async (event, arg) => {

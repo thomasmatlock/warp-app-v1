@@ -17,17 +17,6 @@ export const InputContextProvider = (props) => {
       console.log('no search text');
     }
   };
-  window.electron.ipcRenderer.on('main: item-downloaded', (item, mode) => {
-    // downloadsVideo.push(item);
-    console.log('hello');
-    // FIXME: this is a hack to get the search text to update
-    setTimeout(() => {
-      setSearchText(' ');
-      setTimeout(() => {
-        setSearchText('');
-      }, 50);
-    }, 50);
-  });
   return (
     <InputContext.Provider
       value={{
