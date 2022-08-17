@@ -7,7 +7,7 @@ const PrefsContext = React.createContext({
 export const PrefsContextProvider = (props) => {
   const [prefs, setPrefs] = useState({});
   window.electron.ipcRenderer.on('main: prefs', (arg) => {
-    console.log(arg);
+    // console.log(arg);
     setPrefs(arg);
     // prefs = arg;
   });

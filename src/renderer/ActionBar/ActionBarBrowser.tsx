@@ -20,7 +20,9 @@ const BrowserBar = () => {
   const actionBarCtx = useContext(ActionBarContext);
   const navCtx = useContext(NavContext);
   const prefsCtx = useContext(PrefsContext);
-  console.log(prefsCtx);
+  console.log(prefsCtx.prefs.audio.dropdowns[0].defaultValue);
+  console.log(prefsCtx.prefs.audio.dropdowns[1].defaultValue);
+  // console.log(prefsCtx.prefs.audio.dropdowns[1]);
 
   // console.log(actionBarCtx);
 
