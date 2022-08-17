@@ -18,7 +18,7 @@ import { getInfo } from './getInfo';
 import getFileSize from './getFileSize';
 import formatLength from './formatLength';
 import formatTitle from './formatTitle';
-export default async function Youtube(itemURL, avType, platform, storage) {
+export default async function Youtube(itemURL, mode, platform, storage) {
   // getFileSize();
 
   // formatLength();
@@ -54,7 +54,7 @@ export default async function Youtube(itemURL, avType, platform, storage) {
       itemDetails.url = itemURL;
       itemDetails.format = 'mp4';
       itemDetails.thumbnailDisplay = itemDetails.thumbnails[1].url;
-      itemDetails.type = 'video';
+      itemDetails.type = mode;
       // itemDetails.type = 'audio';
 
       // console.log(itemDetails.thumbnails);

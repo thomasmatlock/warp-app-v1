@@ -81,14 +81,14 @@ const setAudioDownloads = (items) => {
 const setVideoDownloads = (items) => {
   settings.set('videoDownloads', items);
 };
-// settings.delete('audioDownloads'); // testing only, REMOVE for production
-// settings.delete('videoDownloads'); // testing only, REMOVE for production
+settings.delete('audioDownloads'); // testing only, REMOVE for production
+settings.delete('videoDownloads'); // testing only, REMOVE for production
 let prefs = getPrefs();
 let audioDownloads = getAudioDownloads();
 let videoDownloads = getVideoDownloads();
 let warpstagramDownloads = getWarpstagramDownloads();
 async function downloadItem(url, mode) {
-  let item = await Youtube(url);
+  let item = await Youtube(url, mode);
   item.id = uuidv4();
   // console.log(item.id);
 
