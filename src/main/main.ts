@@ -321,12 +321,10 @@ let browserPanelState = 'default';
   // CONTEXT MENU LISTENERS
   ipcMain.on('context: copy_link_address', async (event, matchingDownload) => {
     let url = matchingDownload.video_url;
-    console.log(url);
     clipboard.writeText(url);
   });
   ipcMain.on('context: open_in_browser', async (event, matchingDownload) => {
     let url = matchingDownload.video_url;
-    console.log(url);
     if (view) view.webContents.loadURL(url);
   });
   ipcMain.on('context: remove_item', async (event, matchingDownload) => {

@@ -45,52 +45,6 @@ const DownloadsContext = React.createContext({
 const getDownloadID = (id) => {
   // console.log(id);
 };
-const getMatchingDownload = (downloadID) => {
-  for (const download of downloadsAudio) {
-    if (download.id === downloadID) {
-      return download;
-    }
-  }
-  for (const download of downloadsVideo) {
-    if (download.id === downloadID) {
-      return download;
-    }
-  }
-};
-const downloadContextActionHandler = (contextActionID, downloadID) => {
-  let matchingDownload = getMatchingDownload(downloadID);
-
-  if (contextActionID.includes('copy_link_address')) {
-    window.electron.ipcRenderer.sendMessage(
-      'context: copy_link_address',
-      matchingDownload
-    );
-  }
-  if (contextActionID.includes('open_in_browser')) {
-    window.electron.ipcRenderer.sendMessage(
-      'context: open_in_browser',
-      matchingDownload
-    );
-  }
-  if (contextActionID.includes('remove_item')) {
-    window.electron.ipcRenderer.sendMessage(
-      'context: remove_item',
-      matchingDownload
-    );
-  }
-  if (contextActionID.includes('remove_all')) {
-    window.electron.ipcRenderer.sendMessage(
-      'context: remove_all',
-      matchingDownload
-    );
-  }
-  if (contextActionID.includes('delete_file')) {
-    window.electron.ipcRenderer.sendMessage(
-      'context: delete_file',
-      matchingDownload
-    );
-  }
-};
 
 let audioDownloadsPushed = false;
 let videoDownloadsPushed = false;
@@ -98,6 +52,88 @@ let lastDownloadID = 0;
 export const DownloadsContextProvider = (props) => {
   const [downloadsAudioState, setDownloadsAudioState] = useState(0);
   const [downloadsVideoState, setDownloadsVideoState] = useState(0);
+  const getMatchingDownload = (downloadID) => {
+    for (const download of downloadsAudio) {
+      if (download.id === downloadID) {
+        return download;
+      }
+    }
+    for (const download of downloadsVideo) {
+      if (download.id === downloadID) {
+        return download;
+      }
+    }
+  };
+  const removeMatchingDownload = (downloadID) => {
+    for (const download of downloadsAudio) {
+      if (download.id === downloadID) {
+        downloadsAudio.splice(downloadsAudio.indexOf(download), 1);
+        setDownloadsAudioState(downloadsAudio.length);
+        return;
+      }
+    }
+    for (const download of downloadsVideo) {
+      if (download.id === downloadID) {
+        downloadsVideo.splice(downloadsVideo.indexOf(download), 1);
+        setDownloadsVideoState(downloadsVideo.length);
+        return;
+      }
+    }
+  };
+  const removeAllDownloads = (downloadID) => {
+    for (const download of downloadsAudio) {
+      if (download.id === downloadID) {
+        downloadsAudio = [];
+        //  downloadsAudio.splice(downloadsAudio.indexOf(download), 1);
+        setDownloadsAudioState(downloadsAudio.length);
+        return;
+      }
+    }
+    for (const download of downloadsVideo) {
+      if (download.id === downloadID) {
+        downloadsVideo = [];
+        //  downloadsVideo.splice(downloadsVideo.indexOf(download), 1);
+        setDownloadsVideoState(downloadsVideo.length);
+        return;
+      }
+    }
+  };
+  const downloadContextActionHandler = (contextActionID, downloadID) => {
+    let matchingDownload = getMatchingDownload(downloadID);
+
+    if (contextActionID.includes('copy_link_address')) {
+      window.electron.ipcRenderer.sendMessage(
+        'context: copy_link_address',
+        matchingDownload
+      );
+    }
+    if (contextActionID.includes('open_in_browser')) {
+      window.electron.ipcRenderer.sendMessage(
+        'context: open_in_browser',
+        matchingDownload
+      );
+    }
+    if (contextActionID.includes('remove_item')) {
+      removeMatchingDownload(downloadID);
+      window.electron.ipcRenderer.sendMessage(
+        'context: remove_item',
+        matchingDownload
+      );
+    }
+    if (contextActionID.includes('remove_all')) {
+      removeAllDownloads(downloadID);
+      window.electron.ipcRenderer.sendMessage(
+        'context: remove_all',
+        matchingDownload
+      );
+    }
+    if (contextActionID.includes('delete_file')) {
+      window.electron.ipcRenderer.sendMessage(
+        'context: delete_file',
+        matchingDownload
+      );
+    }
+  };
   window.electron.ipcRenderer.on('main: item-downloaded', (arg) => {
     let item = arg[0];
     let mode = arg[1];
