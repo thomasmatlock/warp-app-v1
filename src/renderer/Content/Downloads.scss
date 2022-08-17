@@ -200,7 +200,6 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
             // border: 1px dotted green;
             margin-left: 24px;
             &__container {
-                // border: 1px dotted red;
                 display: flex;
                 flex-direction: row !important;
                 justify-content: flex-start;
@@ -208,23 +207,41 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
                 // animation: bondJamesBond 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
                 align-items: center;
                 width: 100%;
+                &__1 {}
+                &__2 {
+                    // white-space: nowrap;
+                    // height: 14px !important;
+                    // border: 1px dotted red;
+                    // text-overflow: ellipsis;
+                    // overflow-wrap: hidden;
+                    // white-space: normal;
+                    text-overflow: hidden !important;
+                }
             }
         }
         &__text {
+            white-space: nowrap;
             font-size: 12px;
             margin-right: 16px;
             margin-left: 8px;
+            // border: 1px dotted red;
             // color: $gray-dark-darkest;
+            // width: 50px;
             color: white;
+            // text-overflow: hidden !important;
         }
         &__title {
             // font-size: 7px;
             margin-left: 0px;
             font-size: 14px;
             // animation: bondJamesBond 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+            // border: 1px dotted red;
         }
         &__file_source {
             color: rgb(162, 162, 162);
+            // width: 50px;
+            // width: 100%;
+            // word-wrap: none;
         }
         &__file_length {
             color: rgb(162, 162, 162);
@@ -243,7 +260,13 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
             color: rgb(162, 162, 162);
         }
         &__file_date {
-            color: rgb(162, 162, 162);
+            &__text {
+                color: rgb(162, 162, 162);
+                // border: 1px dotted red;
+                width: 50px !important;
+                text-overflow: clip !important;
+                text-wrap: hidden !important;
+            }
         }
     }
 }

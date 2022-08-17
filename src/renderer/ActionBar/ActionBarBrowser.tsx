@@ -13,11 +13,15 @@ import BrowserBarDownloadSource from './ActionBarBrowserSource';
 import ThemeContext from '../../storage/themeContext';
 import ActionBarContext from '../../storage/actionBarContext';
 import NavContext from '../../storage/navContext';
+import PrefsContext from '../../storage/prefsContext';
 
 const BrowserBar = () => {
   const themeCtx = useContext(ThemeContext);
   const actionBarCtx = useContext(ActionBarContext);
   const navCtx = useContext(NavContext);
+  const prefsCtx = useContext(PrefsContext);
+  console.log(prefsCtx);
+
   // console.log(actionBarCtx);
 
   const youtubeParser = (url: string) => {

@@ -40,7 +40,7 @@ export default async function Youtube(itemURL, mode, platform, storage) {
       itemDetails.width = info.formats[0].width;
       itemDetails.height = info.formats[0].height;
       itemDetails.date = new Date();
-      itemDetails.timestamp = moment().format('MMM Do YYYY, dddd, h:mm:ss');
+      itemDetails.timestamp = moment().format('MMM Do YYYY, dddd, h:mm:ss a');
       // console.log(itemDetails.timestamp);
 
       // console.log(test);
@@ -55,6 +55,9 @@ export default async function Youtube(itemURL, mode, platform, storage) {
       itemDetails.format = 'mp4';
       itemDetails.thumbnailDisplay = itemDetails.thumbnails[1].url;
       itemDetails.type = mode;
+      // itemDetails.author = itemDetails.ownerChannelName;
+      itemDetails.searchTags =
+        itemDetails.ownerChannelName + ' ' + itemDetails.titleFS;
       // itemDetails.type = 'audio';
 
       // console.log(itemDetails.thumbnails);

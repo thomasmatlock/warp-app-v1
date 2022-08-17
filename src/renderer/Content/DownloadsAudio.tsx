@@ -61,8 +61,9 @@ const DownloadsAudio = () => {
     <ul className="content__panel__downloads__list">
       {downloads.map(
         (item) =>
-          item.title.toLowerCase().includes(inputCtx.searchText) && (
+          item.searchTags.toLowerCase().includes(inputCtx.searchText) && (
             <DownloadItem
+              author={item.author.name}
               date={item.date}
               timestamp={item.timestamp}
               format={item.format}

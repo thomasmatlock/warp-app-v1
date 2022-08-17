@@ -1,12 +1,15 @@
 import React, { useState, useContext } from 'react';
-let prefs;
+// let prefs;
 const PrefsContext = React.createContext({
   prefs: {},
   getID: () => {},
 });
 export const PrefsContextProvider = (props) => {
+  const [prefs, setPrefs] = useState({});
   window.electron.ipcRenderer.on('main: prefs', (arg) => {
-    prefs = arg;
+    console.log(arg);
+    setPrefs(arg);
+    // prefs = arg;
   });
   const checkboxHandler = (id) => {
     let newPrefs = { ...prefs };

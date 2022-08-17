@@ -36,30 +36,30 @@ const DownloadItem = (props) => {
   const sourcesCtx = useContext(SourcesContext);
   const themeCtx = useContext(ThemeContext);
   const downloadsCtx = useContext(DownloadsContext);
-  function findSourceIcon(source) {
-    // console.log(source);
-    if (source.toLowerCase().includes('facebook')) {
-      return iconSourceFacebook;
-    } else if (source.toLowerCase().includes('instagram')) {
-      return iconSourceInstagram;
-    } else if (source.toLowerCase().includes('pinterest')) {
-      return iconSourcePinterest;
-    } else if (source.toLowerCase().includes('soundcloud')) {
-      return iconSourceSoundcloud;
-    } else if (source.toLowerCase().includes('snapchat')) {
-      return iconSourceSnapchat;
-    } else if (source.toLowerCase().includes('tiktok')) {
-      return iconSourceTiktok;
-    } else if (source.toLowerCase().includes('twitch')) {
-      return iconSourceTwitch;
-    } else if (source.toLowerCase().includes('twitter')) {
-      return iconSourceTwitter;
-    } else if (source.toLowerCase().includes('vimeo')) {
-      return iconSourceVimeo;
-    } else if (source.toLowerCase().includes('youtube')) {
-      return iconSourceYoutube;
-    }
-  }
+  // function findSourceIcon(source) {
+  //   // console.log(source);
+  //   if (source.toLowerCase().includes('facebook')) {
+  //     return iconSourceFacebook;
+  //   } else if (source.toLowerCase().includes('instagram')) {
+  //     return iconSourceInstagram;
+  //   } else if (source.toLowerCase().includes('pinterest')) {
+  //     return iconSourcePinterest;
+  //   } else if (source.toLowerCase().includes('soundcloud')) {
+  //     return iconSourceSoundcloud;
+  //   } else if (source.toLowerCase().includes('snapchat')) {
+  //     return iconSourceSnapchat;
+  //   } else if (source.toLowerCase().includes('tiktok')) {
+  //     return iconSourceTiktok;
+  //   } else if (source.toLowerCase().includes('twitch')) {
+  //     return iconSourceTwitch;
+  //   } else if (source.toLowerCase().includes('twitter')) {
+  //     return iconSourceTwitter;
+  //   } else if (source.toLowerCase().includes('vimeo')) {
+  //     return iconSourceVimeo;
+  //   } else if (source.toLowerCase().includes('youtube')) {
+  //     return iconSourceYoutube;
+  //   }
+  // }
   // console.log(props.timestamp);
 
   // const dateString = itemFormat.formatDate(props.date);
@@ -119,7 +119,7 @@ const DownloadItem = (props) => {
         className="content__panel__downloads__list__item__thumbnail"
       />
       <div className="content__panel__downloads__list__item__info">
-        <div className="content__panel__downloads__list__item__info__container">
+        <div className="content__panel__downloads__list__item__info__container content__panel__downloads__list__item__info__container__1">
           <div
             className="content__panel__downloads__list__item__text content__panel__downloads__list__item__title"
             style={
@@ -133,7 +133,7 @@ const DownloadItem = (props) => {
             {title}
           </div>
         </div>
-        <div className="content__panel__downloads__list__item__info__container">
+        <div className="content__panel__downloads__list__item__info__container content__panel__downloads__list__item__info__container__2">
           <img
             src={sourceIcon}
             className=" content__panel__downloads__list__item__img content__panel__downloads__list__item__file_source"
@@ -155,8 +155,8 @@ const DownloadItem = (props) => {
                   }
             }
           >
-            {source}
-          </div>{' '}
+            {props.author}
+          </div>
           <img
             src={iconLength}
             className=" content__panel__downloads__list__item__img content__panel__downloads__list__item__file_length"
@@ -311,7 +311,7 @@ const DownloadItem = (props) => {
           {props.date != undefined && (
             // {props.type === 'video' && (
             <div
-              className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_date"
+              className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_date content__panel__downloads__list__item__file_date__text"
               style={
                 themeCtx.isDarkTheme
                   ? { filter: 'invert(100%)' }
