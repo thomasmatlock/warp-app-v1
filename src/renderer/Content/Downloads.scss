@@ -143,8 +143,8 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
         width: 100%;
         border: 1px solid $gray-dark-lightest;
         background-color: $gray-dark-light;
-        min-height: 50px !important;
-        height: 56px !important;
+        min-height: 56px !important;
+        max-height: 56px !important;
         // animation: flipInX 0.5s ease-in-out;
         animation: moveInLeftDownload 0.5s ease-in-out;
         // animation: moveInLeftDownload 0.5s ease-in-out;
