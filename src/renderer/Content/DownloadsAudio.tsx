@@ -12,11 +12,52 @@ const DownloadsAudio = () => {
   const actionBarCtx = useContext(ActionBarContext);
   const downloadsCtx = useContext(DownloadsContext);
   const inputCtx = useContext(InputContext);
-  const [downloads, setDownloads] = useState(downloadsCtx.downloadsAudio);
+  const [downloads, setDownloads] = useState(
+    Array.from(downloadsCtx.downloadsAudio).sort((a, b) => {
+      if (actionBarCtx.sortAZ) {
+        // return a.title.localeCompare(b.title);
+        return Sort.byAZ(downloadsCtx.downloadsAudio, 'title');
+        // return a.title.localeCompare(b.title);
+      } else if (actionBarCtx.sortZA) {
+        return Sort.byZA(downloadsCtx.downloadsAudio, 'title');
+        // return Sort.byZA(a, b);
+        // return b.title.localeCompare(a.title);
+      } else if (actionBarCtx.sortNewOld) {
+        return Sort.byDateNewToOld(downloadsCtx.downloadsAudio, 'date');
+      } else if (actionBarCtx.sortOldNew) {
+        return Sort.byDateOldToNew(downloadsCtx.downloadsAudio, 'date');
+      }
+    })
+  );
 
   useEffect(() => {
-    setDownloads(downloadsCtx.downloadsAudio);
-  }, [downloadsCtx.downloadsAudio]);
+    setDownloads(
+      Array.from(downloadsCtx.downloadsAudio).sort((a, b) => {
+        if (actionBarCtx.sortAZ) {
+          // return a.title.localeCompare(b.title);
+          return Sort.byAZ(downloadsCtx.downloadsAudio, 'title');
+          // return a.title.localeCompare(b.title);
+        } else if (actionBarCtx.sortZA) {
+          return Sort.byZA(downloadsCtx.downloadsAudio, 'title');
+          // return Sort.byZA(a, b);
+          // return b.title.localeCompare(a.title);
+        } else if (actionBarCtx.sortNewOld) {
+          return Sort.byDateNewToOld(downloadsCtx.downloadsAudio, 'date');
+        } else if (actionBarCtx.sortOldNew) {
+          return Sort.byDateOldToNew(downloadsCtx.downloadsAudio, 'date');
+        }
+      })
+    );
+  }, [
+    actionBarCtx.sortAZ,
+    actionBarCtx.sortZA,
+    actionBarCtx.sortNewOld,
+    actionBarCtx.sortOldNew,
+    inputCtx.searchText,
+    // FIXME: this is a hack to make the component re-render when the downloads change
+    // downloadsCtx.downloadsVideoState,
+  ]);
+
   const audioDownloads = (
     <ul className="content__panel__downloads__list">
       {downloads.map(
