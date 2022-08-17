@@ -70,9 +70,31 @@ const getAudioDownloads = () => {
     return audioDownloads;
   }
 };
+const getVideoDownloads = () => {
+  let videoDownloads = settings.get('videoDownloads');
+  if (videoDownloads === undefined) {
+    settings.set('videoDownloads', downloadsVideoDefaults);
+    return downloadsVideoDefaults;
+  } else {
+    return videoDownloads;
+  }
+};
+const getWarpstagramDownloads = () => {
+  let warpstagramDownloads = settings.get('warpstagramDownloads');
+  if (warpstagramDownloads === undefined) {
+    settings.set('warpstagramDownloads', downloadsWarpstagramDefaults);
+    return downloadsWarpstagramDefaults;
+  } else {
+    return warpstagramDownloads;
+  }
+};
 
 // settings.delete('prefs'); // testing only, REMOVE for production
 let prefs = getPrefs();
+let audioDownloads = getAudioDownloads();
+let videoDownloads = getVideoDownloads();
+let warpstagramDownloads = getWarpstagramDownloads();
+
 // console.log(prefs.general.dropdowns[1].defaultValue);
 let activeURL: string;
 const setActiveURL = () => {
@@ -121,7 +143,7 @@ const isDebug =
   process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true';
 
 if (isDebug) {
-  require('electron-debug')(); // ENABLE FOR DEVTOOLS
+  // require('electron-debug')(); // ENABLE FOR DEVTOOLS
 }
 
 const installExtensions = async () => {

@@ -2,15 +2,15 @@ import React, { useState, useEffect } from 'react';
 // import path from 'path';
 // console.log(path);
 
-const downloadsAudio = [
+let downloadsAudio = [
   {
     date: new Date(2021, 11, 26, 16, 44, 10),
     format: 'wav',
     id: '2',
-    length: '00:54:32',
+    lengthDisplay: '00:54:32',
     size: '3.2 MB',
     source: 'vimeo',
-    thumbnail: 'https://i3.ytimg.com/vi/OulXMB4W5B0/maxresdefault.jpg',
+    thumbnailDisplay: 'https://i3.ytimg.com/vi/OulXMB4W5B0/maxresdefault.jpg',
     title: 'The Wonder Years',
     type: 'audio',
     url: 'https://www.youtube.com/watch?v=uq-_-RJt-E8',
@@ -19,11 +19,10 @@ const downloadsAudio = [
     date: new Date(2020, 10, 1, 9, 40, 0),
     format: 'mp3',
     id: '1',
-    length: '00:07:32',
+    lengthDisplay: '00:07:32',
     size: '7.8 MB',
     source: 'youtube',
-    // thumbnail: 'https://i3.ytimg.com/vi/06RlyZxUnVM/maxresdefault.jpg',
-    thumbnail:
+    thumbnailDisplay:
       'https://i.ytimg.com/vi/6bNZI2GG6Yo/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBtyTUDYVEOE9jk2NeMsJ8zBR5G1Q',
     title: 'Beatles - Abbey Road',
     type: 'audio',
@@ -33,10 +32,10 @@ const downloadsAudio = [
     date: new Date(2022, 1, 22, 14, 22, 10),
     format: 'ogg',
     id: '3',
-    length: '00:01:32',
+    lengthDisplay: '00:01:32',
     size: '10.6 MB',
     source: 'vimeo',
-    thumbnail: 'https://i3.ytimg.com/vi/3Jw3JdX7KjA/maxresdefault.jpg',
+    thumbnailDisplay: 'https://i3.ytimg.com/vi/3Jw3JdX7KjA/maxresdefault.jpg',
     title: 'The Lion, the Witch and the Wardrobe',
     type: 'audio',
     url: 'https://www.youtube.com/watch?v=uq-_-RJt-E8',
@@ -45,16 +44,16 @@ const downloadsAudio = [
     date: new Date(2020, 11, 25, 9, 44, 10),
     format: 'm4a',
     id: '4',
-    length: '00:01:32',
+    lengthDisplay: '00:01:32',
     size: '20.5 MB',
     source: 'youtube',
-    thumbnail: 'https://i3.ytimg.com/vi/vpO8chg3HK4/maxresdefault.jpg',
+    thumbnailDisplay: 'https://i3.ytimg.com/vi/vpO8chg3HK4/maxresdefault.jpg',
     title: 'Villa Encanto Airbnb 4K NXTLVL HOME  Santa Barbara, CA',
     type: 'audio',
     url: 'https://www.youtube.com/watch?v=uq-_-RJt-E8',
   },
 ];
-const downloadsVideo = [
+let downloadsVideo = [
   {
     // date: Date('2022-01-01'),
     date: new Date(2022, 1, 1, 8, 44, 10),
@@ -62,11 +61,11 @@ const downloadsVideo = [
     format: 'mp4',
     fps: 23.976,
     id: '1',
-    length: '00:07:32',
+    lengthDisplay: '00:07:32',
     resolution: '720p',
     size: '33.2 MB',
     source: 'tiktok',
-    thumbnail: 'https://i3.ytimg.com/vi/zZy0knYMxhQ/maxresdefault.jpg',
+    thumbnailDisplay: 'https://i3.ytimg.com/vi/zZy0knYMxhQ/maxresdefault.jpg',
     title: 'Peaky Blinders Season 7 The Movie',
     type: 'video',
     url: 'https://www.youtube.com/watch?v=uq-_-RJt-E8',
@@ -78,11 +77,11 @@ const downloadsVideo = [
     format: 'mov',
     fps: 59.976,
     id: '2',
-    length: '00:54:32',
+    lengthDisplay: '00:54:32',
     resolution: '1080p',
     size: '9.9 MB',
     source: 'vimeo',
-    thumbnail: 'https://i3.ytimg.com/vi/2nsT9uQPIrk/maxresdefault.jpg',
+    thumbnailDisplay: 'https://i3.ytimg.com/vi/2nsT9uQPIrk/maxresdefault.jpg',
     title: 'The Wonder Years',
     type: 'video',
     url: 'https://www.youtube.com/watch?v=2nsT9uQPIrk',
@@ -94,17 +93,17 @@ const downloadsVideo = [
     format: 'mkv',
     fps: 60,
     id: '3',
-    length: '00:01:32',
+    lengthDisplay: '00:01:32',
     resolution: '3840p',
     size: '1.2 MB',
     source: 'vimeo',
-    thumbnail: 'https://i3.ytimg.com/vi/F02Y3C16Uwg/maxresdefault.jpg',
+    thumbnailDisplay: 'https://i3.ytimg.com/vi/F02Y3C16Uwg/maxresdefault.jpg',
     title: 'The Lion, the Witch and the Wardrobe',
     type: 'video',
     url: 'https://www.youtube.com/watch?v=uq-_-RJt-E8',
   },
 ];
-const downloadsWarpstagram = {
+let downloadsWarpstagram = {
   subscribed: [
     {
       // format: 'mkv',
@@ -145,8 +144,11 @@ const getDownloadID = (id) => {
   console.log(id);
 };
 export const DownloadsContextProvider = (props) => {
-  window.electron.ipcRenderer.on('main: item-downloaded', (item) => {
-    console.log(item);
+  window.electron.ipcRenderer.on('main: item-downloaded', (item, mode) => {
+    console.log(downloadsVideo);
+    // console.log(item);
+    downloadsVideo.push(item);
+    console.log(downloadsVideo);
   });
 
   return (

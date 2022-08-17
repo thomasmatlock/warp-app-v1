@@ -28,11 +28,11 @@ const DownloadsVideo = () => {
                 fps={item.fps}
                 id={item.id}
                 key={item.id}
-                length={item.length}
+                length={item.lengthDisplay}
                 resolution={item.resolution}
                 size={item.size}
                 source={item.source}
-                thumbnail={item.thumbnail}
+                thumbnail={item.thumbnailDisplay}
                 title={item.title}
                 type={item.type}
               />
@@ -49,11 +49,11 @@ const DownloadsVideo = () => {
                 fps={item.fps}
                 id={item.id}
                 key={item.id}
-                length={item.length}
+                length={item.lengthDisplay}
                 resolution={item.resolution}
                 size={item.size}
                 source={item.source}
-                thumbnail={item.thumbnail}
+                thumbnail={item.thumbnailDisplay}
                 title={item.title}
                 type={item.type}
               />
@@ -70,11 +70,11 @@ const DownloadsVideo = () => {
                 fps={item.fps}
                 id={item.id}
                 key={item.id}
-                length={item.length}
+                length={item.lengthDisplay}
                 resolution={item.resolution}
                 size={item.size}
                 source={item.source}
-                thumbnail={item.thumbnail}
+                thumbnail={item.thumbnailDisplay}
                 title={item.title}
                 type={item.type}
               />
@@ -91,11 +91,11 @@ const DownloadsVideo = () => {
                 fps={item.fps}
                 id={item.id}
                 key={item.id}
-                length={item.length}
+                length={item.lengthDisplay}
                 resolution={item.resolution}
                 size={item.size}
                 source={item.source}
-                thumbnail={item.thumbnail}
+                thumbnail={item.thumbnailDisplay}
                 title={item.title}
                 type={item.type}
               />

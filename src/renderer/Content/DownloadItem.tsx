@@ -25,6 +25,8 @@ import menuIcon from '../../../assets/Warpstagram/menu.svg';
 import iconFolder from '../../../assets/Downloads/folder1.svg';
 import ContextMenu from '../ContextMenu/ContextMenu';
 import ContextMenuDownloadItemOptions from '../ContextMenu/ContextMenuDownloadItemOptions';
+import itemFormat from './DownloadItemFormat';
+// console.log(itemFormat);
 
 const DownloadItem = (props) => {
   // console.log(props);
@@ -34,93 +36,40 @@ const DownloadItem = (props) => {
   const sourcesCtx = useContext(SourcesContext);
   const themeCtx = useContext(ThemeContext);
   const downloadsCtx = useContext(DownloadsContext);
-  function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
   function findSourceIcon(source) {
     // console.log(source);
-    if (source === 'facebook') {
+    if (source.toLowerCase().includes('facebook')) {
       return iconSourceFacebook;
-    } else if (source === 'instagram') {
+    } else if (source.toLowerCase().includes('instagram')) {
       return iconSourceInstagram;
-    } else if (source === 'pinterest') {
+    } else if (source.toLowerCase().includes('pinterest')) {
       return iconSourcePinterest;
-    } else if (source === 'soundcloud') {
+    } else if (source.toLowerCase().includes('soundcloud')) {
       return iconSourceSoundcloud;
-    } else if (source === 'snapchat') {
+    } else if (source.toLowerCase().includes('snapchat')) {
       return iconSourceSnapchat;
-    } else if (source === 'tiktok') {
+    } else if (source.toLowerCase().includes('tiktok')) {
       return iconSourceTiktok;
-    } else if (source === 'twitch') {
+    } else if (source.toLowerCase().includes('twitch')) {
       return iconSourceTwitch;
-    } else if (source === 'twitter') {
+    } else if (source.toLowerCase().includes('twitter')) {
       return iconSourceTwitter;
-    } else if (source === 'vimeo') {
+    } else if (source.toLowerCase().includes('vimeo')) {
       return iconSourceVimeo;
-    } else if (source === 'youtube') {
+    } else if (source.toLowerCase().includes('youtube')) {
       return iconSourceYoutube;
     }
   }
-  const title = `${props.title}`;
+  const dateString = itemFormat.formatDate(props.date);
+  const format = props.format ? props.format.toUpperCase() : '';
+  const fps = `${props.fps}`;
   const length = `${props.length}`;
   const size = `${props.size}`;
-  const format = props.format.toUpperCase();
-  const source = capitalizeFirstLetter(props.source);
-  const sourceIcon = findSourceIcon(props.source);
+  const source = itemFormat.capitalizeFirstLetter(props.source);
+  const sourceIcon = itemFormat.findSourceIcon(props.source);
   const resolution = `${props.resolution}`;
-  const fps = `${props.fps}`;
-  // const date = new Date();
-  // console.log(props.date);
-  let itemMonth;
-  let itemDate;
-  let itemYear = props.date.getFullYear();
-  let itemDay;
-  let itemHour = props.date.getHours();
-  let itemMinute = props.date.getMinutes();
-  let itemSecond = props.date.getSeconds();
-  let timeSuffix = itemHour >= 12 ? 'PM' : 'AM';
-  itemHour = itemHour % 12;
-  // console.log(itemHour);
+  const title = `${props.title}`;
 
-  function convertDayToWeekday() {
-    var weekday = new Array(
-      'Sunday',
-      'Monday',
-      'Tuesday',
-      'Wednesday',
-      'Thursday',
-      'Friday',
-      'Saturday'
-    );
-    itemDay = `${weekday[props.date.getDay()]}`;
-  }
-  function convertMonthToMonthName() {
-    var month = new Array(
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December'
-    );
-    itemMonth = `${month[props.date.getMonth()]}`;
-  }
-
-  function convertDateToDate() {
-    itemDate = `${props.date.getDate()}`;
-  }
-  convertDayToWeekday();
-  convertDateToDate();
-  convertMonthToMonthName();
-  // console.log(itemDay, itemDate, itemMonth);
-  // const dateString = `${itemMonth} ${itemDate}, ${itemYear}, ${itemDay}, ${itemHour}:${itemMinute}:${itemSecond} ${timeSuffix}`;
-  const dateString = `${itemMonth} ${itemDate}, ${itemYear}, ${itemDay}, ${itemHour}:${itemMinute} ${timeSuffix}`;
   const toggleContextMenu = () => {
     if (isContentMenuVisible) {
       setisContentMenuVisible(false);

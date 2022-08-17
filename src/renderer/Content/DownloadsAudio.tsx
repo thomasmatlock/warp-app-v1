@@ -25,7 +25,7 @@ const DownloadsAudio = () => {
                 format={item.format}
                 id={item.id}
                 key={item.id}
-                length={item.length}
+                length={item.lengthDisplay}
                 size={item.size}
                 source={item.source}
                 thumbnail={item.thumbnail}
@@ -44,7 +44,7 @@ const DownloadsAudio = () => {
                 format={item.format}
                 id={item.id}
                 key={item.id}
-                length={item.length}
+                length={item.lengthDisplay}
                 size={item.size}
                 source={item.source}
                 thumbnail={item.thumbnail}
@@ -63,7 +63,7 @@ const DownloadsAudio = () => {
                 format={item.format}
                 id={item.id}
                 key={item.id}
-                length={item.length}
+                length={item.lengthDisplay}
                 size={item.size}
                 source={item.source}
                 thumbnail={item.thumbnail}
@@ -82,7 +82,7 @@ const DownloadsAudio = () => {
                 format={item.format}
                 id={item.id}
                 key={item.id}
-                length={item.length}
+                length={item.lengthDisplay}
                 size={item.size}
                 source={item.source}
                 thumbnail={item.thumbnail}

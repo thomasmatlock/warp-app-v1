@@ -17,7 +17,6 @@ import { getInfo } from './getInfo';
 import getFileSize from './getFileSize';
 import formatLength from './formatLength';
 import formatTitle from './formatTitle';
-// ytdl(url, [{ dlChunkSize: 1 }]).pipe(fs.createWriteStream('video2.mp4'));
 export default async function Youtube(itemURL, avType, platform, storage) {
   // getFileSize();
 
@@ -27,17 +26,32 @@ export default async function Youtube(itemURL, avType, platform, storage) {
   try {
     await ytdl.getBasicInfo(itemURL).then((info) => {
       // console.log(info.videoDetails.thumbnail);
+      // console.log(info.formats[0]);
+
       itemDetails = info.videoDetails;
+      // console.log(itemDetails);
+
       itemDetails.titleFS = formatTitle(itemDetails.title);
+      itemDetails.fps = info.formats[0].fps;
+      // itemDetails.resolution =
+      //   info.formats[0].width + 'x' + info.formats[0].height;
+      itemDetails.resolution = info.formats[0].qualityLabel;
+      itemDetails.width = info.formats[0].width;
+      itemDetails.height = info.formats[0].height;
       itemDetails.date = new Date();
       itemDetails.lengthDisplay = formatLength(itemDetails.lengthSeconds);
       // console.log(itemDetails.lengthDisplay);
-
+      itemDetails.id = itemDetails.videoId;
       itemDetails.source = 'youtube';
-      // itemDetails.thumbnail = itemDetails.thumbnails[0].url;
+      itemDetails.url = itemURL;
+      itemDetails.format = 'mp4';
+      itemDetails.thumbnailDisplay = itemDetails.thumbnails[1].url;
+      itemDetails.type = 'video';
+      // itemDetails.type = 'audio';
 
-      // console.log(itemDetails.title);
+      // console.log(itemDetails.thumbnails);
       //  return info;
+      // ytdl(url, [{ dlChunkSize: 1 }]).pipe(fs.createWriteStream('video2.mp4'));
     });
   } catch (error) {
     console.log(itemURL, error);
