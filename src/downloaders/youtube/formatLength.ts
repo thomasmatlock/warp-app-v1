@@ -26,7 +26,7 @@ export default function formatLength(approxSeconds) {
       ? m < 10
         ? m
         : m
-      : '';
+      : '0';
   var sDisplay = s > 0 ? (s < 10 ? ':0' + s : ':' + s) : ':00';
   lengthFormatted = hDisplay + mDisplay + sDisplay;
   // console.log(h, m, s);
