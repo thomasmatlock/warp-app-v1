@@ -327,6 +327,7 @@ let browserPanelState = 'default';
   ipcMain.on('context: open_in_browser', async (event, matchingDownload) => {
     let url = matchingDownload.video_url;
     console.log(url);
+    if (view) view.webContents.loadURL(url);
   });
   ipcMain.on('context: remove_item', async (event, matchingDownload) => {
     console.log(matchingDownload);
