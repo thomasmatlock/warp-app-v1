@@ -82,7 +82,7 @@ const setVideoDownloads = (items) => {
   settings.set('videoDownloads', items);
 };
 // settings.delete('audioDownloads'); // testing only, REMOVE for production
-settings.delete('videoDownloads'); // testing only, REMOVE for production
+// settings.delete('videoDownloads'); // testing only, REMOVE for production
 let prefs = getPrefs();
 let audioDownloads = getAudioDownloads();
 let videoDownloads = getVideoDownloads();

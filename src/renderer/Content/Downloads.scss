@@ -248,13 +248,42 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     }
 }
 
-@media (min-width: 800px) and (max-width: 1650px) {
-    .content__panel__downloads__list__item__file_source,
-    .content__panel__downloads__list__item__file_date {
-        display: none;
-    }
-}
-
+// @media (min-width: 1400px) and (max-width: 1600px) {
+//     .content__panel__downloads__list__item__file_date {
+//         display: none;
+//     }
+// }
+// @media screen and (max-width: 1800px) {
+//     .content__panel__downloads__list__item__file_date {
+//         /* Apply some styles */
+//         display: none;
+//     }
+// }
+// @media screen and (max-width: 1600px) {
+//     // .content__panel__downloads__list__item__file_date {
+//     .content__panel__downloads__list__item__file_file_type,
+//     .content__panel__downloads__list__item__file_source {
+//         /* Apply some styles */
+//         display: none;
+//     }
+// }
+// @media (min-width: 800px) and (max-width: 1650px) {
+//     .content__panel__downloads__list__item__file_source,
+//     .content__panel__downloads__list__item__file_file_type {
+//         display: none;
+//     }
+// }
+// @media (min-width: 800px) and (max-width: 1650px) {
+//     .content__panel__downloads__list__item__file_source,
+//     .content__panel__downloads__list__item__file_file_type {
+//         display: none;
+//     }
+// }
+// @media (min-width: 800px) and (max-width: 1650px) {
+//     .content__panel__downloads__list__item__file_file_type {
+//         display: none;
+//     }
+// }
 .content__panel__downloads__list__item .filterBar__menu__item {
     opacity: 0;
     transition: all 0s ease-in-out !important;

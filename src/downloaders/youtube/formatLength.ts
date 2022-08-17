@@ -5,7 +5,8 @@ export default function formatLength(approxSeconds) {
   approxSeconds = Number(approxSeconds);
   var h = Math.floor(approxSeconds / 3600);
   var m = Math.floor((approxSeconds % 3600) / 60);
-  var s = Math.floor((approxSeconds % 3600) % 60);
+  var s = Math.floor(((approxSeconds % 3600) % 60) - 1);
+  // s = s - 1;
 
   // var hDisplay = h > 0 ? h + (h == 1 ? ' hour, ' : ' hours, ') : '';
   // var mDisplay = m > 0 ? m + (m == 1 ? ' minute, ' : ' minutes, ') : '';

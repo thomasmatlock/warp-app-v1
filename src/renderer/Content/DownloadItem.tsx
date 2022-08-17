@@ -219,7 +219,7 @@ const DownloadItem = (props) => {
           {props.type === 'video' && (
             <img
               src={IconFileTypeVideo}
-              className=" content__panel__downloads__list__item__img content__panel__downloads__list__item__file_length"
+              className=" content__panel__downloads__list__item__img content__panel__downloads__list__item__file_type"
               style={
                 themeCtx.isDarkTheme
                   ? { filter: 'invert(100%)' }
