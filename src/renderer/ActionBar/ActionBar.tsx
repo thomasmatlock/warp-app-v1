@@ -1,4 +1,4 @@
-import { Fragment, useState, useContext } from 'react';
+import { Fragment, useState, useEffect, useContext } from 'react';
 import './ActionBar.scss';
 // import BrowserBar from '../ActionBar/BrowserBar/BrowserBar';
 import BrowserBar from './ActionBarBrowser';
@@ -8,14 +8,25 @@ import FilterBar_DownloadsVideo from './ActionBarVideo';
 import ThemeContext from '../../storage/themeContext';
 // import ActionBarContext from '../../storage/actionBarContext';
 import NavContext from '../../storage/navContext';
+import DownloadsContext from '../../storage/downloadsContext';
+// import DownloadsContext from 'storage/downloadsContext';
 
 const ActionBar = (props) => {
   const themeCtx = useContext(ThemeContext);
   const navCtx = useContext(NavContext);
+  const downloadsCtx = useContext(DownloadsContext);
   // const actionBarCtx = useContext(ActionBarContext);
 
-  const [audioDownloadsTotal, setAudioDownloadsTotal] = useState(0);
-  const [videoDownloadsTotal, setVideoDownloadsTotal] = useState(0);
+  const [audioDownloadsTotal, setAudioDownloadsTotal] = useState(
+    downloadsCtx.downloadsAudioState
+  );
+  const [videoDownloadsTotal, setVideoDownloadsTotal] = useState(
+    downloadsCtx.downloadsVideoState
+  );
+  useEffect(() => {
+    setAudioDownloadsTotal(downloadsCtx.downloadsAudioState);
+    setVideoDownloadsTotal(downloadsCtx.downloadsVideoState);
+  }, [downloadsCtx.downloadsAudioState, downloadsCtx.downloadsVideoState]);
   const [warpstagramDownloadsTotal, setWarpstagramDownloadsTotal] = useState(0);
   const [shouldSendScreenshot, setShouldSendScreenshot] = useState(true);
   const countAudioDownloads = () => {
