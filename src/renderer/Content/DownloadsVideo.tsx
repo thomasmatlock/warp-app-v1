@@ -58,8 +58,6 @@ const DownloadsVideo = () => {
     actionBarCtx.sortOldNew,
     inputCtx.searchText,
     downloadsCtx.downloadsVideoState,
-    // FIXME: this is a hack to make the component re-render when the downloads change
-    // downloadsCtx.downloadsVideoState,
   ]);
   const videoDownloads = (
     <ul className="content__panel__downloads__list">

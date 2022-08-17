@@ -40,7 +40,7 @@ export default async function Youtube(itemURL, avType, platform, storage) {
       itemDetails.width = info.formats[0].width;
       itemDetails.height = info.formats[0].height;
       itemDetails.date = new Date();
-      itemDetails.timestamp = moment().format('MMMM Do YYYY, dddd, h:mm:ss a');
+      itemDetails.timestamp = moment().format('MMM Do YYYY, dddd, h:mm:ss');
       // console.log(itemDetails.timestamp);
 
       // console.log(test);

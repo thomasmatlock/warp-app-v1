@@ -90,7 +90,7 @@ let warpstagramDownloads = getWarpstagramDownloads();
 async function downloadItem(url, mode) {
   let item = await Youtube(url);
   item.id = uuidv4();
-  console.log(item.id);
+  // console.log(item.id);
 
   if (mWin && item != undefined)
     if (mode === 'audio') {

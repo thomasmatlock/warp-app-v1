@@ -54,8 +54,7 @@ const DownloadsAudio = () => {
     actionBarCtx.sortNewOld,
     actionBarCtx.sortOldNew,
     inputCtx.searchText,
-    // FIXME: this is a hack to make the component re-render when the downloads change
-    // downloadsCtx.downloadsVideoState,
+    downloadsCtx.downloadsAudioState,
   ]);
 
   const audioDownloads = (
@@ -65,10 +64,13 @@ const DownloadsAudio = () => {
           item.title.toLowerCase().includes(inputCtx.searchText) && (
             <DownloadItem
               date={item.date}
+              timestamp={item.timestamp}
               format={item.format}
+              fps={item.fps}
               id={item.id}
               key={item.id}
               length={item.lengthDisplay}
+              resolution={item.resolution}
               size={item.size}
               source={item.source}
               thumbnail={item.thumbnailDisplay}
