@@ -29,8 +29,9 @@ const BrowserBar = () => {
   // console.log(prefsCtx.prefs.video.dropdowns[1].defaultValue);
 
   useEffect(() => {
-    if (prefsCtx.prefs === undefined || null) {
-    } else {
+    if (prefsCtx.prefs.audio === undefined) {
+      console.log('prefsCtx.prefs is undefined');
+    } else if (prefsCtx.prefs.audio) {
       setAudioFormat(prefsCtx.prefs.audio.dropdowns[1].defaultValue.label);
       setVideoFormat(prefsCtx.prefs.video.dropdowns[1].defaultValue.label);
     }
