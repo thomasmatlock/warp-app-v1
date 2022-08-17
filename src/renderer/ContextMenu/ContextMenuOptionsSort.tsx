@@ -3,15 +3,18 @@ import iconSortAZ from '../../../assets/ContextMenu/sortAZ.svg';
 import iconSortZA from '../../../assets/ContextMenu/sortZA.svg';
 import iconSortNewOld from '../../../assets/ContextMenu/sortOldNew.svg';
 import iconSortOldNew from '../../../assets/ContextMenu/sortNewOld.svg';
-import ActionBarContext from 'storage/actionBarContext';
+import ActionBarContext from '../../storage/actionBarContext';
+// const actionBarCtx = useContext(ActionBarContext);
 // import
+// const actionBarCtx = useContext(ActionBarContext);
 const ContextMenuSortOptions = [
   {
     name: 'Sort by name (A-Z)',
     id: 'sort_az',
     icon: iconSortAZ,
-    // onClick: () => {
+    // sortAZ: () => {
     //   console.log('sort_by_name_asc');
+    //   // actionBarCtx.sortAZhandler();
     // },
   },
   {

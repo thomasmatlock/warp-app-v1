@@ -355,7 +355,10 @@ const DownloadItem = (props) => {
             }
           />
           {isContentMenuVisible && (
-            <ContextMenu options={ContextMenuDownloadItemOptions} />
+            <ContextMenu
+              options={ContextMenuDownloadItemOptions}
+              downloadID={props.id}
+            />
           )}
         </div>
       </div>

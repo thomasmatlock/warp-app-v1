@@ -43,8 +43,8 @@ export const NavContextProvider = (props) => {
     });
   });
   // main mode states
-  const [audioMode, setAudioMode] = useState(false);
-  const [videoMode, setVideoMode] = useState(true);
+  const [audioMode, setAudioMode] = useState(true);
+  const [videoMode, setVideoMode] = useState(false);
   const [warpstagramMode, setWarpstagramMode] = useState(false);
   // modal pref nav states
   const [audioModePrefs, setAudioModePrefs] = useState(true);

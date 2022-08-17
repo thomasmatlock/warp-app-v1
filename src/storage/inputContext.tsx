@@ -11,7 +11,7 @@ export const InputContextProvider = (props) => {
   const searchInputSubmit = (event) => {
     event.preventDefault();
     if (searchText.length > 0) {
-      console.log(searchText);
+      // console.log(searchText);
       window.electron.ipcRenderer.sendMessage('Search: Submit', [searchText]);
     } else {
       console.log('no search text');

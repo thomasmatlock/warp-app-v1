@@ -10,6 +10,7 @@ import {
   app,
   BrowserView,
   BrowserWindow,
+  clipboard,
   desktopCapturer,
   dialog,
   globalShortcut,
@@ -317,6 +318,25 @@ let browserPanelState = 'default';
     event.reply('main: prefs', prefs);
     //  event.reply('FilterBar: Warpstagram: FilterTypeLocations successful'); // sends message to renderer
   });
+  // CONTEXT MENU LISTENERS
+  ipcMain.on('context: copy_link_address', async (event, matchingDownload) => {
+    let url = matchingDownload.video_url;
+    console.log(url);
+    clipboard.writeText(url);
+  });
+  ipcMain.on('context: open_in_browser', async (event, matchingDownload) => {
+    let url = matchingDownload.video_url;
+    console.log(url);
+  });
+  ipcMain.on('context: remove_item', async (event, matchingDownload) => {
+    console.log(matchingDownload);
+  });
+  ipcMain.on('context: remove_all', async (event, matchingDownload) => {
+    console.log(matchingDownload);
+  });
+  ipcMain.on('context: delete_file', async (event, matchingDownload) => {
+    console.log(matchingDownload);
+  });
 })();
 
 ipcMain.on('settings: request', async (event, arg) => {
@@ -426,7 +446,7 @@ const windowController = {
         mWin.minimize();
       } else {
         mWin.show();
-        if (view) mWin.maximize();
+        // if (view) mWin.maximize();
         // mWin.maximize();
         mWin.webContents.send('appVersion', app.getVersion());
         mWin.webContents.send('main: prefs', prefs);

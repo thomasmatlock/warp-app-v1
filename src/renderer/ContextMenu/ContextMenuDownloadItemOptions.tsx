@@ -16,34 +16,22 @@ const ContextMenuDownloadItemOptions = [
     name: 'Open in browser',
     id: 'open_in_browser',
     icon: iconPaste,
-    onClick: () => {
-      console.log('open_in_browser');
-    },
   },
   {
     name: 'Remove',
     id: 'remove_item',
     icon: iconRemove,
-    onClick: () => {
-      console.log('remove_item');
-    },
   },
 
   {
     name: 'Remove all',
     id: 'remove_all',
     icon: iconRemoveAll,
-    onClick: () => {
-      console.log('remove_all');
-    },
   },
   {
     name: 'Delete file',
     id: 'delete_file',
     icon: iconDelete,
-    onClick: () => {
-      console.log('delete_file');
-    },
   },
 ];
 export default ContextMenuDownloadItemOptions;
