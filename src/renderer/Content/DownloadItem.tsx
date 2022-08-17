@@ -60,7 +60,10 @@ const DownloadItem = (props) => {
       return iconSourceYoutube;
     }
   }
-  const dateString = itemFormat.formatDate(props.date);
+  // console.log(props.timestamp);
+
+  // const dateString = itemFormat.formatDate(props.date);
+  const dateString = props.timestamp;
   const format = props.format ? props.format.toUpperCase() : '';
   const fps = `${props.fps}`;
   const length = `${props.length}`;

@@ -115,11 +115,13 @@
         "electron-log": "^4.4.7",
         "electron-store": "^8.1.0",
         "electron-updater": "^5.0.3",
+        "moment": "^2.29.4",
         "nanoid": "^4.0.0",
         "react": "^18.1.0",
         "react-dom": "^18.1.0",
         "react-router-dom": "^6.3.0",
         "react-script-tag": "^1.1.2",
+        "uuid": "^8.3.2",
         "ytdl-core": "^4.11.0"
     },
     "prettier": {

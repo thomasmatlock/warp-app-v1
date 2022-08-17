@@ -29,6 +29,7 @@ import downloadsVideoDefaults from '../storage/downloadsVideoDefaults';
 import downloadsWarpstagramDefaults from '../storage/downloadsWarpstagramDefaults';
 import Youtube from '../downloaders/youtube/Youtube';
 import testUrls from '../downloaders/youtube/testURLS';
+import { v4 as uuidv4 } from 'uuid';
 
 // let testItem;
 let randomYoutubeURL =
@@ -39,13 +40,6 @@ let randomYoutubeURL =
 // })();
 // async function  downloadItem  (url: string) => {}
 
-async function downloadItem(url, mode) {
-  // console.log('calling');
-  let item = await Youtube(url);
-  if (mWin && item != undefined)
-    mWin.webContents.send('main: item-downloaded', item);
-  // console.log(item);
-}
 //////////////////////////////////////////////////////
 const Store = require('electron-store');
 const settings = new Store();
@@ -88,12 +82,27 @@ const getWarpstagramDownloads = () => {
     return warpstagramDownloads;
   }
 };
-
-// settings.delete('prefs'); // testing only, REMOVE for production
+const setVideoDownloads = (items) => {
+  settings.set('videoDownloads', items);
+};
+settings.delete('videoDownloads'); // testing only, REMOVE for production
 let prefs = getPrefs();
 let audioDownloads = getAudioDownloads();
 let videoDownloads = getVideoDownloads();
 let warpstagramDownloads = getWarpstagramDownloads();
+async function downloadItem(url, mode) {
+  // console.log('calling');
+  let item = await Youtube(url);
+  // item.id = nanoid(10);
+  item.id = uuidv4();
+  console.log(item.id);
+
+  if (mWin && item != undefined)
+    mWin.webContents.send('main: item-downloaded', item);
+  videoDownloads.push(item);
+  setVideoDownloads(videoDownloads);
+  // console.log(item);
+}
 
 // console.log(prefs.general.dropdowns[1].defaultValue);
 let activeURL: string;
@@ -406,6 +415,12 @@ const windowController = {
         // mWin.maximize();
         mWin.webContents.send('appVersion', app.getVersion());
         mWin.webContents.send('main: prefs', prefs);
+        mWin.webContents.send('main: audioDownloads', audioDownloads);
+        mWin.webContents.send('main: videoDownloads', videoDownloads);
+        mWin.webContents.send(
+          'main: warpstagramDownloads',
+          warpstagramDownloads
+        );
       }
     });
     mWin.on('resize', () => {});

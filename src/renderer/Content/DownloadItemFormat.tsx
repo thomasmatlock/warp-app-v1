@@ -65,6 +65,8 @@ function convertMonthToMonthName(date) {
     'November',
     'December'
   );
+  console.log(date.getMonth());
+
   //   itemMonth = `${month[date.getMonth()]}`;
   return `${month[date.getMonth()]}`;
 }
@@ -73,23 +75,32 @@ function convertDateToDate(date) {
   return `${date.getDate()}`;
 }
 function formatDate(date) {
-  //   console.log(date);
+  console.log(date);
   let itemMonth;
   let itemDate;
-  let itemYear = date.getFullYear();
+  // let itemYear = date.getFullYear();
+  let itemYear;
   let itemDay;
-  let itemHour = date.getHours();
-  let itemMinute = date.getMinutes();
+  let itemHour;
+  let itemMinute;
+  // console.log(date.getHours());
+  // let itemHour = date.getHours();
+  // let itemMinute = date.getMinutes();
   itemMinute = itemMinute < 10 ? '0' + itemMinute : itemMinute;
 
-  let itemSecond = date.getSeconds();
+  // let itemSecond = date.getSeconds();
+  let itemSecond;
   let timeSuffix = itemHour >= 12 ? 'PM' : 'AM';
   itemHour = itemHour % 12;
-  itemDay = convertDayToWeekday(date);
-  itemDate = convertDateToDate(date);
-  itemMonth = convertMonthToMonthName(date);
-  const dateString = `${itemMonth} ${itemDate}, ${itemYear}, ${itemDay}, ${itemHour}:${itemMinute} ${timeSuffix}`;
+  // itemDay = convertDayToWeekday(date);
+  // itemDate = convertDateToDate(date);
+  // console.log(date.getMonth());
+
+  // itemMonth = convertMonthToMonthName(date);
+  // const dateString = `${itemMonth} ${itemDate}, ${itemYear}, ${itemDay}, ${itemHour}:${itemMinute} ${timeSuffix}`;
+  const dateString = `testing ${itemMonth}`;
   return dateString;
+  // return date.getFullYear();
 }
 module.exports = {
   capitalizeFirstLetter,

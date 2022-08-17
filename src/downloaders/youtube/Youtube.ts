@@ -1,4 +1,5 @@
 import ytdl from 'ytdl-core';
+import moment from 'moment';
 let url: string = 'http://www.youtube.com/watch?v=aqz-KE-bpKQ';
 import {
   app,
@@ -39,9 +40,16 @@ export default async function Youtube(itemURL, avType, platform, storage) {
       itemDetails.width = info.formats[0].width;
       itemDetails.height = info.formats[0].height;
       itemDetails.date = new Date();
+      itemDetails.timestamp = moment().format('MMMM Do YYYY, dddd, h:mm:ss a');
+      // console.log(itemDetails.timestamp);
+
+      // console.log(test);
+
+      // console.log(itemDetails.date);
+
       itemDetails.lengthDisplay = formatLength(itemDetails.lengthSeconds);
       // console.log(itemDetails.lengthDisplay);
-      itemDetails.id = itemDetails.videoId;
+      // itemDetails.videoId = itemDetails.videoId;
       itemDetails.source = 'youtube';
       itemDetails.url = itemURL;
       itemDetails.format = 'mp4';
