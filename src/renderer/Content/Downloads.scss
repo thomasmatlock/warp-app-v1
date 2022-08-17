@@ -11,7 +11,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
         opacity: 0;
         // transform: translateX(-500px) scale(3); // start keyframe, just translate position on x axis to left 10rem
         // transform: translateX(-350px) scale(1); // start keyframe, just translate position on x axis to left 10rem
-        transform: perspective(400px) rotate3d(1, 0, 0, 90deg) translateX(-1000px);
+        transform: perspective(40px) rotate3d(1, 0, 0, 0deg) translateY(60px) translateX(-400px) scale(0);
         // z-index: 5;
         // transform: translateX( -500px); // start keyframe, just translate position on x axis to left 10rem
         // transform: translateX( -20rem); // start keyframe, just translate position on x axis to left 10rem
@@ -21,8 +21,80 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     }
     100% {
         opacity: 1;
-        // transform: translate(0) scale(1);
+        // transform: scale(1);
         //putting zero basically places elements how it looks normally above we just offset the starting keyframes by translating it over
+    }
+}
+
+@keyframes flipInX {
+    from {
+        transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+        animation-timing-function: ease-in;
+        // opacity: 0;
+    }
+    // 40% {
+    //     transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+    //     animation-timing-function: ease-in;
+    // }
+    // 60% {
+    //     transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+    // }
+    // 80% {
+    //     transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+    // }
+    to {
+        // transform: perspective(400px);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        background: rgba(0, 0, 0, 0);
+    }
+    100% {
+        background: rgba(0, 0, 0, 0.7);
+    }
+}
+
+@keyframes sketchIn {
+    0% {
+        stroke-dashoffset: 7780;
+    }
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes bondJamesBond {
+    0% {
+        transform: translateX(-1000px) rotate3d(1, 0, 0, 90deg) scale(0);
+        width: 0px;
+        // transform: perspective(40px) rotate3d(1, 0, 0, 0deg) translateY(60px) translateX(-400px) scale(0);
+        opacity: 0;
+        // height: 0px;
+        border-radius: 0px 250px 0px 0px;
+        // width: 90%;
+        box-shadow: -20px 30px 80px 0 rgba(0, 0, 0, 1) !important;
+        z-index: 3;
+    }
+    80% {
+        transform: translateX(0px);
+        // height: 20px;
+        // height: 75px;
+        // width: 75px;
+        // border-radius: 35px;
+    }
+    90% {
+        // border-radius: 15px;
+        // height: 182px;
+        // width: 247px;
+    }
+    100% {
+        // border-radius: 3px;
+        // height: 162px;
+        // width: 227px;
+        // opacity: 1;
     }
 }
 
@@ -73,7 +145,14 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
         background-color: $gray-dark-light;
         min-height: 50px !important;
         height: 56px !important;
+        // animation: flipInX 0.5s ease-in-out;
         animation: moveInLeftDownload 0.5s ease-in-out;
+        // animation: moveInLeftDownload 0.5s ease-in-out;
+        animation: bondJamesBond 0.25s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+        // animation: fadeIn 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+        // animation: sketchIn 0.5s 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+        // animation: sketchIn 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+        // animation: flipInX 0.5s ease-in-out;
         // animation-delay: 0.5s;
         // background-color: #1a1a1a;
         // border: 1px dotted red;
@@ -98,6 +177,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
         &:hover .filterBar__menu__item {
             transition: all 0s ease-in-out;
             opacity: 1;
+            // animation: bondJamesBond 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
         }
         &__thumbnail {
             border-radius: 1px;
@@ -106,6 +186,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
             max-height: 56px;
             // width: auto;
             // height: auto;
+            // animation: bondJamesBond 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
         }
         &__info {
             display: flex;
@@ -124,6 +205,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
                 flex-direction: row !important;
                 justify-content: flex-start;
                 // justify-content: center !important;
+                // animation: bondJamesBond 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
                 align-items: center;
                 width: 100%;
             }
@@ -139,6 +221,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
             // font-size: 7px;
             margin-left: 0px;
             font-size: 14px;
+            // animation: bondJamesBond 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
         }
         &__file_source {
             color: rgb(162, 162, 162);
@@ -168,7 +251,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
 @media (min-width: 800px) and (max-width: 1650px) {
     .content__panel__downloads__list__item__file_source,
     .content__panel__downloads__list__item__file_date {
-        // display: none;
+        display: none;
     }
 }
 

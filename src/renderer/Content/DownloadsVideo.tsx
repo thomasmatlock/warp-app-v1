@@ -15,9 +15,55 @@ const DownloadsVideo = () => {
   const actionBarCtx = useContext(ActionBarContext);
   const downloadsCtx = useContext(DownloadsContext);
   const inputCtx = useContext(InputContext);
+  const [downloads, setDownloads] = useState(
+    Array.from(downloadsCtx.downloadsVideo).sort((a, b) => {
+      if (actionBarCtx.sortAZ) {
+        // return a.title.localeCompare(b.title);
+        return Sort.byAZ(downloadsCtx.downloadsVideo, 'title');
+        // return a.title.localeCompare(b.title);
+      } else if (actionBarCtx.sortZA) {
+        return Sort.byZA(downloadsCtx.downloadsVideo, 'title');
+        // return Sort.byZA(a, b);
+        // return b.title.localeCompare(a.title);
+      } else if (actionBarCtx.sortNewOld) {
+        return Sort.byDateNewToOld(downloadsCtx.downloadsVideo, 'date');
+      } else if (actionBarCtx.sortOldNew) {
+        return Sort.byDateOldToNew(downloadsCtx.downloadsVideo, 'date');
+      }
+    })
+  );
+
+  useEffect(() => {
+    setDownloads(
+      Array.from(downloadsCtx.downloadsVideo).sort((a, b) => {
+        if (actionBarCtx.sortAZ) {
+          // return a.title.localeCompare(b.title);
+          return Sort.byAZ(downloadsCtx.downloadsVideo, 'title');
+          // return a.title.localeCompare(b.title);
+        } else if (actionBarCtx.sortZA) {
+          return Sort.byZA(downloadsCtx.downloadsVideo, 'title');
+          // return Sort.byZA(a, b);
+          // return b.title.localeCompare(a.title);
+        } else if (actionBarCtx.sortNewOld) {
+          return Sort.byDateNewToOld(downloadsCtx.downloadsVideo, 'date');
+        } else if (actionBarCtx.sortOldNew) {
+          return Sort.byDateOldToNew(downloadsCtx.downloadsVideo, 'date');
+        }
+      })
+    );
+  }, [
+    actionBarCtx.sortAZ,
+    actionBarCtx.sortZA,
+    actionBarCtx.sortNewOld,
+    actionBarCtx.sortOldNew,
+    inputCtx.searchText,
+    // FIXME: this is a hack to make the component re-render when the downloads change
+    // downloadsCtx.downloadsVideoState,
+  ]);
   const videoDownloads = (
     <ul className="content__panel__downloads__list">
-      {downloadsCtx.downloadsVideo.map(
+      {/* {downloads.map( */}
+      {downloads.map(
         (item) =>
           item.title.toLowerCase().includes(inputCtx.searchText) && (
             <DownloadItem

@@ -137,25 +137,36 @@ let downloadsWarpstagram = {
 const DownloadsContext = React.createContext({
   downloadsAudio: [],
   downloadsVideo: [],
+  downloadsVideoState: {},
   downloadsWarpstagram: {},
   getDownloadID: () => {},
 });
 const getDownloadID = (id) => {
   console.log(id);
 };
+let pushed = false;
 export const DownloadsContextProvider = (props) => {
+  const [downloadsVideoState, setDownloadsVideoState] = useState(0);
   window.electron.ipcRenderer.on('main: item-downloaded', (item, mode) => {
     downloadsVideo.push(item);
+    if (!pushed) {
+      pushed = true;
+    }
+    // pushed = false;
   });
   window.electron.ipcRenderer.on('main: audioDownloads', (items) => {
     // console.log(items);
-    console.log(items[0].date);
+    // console.log(items[0].date);
     // items.forEach((item) => downloadsAudio.push(item));
     // downloadsVideo.push(item);
   });
   window.electron.ipcRenderer.on('main: videoDownloads', (items) => {
     // console.log(items);
-    items.forEach((item) => downloadsVideo.push(item));
+    if (!pushed) {
+      items.forEach((item) => downloadsVideo.push(item));
+      setDownloadsVideoState(downloadsVideo.length);
+      pushed = true;
+    }
     // downloadsVideo.push(item);
   });
   window.electron.ipcRenderer.on('main: warpstagramDownloads', (items) => {
@@ -169,6 +180,7 @@ export const DownloadsContextProvider = (props) => {
       value={{
         downloadsAudio: downloadsAudio,
         downloadsVideo: downloadsVideo,
+        downloadsVideoState: downloadsVideoState,
         downloadsWarpstagram: downloadsWarpstagram,
         getDownloadID: getDownloadID,
       }}
