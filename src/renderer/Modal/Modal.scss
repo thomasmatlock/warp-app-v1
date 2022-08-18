@@ -20,8 +20,10 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
 
 .modal {
     position: fixed;
-    top: 25%;
+    // top: 25%;
+    top: calc(50% - 300px);
     left: 25% !important;
+    left: calc(50% - 500px) !important;
     background-color: transparent;
     display: flex;
     flex-direction: column;
@@ -35,9 +37,11 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     max-height: calc(100% - 300px) !important;
     width: calc(100% - 50%) !important;
     min-width: 800px !important;
-    // max-width: 800px !important;
+    max-width: 1000px !important;
     min-height: 480px;
     overflow: hidden !important;
+    height: 564px !important;
+    width: 1000px !important;
     &__astronaut {
         height: 60px !important;
         position: absolute !important;

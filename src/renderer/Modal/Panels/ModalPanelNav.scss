@@ -45,7 +45,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     justify-content: flex-start; // PRODUCTION
     // z-index: 20;
     // padding-left: 24px;
-    margin-top: 10px;
+    margin-top: 8px;
     transition: all ease-out 0.1s;
     border-radius: 4px;
     &__icon {
@@ -80,6 +80,16 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
         transform: scaleX(0.95) scaleY(0.95);
         box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.2);
     }
+}
+
+// .modalPrefsNav_button:first-child {
+//     font-size: 50px;
+//     background-color: red;
+// }
+#modalPrefsNav_button_audio_ID {
+    // background-color: $gradient-blue;
+    // background-color: red;
+    margin-top: 48px;
 }
 
 .modalPrefsNav_button:hover .modalPrefsNav_button__icon {
@@ -117,7 +127,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.4);
     filter: grayscale(0%);
     transition: all ease-out 0.1s;
-    margin-top: 10px;
+    margin-top: 8px;
     max-height: 60px;
 }
 
