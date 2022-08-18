@@ -46,7 +46,7 @@ $gray-dark-lightest: #313131;
 
 .wrapup_cards__card:hover,
 .wrapup_card_hovered {
-    transform: translateY(-5px) translateX(0px) rotate(0deg); // testing
+    transform: translateY(0px) translateX(0px) rotate(0deg); // testing
     height: 350px;
     transition: 0.1s ease-out;
     box-shadow: -1rem -0rem 3rem #000;
@@ -61,7 +61,7 @@ $gray-dark-lightest: #313131;
 }
 
 .wrapup_card_hovered p {
-    color: #fff;
+    // color: #fff;
 }
 
 .wrapup_card_hovered .wrapup_cards__card__astronaut__container__astronaut {
@@ -75,7 +75,7 @@ $gray-dark-lightest: #313131;
 }
 
 .wrapup_cards__card:hover * {
-    color: #fff;
+    // color: #fff;
 }
 
 .wrapup_cards__card:hover~.wrapup_cards__card {
@@ -114,6 +114,7 @@ $gray-dark-lightest: #313131;
     flex-direction: row;
     justify-content: start;
     align-items: center;
+    cursor: pointer;
     &__item {
         color: #fff;
         will-change: transform;

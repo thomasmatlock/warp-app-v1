@@ -1,8 +1,8 @@
 import { Fragment, useState } from 'react';
 import './Cards.scss';
 import Card from './Card';
-import IconFileTypeAudio from '../../../../assets/Downloads/fileTypeAudio.svg';
-import IconFileTypeVideo from '../../../../assets/Downloads/fileTypeVideo.svg';
+import IconFileTypeAudio from '../../../../assets/Modals/license/fileTypeAudio.svg';
+import IconFileTypeVideo from '../../../../assets/Modals/license/fileTypeVideo.svg';
 
 const Cards = () => {
   const [audioCardExpanded, setAudioCardExpanded] = useState(false);
@@ -51,22 +51,22 @@ const Cards = () => {
     <Fragment>
       <div className="wrapup_cards">
         <Card
-          title={audioCard.title}
+          info={audioCard}
           onMouseEnter={audioHandler}
           expanded={audioCardExpanded}
         />
         <Card
-          title={videoCard.title}
+          info={videoCard}
           onMouseEnter={videoHandler}
           expanded={videoCardExpanded}
         />
         <Card
-          title={warpstagramCard.title}
+          info={warpstagramCard}
           onMouseEnter={warpstagramHandler}
           expanded={warpstagramCardExpanded}
         />
         <Card
-          title={bundleCard.title}
+          info={bundleCard}
           onMouseEnter={bundleHandler}
           expanded={bundleCardExpanded}
         />

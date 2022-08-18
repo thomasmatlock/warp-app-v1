@@ -22,7 +22,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     position: fixed;
     // top: 25%;
     top: calc(50% - 300px);
-    left: calc(50% - 500px) !important;
+    left: calc(50% - 400px) !important;
     background-color: transparent;
     display: flex;
     // border: 5px solid #fff;
@@ -41,7 +41,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     height: 300px;
     // height: 800px;
     // width: 1000px !important;
-    width: 1000px !important;
+    width: 800px !important;
     &__license_mode {
         width: 1200px !important;
         height: 800px;

@@ -7,7 +7,7 @@ const Card = (props) => {
       <div
         // id="wrapup_cards__card1"
         className="wrapup_cards__card "
-        onMouseEnter={props.onMouseEnter}
+        onClick={props.onMouseEnter}
         style={
           props.expanded
             ? {
@@ -23,11 +23,11 @@ const Card = (props) => {
         <div className="wrapup_cards__card__header">
           <img
             className="wrapup_cards__card__header__item wrapup_cards__card__header__icon"
-            src={props.header_source}
+            src={props.info.header_source}
             height="30px"
           />
           <h2 className="wrapup_cards__card__header__item wrapup_cards__card__header__title">
-            {props.title}
+            {props.info.title}
           </h2>
         </div>
         <div className="wrapup_cards__card__description">
