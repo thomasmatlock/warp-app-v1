@@ -15,6 +15,8 @@ const DownloadsVideo = () => {
   const actionBarCtx = useContext(ActionBarContext);
   const downloadsCtx = useContext(DownloadsContext);
   const inputCtx = useContext(InputContext);
+  // console.log(downloadsCtx.downloadsVideo[0].background);
+
   const [downloads, setDownloads] = useState(
     Array.from(downloadsCtx.downloadsVideo).sort((a, b) => {
       if (actionBarCtx.sortAZ) {
@@ -67,6 +69,7 @@ const DownloadsVideo = () => {
           item.searchTags.toLowerCase().includes(inputCtx.searchText) && (
             <DownloadItem
               author={item.author.name}
+              backgroundURL={item.background.url}
               date={item.date}
               timestamp={item.timestamp}
               format={item.format}

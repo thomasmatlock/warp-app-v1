@@ -154,10 +154,13 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
         // animation: sketchIn 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
         // animation: flipInX 0.5s ease-in-out;
         // animation-delay: 0.5s;
-        // background-color: #1a1a1a;
+        background-color: #1a1a1a;
         // border: 1px dotted red;
         color: rgb(167, 167, 167);
         // z-index: 10;
+        // background-size: cover;
+        background-position: center;
+        background-size: 0%;
         &__img {
             width: 14px;
             // border-radius: 50%;
@@ -173,6 +176,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
             transition: all 0s ease-in-out !important;
             z-index: 1;
             cursor: pointer;
+            background-size: 100%;
         }
         &:hover .filterBar__menu__item {
             transition: all 0s ease-in-out;

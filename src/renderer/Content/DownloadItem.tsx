@@ -101,7 +101,12 @@ const DownloadItem = (props) => {
       // className="content__panel__downloads__list__item content__panel__downloads__list__item__audio"
       style={
         themeCtx.isDarkTheme
-          ? { backgroundColor: themeCtx.nav.dark.backgroundColor }
+          ? {
+              // backgroundImage: props.backgroundURL
+              //   ? `url(${props.backgroundURL})`
+              //   : '',
+              backgroundColor: themeCtx.nav.dark.backgroundColor,
+            }
           : {
               backgroundColor: themeCtx.nav.light.backgroundColor,
             }

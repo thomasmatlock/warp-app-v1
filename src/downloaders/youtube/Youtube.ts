@@ -26,11 +26,14 @@ export default async function Youtube(itemURL, mode, platform, storage) {
   let itemDetails = {};
   try {
     await ytdl.getBasicInfo(itemURL).then((info) => {
-      // console.log(info.videoDetails.thumbnail);
-      // console.log(info.formats[0]);
-
+      // console.log(info.videoDetails);
+      // console.log(info.formats);
       itemDetails = info.videoDetails;
-      // console.log(itemDetails);
+      itemDetails.background =
+        info.videoDetails.thumbnail.thumbnails[
+          info.videoDetails.thumbnail.thumbnails.length - 1
+        ];
+      console.log(itemDetails.background);
 
       itemDetails.titleFS = formatTitle(itemDetails.title);
       itemDetails.fps = info.formats[0].fps;
