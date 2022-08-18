@@ -11,7 +11,7 @@ const Card = (props) => {
         style={
           props.expanded
             ? {
-                height: '300px',
+                height: 'calc(100% - 190px)',
                 // boxShadow: '-0rem -1rem 2rem #fff',
               }
             : { height: '100px' }

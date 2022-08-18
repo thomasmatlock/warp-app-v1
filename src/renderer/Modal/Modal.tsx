@@ -11,13 +11,8 @@ const ModalOverlay = (props) => {
 
   return (
     <div
-      className="modal"
-      style={
-        navCtx.licenseModePrefs
-          ? { height: '1000px' }
-          : {
-              // filter: 'invert(100%)',
-            }
+      className={
+        navCtx.licenseModePrefs ? 'modal modal__license_mode' : 'modal'
       }
     >
       {/* <img src={astronaut} alt="" className="modal__astronaut" /> */}

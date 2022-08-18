@@ -22,7 +22,6 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     position: fixed;
     // top: 25%;
     top: calc(50% - 300px);
-    left: 25% !important;
     left: calc(50% - 500px) !important;
     background-color: transparent;
     display: flex;
@@ -34,16 +33,21 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     z-index: 30;
     transition: all 0.3s ease-in-out;
     animation: slide-down 300ms ease-out forwards;
-    // height: calc(100% - 50%) !important;
-    max-height: calc(100% - 300px) !important;
     width: calc(100% - 50%) !important;
-    min-width: 800px !important;
-    max-width: 1000px !important;
+    // min-width: 800px !important;
     min-height: 480px;
-    overflow: hidden !important;
-    height: 550px;
+    // overflow: hidden !important;
+    transition: all 0.1s ease-in-out;
+    height: 300px;
     // height: 800px;
+    // width: 1000px !important;
     width: 1000px !important;
+    &__license_mode {
+        width: 1200px !important;
+        height: 800px;
+        top: calc(50% - 400px);
+        left: calc(50% - 600px) !important;
+    }
     &__astronaut {
         height: 60px !important;
         position: absolute !important;
