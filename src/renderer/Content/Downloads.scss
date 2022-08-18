@@ -177,6 +177,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
             z-index: 1;
             cursor: pointer;
             background-size: 100%;
+            // min-height: 128px !important;
         }
         &:hover .filterBar__menu__item {
             transition: all 0s ease-in-out;

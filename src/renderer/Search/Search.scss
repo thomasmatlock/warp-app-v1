@@ -39,6 +39,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
         font-size: 14px;
         box-shadow: none;
         // padding-left: 40px !important;
+        // box-shadow: inset 4px 4px 4px #eee, inset -4px -4px 4px white;
         &__icon {
             transform: translateX(48px);
             height: 20px;
