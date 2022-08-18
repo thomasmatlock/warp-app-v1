@@ -5,17 +5,12 @@ const Card = (props) => {
   return (
     <Fragment>
       <div
-        // id="wrapup_cards__card1"
-        className="wrapup_cards__card "
-        onClick={props.onMouseEnter}
-        style={
+        className={
           props.expanded
-            ? {
-                height: 'calc(100% - 190px)',
-                // boxShadow: '-0rem -1rem 2rem #fff',
-              }
-            : { height: '100px' }
+            ? 'wrapup_cards__card wrapup_card_hovered'
+            : ' wrapup_cards__card'
         }
+        onClick={props.onMouseEnter}
       >
         <div className="wrapup_cards__card__astronaut__container">
           {/* <img className="wrapup_cards__card__astronaut__container__astronaut" src="img/public/sections/space/astronauts/png/Asset 8 whitened.webp" alt="" loading="lazy"> */}
