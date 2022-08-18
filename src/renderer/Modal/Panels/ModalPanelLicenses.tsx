@@ -1,12 +1,12 @@
 import { Fragment } from 'react';
 import './ModalPanel.scss';
+import Cards from './Cards';
 
 const ModalPanelLicenses = () => {
   return (
     <Fragment>
       <div id="" className="modalPrefsPanel">
-        {/* <!-- AUDIO--> */}
-        <div
+        {/* <div
           id="modalPrefsPanel__auths_audio"
           className="modalPrefsPanel__auths modalPrefsPanel__auths_licenseActivation"
         >
@@ -29,7 +29,8 @@ const ModalPanelLicenses = () => {
             id="modalPrefsPanel__auths_panel_bottom_audio"
             className="modalPrefsPanel__auths_panel modalPrefsPanel__auths_panel_secondary "
           ></div>
-        </div>
+        </div> */}
+        <Cards />
       </div>
     </Fragment>
   );

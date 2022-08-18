@@ -29,6 +29,7 @@ const ModalPreferences = (props) => {
   const modalsCtx = useContext(ModalsContext);
   const prefsCtx = useContext(PrefsContext);
   // console.log(prefsCtx);
+  // console.log(props);
 
   // console.log(modalsCtx.getID);
   // console.log(modalsCtx.prefs.audio.dropdowns[1]);
@@ -66,30 +67,38 @@ const ModalPreferences = (props) => {
   const showPanelAudio = () => {
     hideAllPanels();
     setModalPanelAudio(true);
+    navCtx.audioModePrefsHandler();
   };
   const showPanelVideo = () => {
     hideAllPanels();
     setModalPanelVideo(true);
+    navCtx.videoModePrefsHandler();
   };
   const showPanelWarpstagram = () => {
     hideAllPanels();
     setModalPanelWarpstagram(true);
+    navCtx.videoModePrefsHandler();
+    // navCtx.warpstagramModePrefsHandler();
   };
   const showPanelMorph = () => {
     hideAllPanels();
     setModalPanelMorph(true);
+    // navCtx.morph();
   };
   const showPanelGeneral = () => {
     hideAllPanels();
     setModalPanelGeneral(true);
+    navCtx.generalModePrefsHandler();
   };
   const showPanelAuths = () => {
     hideAllPanels();
     setModalPanelAuths(true);
+    navCtx.authsModePrefsHandler();
   };
   const showPanelLicenses = () => {
     hideAllPanels();
     setModalPanelLicenses(true);
+    navCtx.licenseModePrefsHandler();
   };
 
   return (

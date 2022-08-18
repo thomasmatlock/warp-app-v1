@@ -26,7 +26,7 @@ const Search = (props) => {
   const navCtx = useContext(NavContext);
   const inputCtx = useContext(InputContext);
   const modalsCtx = useContext(ModalsContext);
-  // console.log(modalsCtx.prefs);
+  // console.log(navCtx);
 
   const prefsCtx = useContext(PrefsContext);
   // console.log(prefsCtx.prefs);

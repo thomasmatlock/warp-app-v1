@@ -11,18 +11,21 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     min-width: 60px;
     width: 60px;
     left: 0;
-    top: 60px;
+    top: 50px;
+    // bottom: 80px;
     position: absolute;
     // border: 1px dotted red;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    // justify-content: space-between;
+    justify-content: center;
     align-items: center;
     align-content: center;
     background-color: $gray-dark-lightest;
     border-radius: 0 0 0 10px;
     overflow: hidden;
+    height: calc(100% - 50px) !important;
+    z-index: 40;
     // box-shadow: 0 10px 20px -8px #c5d6d6;
     &:hover {
         width: 180px;
@@ -36,16 +39,14 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     flex: 1;
     width: 100%;
     // height: 60px !important;
-    max-height: 60px !important;
+    max-height: 50px !important;
     flex-direction: row;
     align-items: center;
     align-content: center;
     color: #ffffff60;
     cursor: pointer;
     justify-content: flex-start; // PRODUCTION
-    // z-index: 20;
-    // padding-left: 24px;
-    margin-top: 8px;
+    margin: 4px;
     transition: all ease-out 0.1s;
     border-radius: 4px;
     &__icon {
@@ -82,14 +83,18 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     }
 }
 
-// .modalPrefsNav_button:first-child {
-//     font-size: 50px;
-//     background-color: red;
-// }
-#modalPrefsNav_button_audio_ID {
-    // background-color: $gradient-blue;
-    // background-color: red;
-    margin-top: 48px;
+#modalPrefsNav_button_license_ID {
+    text-shadow: 0 0 5px #fff, 0 0 25px #fff;
+    color: white;
+}
+
+#modalPrefsNav_button_license_ID p {
+    text-shadow: 0 0 5px #fff, 0 0 25px #fff;
+}
+
+#modalPrefsNav_button_license_ID:hover {
+    box-shadow: -0rem -0.1rem 1rem #fff;
+    text-shadow: 0 0 5px #fff, 0 0 25px #fff;
 }
 
 .modalPrefsNav_button:hover .modalPrefsNav_button__icon {
@@ -103,11 +108,9 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     width: 100%;
     height: 100%;
     flex-direction: row;
-    align-items: evenly;
-    align-content: center;
     color: #ffffff60;
     cursor: pointer;
-    // justify-content: flex-start; // PRODUCTION
+    justify-content: flex-start; // PRODUCTION
     z-index: 20;
     transition: all ease-out 0.1s;
     display: flex;
@@ -122,24 +125,27 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     background-image: linear-gradient( to left, rgba(238, 238, 238, 0.205) 0%, rgba(102, 102, 102, 0.205) 100%);
     width: 100%;
     transform: scaleX(0.96) scaleY(0.96);
+    // padding: 2px;
     // transform: translateY(-0.2rem);
     /*this value is in relation to initial state, not hover state*/
     box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.4);
     filter: grayscale(0%);
     transition: all ease-out 0.1s;
-    margin-top: 8px;
-    max-height: 60px;
+    // margin: 16px;
+    margin: 4px;
+    // max-height: 60px;
+    max-height: 50px !important;
 }
 
 .modalPrefsNav_button__active img {
     filter: grayscale(0%);
 }
 
-.modalPrefsNav_button__active p {
+.modalPrefsNav_button p {
+    font-size: 14px;
     margin-left: 24px;
 }
 
-.modalPrefsNav_button p {
-    font-size: 14px;
-    margin-left: 20px;
+.modalPrefsNav_button__active p {
+    margin-left: 24px;
 }
