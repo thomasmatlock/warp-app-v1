@@ -31,7 +31,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     align-items: center;
     border-radius: 10px;
     z-index: 30;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.5s ease-in-out !important;
     animation: slide-down 300ms ease-out forwards;
     width: calc(100% - 50%) !important;
     // min-width: 800px !important;

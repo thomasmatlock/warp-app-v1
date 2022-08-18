@@ -25,11 +25,11 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     border-radius: 0 0 0 10px;
     overflow: hidden;
     height: calc(100% - 50px) !important;
-    z-index: 40;
+    // z-index: 30;
     // box-shadow: 0 10px 20px -8px #c5d6d6;
     &:hover {
         width: 180px;
-        // box-shadow: 0 0.6rem 1rem rgba(0, 0, 0, 0.6);
+        // box-shadow: 0rem -1rem 3rem rgba(0, 0, 0, 0.6);
     }
 }
 
