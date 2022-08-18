@@ -1,12 +1,18 @@
 import { Fragment, useContext } from 'react';
 import './ModalHeader.scss';
 import clearTextIcon from '../../../../assets/Search/close.svg';
+import astronaut from '../../../../assets/astronauts/png/Asset 8 whitened.png';
 import ThemeContext from '../../../storage/themeContext';
 const ModalHeader = (props) => {
   const themeCtx = useContext(ThemeContext);
   return (
     <Fragment>
       <div className="modal_preferences__header">
+        {/* <img
+          src={astronaut}
+          alt=""
+          className="modal_preferences__header__astronaut"
+        /> */}
         <h3 className="modal_preferences__header__title">Preferences</h3>
         <div className="modal_preferences__header__close">
           <img

@@ -37,6 +37,16 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     min-width: 800px !important;
     // max-width: 800px !important;
     min-height: 480px;
+    overflow: hidden !important;
+    &__astronaut {
+        height: 60px !important;
+        position: absolute !important;
+        z-index: -10 !important;
+        top: 10px !important;
+        right: 250px !important;
+        filter: drop-shadow(-3px 0px 15px rgba(0, 0, 0, 1));
+        // box-shadow: 0 8px 8px rgba(0, 0, 0, 0.975);
+    }
     &__content {
         box-shadow: 0 8px 8px rgba(0, 0, 0, 0.975);
         // border: 1px solid red;
