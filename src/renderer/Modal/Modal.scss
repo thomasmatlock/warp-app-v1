@@ -36,17 +36,17 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     width: calc(100% - 50%) !important;
     // min-width: 800px !important;
     min-height: 480px;
-    // overflow: hidden !important;
+    overflow: hidden !important;
     transition: all 0.1s ease-in-out;
     height: 300px;
     // height: 800px;
     // width: 1000px !important;
     width: 800px !important;
     &__license_mode {
-        width: 1200px !important;
-        height: 800px;
-        top: calc(50% - 400px);
-        left: calc(50% - 600px) !important;
+        width: 1600px !important;
+        height: 900px;
+        top: calc(50% - 450px);
+        left: calc(50% - 800px) !important;
     }
     &__astronaut {
         height: 60px !important;

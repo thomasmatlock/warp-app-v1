@@ -11,17 +11,17 @@ const Cards = () => {
   const [bundleCardExpanded, setBundleCardExpanded] = useState(true);
   const audioCard = {
     title: 'Professional Audio Edition',
-    header_source: IconFileTypeAudio,
+    // header_source: IconFileTypeAudio,
   };
   const videoCard = {
     title: 'Professional Video Edition',
-    header_source: IconFileTypeVideo,
+    // header_source: IconFileTypeVideo,
   };
   const warpstagramCard = {
     title: 'Professional Warpstagram Edition',
   };
   const bundleCard = {
-    title: 'Professional Bundle Edition',
+    title: 'Bundle: Professional Audio, Video, and Warpstagram Editions',
   };
   const disableAll = () => {
     setAudioCardExpanded(false);
@@ -30,7 +30,7 @@ const Cards = () => {
     setBundleCardExpanded(false);
   };
   const audioHandler = () => {
-    console.log('audioHandler');
+    // console.log('audioHandler');
 
     disableAll();
     setAudioCardExpanded(true);

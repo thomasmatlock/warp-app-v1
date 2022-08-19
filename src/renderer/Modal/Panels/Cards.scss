@@ -4,6 +4,13 @@ $gray-dark-darkest: #1a1a1a;
 $gray-dark-dark: #202020;
 $gray-dark-light: #252525;
 $gray-dark-lightest: #313131;
+$nav-text-color: #000;
+$nav-text-color_hover: #fff;
+$gray-dark-darkest: #1a1a1a;
+$gray-dark-dark: #202020;
+$gray-dark-light: #252525;
+$gray-dark-lightest: #313131;
+$gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, #19d2fc 100%);
 .wrapup_cards {
     // position: absolute;
     height: 100%;
@@ -55,6 +62,25 @@ $gray-dark-lightest: #313131;
     height: calc(100% - 170px) !important;
     transition: 0.1s ease-out;
     box-shadow: -1rem -0rem 3rem #000;
+    // z-index: 49;
+}
+
+.wrapup_card_hovered:hover {
+    box-shadow: -1rem -0rem 3rem #000;
+    // z-index: 50;
+}
+
+.wrapup_card_hovered .wrapup_cards__card__description {
+    // color: #fff;
+    background-color: #fff;
+    background: linear-gradient( 60deg, rgba(84, 58, 183, 1) 0%, rgba(0, 172, 193, 1) 100%);
+    // background-image: $gradient-blue;
+}
+
+.wrapup_card_hovered .wrapup_cards__card__header {
+    // background-color: #fff;
+    letter-spacing: 1px;
+    height: 75px;
 }
 
 #wrapup_cards__card1:hover .wrapup_cards__card__astronaut__container__astronaut {

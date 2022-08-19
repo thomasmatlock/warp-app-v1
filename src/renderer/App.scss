@@ -29,6 +29,20 @@ body {
     //     transition: all 0.5s ease-in-out !important;
 }
 
+// // GREYCLIFF CUSTOM FONT
+@font-face {
+    font-family: 'GreycliffCF-Regular';
+    font-display: swap;
+    src: url('./fonts/Greycliff/Webfont/GreycliffCF-Regular.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'GreycliffCF-Bold';
+    font-weight: 800;
+    font-display: swap;
+    src: url('./fonts/Greycliff/Webfont/GreycliffCF-Bold.woff2') format('woff2');
+}
+
 // p {
 //     font-size: 1.2rem;
 //     line-height: 1.5;
