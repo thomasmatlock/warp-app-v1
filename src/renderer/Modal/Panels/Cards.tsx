@@ -21,7 +21,8 @@ const Cards = () => {
     title: 'Professional Warpstagram Edition',
   };
   const bundleCard = {
-    title: 'Bundle: Professional Audio, Video, and Warpstagram Editions',
+    title:
+      'Ultimate Bundle: Professional Audio, Video, and Warpstagram Editions',
   };
   const disableAll = () => {
     setAudioCardExpanded(false);
