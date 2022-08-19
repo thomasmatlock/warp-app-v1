@@ -210,7 +210,9 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
                 // animation: bondJamesBond 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
                 align-items: center;
                 width: 100%;
-                &__1 {}
+                &__1 {
+                    text-overflow: hidden !important;
+                }
                 &__2 {
                     // white-space: nowrap;
                     // height: 14px !important;
@@ -268,7 +270,6 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
                 // border: 1px dotted red;
                 width: 50px !important;
                 text-overflow: clip !important;
-                text-wrap: hidden !important;
             }
         }
     }

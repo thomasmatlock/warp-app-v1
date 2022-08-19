@@ -3,7 +3,7 @@ import racingIcon from '../../../../assets/Products/racing.svg';
 import downloadsIcon from '../../../../assets/Products/downloading.svg';
 import './Product.scss';
 
-const Product = (props) => {
+const Product = (props: object) => {
   const [isViewing, setIsViewing] = useState(true);
   const [isPurchasing, setIsPurchasing] = useState(false);
   const clickHandler = () => {
