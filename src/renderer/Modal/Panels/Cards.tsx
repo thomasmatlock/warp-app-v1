@@ -49,7 +49,7 @@ const Cards = () => {
   };
   return (
     <Fragment>
-      <div className="wrapup_cards">
+      <div className="cards">
         <Card
           info={audioCard}
           onMouseEnter={audioHandler}
