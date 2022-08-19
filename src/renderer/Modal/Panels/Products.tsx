@@ -10,6 +10,7 @@ const Products = (props) => {
       <div className="products_carousel">
         <Product />
         <Product />
+        {/* <Product /> */}
       </div>
     </Fragment>
   );
