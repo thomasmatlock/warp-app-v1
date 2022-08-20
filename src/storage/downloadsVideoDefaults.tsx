@@ -13,5 +13,5 @@
 //     type: 'video',
 //     url: 'https://www.youtube.com/watch?v=uq-_-RJt-E8',
 //   },
-const downloadsVideoDefaults = [];
+const downloadsVideoDefaults: never[] = [];
 export default downloadsVideoDefaults;

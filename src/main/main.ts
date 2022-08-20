@@ -32,7 +32,10 @@ import Youtube from '../downloaders/youtube/Youtube';
 import BrowserQuery from './browserQuery';
 import testUrls from '../downloaders/youtube/testURLS';
 import { v4 as uuidv4 } from 'uuid';
+import createCustomer from '../payments/stripe';
 
+// console.log(createCustomer);
+createCustomer();
 let randomYoutubeURL =
   testUrls.youtube[Math.floor(Math.random() * testUrls.youtube.length)];
 //////////////////////////////////////////////////////

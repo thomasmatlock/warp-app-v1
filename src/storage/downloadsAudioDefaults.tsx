@@ -47,5 +47,5 @@
 //     type: 'audio',
 //     url: 'https://www.youtube.com/watch?v=uq-_-RJt-E8',
 //   },
-const downloadsAudioDefaults = [];
+const downloadsAudioDefaults: never[] = [];
 export default downloadsAudioDefaults;
