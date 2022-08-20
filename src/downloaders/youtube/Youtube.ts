@@ -35,9 +35,16 @@ export default async function Youtube(itemURL, prefs, mode) {
   try {
     await ytdl.getBasicInfo(itemURL).then((info) => {
       // console.log(info.videoDetails);
-      if (mode.includes('audio')) getQuality(mode, audioQuality, info.formats);
-      if (mode.includes('video')) getQuality(mode, videoQuality, info.formats);
+      let matchedFormat;
+      if (mode.includes('audio')) {
+        matchedFormat = getQuality(mode, audioQuality, info.formats);
+      }
+      if (mode.includes('video')) {
+        matchedFormat = getQuality(mode, videoQuality, info.formats);
+      }
       // console.log(info.formats);
+      // console.log(matchedFormat);
+
       itemDetails = info.videoDetails;
       // itemDetails.background =
       //   info.videoDetails.thumbnail.thumbnails[
@@ -45,10 +52,10 @@ export default async function Youtube(itemURL, prefs, mode) {
       //   ];
 
       itemDetails.titleFS = formatTitle(itemDetails.title);
-      itemDetails.fps = info.formats[0].fps;
-      itemDetails.resolution = info.formats[0].qualityLabel;
-      itemDetails.width = info.formats[0].width;
-      itemDetails.height = info.formats[0].height;
+      itemDetails.fps = matchedFormat.fps;
+      itemDetails.resolution = matchedFormat.qualityLabel;
+      itemDetails.width = matchedFormat.width;
+      itemDetails.height = matchedFormat.height;
       itemDetails.date = new Date();
       itemDetails.timestamp = moment().format('MMM Do YYYY, dddd, h:mm:ss a');
       itemDetails.lengthDisplay = formatLength(itemDetails.lengthSeconds);

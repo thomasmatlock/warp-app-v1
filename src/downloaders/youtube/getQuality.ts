@@ -3,6 +3,7 @@ import getVideoQuality from './getVideoQuality';
 export default function getQuality(mode, desiredQuality, formats) {
   let availableAudioFormats: Array<any> = [];
   let availableVideoFormats: Array<any> = [];
+  let matchedFormat;
 
   formats.forEach((format) => {
     if (format.mimeType.includes('audio')) {
@@ -13,10 +14,11 @@ export default function getQuality(mode, desiredQuality, formats) {
     }
   });
   if (mode.includes('audio')) {
-    let matchedFormat = getAudioQuality(desiredQuality, availableAudioFormats);
+    matchedFormat = getAudioQuality(desiredQuality, availableAudioFormats);
     console.log(matchedFormat);
   }
   if (mode.includes('video')) {
-    let matchedFormat = getVideoQuality(desiredQuality, availableVideoFormats);
+    matchedFormat = getVideoQuality(desiredQuality, availableVideoFormats);
   }
+  return matchedFormat;
 }
