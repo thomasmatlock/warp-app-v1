@@ -19,6 +19,7 @@ export default function getQuality(mode, desiredQuality, formats) {
   }
   if (mode.includes('video')) {
     matchedFormat = getVideoQuality(desiredQuality, availableVideoFormats);
+    console.log(matchedFormat);
   }
   return matchedFormat;
 }

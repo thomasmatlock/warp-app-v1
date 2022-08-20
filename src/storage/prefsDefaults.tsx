@@ -110,6 +110,11 @@ const prefs = {
             label: '1080p60',
           },
           {
+            id: 'modal_dropdown_video_quality_1080p',
+            value: 'video_quality_1080p',
+            label: '1080p',
+          },
+          {
             id: 'modal_dropdown_video_quality_720p60',
             value: 'video_quality_720p60',
             label: '720p60',
