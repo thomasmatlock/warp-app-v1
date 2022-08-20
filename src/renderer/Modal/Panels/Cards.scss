@@ -41,7 +41,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
         flex-direction: column;
         // transform: translateY(300px);
         // height: 150px; // default
-        height: 100px; // testing
+        height: 50px; // testing
         // height: 100% !important;
         width: 100%;
         background-color: #1a1a1a;
@@ -73,14 +73,27 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
 .card_hovered .cards__card__description {
     // color: #fff;
     background-color: #fff;
-    // background: linear-gradient( 60deg, rgba(84, 58, 183, 1) 0%, rgba(0, 172, 193, 1) 100%);
     // background-image: $gradient-blue;
 }
 
 .card_hovered .cards__card__header {
-    // background-color: #fff;
+    background-color: #fff;
     letter-spacing: 1px;
     height: 75px;
+    display: flex;
+    flex-direction: row;
+    // background: linear-gradient( 60deg, rgba(84, 58, 183, 1) 0%, rgba(0, 172, 193, 1) 100%);
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px 10px 0 0;
+}
+
+.card_hovered .cards__card__header h2 {
+    // background-color: #fff;
+    color: #000;
+    letter-spacing: 2px;
+    font-size: 36px;
+    // height: 75px;
 }
 
 #cards__card1:hover .cards__card__astronaut__container__astronaut {

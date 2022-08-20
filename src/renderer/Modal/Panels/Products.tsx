@@ -3,7 +3,7 @@ import './Products.scss';
 import Product from './Product';
 
 const Products = (props) => {
-  // console.log(props);
+  console.log(props);
 
   return (
     <Fragment>

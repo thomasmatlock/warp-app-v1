@@ -14,10 +14,26 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
 .products_carousel {
     height: 100%;
     height: calc(100% - 10rem);
-    width: calc(100% - 4rem);
+    width: calc(100% - 10rem);
     top: 5rem;
     position: absolute;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: -1rem 0 3rem rgba(0, 0, 0, 0.5);
+    // border: 1px solid red;
+    overflow: hidden;
+}
+
+.products_carousel:first-child {
+    // margin-left: -5rem;
+    background-color: #fff !important;
+    // filter: invert(1);
+}
+
+.products_carousel:not(first-child) {
+    // margin-left: -5rem;
+    background-color: #1a1a1a !important;
 }
