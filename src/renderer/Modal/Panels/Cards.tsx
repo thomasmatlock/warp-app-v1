@@ -1,75 +1,68 @@
-import { Fragment, useState } from 'react';
+import { Fragment, useState, useContext } from 'react';
 import './Cards.scss';
 import Card from './Card';
+import ProductsContext from '../../../../src/storage/productsContext';
 import IconFileTypeAudio from '../../../../assets/Modals/license/fileTypeAudio.svg';
 import IconFileTypeVideo from '../../../../assets/Modals/license/fileTypeVideo.svg';
 
 const Cards = () => {
+  const productsCtx = useContext(ProductsContext);
   const [audioCardExpanded, setAudioCardExpanded] = useState(false);
   const [videoCardExpanded, setVideoCardExpanded] = useState(false);
   const [warpstagramCardExpanded, setWarpstagramCardExpanded] = useState(false);
   const [bundleCardExpanded, setBundleCardExpanded] = useState(true);
   const audioCard = {
     title: 'Professional Audio Edition',
+    id: 'audioCard',
+    background: 'linear-gradient(-45deg, red, #e73c7e, #ff8500)',
     // header_source: IconFileTypeAudio,
+
+    productID1: 'product_audio_1',
+    productID2: 'product_audio_2',
   };
   const videoCard = {
     title: 'Professional Video Edition',
-    // header_source: IconFileTypeVideo,
+    id: 'videoCard',
+    // $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, #19d2fc 100%);
+    background: 'linear-gradient( -45deg, #0463db , #19d2fc )',
+    productID1: 'product_video_1',
+    productID2: 'product_video_2',
   };
   const warpstagramCard = {
     title: 'Professional Warpstagram Edition',
+    id: 'warpstagramCard',
+    background: 'linear-gradient( -45deg, #9200A9, #B65CFA )',
+    productID1: 'product_warpstagram_1',
+    productID2: 'product_warpstagram_2',
   };
   const bundleCard = {
     title:
       'Ultimate Bundle: Professional Audio, Video, and Warpstagram Editions',
-  };
-  const disableAll = () => {
-    setAudioCardExpanded(false);
-    setVideoCardExpanded(false);
-    setWarpstagramCardExpanded(false);
-    setBundleCardExpanded(false);
-  };
-  const audioHandler = () => {
-    // console.log('audioHandler');
-
-    disableAll();
-    setAudioCardExpanded(true);
-  };
-  const videoHandler = () => {
-    disableAll();
-    setVideoCardExpanded(true);
-  };
-  const warpstagramHandler = () => {
-    disableAll();
-    setWarpstagramCardExpanded(true);
-  };
-  const bundleHandler = () => {
-    disableAll();
-    setBundleCardExpanded(true);
+    id: 'bundleCard',
+    productID: 'product_bundle',
   };
   return (
     <Fragment>
       <div className="cards">
         <Card
           info={audioCard}
-          onMouseEnter={audioHandler}
-          expanded={audioCardExpanded}
+          onClick={productsCtx.expandAudioCard}
+          expanded={productsCtx.audioCardExpanded}
         />
         <Card
           info={videoCard}
-          onMouseEnter={videoHandler}
-          expanded={videoCardExpanded}
+          onClick={productsCtx.expandVideoCard}
+          expanded={productsCtx.videoCardExpanded}
         />
         <Card
           info={warpstagramCard}
-          onMouseEnter={warpstagramHandler}
-          expanded={warpstagramCardExpanded}
+          onClick={productsCtx.expandWarpstagramCard}
+          expanded={productsCtx.warpstagramCardExpanded}
         />
         <Card
           info={bundleCard}
-          onMouseEnter={bundleHandler}
-          expanded={bundleCardExpanded}
+          onClick={productsCtx.expandBundleCard}
+          expanded={productsCtx.bundleCardExpanded}
         />
       </div>
     </Fragment>

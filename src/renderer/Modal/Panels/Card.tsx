@@ -1,19 +1,20 @@
-import { Fragment } from 'react';
+import { Fragment, useState, useContext } from 'react';
 import './Cards.scss';
 // import './featureCards.scss';
 import './Product.scss';
 import './Products.scss';
 import Product from './Product';
 import Products from './Products';
+import ProductsContext from '../../../../src/storage/productsContext';
 
 const Card = (props) => {
-  // console.log(props);
-
+  const productsCtx = useContext(ProductsContext);
   return (
     <Fragment>
       <div
+        id={props.info.id}
         className={props.expanded ? 'cards__card card_hovered' : ' cards__card'}
-        onClick={props.onMouseEnter}
+        onClick={props.onClick}
       >
         <div className="cards__card__astronaut__container">
           {/* <img className="cards__card__astronaut__container__astronaut" src="img/public/sections/space/astronauts/png/Asset 8 whitened.webp" alt="" loading="lazy"> */}
@@ -28,8 +29,15 @@ const Card = (props) => {
             {props.info.title}
           </h2>
         </div>
-        <div className="cards__card__description">
-          {props.expanded && <Products />}
+        <div
+          className="cards__card__description"
+          style={{
+            background: props.info.background,
+            backgroundSize: '400% 400%',
+            animation: 'gradient 10s ease infinite',
+          }}
+        >
+          {props.expanded && <Products info={props.info} />}
         </div>
       </div>
     </Fragment>
