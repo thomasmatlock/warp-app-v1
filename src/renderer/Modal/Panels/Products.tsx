@@ -1,33 +1,42 @@
-import { Fragment } from 'react';
+import { Fragment, useContext } from 'react';
 import './Products.scss';
 import Product from './Product';
+import ProductsContext from '../../../../src/storage/productsContext';
 
 const Products = (props) => {
+  const productsCtx = useContext(ProductsContext);
   // console.log(props);
 
   return (
     <Fragment>
       {props.info.id.includes('audio') && (
         <div className="products_carousel">
-          <Product info={props.info} />
-          <Product info={props.info} />
+          {productsCtx.isViewingAudio1 && <Product info={props.info} />}
+          {productsCtx.isViewingAudio2 && <Product info={props.info} />}
+          {/* <Product info={props.info} /> */}
+          {/* <Product info={props.info} /> */}
         </div>
       )}{' '}
       {props.info.id.includes('video') && (
         <div className="products_carousel">
-          <Product info={props.info} />
-          <Product info={props.info} />
+          {productsCtx.isViewingVideo1 && <Product info={props.info} />}
+          {productsCtx.isViewingVideo2 && <Product info={props.info} />}
+          {/* <Product info={props.info} /> */}
+          {/* <Product info={props.info} /> */}
         </div>
-      )}{' '}
+      )}
       {props.info.id.includes('warpstagram') && (
         <div className="products_carousel">
-          <Product info={props.info} />
-          <Product info={props.info} />
+          {productsCtx.isViewingWarpstagram1 && <Product info={props.info} />}
+          {productsCtx.isViewingWarpstagram2 && <Product info={props.info} />}
+          {/* <Product info={props.info} /> */}
+          {/* <Product info={props.info} /> */}
         </div>
       )}{' '}
       {props.info.id.includes('bundle') && (
         <div className="products_carousel">
-          <Product info={props.info} />
+          {productsCtx.isViewingBundle && <Product info={props.info} />}
+          {/* <Product info={props.info} /> */}
         </div>
       )}
     </Fragment>

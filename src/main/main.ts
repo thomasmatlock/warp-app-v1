@@ -91,8 +91,8 @@ let prefs = getPrefs();
 let audioDownloads = getAudioDownloads();
 let videoDownloads = getVideoDownloads();
 let warpstagramDownloads = getWarpstagramDownloads();
-async function downloadItem(url, mode) {
-  let item = await Youtube(url, mode);
+async function downloadItem(url, prefs) {
+  let item = await Youtube(url, prefs);
   item.id = uuidv4();
   // console.log(item.id);
 
@@ -308,12 +308,12 @@ let browserPanelState = 'default';
   // BROWSERBAR DOWNLOAD BUTTON LISTENERS
   ipcMain.on('BrowserBar: button: downloadAudio', async (event, arg) => {
     // if (view) console.log(view.webContents.getURL());
-    downloadItem(view.webContents.getURL(), 'audio');
+    downloadItem(view.webContents.getURL(), prefs);
     event.reply('BrowserBar: button: downloadAudio successful');
   });
   ipcMain.on('BrowserBar: button: downloadVideo', async (event, arg) => {
     // if (view) console.log(view.webContents.getURL());
-    downloadItem(view.webContents.getURL(), 'video');
+    downloadItem(view.webContents.getURL(), prefs);
     event.reply('BrowserBar: button: downloadVideo successful'); // sends message to renderer
   });
   ipcMain.on('browserPanelSize', async (event, arg) => {

@@ -90,10 +90,6 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     animation: gradient 1s ease infinite;
 }
 
-#audioCard {
-    // background: linear-gradient(-45deg, red, #e73c7e, #ff8500);
-}
-
 .card_hovered .cards__card__header {
     border-radius: 10px 10px 0 0;
 }

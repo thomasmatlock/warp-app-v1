@@ -18,8 +18,9 @@ import { getInfo } from './getInfo';
 import getFileSize from './getFileSize';
 import formatLength from './formatLength';
 import formatTitle from './formatTitle';
-export default async function Youtube(itemURL, mode, platform, storage) {
+export default async function Youtube(itemURL, prefs, storage) {
   // getFileSize();
+  console.log(prefs);
 
   // formatLength();
   // formatTitle();
@@ -33,7 +34,7 @@ export default async function Youtube(itemURL, mode, platform, storage) {
         info.videoDetails.thumbnail.thumbnails[
           info.videoDetails.thumbnail.thumbnails.length - 1
         ];
-      console.log(itemDetails.background);
+      // console.log(itemDetails.background);
 
       itemDetails.titleFS = formatTitle(itemDetails.title);
       itemDetails.fps = info.formats[0].fps;

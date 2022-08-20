@@ -8,14 +8,7 @@ const Product = (props: object) => {
   const productsCtx = useContext(ProductsContext);
   console.log(productsCtx);
 
-  const [isViewing, setIsViewing] = useState(true);
-  const [isPurchasing, setIsPurchasing] = useState(false);
-  const clickHandler = () => {
-    console.log('clicked');
-    setIsViewing(false);
-    setIsPurchasing(true);
-  };
-  console.log(props);
+  const clickHandler = () => {};
 
   return (
     <Fragment>
@@ -29,197 +22,181 @@ const Product = (props: object) => {
           <h1 className="title">Astronaut</h1>
         </div>
         <div className="product_description">
-          {!isPurchasing && (
-            <ul className="product_description__list">
-              <li className="product_description__list__item">
-                <img
-                  className="product_description__list__item__icon"
-                  src={racingIcon}
-                  alt=""
-                />
-                <div className="product_description__list__item__text">
-                  <div className="product_description__list__item__text__title">
-                    Playlists
-                  </div>
-                  <div className="product_description__list__item__text__description">
-                    Download audio in its original Youtube format or adjust it
-                    in your preferences to save space
-                  </div>
+          <ul className="product_description__list">
+            <li className="product_description__list__item">
+              <img
+                className="product_description__list__item__icon"
+                src={racingIcon}
+                alt=""
+              />
+              <div className="product_description__list__item__text">
+                <div className="product_description__list__item__text__title">
+                  Playlists
                 </div>
-              </li>{' '}
-              <li className="product_description__list__item">
-                <img
-                  className="product_description__list__item__icon"
-                  src={downloadsIcon}
-                  alt=""
-                />
-                <div className="product_description__list__item__text">
-                  <div className="product_description__list__item__text__title">
-                    Simultaneous downloads
-                  </div>
-                  <div className="product_description__list__item__text__description">
-                    Download audio in its original Youtube format or adjust it
-                    in your preferences to save space
-                  </div>
+                <div className="product_description__list__item__text__description">
+                  Download audio in its original Youtube format or adjust it in
+                  your preferences to save space
                 </div>
-              </li>{' '}
-              <li className="product_description__list__item">
-                <img
-                  className="product_description__list__item__icon"
-                  src={racingIcon}
-                  alt=""
-                />
-                <div className="product_description__list__item__text">
-                  <div className="product_description__list__item__text__title">
-                    Channels
-                  </div>
-                  <div className="product_description__list__item__text__description">
-                    Download audio in its original Youtube format or adjust it
-                    in your preferences to save space
-                  </div>
+              </div>
+            </li>{' '}
+            <li className="product_description__list__item">
+              <img
+                className="product_description__list__item__icon"
+                src={downloadsIcon}
+                alt=""
+              />
+              <div className="product_description__list__item__text">
+                <div className="product_description__list__item__text__title">
+                  Simultaneous downloads
                 </div>
-              </li>{' '}
-              <li className="product_description__list__item">
-                <img
-                  className="product_description__list__item__icon"
-                  src={racingIcon}
-                  alt=""
-                />
-                <div className="product_description__list__item__text">
-                  <div className="product_description__list__item__text__title">
-                    Multiple Formats
-                  </div>
-                  <div className="product_description__list__item__text__description">
-                    Download audio in its original Youtube format or adjust it
-                    in your preferences to save space
-                  </div>
+                <div className="product_description__list__item__text__description">
+                  Download audio in its original Youtube format or adjust it in
+                  your preferences to save space
                 </div>
-              </li>{' '}
-              <li className="product_description__list__item">
-                <img
-                  className="product_description__list__item__icon"
-                  src={racingIcon}
-                  alt=""
-                />
-                <div className="product_description__list__item__text">
-                  <div className="product_description__list__item__text__title">
-                    URLs Import and Export
-                  </div>
-                  <div className="product_description__list__item__text__description">
-                    Download audio in its original Youtube format or adjust it
-                    in your preferences to save space
-                  </div>
+              </div>
+            </li>{' '}
+            <li className="product_description__list__item">
+              <img
+                className="product_description__list__item__icon"
+                src={racingIcon}
+                alt=""
+              />
+              <div className="product_description__list__item__text">
+                <div className="product_description__list__item__text__title">
+                  Channels
                 </div>
-              </li>
-            </ul>
-          )}{' '}
-          {!isPurchasing && (
-            <ul className="product_description__list">
-              <li className="product_description__list__item">
-                <img
-                  className="product_description__list__item__icon"
-                  src={racingIcon}
-                  alt=""
-                />
-                <div className="product_description__list__item__text">
-                  <div className="product_description__list__item__text__title">
-                    Playlists
-                  </div>
-                  <div className="product_description__list__item__text__description">
-                    Download audio in its original Youtube format or adjust it
-                    in your preferences to save space
-                  </div>
+                <div className="product_description__list__item__text__description">
+                  Download audio in its original Youtube format or adjust it in
+                  your preferences to save space
                 </div>
-              </li>{' '}
-              <li className="product_description__list__item">
-                <img
-                  className="product_description__list__item__icon"
-                  src={downloadsIcon}
-                  alt=""
-                />
-                <div className="product_description__list__item__text">
-                  <div className="product_description__list__item__text__title">
-                    Simultaneous downloads
-                  </div>
-                  <div className="product_description__list__item__text__description">
-                    Download audio in its original Youtube format or adjust it
-                    in your preferences to save space
-                  </div>
+              </div>
+            </li>{' '}
+            <li className="product_description__list__item">
+              <img
+                className="product_description__list__item__icon"
+                src={racingIcon}
+                alt=""
+              />
+              <div className="product_description__list__item__text">
+                <div className="product_description__list__item__text__title">
+                  Multiple Formats
                 </div>
-              </li>{' '}
-              <li className="product_description__list__item">
-                <img
-                  className="product_description__list__item__icon"
-                  src={racingIcon}
-                  alt=""
-                />
-                <div className="product_description__list__item__text">
-                  <div className="product_description__list__item__text__title">
-                    Channels
-                  </div>
-                  <div className="product_description__list__item__text__description">
-                    Download audio in its original Youtube format or adjust it
-                    in your preferences to save space
-                  </div>
+                <div className="product_description__list__item__text__description">
+                  Download audio in its original Youtube format or adjust it in
+                  your preferences to save space
                 </div>
-              </li>{' '}
-              <li className="product_description__list__item">
-                <img
-                  className="product_description__list__item__icon"
-                  src={racingIcon}
-                  alt=""
-                />
-                <div className="product_description__list__item__text">
-                  <div className="product_description__list__item__text__title">
-                    Multiple Formats
-                  </div>
-                  <div className="product_description__list__item__text__description">
-                    Download audio in its original Youtube format or adjust it
-                    in your preferences to save space
-                  </div>
+              </div>
+            </li>{' '}
+            <li className="product_description__list__item">
+              <img
+                className="product_description__list__item__icon"
+                src={racingIcon}
+                alt=""
+              />
+              <div className="product_description__list__item__text">
+                <div className="product_description__list__item__text__title">
+                  URLs Import and Export
                 </div>
-              </li>{' '}
-              <li className="product_description__list__item">
-                <img
-                  className="product_description__list__item__icon"
-                  src={racingIcon}
-                  alt=""
-                />
-                <div className="product_description__list__item__text">
-                  <div className="product_description__list__item__text__title">
-                    URLs Import and Export
-                  </div>
-                  <div className="product_description__list__item__text__description">
-                    Download audio in its original Youtube format or adjust it
-                    in your preferences to save space
-                  </div>
+                <div className="product_description__list__item__text__description">
+                  Download audio in its original Youtube format or adjust it in
+                  your preferences to save space
                 </div>
-              </li>
-            </ul>
-          )}
-          {isPurchasing && (
+              </div>
+            </li>
+          </ul>
+          <ul className="product_description__list">
+            <li className="product_description__list__item">
+              <img
+                className="product_description__list__item__icon"
+                src={racingIcon}
+                alt=""
+              />
+              <div className="product_description__list__item__text">
+                <div className="product_description__list__item__text__title">
+                  Playlists
+                </div>
+                <div className="product_description__list__item__text__description">
+                  Download audio in its original Youtube format or adjust it in
+                  your preferences to save space
+                </div>
+              </div>
+            </li>{' '}
+            <li className="product_description__list__item">
+              <img
+                className="product_description__list__item__icon"
+                src={downloadsIcon}
+                alt=""
+              />
+              <div className="product_description__list__item__text">
+                <div className="product_description__list__item__text__title">
+                  Simultaneous downloads
+                </div>
+                <div className="product_description__list__item__text__description">
+                  Download audio in its original Youtube format or adjust it in
+                  your preferences to save space
+                </div>
+              </div>
+            </li>{' '}
+            <li className="product_description__list__item">
+              <img
+                className="product_description__list__item__icon"
+                src={racingIcon}
+                alt=""
+              />
+              <div className="product_description__list__item__text">
+                <div className="product_description__list__item__text__title">
+                  Channels
+                </div>
+                <div className="product_description__list__item__text__description">
+                  Download audio in its original Youtube format or adjust it in
+                  your preferences to save space
+                </div>
+              </div>
+            </li>{' '}
+            <li className="product_description__list__item">
+              <img
+                className="product_description__list__item__icon"
+                src={racingIcon}
+                alt=""
+              />
+              <div className="product_description__list__item__text">
+                <div className="product_description__list__item__text__title">
+                  Multiple Formats
+                </div>
+                <div className="product_description__list__item__text__description">
+                  Download audio in its original Youtube format or adjust it in
+                  your preferences to save space
+                </div>
+              </div>
+            </li>{' '}
+            <li className="product_description__list__item">
+              <img
+                className="product_description__list__item__icon"
+                src={racingIcon}
+                alt=""
+              />
+              <div className="product_description__list__item__text">
+                <div className="product_description__list__item__text__title">
+                  URLs Import and Export
+                </div>
+                <div className="product_description__list__item__text__description">
+                  Download audio in its original Youtube format or adjust it in
+                  your preferences to save space
+                </div>
+              </div>
+            </li>
+          </ul>
+          {
             <div className="product_description__checkout">
               <input
                 type="text"
                 className="product_description__checkout__email"
               />
             </div>
-          )}
+          }
         </div>
         <div className="product__footer">
-          <div
-            onClick={clickHandler}
-            className="product__footer__cta"
-            // style={
-            //   isViewing
-            //     ? {
-            //         animation: 'fadeIn 0.5s ease-in-out',
-            //       }
-            //     : {
-            //         animation: 'fadeOut 0.5s ease-in-out',
-            //       }
-            // }
-          >
+          <div onClick={clickHandler} className="product__footer__cta">
             <img
               className="product__footer__cta__icon"
               src={racingIcon}
@@ -227,19 +204,7 @@ const Product = (props: object) => {
             />
             <p className="product__footer__cta__text">Choose Now</p>
           </div>
-          <div
-            onClick={clickHandler}
-            className="product__footer__cta"
-            // style={
-            //   isPurchasing
-            //     ? {
-            //         animation: 'fadeIn 0.5s ease-in-out',
-            //       }
-            //     : {
-            //         animation: 'fadeOut 0.5s ease-in-out',
-            //       }
-            // }
-          >
+          <div onClick={clickHandler} className="product__footer__cta">
             <img
               className="product__footer__cta__icon"
               src={racingIcon}
@@ -247,8 +212,6 @@ const Product = (props: object) => {
             />
             <p className="product__footer__cta__text">Buy Now</p>
           </div>
-          {/* <img src="img/3rdparty/flaticon/1102341-essential/svg/001-add.svg" /> */}
-          {/* <h1 className="title">Astronaut</h1> */}
         </div>
       </div>
     </Fragment>
