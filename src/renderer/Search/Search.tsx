@@ -29,7 +29,7 @@ const Search = (props) => {
   // console.log(navCtx);
 
   const prefsCtx = useContext(PrefsContext);
-  // console.log(prefsCtx.prefs);
+  console.log(prefsCtx.prefs);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const restoreInputDefaultWidthDelay = 3000;
@@ -37,12 +37,12 @@ const Search = (props) => {
   const [clearIcon, setClearIcon] = useState(false);
 
   const [isHovering, setIsHovering] = useState(false);
-  let prefs;
-  window.electron.ipcRenderer.on('main: prefs', (arg) => {
-    // console.log(arg.audio.dropdowns);
+  // let prefs;
+  // window.electron.ipcRenderer.on('main: prefs', (arg) => {
+  //   // console.log(arg.audio.dropdowns);
 
-    prefs = arg;
-  });
+  //   prefs = arg;
+  // });
   const searchInputChangeHandler = (event) => {
     if (event.target.value.length > 0) {
       setClearIcon(true);
@@ -256,7 +256,7 @@ const Search = (props) => {
       </div>
       {modalsCtx.isModalOpen && (
         <ModalPreferences
-          prefs={prefs}
+          prefs={prefsCtx.prefs}
           // isLicenseMode={navCtx.licenseMode}
         />
       )}

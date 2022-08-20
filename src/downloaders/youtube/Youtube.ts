@@ -18,55 +18,47 @@ import { getInfo } from './getInfo';
 import getFileSize from './getFileSize';
 import formatLength from './formatLength';
 import formatTitle from './formatTitle';
-export default async function Youtube(itemURL, prefs, storage) {
-  // getFileSize();
-  console.log(prefs);
+import getQuality from './getQuality';
+export default async function Youtube(itemURL, prefs, mode) {
+  // console.log(prefs.video);
+  // console.log(prefs.audio.dropdowns[0].defaultValue);
+  // console.log(prefs.audio.dropdowns[1].defaultValue);
+  let audioFormat = prefs.audio.dropdowns[1].defaultValue.label;
+  let videoFormat = prefs.video.dropdowns[1].defaultValue.label;
+  let audioQuality = prefs.audio.dropdowns[0].defaultValue.label;
+  let videoQuality = prefs.video.dropdowns[0].defaultValue.label;
+  // console.log(audioQuality, videoQuality);
 
-  // formatLength();
-  // formatTitle();
+  // console.log(videoFormat);
+
   let itemDetails = {};
   try {
     await ytdl.getBasicInfo(itemURL).then((info) => {
       // console.log(info.videoDetails);
+      if (mode.includes('audio')) getQuality(mode, audioQuality, info.formats);
+      if (mode.includes('video')) getQuality(mode, videoQuality, info.formats);
       // console.log(info.formats);
       itemDetails = info.videoDetails;
-      itemDetails.background =
-        info.videoDetails.thumbnail.thumbnails[
-          info.videoDetails.thumbnail.thumbnails.length - 1
-        ];
-      // console.log(itemDetails.background);
+      // itemDetails.background =
+      //   info.videoDetails.thumbnail.thumbnails[
+      //     info.videoDetails.thumbnail.thumbnails.length - 1
+      //   ];
 
       itemDetails.titleFS = formatTitle(itemDetails.title);
       itemDetails.fps = info.formats[0].fps;
-      // itemDetails.resolution =
-      //   info.formats[0].width + 'x' + info.formats[0].height;
       itemDetails.resolution = info.formats[0].qualityLabel;
       itemDetails.width = info.formats[0].width;
       itemDetails.height = info.formats[0].height;
       itemDetails.date = new Date();
       itemDetails.timestamp = moment().format('MMM Do YYYY, dddd, h:mm:ss a');
-      // console.log(itemDetails.timestamp);
-
-      // console.log(test);
-
-      // console.log(itemDetails.date);
-
       itemDetails.lengthDisplay = formatLength(itemDetails.lengthSeconds);
-      // console.log(itemDetails.lengthDisplay);
-      // itemDetails.videoId = itemDetails.videoId;
       itemDetails.source = 'youtube';
       itemDetails.url = itemURL;
-      itemDetails.format = 'mp4';
-      itemDetails.thumbnailDisplay = itemDetails.thumbnails[1].url;
       itemDetails.type = mode;
-      // itemDetails.author = itemDetails.ownerChannelName;
+      itemDetails.format = mode === 'audio' ? audioFormat : videoFormat;
+      itemDetails.thumbnailDisplay = itemDetails.thumbnails[1].url;
       itemDetails.searchTags =
         itemDetails.ownerChannelName + ' ' + itemDetails.titleFS;
-      // itemDetails.type = 'audio';
-
-      // console.log(itemDetails.thumbnails);
-      //  return info;
-      // ytdl(url, [{ dlChunkSize: 1 }]).pipe(fs.createWriteStream('video2.mp4'));
     });
   } catch (error) {
     console.log(itemURL, error);

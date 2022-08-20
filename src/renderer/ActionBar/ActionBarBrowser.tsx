@@ -88,7 +88,7 @@ const BrowserBar = () => {
   window.electron.ipcRenderer.on('bView ready-to-show', (url) => {
     getURLpageType(url);
   });
-  window.electron.ipcRenderer.on('did-navigate-in-page', (arg) => {
+  window.electron.ipcRenderer.on('browser-url-change', (arg) => {
     getURLpageType(arg);
   });
   const downloadAudioHandler = () => {

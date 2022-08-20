@@ -26,16 +26,16 @@ const BrowserBarDownloadSource = () => {
   // console.log(sourcesCtx);
 
   let sourcesCount = sourcesCtx.enabledSources.length;
-  window.electron.ipcRenderer.on('ready-to-show', (arg) => {
-    // console.log(sourcesCtx.activeSource[0].URL);
-    setTimeout(() => {
-      window.electron.ipcRenderer.sendMessage(
-        'loadActiveSource',
+  // window.electron.ipcRenderer.on('ready-to-show', (arg) => {
+  //   // console.log(sourcesCtx.activeSource[0].URL);
+  //   setTimeout(() => {
+  //     window.electron.ipcRenderer.sendMessage(
+  //       'loadActiveSource',
 
-        sourcesCtx.activeSource[0].URL
-      );
-    }, 1000);
-  });
+  //       sourcesCtx.activeSource[0].URL
+  //     );
+  //   }, 1000);
+  // });
   let height_browserBarDownloadSource__hovering = sourcesCount * 48 + 6 + 'px';
   const [isSourcesExpanded, setIsSourcesExpanded] = useState(false);
   const sourceSelectedHandler = (id) => {

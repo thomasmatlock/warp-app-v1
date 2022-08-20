@@ -69,7 +69,7 @@ const DownloadsVideo = () => {
           item.searchTags.toLowerCase().includes(inputCtx.searchText) && (
             <DownloadItem
               author={item.author.name}
-              backgroundURL={item.background.url}
+              // backgroundURL={item.background.url}
               date={item.date}
               timestamp={item.timestamp}
               format={item.format}

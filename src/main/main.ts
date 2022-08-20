@@ -35,7 +35,7 @@ import { v4 as uuidv4 } from 'uuid';
 import createCustomer from '../payments/stripe';
 
 // console.log(createCustomer);
-createCustomer();
+// createCustomer();
 let randomYoutubeURL =
   testUrls.youtube[Math.floor(Math.random() * testUrls.youtube.length)];
 //////////////////////////////////////////////////////
@@ -88,14 +88,14 @@ const setVideoDownloads = (items) => {
   settings.set('videoDownloads', items);
 };
 
-// settings.delete('audioDownloads'); // testing only, REMOVE for production
-// settings.delete('videoDownloads'); // testing only, REMOVE for production
+settings.delete('audioDownloads'); // testing only, REMOVE for production
+settings.delete('videoDownloads'); // testing only, REMOVE for production
 let prefs = getPrefs();
 let audioDownloads = getAudioDownloads();
 let videoDownloads = getVideoDownloads();
 let warpstagramDownloads = getWarpstagramDownloads();
-async function downloadItem(url, prefs) {
-  let item = await Youtube(url, prefs);
+async function downloadItem(url, prefs, mode) {
+  let item = await Youtube(url, prefs, mode);
   item.id = uuidv4();
   // console.log(item.id);
 
@@ -311,12 +311,12 @@ let browserPanelState = 'default';
   // BROWSERBAR DOWNLOAD BUTTON LISTENERS
   ipcMain.on('BrowserBar: button: downloadAudio', async (event, arg) => {
     // if (view) console.log(view.webContents.getURL());
-    downloadItem(view.webContents.getURL(), prefs);
+    downloadItem(view.webContents.getURL(), prefs, 'audio');
     event.reply('BrowserBar: button: downloadAudio successful');
   });
   ipcMain.on('BrowserBar: button: downloadVideo', async (event, arg) => {
     // if (view) console.log(view.webContents.getURL());
-    downloadItem(view.webContents.getURL(), prefs);
+    downloadItem(view.webContents.getURL(), prefs, 'video');
     event.reply('BrowserBar: button: downloadVideo successful'); // sends message to renderer
   });
   ipcMain.on('browserPanelSize', async (event, arg) => {
@@ -441,7 +441,7 @@ const windowController = {
           : path.join(__dirname, '../../.erb/dll/preload.js'),
       },
     });
-
+    mWin.setMaxListeners(30);
     mWin.loadURL(resolveHtmlPath('index.html'));
 
     const wc = mWin.webContents;
@@ -488,8 +488,8 @@ const windowController = {
         mWin.minimize();
       } else {
         mWin.show();
-        if (view) mWin.maximize();
-        mWin.maximize();
+        // if (view) mWin.maximize();
+        // mWin.maximize();
         mWin.webContents.send('appVersion', app.getVersion());
         mWin.webContents.send('main: prefs', prefs);
         mWin.webContents.send('main: audioDownloads', audioDownloads);
@@ -520,7 +520,7 @@ const windowController = {
       width: mWin.getContentBounds().width / 2,
       height: mWin.getContentBounds().height - 192,
     });
-
+    // view.setMaxListeners(30);
     view.setAutoResize({ width: true, height: true });
     view.setBackgroundColor('#1a1a1a');
     // view.webContents.loadURL('https://youtube.com');
@@ -532,7 +532,7 @@ const windowController = {
     //   'https://www.youtube.com/channel/UCpCtwRCG1hHcijgy82wt8Ng/videos'
     // );
     view.webContents.on('did-navigate-in-page', (e, url) => {
-      if (mWin) mWin.webContents.send('did-navigate-in-page', url);
+      if (mWin) mWin.webContents.send('browser-url-change', url);
     });
     view.webContents.on('ready-to-show', (e, url) => {
       if (mWin)
@@ -620,7 +620,7 @@ app
     // mWinBounds.height = display.height; // default
     mWinBounds.height = display.height - 250; // testing
     windowController.createmWin();
-    // windowController.createbView();
+    windowController.createbView();
     globalShortcut.register('Alt+Left', () => {
       if (view) view.webContents.goBack();
     });
