@@ -5,10 +5,16 @@ import ProductsContext from '../../../../src/storage/productsContext';
 import './Product.scss';
 
 const Product = (props: object) => {
+  console.log(props);
+
   const productsCtx = useContext(ProductsContext);
   console.log(productsCtx);
 
-  const clickHandler = () => {};
+  const clickHandler = () => {
+    // productsCtx.setViewingProduct(props.info.id);
+    console.log(props.info.id);
+    console.log(props.info.productID1);
+  };
 
   return (
     <Fragment>
@@ -186,32 +192,44 @@ const Product = (props: object) => {
               </div>
             </li>
           </ul>
-          {
+          {/* {
             <div className="product_description__checkout">
               <input
                 type="text"
                 className="product_description__checkout__email"
               />
             </div>
-          }
+          } */}
         </div>
         <div className="product__footer">
-          <div onClick={clickHandler} className="product__footer__cta">
-            <img
-              className="product__footer__cta__icon"
-              src={racingIcon}
-              alt=""
-            />
-            <p className="product__footer__cta__text">Choose Now</p>
-          </div>
-          <div onClick={clickHandler} className="product__footer__cta">
+          {props.info.productID1 && (
+            <div onClick={clickHandler} className="product__footer__cta">
+              <img
+                className="product__footer__cta__icon"
+                src={racingIcon}
+                alt=""
+              />
+              <p className="product__footer__cta__text">Choose Now</p>
+            </div>
+          )}
+          {/* {productsCtx.isViewingAudio2 && (
+            <div onClick={clickHandler} className="product__footer__cta">
+              <img
+                className="product__footer__cta__icon"
+                src={racingIcon}
+                alt=""
+              />
+              <p className="product__footer__cta__text">Choose Now</p>
+            </div>
+          )} */}
+          {/* <div onClick={clickHandler} className="product__footer__cta">
             <img
               className="product__footer__cta__icon"
               src={racingIcon}
               alt=""
             />
             <p className="product__footer__cta__text">Buy Now</p>
-          </div>
+          </div> */}
         </div>
       </div>
     </Fragment>

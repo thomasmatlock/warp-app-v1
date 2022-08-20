@@ -6,7 +6,15 @@ import ProductsContext from '../../../../src/storage/productsContext';
 const Products = (props) => {
   const productsCtx = useContext(ProductsContext);
   // console.log(props);
+  const audioCard = {
+    title: 'Professional Audio Edition',
+    id: 'audioCard',
+    background: 'linear-gradient(-45deg, red, #e73c7e, #ff8500)',
+    // header_source: IconFileTypeAudio,
 
+    productID1: 'product_audio_1',
+    productID2: 'product_audio_2',
+  };
   return (
     <Fragment>
       {props.info.id.includes('audio') && (
