@@ -3,13 +3,13 @@ export default function getVideoFormat(desiredQuality, formats: Array<any>) {
   let matchedFormat;
   // RETURNS BEST QUALITY
   formats.forEach((format) => {
-    console.log(format.qualityLabel);
+    // console.log(format.qualityLabel);
 
     if (
       format.qualityLabel.toLowerCase().includes(desiredQuality.toLowerCase())
     ) {
       matchedFormat = format;
-      console.log('MATCHED A FORMAT');
+      // console.log('MATCHED A FORMAT');
 
       // console.log(matchedFormat);
       return matchedFormat;

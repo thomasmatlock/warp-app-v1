@@ -43,7 +43,7 @@ export default async function Youtube(itemURL, prefs, mode) {
         matchedFormat = getQuality(mode, videoQuality, info.formats);
       }
       // console.log(info.formats);
-      console.log('YOUTUBE.TS', matchedFormat);
+      // console.log('YOUTUBE.TS', matchedFormat);
 
       itemDetails = info.videoDetails;
       // itemDetails.background =

@@ -15,11 +15,11 @@ export default function getQuality(mode, desiredQuality, formats) {
   });
   if (mode.includes('audio')) {
     matchedFormat = getAudioQuality(desiredQuality, availableAudioFormats);
-    console.log(matchedFormat);
+    // console.log(matchedFormat);
   }
   if (mode.includes('video')) {
     matchedFormat = getVideoQuality(desiredQuality, availableVideoFormats);
-    console.log(matchedFormat);
+    // console.log(matchedFormat);
   }
   return matchedFormat;
 }
