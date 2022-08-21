@@ -1,8 +1,8 @@
 version: 4.6.0
 files:
   - url: Warp-Setup-4.6.0.exe
-    sha512: rXtihh37PZFubCobAuadEts28+69QxWmmEBsiqSeGsTs5x8w94NkLoyt5Xrj5SlsZtjcELLSUuV3Qb6Q8MjGEQ==
-    size: 73541596
+    sha512: EAV/I7F9v+3zJuOU0D9EAyzoK+5dI3RQUS2BF1wcv0lHzI45C9CG2zjMym3xzkrexsBFHpENS5w8yJC8D8icFg==
+    size: 96913443
 path: Warp-Setup-4.6.0.exe
-sha512: rXtihh37PZFubCobAuadEts28+69QxWmmEBsiqSeGsTs5x8w94NkLoyt5Xrj5SlsZtjcELLSUuV3Qb6Q8MjGEQ==
-releaseDate: '2022-07-28T02:50:55.364Z'
+sha512: EAV/I7F9v+3zJuOU0D9EAyzoK+5dI3RQUS2BF1wcv0lHzI45C9CG2zjMym3xzkrexsBFHpENS5w8yJC8D8icFg==
+releaseDate: '2022-08-21T15:07:49.937Z'
