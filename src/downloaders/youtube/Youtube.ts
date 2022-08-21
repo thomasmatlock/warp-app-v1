@@ -50,12 +50,14 @@ export default async function Youtube(itemURL, prefs, mode) {
       //   info.videoDetails.thumbnail.thumbnails[
       //     info.videoDetails.thumbnail.thumbnails.length - 1
       //   ];
+      // console.log(matchedFormat.fps);
 
       itemDetails.titleFS = formatTitle(itemDetails.title);
-      itemDetails.fps = matchedFormat.fps;
-      itemDetails.resolution = matchedFormat.qualityLabel;
-      itemDetails.width = matchedFormat.width;
-      itemDetails.height = matchedFormat.height;
+      itemDetails.fps = mode === 'video' ? matchedFormat.fps : '';
+      itemDetails.resolution =
+        mode === 'video' ? matchedFormat.qualityLabel : '';
+      itemDetails.width = mode === 'video' ? matchedFormat.width : '';
+      itemDetails.height = mode === 'video' ? matchedFormat.height : '';
       itemDetails.date = new Date();
       itemDetails.timestamp = moment().format('MMM Do YYYY, dddd, h:mm:ss a');
       itemDetails.lengthDisplay = formatLength(itemDetails.lengthSeconds);
