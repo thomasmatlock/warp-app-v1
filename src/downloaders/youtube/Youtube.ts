@@ -70,13 +70,13 @@ export default async function Youtube(itemURL, prefs, mode) {
       itemDetails.searchTags =
         itemDetails.ownerChannelName + ' ' + itemDetails.titleFS;
       //////////////////////////////
-      try {
-        // const video =
+      // try {
+      //   // const video =
 
-        ytdl('http://www.youtube.com/watch?v=aqz-KE-bpKQ').pipe(
-          fs.createWriteStream('video.mp4')
-        );
-      } catch (error) {}
+      //   ytdl('http://www.youtube.com/watch?v=aqz-KE-bpKQ').pipe(
+      //     fs.createWriteStream('video.mp4')
+      //   );
+      // } catch (error) {}
       // console.log(video);
 
       //////////////////////////////
