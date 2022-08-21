@@ -29,6 +29,7 @@ import downloadsAudioDefaults from '../storage/downloadsAudioDefaults';
 import downloadsVideoDefaults from '../storage/downloadsVideoDefaults';
 import downloadsWarpstagramDefaults from '../storage/downloadsWarpstagramDefaults';
 import Youtube from '../downloaders/youtube/Youtube';
+import YoutubeDownload from '../downloaders/youtube/YoutubeDownload';
 import BrowserQuery from './browserQuery';
 import testUrls from '../downloaders/youtube/testURLS';
 import { v4 as uuidv4 } from 'uuid';
@@ -96,6 +97,7 @@ let videoDownloads = getVideoDownloads();
 let warpstagramDownloads = getWarpstagramDownloads();
 async function downloadItem(url, prefs, mode) {
   let item = await Youtube(url, prefs, mode);
+  // let downloadedItem = await YoutubeDownload(item);
   item.id = uuidv4();
   // console.log(item.id);
 

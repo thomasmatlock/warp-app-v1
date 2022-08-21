@@ -52,8 +52,7 @@ const formatLength = function(approxDurationMs) {
     itemInfo.secsStr = itemInfo.secs.toString();
     itemInfo.minsStr = itemInfo.mins.toString();
     itemInfo.secsStrLength = itemInfo.secsStr.length;
-    if ((itemInfo.minsDigitCount = 1))
-        itemInfo.minsStr = '0' + itemInfo.minsStr; // adds a zero to the front of the mins string
+    if ((itemInfo.minsDigitCount = 1)) itemInfo.minsStr = '0' + itemInfo.minsStr; // adds a zero to the front of the mins string
 
     if (itemInfo.secsStrLength === 1) {
         itemInfo.secsStr = '0' + itemInfo.secsStr; // adds a zero to the front of the secs string
@@ -151,12 +150,7 @@ const getInfo = async function(itemURL, avType, platform, storage) {
         await ytdl.getBasicInfo(itemURL).then((info) => {
             this.cloneVideoDetails(itemURL, info, avType);
             this.removeCharactersFromTitle();
-            itemInfo.filepath = createFilePath(
-                itemURL,
-                avType,
-                platform,
-                storage
-            );
+            itemInfo.filepath = createFilePath(itemURL, avType, platform, storage);
             // items.insertPercentDownloaded(this.itemInfo)
             const video = ytdl(this.itemInfo.url, {
                 // requestOptions: {
@@ -184,19 +178,17 @@ const getInfo = async function(itemURL, avType, platform, storage) {
                 // console.log(downloaded, total);
                 lastDownloaded = downloaded;
                 if (!inserted) {
-                    items.insertPercentDownloaded(this.itemInfo, percent, 'add')
+                    items.insertPercentDownloaded(this.itemInfo, percent, 'add');
 
                     inserted = true;
                 }
                 if (inserted) {}
                 // if (lastDownloaded = downloaded) {
                 setTimeout(() => {
-                    if (downloaded = total) {
-                        items.insertPercentDownloaded(this.itemInfo, percent, 'complete')
+                    if ((downloaded = total)) {
+                        items.insertPercentDownloaded(this.itemInfo, percent, 'complete');
                     }
-                }, 2000)
-
-
+                }, 2000);
             });
             this.downloadAndWrite(itemURL);
             items.addItem(itemInfo, avType);

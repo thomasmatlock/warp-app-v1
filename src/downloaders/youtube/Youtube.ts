@@ -1,5 +1,6 @@
 import ytdl from 'ytdl-core';
 import moment from 'moment';
+import fs from 'fs';
 let url: string = 'http://www.youtube.com/watch?v=aqz-KE-bpKQ';
 import {
   app,
@@ -68,10 +69,44 @@ export default async function Youtube(itemURL, prefs, mode) {
       itemDetails.thumbnailDisplay = itemDetails.thumbnails[1].url;
       itemDetails.searchTags =
         itemDetails.ownerChannelName + ' ' + itemDetails.titleFS;
+      //////////////////////////////
+      try {
+        // const video =
+
+        ytdl('http://www.youtube.com/watch?v=aqz-KE-bpKQ').pipe(
+          fs.createWriteStream('video.mp4')
+        );
+      } catch (error) {}
+      // console.log(video);
+
+      //////////////////////////////
+      // video.on('progress', (chunkLength, downloaded, total) => {
+      //   const percent = downloaded / total;
+      //   console.log(downloaded, total);
+      //   //  lastDownloaded = downloaded;
+      //   //  if (!inserted) {
+      //   //    items.insertPercentDownloaded(this.itemInfo, percent, 'add');
+
+      //   //    inserted = true;
+      //   //  }
+      //   //  if (inserted) {
+      //   //  }
+      //   // if (lastDownloaded = downloaded) {
+      //   //  setTimeout(() => {
+      //   //    if ((downloaded = total)) {
+      //   //      items.insertPercentDownloaded(
+      //   //        this.itemInfo,
+      //   //        percent,
+      //   //        'complete'
+      //   //      );
+      //   //    }
+      //   //  }, 2000);
+      // });
     });
   } catch (error) {
     console.log(itemURL, error);
   }
+
   return itemDetails;
 }
 // module.exports = {
