@@ -622,7 +622,7 @@ app
     mWinBounds.y = display.y;
     mWinBounds.width = display.width;
     // mWinBounds.height = display.height; // default
-    mWinBounds.height = display.height - 250; // testing
+    mWinBounds.height = display.height - 150; // testing
     windowController.createmWin();
     windowController.createbView();
     globalShortcut.register('Alt+Left', () => {
