@@ -365,7 +365,7 @@ let browserPanelState = 'default';
   ipcMain.on(
     'main: prefs: chooseOutputFolder',
     async (event, outputFolderID) => {
-      console.log(outputFolderID);
+      // console.log(outputFolderID);
       if (outputFolderID.toLowerCase().includes('audio')) {
         dialog
           .showOpenDialog(mWin, {
