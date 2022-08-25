@@ -1,5 +1,5 @@
 /*
- * @NOTE: Prepend a `~` to css file paths that are in your node_modules
+ * @NOTE: Prepend a ~ to css file paths that are in your node_modules
  *        See https://github.com/webpack-contrib/sass-loader#imports
  */
 
@@ -14,20 +14,13 @@ body {
     box-sizing: content-box;
     width: 100%;
     margin: 0;
-    // background: $gray-dark-darkest;
-    // background: linear-gradient( 200.96deg, #fedc2a -29.09%, #dd5789 51.77%, #7a2c9e 129.35%);
     font-family: sans-serif;
     overflow: hidden;
-    // font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif !important;
-    font-family: 'Proxima Nova', Montserrat, sans-serif !important;
 }
 
 * {
-    // font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
-    font-family: 'Inter', sans-serif;
-    // font-family: 'Proxima Nova', Montserrat, sans-serif !important;
+    font-family: 'Proxima Nova Regular', Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Montserrat, sans-serif !important;
     transition: all 0.1s ease-in-out;
-    //     transition: all 0.5s ease-in-out !important;
 }
 
 // // GREYCLIFF CUSTOM FONT
@@ -44,11 +37,27 @@ body {
     src: url('./fonts/Greycliff/Webfont/GreycliffCF-Bold.woff2') format('woff2');
 }
 
-// p {
-//     font-size: 1.2rem;
-//     line-height: 1.5;
-//     color: $nav-text-color;
-// }
+@font-face {
+    font-family: 'Proxima Nova Light';
+    font-weight: 800;
+    font-display: swap;
+    src: url('./fonts/Proxima Nova/ProximaNovaA-Light.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Proxima Nova Regular';
+    font-weight: 800;
+    font-display: swap;
+    src: url('./fonts/Proxima Nova/ProximaNovaA-Regular.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Proxima Nova Bold';
+    font-weight: 800;
+    font-display: swap;
+    src: url('./fonts/Proxima Nova/ProximaNovaA-Bold.woff') format('woff');
+}
+
 ::-webkit-scrollbar {
     width: 10px;
 }
