@@ -1,5 +1,6 @@
 {
     "name": "Warp",
+    "productName": "Warp",
     "version": "2.1.3",
     "description": "wip",
     "main": "./src/main/main.ts",
@@ -125,17 +126,15 @@
     },
     "prettier": {
         "singleQuote": true,
-        "overrides": [
-            {
-                "files": [
-                    ".prettierrc",
-                    ".eslintrc"
-                ],
-                "options": {
-                    "parser": "json"
-                }
+        "overrides": [{
+            "files": [
+                ".prettierrc",
+                ".eslintrc"
+            ],
+            "options": {
+                "parser": "json"
             }
-        ]
+        }]
     },
     "jest": {
         "moduleDirectories": [
@@ -193,8 +192,7 @@
             "gatekeeperAssess": false
         },
         "dmg": {
-            "contents": [
-                {
+            "contents": [{
                     "x": 130,
                     "y": 220
                 },
