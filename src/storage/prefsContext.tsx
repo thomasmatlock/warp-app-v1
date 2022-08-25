@@ -183,6 +183,10 @@ export const PrefsContextProvider = (props) => {
     }
     if (id.includes('outputFolder')) {
       console.log('outputFolder', id);
+      window.electron.ipcRenderer.sendMessage(
+        'main: prefs: openOutputFolder',
+        id
+      );
     }
   };
   const getID = (id: string) => {
