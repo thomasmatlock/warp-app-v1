@@ -412,6 +412,58 @@ export default class MenuBuilder {
         },
       ],
     };
+    const subMenuTools: MenuItemConstructorOptions = {
+      label: 'Tools',
+      submenu: [
+        {
+          label: 'Check for updates...',
+          enabled: false,
+          click: () => {
+            // appWin.send('Check for update');
+          },
+        },
+        {
+          label: 'separator',
+          type: 'separator',
+        },
+        {
+          label: 'Preferences',
+          enabled: true,
+          accelerator: 'CmdOrCtrl+P',
+          click: () => {
+            this.mWin.webContents.send('modal: preferences');
+          },
+        },
+        {
+          label: 'separator',
+          type: 'separator',
+        },
+        {
+          label: 'Manage logins',
+          enabled: true,
+          accelerator: 'CmdOrCtrl+Alt+L',
+          click: () => {
+            this.mWin.webContents.send('modal: preferences: auths');
+          },
+        },
+        {
+          label: 'separator',
+          type: 'separator',
+        },
+        {
+          label: 'Manage license',
+          enabled: true,
+          accelerator: 'CmdOrCtrl+L',
+          click: () => {
+            this.mWin.webContents.send('modal: preferences: license');
+          },
+        },
+        {
+          label: 'separator',
+          type: 'separator',
+        },
+      ],
+    };
 
     const subMenuView =
       process.env.NODE_ENV === 'development' ||
@@ -426,7 +478,7 @@ export default class MenuBuilder {
       subMenuWarpstagram,
       subMenuEdit,
       subMenuView,
-      subMenuWindow,
+      // subMenuWindow,
       subMenuHelp,
     ];
   }
