@@ -74,14 +74,14 @@ export default class MenuBuilder {
         //   selector: 'hideOtherApplications:',
         // },
         // { label: 'Show All', selector: 'unhideAllApplications:' },
-        {
-          label: 'Quit',
-          accelerator: 'Command+Q',
-          click: () => {
-            app.quit();
-          },
-        },
-        { type: 'separator' },
+        // {
+        //   label: 'Quit',
+        //   accelerator: 'Command+Q',
+        //   click: () => {
+        //     app.quit();
+        //   },
+        // },
+        // { type: 'separator' },
         {
           label: 'Quit',
           accelerator: 'Command+Q',
@@ -189,6 +189,70 @@ export default class MenuBuilder {
         // },
       ],
     };
+    const subMenuAudio: MenuItemConstructorOptions = {
+      label: 'Help',
+      submenu: [
+        {
+          label: 'Paste',
+          enabled: false,
+          accelerator: 'CmdOrCtrl+V',
+          click: () => {
+            appWin.send('Audio: Downloads: Paste');
+          },
+        },
+        {
+          label: 'separator',
+          type: 'separator',
+        },
+        {
+          label: 'Pause All',
+          enabled: false,
+          enabled: false,
+          click: () => {
+            appWin.send('Audio: Downloads: Pause All');
+          },
+        },
+        {
+          label: 'Resume All',
+          enabled: false,
+          enabled: false,
+          click: () => {
+            appWin.send('Audio: Downloads: Resume All');
+          },
+        },
+        {
+          label: 'separator',
+          type: 'separator',
+        },
+        {
+          label: 'Remove All',
+          enabled: false,
+          click: () => {
+            appWin.send('Audio: Downloads: Remove All');
+          },
+        },
+        {
+          label: 'separator',
+          type: 'separator',
+        },
+        {
+          label: 'Import Download Links',
+          enabled: false,
+          accelerator: 'CmdOrCtrl+Shift+O',
+          click: () => {
+            appWin.send('Audio: File: Import Download Links');
+          },
+        },
+        {
+          label: 'Export Download Links',
+          enabled: false,
+          accelerator: 'CmdOrCtrl+Shift+S',
+          click: () => {
+            appWin.send('Audio: File: Export Download Links');
+          },
+        },
+      ],
+    };
 
     const subMenuView =
       process.env.NODE_ENV === 'development' ||
@@ -196,7 +260,14 @@ export default class MenuBuilder {
         ? subMenuViewDev
         : subMenuViewProd;
 
-    return [subMenuAbout, subMenuEdit, subMenuView, subMenuWindow, subMenuHelp];
+    return [
+      subMenuAbout,
+      subMenuAudio,
+      subMenuEdit,
+      subMenuView,
+      subMenuWindow,
+      subMenuHelp,
+    ];
   }
 
   buildDefaultTemplate() {
