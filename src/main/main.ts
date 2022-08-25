@@ -34,7 +34,9 @@ import YoutubeDownload from '../downloaders/youtube/YoutubeDownload';
 import BrowserQuery from './browserQuery';
 import testUrls from '../downloaders/youtube/testURLS';
 import { v4 as uuidv4 } from 'uuid';
-// import createCustomer from '../payments/stripe';
+import createCustomer from '../payments/stripe';
+// test
+// test
 console.log(os.homedir());
 
 // console.log(createCustomer);
@@ -359,61 +361,13 @@ let browserPanelState = 'default';
     event.reply('main: prefs', prefs);
     //  event.reply('FilterBar: Warpstagram: FilterTypeLocations successful'); // sends message to renderer
   });
-  ipcMain.on('main: prefs: openOutputFolder', async (event, args) => {
-    let id = args[0];
-    let mode = args[1];
-    console.log(id, mode);
-    if (mode.includes('audio')) {
-      // dialog.showOpenDialog({
-      //   title: 'Choose audio downloads folder',
-      //   properties: ['openDirectory', 'multiSelections'],
-      //   buttonLabel: 'Confirm audio folder',
-      // });
-      dialog
-        .showOpenDialog(mWin, {
-          title: 'Choose audio downloads folder',
-          properties: ['openDirectory', 'multiSelections'],
-          buttonLabel: 'Confirm audio folder',
-        })
-        .then((result) => {
-          console.log(result.canceled);
-          console.log(result.filePaths);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-    if (mode.includes('video')) {
-      dialog
-        .showOpenDialog(mWin, {
-          title: 'Choose video downloads folder',
-          properties: ['openDirectory', 'multiSelections'],
-          buttonLabel: 'Confirm video folder',
-        })
-        .then((result) => {
-          console.log(result.canceled);
-          console.log(result.filePaths);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-
-    if (mode.includes('warpstagram')) {
-      dialog
-        .showOpenDialog(mWin, {
-          title: 'Choose Warpstagram downloads folder',
-          properties: ['openDirectory', 'multiSelections'],
-          buttonLabel: 'Confirm Warpstagram folder',
-        })
-        .then((result) => {
-          console.log(result.canceled);
-          console.log(result.filePaths);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
+  ipcMain.on('main: prefs: openOutputFolder', async (event, arg) => {
+    // console.log(arg);
+    console.log(
+      dialog.showOpenDialog({
+        properties: ['openDirectory', 'multiSelections'],
+      })
+    );
   });
   // CONTEXT MENU LISTENERS
   ipcMain.on('context: copy_link_address', async (event, matchingDownload) => {
