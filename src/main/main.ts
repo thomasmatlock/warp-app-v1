@@ -6,7 +6,6 @@
  */
 import path from 'path';
 import fs from 'fs';
-import os from 'os';
 import {
   app,
   BrowserView,
@@ -37,8 +36,6 @@ import { v4 as uuidv4 } from 'uuid';
 import createCustomer from '../payments/stripe';
 // test
 // test
-console.log(os.homedir());
-
 // console.log(createCustomer);
 // createCustomer();
 let randomYoutubeURL =
@@ -160,8 +157,11 @@ async function submitSearchQuery(currentURL, query) {
   if (view) view.webContents.loadURL(joinedQuery);
 }
 
+// console.log(prefs.general.dropdowns[1].defaultValue);
 let activeURL: string;
 const setActiveURL = () => {
+  // console.log(prefs.general.dropdowns[1].defaultValue);
+
   if (prefs.general.dropdowns[1].defaultValue.id.includes('facebook'))
     activeURL = 'http://facebook.com';
   if (prefs.general.dropdowns[1].defaultValue.id.includes('instagram'))
@@ -205,12 +205,13 @@ const isDebug =
   process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true';
 
 if (isDebug) {
-  require('electron-debug')(); // ENABLE FOR DEVTOOLS
+  // require('electron-debug')(); // ENABLE FOR DEVTOOLS
 }
 
 const installExtensions = async () => {
   const installer = require('electron-devtools-installer');
   const forceDownload = !!process.env.UPGRADE_EXTENSIONS;
+
   const extensions = ['REACT_DEVELOPER_TOOLS'];
 
   return installer
@@ -361,14 +362,6 @@ let browserPanelState = 'default';
     event.reply('main: prefs', prefs);
     //  event.reply('FilterBar: Warpstagram: FilterTypeLocations successful'); // sends message to renderer
   });
-  ipcMain.on('main: prefs: openOutputFolder', async (event, arg) => {
-    // console.log(arg);
-    console.log(
-      dialog.showOpenDialog({
-        properties: ['openDirectory', 'multiSelections'],
-      })
-    );
-  });
   // CONTEXT MENU LISTENERS
   ipcMain.on('context: copy_link_address', async (event, matchingDownload) => {
     let url = matchingDownload.video_url;
@@ -410,7 +403,7 @@ ipcMain.on('settings: request', async (event, arg) => {
 const windowController = {
   createmWin: async function () {
     if (isDebug) {
-      await installExtensions();
+      // await installExtensions();
     }
 
     const RESOURCES_PATH = app.isPackaged
@@ -630,7 +623,7 @@ app
     mWinBounds.width = display.width;
     // mWinBounds.height = display.height; // default
     mWinBounds.height = display.height - 250; // testing
-    windowController.createmWin();
+    // windowController.createmWin();
     // windowController.createbView();
     globalShortcut.register('Alt+Left', () => {
       if (view) view.webContents.goBack();

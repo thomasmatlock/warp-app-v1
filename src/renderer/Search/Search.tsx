@@ -29,7 +29,7 @@ const Search = (props) => {
   // console.log(navCtx);
 
   const prefsCtx = useContext(PrefsContext);
-  // console.log(prefsCtx.prefs);
+  console.log(prefsCtx.prefs);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const restoreInputDefaultWidthDelay = 3000;

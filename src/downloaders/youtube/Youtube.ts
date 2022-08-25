@@ -52,47 +52,47 @@ export default async function Youtube(itemURL, prefs, mode) {
       itemDetails.thumbnailDisplay = itemDetails.thumbnails[1].url;
       itemDetails.searchTags =
         itemDetails.ownerChannelName + ' ' + itemDetails.titleFS;
-      // const video = ytdl(itemURL, {
-      // requestOptions: {
-      //     // headers: {
-      //     //     cookie: COOKIE,
-      //     //     // Optional. If not given, ytdl-core will try to find it.
-      //     //     // You can find this by going to a video's watch page, viewing the source,
-      //     //     // and searching for "ID_TOKEN".
-      //     //     // 'x-youtube-identity-token': 1324,
-      //     // },
-      // },
-      // });
+      const video = ytdl(itemURL, {
+        // requestOptions: {
+        //     // headers: {
+        //     //     cookie: COOKIE,
+        //     //     // Optional. If not given, ytdl-core will try to find it.
+        //     //     // You can find this by going to a video's watch page, viewing the source,
+        //     //     // and searching for "ID_TOKEN".
+        //     //     // 'x-youtube-identity-token': 1324,
+        //     // },
+        // },
+      });
 
-      // video.on('info', (info) => {
-      //   console.log('title:', info.videoDetails.title);
-      //   console.log('rating:', info.player_response.videoDetails.averageRating);
-      //   console.log('uploaded by:', info.videoDetails.author.name);
+      // video.on('info', info => {
+      //     console.log('title:', info.videoDetails.title);
+      //     console.log('rating:', info.player_response.videoDetails.averageRating);
+      //     console.log('uploaded by:', info.videoDetails.author.name);
       // });
 
       // let inserted = false;
       // let completed = false;
       // let lastDownloaded = 0;
-      // video.on('progress', (chunkLength, downloaded, total) => {
-      //   let percent = downloaded / total;
-      //   percent = Math.round(percent * 100);
-      //   console.log(percent);
-      //   // console.log(downloaded, total);
-      //   // lastDownloaded = downloaded;
-      //   // if (!inserted) {
-      //   //   items.insertPercentDownloaded(this.itemInfo, percent, 'add');
+      video.on('progress', (chunkLength, downloaded, total) => {
+        let percent = downloaded / total;
+        percent = Math.round(percent * 100);
+        console.log(percent);
+        // console.log(downloaded, total);
+        // lastDownloaded = downloaded;
+        // if (!inserted) {
+        //   items.insertPercentDownloaded(this.itemInfo, percent, 'add');
 
-      //   //   inserted = true;
-      //   // }
-      //   // if (inserted) {
-      //   // }
-      //   // if (lastDownloaded = downloaded) {
-      //   // setTimeout(() => {
-      //   //   if ((downloaded = total)) {
-      //   //     items.insertPercentDownloaded(this.itemInfo, percent, 'complete');
-      //   //   }
-      //   // }, 2000);
-      // });
+        //   inserted = true;
+        // }
+        // if (inserted) {
+        // }
+        // if (lastDownloaded = downloaded) {
+        // setTimeout(() => {
+        //   if ((downloaded = total)) {
+        //     items.insertPercentDownloaded(this.itemInfo, percent, 'complete');
+        //   }
+        // }, 2000);
+      });
     });
   } catch (error) {
     console.log(itemURL, error);
