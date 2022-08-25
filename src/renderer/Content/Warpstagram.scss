@@ -101,8 +101,8 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     position: relative;
     margin: 0;
     // width: 99.8%;
-    width: 100%;
     padding: 0 0;
+    width: calc(100vw);
     list-style: none;
     overflow-y: scroll;
     overflow-x: hidden;
