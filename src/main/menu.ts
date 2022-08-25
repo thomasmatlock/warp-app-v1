@@ -529,10 +529,10 @@ export default class MenuBuilder {
       subMenuWarpstagram,
       subMenuTools,
       subMenuShortcuts,
-      subMenuEdit,
+      // subMenuEdit,
+      subMenuHelp,
       subMenuView,
       // subMenuWindow,
-      subMenuHelp,
     ];
   }
 
