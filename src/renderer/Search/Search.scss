@@ -36,7 +36,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
         background-color: $gray-dark-light;
         border: 1px solid $gray-dark-lightest;
         outline: none;
-        font-size: 14px;
+        font-size: 0.75rem;
         box-shadow: none;
         // padding-left: 40px !important;
         // box-shadow: inset 4px 4px 4px #eee, inset -4px -4px 4px white;
@@ -107,7 +107,7 @@ input[type='text'] {
     background-color: $gray-dark-light;
     border: 1px solid $gray-dark-lightest;
     outline: none;
-    font-size: 14px;
+    font-size: 0.75rem;
     box-shadow: none;
 }
 

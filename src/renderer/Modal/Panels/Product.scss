@@ -175,7 +175,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
         }
         &__text {
             transform: translateY(2px);
-            font-size: 14px;
+            font-size: 0.75rem;
         }
     }
     &__light {
@@ -321,7 +321,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
                     align-content: center;
                     align-items: center;
                     // border: 1px solid #505050;
-                    font-size: 14px;
+                    font-size: 0.75rem;
                 }
             }
         }

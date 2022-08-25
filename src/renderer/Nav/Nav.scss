@@ -81,7 +81,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 14px;
+    font-size: 0.75rem;
     color: white;
     background-color: $gray-dark-light;
     height: 56px !important;
@@ -111,12 +111,12 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
         background-image: linear-gradient( to left, rgba(238, 238, 238, 0.205) 0%, rgba(102, 102, 102, 0.205) 100%);
         color: #ffffff;
         border-radius: 4px;
-        font-size: 14px;
+        font-size: 0.75rem;
         box-shadow: 0 0.6rem 1rem rgba(0, 0, 0, 0.6);
         transform: scaleX(0.99) scaleY(0.99);
     }
     &:active {
-        font-size: 14px;
+        font-size: 0.75rem;
         transform: scaleX(0.95) scaleY(0.95);
         box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.2);
     }
@@ -132,7 +132,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     // flex-grow: 1;
     cursor: pointer;
     // z-index: 20;
-    font-size: 14px;
+    font-size: 0.75rem;
     flex-direction: row;
     align-items: center;
     align-content: center;
@@ -158,7 +158,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
 }
 
 .navMainBtn p {
-    font-size: 14px;
+    font-size: 0.75rem;
     margin-left: 20px;
 }
 
