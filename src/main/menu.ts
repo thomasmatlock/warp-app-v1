@@ -464,6 +464,57 @@ export default class MenuBuilder {
         },
       ],
     };
+    const subMenuShortcuts: MenuItemConstructorOptions = {
+      label: 'Tools',
+      submenu: [
+        {
+          label: 'Audio Mode',
+          enabled: true,
+          accelerator: 'Shift+1',
+          click: () => {
+            this.mWin.webContents.send('nav: mode: audio');
+          },
+        },
+        {
+          label: 'Video Mode',
+          enabled: true,
+          accelerator: 'Shift+2',
+          click: () => {
+            this.mWin.webContents.send('nav: mode: video');
+          },
+        },
+        {
+          label: 'Warpstagram Mode',
+          enabled: true,
+          accelerator: 'Shift+3',
+          click: () => {
+            this.mWin.webContents.send('nav: mode: warpstagram');
+          },
+        },
+        {
+          label: 'separator',
+          type: 'separator',
+        },
+        {
+          label: 'Change Theme',
+          enabled: false,
+          accelerator: 'CmdOrCtrl+T',
+          click: () => {
+            // app.relaunch();
+            // this.mWin.webContents.send('Menu: Shortcuts: Restart');
+          },
+        },
+        {
+          label: 'Restart Warp',
+          enabled: true,
+          accelerator: 'CmdOrCtrl+R',
+          click: () => {
+            app.relaunch();
+            // this.mWin.webContents.send('Menu: Shortcuts: Restart');
+          },
+        },
+      ],
+    };
 
     const subMenuView =
       process.env.NODE_ENV === 'development' ||
@@ -477,6 +528,7 @@ export default class MenuBuilder {
       subMenuVideo,
       subMenuWarpstagram,
       subMenuTools,
+      subMenuShortcuts,
       subMenuEdit,
       subMenuView,
       // subMenuWindow,
