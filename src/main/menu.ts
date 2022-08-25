@@ -54,34 +54,34 @@ export default class MenuBuilder {
 
   buildDarwinTemplate(): MenuItemConstructorOptions[] {
     const subMenuAbout: DarwinMenuItemConstructorOptions = {
-      label: 'ElectronReact',
+      label: 'Warp',
       submenu: [
-        {
-          label: 'About ElectronReact',
-          selector: 'orderFrontStandardAboutPanel:',
-        },
-        { type: 'separator' },
-        { label: 'Services', submenu: [] },
-        { type: 'separator' },
-        {
-          label: 'Hide ElectronReact',
-          accelerator: 'Command+H',
-          selector: 'hide:',
-        },
-        {
-          label: 'Hide Others',
-          accelerator: 'Command+Shift+H',
-          selector: 'hideOtherApplications:',
-        },
-        { label: 'Show All', selector: 'unhideAllApplications:' },
-        {
-          label: 'Quit',
-          accelerator: 'Command+Q',
-          click: () => {
-            app.quit();
-          },
-        },
-        { type: 'separator' },
+        // {
+        //   label: 'About ElectronReact',
+        //   selector: 'orderFrontStandardAboutPanel:',
+        // },
+        // { type: 'separator' },
+        // { label: 'Services', submenu: [] },
+        // { type: 'separator' },
+        // {
+        //   label: 'Hide ElectronReact',
+        //   accelerator: 'Command+H',
+        //   selector: 'hide:',
+        // },
+        // {
+        //   label: 'Hide Others',
+        //   accelerator: 'Command+Shift+H',
+        //   selector: 'hideOtherApplications:',
+        // },
+        // { label: 'Show All', selector: 'unhideAllApplications:' },
+        // {
+        //   label: 'Quit',
+        //   accelerator: 'Command+Q',
+        //   click: () => {
+        //     app.quit();
+        //   },
+        // },
+        // { type: 'separator' },
         {
           label: 'Quit',
           accelerator: 'Command+Q',
