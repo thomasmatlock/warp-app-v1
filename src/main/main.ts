@@ -308,7 +308,8 @@ let browserPanelState = 'default';
   ipcMain.on('source: change', async (event, arg) => {
     if (view) view.webContents.loadURL(arg);
     if (view.webContents.getURL().includes('pinterest')) {
-      view.webContents.insertCSS('html, body, { background-color: #fff;  }');
+      if (view)
+        view.webContents.insertCSS('html, body, { background-color: #fff;  }');
     }
   });
   // BROWSERBAR DOWNLOAD BUTTON LISTENERS
@@ -516,7 +517,7 @@ const windowController = {
   },
   createbView: async function () {
     view = new BrowserView();
-    mWin.setBrowserView(view);
+    if (mWin) mWin.setBrowserView(view);
     view.setBounds({
       x: viewBounds.x,
       y: viewBounds.y,
@@ -544,7 +545,7 @@ const windowController = {
   },
 };
 const bWinHandler = {
-  resize: async function (browserWidth) {
+  resize: async function (browserWidth: string | undefined) {
     let defaultWidthDifference = mWin.getContentBounds().width / 2;
     let collapsedWidthDifference = 72;
     let expandedWidthDifference = mWin.getContentBounds().width - 72;
@@ -594,11 +595,11 @@ const bWinHandler = {
           .capturePage({
             x: 0,
             y: 0,
-            width: mWin.getContentBounds().width / 2,
-            height: mWin.getContentBounds().height - 192,
+            width: mWin ? mWin.getContentBounds().width / 2 : 100,
+            height: mWin ? mWin.getContentBounds().height - 192 : 100,
           })
           .then((img) => {
-            mWin.webContents.send('capturePage', [img.toDataURL()]);
+            if (mWin) mWin.webContents.send('capturePage', [img.toDataURL()]);
           })
           .catch((err) => {
             console.log(err);
@@ -622,7 +623,7 @@ app
     mWinBounds.width = display.width;
     // mWinBounds.height = display.height; // default
     mWinBounds.height = display.height - 250; // testing
-    windowController.createmWin();
+    // windowController.createmWin();
     // windowController.createbView();
     globalShortcut.register('Alt+Left', () => {
       if (view) view.webContents.goBack();
