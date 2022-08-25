@@ -5,10 +5,10 @@ import ProductsContext from '../../../../src/storage/productsContext';
 import './Product.scss';
 
 const Product = (props: object) => {
-  console.log(props);
+  // console.log(props);
 
   const productsCtx = useContext(ProductsContext);
-  console.log(productsCtx);
+  // console.log(productsCtx);
 
   const clickHandler = () => {
     // productsCtx.setViewingProduct(props.info.id);

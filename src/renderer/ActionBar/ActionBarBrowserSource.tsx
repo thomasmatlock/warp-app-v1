@@ -49,11 +49,17 @@ const BrowserBarDownloadSource = () => {
     }
   };
   const mouseEnterHandler = () => {
-    window.electron.ipcRenderer.sendMessage('hidebWin', 'from browserSource');
+    window.electron.ipcRenderer.sendMessage(
+      'hideBrowser',
+      'from browserSource'
+    );
     setIsSourcesExpanded(true);
   };
   const mouseLeaveHandler = () => {
-    window.electron.ipcRenderer.sendMessage('showbWin', 'from browserSource');
+    window.electron.ipcRenderer.sendMessage(
+      'showBrowser',
+      'from browserSource'
+    );
     setIsSourcesExpanded(false);
   };
   // console.log(isSourcesExpanded);

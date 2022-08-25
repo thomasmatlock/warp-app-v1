@@ -26,13 +26,13 @@ export const ModalsContextProvider = (props) => {
 
     setIsModalOpen(false);
     if (!navCtx.warpstagramMode) {
-      window.electron.ipcRenderer.sendMessage('showbWin', 'from search');
+      window.electron.ipcRenderer.sendMessage('showBrowser', 'from search');
     }
   };
   const showModalHandler = () => {
     // console.log('showModalHandler');
 
-    window.electron.ipcRenderer.sendMessage('hidebWin', 'from search');
+    window.electron.ipcRenderer.sendMessage('hideBrowser', 'from search');
     setIsModalOpen(true);
   };
   window.electron.ipcRenderer.on('modal: preferences', () => {
@@ -56,7 +56,7 @@ export const ModalsContextProvider = (props) => {
   // let prefs;
   window.electron.ipcRenderer.on('main: prefs', (arg) => {
     prefs = arg;
-    // showModalHandler(); // TESTING ONLY, REMOVE FOR PRODUCTION
+    showModalHandler(); // TESTING ONLY, REMOVE FOR PRODUCTION
   });
   const getID = (id: string) => {
     console.log(id);

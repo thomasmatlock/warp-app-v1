@@ -205,7 +205,7 @@ const isDebug =
   process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true';
 
 if (isDebug) {
-  // require('electron-debug')(); // ENABLE FOR DEVTOOLS
+  require('electron-debug')(); // ENABLE FOR DEVTOOLS
 }
 
 const installExtensions = async () => {
@@ -362,6 +362,56 @@ let browserPanelState = 'default';
     event.reply('main: prefs', prefs);
     //  event.reply('FilterBar: Warpstagram: FilterTypeLocations successful'); // sends message to renderer
   });
+  ipcMain.on(
+    'main: prefs: chooseOutputFolder',
+    async (event, outputFolderID) => {
+      console.log(outputFolderID);
+      if (outputFolderID.toLowerCase().includes('audio')) {
+        dialog
+          .showOpenDialog(mWin, {
+            buttonLabel: 'Confirm Audio Folder',
+            properties: ['openDirectory'],
+          })
+          .then((result) => {
+            console.log(result.canceled);
+            console.log(result.filePaths);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+      if (outputFolderID.toLowerCase().includes('video')) {
+        dialog
+          .showOpenDialog(mWin, {
+            buttonLabel: 'Confirm Video Folder',
+            properties: ['openDirectory'],
+          })
+          .then((result) => {
+            console.log(result.canceled);
+            console.log(result.filePaths);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+      if (outputFolderID.toLowerCase().includes('warpstagram')) {
+        dialog
+          .showOpenDialog(mWin, {
+            buttonLabel: 'Confirm Warpstagram Folder',
+            properties: ['openDirectory'],
+          })
+          .then((result) => {
+            console.log(result.canceled);
+            console.log(result.filePaths);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+
+      // event.reply('main: prefs', prefs);
+    }
+  );
   // CONTEXT MENU LISTENERS
   ipcMain.on('context: copy_link_address', async (event, matchingDownload) => {
     let url = matchingDownload.video_url;
@@ -392,10 +442,10 @@ ipcMain.on('settings: request', async (event, arg) => {
   ipcMain.on('screenshot', async (event, arg) => {
     bWinHandler.setScreenshot();
   });
-  ipcMain.on('hidebWin', async (event, arg) => {
+  ipcMain.on('hideBrowser', async (event, arg) => {
     hideView();
   });
-  ipcMain.on('showbWin', async (event, arg) => {
+  ipcMain.on('showBrowser', async (event, arg) => {
     showView();
   });
 })();
@@ -403,7 +453,7 @@ ipcMain.on('settings: request', async (event, arg) => {
 const windowController = {
   createmWin: async function () {
     if (isDebug) {
-      // await installExtensions();
+      await installExtensions();
     }
 
     const RESOURCES_PATH = app.isPackaged
