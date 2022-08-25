@@ -183,10 +183,24 @@ export const PrefsContextProvider = (props) => {
     }
     if (id.includes('outputFolder')) {
       console.log('outputFolder', id);
-      window.electron.ipcRenderer.sendMessage(
-        'main: prefs: openOutputFolder',
-        id
-      );
+      if (id.toLowerCase().includes('audio')) {
+        window.electron.ipcRenderer.sendMessage(
+          'main: prefs: openOutputFolder',
+          [id, 'audio']
+        );
+      }
+      if (id.toLowerCase().includes('video')) {
+        window.electron.ipcRenderer.sendMessage(
+          'main: prefs: openOutputFolder',
+          [id, 'video']
+        );
+      }
+      if (id.toLowerCase().includes('warpstagram')) {
+        window.electron.ipcRenderer.sendMessage(
+          'main: prefs: openOutputFolder',
+          [id, 'warpstagram']
+        );
+      }
     }
   };
   const getID = (id: string) => {
