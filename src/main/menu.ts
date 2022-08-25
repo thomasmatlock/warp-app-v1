@@ -190,7 +190,166 @@ export default class MenuBuilder {
       ],
     };
     const subMenuAudio: MenuItemConstructorOptions = {
-      label: 'Help',
+      label: 'Audio',
+      submenu: [
+        {
+          label: 'Paste',
+          enabled: false,
+          accelerator: 'CmdOrCtrl+V',
+          click: () => {
+            appWin.send('Audio: Downloads: Paste');
+          },
+        },
+        {
+          label: 'separator',
+          type: 'separator',
+        },
+        {
+          label: 'Pause All',
+          enabled: false,
+          enabled: false,
+          click: () => {
+            appWin.send('Audio: Downloads: Pause All');
+          },
+        },
+        {
+          label: 'Resume All',
+          enabled: false,
+          enabled: false,
+          click: () => {
+            appWin.send('Audio: Downloads: Resume All');
+          },
+        },
+        {
+          label: 'separator',
+          type: 'separator',
+        },
+        {
+          label: 'Remove All',
+          enabled: false,
+          click: () => {
+            appWin.send('Audio: Downloads: Remove All');
+          },
+        },
+        {
+          label: 'separator',
+          type: 'separator',
+        },
+        {
+          label: 'Import Download Links',
+          enabled: false,
+          accelerator: 'CmdOrCtrl+Shift+O',
+          click: () => {
+            appWin.send('Audio: File: Import Download Links');
+          },
+        },
+        {
+          label: 'Export Download Links',
+          enabled: false,
+          accelerator: 'CmdOrCtrl+Shift+S',
+          click: () => {
+            appWin.send('Audio: File: Export Download Links');
+          },
+        },
+      ],
+    };
+    const subMenuVideo: MenuItemConstructorOptions = {
+      label: 'Video',
+      submenu: [
+        {
+          label: 'Paste',
+          enabled: false,
+          accelerator: 'CmdOrCtrl+V',
+          click: () => {
+            appWin.send('Video: Downloads: Paste');
+          },
+        },
+        {
+          label: 'separator',
+          type: 'separator',
+        },
+        {
+          label: 'Pause All',
+          enabled: false,
+          click: () => {
+            appWin.send('Video: Downloads: Pause All');
+          },
+        },
+        {
+          label: 'Resume All',
+          enabled: false,
+          click: () => {
+            appWin.send('Video: Downloads: Resume All');
+          },
+        },
+        {
+          label: 'separator',
+          type: 'separator',
+        },
+        {
+          label: 'Remove All',
+          enabled: false,
+          click: () => {
+            appWin.send('Video: Downloads: Remove All');
+          },
+        },
+        {
+          label: 'separator',
+          type: 'separator',
+        },
+        {
+          label: 'Import Download Links',
+          enabled: false,
+          accelerator: 'CmdOrCtrl+O',
+          click: () => {
+            appWin.send('Video: File: Import Download Links');
+          },
+        },
+        {
+          label: 'Export Download Links',
+          enabled: false,
+          accelerator: 'CmdOrCtrl+S',
+          click: () => {
+            appWin.send('Video: File: Export Download Links');
+          },
+        },
+        {
+          label: 'separator',
+          type: 'separator',
+        },
+        {
+          label: 'Import Subscriptions',
+          enabled: false,
+          click: () => {
+            appWin.send('Video: File: Import Subscriptions');
+          },
+        },
+        {
+          label: 'Export Subscriptions',
+          enabled: false,
+          click: () => {
+            appWin.send('Video: File: Export Subscriptions');
+          },
+        },
+        {
+          label: 'separator',
+          type: 'separator',
+        },
+        {
+          label: 'Subscriptions...',
+          enabled: false,
+          click: () => {
+            appWin.send('Video: Tools: Subscriptions');
+          },
+        },
+        {
+          label: 'separator',
+          type: 'separator',
+        },
+      ],
+    };
+    const subMenuWarpstagram: MenuItemConstructorOptions = {
+      label: 'Warpstagram',
       submenu: [
         {
           label: 'Paste',
@@ -263,6 +422,8 @@ export default class MenuBuilder {
     return [
       subMenuAbout,
       subMenuAudio,
+      subMenuVideo,
+      subMenuWarpstagram,
       subMenuEdit,
       subMenuView,
       subMenuWindow,
