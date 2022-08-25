@@ -476,6 +476,7 @@ export default class MenuBuilder {
       subMenuAudio,
       subMenuVideo,
       subMenuWarpstagram,
+      subMenuTools,
       subMenuEdit,
       subMenuView,
       // subMenuWindow,
