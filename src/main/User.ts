@@ -4,6 +4,7 @@ const Cryptr = require('cryptr');
 const cryptr = new Cryptr('user');
 
 const userDefaults = {
+  isEULAaccepted: false,
   audio: 'free',
   video: 'free',
   warpstagram: 'free',

@@ -683,7 +683,7 @@ app
     mWinBounds.width = display.width;
     // mWinBounds.height = display.height; // default
     mWinBounds.height = display.height - 150; // testing
-    // windowController.createmWin();
+    windowController.createmWin();
 
     globalShortcut.register('Alt+Left', () => {
       if (view) view.webContents.goBack();

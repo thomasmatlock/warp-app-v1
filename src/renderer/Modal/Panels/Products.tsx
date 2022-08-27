@@ -20,7 +20,7 @@ const Products = (props) => {
       {props.info.id.includes('audio') && (
         <div className="products_carousel">
           {productsCtx.isViewingAudio1 && <Product info={props.info} />}
-          {productsCtx.isViewingAudio2 && <Product info={props.info} />}
+          {/* {productsCtx.isViewingAudio2 && <Product info={props.info} />} */}
           {/* <Product info={props.info} /> */}
           {/* <Product info={props.info} /> */}
         </div>
