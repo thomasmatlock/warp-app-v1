@@ -98,9 +98,10 @@ const Search = (props) => {
     }
   });
   window.addEventListener('keydown', (event) => {
-    // console.log(event.key);
+    console.log(event.key);
     Array.from(document.getElementsByClassName('search__input')).forEach(
       (item) => {
+        item.focus();
         if (inputCtx.searchText.length === 0 && event.key === 'Shift') {
           item.blur();
           // console.log('blur 2');
@@ -109,13 +110,23 @@ const Search = (props) => {
           event.key === 'Control'
         ) {
           item.blur();
-        } else if (inputCtx.searchText.length === 0 && event.key === '!') {
+          // } else if (inputCtx.searchText.length === 0 && event.key === '!') {
+        } else if (event.key === '!') {
           // item.focus();
           item.blur();
-        } else if (inputCtx.searchText.length === 0 && event.key === '@') {
+          setTimeout(() => {}, 1000);
+          // } else if (inputCtx.searchText.length === 0 && event.key === '@') {
+        } else if (event.key === '@') {
           item.blur();
-        } else if (inputCtx.searchText.length === 0 && event.key === '#') {
+          setTimeout(() => {
+            item.focus();
+          }, 1000);
+          // } else if (inputCtx.searchText.length === 0 && event.key === '#') {
+        } else if (event.key === '#') {
           item.blur();
+          setTimeout(() => {
+            item.focus();
+          }, 1000);
         } else if (inputCtx.searchText.length === 0 && event.key === 'Escape') {
           item.blur();
         } else {
