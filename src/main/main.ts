@@ -549,7 +549,7 @@ const windowController = {
         mWin.minimize();
       } else {
         mWin.show();
-        windowController.createbView();
+        // windowController.createbView();
         // if (view) mWin.maximize();
         // mWin.maximize();
         mWin.webContents.send('appVersion', app.getVersion());
@@ -676,7 +676,7 @@ app
     let display = screen.getAllDisplays()[0].workArea;
     // console.log(display);
     user = User.getUser();
-    // console.log(user);
+    console.log(user);
 
     mWinBounds.x = display.x;
     mWinBounds.y = display.y;
