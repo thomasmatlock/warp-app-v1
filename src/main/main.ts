@@ -35,8 +35,8 @@ import User from './User';
 // User.upgradeUserModule('audio', 'free');
 // User.upgradeUserModule('video', 'free');
 // User.upgradeUserModule('warpstagram', 'free');
-let user = User.getUser();
-console.log(user);
+let user;
+// console.log(user);
 
 import testUrls from '../downloaders/youtube/testURLS';
 import { v4 as uuidv4 } from 'uuid';
@@ -670,24 +670,13 @@ app.on('window-all-closed', () => {
   }
 });
 
-// const getUserAuths = () => {
-//   let userAuths = settings.get('prefs');
-//   if (prefs === undefined) {
-//     settings.set('prefs', prefsDefault);
-//     return prefsDefault;
-//   } else {
-//     return prefs;
-//   }
-// };
-const setUserAuths = (arg: any) => {
-  settings.set('user', arg);
-};
-
 app
   .whenReady()
   .then(() => {
     let display = screen.getAllDisplays()[0].workArea;
     // console.log(display);
+    user = User.getUser();
+    // console.log(user);
 
     mWinBounds.x = display.x;
     mWinBounds.y = display.y;
