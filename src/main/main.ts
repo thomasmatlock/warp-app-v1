@@ -676,7 +676,7 @@ app
     let display = screen.getAllDisplays()[0].workArea;
     // console.log(display);
     user = User.getUser();
-    console.log(user);
+    // console.log(user);
 
     mWinBounds.x = display.x;
     mWinBounds.y = display.y;
