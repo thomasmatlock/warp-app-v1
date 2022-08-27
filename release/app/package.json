@@ -2,11 +2,8 @@
       "name": "warp",
       "version": "2.1.3",
       "description": "Download Anything",
-      // "license": "MIT",
       "author": {
             "name": "Warp"
-                    // "email": "electronreactboilerplate@gmail.com",
-                    // "url": "https://github.com/electron-react-boilerplate"
       },
       "main": "./dist/main/main.js",
       "scripts": {

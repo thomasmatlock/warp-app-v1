@@ -542,6 +542,7 @@ const windowController = {
         mWin.minimize();
       } else {
         mWin.show();
+        windowController.createbView();
         // if (view) mWin.maximize();
         // mWin.maximize();
         mWin.webContents.send('appVersion', app.getVersion());
@@ -674,7 +675,6 @@ app
     // mWinBounds.height = display.height; // default
     mWinBounds.height = display.height - 150; // testing
     windowController.createmWin();
-    windowController.createbView();
     globalShortcut.register('Alt+Left', () => {
       if (view) view.webContents.goBack();
     });
