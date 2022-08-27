@@ -61,14 +61,14 @@ export const NavContextProvider = (props) => {
   const audioPlaceholders = [
     'audio search...beep boop',
     'start typing to instantly find any audio file',
-    'Dual Search: start typing then press Enter to search your built-in browser',
+    'Dual Search: start typing then press Enter to also search your built-in browser',
     'Tip: Press Shift+2 to instantly switch to Video Mode',
     'Tip: Press Shift+3 to instantly switch to Warpstagram Mode',
   ];
   const videoPlaceholders = [
     'video search...boop beep',
     'start typing to instantly find any video file',
-    'Dual Search: start typing then press Enter to search your built-in browser',
+    'Dual Search: start typing then press Enter to also search your built-in browser',
     'Tip: Press Shift+1 to instantly switch to Audio Mode',
     'Tip: Press Shift+3 to instantly switch to Warpstagram Mode',
   ];
