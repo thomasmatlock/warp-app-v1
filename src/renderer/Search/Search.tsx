@@ -31,18 +31,12 @@ const Search = (props) => {
   const prefsCtx = useContext(PrefsContext);
   // console.log(prefsCtx.prefs);
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const restoreInputDefaultWidthDelay = 3000;
 
   const [clearIcon, setClearIcon] = useState(false);
 
   const [isHovering, setIsHovering] = useState(false);
-  // let prefs;
-  // window.electron.ipcRenderer.on('main: prefs', (arg) => {
-  //   // console.log(arg.audio.dropdowns);
 
-  //   prefs = arg;
-  // });
   const searchInputChangeHandler = (event) => {
     if (event.target.value.length > 0) {
       setClearIcon(true);
@@ -84,17 +78,11 @@ const Search = (props) => {
     }
   };
   window.addEventListener('keydown', (event) => {
-    // console.log(event.key);
-
     if (event.key === 'Escape') {
-      modalsCtx.modalStateHandler(false);
-    }
-    if (event.key === 'Escape' && inputCtx.searchText.length > 0) {
-      // modalsCtx.modalStateHandler(false);
-      searchClearTextHandler();
-    }
-    if (event.key === 'Escape' && !modalsCtx.isModalOpen) {
-      searchClearTextHandler();
+      if (modalsCtx.isModalOpen) {
+        modalsCtx.modalStateHandler(false);
+      }
+      if (inputCtx.searchText.length > 0) searchClearTextHandler();
     }
   });
   window.addEventListener('keydown', (event) => {
@@ -102,35 +90,16 @@ const Search = (props) => {
     Array.from(document.getElementsByClassName('search__input')).forEach(
       (item) => {
         item.focus();
-        if (inputCtx.searchText.length === 0 && event.key === 'Shift') {
-          item.blur();
-          // console.log('blur 2');
-        } else if (
-          inputCtx.searchText.length === 0 &&
-          event.key === 'Control'
-        ) {
-          item.blur();
-          // } else if (inputCtx.searchText.length === 0 && event.key === '!') {
-        } else if (event.key === '!') {
-          // item.focus();
-          item.blur();
-          setTimeout(() => {}, 1000);
-          // } else if (inputCtx.searchText.length === 0 && event.key === '@') {
-        } else if (event.key === '@') {
+        if (event.key === 'Escape') {
+          if (inputCtx.searchText.length === 0) item.blur();
+        }
+        if (event.key === 'Control') item.blur();
+        if (event.key === 'Shift') item.blur();
+        if (event.key === '!' || event.key === '@' || event.key === '#') {
           item.blur();
           setTimeout(() => {
-            item.focus();
+            // if (inputCtx.searchText.length != 0) item.focus();
           }, 1000);
-          // } else if (inputCtx.searchText.length === 0 && event.key === '#') {
-        } else if (event.key === '#') {
-          item.blur();
-          setTimeout(() => {
-            item.focus();
-          }, 1000);
-        } else if (inputCtx.searchText.length === 0 && event.key === 'Escape') {
-          item.blur();
-        } else {
-          item.focus();
         }
       }
     );
