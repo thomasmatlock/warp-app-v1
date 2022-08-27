@@ -59,21 +59,18 @@ export const NavContextProvider = (props) => {
     return array[Math.floor(Math.random() * array.length)];
   };
   const audioPlaceholders = [
-    'start typing to instantly find any audio file',
-    'Dual Search: start typing then press Enter to search your browser',
-    // 'start typing, then press Enter to find it in your browser website',
-    'Press Enter to search in your browser too',
-    'Press Shift+2 to instantly switch to Video Mode',
-    'Press Shift+3 to instantly switch to Warpstagram Mode',
     'audio search...beep boop',
+    'start typing to instantly find any audio file',
+    'Dual Search: start typing then press Enter to search your built-in browser',
+    'Tip: Press Shift+2 to instantly switch to Video Mode',
+    'Tip: Press Shift+3 to instantly switch to Warpstagram Mode',
   ];
   const videoPlaceholders = [
-    // 'Dual Search: Typing will instantly find any matching video - then hitting Enter finds it in your browser',
-    'start typing to instantly find any video file',
-    'Dual Search: start typing then press Enter to search your browser',
     'video search...boop beep',
-    'Press Shift+1 to instantly switch to Audio Mode',
-    'Press Shift+3 to instantly switch to Warpstagram Mode',
+    'start typing to instantly find any video file',
+    'Dual Search: start typing then press Enter to search your built-in browser',
+    'Tip: Press Shift+1 to instantly switch to Audio Mode',
+    'Tip: Press Shift+3 to instantly switch to Warpstagram Mode',
   ];
   const warpstagramPlaceholders = [
     'start typing any instagram username, hashtag, or location',
