@@ -75,8 +75,8 @@ export const NavContextProvider = (props) => {
     'Tip: Press Shift+3 to instantly switch to Warpstagram Mode',
   ];
   const warpstagramPlaceholders = [
-    'start typing any instagram username, hashtag, or location',
-    'Enter instagram username, hashtag, or location',
+    'start typing any Instagram username, hashtag, or location',
+    'Enter Instagram username, hashtag, or location',
     'hit Escape to clear your search and start over',
     'Tip: Press Shift+1 to instantly switch to Audio Mode',
     'Tip: Press Shift+2 to instantly switch to Video Mode',
