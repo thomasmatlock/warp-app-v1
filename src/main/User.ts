@@ -7,6 +7,9 @@ const userDefaults = {
   audio: 'free',
   video: 'free',
   warpstagram: 'free',
+  audioAuthCode: '',
+  videoAuthCode: '',
+  warpstagramAuthCode: '',
 };
 
 function encryptUser(obj) {
@@ -23,23 +26,35 @@ function decryptUser(obj) {
   }
   return newObj;
 }
-const setUser = (user: any) => {
+function setUser(user: any) {
   let encryptedUser = encryptUser(user);
   settings.set('user', encryptedUser);
-};
-const resetUser = () => {
-  // settings.delete('user');
-};
-
+}
+function resetUser() {
+  settings.delete('user');
+}
+function upgradeModule(moduleType: string, moduleEdition: string) {
+  // console.log(moduleType, moduleEdition);
+  let decryptedUser = getUser();
+  let updatedUser = { ...decryptedUser };
+  for (const key in updatedUser) {
+    if (moduleType.includes(key)) {
+      updatedUser[key] = moduleEdition;
+    }
+  }
+  setUser(updatedUser);
+  // console.log(updatedUser);
+  return updatedUser;
+}
 export function getUser() {
-  resetUser(); // REMOVE, FOR TESTING ONLY
+  // resetUser(); // REMOVE, FOR TESTING ONLY
   let encryptedUser = settings.get('user');
   if (encryptedUser === undefined) {
     setUser(userDefaults);
     return userDefaults;
   } else {
     encryptedUser = settings.get('user');
-    console.log(encryptedUser);
+    // console.log(encryptedUser);
     let decryptedUser = decryptUser(encryptedUser);
     return decryptedUser;
   }
@@ -48,4 +63,5 @@ export function getUser() {
 module.exports = {
   getUser: getUser,
   setUser: setUser,
+  upgradeModule: upgradeModule,
 };
