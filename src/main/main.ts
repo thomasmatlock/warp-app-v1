@@ -31,6 +31,11 @@ import downloadsWarpstagramDefaults from '../storage/downloadsWarpstagramDefault
 import Youtube from '../downloaders/youtube/Youtube';
 import YoutubeDownload from '../downloaders/youtube/YoutubeDownload';
 import BrowserQuery from './browserQuery';
+import User from './User';
+// console.log(User.add());
+let user = User.getUser();
+console.log(user);
+
 import testUrls from '../downloaders/youtube/testURLS';
 import { v4 as uuidv4 } from 'uuid';
 import createCustomer from '../payments/stripe';
@@ -663,6 +668,19 @@ app.on('window-all-closed', () => {
   }
 });
 
+// const getUserAuths = () => {
+//   let userAuths = settings.get('prefs');
+//   if (prefs === undefined) {
+//     settings.set('prefs', prefsDefault);
+//     return prefsDefault;
+//   } else {
+//     return prefs;
+//   }
+// };
+const setUserAuths = (arg: any) => {
+  settings.set('user', arg);
+};
+
 app
   .whenReady()
   .then(() => {
@@ -674,7 +692,8 @@ app
     mWinBounds.width = display.width;
     // mWinBounds.height = display.height; // default
     mWinBounds.height = display.height - 150; // testing
-    windowController.createmWin();
+    // windowController.createmWin();
+
     globalShortcut.register('Alt+Left', () => {
       if (view) view.webContents.goBack();
     });
