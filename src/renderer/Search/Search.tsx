@@ -82,14 +82,16 @@ const Search = (props) => {
       if (modalsCtx.isModalOpen) {
         modalsCtx.modalStateHandler(false);
       }
-      if (inputCtx.searchText.length > 0) searchClearTextHandler();
+      if (!modalsCtx.isModalOpen && inputCtx.searchText.length > 0)
+        searchClearTextHandler();
     }
   });
   window.addEventListener('keydown', (event) => {
     console.log(event.key);
     Array.from(document.getElementsByClassName('search__input')).forEach(
       (item) => {
-        item.focus();
+        if (!modalsCtx.isModalOpen) item.focus();
+        if (modalsCtx.isModalOpen) item.blur();
         if (event.key === 'Escape') {
           if (inputCtx.searchText.length === 0) item.blur();
         }
