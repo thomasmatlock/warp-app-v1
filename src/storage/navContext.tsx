@@ -55,15 +55,39 @@ export const NavContextProvider = (props) => {
   const [licenseModePrefs, setLicenseModePrefs] = useState(false);
   // search placeholder states
   const [placeholder, setPlaceholder] = useState('');
-  const audioSearchPlaceholder = 'audio search...beep boop';
-  const videoSearchPlaceholder = 'video search...boop beep';
-  const warpstagramSearchPlaceholder =
-    'Enter instagram username, hashtag, or location';
+  const randomFromArray = (array) => {
+    return array[Math.floor(Math.random() * array.length)];
+  };
+  const audioPlaceholders = [
+    'start typing to instantly find any audio file',
+    'Dual Search: start typing then press Enter to search your browser',
+    // 'start typing, then press Enter to find it in your browser website',
+    'Press Enter to search in your browser too',
+    'audio search...beep boop',
+  ];
+  const videoPlaceholders = [
+    // 'Dual Search: Typing will instantly find any matching video - then hitting Enter finds it in your browser',
+    'start typing to instantly find any video file',
+    'Dual Search: start typing then press Enter to search your browser',
+    'video search...boop beep',
+  ];
+  const warpstagramPlaceholders = [
+    'start typing any instagram username, hashtag, or location',
+    'Enter instagram username, hashtag, or location',
+    // 'Enter instagram username',
+  ];
+  // const audioSearchPlaceholder = 'audio search...beep boop';
+  const audioSearchPlaceholder = randomFromArray(audioPlaceholders);
+  const videoSearchPlaceholder = randomFromArray(videoPlaceholders);
+  const warpstagramSearchPlaceholder = randomFromArray(warpstagramPlaceholders);
 
   window.electron.ipcRenderer.on('ready-to-show', (arg) => {
-    if (audioMode) setPlaceholder(audioSearchPlaceholder);
-    if (videoMode) setPlaceholder(videoSearchPlaceholder);
-    if (warpstagramMode) setPlaceholder(warpstagramSearchPlaceholder);
+    if (audioMode) setPlaceholder(randomFromArray(audioPlaceholders));
+    if (videoMode) setPlaceholder(randomFromArray(videoPlaceholders));
+    if (warpstagramMode)
+      setPlaceholder(randomFromArray(warpstagramPlaceholders));
+    // if (videoMode) setPlaceholder(videoSearchPlaceholder);
+    // if (warpstagramMode) setPlaceholder(warpstagramSearchPlaceholder);
   });
   // MAIN MODES HANDLERS
   const disableMainModes = () => {
@@ -82,7 +106,7 @@ export const NavContextProvider = (props) => {
     disableAllPrefs();
     setAudioMode(true);
     setAudioModePrefs(true);
-    setPlaceholder(audioSearchPlaceholder);
+    setPlaceholder(randomFromArray(audioPlaceholders));
     window.electron.ipcRenderer.sendMessage('nav: mode: audio');
   };
   const videoModeHandler = () => {
@@ -90,8 +114,7 @@ export const NavContextProvider = (props) => {
     disableAllPrefs();
     setVideoMode(true);
     setVideoModePrefs(true);
-    setPlaceholder(videoSearchPlaceholder);
-
+    setPlaceholder(randomFromArray(videoPlaceholders));
     window.electron.ipcRenderer.sendMessage('nav: mode: video', []);
   };
   const warpstagramModeHandler = () => {
@@ -99,7 +122,7 @@ export const NavContextProvider = (props) => {
     disableAllPrefs();
     setWarpstagramMode(true);
     setWarpstagramModePrefs(true);
-    setPlaceholder(warpstagramSearchPlaceholder);
+    setPlaceholder(randomFromArray(warpstagramPlaceholders));
     window.electron.ipcRenderer.sendMessage('browserPanelSize', 'hidden');
     window.electron.ipcRenderer.sendMessage('nav: mode: warpstagram');
   };

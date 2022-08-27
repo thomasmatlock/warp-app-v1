@@ -1,19 +1,10 @@
 import { Fragment, useState, useContext } from 'react';
 import './Search.scss';
 import SearchIcon from '../../../assets/Search/lightning.svg';
-// import SunIcon from '../../../assets/Search/sun_colored.svg';
 import SunIcon from '../../../assets/Search/sun.svg';
-// import SunIcon from '../../../assets/Search/sun2.svg';
-// import MoonIcon from '../../../assets/Search/moon_colored.svg';
-// import MoonIcon from '../../../assets/Search/moon.svg';
-// import MoonIcon from '../../../assets/Search/moon2.svg';
-// import MoonAstronaut from '../../../assets/Search/moon_astronaut.svg';
-// import MoonAstronaut from '../../../assets/astronauts/SVG/white/asset 6.svg';
-// import SunAstronaut from '../../../assets/Search/sun_astronaut.svg';
 import MoonIcon from '../../../assets/Search/moon.svg';
 import clearTextIcon from '../../../assets/Search/close.svg';
 import settingsIcon from '../../../assets/Search/gear.svg';
-// import Modal from '../Modal/Modal';
 import ModalPreferences from '../Modal/ModalPreferences';
 import ThemeContext from '../../storage/themeContext';
 import NavContext from '../../storage/navContext';
@@ -49,14 +40,12 @@ const Search = (props) => {
   const searchClearTextHandler = () => {
     setClearIcon(false);
     inputCtx.setSearchText('');
-    // setPlaceholderController();
 
     window.electron.ipcRenderer.sendMessage('Search: InputChange', ['']);
   };
   const searchInputBlurHandler = (event) => {
     let inputContainsText = event.target.value.length > 0;
     if (clearIcon == false && inputCtx.searchText.length === 0) {
-      // setPlaceholderController();
     }
     if (!inputContainsText) {
       setTimeout(() => {
