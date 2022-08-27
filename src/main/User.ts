@@ -33,7 +33,7 @@ function setUser(user: any) {
 function resetUser() {
   settings.delete('user');
 }
-function upgradeModule(moduleType: string, moduleEdition: string) {
+function upgradeUserModule(moduleType: string, moduleEdition: string) {
   // console.log(moduleType, moduleEdition);
   let decryptedUser = getUser();
   let updatedUser = { ...decryptedUser };
@@ -63,5 +63,6 @@ export function getUser() {
 module.exports = {
   getUser: getUser,
   setUser: setUser,
-  upgradeModule: upgradeModule,
+  upgradeUserModule: upgradeUserModule,
+  resetUser: resetUser,
 };

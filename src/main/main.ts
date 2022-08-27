@@ -32,9 +32,9 @@ import Youtube from '../downloaders/youtube/Youtube';
 import YoutubeDownload from '../downloaders/youtube/YoutubeDownload';
 import BrowserQuery from './browserQuery';
 import User from './User';
-// User.upgradeModule('audio', 'free');
-// User.upgradeModule('video', 'free');
-// User.upgradeModule('warpstagram', 'free');
+// User.upgradeUserModule('audio', 'free');
+// User.upgradeUserModule('video', 'free');
+// User.upgradeUserModule('warpstagram', 'free');
 let user = User.getUser();
 console.log(user);
 
