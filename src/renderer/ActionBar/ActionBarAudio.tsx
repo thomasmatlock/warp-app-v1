@@ -23,6 +23,10 @@ const FilterBar = (props) => {
   };
   const themeCtx = useContext(ThemeContext);
   const actionBarCtx = useContext(ActionBarContext);
+  const downloadsTotalString =
+    props.audioDownloadsTotal === 1
+      ? `${props.audioDownloadsTotal} audio download`
+      : `${props.audioDownloadsTotal} audio downloads`;
   // console.log(actionBarCtx);
 
   return (
@@ -37,7 +41,7 @@ const FilterBar = (props) => {
         }
       >
         {/* <div className="filterBar__menu filterBar__menu__left">
-         
+
         </div> */}
         <div className="filterBar__menu filterBar__menu__right">
           {!actionBarCtx.isDownloadsPanelCollapsed && (
@@ -51,7 +55,8 @@ const FilterBar = (props) => {
                     }
               }
             >
-              {props.audioDownloadsTotal} audio downloads
+              {downloadsTotalString}
+              {/* {props.audioDownloadsTotal} audio downloads */}
             </div>
           )}
           {!actionBarCtx.isDownloadsPanelCollapsed && (

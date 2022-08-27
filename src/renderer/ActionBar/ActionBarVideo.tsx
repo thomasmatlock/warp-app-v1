@@ -19,6 +19,10 @@ const FilterBar = (props) => {
   const [filterTypeHashtags, setFilterTypeHashtags] = useState(false);
   const [filterTypeLocations, setFilterTypeLocations] = useState(false);
   const [isContextMenuVisible, setisContextMenuVisible] = useState(false);
+  const downloadsTotalString =
+    props.videoDownloadsTotal === 1
+      ? `${props.videoDownloadsTotal} video download`
+      : `${props.videoDownloadsTotal} video downloads`;
   const toggleContextMenuSort = () => {
     if (isContextMenuVisible) {
       setisContextMenuVisible(false);
@@ -53,7 +57,8 @@ const FilterBar = (props) => {
                     }
               }
             >
-              {props.videoDownloadsTotal} video downloads
+              {downloadsTotalString}
+              {/* {downloadsTotal} {downloadsTotal.length > 0 ? ''} */}
             </div>
           )}
           {/* <div className="filterBar__menu__item filterBar__menu__item__find">

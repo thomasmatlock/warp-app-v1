@@ -53,6 +53,13 @@ const ActionBar = (props) => {
       setWarpstagramDownloadsTotal(warpstagramItems.length);
     }, 50);
   };
+  window.addEventListener('keydown', (event) => {
+    // if (event.key === 'Escape') {
+    if (navCtx.audioMode) countAudioDownloads();
+    if (navCtx.videoMode) countVideoDownloads();
+    if (navCtx.warpstagramMode) countWarpstagramDownloads();
+    // }
+  });
   if (navCtx.audioMode) countAudioDownloads();
   if (navCtx.videoMode) countVideoDownloads();
   if (navCtx.warpstagramMode) countWarpstagramDownloads();

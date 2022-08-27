@@ -10,7 +10,10 @@ const FilterBar = (props) => {
   const themeCtx = useContext(ThemeContext);
   const actionBarCtx = useContext(ActionBarContext);
   // console.log(actionBarCtx);
-
+  const downloadsTotalString =
+    props.warpstagramDownloadsTotal === 1
+      ? `${props.warpstagramDownloadsTotal}  account`
+      : `${props.warpstagramDownloadsTotal} accounts`;
   const [isContextMenuVisible, setisContextMenuVisible] = useState(false);
   const toggleContextMenuSort = () => {
     if (isContextMenuVisible) {
@@ -160,7 +163,8 @@ const FilterBar = (props) => {
                   }
             }
           >
-            {props.warpstagramDownloadsTotal} accounts
+            {/* {props.warpstagramDownloadsTotal} accounts */}
+            {downloadsTotalString}
           </div>
           {/* <div className="filterBar__menu__item filterBar__menu__item__find">
             <img src={searchIcon} />
