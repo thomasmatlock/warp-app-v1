@@ -4,16 +4,17 @@ import { app, BrowserWindow } from 'electron';
 import prefsDefault from '../storage/prefsDefaults';
 import paths from './paths';
 let prefs: any = {};
-prefsDefault.audio.folders[0].placeholder = paths.getAudioPath();
-prefsDefault.video.folders[0].placeholder = paths.getVideoPath();
-prefsDefault.warpstagram.folders[0].placeholder = paths.getWarpstagramPath();
+prefsDefault.audio.folders[0].placeholder = paths.getDefaultAudioPath();
+prefsDefault.video.folders[0].placeholder = paths.getDefaultVideoPath();
+prefsDefault.warpstagram.folders[0].placeholder =
+  paths.getDefaultWarpstagramPath();
 
 // let user = User.getUser();
 export function resetPrefs() {
   settings.delete('prefs'); // testing only, REMOVE for production
   return prefsDefault;
 }
-export function getPrefs(mWin: BrowserWindow, mode) {
+export function getPrefs() {
   prefs = settings.get('prefs');
   if (prefs === undefined) {
     settings.set('prefs', prefsDefault);
@@ -22,6 +23,7 @@ export function getPrefs(mWin: BrowserWindow, mode) {
     return prefs;
   }
 }
+// prefs = getPrefs();
 export function setPrefs(prefsObj: any) {
   settings.set('prefs', prefsObj);
 }
@@ -34,10 +36,29 @@ export function setPrefsMainWinBounds(mWin: BrowserWindow) {
     prefs = newPrefs;
   }
 }
+export function setAudioPath(path: string) {
+  let newPrefs = getPrefs();
+  newPrefs.audio.folders[0].placeholder = path;
+  console.log(newPrefs.audio.folders[0]);
 
+  setPrefs(newPrefs);
+}
+export function setVideoPath(path: string) {
+  let newPrefs = getPrefs();
+  prefs.video.folders[0].placeholder = path;
+  setPrefs(newPrefs);
+}
+export function setWarpstagramPath(path: string) {
+  let newPrefs = getPrefs();
+  prefs.warpstagram.folders[0].placeholder = path;
+  setPrefs(newPrefs);
+}
 module.exports = {
   resetPrefs: resetPrefs,
   getPrefs: getPrefs,
   setPrefs: setPrefs,
   setPrefsMainWinBounds: setPrefsMainWinBounds,
+  setAudioPath: setAudioPath,
+  setVideoPath: setVideoPath,
+  setWarpstagramPath: setWarpstagramPath,
 };

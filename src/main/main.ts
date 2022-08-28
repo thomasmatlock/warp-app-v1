@@ -36,7 +36,7 @@ import Paths from './paths';
 import Downloads from '../downloaders/downloadsController';
 import Title from './Title';
 import Prefs from './prefsController';
-Prefs.resetPrefs();
+// Prefs.resetPrefs();
 let prefs = Prefs.getPrefs();
 let display;
 let user;
@@ -369,11 +369,12 @@ let browserPanelState = 'default';
           .showOpenDialog(mWin, {
             buttonLabel: 'Confirm Audio Folder',
             properties: ['openDirectory'],
-            defaultPath: Paths.getAudioPath(),
+            defaultPath: Paths.getDefaultAudioPath(),
           })
           .then((result) => {
-            console.log(result.canceled);
-            console.log(result.filePaths);
+            if (!result.canceled)
+              //  console.log(result.filePaths[0]);
+              Prefs.setAudioPath(result.filePaths[0]);
           })
           .catch((err) => {
             console.log(err);
@@ -384,11 +385,12 @@ let browserPanelState = 'default';
           .showOpenDialog(mWin, {
             buttonLabel: 'Confirm Video Folder',
             properties: ['openDirectory'],
-            defaultPath: Paths.getVideoPath(),
+            defaultPath: Paths.getDefaultVideoPath(),
           })
           .then((result) => {
-            console.log(result.canceled);
-            console.log(result.filePaths);
+            if (!result.canceled)
+              // console.log(result.filePaths[0]);
+              Prefs.setVideoPath(result.filePaths[0]);
           })
           .catch((err) => {
             console.log(err);
@@ -399,11 +401,12 @@ let browserPanelState = 'default';
           .showOpenDialog(mWin, {
             buttonLabel: 'Confirm Warpstagram Folder',
             properties: ['openDirectory'],
-            defaultPath: Paths.getWarpstagramPath(),
+            defaultPath: Paths.getDefaultWarpstagramPath(),
           })
           .then((result) => {
-            console.log(result.canceled);
-            console.log(result.filePaths);
+            if (!result.canceled)
+              // console.log(result.filePaths[0]);
+              Prefs.setWarpstagramPath(result.filePaths[0]);
           })
           .catch((err) => {
             console.log(err);

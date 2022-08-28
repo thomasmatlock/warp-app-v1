@@ -2,28 +2,32 @@ import path from 'path';
 import fs from 'fs';
 import os from 'os';
 let mainPath = path.join(os.homedir(), 'Documents', 'Warp Downloader');
-let audioPath = path.join(mainPath, 'Audio');
-let videoPath = path.join(mainPath, 'Video');
-let warpstagramPath = path.join(mainPath, 'Warpstagram');
+let defaultAudioPath = path.join(mainPath, 'Audio');
+let defaultVideoPath = path.join(mainPath, 'Video');
+let defaultWarpstagramPath = path.join(mainPath, 'Warpstagram');
 if (!fs.existsSync(mainPath)) {
   fs.mkdirSync(mainPath);
-  fs.mkdirSync(audioPath);
-  fs.mkdirSync(videoPath);
-  fs.mkdirSync(warpstagramPath);
+  fs.mkdirSync(defaultAudioPath);
+  fs.mkdirSync(defaultVideoPath);
+  fs.mkdirSync(defaultWarpstagramPath);
 }
 
-export function getAudioPath() {
-  return audioPath;
+export function getDefaultAudioPath() {
+  return defaultAudioPath;
 }
 
-export function getVideoPath() {
-  return videoPath;
+export function getDefaultVideoPath() {
+  return defaultVideoPath;
 }
-export function getWarpstagramPath() {
-  return warpstagramPath;
+export function getDefaultWarpstagramPath() {
+  return defaultWarpstagramPath;
 }
+
 module.exports = {
-  getAudioPath: getAudioPath,
-  getVideoPath: getVideoPath,
-  getWarpstagramPath: getWarpstagramPath,
+  getDefaultAudioPath: getDefaultAudioPath,
+  getDefaultVideoPath: getDefaultVideoPath,
+  getDefaultWarpstagramPath: getDefaultWarpstagramPath,
+  // setAudioPath: setAudioPath,
+  // setVideoPath: setVideoPath,
+  // setWarpstagramPath: setWarpstagramPath,
 };
