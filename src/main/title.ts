@@ -33,7 +33,7 @@ const capitalizeFirstLetter = (string: string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 };
 export function setTitle(mWin: BrowserWindow, mode) {
-  console.log(user);
+  // console.log(user);
 
   let baseTitleString = `${app.getName()} | Download Anything |`;
   let versionString;
