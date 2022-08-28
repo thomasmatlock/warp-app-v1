@@ -49,10 +49,10 @@ export function setTitle(mWin: BrowserWindow, mode) {
     versionString = capitalizeFirstLetter(user[mode]);
   }
   activatedString = versionString.toLowerCase().includes('free')
-    ? 'Not Activated'
+    ? '- Not Activated'
     : '';
   mWin.setTitle(
-    `${baseTitleString} ${versionString} ${modeString} Edition - ${activatedString}`
+    `${baseTitleString} ${versionString} ${modeString} Edition ${activatedString}`
   );
 }
 

@@ -51,7 +51,7 @@ if (!fs.existsSync(mainPath)) {
   fs.mkdirSync(videoPath);
   fs.mkdirSync(warpstagramPath);
 }
-console.log(mainPath);
+// console.log(mainPath);
 
 import testUrls from '../downloaders/youtube/testURLS';
 import { v4 as uuidv4 } from 'uuid';
