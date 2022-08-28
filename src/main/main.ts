@@ -570,10 +570,7 @@ const windowController = {
 
         if (Screen.isMaximized) mWin.maximize();
         // windowController.createbView();
-        // if (view) mWin.maximize();
-        // mWin.maximize();
         mWin.webContents.send('appVersion', app.getVersion());
-        // console.log(app.getAppMetrics());
         mWin.webContents.send('main: prefs', prefs);
         mWin.webContents.send('main: audioDownloads', audioDownloads);
         mWin.webContents.send('main: videoDownloads', videoDownloads);
@@ -617,7 +614,6 @@ const windowController = {
     view.setAutoResize({ width: true, height: true });
     view.setBackgroundColor('#1a1a1a');
     view.webContents.loadURL(randomYoutubeURL);
-    // view.webContents.loadURL('https://www.youtube.com/watch?v=dQw4w9WgXcQ');
     view.webContents.on('did-navigate-in-page', (e, url) => {
       if (mWin) mWin.webContents.send('browser-url-change', url);
     });
