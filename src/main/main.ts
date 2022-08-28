@@ -36,7 +36,7 @@ import Paths from './paths';
 import Downloads from '../downloaders/downloadsController';
 import Title from './Title';
 import Prefs from './prefsController';
-Prefs.resetPrefs();
+// Prefs.resetPrefs();
 let prefs = Prefs.getPrefs();
 let display;
 let user;
@@ -560,6 +560,10 @@ const windowController = {
     });
 
     mWin.on('resize', () => {});
+    mWin.on('moved', () => {
+      // bWinHandler.resize(browserPanelState);
+      Prefs.setPrefsMainWinBounds(mWin);
+    });
     mWin.on('resized', () => {
       bWinHandler.resize(browserPanelState);
       Prefs.setPrefsMainWinBounds(mWin);
