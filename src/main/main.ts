@@ -36,7 +36,7 @@ import Paths from './paths';
 import Downloads from '../downloaders/downloadsController';
 import Title from './Title';
 import Prefs from './prefsController';
-// Prefs.resetPrefs();
+Prefs.resetPrefs();
 let prefs = Prefs.getPrefs();
 let display;
 let user;
@@ -372,9 +372,9 @@ let browserPanelState = 'default';
             defaultPath: Paths.getDefaultAudioPath(),
           })
           .then((result) => {
-            if (!result.canceled)
-              //  console.log(result.filePaths[0]);
-              Prefs.setAudioPath(result.filePaths[0]);
+            if (!result.canceled) Prefs.setAudioPath(result.filePaths[0]);
+            prefs = Prefs.getPrefs();
+            mWin.webContents.send('main: prefs', prefs);
           })
           .catch((err) => {
             console.log(err);
@@ -388,9 +388,9 @@ let browserPanelState = 'default';
             defaultPath: Paths.getDefaultVideoPath(),
           })
           .then((result) => {
-            if (!result.canceled)
-              // console.log(result.filePaths[0]);
-              Prefs.setVideoPath(result.filePaths[0]);
+            if (!result.canceled) Prefs.setVideoPath(result.filePaths[0]);
+            prefs = Prefs.getPrefs();
+            mWin.webContents.send('main: prefs', prefs);
           })
           .catch((err) => {
             console.log(err);
@@ -404,9 +404,9 @@ let browserPanelState = 'default';
             defaultPath: Paths.getDefaultWarpstagramPath(),
           })
           .then((result) => {
-            if (!result.canceled)
-              // console.log(result.filePaths[0]);
-              Prefs.setWarpstagramPath(result.filePaths[0]);
+            if (!result.canceled) Prefs.setWarpstagramPath(result.filePaths[0]);
+            prefs = Prefs.getPrefs();
+            mWin.webContents.send('main: prefs', prefs);
           })
           .catch((err) => {
             console.log(err);

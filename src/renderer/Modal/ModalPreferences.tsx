@@ -127,15 +127,15 @@ const ModalPreferences = (props) => {
           </div>
           <div className="modal_preferences__content__panel modal_preferences__content__panel__content">
             {isModalPanelAudio && (
-              <ModalPanelAudio getID={prefsCtx.getID} prefs={modalsCtx.prefs} />
+              <ModalPanelAudio getID={prefsCtx.getID} prefs={prefsCtx.prefs} />
             )}
             {isModalPanelVideo && (
-              <ModalPanelVideo getID={prefsCtx.getID} prefs={modalsCtx.prefs} />
+              <ModalPanelVideo getID={prefsCtx.getID} prefs={prefsCtx.prefs} />
             )}
             {isModalPanelWarpstagram && (
               <ModalPanelWarpstagram
                 getID={prefsCtx.getID}
-                prefs={modalsCtx.prefs}
+                prefs={prefsCtx.prefs}
               />
             )}
             {isModalPanelMorph && (
