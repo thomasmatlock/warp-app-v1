@@ -62,24 +62,24 @@ export const NavContextProvider = (props) => {
     'audio search...beep boop',
     'start typing to instantly find any audio file',
     'Dual Search: start typing then press Enter to also search your built-in browser',
-    'Tip: Press Shift+2 to instantly switch to Video Mode',
-    'Tip: Press Shift+3 to instantly switch to Warpstagram Mode',
+    'Shortcut: Press Shift+2 to instantly switch to Video Mode',
+    'Shortcut: Press Shift+3 to instantly switch to Warpstagram Mode',
     'hit Escape at any time to clear your search and start over. Bada bing bada cleared.',
   ];
   const videoPlaceholders = [
     'video search...boop beep',
     'start typing to instantly find any video file',
     'Dual Search: start typing then press Enter to also search your built-in browser',
-    'Tip: Press Shift+1 to instantly switch to Audio Mode',
-    'Tip: Press Shift+3 to instantly switch to Warpstagram Mode',
+    'Shortcut: Press Shift+1 to instantly switch to Audio Mode',
+    'Shortcut: Press Shift+3 to instantly switch to Warpstagram Mode',
     'hit Escape at any time to clear your search and start over. Bada bing bada cleared.',
   ];
   const warpstagramPlaceholders = [
     'start typing any Instagram username, hashtag, or location',
     'Enter Instagram username, hashtag, or location',
     'hit Escape at any time to clear your search and start over. Bada bing bada cleared.',
-    'Tip: Press Shift+1 to instantly switch to Audio Mode',
-    'Tip: Press Shift+2 to instantly switch to Video Mode',
+    'Shortcut: Press Shift+1 to instantly switch to Audio Mode',
+    'Shortcut: Press Shift+2 to instantly switch to Video Mode',
   ];
   const audioSearchPlaceholder = randomFromArray(audioPlaceholders);
   const videoSearchPlaceholder = randomFromArray(videoPlaceholders);
