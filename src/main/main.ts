@@ -40,6 +40,8 @@ import Prefs from './prefsController';
 let prefs = Prefs.getPrefs();
 let display;
 let user;
+// console.log(app.getPath('documents'));
+// console.log(app.getCurrentActivityType());
 
 import testUrls from '../downloaders/youtube/testURLS';
 import { v4 as uuidv4 } from 'uuid';
@@ -545,13 +547,13 @@ const windowController = {
         mWin.minimize();
       } else {
         mWin.show();
-        console.log(prefs.mWinIsMaximized);
 
         if (prefs.mWin.isMaximized) mWin.maximize();
         // windowController.createbView();
         // if (view) mWin.maximize();
         // mWin.maximize();
         mWin.webContents.send('appVersion', app.getVersion());
+        // console.log(app.getAppMetrics());
         mWin.webContents.send('main: prefs', prefs);
         mWin.webContents.send('main: audioDownloads', audioDownloads);
         mWin.webContents.send('main: videoDownloads', videoDownloads);

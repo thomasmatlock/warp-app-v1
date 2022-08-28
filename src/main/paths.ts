@@ -1,7 +1,9 @@
 import path from 'path';
 import fs from 'fs';
 import os from 'os';
-let mainPath = path.join(os.homedir(), 'Documents', 'Warp Downloader');
+import { app } from 'electron';
+// let mainPath = path.join(os.homedir(), 'Documents', 'Warp Downloader');
+let mainPath = path.join(app.getPath('documents'), 'Warp Downloader');
 let defaultAudioPath = path.join(mainPath, 'Audio');
 let defaultVideoPath = path.join(mainPath, 'Video');
 let defaultWarpstagramPath = path.join(mainPath, 'Warpstagram');
