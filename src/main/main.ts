@@ -35,25 +35,20 @@ import Downloads from '../downloaders/downloadsController';
 import Title from './Title';
 import Prefs from './prefsController';
 import PowerMonitor from './powerMonitor';
-// Prefs.resetPrefs();
+import Screen from './screen';
+// console.log(Screen);
+
 let prefs;
-let display;
 let user;
-let mWinBounds;
 PowerMonitor();
 app
   .whenReady()
   .then(() => {
+    Prefs.resetPrefs();
     prefs = Prefs.getPrefs();
     setActiveURL();
-    mWinBounds = { ...prefs.mWin.bounds };
-    display = screen.getAllDisplays()[0].workArea;
     user = User.getUser();
-
-    mWinBounds.x = display.x;
-    mWinBounds.y = display.y;
-    mWinBounds.width = display.width;
-    mWinBounds.height = display.height; // default
+    // Screen.resetScreenState();
     windowController.createmWin();
 
     globalShortcut.register('Alt+Left', () => {
@@ -497,10 +492,10 @@ const windowController = {
     };
 
     mWin = new BrowserWindow({
-      x: prefs.mWin.bounds.x,
-      y: prefs.mWin.bounds.y,
-      width: prefs.mWin.bounds.width,
-      height: prefs.mWin.bounds.height,
+      x: Screen.getScreenState().bounds.x,
+      y: Screen.getScreenState().bounds.y,
+      width: Screen.getScreenState().bounds.width,
+      height: Screen.getScreenState().bounds.height,
       minWidth: 850,
       minHeight: 500,
       show: false,
@@ -552,8 +547,7 @@ const windowController = {
     });
     mWin.on('maximize', () => {
       bWinHandler.resize(browserPanelState);
-      //  Prefs.setPrefsMainWinState(mWin);
-      Prefs.setPrefsMainWinState(mWin);
+      Screen.setScreenState(mWin);
     });
     mWin.on('minimize', () => {});
     mWin.on('ready-to-show', () => {
@@ -574,7 +568,7 @@ const windowController = {
       } else {
         mWin.show();
 
-        if (prefs.mWin.isMaximized) mWin.maximize();
+        if (Screen.isMaximized) mWin.maximize();
         // windowController.createbView();
         // if (view) mWin.maximize();
         // mWin.maximize();
@@ -593,15 +587,15 @@ const windowController = {
     mWin.on('resize', () => {});
     mWin.on('moved', () => {
       // bWinHandler.resize(browserPanelState);
-      Prefs.setPrefsMainWinState(mWin);
+      Screen.setScreenState(mWin);
     });
     mWin.on('unmaximize', () => {
       bWinHandler.resize(browserPanelState);
-      Prefs.setPrefsMainWinState(mWin);
+      Screen.setScreenState(mWin);
     });
     mWin.on('resized', () => {
       bWinHandler.resize(browserPanelState);
-      Prefs.setPrefsMainWinState(mWin);
+      Screen.setScreenState(mWin);
     });
     mWin.on('restore', () => {
       bWinHandler.resize(browserPanelState);
