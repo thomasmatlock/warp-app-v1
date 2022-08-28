@@ -369,6 +369,7 @@ let browserPanelState = 'default';
           .showOpenDialog(mWin, {
             buttonLabel: 'Confirm Audio Folder',
             properties: ['openDirectory'],
+            defaultPath: Paths.getAudioPath(),
           })
           .then((result) => {
             console.log(result.canceled);
@@ -383,6 +384,7 @@ let browserPanelState = 'default';
           .showOpenDialog(mWin, {
             buttonLabel: 'Confirm Video Folder',
             properties: ['openDirectory'],
+            defaultPath: Paths.getVideoPath(),
           })
           .then((result) => {
             console.log(result.canceled);
@@ -397,6 +399,7 @@ let browserPanelState = 'default';
           .showOpenDialog(mWin, {
             buttonLabel: 'Confirm Warpstagram Folder',
             properties: ['openDirectory'],
+            defaultPath: Paths.getWarpstagramPath(),
           })
           .then((result) => {
             console.log(result.canceled);
