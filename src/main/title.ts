@@ -50,7 +50,7 @@ export function setTitle(mWin: BrowserWindow, mode) {
   }
   activatedString = versionString.toLowerCase().includes('free')
     ? 'Not Activated'
-    : 'Activated';
+    : '';
   mWin.setTitle(
     `${baseTitleString} ${versionString} ${modeString} Edition - ${activatedString}`
   );
