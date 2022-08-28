@@ -64,7 +64,7 @@ export const NavContextProvider = (props) => {
     'Dual Search: start typing then press Enter to also search your built-in browser',
     'Tip: Press Shift+2 to instantly switch to Video Mode',
     'Tip: Press Shift+3 to instantly switch to Warpstagram Mode',
-    'any time you want, hit Escape to clear your search and start over. Bada bing bada cleared.',
+    'hit Escape at any time to clear your search and start over. Bada bing bada cleared.',
   ];
   const videoPlaceholders = [
     'video search...boop beep',
@@ -72,12 +72,12 @@ export const NavContextProvider = (props) => {
     'Dual Search: start typing then press Enter to also search your built-in browser',
     'Tip: Press Shift+1 to instantly switch to Audio Mode',
     'Tip: Press Shift+3 to instantly switch to Warpstagram Mode',
-    'any time you want, hit Escape to clear your search and start over. Bada bing bada cleared.',
+    'hit Escape at any time to clear your search and start over. Bada bing bada cleared.',
   ];
   const warpstagramPlaceholders = [
     'start typing any Instagram username, hashtag, or location',
     'Enter Instagram username, hashtag, or location',
-    'any time you want, hit Escape to clear your search and start over. Bada bing bada cleared.',
+    'hit Escape at any time to clear your search and start over. Bada bing bada cleared.',
     'Tip: Press Shift+1 to instantly switch to Audio Mode',
     'Tip: Press Shift+2 to instantly switch to Video Mode',
   ];
