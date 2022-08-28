@@ -67,3 +67,7 @@ module.exports = {
   upgradeUserModule: upgradeUserModule,
   resetUser: resetUser,
 };
+// USE TO UPGRADE USER
+// User.upgradeUserModule('audio', 'free');
+// User.upgradeUserModule('video', 'free');
+// User.upgradeUserModule('warpstagram', 'free');

@@ -34,9 +34,6 @@ import BrowserQuery from './browserQuery';
 import User from './User';
 import Title from './Title';
 
-// User.upgradeUserModule('audio', 'free');
-// User.upgradeUserModule('video', 'free');
-// User.upgradeUserModule('warpstagram', 'free');
 let user;
 // console.log(user);const os = require('os');
 const os = require('os');
@@ -563,7 +560,7 @@ const windowController = {
         mWin.minimize();
       } else {
         mWin.show();
-        // windowController.createbView();
+        windowController.createbView();
         // if (view) mWin.maximize();
         // mWin.maximize();
         mWin.webContents.send('appVersion', app.getVersion());
@@ -593,8 +590,8 @@ const windowController = {
     view.setBounds({
       x: viewBounds.x,
       y: viewBounds.y,
-      width: mWin.getContentBounds().width / 2,
-      height: mWin.getContentBounds().height - 192,
+      width: mWin ? mWin.getContentBounds().width / 2 : 400,
+      height: mWin ? mWin.getContentBounds().height - 192 : 400,
     });
     // view.setMaxListeners(30);
     view.setAutoResize({ width: true, height: true });
