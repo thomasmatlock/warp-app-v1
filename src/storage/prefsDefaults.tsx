@@ -6,9 +6,9 @@ const prefs = {
         title: 'Audio Quality',
         id: 'modal_dropdown_audio_quality',
         defaultValue: {
-          id: 'modal_dropdown_audio_quality_high',
-          value: 'modal_dropdown_audio_quality_high',
-          label: 'High quality (320kbps)',
+          id: 'modal_dropdown_audio_quality_best',
+          value: 'modal_dropdown_audio_quality_best',
+          label: 'Best Available (default)',
         },
         options: [
           {
