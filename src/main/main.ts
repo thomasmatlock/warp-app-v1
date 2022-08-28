@@ -89,61 +89,7 @@ const setVideoDownloads = (items) => {
 let audioDownloads = Downloads.getAudioDownloads();
 let videoDownloads = Downloads.getVideoDownloads();
 let warpstagramDownloads = Downloads.getWarpstagramDownloads();
-async function downloadItem(url, prefs, mode) {
-  let item = await Youtube(url, prefs, mode);
-  // let downloadedItem = await YoutubeDownload(item);
-  item.id = uuidv4();
-  // console.log(item.id);
 
-  if (mWin && item != undefined)
-    if (mode === 'audio') {
-      audioDownloads.push(item);
-      setAudioDownloads(audioDownloads);
-      mWin.webContents.send('main: item-downloaded', [item, 'audio']);
-    }
-  if (mode === 'video') {
-    videoDownloads.push(item);
-    setVideoDownloads(videoDownloads);
-    // mWin.webContents.send('main: item-downloaded', [item, 'video']);
-    mWin.webContents.send('main: item-downloaded', [item, 'video']);
-  }
-}
-
-const removeMatchingDownload = (downloadID) => {
-  for (const download of audioDownloads) {
-    if (download.id === downloadID) {
-      audioDownloads.splice(audioDownloads.indexOf(download), 1);
-      setAudioDownloads(audioDownloads);
-      return;
-    }
-  }
-  for (const download of videoDownloads) {
-    if (download.id === downloadID) {
-      videoDownloads.splice(videoDownloads.indexOf(download), 1);
-      setVideoDownloads(videoDownloads);
-      // setDownloadsVideoState(downloadsVideo.length);
-      return;
-    }
-  }
-};
-const removeAllDownloads = (downloadID) => {
-  for (const download of audioDownloads) {
-    if (download.id === downloadID) {
-      audioDownloads = [];
-      setAudioDownloads(audioDownloads);
-      // setDownloadsAudioState(downloadsAudio.length);/
-      return;
-    }
-  }
-  for (const download of videoDownloads) {
-    if (download.id === downloadID) {
-      videoDownloads = [];
-      setVideoDownloads(videoDownloads);
-      // setDownloadsVideoState(downloadsVideo.length);
-      return;
-    }
-  }
-};
 async function submitSearchQuery(currentURL, query) {
   let joinedQuery = await BrowserQuery(currentURL, query);
   // console.log(joinedQuery);
@@ -310,11 +256,13 @@ let browserPanelState = 'default';
   });
   // BROWSERBAR DOWNLOAD BUTTON LISTENERS
   ipcMain.on('BrowserBar: button: downloadAudio', async (event, arg) => {
-    if (view) downloadItem(view.webContents.getURL(), prefs, 'audio');
+    if (view)
+      Downloads.downloadItem(mWin, view.webContents.getURL(), prefs, 'audio');
     event.reply('BrowserBar: button: downloadAudio successful');
   });
   ipcMain.on('BrowserBar: button: downloadVideo', async (event, arg) => {
-    if (view) downloadItem(view.webContents.getURL(), prefs, 'video');
+    if (view)
+      Downloads.downloadItem(mWin, view.webContents.getURL(), prefs, 'video');
     event.reply('BrowserBar: button: downloadVideo successful'); // sends message to renderer
   });
   ipcMain.on('browserPanelSize', async (event, arg) => {
@@ -419,16 +367,13 @@ let browserPanelState = 'default';
   });
   ipcMain.on('context: open_in_browser', async (event, matchingDownload) => {
     let url = matchingDownload.video_url;
-    // if (view) view.webContents.loadURL(url);
+    if (view) view.webContents.loadURL(url);
   });
   ipcMain.on('context: remove_item', async (event, matchingDownload) => {
-    console.log(matchingDownload);
-    removeMatchingDownload(matchingDownload.id);
+    Downloads.removeMatchingDownload(matchingDownload.id);
   });
   ipcMain.on('context: remove_all', async (event, matchingDownloadID) => {
-    console.log(matchingDownloadID);
-
-    removeAllDownloads(matchingDownloadID);
+    Downloads.removeAllDownloads(matchingDownloadID);
   });
   ipcMain.on('context: delete_file', async (event, matchingDownload) => {
     console.log(matchingDownload);

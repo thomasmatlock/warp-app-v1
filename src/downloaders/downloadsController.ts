@@ -9,26 +9,25 @@ const Store = require('electron-store');
 const settings = new Store();
 export async function downloadItem(
   mWin: BrowserWindow,
-  itemURL: string,
+  url: string,
   prefs,
   mode
 ) {
-  //  let item = await Youtube(url, prefs, mode);
-  //  // let downloadedItem = await YoutubeDownload(item);
-  //  item.id = uuidv4();
-  //  // console.log(item.id);
-  //  if (mWin && item != undefined)
-  //    if (mode === 'audio') {
-  //      audioDownloads.push(item);
-  //      setAudioDownloads(audioDownloads);
-  //      mWin.webContents.send('main: item-downloaded', [item, 'audio']);
-  //    }
-  //  if (mode === 'video') {
-  //    videoDownloads.push(item);
-  //    setVideoDownloads(videoDownloads);
-  //    // mWin.webContents.send('main: item-downloaded', [item, 'video']);
-  //    mWin.webContents.send('main: item-downloaded', [item, 'video']);
-  //  }
+  let item = await Youtube(url, prefs, mode);
+  item.id = uuidv4();
+  if (mWin && item != undefined)
+    if (mode === 'audio') {
+      let audioDownloads = getAudioDownloads();
+      audioDownloads.push(item);
+      setAudioDownloads(audioDownloads);
+      mWin.webContents.send('main: item-downloaded', [item, 'audio']);
+    }
+  if (mode === 'video') {
+    let videoDownloads = getVideoDownloads();
+    videoDownloads.push(item);
+    setVideoDownloads(videoDownloads);
+    mWin.webContents.send('main: item-downloaded', [item, 'video']);
+  }
 }
 export function getAudioDownloads() {
   let audioDownloads = settings.get('audioDownloads');
@@ -64,6 +63,43 @@ export function setVideoDownloads(items) {
   settings.set('videoDownloads', items);
 }
 
+export function removeMatchingDownload(downloadID) {
+  let audioDownloads = getAudioDownloads();
+  let videoDownloads = getVideoDownloads();
+  for (const download of audioDownloads) {
+    if (download.id === downloadID) {
+      audioDownloads.splice(audioDownloads.indexOf(download), 1);
+      setAudioDownloads(audioDownloads);
+      return;
+    }
+  }
+  for (const download of videoDownloads) {
+    if (download.id === downloadID) {
+      videoDownloads.splice(videoDownloads.indexOf(download), 1);
+      setVideoDownloads(videoDownloads);
+      return;
+    }
+  }
+}
+export function removeAllDownloads(downloadID) {
+  let audioDownloads = getAudioDownloads();
+  let videoDownloads = getVideoDownloads();
+  for (const download of audioDownloads) {
+    if (download.id === downloadID) {
+      audioDownloads = [];
+      setAudioDownloads(audioDownloads);
+      return;
+    }
+  }
+  for (const download of videoDownloads) {
+    if (download.id === downloadID) {
+      videoDownloads = [];
+      setVideoDownloads(videoDownloads);
+      return;
+    }
+  }
+}
+
 module.exports = {
   downloadItem: downloadItem,
   getAudioDownloads: getAudioDownloads,
@@ -71,4 +107,6 @@ module.exports = {
   getWarpstagramDownloads: getWarpstagramDownloads,
   setAudioDownloads: setAudioDownloads,
   setVideoDownloads: setVideoDownloads,
+  removeMatchingDownload: removeMatchingDownload,
+  removeAllDownloads: removeAllDownloads,
 };
