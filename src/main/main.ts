@@ -569,7 +569,7 @@ const windowController = {
         mWin.show();
 
         if (Screen.isMaximized) mWin.maximize();
-        // windowController.createbView();
+        if (view === null) windowController.createbView();
         mWin.webContents.send('appVersion', app.getVersion());
         mWin.webContents.send('main: prefs', prefs);
         mWin.webContents.send('main: audioDownloads', audioDownloads);
@@ -608,8 +608,9 @@ const windowController = {
     view.setBounds({
       x: viewBounds.x,
       y: viewBounds.y,
-      width: mWin ? mWin.getContentBounds().width / 2 : 400,
-      height: mWin ? mWin.getContentBounds().height - 192 : 400,
+      width: Math.round(mWin.getContentBounds().width / 2),
+      // width: mWin.getContentBounds().width / 2,
+      height: mWin.getContentBounds().height - 192,
     });
     view.setAutoResize({ width: true, height: true });
     view.setBackgroundColor('#1a1a1a');
@@ -626,7 +627,7 @@ const windowController = {
 };
 const bWinHandler = {
   resize: async function (browserWidth: string | undefined) {
-    let defaultWidthDifference = mWin.getContentBounds().width / 2;
+    let defaultWidthDifference = Math.round(mWin.getContentBounds().width / 2);
     let collapsedWidthDifference = 72;
     let expandedWidthDifference = mWin.getContentBounds().width - 72;
     // COLLAPSED VIEW
