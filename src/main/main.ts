@@ -52,7 +52,7 @@ let randomYoutubeURL =
 //////////////////////////////////////////////////////
 const Store = require('electron-store');
 const settings = new Store();
-// settings.delete('prefs'); // testing only, REMOVE for production
+settings.delete('prefs'); // testing only, REMOVE for production
 const getPrefs = () => {
   let prefs = settings.get('prefs');
   if (prefs === undefined) {
