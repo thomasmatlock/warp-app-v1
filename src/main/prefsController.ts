@@ -31,10 +31,13 @@ export function setPrefsMainWinState(mWin: BrowserWindow) {
   if (mWin) {
     let newPrefs = getPrefs();
     let newBounds = mWin.getBounds();
-    newPrefs.mWinBounds = newBounds;
-    newPrefs.mWinIsMaximized = mWin.isMaximized();
+    // newPrefs.mWinBounds = newBounds;
+    newPrefs.mWin.bounds = newBounds;
+    // newPrefs.mWinIsMaximized = mWin.isMaximized();
+    newPrefs.mWin.isMaximized = mWin.isMaximized();
     setPrefs(newPrefs);
     prefs = newPrefs;
+    // console.log(prefs.mWin);
   }
 }
 

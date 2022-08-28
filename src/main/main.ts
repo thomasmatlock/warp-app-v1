@@ -229,7 +229,7 @@ class AppUpdater {
 let mWin: BrowserWindow | null = null;
 // let splashWindow: BrowserWindow | null = null;
 let view: BrowserView | null = null;
-let mWinBounds = { ...prefs.mWinBounds };
+let mWinBounds = { ...prefs.mWin.bounds };
 const hideView = () => {
   if (view) view.setBounds({ x: 0, y: 0, width: 0, height: 0 });
 };
@@ -469,10 +469,10 @@ const windowController = {
     };
 
     mWin = new BrowserWindow({
-      x: prefs.mWinBounds.x,
-      y: prefs.mWinBounds.y,
-      width: prefs.mWinBounds.width,
-      height: prefs.mWinBounds.height,
+      x: prefs.mWin.bounds.x,
+      y: prefs.mWin.bounds.y,
+      width: prefs.mWin.bounds.width,
+      height: prefs.mWin.bounds.height,
       minWidth: 850,
       minHeight: 500,
       show: false,
@@ -547,7 +547,7 @@ const windowController = {
         mWin.show();
         console.log(prefs.mWinIsMaximized);
 
-        if (prefs.mWinIsMaximized) mWin.maximize();
+        if (prefs.mWin.isMaximized) mWin.maximize();
         // windowController.createbView();
         // if (view) mWin.maximize();
         // mWin.maximize();
