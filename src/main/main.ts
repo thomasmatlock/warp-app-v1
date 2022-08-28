@@ -76,33 +76,6 @@ let randomYoutubeURL =
 //////////////////////////////////////////////////////
 const Store = require('electron-store');
 const settings = new Store();
-const getAudioDownloads = () => {
-  let audioDownloads = settings.get('audioDownloads');
-  if (audioDownloads === undefined) {
-    settings.set('audioDownloads', downloadsAudioDefaults);
-    return downloadsAudioDefaults;
-  } else {
-    return audioDownloads;
-  }
-};
-const getVideoDownloads = () => {
-  let videoDownloads = settings.get('videoDownloads');
-  if (videoDownloads === undefined) {
-    settings.set('videoDownloads', downloadsVideoDefaults);
-    return downloadsVideoDefaults;
-  } else {
-    return videoDownloads;
-  }
-};
-const getWarpstagramDownloads = () => {
-  let warpstagramDownloads = settings.get('warpstagramDownloads');
-  if (warpstagramDownloads === undefined) {
-    settings.set('warpstagramDownloads', downloadsWarpstagramDefaults);
-    return downloadsWarpstagramDefaults;
-  } else {
-    return warpstagramDownloads;
-  }
-};
 const setAudioDownloads = (items) => {
   settings.set('audioDownloads', items);
 };
@@ -113,9 +86,9 @@ const setVideoDownloads = (items) => {
 // settings.delete('audioDownloads'); // testing only, REMOVE for production
 // settings.delete('videoDownloads'); // testing only, REMOVE for production
 
-let audioDownloads = getAudioDownloads();
-let videoDownloads = getVideoDownloads();
-let warpstagramDownloads = getWarpstagramDownloads();
+let audioDownloads = Downloads.getAudioDownloads();
+let videoDownloads = Downloads.getVideoDownloads();
+let warpstagramDownloads = Downloads.getWarpstagramDownloads();
 async function downloadItem(url, prefs, mode) {
   let item = await Youtube(url, prefs, mode);
   // let downloadedItem = await YoutubeDownload(item);
