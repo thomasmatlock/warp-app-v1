@@ -24,30 +24,29 @@ import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
-import prefsDefault from '../storage/prefsDefaults';
 import downloadsAudioDefaults from '../storage/downloadsAudioDefaults';
 import downloadsVideoDefaults from '../storage/downloadsVideoDefaults';
 import downloadsWarpstagramDefaults from '../storage/downloadsWarpstagramDefaults';
 import Youtube from '../downloaders/youtube/Youtube';
-import YoutubeDownload from '../downloaders/youtube/YoutubeDownload';
 import BrowserQuery from './browserQuery';
 import User from './User';
 import Paths from './paths';
 import Downloads from '../downloaders/downloadsController';
 import Title from './Title';
 import Prefs from './prefsController';
+import PowerMonitor from './powerMonitor';
 // Prefs.resetPrefs();
 let prefs = Prefs.getPrefs();
 let display;
 let user;
-// console.log(app.getPath('documents'));
-// console.log(app.getCurrentActivityType());
+PowerMonitor();
 
 import testUrls from '../downloaders/youtube/testURLS';
 import { v4 as uuidv4 } from 'uuid';
 import createCustomer from '../payments/stripe';
 // test
 // test
+
 // console.log(createCustomer);
 // createCustomer();
 let randomYoutubeURL =
@@ -685,6 +684,7 @@ app
     // console.log(display);
     user = User.getUser();
     // console.log(user);
+    // console.log(process.getCPUUsage());
 
     mWinBounds.x = display.x;
     mWinBounds.y = display.y;
