@@ -32,6 +32,8 @@ import Youtube from '../downloaders/youtube/Youtube';
 import YoutubeDownload from '../downloaders/youtube/YoutubeDownload';
 import BrowserQuery from './browserQuery';
 import User from './User';
+import Title from './Title';
+
 // User.upgradeUserModule('audio', 'free');
 // User.upgradeUserModule('video', 'free');
 // User.upgradeUserModule('warpstagram', 'free');
@@ -44,7 +46,7 @@ let audioPath = path.join(mainPath, 'Audio');
 let videoPath = path.join(mainPath, 'Video');
 let warpstagramPath = path.join(mainPath, 'Warpstagram');
 if (!fs.existsSync(mainPath)) {
-  fs.mkdirSync(warpPath);
+  fs.mkdirSync(mainPath);
   fs.mkdirSync(audioPath);
   fs.mkdirSync(videoPath);
   fs.mkdirSync(warpstagramPath);
@@ -282,12 +284,17 @@ let browserPanelState = 'default';
   }); // nav listeners
   ipcMain.on('nav: mode: audio', async (event, arg) => {
     if (mWin) mWin.webContents.send('count-downloads');
+    // console.log(arg);
+
+    Title.setTitle(mWin, 'audio');
   });
   ipcMain.on('nav: mode: video', async (event, arg) => {
     if (mWin) mWin.webContents.send('count-downloads');
+    Title.setTitle(mWin, 'video');
   });
   ipcMain.on('nav: mode: warpstagram', async (event, arg) => {
     if (mWin) mWin.webContents.send('count-downloads');
+    Title.setTitle(mWin, 'warpstagram');
   });
   // SEARCH LISTENERS
   ipcMain.on('Search: InputChange', async (event, arg) => {
@@ -542,19 +549,13 @@ const windowController = {
     mWin.on('minimize', () => {});
     mWin.on('ready-to-show', () => {
       if (mWin) mWin.webContents.send('ready-to-show');
-      if (process.platform === 'win32' && mWin) {
+      Title.setTitle(mWin, 'audio');
+      if (process.platform === 'win32' && mWin)
         mWin.webContents.send('platform', 'windows');
-        // Title.setWindowsTitle();
-        mWin.setTitle(`${app.getName()} | Free Audio Edition - Not Activated`);
-      }
-      if (process.platform === 'darwin' && mWin) {
+      if (process.platform === 'darwin' && mWin)
         mWin.webContents.send('platform', 'darwin');
-        mWin.setTitle(`${app.getName()} | Professional Audio Edition`);
-      }
-      if (process.platform === 'linux' && mWin) {
+      if (process.platform === 'linux' && mWin)
         mWin.webContents.send('platform', 'linux');
-        mWin.setTitle(`${app.getName()} | Professional Audio Edition`);
-      }
       if (!mWin) {
         throw new Error('"mWin" is not defined');
       }
@@ -696,7 +697,7 @@ app
     mWinBounds.width = display.width;
     // mWinBounds.height = display.height; // default
     mWinBounds.height = display.height - 150; // testing
-    // windowController.createmWin();
+    windowController.createmWin();
 
     globalShortcut.register('Alt+Left', () => {
       if (view) view.webContents.goBack();
