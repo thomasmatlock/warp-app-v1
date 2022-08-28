@@ -15,8 +15,54 @@ export function showBrowser(mWin: BrowserWindow, view: BrowserView) {
       height: mWin.getContentBounds().height - 192,
     });
 }
-export async function resize() {}
-export async function screenshot(mWin, view) {
+export async function resize(
+  browserWidth: string | undefined,
+  mWin: BrowserWindow,
+  view: BrowserView
+) {
+  let defaultWidthDifference = Math.round(mWin.getContentBounds().width / 2);
+  let collapsedWidthDifference = 72;
+  let expandedWidthDifference = Math.round(mWin.getContentBounds().width - 72);
+  // COLLAPSED VIEW
+  if (browserWidth === 'collapse') {
+    if (view && mWin)
+      view.setBounds({
+        x: viewBounds.x,
+        y: viewBounds.y,
+        width: collapsedWidthDifference,
+        height: mWin.getContentBounds().height - 192,
+      });
+  }
+  // HIDDEN VIEW
+  if (browserWidth === 'hidden') {
+    // hideBrowser();
+  }
+  // EXPANDED VIEW
+  if (browserWidth === 'expand') {
+    if (view && mWin)
+      view.setBounds({
+        x: viewBounds.x,
+        y: viewBounds.y,
+        width: expandedWidthDifference,
+        height: mWin.getContentBounds().height - 192,
+      });
+  }
+  // DEFAULT SPLIT VIEW
+  if (browserWidth === 'default' || browserWidth === undefined) {
+    if (view && mWin)
+      view.setBounds({
+        x: viewBounds.x,
+        y: viewBounds.y,
+        width: defaultWidthDifference,
+        height: mWin.getContentBounds().height - 192,
+      });
+  }
+
+  setTimeout(() => {
+    screenshot(mWin, view);
+  }, 1000);
+}
+export async function screenshot(mWin: BrowserWindow, view: BrowserView) {
   if (view)
     if (view)
       view.webContents
