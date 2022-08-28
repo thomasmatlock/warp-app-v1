@@ -1,5 +1,6 @@
 const prefs = {
   mWinBounds: { x: 0, y: 0, width: 1600, height: 900 },
+  mWinIsMaximized: false,
   audio: {
     dropdowns: [
       {

@@ -524,7 +524,8 @@ const windowController = {
     });
     mWin.on('maximize', () => {
       bWinHandler.resize(browserPanelState);
-      //  Prefs.setPrefsMainWinBounds(mWin);
+      //  Prefs.setPrefsMainWinState(mWin);
+      Prefs.setPrefsMainWinState(mWin);
     });
     mWin.on('minimize', () => {});
     mWin.on('ready-to-show', () => {
@@ -544,7 +545,9 @@ const windowController = {
         mWin.minimize();
       } else {
         mWin.show();
+        console.log(prefs.mWinIsMaximized);
 
+        if (prefs.mWinIsMaximized) mWin.maximize();
         // windowController.createbView();
         // if (view) mWin.maximize();
         // mWin.maximize();
@@ -562,15 +565,20 @@ const windowController = {
     mWin.on('resize', () => {});
     mWin.on('moved', () => {
       // bWinHandler.resize(browserPanelState);
-      Prefs.setPrefsMainWinBounds(mWin);
+      Prefs.setPrefsMainWinState(mWin);
+    });
+    mWin.on('unmaximize', () => {
+      bWinHandler.resize(browserPanelState);
+      Prefs.setPrefsMainWinState(mWin);
     });
     mWin.on('resized', () => {
       bWinHandler.resize(browserPanelState);
-      Prefs.setPrefsMainWinBounds(mWin);
+      Prefs.setPrefsMainWinState(mWin);
     });
     mWin.on('restore', () => {
       bWinHandler.resize(browserPanelState);
     });
+
     mWin.on('show', () => {
       bWinHandler.resize(browserPanelState);
     });

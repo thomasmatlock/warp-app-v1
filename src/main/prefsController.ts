@@ -27,15 +27,17 @@ export function getPrefs() {
 export function setPrefs(prefsObj: any) {
   settings.set('prefs', prefsObj);
 }
-export function setPrefsMainWinBounds(mWin: BrowserWindow) {
+export function setPrefsMainWinState(mWin: BrowserWindow) {
   if (mWin) {
+    let newPrefs = getPrefs();
     let newBounds = mWin.getBounds();
-    let newPrefs = { ...prefs };
     newPrefs.mWinBounds = newBounds;
+    newPrefs.mWinIsMaximized = mWin.isMaximized();
     setPrefs(newPrefs);
     prefs = newPrefs;
   }
 }
+
 export function setAudioPath(path: string) {
   let newPrefs = getPrefs();
   newPrefs.audio.folders[0].placeholder = path;
@@ -57,7 +59,7 @@ module.exports = {
   resetPrefs: resetPrefs,
   getPrefs: getPrefs,
   setPrefs: setPrefs,
-  setPrefsMainWinBounds: setPrefsMainWinBounds,
+  setPrefsMainWinState: setPrefsMainWinState,
   setAudioPath: setAudioPath,
   setVideoPath: setVideoPath,
   setWarpstagramPath: setWarpstagramPath,
