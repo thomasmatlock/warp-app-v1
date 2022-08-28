@@ -36,7 +36,11 @@ import User from './User';
 // User.upgradeUserModule('video', 'free');
 // User.upgradeUserModule('warpstagram', 'free');
 let user;
-// console.log(user);
+// console.log(user);const os = require('os');
+const os = require('os');
+console.log(os.homedir());
+let test = path.join(os.homedir(), 'Documents', 'Warp Downloader');
+console.log(test);
 
 import testUrls from '../downloaders/youtube/testURLS';
 import { v4 as uuidv4 } from 'uuid';
@@ -532,7 +536,7 @@ const windowController = {
       if (process.platform === 'win32' && mWin) {
         mWin.webContents.send('platform', 'windows');
         // Title.setWindowsTitle();
-        mWin.setTitle(`${app.getName()} | Professional Audio Edition`);
+        mWin.setTitle(`${app.getName()} | Free Audio Edition - Not Activated`);
       }
       if (process.platform === 'darwin' && mWin) {
         mWin.webContents.send('platform', 'darwin');
@@ -683,7 +687,7 @@ app
     mWinBounds.width = display.width;
     // mWinBounds.height = display.height; // default
     mWinBounds.height = display.height - 150; // testing
-    windowController.createmWin();
+    // windowController.createmWin();
 
     globalShortcut.register('Alt+Left', () => {
       if (view) view.webContents.goBack();
