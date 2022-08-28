@@ -36,6 +36,7 @@ import Paths from './paths';
 import Downloads from '../downloaders/downloadsController';
 import Title from './Title';
 import Prefs from './prefsController';
+Prefs.resetPrefs();
 let prefs = Prefs.getPrefs();
 let display;
 let user;

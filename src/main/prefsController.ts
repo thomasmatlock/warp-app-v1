@@ -2,8 +2,12 @@ const Store = require('electron-store');
 const settings = new Store();
 import { app, BrowserWindow } from 'electron';
 import prefsDefault from '../storage/prefsDefaults';
-// import User from './User';
+import paths from './paths';
 let prefs: any = {};
+prefsDefault.audio.folders[0].placeholder = paths.getAudioPath();
+prefsDefault.video.folders[0].placeholder = paths.getVideoPath();
+prefsDefault.warpstagram.folders[0].placeholder = paths.getWarpstagramPath();
+
 // let user = User.getUser();
 export function resetPrefs() {
   settings.delete('prefs'); // testing only, REMOVE for production
