@@ -225,7 +225,7 @@ let browserPanelState = 'default';
   });
   ipcMain.on('browserPanelSize', async (event, arg) => {
     browserPanelState = arg;
-    bWinHandler.resize(arg);
+    Browser.resize(browserPanelState, mWin, view);
   });
   ipcMain.on('BrowserBar: button: goBack', async (event, arg) => {
     if (view) view.webContents.goBack();
@@ -413,7 +413,7 @@ const windowController = {
       if (view) view.setBounds(displayBounds);
     });
     mWin.on('focus', () => {
-      bWinHandler.resize(browserPanelState);
+      Browser.resize(browserPanelState, mWin, view);
     });
     mWin.on('leave-full-screen', () => {});
     mWin.on('leave-html-full-screen', () => {
@@ -421,7 +421,7 @@ const windowController = {
       if (view) Browser.showBrowser(mWin, view);
     });
     mWin.on('maximize', () => {
-      bWinHandler.resize(browserPanelState);
+      Browser.resize(browserPanelState, mWin, view);
       Screen.setScreenState(mWin);
     });
     mWin.on('minimize', () => {});
@@ -458,23 +458,22 @@ const windowController = {
 
     mWin.on('resize', () => {});
     mWin.on('moved', () => {
-      // bWinHandler.resize(browserPanelState);
       Screen.setScreenState(mWin);
     });
     mWin.on('unmaximize', () => {
-      bWinHandler.resize(browserPanelState);
+      Browser.resize(browserPanelState, mWin, view);
       Screen.setScreenState(mWin);
     });
     mWin.on('resized', () => {
-      bWinHandler.resize(browserPanelState);
+      Browser.resize(browserPanelState, mWin, view);
       Screen.setScreenState(mWin);
     });
     mWin.on('restore', () => {
-      bWinHandler.resize(browserPanelState);
+      Browser.resize(browserPanelState, mWin, view);
     });
 
     mWin.on('show', () => {
-      bWinHandler.resize(browserPanelState);
+      Browser.resize(browserPanelState, mWin, view);
     });
   },
   createbView: async function () {
@@ -497,53 +496,6 @@ const windowController = {
       if (mWin)
         mWin.webContents.send('bView ready-to-show', view.webContents.getURL());
     });
-  },
-};
-const bWinHandler = {
-  resize: async function (browserWidth: string | undefined) {
-    let defaultWidthDifference = Math.round(mWin.getContentBounds().width / 2);
-    let collapsedWidthDifference = 72;
-    let expandedWidthDifference = Math.round(
-      mWin.getContentBounds().width - 72
-    );
-    // COLLAPSED VIEW
-    if (browserWidth === 'collapse') {
-      if (view && mWin)
-        view.setBounds({
-          x: viewBounds.x,
-          y: viewBounds.y,
-          width: collapsedWidthDifference,
-          height: mWin.getContentBounds().height - 192,
-        });
-    }
-    // HIDDEN VIEW
-    if (browserWidth === 'hidden') {
-      // hideBrowser();
-    }
-    // EXPANDED VIEW
-    if (browserWidth === 'expand') {
-      if (view && mWin)
-        view.setBounds({
-          x: viewBounds.x,
-          y: viewBounds.y,
-          width: expandedWidthDifference,
-          height: mWin.getContentBounds().height - 192,
-        });
-    }
-    // DEFAULT SPLIT VIEW
-    if (browserWidth === 'default' || browserWidth === undefined) {
-      if (view && mWin)
-        view.setBounds({
-          x: viewBounds.x,
-          y: viewBounds.y,
-          width: defaultWidthDifference,
-          height: mWin.getContentBounds().height - 192,
-        });
-    }
-
-    setTimeout(() => {
-      Browser.screenshot(mWin, view);
-    }, 1000);
   },
 };
 app.on('window-all-closed', () => {
