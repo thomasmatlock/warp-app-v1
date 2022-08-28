@@ -380,9 +380,6 @@ let browserPanelState = 'default';
   });
 })();
 
-ipcMain.on('settings: request', async (event, arg) => {
-  event.reply('settings-broadcast', settings); // sends message to renderer
-});
 (function bWinListeners() {
   ipcMain.on('screenshot', async (event, arg) => {
     bWinHandler.setScreenshot();
