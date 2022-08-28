@@ -35,9 +35,9 @@ import User from './User';
 import Paths from './paths';
 import Downloads from '../downloaders/downloadsController';
 import Title from './Title';
-// console.log(Paths.getAudioPath());
-// console.log(Downloads.downloadItem());
-
+import Prefs from './prefsController';
+let prefs = Prefs.getPrefs();
+let display;
 let user;
 
 import testUrls from '../downloaders/youtube/testURLS';
@@ -52,29 +52,6 @@ let randomYoutubeURL =
 //////////////////////////////////////////////////////
 const Store = require('electron-store');
 const settings = new Store();
-settings.delete('prefs'); // testing only, REMOVE for production
-const getPrefs = () => {
-  let prefs = settings.get('prefs');
-  if (prefs === undefined) {
-    settings.set('prefs', prefsDefault);
-    return prefsDefault;
-  } else {
-    return prefs;
-  }
-};
-const setPrefsMainWinBounds = () => {
-  if (mWin) {
-    let newBounds = mWin.getBounds();
-    let newPrefs = { ...prefs };
-    // console.log(newBounds);
-    newPrefs.mWinBounds = newBounds;
-    setPrefs(newPrefs);
-    prefs = newPrefs;
-  }
-};
-const setPrefs = (arg: any) => {
-  settings.set('prefs', arg);
-};
 const getAudioDownloads = () => {
   let audioDownloads = settings.get('audioDownloads');
   if (audioDownloads === undefined) {
@@ -111,7 +88,6 @@ const setVideoDownloads = (items) => {
 
 // settings.delete('audioDownloads'); // testing only, REMOVE for production
 // settings.delete('videoDownloads'); // testing only, REMOVE for production
-let prefs = getPrefs();
 
 let audioDownloads = getAudioDownloads();
 let videoDownloads = getVideoDownloads();
@@ -250,7 +226,7 @@ class AppUpdater {
   }
 }
 let mWin: BrowserWindow | null = null;
-let splashWindow: BrowserWindow | null = null;
+// let splashWindow: BrowserWindow | null = null;
 let view: BrowserView | null = null;
 let mWinBounds = { ...prefs.mWinBounds };
 const hideView = () => {
@@ -379,7 +355,7 @@ let browserPanelState = 'default';
   // MODAL PREFSLISTENERS
   ipcMain.on('main: prefs', async (event, arg) => {
     prefs = arg;
-    setPrefs(prefs);
+    Prefs.setPrefs(prefs);
     event.reply('main: prefs', prefs);
     //  event.reply('FilterBar: Warpstagram: FilterTypeLocations successful'); // sends message to renderer
   });
@@ -541,7 +517,7 @@ const windowController = {
     });
     mWin.on('maximize', () => {
       bWinHandler.resize(browserPanelState);
-      // setPrefsMainWinBounds();
+      //  Prefs.setPrefsMainWinBounds(mWin);
     });
     mWin.on('minimize', () => {});
     mWin.on('ready-to-show', () => {
@@ -579,7 +555,7 @@ const windowController = {
     mWin.on('resize', () => {});
     mWin.on('resized', () => {
       bWinHandler.resize(browserPanelState);
-      setPrefsMainWinBounds();
+      Prefs.setPrefsMainWinBounds(mWin);
     });
     mWin.on('restore', () => {
       bWinHandler.resize(browserPanelState);
@@ -682,7 +658,9 @@ app.on('window-all-closed', () => {
 app
   .whenReady()
   .then(() => {
-    let display = screen.getAllDisplays()[0].workArea;
+    // prefs = Prefs.getPrefs();
+
+    display = screen.getAllDisplays()[0].workArea;
     // console.log(display);
     user = User.getUser();
     // console.log(user);
