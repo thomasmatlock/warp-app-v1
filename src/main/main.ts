@@ -36,8 +36,8 @@ import Title from './Title';
 import Prefs from './prefsController';
 import PowerMonitor from './powerMonitor';
 import Screen from './screen';
-// console.log(Screen);
-
+// console.log(Downloads);
+require('events').EventEmitter.defaultMaxListeners = 30; // removes error warnings
 let prefs;
 let user;
 PowerMonitor();
@@ -619,7 +619,6 @@ const windowController = {
       if (mWin) mWin.webContents.send('browser-url-change', url);
     });
     view.webContents.on('ready-to-show', (e, url) => {
-      // view.show();
       if (mWin)
         mWin.webContents.send('bView ready-to-show', view.webContents.getURL());
     });
@@ -629,7 +628,9 @@ const bWinHandler = {
   resize: async function (browserWidth: string | undefined) {
     let defaultWidthDifference = Math.round(mWin.getContentBounds().width / 2);
     let collapsedWidthDifference = 72;
-    let expandedWidthDifference = mWin.getContentBounds().width - 72;
+    let expandedWidthDifference = Math.round(
+      mWin.getContentBounds().width - 72
+    );
     // COLLAPSED VIEW
     if (browserWidth === 'collapse') {
       if (view && mWin)
@@ -666,7 +667,7 @@ const bWinHandler = {
     }
 
     setTimeout(() => {
-      // bWinHandler.setScreenshot();
+      bWinHandler.setScreenshot();
     }, 1000);
   },
   setScreenshot: async function () {

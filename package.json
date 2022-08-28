@@ -123,7 +123,7 @@
         "react-router-dom": "^6.3.0",
         "stripe": "^10.3.0",
         "uuid": "^8.3.2",
-        "ytdl-core": "^4.11.0"
+        "ytdl-core": "^4.11.1"
     },
     "prettier": {
         "singleQuote": true,
