@@ -1,7 +1,8 @@
 const Store = require('electron-store');
 const settings = new Store();
-import { app, BrowserWindow } from 'electron';
+import { BrowserWindow } from 'electron';
 import prefsDefault from '../storage/prefsDefaults';
+import Screen from './Screen';
 import paths from './paths';
 let prefs: any = {};
 prefsDefault.audio.folders[0].placeholder = paths.getDefaultAudioPath();
@@ -15,6 +16,7 @@ export function resetPrefs() {
   return prefsDefault;
 }
 export function getPrefs() {
+  Screen();
   prefs = settings.get('prefs');
   if (prefs === undefined) {
     settings.set('prefs', prefsDefault);

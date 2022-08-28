@@ -36,10 +36,37 @@ import Title from './Title';
 import Prefs from './prefsController';
 import PowerMonitor from './powerMonitor';
 // Prefs.resetPrefs();
-let prefs = Prefs.getPrefs();
+let prefs;
 let display;
 let user;
+let mWinBounds;
 PowerMonitor();
+app
+  .whenReady()
+  .then(() => {
+    prefs = Prefs.getPrefs();
+    setActiveURL();
+    mWinBounds = { ...prefs.mWin.bounds };
+    display = screen.getAllDisplays()[0].workArea;
+    user = User.getUser();
+
+    mWinBounds.x = display.x;
+    mWinBounds.y = display.y;
+    mWinBounds.width = display.width;
+    mWinBounds.height = display.height; // default
+    windowController.createmWin();
+
+    globalShortcut.register('Alt+Left', () => {
+      if (view) view.webContents.goBack();
+    });
+    globalShortcut.register('Alt+Right', () => {
+      if (view) view.webContents.goForward();
+    });
+    app.on('activate', () => {
+      if (mWin === null) windowController.createmWin();
+    });
+  })
+  .catch(console.log);
 
 import testUrls from '../downloaders/youtube/testURLS';
 import { v4 as uuidv4 } from 'uuid';
@@ -186,7 +213,7 @@ const setActiveURL = () => {
   // if (prefs.general.dropdowns[1].defaultValue.id.includes('reddit'))        view.webContents.loadURL('https://reddit.com');
   // if (prefs.general.dropdowns[1].defaultValue.id.includes('deviantart'))    view.webContents.loadURL('https://deviantart.com');
 };
-setActiveURL();
+
 //////////////////////////////////////////////////////
 
 //////////////////////////////////////////////////////
@@ -230,7 +257,7 @@ class AppUpdater {
 let mWin: BrowserWindow | null = null;
 // let splashWindow: BrowserWindow | null = null;
 let view: BrowserView | null = null;
-let mWinBounds = { ...prefs.mWin.bounds };
+
 const hideView = () => {
   if (view) view.setBounds({ x: 0, y: 0, width: 0, height: 0 });
 };
@@ -674,32 +701,3 @@ app.on('window-all-closed', () => {
     app.quit();
   }
 });
-
-app
-  .whenReady()
-  .then(() => {
-    // prefs = Prefs.getPrefs();
-
-    display = screen.getAllDisplays()[0].workArea;
-    // console.log(display);
-    user = User.getUser();
-    // console.log(user);
-    // console.log(process.getCPUUsage());
-
-    mWinBounds.x = display.x;
-    mWinBounds.y = display.y;
-    mWinBounds.width = display.width;
-    mWinBounds.height = display.height; // default
-    windowController.createmWin();
-
-    globalShortcut.register('Alt+Left', () => {
-      if (view) view.webContents.goBack();
-    });
-    globalShortcut.register('Alt+Right', () => {
-      if (view) view.webContents.goForward();
-    });
-    app.on('activate', () => {
-      if (mWin === null) windowController.createmWin();
-    });
-  })
-  .catch(console.log);
