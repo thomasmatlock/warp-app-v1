@@ -11,7 +11,6 @@ import {
   BrowserView,
   BrowserWindow,
   clipboard,
-  desktopCapturer,
   dialog,
   globalShortcut,
   nativeTheme,
@@ -36,27 +35,26 @@ import Title from './Title';
 import Prefs from './prefsController';
 import PowerMonitor from './powerMonitor';
 import Screen from './screen';
+import Browser from './browserController';
+import Shortcuts from './Shortcuts';
 // console.log(Downloads);
 require('events').EventEmitter.defaultMaxListeners = 30; // removes error warnings
 let prefs;
 let user;
-PowerMonitor();
+let mWin: BrowserWindow | null = null;
+let view: BrowserView | null = null;
 app
   .whenReady()
   .then(() => {
+    PowerMonitor();
     Prefs.resetPrefs();
     prefs = Prefs.getPrefs();
     setActiveURL();
     user = User.getUser();
     // Screen.resetScreenState();
     windowController.createmWin();
+    // Shortcuts(view);
 
-    globalShortcut.register('Alt+Left', () => {
-      if (view) view.webContents.goBack();
-    });
-    globalShortcut.register('Alt+Right', () => {
-      if (view) view.webContents.goForward();
-    });
     app.on('activate', () => {
       if (mWin === null) windowController.createmWin();
     });
@@ -66,25 +64,9 @@ app
 import testUrls from '../downloaders/youtube/testURLS';
 import { v4 as uuidv4 } from 'uuid';
 import createCustomer from '../payments/stripe';
-// test
-// test
-
-// console.log(createCustomer);
-// createCustomer();
 let randomYoutubeURL =
   testUrls.youtube[Math.floor(Math.random() * testUrls.youtube.length)];
 //////////////////////////////////////////////////////
-const Store = require('electron-store');
-const settings = new Store();
-const setAudioDownloads = (items) => {
-  settings.set('audioDownloads', items);
-};
-const setVideoDownloads = (items) => {
-  settings.set('videoDownloads', items);
-};
-
-// settings.delete('audioDownloads'); // testing only, REMOVE for production
-// settings.delete('videoDownloads'); // testing only, REMOVE for production
 
 let audioDownloads = Downloads.getAudioDownloads();
 let videoDownloads = Downloads.getVideoDownloads();
@@ -96,7 +78,6 @@ async function submitSearchQuery(currentURL, query) {
   if (view) view.webContents.loadURL(joinedQuery);
 }
 
-// console.log(prefs.general.dropdowns[1].defaultValue);
 let activeURL: string;
 const setActiveURL = () => {
   // console.log(prefs.general.dropdowns[1].defaultValue);
@@ -127,10 +108,6 @@ const setActiveURL = () => {
   // if (prefs.general.dropdowns[1].defaultValue.id.includes('reddit'))        view.webContents.loadURL('https://reddit.com');
   // if (prefs.general.dropdowns[1].defaultValue.id.includes('deviantart'))    view.webContents.loadURL('https://deviantart.com');
 };
-
-//////////////////////////////////////////////////////
-
-//////////////////////////////////////////////////////
 
 const contextMenu = require('electron-context-menu');
 contextMenu({});
@@ -168,26 +145,7 @@ class AppUpdater {
     autoUpdater.checkForUpdatesAndNotify();
   }
 }
-let mWin: BrowserWindow | null = null;
-// let splashWindow: BrowserWindow | null = null;
-let view: BrowserView | null = null;
 
-const hideView = () => {
-  if (view) view.setBounds({ x: 0, y: 0, width: 0, height: 0 });
-};
-const showView = () => {
-  if (view && mWin)
-    view.setBounds({
-      x: viewBounds.x,
-      y: viewBounds.y,
-      width: mWin.getContentBounds().width / 2,
-      height: mWin.getContentBounds().height - 192,
-    });
-};
-let viewBounds = {
-  x: 0,
-  y: 130,
-};
 let browserPanelState = 'default';
 (function appListeners() {
   // MENU LISTENERS
@@ -229,13 +187,13 @@ let browserPanelState = 'default';
   });
   // NAV BAR LISTENERS
   ipcMain.on('nav: mode: audio', async () => {
-    showView();
+    Browser.showBrowser(mWin, view);
   });
   ipcMain.on('nav: mode: video', async () => {
-    showView();
+    Browser.showBrowser(mWin, view);
   });
   ipcMain.on('nav: mode: warpstagram', async () => {
-    hideView();
+    Browser.hideBrowser(view);
   });
   // BROWSERBAR DOWNLOAD SOURCE LISTENERS
   ipcMain.on('loadActiveSource', async (arg) => {
@@ -382,16 +340,19 @@ let browserPanelState = 'default';
 
 (function bWinListeners() {
   ipcMain.on('screenshot', async (event, arg) => {
-    bWinHandler.setScreenshot();
+    Browser.screenshot(mWin, view);
   });
   ipcMain.on('hideBrowser', async (event, arg) => {
-    hideView();
+    Browser.hideBrowser(view);
   });
   ipcMain.on('showBrowser', async (event, arg) => {
-    showView();
+    Browser.showBrowser(mWin, view);
   });
 })();
-
+let viewBounds = {
+  x: 0,
+  y: 130,
+};
 const windowController = {
   createmWin: async function () {
     if (isDebug) {
@@ -437,7 +398,6 @@ const windowController = {
           : path.join(__dirname, '../../.erb/dll/preload.js'),
       },
     });
-    mWin.setMaxListeners(30);
     mWin.loadURL(resolveHtmlPath('index.html'));
 
     const wc = mWin.webContents;
@@ -458,7 +418,7 @@ const windowController = {
     mWin.on('leave-full-screen', () => {});
     mWin.on('leave-html-full-screen', () => {
       if (mWin) mWin.menuBarVisible = true;
-      if (view) showView();
+      if (view) Browser.showBrowser(mWin, view);
     });
     mWin.on('maximize', () => {
       bWinHandler.resize(browserPanelState);
@@ -558,7 +518,7 @@ const bWinHandler = {
     }
     // HIDDEN VIEW
     if (browserWidth === 'hidden') {
-      // hideView();
+      // hideBrowser();
     }
     // EXPANDED VIEW
     if (browserWidth === 'expand') {
@@ -582,25 +542,8 @@ const bWinHandler = {
     }
 
     setTimeout(() => {
-      bWinHandler.setScreenshot();
+      Browser.screenshot(mWin, view);
     }, 1000);
-  },
-  setScreenshot: async function () {
-    if (view)
-      if (view)
-        view.webContents
-          .capturePage({
-            x: 0,
-            y: 0,
-            width: mWin ? mWin.getContentBounds().width / 2 : 100,
-            height: mWin ? mWin.getContentBounds().height - 192 : 100,
-          })
-          .then((img) => {
-            if (mWin) mWin.webContents.send('capturePage', [img.toDataURL()]);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
   },
 };
 app.on('window-all-closed', () => {
