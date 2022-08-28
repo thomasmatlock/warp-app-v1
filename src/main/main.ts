@@ -38,9 +38,18 @@ import User from './User';
 let user;
 // console.log(user);const os = require('os');
 const os = require('os');
-console.log(os.homedir());
-let test = path.join(os.homedir(), 'Documents', 'Warp Downloader');
-console.log(test);
+// console.log(os.homedir());
+let mainPath = path.join(os.homedir(), 'Documents', 'Warp Downloader');
+let audioPath = path.join(mainPath, 'Audio');
+let videoPath = path.join(mainPath, 'Video');
+let warpstagramPath = path.join(mainPath, 'Warpstagram');
+if (!fs.existsSync(mainPath)) {
+  fs.mkdirSync(warpPath);
+  fs.mkdirSync(audioPath);
+  fs.mkdirSync(videoPath);
+  fs.mkdirSync(warpstagramPath);
+}
+console.log(mainPath);
 
 import testUrls from '../downloaders/youtube/testURLS';
 import { v4 as uuidv4 } from 'uuid';
