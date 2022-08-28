@@ -1,11 +1,14 @@
 import { app, BrowserWindow } from 'electron';
-// export default  DownloadsController {}
 import { app, BrowserWindow } from 'electron';
-// import User from './User';
+import downloadsAudioDefaults from '../storage/downloadsAudioDefaults';
+import downloadsVideoDefaults from '../storage/downloadsVideoDefaults';
+import downloadsWarpstagramDefaults from '../storage/downloadsWarpstagramDefaults';
 
 // let user = User.getUser();
-export function DownloadsController(mWin: BrowserWindow, url: string) {}
+export function downloadItem(mWin: BrowserWindow, url: string) {
+  console.log(downloadsAudioDefaults);
+}
 
 module.exports = {
-  DownloadsController: DownloadsController,
+  downloadItem: downloadItem,
 };

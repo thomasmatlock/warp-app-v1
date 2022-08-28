@@ -32,23 +32,13 @@ import Youtube from '../downloaders/youtube/Youtube';
 import YoutubeDownload from '../downloaders/youtube/YoutubeDownload';
 import BrowserQuery from './browserQuery';
 import User from './User';
+import Paths from './paths';
+import Downloads from '../downloaders/downloadsController';
 import Title from './Title';
+// console.log(Paths.getAudioPath());
+// console.log(Downloads.downloadItem());
 
 let user;
-// console.log(user);const os = require('os');
-const os = require('os');
-// console.log(os.homedir());
-let mainPath = path.join(os.homedir(), 'Documents', 'Warp Downloader');
-let audioPath = path.join(mainPath, 'Audio');
-let videoPath = path.join(mainPath, 'Video');
-let warpstagramPath = path.join(mainPath, 'Warpstagram');
-if (!fs.existsSync(mainPath)) {
-  fs.mkdirSync(mainPath);
-  fs.mkdirSync(audioPath);
-  fs.mkdirSync(videoPath);
-  fs.mkdirSync(warpstagramPath);
-}
-// console.log(mainPath);
 
 import testUrls from '../downloaders/youtube/testURLS';
 import { v4 as uuidv4 } from 'uuid';
@@ -70,6 +60,16 @@ const getPrefs = () => {
     return prefsDefault;
   } else {
     return prefs;
+  }
+};
+const setPrefsMainWinBounds = () => {
+  if (mWin) {
+    let newBounds = mWin.getBounds();
+    let newPrefs = { ...prefs };
+    // console.log(newBounds);
+    newPrefs.mWinBounds = newBounds;
+    setPrefs(newPrefs);
+    prefs = newPrefs;
   }
 };
 const setPrefs = (arg: any) => {
@@ -110,8 +110,9 @@ const setVideoDownloads = (items) => {
 };
 
 // settings.delete('audioDownloads'); // testing only, REMOVE for production
-settings.delete('videoDownloads'); // testing only, REMOVE for production
+// settings.delete('videoDownloads'); // testing only, REMOVE for production
 let prefs = getPrefs();
+
 let audioDownloads = getAudioDownloads();
 let videoDownloads = getVideoDownloads();
 let warpstagramDownloads = getWarpstagramDownloads();
@@ -251,12 +252,12 @@ class AppUpdater {
 let mWin: BrowserWindow | null = null;
 let splashWindow: BrowserWindow | null = null;
 let view: BrowserView | null = null;
-let mWinBounds = { x: 0, y: 0, width: 1600, height: 900 };
+let mWinBounds = { ...prefs.mWinBounds };
 const hideView = () => {
   if (view) view.setBounds({ x: 0, y: 0, width: 0, height: 0 });
 };
 const showView = () => {
-  if (view)
+  if (view && mWin)
     view.setBounds({
       x: viewBounds.x,
       y: viewBounds.y,
@@ -267,8 +268,6 @@ const showView = () => {
 let viewBounds = {
   x: 0,
   y: 130,
-  // width: mWinBounds.width / 2 + 150,
-  // height: mWinBounds.height - 350, // default
 };
 let browserPanelState = 'default';
 (function appListeners() {
@@ -338,13 +337,11 @@ let browserPanelState = 'default';
   });
   // BROWSERBAR DOWNLOAD BUTTON LISTENERS
   ipcMain.on('BrowserBar: button: downloadAudio', async (event, arg) => {
-    // if (view) console.log(view.webContents.getURL());
-    downloadItem(view.webContents.getURL(), prefs, 'audio');
+    if (view) downloadItem(view.webContents.getURL(), prefs, 'audio');
     event.reply('BrowserBar: button: downloadAudio successful');
   });
   ipcMain.on('BrowserBar: button: downloadVideo', async (event, arg) => {
-    // if (view) console.log(view.webContents.getURL());
-    downloadItem(view.webContents.getURL(), prefs, 'video');
+    if (view) downloadItem(view.webContents.getURL(), prefs, 'video');
     event.reply('BrowserBar: button: downloadVideo successful'); // sends message to renderer
   });
   ipcMain.on('browserPanelSize', async (event, arg) => {
@@ -443,7 +440,7 @@ let browserPanelState = 'default';
   });
   ipcMain.on('context: open_in_browser', async (event, matchingDownload) => {
     let url = matchingDownload.video_url;
-    if (view) view.webContents.loadURL(url);
+    // if (view) view.webContents.loadURL(url);
   });
   ipcMain.on('context: remove_item', async (event, matchingDownload) => {
     console.log(matchingDownload);
@@ -489,10 +486,10 @@ const windowController = {
     };
 
     mWin = new BrowserWindow({
-      x: mWinBounds.x,
-      y: mWinBounds.y,
-      width: mWinBounds.width,
-      height: mWinBounds.height,
+      x: prefs.mWinBounds.x,
+      y: prefs.mWinBounds.y,
+      width: prefs.mWinBounds.width,
+      height: prefs.mWinBounds.height,
       minWidth: 850,
       minHeight: 500,
       show: false,
@@ -542,10 +539,14 @@ const windowController = {
       if (mWin) mWin.menuBarVisible = true;
       if (view) showView();
     });
-    mWin.on('maximize', () => bWinHandler.resize(browserPanelState));
+    mWin.on('maximize', () => {
+      bWinHandler.resize(browserPanelState);
+      // setPrefsMainWinBounds();
+    });
     mWin.on('minimize', () => {});
     mWin.on('ready-to-show', () => {
       if (mWin) mWin.webContents.send('ready-to-show');
+
       Title.setTitle(mWin, 'audio');
       if (process.platform === 'win32' && mWin)
         mWin.webContents.send('platform', 'windows');
@@ -560,7 +561,8 @@ const windowController = {
         mWin.minimize();
       } else {
         mWin.show();
-        windowController.createbView();
+
+        // windowController.createbView();
         // if (view) mWin.maximize();
         // mWin.maximize();
         mWin.webContents.send('appVersion', app.getVersion());
@@ -573,9 +575,11 @@ const windowController = {
         );
       }
     });
+
     mWin.on('resize', () => {});
     mWin.on('resized', () => {
       bWinHandler.resize(browserPanelState);
+      setPrefsMainWinBounds();
     });
     mWin.on('restore', () => {
       bWinHandler.resize(browserPanelState);
@@ -593,21 +597,15 @@ const windowController = {
       width: mWin ? mWin.getContentBounds().width / 2 : 400,
       height: mWin ? mWin.getContentBounds().height - 192 : 400,
     });
-    // view.setMaxListeners(30);
     view.setAutoResize({ width: true, height: true });
     view.setBackgroundColor('#1a1a1a');
-    // view.webContents.loadURL('https://youtube.com');
-    // view.webContents.loadURL(activeURL);
     view.webContents.loadURL(randomYoutubeURL);
-    // if (prefs.general.dropdowns[0].defaultValue)
-
-    // view.webContents.loadURL(
-    //   'https://www.youtube.com/channel/UCpCtwRCG1hHcijgy82wt8Ng/videos'
-    // );
+    // view.webContents.loadURL('https://www.youtube.com/watch?v=dQw4w9WgXcQ');
     view.webContents.on('did-navigate-in-page', (e, url) => {
       if (mWin) mWin.webContents.send('browser-url-change', url);
     });
     view.webContents.on('ready-to-show', (e, url) => {
+      // view.show();
       if (mWin)
         mWin.webContents.send('bView ready-to-show', view.webContents.getURL());
     });
@@ -654,7 +652,7 @@ const bWinHandler = {
     }
 
     setTimeout(() => {
-      bWinHandler.setScreenshot();
+      // bWinHandler.setScreenshot();
     }, 1000);
   },
   setScreenshot: async function () {
@@ -692,8 +690,7 @@ app
     mWinBounds.x = display.x;
     mWinBounds.y = display.y;
     mWinBounds.width = display.width;
-    // mWinBounds.height = display.height; // default
-    mWinBounds.height = display.height - 150; // testing
+    mWinBounds.height = display.height; // default
     windowController.createmWin();
 
     globalShortcut.register('Alt+Left', () => {
