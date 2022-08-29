@@ -19,8 +19,10 @@ import { getInfo } from './getInfo';
 import getFileSize from './getFileSize';
 import formatLength from './formatLength';
 import formatTitle from './formatTitle';
+import path from 'path';
 import YoutubeDownload from './YoutubeDownload';
 import getQuality from './getQuality';
+import Prefs from '../../main/prefsController';
 export default async function Youtube(mWin, itemURL, prefs, mode) {
   let audioFormat = prefs.audio.dropdowns[1].defaultValue.label;
   let videoFormat = prefs.video.dropdowns[1].defaultValue.label;
@@ -74,51 +76,24 @@ export default async function Youtube(mWin, itemURL, prefs, mode) {
         itemDetails.titleFS +
         ' ' +
         itemDetails.keywords;
+      itemDetails.path = '';
+      if (mode.includes('audio')) {
+        itemDetails.path = path.join(
+          Prefs.getAudioPath(),
+          itemDetails.titleFS + '.' + itemDetails.format.toLowerCase()
+        );
+      }
+      if (mode.includes('video')) {
+        itemDetails.path = path.join(
+          Prefs.getVideoPath(),
+          itemDetails.titleFS + '.' + itemDetails.format.toLowerCase()
+        );
+      }
+
       itemDetails.downloadedPercentage = 0;
       itemDetails.downloadComplete = false;
       itemDetails.conversionPercentage = 0;
       itemDetails.conversionComplete = false;
-      // const video = ytdl(itemURL, {
-      //   // requestOptions: {
-      //   //     // headers: {
-      //   //     //     cookie: COOKIE,
-      //   //     //     // Optional. If not given, ytdl-core will try to find it.
-      //   //     //     // You can find this by going to a video's watch page, viewing the source,
-      //   //     //     // and searching for "ID_TOKEN".
-      //   //     //     // 'x-youtube-identity-token': 1324,
-      //   //     // },
-      //   // },
-      // });
-
-      // video.on('info', info => {
-      //     console.log('title:', info.videoDetails.title);
-      //     console.log('rating:', info.player_response.videoDetails.averageRating);
-      //     console.log('uploaded by:', info.videoDetails.author.name);
-      // });
-
-      // let inserted = false;
-      // let completed = false;
-      // let lastDownloaded = 0;
-      // video.on('progress', (chunkLength, downloaded, total) => {
-      //   let percent = downloaded / total;
-      //   percent = Math.round(percent * 100);
-      //   console.log(percent);
-      //   // console.log(downloaded, total);
-      //   // lastDownloaded = downloaded;
-      //   // if (!inserted) {
-      //   //   items.insertdownloadedPercentage(this.itemInfo, percent, 'add');
-
-      //   //   inserted = true;
-      //   // }
-      //   // if (inserted) {
-      //   // }
-      //   // if (lastDownloaded = downloaded) {
-      //   // setTimeout(() => {
-      //   //   if ((downloaded = total)) {
-      //   //     items.insertdownloadedPercentage(this.itemInfo, percent, 'complete');
-      //   //   }
-      //   // }, 2000);
-      // });
     });
   } catch (error) {
     console.log(itemURL, error);
