@@ -70,6 +70,7 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
             ]);
           })
           .save(item.path);
+      }
     });
   } catch (error) {
     console.log(error);
