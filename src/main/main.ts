@@ -23,10 +23,6 @@ import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
-import downloadsAudioDefaults from '../storage/downloadsAudioDefaults';
-import downloadsVideoDefaults from '../storage/downloadsVideoDefaults';
-import downloadsWarpstagramDefaults from '../storage/downloadsWarpstagramDefaults';
-import Youtube from '../downloaders/youtube/Youtube';
 import BrowserQuery from './browserQuery';
 import User from './User';
 import Paths from './paths';
@@ -206,6 +202,8 @@ let browserPanelState = 'default';
       }
   });
   ipcMain.on('source: change', async (event, arg) => {
+    console.log('source: change', arg);
+
     if (view) view.webContents.loadURL(arg);
     if (view.webContents.getURL().includes('pinterest')) {
       if (view)
@@ -488,6 +486,8 @@ const windowController = {
     });
     view.setAutoResize({ width: true, height: true });
     view.setBackgroundColor('#1a1a1a');
+    console.log(randomYoutubeURL);
+
     view.webContents.loadURL(randomYoutubeURL);
     view.webContents.on('did-navigate-in-page', (e, url) => {
       if (mWin) mWin.webContents.send('browser-url-change', url);

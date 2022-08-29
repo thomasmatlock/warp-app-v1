@@ -28,7 +28,7 @@ export function setPrefs(prefsObj: any) {
 export function setAudioPath(path: string) {
   let newPrefs = getPrefs();
   newPrefs.audio.folders[0].placeholder = path;
-  console.log(newPrefs.audio.folders[0]);
+  // console.log(newPrefs.audio.folders[0]);
 
   setPrefs(newPrefs);
 }
@@ -42,6 +42,15 @@ export function setWarpstagramPath(path: string) {
   prefs.warpstagram.folders[0].placeholder = path;
   setPrefs(newPrefs);
 }
+export function getAudioPath() {
+  return getPrefs().audio.folders[0].placeholder;
+}
+export function getVideoPath() {
+  return getPrefs().video.folders[0].placeholder;
+}
+export function getWarpstagramPath() {
+  return getPrefs().warpstagram.folders[0].placeholder;
+}
 module.exports = {
   resetPrefs: resetPrefs,
   getPrefs: getPrefs,
@@ -49,4 +58,7 @@ module.exports = {
   setAudioPath: setAudioPath,
   setVideoPath: setVideoPath,
   setWarpstagramPath: setWarpstagramPath,
+  getAudioPath: getAudioPath,
+  getVideoPath: getVideoPath,
+  getWarpstagramPath: getWarpstagramPath,
 };

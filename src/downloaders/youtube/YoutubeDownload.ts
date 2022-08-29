@@ -1,12 +1,30 @@
 import ytdl from 'ytdl-core';
 import fs from 'fs';
-export default function YoutubeDownload(item: Object) {
-  let url = item.url;
-  //   console.log(url);
-  try {
-    ytdl(url).pipe(fs.createWriteStream(`${item.titleFS}.mp4`)); // downloads video
-    // ytdl(url).pipe(fs.createWriteStream('video.mp4'));
-  } catch (error) {
-    console.log(error);
+import path from 'path';
+import Prefs from '../../main/prefsController';
+
+export default function YoutubeDownload(item: any) {
+  let audioPath;
+  let videoPath;
+  if (item.type === 'audio') {
+    audioPath = path.join(
+      Prefs.getAudioPath(),
+      item.titleFS + '.' + item.format.toLowerCase()
+    );
+    try {
+      ytdl(item.url).pipe(fs.createWriteStream(audioPath)); // downloads video
+    } catch (error) {
+      console.log(error);
+    }
+  } else if (item.type === 'video') {
+    videoPath = path.join(
+      Prefs.getVideoPath(),
+      item.titleFS + '.' + item.format.toLowerCase()
+    );
+    try {
+      ytdl(item.url).pipe(fs.createWriteStream(videoPath)); // downloads video
+    } catch (error) {
+      console.log(error);
+    }
   }
 }

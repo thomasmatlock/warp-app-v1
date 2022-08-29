@@ -19,6 +19,7 @@ import { getInfo } from './getInfo';
 import getFileSize from './getFileSize';
 import formatLength from './formatLength';
 import formatTitle from './formatTitle';
+import YoutubeDownload from './YoutubeDownload';
 import getQuality from './getQuality';
 export default async function Youtube(itemURL, prefs, mode) {
   let audioFormat = prefs.audio.dropdowns[1].defaultValue.label;
@@ -97,6 +98,6 @@ export default async function Youtube(itemURL, prefs, mode) {
   } catch (error) {
     console.log(itemURL, error);
   }
-
+  YoutubeDownload(itemDetails);
   return itemDetails;
 }

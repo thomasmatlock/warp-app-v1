@@ -29,7 +29,4 @@ module.exports = {
   getDefaultAudioPath: getDefaultAudioPath,
   getDefaultVideoPath: getDefaultVideoPath,
   getDefaultWarpstagramPath: getDefaultWarpstagramPath,
-  // setAudioPath: setAudioPath,
-  // setVideoPath: setVideoPath,
-  // setWarpstagramPath: setWarpstagramPath,
 };
