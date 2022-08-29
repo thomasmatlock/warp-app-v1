@@ -53,9 +53,10 @@ const DownloadItem = (props) => {
   //   props.downloadedPercentage / 2 + props.conversionPercentage / 2
   // }%`;
   // let downloadPercentageWidth = `${props.downloadedPercentage}%`;
+  //  width: calc(100% - 1.5rem);
   let downloadPercentageWidth = props.downloadComplete
-    ? '100%'
-    : `${props.downloadedPercentage}%`;
+    ? 'calc(100% - 1.5rem)'
+    : `calc(${props.downloadedPercentage}% - 1.5rem)`;
   // console.log(downloadPercentageWidth);
 
   const toggleContextMenu = () => {
