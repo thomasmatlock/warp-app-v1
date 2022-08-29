@@ -9,6 +9,7 @@ const ffmpeg = require('fluent-ffmpeg');
 ffmpeg.setFfmpegPath(ffmpegPath);
 import { unlink } from 'node:fs';
 import fs from 'fs';
+import convertToSeconds from './convertTimeToSeconds';
 
 // Convert the file size to megabytes (optional)
 // var fileSizeInMegabytes = fileSizeInBytes / (1024 * 1024);
@@ -58,11 +59,15 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
         ]);
         if (downloaded === total) {
           // if ((percent = '100%')) {
-          console.log('complete');
+          // console.log('complete');
           downloadComplete = true;
         }
         if (downloadComplete) {
-          console.log('converting');
+          let fileSizeInKB = fs.statSync(tempPath).size / 1000;
+          let conversionPercentage;
+          let totalLengthSeconds = convertToSeconds(item.lengthSeconds);
+          // console.log('converting');
+          let KBconverted = 0;
           ffmpeg(tempPath)
             .toFormat('mp3')
             .on('error', (err) => {
@@ -72,10 +77,28 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
               });
             })
             .on('progress', (progress) => {
-              console.log(progress.targetSize);
+              // console.log(totalLengthSeconds, 'lengthSeconds');
+
+              KBconverted = progress.currentKbps + KBconverted;
+              // console.log(KBconverted, 'KB converted');
+              // console.log(KBconverted, 'KB converted');
+              let secondsConverted = convertToSeconds(progress.timemark);
+              // console.log(secondsConverted, 'seconds converted');
+              // console.log(totalLengthSeconds, 'total seconds to convert');
+
+              // console.log(progress.currentKbps, 'kbps');
+              // conversionPercentage = (
+              //   (KBconverted / fileSizeInKB) *
+              //   400
+              // ).toFixed(0);
+              conversionPercentage = (
+                (secondsConverted / totalLengthSeconds) *
+                100
+              ).toFixed(0);
+              console.log(conversionPercentage + '% converted');
               mWin.webContents.send('item-convert-progress', [
                 item.id,
-                progress.targetSize,
+                conversionPercentage,
               ]);
               // progress.frames;
               // progress.currentFps;
@@ -98,13 +121,13 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
 
           // downloadConversionComplete = true;
         }
-        if (downloadConversionComplete) {
-          let fileSizeInMB = fs.statSync(audioPath).size / 1000000;
-          let fileSizeInKB = fs.statSync(audioPath).size / 1000;
-          fileSizeInMB = fileSizeInMB.toFixed(1);
-          fileSizeInKB = fileSizeInKB.toFixed(0);
-          console.log(fileSizeInMB);
-        }
+        // if (downloadConversionComplete) {
+        //   let fileSizeInMB = fs.statSync(audioPath).size / 1000000;
+        //   let fileSizeInKB = fs.statSync(audioPath).size / 1000;
+        //   fileSizeInMB = fileSizeInMB.toFixed(1);
+        //   fileSizeInKB = fileSizeInKB.toFixed(0);
+        //   console.log(fileSizeInMB);
+        // }
         // console.log(downloaded, total);
         // lastDownloaded = downloaded;
         // if (!inserted) {
