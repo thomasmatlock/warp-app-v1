@@ -381,8 +381,8 @@ const DownloadItem = (props) => {
             )}
         </div>
       </div>
-      {props.conversionComplete && (
-        <div className="filterBar__menu filterBar__menu__right">
+      <div className="filterBar__menu filterBar__menu__right">
+        {props.conversionComplete && (
           <div className="filterBar__menu__item filterBar__menu__item__sort">
             <img
               title="Show in folder"
@@ -396,30 +396,30 @@ const DownloadItem = (props) => {
               }
             />
           </div>
-          <div
-            onClick={toggleContextMenu}
-            className="filterBar__menu__item filterBar__menu__item__sort"
-          >
-            <img
-              title="More"
-              src={menuIcon}
-              style={
-                themeCtx.isDarkTheme
-                  ? { filter: 'invert(0%)' }
-                  : {
-                      filter: 'invert(100%)',
-                    }
-              }
+        )}
+        <div
+          onClick={toggleContextMenu}
+          className="filterBar__menu__item filterBar__menu__item__sort"
+        >
+          <img
+            title="More"
+            src={menuIcon}
+            style={
+              themeCtx.isDarkTheme
+                ? { filter: 'invert(0%)' }
+                : {
+                    filter: 'invert(100%)',
+                  }
+            }
+          />
+          {isContentMenuVisible && (
+            <ContextMenu
+              options={ContextMenuDownloadItemOptions}
+              downloadID={props.id}
             />
-            {isContentMenuVisible && (
-              <ContextMenu
-                options={ContextMenuDownloadItemOptions}
-                downloadID={props.id}
-              />
-            )}
-          </div>
+          )}
         </div>
-      )}
+      </div>
     </li>
   );
 };
