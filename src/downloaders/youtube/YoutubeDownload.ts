@@ -19,12 +19,10 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
   let info = await ytdl.getInfo(item.url);
   // let format = ytdl.chooseFormat(info.formats, { quality: '134' });
   // console.log('Format found!', format);
-  // console.log(item.searchTags);
+  console.log(item.format.toLowerCase());
 
   let audioPath;
-  let audioPathTemp;
   let tempPath = path.join(app.getPath('temp'), 'Warp Downloader');
-  // console.log(tempPath);
 
   let videoPath;
   // console.log(item.matchedFormat);
@@ -37,8 +35,8 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
     // );
     audioPath = path.join(
       Prefs.getAudioPath(),
-      // item.titleFS + '.' + item.format.toLowerCase()
-      item.titleFS + '.' + 'mp3'
+      item.titleFS + '.' + item.format.toLowerCase()
+      // item.titleFS + '.' + 'mp3'
       // item.titleFS
     );
     try {
@@ -69,7 +67,8 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
           // console.log('converting');
           let KBconverted = 0;
           ffmpeg(tempPath)
-            .toFormat('mp3')
+            // .toFormat('mp3')
+            .toFormat(item.format.toLowerCase())
             .on('error', (err) => {
               console.log('An error occurred: ' + err.message);
               unlink(tempPath, (err) => {

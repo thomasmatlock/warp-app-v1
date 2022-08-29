@@ -48,20 +48,20 @@ const prefs = {
             value: 'modal_dropdown_audio_format_MP3',
             label: 'MP3',
           },
+          // {
+          //   id: 'modal_dropdown_audio_format_M4A',
+          //   value: 'modal_dropdown_audio_format_M4A',
+          //   label: 'M4A',
+          // },
           {
-            id: 'modal_dropdown_audio_format_M4A',
-            value: 'modal_dropdown_audio_format_M4A',
-            label: 'M4A',
+            id: 'modal_dropdown_audio_format_OGG',
+            value: 'modal_dropdown_audio_format_OGG',
+            label: 'OGG',
           },
           {
             id: 'modal_dropdown_audio_format_WAV',
             value: 'modal_dropdown_audio_format_WAV',
             label: 'WAV',
-          },
-          {
-            id: 'modal_dropdown_audio_format_OGG',
-            value: 'modal_dropdown_audio_format_OGG',
-            label: 'OGG',
           },
         ],
       },
