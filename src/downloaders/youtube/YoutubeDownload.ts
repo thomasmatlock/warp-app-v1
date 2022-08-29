@@ -2,7 +2,11 @@ import ytdl from 'ytdl-core';
 import fs from 'fs';
 import path from 'path';
 import Prefs from '../../main/prefsController';
+import ffmpeg from 'fluent-ffmpeg';
+const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
 const ffmpeg = require('fluent-ffmpeg');
+ffmpeg.setFfmpegPath(ffmpegPath);
+import { unlink } from 'node:fs';
 // console.log(ffmpeg);
 
 export default async function YoutubeDownload(item: any) {
@@ -11,13 +15,21 @@ export default async function YoutubeDownload(item: any) {
   // console.log('Format found!', format);
 
   let audioPath;
+  let audioPathTemp;
   let videoPath;
   console.log(item.matchedFormat);
   if (item.type === 'audio') {
+    audioPathTemp = path.join(
+      Prefs.getAudioPath(),
+      // item.titleFS + '.' + item.format.toLowerCase()
+      // item.titleFS + '.' + 'mp3'
+      item.titleFS + '.temp'
+    );
     audioPath = path.join(
       Prefs.getAudioPath(),
       // item.titleFS + '.' + item.format.toLowerCase()
       item.titleFS + '.' + 'mp3'
+      // item.titleFS
     );
     try {
       let progressPercentage;
@@ -26,7 +38,7 @@ export default async function YoutubeDownload(item: any) {
       const currentDownload = ytdl(item.url, {
         filter: (format) => (format.itag = item.matchedFormat),
       }); // downloads video
-      currentDownload.pipe(fs.createWriteStream(audioPath)); // downloads video
+      currentDownload.pipe(fs.createWriteStream(audioPathTemp)); // downloads video
       currentDownload.on('progress', (chunkLength, downloaded, total) => {
         progressPercentage = downloaded / total;
         progressPercentage = Math.round(progressPercentage * 100) + '%';
@@ -35,6 +47,29 @@ export default async function YoutubeDownload(item: any) {
           // if ((percent = '100%')) {
           console.log('complete');
           downloadComplete = true;
+        }
+        if (downloadComplete) {
+          console.log('converting');
+          ffmpeg(audioPathTemp)
+            .toFormat('mp3')
+            .on('error', (err) => {
+              console.log('An error occurred: ' + err.message);
+            })
+            .on('progress', (progress) => {
+              // console.log(JSON.stringify(progress));
+              console.log(
+                'Processing: ' + progress.targetSize + ' KB converted'
+              );
+            })
+            .on('end', () => {
+              console.log('Processing finished !');
+              unlink(audioPathTemp, (err) => {
+                if (err) throw err;
+                console.log('temp file was deleted');
+              });
+            })
+            .save(audioPath); //path where you want to save your file
+          // downloadConversionComplete = true;
         }
         // console.log(downloaded, total);
         // lastDownloaded = downloaded;

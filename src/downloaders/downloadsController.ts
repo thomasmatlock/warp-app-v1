@@ -99,8 +99,8 @@ export function removeAllDownloads(downloadID) {
     }
   }
 }
-settings.delete('audioDownloads'); // testing only, REMOVE for production
-settings.delete('videoDownloads'); // testing only, REMOVE for production
+// settings.delete('audioDownloads'); // testing only, REMOVE for production
+// settings.delete('videoDownloads'); // testing only, REMOVE for production
 module.exports = {
   downloadItem: downloadItem,
   getAudioDownloads: getAudioDownloads,
