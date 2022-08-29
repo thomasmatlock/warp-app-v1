@@ -29,13 +29,24 @@ export default async function Youtube(itemURL, prefs, mode) {
   let itemDetails = {};
   try {
     await ytdl.getBasicInfo(itemURL).then((info) => {
+      // console.log(info);
+
       let matchedFormat;
+      let audioFormats;
+      let videoFormats;
       if (mode.includes('audio')) {
+        // audioFormats = ytdl.filterFormats(info.formats, 'audioonly');
+        // itemDetails.formats = audioFormats;
+        // console.log(audioFormats.length);
         matchedFormat = getQuality(mode, audioQuality, info.formats);
       }
       if (mode.includes('video')) {
+        // videoFormats = ytdl.filterFormats(info.formats, 'videoandaudio');
+        // itemDetails.formats = videoFormats;
+        // console.log(videoFormats.length);
         matchedFormat = getQuality(mode, videoQuality, info.formats);
       }
+      // itemDetails.info = info;
       itemDetails = info.videoDetails;
       itemDetails.titleFS = formatTitle(itemDetails.title);
       itemDetails.fps = mode === 'video' ? matchedFormat.fps : '';
@@ -52,7 +63,11 @@ export default async function Youtube(itemURL, prefs, mode) {
       itemDetails.format = mode === 'audio' ? audioFormat : videoFormat;
       itemDetails.thumbnailDisplay = itemDetails.thumbnails[1].url;
       itemDetails.searchTags =
-        itemDetails.ownerChannelName + ' ' + itemDetails.titleFS;
+        itemDetails.ownerChannelName +
+        ' ' +
+        itemDetails.titleFS +
+        ' ' +
+        itemDetails.keywords;
       // const video = ytdl(itemURL, {
       //   // requestOptions: {
       //   //     // headers: {
