@@ -1,6 +1,7 @@
 import ytdl from 'ytdl-core';
 import fs from 'fs';
 import path from 'path';
+import { app } from 'electron';
 import Prefs from '../../main/prefsController';
 import ffmpeg from 'fluent-ffmpeg';
 const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
@@ -20,15 +21,18 @@ export default async function YoutubeDownload(item: any) {
 
   let audioPath;
   let audioPathTemp;
+  let tempPath = path.join(app.getPath('temp'), 'Warp Downloader');
+  console.log(tempPath);
+
   let videoPath;
   console.log(item.matchedFormat);
   if (item.type === 'audio') {
-    audioPathTemp = path.join(
-      Prefs.getAudioPath(),
-      // item.titleFS + '.' + item.format.toLowerCase()
-      // item.titleFS + '.' + 'mp3'
-      item.titleFS + '.temp'
-    );
+    // audioPathTemp = path.join(
+    //   Prefs.getAudioPath(),
+    //   // item.titleFS + '.' + item.format.toLowerCase()
+    //   // item.titleFS + '.' + 'mp3'
+    //   item.titleFS + '.temp'
+    // );
     audioPath = path.join(
       Prefs.getAudioPath(),
       // item.titleFS + '.' + item.format.toLowerCase()
@@ -42,7 +46,7 @@ export default async function YoutubeDownload(item: any) {
       const currentDownload = ytdl(item.url, {
         filter: (format) => (format.itag = item.matchedFormat),
       }); // downloads video
-      currentDownload.pipe(fs.createWriteStream(audioPathTemp)); // downloads video
+      currentDownload.pipe(fs.createWriteStream(tempPath)); // downloads video
       currentDownload.on('progress', (chunkLength, downloaded, total) => {
         progressPercentage = downloaded / total;
         progressPercentage = Math.round(progressPercentage * 100) + '%';
@@ -54,13 +58,13 @@ export default async function YoutubeDownload(item: any) {
         }
         if (downloadComplete) {
           console.log('converting');
-          ffmpeg(audioPathTemp)
+          ffmpeg(tempPath)
             .toFormat('mp3')
             .on('error', (err) => {
               console.log('An error occurred: ' + err.message);
-              unlink(audioPathTemp, (err) => {
-                if (err) throw err;
-              });
+              // unlink(audioPathTemp, (err) => {
+              //   if (err) throw err;
+              // });
             })
             .on('progress', (progress) => {
               console.log(progress.targetSize);
