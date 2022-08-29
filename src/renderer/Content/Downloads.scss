@@ -113,6 +113,10 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     cursor: pointer;
 }
 
+.content__panel__downloads__list:first-child {
+    margin-top: 0.5rem;
+}
+
 .content__panel__downloads__list {
     display: flex;
     position: absolute;
@@ -122,7 +126,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     left: 0 !important;
     position: relative;
     margin: 0;
-    width: 100%;
+    width: calc(100% - 0.5rem);
     padding: 0 0;
     list-style: none;
     overflow-y: scroll;
@@ -137,11 +141,12 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
         border-radius: 3px;
         display: flex;
         flex-direction: row;
-        justify-content: start;
+        justify-content: flex-start;
         align-items: center;
         will-change: transform;
-        width: 100%;
+        width: calc(100% - 2rem);
         border: 1px solid $gray-dark-lightest;
+        // border: 1px solid red;
         background-color: $gray-dark-light;
         min-height: 56px !important;
         max-height: 56px !important;
@@ -159,6 +164,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
         color: rgb(167, 167, 167);
         background-position: center;
         background-size: 0%;
+        // margin-top: 4px;
         &__img {
             width: 14px;
             // border-radius: 50%;
