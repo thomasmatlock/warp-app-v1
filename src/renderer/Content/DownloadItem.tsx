@@ -49,6 +49,9 @@ const DownloadItem = (props) => {
   const sourceIcon = itemFormat.findSourceIcon(props.source);
   const resolution = `${props.resolution}`;
   const title = `${props.title}`;
+  // const downloadPercentageWidth = `${
+  //   props.downloadedPercentage / 2 + props.conversionPercentage / 2
+  // }%`;
   const downloadPercentageWidth = `${props.downloadedPercentage}%`;
   // console.log(downloadPercentageWidth);
 
