@@ -21,7 +21,7 @@ import formatLength from './formatLength';
 import formatTitle from './formatTitle';
 import YoutubeDownload from './YoutubeDownload';
 import getQuality from './getQuality';
-export default async function Youtube(itemURL, prefs, mode) {
+export default async function Youtube(mWin, itemURL, prefs, mode) {
   let audioFormat = prefs.audio.dropdowns[1].defaultValue.label;
   let videoFormat = prefs.video.dropdowns[1].defaultValue.label;
   let audioQuality = prefs.audio.dropdowns[0].defaultValue.label;
@@ -116,6 +116,6 @@ export default async function Youtube(itemURL, prefs, mode) {
   } catch (error) {
     console.log(itemURL, error);
   }
-  YoutubeDownload(itemDetails);
+  YoutubeDownload(mWin, itemDetails);
   return itemDetails;
 }

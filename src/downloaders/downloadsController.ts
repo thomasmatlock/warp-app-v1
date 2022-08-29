@@ -13,7 +13,7 @@ export async function downloadItem(
   prefs,
   mode
 ) {
-  let item = await Youtube(url, prefs, mode);
+  let item = await Youtube(mWin, url, prefs, mode);
   item.id = uuidv4();
   if (mWin && item != undefined)
     if (mode === 'audio') {

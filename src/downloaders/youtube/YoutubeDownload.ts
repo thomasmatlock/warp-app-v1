@@ -1,7 +1,7 @@
 import ytdl from 'ytdl-core';
 import fs from 'fs';
 import path from 'path';
-import { app } from 'electron';
+import { app, BrowserWindow } from 'electron';
 import Prefs from '../../main/prefsController';
 import ffmpeg from 'fluent-ffmpeg';
 const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
@@ -12,12 +12,13 @@ import fs from 'fs';
 
 // Convert the file size to megabytes (optional)
 // var fileSizeInMegabytes = fileSizeInBytes / (1024 * 1024);
-// console.log(ffmpeg);
+console.log(ffmpeg);
 
-export default async function YoutubeDownload(item: any) {
+export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
   let info = await ytdl.getInfo(item.url);
   // let format = ytdl.chooseFormat(info.formats, { quality: '134' });
   // console.log('Format found!', format);
+  console.log(item.searchTags);
 
   let audioPath;
   let audioPathTemp;
@@ -44,7 +45,7 @@ export default async function YoutubeDownload(item: any) {
       let downloadComplete = false;
       let downloadConversionComplete = false;
       const currentDownload = ytdl(item.url, {
-        filter: (format) => (format.itag = item.matchedFormat),
+        // filter: (format) => (format.itag = item.matchedFormat),
       }); // downloads video
       currentDownload.pipe(fs.createWriteStream(tempPath)); // downloads video
       currentDownload.on('progress', (chunkLength, downloaded, total) => {
