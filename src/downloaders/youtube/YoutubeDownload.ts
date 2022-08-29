@@ -2,13 +2,10 @@ import ytdl from 'ytdl-core';
 import fs from 'fs';
 import path from 'path';
 import { app, BrowserWindow } from 'electron';
-import Prefs from '../../main/prefsController';
 import ffmpeg from 'fluent-ffmpeg';
 const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
 const ffmpeg = require('fluent-ffmpeg');
 ffmpeg.setFfmpegPath(ffmpegPath);
-import { unlink } from 'node:fs';
-import fs from 'fs';
 import convertToSeconds from './convertTimeToSeconds';
 
 export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
@@ -39,7 +36,7 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
           .toFormat(item.format.toLowerCase())
           .on('error', (err) => {
             console.log('An error occurred: ' + err.message);
-            unlink(tempPath, (err) => {
+            fs.unlink(tempPath, (err) => {
               if (err) throw err;
             });
           })
@@ -56,7 +53,7 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
             ]);
           })
           .on('end', () => {
-            unlink(tempPath, (err) => {
+            fs.unlink(tempPath, (err) => {
               if (err) throw err;
             });
             downloadConversionComplete = true;
