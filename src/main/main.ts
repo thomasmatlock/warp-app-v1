@@ -43,7 +43,7 @@ app
   .whenReady()
   .then(() => {
     PowerMonitor();
-    // Prefs.resetPrefs();
+    Prefs.resetPrefs();
     prefs = Prefs.getPrefs();
     setActiveURL();
     user = User.getUser();
@@ -202,7 +202,7 @@ let browserPanelState = 'default';
       }
   });
   ipcMain.on('source: change', async (event, arg) => {
-    console.log('source: change', arg);
+    // console.log('source: change', arg);
 
     if (view) view.webContents.loadURL(arg);
     if (view.webContents.getURL().includes('pinterest')) {
@@ -491,7 +491,7 @@ const windowController = {
     view.webContents.loadURL(randomYoutubeURL);
     // view.webContents.loadURL('https://open.spotify.com/');
     view.webContents.on('did-navigate-in-page', (e, url) => {
-      console.log(url);
+      // console.log(url);
 
       if (mWin) mWin.webContents.send('browser-url-change', url);
     });
