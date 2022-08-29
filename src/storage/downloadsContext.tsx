@@ -175,7 +175,12 @@ export const DownloadsContextProvider = (props) => {
     // console.log(items);
     // downloadsVideo.push(item);
   });
-
+  window.electron.ipcRenderer.on('item-download-progress', (arg) => {
+    console.log(arg[0], arg[1]);
+  });
+  window.electron.ipcRenderer.on('item-convert-progress', (arg) => {
+    console.log(arg[0], arg[1]);
+  });
   return (
     <DownloadsContext.Provider
       value={{

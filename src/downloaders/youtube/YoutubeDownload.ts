@@ -12,18 +12,18 @@ import fs from 'fs';
 
 // Convert the file size to megabytes (optional)
 // var fileSizeInMegabytes = fileSizeInBytes / (1024 * 1024);
-console.log(ffmpeg);
+// console.log(ffmpeg);
 
 export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
   let info = await ytdl.getInfo(item.url);
   // let format = ytdl.chooseFormat(info.formats, { quality: '134' });
   // console.log('Format found!', format);
-  console.log(item.searchTags);
+  // console.log(item.searchTags);
 
   let audioPath;
   let audioPathTemp;
   let tempPath = path.join(app.getPath('temp'), 'Warp Downloader');
-  console.log(tempPath);
+  // console.log(tempPath);
 
   let videoPath;
   // console.log(item.matchedFormat);
@@ -51,7 +51,11 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
       currentDownload.on('progress', (chunkLength, downloaded, total) => {
         progressPercentage = downloaded / total;
         progressPercentage = Math.round(progressPercentage * 100) + '%';
-        console.log(progressPercentage);
+        // console.log(progressPercentage);
+        mWin.webContents.send('item-download-progress', [
+          item.id,
+          progressPercentage,
+        ]);
         if (downloaded === total) {
           // if ((percent = '100%')) {
           console.log('complete');
@@ -69,6 +73,10 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
             })
             .on('progress', (progress) => {
               console.log(progress.targetSize);
+              mWin.webContents.send('item-convert-progress', [
+                item.id,
+                progress.targetSize,
+              ]);
               // progress.frames;
               // progress.currentFps;
               // progress.currentKbps;
