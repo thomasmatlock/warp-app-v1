@@ -112,7 +112,7 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
                 if (err) throw err;
               });
               downloadConversionComplete = true;
-              console.log('conversion complete');
+              // console.log('conversion complete');
               mWin.webContents.send('item-conversion-complete', [item.id]);
               let fileSize = fs.statSync(audioPath).size;
               fileSize = fileSize.toFixed(1);

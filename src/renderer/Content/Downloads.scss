@@ -117,12 +117,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     }
 }
 
-// animation-name: ckw;
-//   animation-duration: 0.5s;
-//   transform-origin: 50% 50%;
 .content__panel__toggle_collapse {
-    // position: absolute;
-    // display: none;
     top: 0;
     // left: calc(50vw + 25px);
     left: calc(50vw + 0px);
@@ -143,7 +138,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     display: flex;
     position: absolute;
     flex-direction: column;
-    align-items: center;
+    align-items: left;
     justify-content: flex-start;
     left: 0 !important;
     position: relative;
@@ -168,25 +163,16 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
         will-change: transform;
         width: calc(100% - 1.5rem);
         border: 1px solid $gray-dark-lightest;
-        // border: 1px solid red;
         background-color: $gray-dark-light;
         min-height: 56px !important;
         max-height: 56px !important;
-        // animation: flipInX 0.5s ease-in-out;
-        animation: moveInLeftDownload 0.5s ease-in-out;
-        // animation: moveInLeftDownload 0.5s ease-in-out;
-        animation: bondJamesBond 0.25s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
-        // animation: fadeIn 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
-        // animation: sketchIn 0.5s 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
-        // animation: sketchIn 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
-        // animation: flipInX 0.5s ease-in-out;
-        // animation-delay: 0.5s;
+        animation: bondJamesBond 0.25s cubic-bezier(0.165, 0.84, 0.44, 1) forwards; // USE THIS
         background-color: #1a1a1a;
         // border: 1px dotted red;
         color: rgb(167, 167, 167);
         background-position: center;
         background-size: 0%;
-        // margin-top: 4px;
+        overflow: hidden;
         &__img {
             width: 14px;
             // border-radius: 50%;

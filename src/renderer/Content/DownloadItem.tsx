@@ -39,33 +39,6 @@ const DownloadItem = (props) => {
   const sourcesCtx = useContext(SourcesContext);
   const themeCtx = useContext(ThemeContext);
   const downloadsCtx = useContext(DownloadsContext);
-  // function findSourceIcon(source) {
-  //   // console.log(source);
-  //   if (source.toLowerCase().includes('facebook')) {
-  //     return iconSourceFacebook;
-  //   } else if (source.toLowerCase().includes('instagram')) {
-  //     return iconSourceInstagram;
-  //   } else if (source.toLowerCase().includes('pinterest')) {
-  //     return iconSourcePinterest;
-  //   } else if (source.toLowerCase().includes('soundcloud')) {
-  //     return iconSourceSoundcloud;
-  //   } else if (source.toLowerCase().includes('snapchat')) {
-  //     return iconSourceSnapchat;
-  //   } else if (source.toLowerCase().includes('tiktok')) {
-  //     return iconSourceTiktok;
-  //   } else if (source.toLowerCase().includes('twitch')) {
-  //     return iconSourceTwitch;
-  //   } else if (source.toLowerCase().includes('twitter')) {
-  //     return iconSourceTwitter;
-  //   } else if (source.toLowerCase().includes('vimeo')) {
-  //     return iconSourceVimeo;
-  //   } else if (source.toLowerCase().includes('youtube')) {
-  //     return iconSourceYoutube;
-  //   }
-  // }
-  // console.log(props.timestamp);
-
-  // const dateString = itemFormat.formatDate(props.date);
   const dateString = props.timestamp;
   const format = props.format ? props.format.toUpperCase() : '';
   const fps = `${props.fps}`;
@@ -76,6 +49,8 @@ const DownloadItem = (props) => {
   const sourceIcon = itemFormat.findSourceIcon(props.source);
   const resolution = `${props.resolution}`;
   const title = `${props.title}`;
+  const downloadPercentageWidth = `${props.downloadedPercentage}%`;
+  // console.log(downloadPercentageWidth);
 
   const toggleContextMenu = () => {
     if (isContentMenuVisible) {
@@ -110,9 +85,12 @@ const DownloadItem = (props) => {
               //   ? `url(${props.backgroundURL})`
               //   : '',
               backgroundColor: themeCtx.nav.dark.backgroundColor,
+              width: downloadPercentageWidth,
             }
           : {
               backgroundColor: themeCtx.nav.light.backgroundColor,
+              width: downloadPercentageWidth,
+              // width: `${props.downloadedPercentage}}%`,
             }
       }
       // style={
