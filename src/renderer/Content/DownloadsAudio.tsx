@@ -71,6 +71,8 @@ const DownloadsAudio = () => {
               id={item.id}
               key={item.id}
               length={item.lengthDisplay}
+              percentDownloaded={item.percentDownloaded}
+              percentConverted={item.percentConverted}
               resolution={item.resolution}
               fileSize={item.fileSize}
               source={item.source}

@@ -1,5 +1,5 @@
 // import classes from './CartItem.module.css';
-import React, { useState, useContext } from 'react';
+import React, { useState, useState, useContext } from 'react';
 import iconSourceFacebook from '../../../assets/BrowserBar/facebook.svg';
 import iconSourceInstagram from '../../../assets/BrowserBar/instagram.svg';
 import iconSourcePinterest from '../../../assets/BrowserBar/pinterest.svg';
@@ -29,6 +29,7 @@ import itemFormat from './DownloadItemFormat';
 // console.log(itemFormat);
 
 const DownloadItem = (props) => {
+  const [fileSizeExists, setFileSizeExists] = useState(props.fileSize);
   // console.log(props);
 
   const [isContentMenuVisible, setisContentMenuVisible] = useState(false);
@@ -139,6 +140,44 @@ const DownloadItem = (props) => {
           </div>
         </div>
         <div className="content__panel__downloads__list__item__info__container content__panel__downloads__list__item__info__container__2">
+          {props.type === 'audio' && (
+            <img
+              src={IconFileTypeAudio}
+              className=" content__panel__downloads__list__item__img content__panel__downloads__list__item__file_length"
+              style={
+                themeCtx.isDarkTheme
+                  ? { filter: 'invert(100%)' }
+                  : {
+                      filter: 'invert(0%)',
+                    }
+              }
+            ></img>
+          )}{' '}
+          {props.type === 'video' && (
+            <img
+              src={IconFileTypeVideo}
+              className=" content__panel__downloads__list__item__img content__panel__downloads__list__item__file_type"
+              style={
+                themeCtx.isDarkTheme
+                  ? { filter: 'invert(100%)' }
+                  : {
+                      filter: 'invert(0%)',
+                    }
+              }
+            ></img>
+          )}
+          <div
+            className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_type"
+            style={
+              themeCtx.isDarkTheme
+                ? { filter: 'invert(100%)' }
+                : {
+                    filter: 'invert(0%)',
+                  }
+            }
+          >
+            {format}
+          </div>
           <img
             src={sourceIcon}
             className=" content__panel__downloads__list__item__img content__panel__downloads__list__item__file_source"
@@ -185,6 +224,7 @@ const DownloadItem = (props) => {
           >
             {length}
           </div>
+          {/* {fileSizeExists && ( */}
           <img
             src={iconFileSize}
             className=" content__panel__downloads__list__item__img content__panel__downloads__list__item__file_length"
@@ -196,6 +236,8 @@ const DownloadItem = (props) => {
                   }
             }
           ></img>
+          {/* )} */}
+          {/* {fileSizeExists && ( */}
           <div
             className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_size"
             style={
@@ -208,44 +250,7 @@ const DownloadItem = (props) => {
           >
             {fileSize}
           </div>
-          {props.type === 'audio' && (
-            <img
-              src={IconFileTypeAudio}
-              className=" content__panel__downloads__list__item__img content__panel__downloads__list__item__file_length"
-              style={
-                themeCtx.isDarkTheme
-                  ? { filter: 'invert(100%)' }
-                  : {
-                      filter: 'invert(0%)',
-                    }
-              }
-            ></img>
-          )}{' '}
-          {props.type === 'video' && (
-            <img
-              src={IconFileTypeVideo}
-              className=" content__panel__downloads__list__item__img content__panel__downloads__list__item__file_type"
-              style={
-                themeCtx.isDarkTheme
-                  ? { filter: 'invert(100%)' }
-                  : {
-                      filter: 'invert(0%)',
-                    }
-              }
-            ></img>
-          )}
-          <div
-            className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_type"
-            style={
-              themeCtx.isDarkTheme
-                ? { filter: 'invert(100%)' }
-                : {
-                    filter: 'invert(0%)',
-                  }
-            }
-          >
-            {format}
-          </div>
+          {/* )} */}
           {props.type === 'video' && props.resolution != undefined && (
             <img
               src={iconFileResolution}
@@ -300,9 +305,33 @@ const DownloadItem = (props) => {
               {fps} fps
             </div>
           )}
+          <div
+            className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_date content__panel__downloads__list__item__file_date__text"
+            style={
+              themeCtx.isDarkTheme
+                ? { filter: 'invert(100%)' }
+                : {
+                    filter: 'invert(0%)',
+                  }
+            }
+          >
+            {props.percentDownloaded} % DL
+          </div>
+          <div
+            className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_date content__panel__downloads__list__item__file_date__text"
+            style={
+              themeCtx.isDarkTheme
+                ? { filter: 'invert(100%)' }
+                : {
+                    filter: 'invert(0%)',
+                  }
+            }
+          >
+            {props.percentConverted} % converted
+          </div>
           {props.date != undefined && (
             <img
-              src={IconDate}
+              // src={IconDate}
               className=" content__panel__downloads__list__item__img content__panel__downloads__list__item__file_date"
               style={
                 themeCtx.isDarkTheme
@@ -325,7 +354,7 @@ const DownloadItem = (props) => {
                     }
               }
             >
-              {dateString}
+              {/* {dateString} */}
             </div>
           )}
         </div>
