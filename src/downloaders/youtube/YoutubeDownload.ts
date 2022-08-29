@@ -25,7 +25,7 @@ export default async function YoutubeDownload(item: any) {
   console.log(tempPath);
 
   let videoPath;
-  console.log(item.matchedFormat);
+  // console.log(item.matchedFormat);
   if (item.type === 'audio') {
     // audioPathTemp = path.join(
     //   Prefs.getAudioPath(),
@@ -62,9 +62,9 @@ export default async function YoutubeDownload(item: any) {
             .toFormat('mp3')
             .on('error', (err) => {
               console.log('An error occurred: ' + err.message);
-              // unlink(audioPathTemp, (err) => {
-              //   if (err) throw err;
-              // });
+              unlink(tempPath, (err) => {
+                if (err) throw err;
+              });
             })
             .on('progress', (progress) => {
               console.log(progress.targetSize);
@@ -76,9 +76,9 @@ export default async function YoutubeDownload(item: any) {
               // for (const item in progress) console.log(item);
             })
             .on('end', () => {
-              // unlink(audioPathTemp, (err) => {
-              //   if (err) throw err;
-              // });
+              unlink(tempPath, (err) => {
+                if (err) throw err;
+              });
               downloadConversionComplete = true;
               console.log('conversion complete');
               let fileSize = fs.statSync(audioPath).size / 1000000;
