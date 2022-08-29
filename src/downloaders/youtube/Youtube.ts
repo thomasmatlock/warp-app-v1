@@ -62,6 +62,7 @@ export default async function Youtube(mWin, itemURL, prefs, mode) {
       itemDetails.lengthDisplay = formatLength(itemDetails.lengthSeconds);
       itemDetails.source = 'youtube';
       itemDetails.url = itemURL;
+      itemDetails.fileSize = undefined;
       itemDetails.type = mode;
       itemDetails.format = mode === 'audio' ? audioFormat : videoFormat;
       itemDetails.thumbnailDisplay = itemDetails.thumbnails[1].url;

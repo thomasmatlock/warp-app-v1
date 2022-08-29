@@ -72,7 +72,7 @@ const DownloadsAudio = () => {
               key={item.id}
               length={item.lengthDisplay}
               resolution={item.resolution}
-              size={item.size}
+              fileSize={item.fileSize}
               source={item.source}
               thumbnail={item.thumbnailDisplay}
               title={item.title}

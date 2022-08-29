@@ -489,7 +489,10 @@ const windowController = {
     console.log(randomYoutubeURL);
 
     view.webContents.loadURL(randomYoutubeURL);
+    // view.webContents.loadURL('https://open.spotify.com/');
     view.webContents.on('did-navigate-in-page', (e, url) => {
+      console.log(url);
+
       if (mWin) mWin.webContents.send('browser-url-change', url);
     });
     view.webContents.on('ready-to-show', (e, url) => {

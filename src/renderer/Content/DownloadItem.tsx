@@ -67,7 +67,7 @@ const DownloadItem = (props) => {
   const format = props.format ? props.format.toUpperCase() : '';
   const fps = `${props.fps}`;
   const length = `${props.length}`;
-  const size = `${props.size}`;
+  const fileSize = `${props.fileSize}`;
   const source = itemFormat.capitalizeFirstLetter(props.source);
   const sourceIcon = itemFormat.findSourceIcon(props.source);
   const resolution = `${props.resolution}`;
@@ -206,7 +206,7 @@ const DownloadItem = (props) => {
                   }
             }
           >
-            {size}
+            {fileSize}
           </div>
           {props.type === 'audio' && (
             <img

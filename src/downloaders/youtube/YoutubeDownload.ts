@@ -19,7 +19,8 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
   let info = await ytdl.getInfo(item.url);
   // let format = ytdl.chooseFormat(info.formats, { quality: '134' });
   // console.log('Format found!', format);
-  console.log(item.format.toLowerCase());
+  // console.log(item.format.toLowerCase());
+  console.log(item.fileSize);
 
   let audioPath;
   let tempPath = path.join(app.getPath('temp'), 'Warp Downloader');
