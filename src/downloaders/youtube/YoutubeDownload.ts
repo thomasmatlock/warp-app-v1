@@ -7,6 +7,10 @@ const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
 const ffmpeg = require('fluent-ffmpeg');
 ffmpeg.setFfmpegPath(ffmpegPath);
 import { unlink } from 'node:fs';
+import fs from 'fs';
+
+// Convert the file size to megabytes (optional)
+// var fileSizeInMegabytes = fileSizeInBytes / (1024 * 1024);
 // console.log(ffmpeg);
 
 export default async function YoutubeDownload(item: any) {
@@ -54,22 +58,39 @@ export default async function YoutubeDownload(item: any) {
             .toFormat('mp3')
             .on('error', (err) => {
               console.log('An error occurred: ' + err.message);
-            })
-            .on('progress', (progress) => {
-              // console.log(JSON.stringify(progress));
-              console.log(
-                'Processing: ' + progress.targetSize + ' KB converted'
-              );
-            })
-            .on('end', () => {
-              console.log('Processing finished !');
               unlink(audioPathTemp, (err) => {
                 if (err) throw err;
-                console.log('temp file was deleted');
               });
             })
+            .on('progress', (progress) => {
+              console.log(progress.targetSize);
+              // progress.frames;
+              // progress.currentFps;
+              // progress.currentKbps;
+              // progress.targetSize;
+              // progress.timemark;
+              // for (const item in progress) console.log(item);
+            })
+            .on('end', () => {
+              // unlink(audioPathTemp, (err) => {
+              //   if (err) throw err;
+              // });
+              downloadConversionComplete = true;
+              console.log('conversion complete');
+              let fileSize = fs.statSync(audioPath).size / 1000000;
+              fileSize = fileSize.toFixed(1);
+              console.log(fileSize + 'mb');
+            })
             .save(audioPath); //path where you want to save your file
+
           // downloadConversionComplete = true;
+        }
+        if (downloadConversionComplete) {
+          let fileSizeInMB = fs.statSync(audioPath).size / 1000000;
+          let fileSizeInKB = fs.statSync(audioPath).size / 1000;
+          fileSizeInMB = fileSizeInMB.toFixed(1);
+          fileSizeInKB = fileSizeInKB.toFixed(0);
+          console.log(fileSizeInMB);
         }
         // console.log(downloaded, total);
         // lastDownloaded = downloaded;
