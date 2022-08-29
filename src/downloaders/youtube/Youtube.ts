@@ -27,10 +27,13 @@ export default async function Youtube(itemURL, prefs, mode) {
   let audioQuality = prefs.audio.dropdowns[0].defaultValue.label;
   let videoQuality = prefs.video.dropdowns[0].defaultValue.label;
   let itemDetails = {};
+  itemDetails.audioQuality = audioQuality;
+  itemDetails.videoQuality = videoQuality;
   try {
     await ytdl.getBasicInfo(itemURL).then((info) => {
       // console.log(info);
 
+      itemDetails = info.videoDetails;
       let matchedFormat;
       let audioFormats;
       let videoFormats;
@@ -47,7 +50,7 @@ export default async function Youtube(itemURL, prefs, mode) {
         matchedFormat = getQuality(mode, videoQuality, info.formats);
       }
       // itemDetails.info = info;
-      itemDetails = info.videoDetails;
+      itemDetails.matchedFormat = matchedFormat;
       itemDetails.titleFS = formatTitle(itemDetails.title);
       itemDetails.fps = mode === 'video' ? matchedFormat.fps : '';
       itemDetails.resolution =

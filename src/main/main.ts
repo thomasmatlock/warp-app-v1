@@ -34,7 +34,7 @@ import Screen from './screen';
 import Browser from './browserController';
 import Shortcuts from './Shortcuts';
 // console.log(Downloads);
-require('events').EventEmitter.defaultMaxListeners = 30; // removes error warnings
+// require('events').EventEmitter.defaultMaxListeners = 30; // removes error warnings
 let prefs;
 let user;
 let mWin: BrowserWindow | null = null;

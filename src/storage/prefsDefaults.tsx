@@ -12,23 +12,25 @@ const prefs = {
         options: [
           {
             id: 'modal_dropdown_audio_quality_best',
-            value: 'modal_dropdown_audio_quality_best',
+            value: 'AUDIO_QUALITY_BEST',
             label: 'Best Available (default)',
           },
           {
             id: 'modal_dropdown_audio_quality_high',
-            value: 'modal_dropdown_audio_quality_high',
+            value: 'AUDIO_QUALITY_HIGH',
             label: 'High quality (320kbps)',
           },
           {
             id: 'modal_dropdown_audio_quality_medium',
-            value: 'modal_dropdown_audio_quality_medium',
+            value: 'AUDIO_QUALITY_MEDIUM',
             label: 'Medium quality (256kbps)',
+            itag: 22,
           },
           {
             id: 'modal_dropdown_audio_quality_low',
-            value: 'modal_dropdown_audio_quality_low',
+            value: 'AUDIO_QUALITY_LOW',
             label: 'Low quality (128kbps)',
+            itag: 18,
           },
         ],
       },
