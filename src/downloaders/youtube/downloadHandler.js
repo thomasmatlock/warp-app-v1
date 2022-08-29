@@ -151,7 +151,7 @@ const getInfo = async function(itemURL, avType, platform, storage) {
             this.cloneVideoDetails(itemURL, info, avType);
             this.removeCharactersFromTitle();
             itemInfo.filepath = createFilePath(itemURL, avType, platform, storage);
-            // items.insertPercentDownloaded(this.itemInfo)
+            // items.insertdownloadedPercentage(this.itemInfo)
             const video = ytdl(this.itemInfo.url, {
                 // requestOptions: {
                 //     // headers: {
@@ -178,7 +178,7 @@ const getInfo = async function(itemURL, avType, platform, storage) {
                 // console.log(downloaded, total);
                 lastDownloaded = downloaded;
                 if (!inserted) {
-                    items.insertPercentDownloaded(this.itemInfo, percent, 'add');
+                    items.insertdownloadedPercentage(this.itemInfo, percent, 'add');
 
                     inserted = true;
                 }
@@ -186,7 +186,11 @@ const getInfo = async function(itemURL, avType, platform, storage) {
                 // if (lastDownloaded = downloaded) {
                 setTimeout(() => {
                     if ((downloaded = total)) {
-                        items.insertPercentDownloaded(this.itemInfo, percent, 'complete');
+                        items.insertdownloadedPercentage(
+                            this.itemInfo,
+                            percent,
+                            'complete'
+                        );
                     }
                 }, 2000);
             });

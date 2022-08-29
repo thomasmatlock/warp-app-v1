@@ -55,8 +55,12 @@ const DownloadsAudio = () => {
     actionBarCtx.sortOldNew,
     inputCtx.searchText,
     downloadsCtx.downloadsAudioState,
+    downloadsCtx.percentUpdateState,
   ]);
-
+  //  itemDetails.downloadedPercentage = 0;
+  //  itemDetails.downloadComplete = false;
+  //  itemDetails.conversionPercentage = 0;
+  //  itemDetails.conversionComplete = false;
   const audioDownloads = (
     <ul className="content__panel__downloads__list">
       {downloads.map(
@@ -71,8 +75,10 @@ const DownloadsAudio = () => {
               id={item.id}
               key={item.id}
               length={item.lengthDisplay}
-              percentDownloaded={item.percentDownloaded}
-              percentConverted={item.percentConverted}
+              downloadedPercentage={item.downloadedPercentage}
+              downloadComplete={item.downloadComplete}
+              conversionPercentage={item.conversionPercentage}
+              conversionComplete={item.conversionComplete}
               resolution={item.resolution}
               fileSize={item.fileSize}
               source={item.source}

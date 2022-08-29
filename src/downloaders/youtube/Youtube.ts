@@ -74,8 +74,10 @@ export default async function Youtube(mWin, itemURL, prefs, mode) {
         itemDetails.titleFS +
         ' ' +
         itemDetails.keywords;
-      itemDetails.percentDownloaded = 0;
-      itemDetails.percentConverted = 0;
+      itemDetails.downloadedPercentage = 0;
+      itemDetails.downloadComplete = false;
+      itemDetails.conversionPercentage = 0;
+      itemDetails.conversionComplete = false;
       // const video = ytdl(itemURL, {
       //   // requestOptions: {
       //   //     // headers: {
@@ -104,7 +106,7 @@ export default async function Youtube(mWin, itemURL, prefs, mode) {
       //   // console.log(downloaded, total);
       //   // lastDownloaded = downloaded;
       //   // if (!inserted) {
-      //   //   items.insertPercentDownloaded(this.itemInfo, percent, 'add');
+      //   //   items.insertdownloadedPercentage(this.itemInfo, percent, 'add');
 
       //   //   inserted = true;
       //   // }
@@ -113,7 +115,7 @@ export default async function Youtube(mWin, itemURL, prefs, mode) {
       //   // if (lastDownloaded = downloaded) {
       //   // setTimeout(() => {
       //   //   if ((downloaded = total)) {
-      //   //     items.insertPercentDownloaded(this.itemInfo, percent, 'complete');
+      //   //     items.insertdownloadedPercentage(this.itemInfo, percent, 'complete');
       //   //   }
       //   // }, 2000);
       // });

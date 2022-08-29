@@ -16,6 +16,8 @@ import IconFileTypeAudio from '../../../assets/Downloads/fileTypeAudio.svg';
 import IconFileTypeVideo from '../../../assets/Downloads/fileTypeVideo.svg';
 import iconFileResolution from '../../../assets/Downloads/resolution.svg';
 import IconFileFps from '../../../assets/Downloads/fps1.svg';
+import IconFileDownloading from '../../../assets/Downloads/download.svg';
+import IconFileConverting from '../../../assets/Downloads/converting.svg';
 import IconDate from '../../../assets/Downloads/date.svg';
 // import IconDate from '../../../assets/Downloads/date2.svg';
 import SourcesContext from '../../storage/sourcesContext';
@@ -69,6 +71,7 @@ const DownloadItem = (props) => {
   const fps = `${props.fps}`;
   const length = `${props.length}`;
   const fileSize = `${props.fileSize}`;
+  const fileSizeInMB = `${(props.fileSize / 1000000).toFixed(1)}MB`;
   const source = itemFormat.capitalizeFirstLetter(props.source);
   const sourceIcon = itemFormat.findSourceIcon(props.source);
   const resolution = `${props.resolution}`;
@@ -224,33 +227,33 @@ const DownloadItem = (props) => {
           >
             {length}
           </div>
-          {/* {fileSizeExists && ( */}
-          <img
-            src={iconFileSize}
-            className=" content__panel__downloads__list__item__img content__panel__downloads__list__item__file_length"
-            style={
-              themeCtx.isDarkTheme
-                ? { filter: 'invert(100%)' }
-                : {
-                    filter: 'invert(0%)',
-                  }
-            }
-          ></img>
-          {/* )} */}
-          {/* {fileSizeExists && ( */}
-          <div
-            className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_size"
-            style={
-              themeCtx.isDarkTheme
-                ? { filter: 'invert(100%)' }
-                : {
-                    filter: 'invert(0%)',
-                  }
-            }
-          >
-            {fileSize}
-          </div>
-          {/* )} */}
+          {props.fileSize > 0 && (
+            <img
+              src={iconFileSize}
+              className=" content__panel__downloads__list__item__img content__panel__downloads__list__item__file_length"
+              style={
+                themeCtx.isDarkTheme
+                  ? { filter: 'invert(100%)' }
+                  : {
+                      filter: 'invert(0%)',
+                    }
+              }
+            ></img>
+          )}
+          {props.fileSize > 0 && (
+            <div
+              className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_size"
+              style={
+                themeCtx.isDarkTheme
+                  ? { filter: 'invert(100%)' }
+                  : {
+                      filter: 'invert(0%)',
+                    }
+              }
+            >
+              {fileSizeInMB}
+            </div>
+          )}
           {props.type === 'video' && props.resolution != undefined && (
             <img
               src={iconFileResolution}
@@ -305,34 +308,10 @@ const DownloadItem = (props) => {
               {fps} fps
             </div>
           )}
-          <div
-            className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_date content__panel__downloads__list__item__file_date__text"
-            style={
-              themeCtx.isDarkTheme
-                ? { filter: 'invert(100%)' }
-                : {
-                    filter: 'invert(0%)',
-                  }
-            }
-          >
-            {props.percentDownloaded} % DL
-          </div>
-          <div
-            className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_date content__panel__downloads__list__item__file_date__text"
-            style={
-              themeCtx.isDarkTheme
-                ? { filter: 'invert(100%)' }
-                : {
-                    filter: 'invert(0%)',
-                  }
-            }
-          >
-            {props.percentConverted} % converted
-          </div>
-          {props.date != undefined && (
+          {!props.downloadComplete && (
             <img
-              // src={IconDate}
-              className=" content__panel__downloads__list__item__img content__panel__downloads__list__item__file_date"
+              src={IconFileDownloading}
+              className=" content__panel__downloads__list__item__img content__panel__downloads__list__item__file_downloading"
               style={
                 themeCtx.isDarkTheme
                   ? { filter: 'invert(100%)' }
@@ -342,8 +321,7 @@ const DownloadItem = (props) => {
               }
             ></img>
           )}
-          {props.date != undefined && (
-            // {props.type === 'video' && (
+          {!props.downloadComplete && (
             <div
               className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_date content__panel__downloads__list__item__file_date__text"
               style={
@@ -354,9 +332,68 @@ const DownloadItem = (props) => {
                     }
               }
             >
-              {/* {dateString} */}
+              {props.downloadedPercentage}% downloaded
             </div>
           )}
+          {!props.conversionComplete && props.downloadComplete && (
+            <img
+              src={IconFileConverting}
+              className=" content__panel__downloads__list__item__img content__panel__downloads__list__item__file_converting"
+              style={
+                themeCtx.isDarkTheme
+                  ? { filter: 'invert(100%)' }
+                  : {
+                      filter: 'invert(0%)',
+                    }
+              }
+            ></img>
+          )}
+          {!props.conversionComplete && props.downloadComplete && (
+            <div
+              className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_date content__panel__downloads__list__item__file_date__text"
+              style={
+                themeCtx.isDarkTheme
+                  ? { filter: 'invert(100%)' }
+                  : {
+                      filter: 'invert(0%)',
+                    }
+              }
+            >
+              {props.conversionPercentage}% converted to {format}
+            </div>
+          )}
+          {props.date != undefined &&
+            props.conversionComplete &&
+            props.downloadComplete && (
+              <img
+                src={IconDate}
+                className=" content__panel__downloads__list__item__img content__panel__downloads__list__item__file_date"
+                style={
+                  themeCtx.isDarkTheme
+                    ? { filter: 'invert(100%)' }
+                    : {
+                        filter: 'invert(0%)',
+                      }
+                }
+              ></img>
+            )}
+          {props.date != undefined &&
+            props.conversionComplete &&
+            props.downloadComplete && (
+              // {props.type === 'video' && (
+              <div
+                className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_date content__panel__downloads__list__item__file_date__text"
+                style={
+                  themeCtx.isDarkTheme
+                    ? { filter: 'invert(100%)' }
+                    : {
+                        filter: 'invert(0%)',
+                      }
+                }
+              >
+                {dateString}
+              </div>
+            )}
         </div>
       </div>
       <div className="filterBar__menu filterBar__menu__right">

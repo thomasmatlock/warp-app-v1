@@ -50,7 +50,7 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
       currentDownload.pipe(fs.createWriteStream(tempPath)); // downloads video
       currentDownload.on('progress', (chunkLength, downloaded, total) => {
         progressPercentage = downloaded / total;
-        progressPercentage = Math.round(progressPercentage * 100) + '%';
+        progressPercentage = Math.round(progressPercentage * 100);
         // console.log(progressPercentage);
         mWin.webContents.send('item-download-progress', [
           item.id,
@@ -95,7 +95,7 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
                 (secondsConverted / totalLengthSeconds) *
                 100
               ).toFixed(0);
-              console.log(conversionPercentage + '% converted');
+              // console.log(conversionPercentage + '% converted');
               mWin.webContents.send('item-convert-progress', [
                 item.id,
                 conversionPercentage,
@@ -113,9 +113,14 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
               });
               downloadConversionComplete = true;
               console.log('conversion complete');
-              let fileSize = fs.statSync(audioPath).size / 1000000;
+              mWin.webContents.send('item-conversion-complete', [item.id]);
+              let fileSize = fs.statSync(audioPath).size;
               fileSize = fileSize.toFixed(1);
-              console.log(fileSize + 'mb');
+              // console.log(fileSize + 'mb');
+              mWin.webContents.send('item-fileSize-retrieved', [
+                item.id,
+                fileSize,
+              ]);
             })
             .save(audioPath); //path where you want to save your file
 
@@ -131,7 +136,7 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
         // console.log(downloaded, total);
         // lastDownloaded = downloaded;
         // if (!inserted) {
-        //   items.insertPercentDownloaded(this.itemInfo, percent, 'add');
+        //   items.insertdownloadedPercentage(this.itemInfo, percent, 'add');
 
         //   inserted = true;
         // }
@@ -139,7 +144,7 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
         // }
         // if (lastDownloaded = downloaded) {
         // setTimeout(() => {
-        //     items.insertPercentDownloaded(this.itemInfo, percent, 'complete');
+        //     items.insertdownloadedPercentage(this.itemInfo, percent, 'complete');
         // }, 2000);
       });
     } catch (error) {
@@ -176,7 +181,7 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
         // console.log(downloaded, total);
         // lastDownloaded = downloaded;
         // if (!inserted) {
-        //   items.insertPercentDownloaded(this.itemInfo, percent, 'add');
+        //   items.insertdownloadedPercentage(this.itemInfo, percent, 'add');
 
         //   inserted = true;
         // }
@@ -184,7 +189,7 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
         // }
         // if (lastDownloaded = downloaded) {
         // setTimeout(() => {
-        //     items.insertPercentDownloaded(this.itemInfo, percent, 'complete');
+        //     items.insertdownloadedPercentage(this.itemInfo, percent, 'complete');
         // }, 2000);
       });
     } catch (error) {

@@ -38,6 +38,7 @@ const DownloadsContext = React.createContext({
   downloadsVideo: [],
   downloadsAudioState: {},
   downloadsVideoState: {},
+  percentUpdateState: {},
   downloadsWarpstagram: {},
   getDownloadID: () => {},
   downloadContextActionHandler: () => {},
@@ -52,6 +53,7 @@ let lastDownloadID = 0;
 export const DownloadsContextProvider = (props) => {
   const [downloadsAudioState, setDownloadsAudioState] = useState(0);
   const [downloadsVideoState, setDownloadsVideoState] = useState(0);
+  const [percentUpdateState, setPercentUpdateState] = useState(0);
   const getMatchingDownload = (downloadID) => {
     for (const download of downloadsAudio) {
       if (download.id === downloadID) {
@@ -176,10 +178,36 @@ export const DownloadsContextProvider = (props) => {
     // downloadsVideo.push(item);
   });
   window.electron.ipcRenderer.on('item-download-progress', (arg) => {
-    console.log(arg[0], arg[1]);
+    let id = arg[0];
+    let progress = arg[1];
+    let matchingDownload = getMatchingDownload(id);
+    matchingDownload.downloadedPercentage = progress;
+    if (matchingDownload.downloadedPercentage === 100) {
+      matchingDownload.downloadComplete = true;
+    }
+    // downloadComplete;
+    // console.log(matchingDownload.downloadedPercentage);
+    setPercentUpdateState(progress);
   });
   window.electron.ipcRenderer.on('item-convert-progress', (arg) => {
-    console.log(arg[0], arg[1]);
+    let id = arg[0];
+    let progress = arg[1];
+    let matchingDownload = getMatchingDownload(id);
+    matchingDownload.conversionPercentage = progress;
+    setPercentUpdateState(progress);
+  });
+  window.electron.ipcRenderer.on('item-conversion-complete', (arg) => {
+    let id = arg[0];
+    let matchingDownload = getMatchingDownload(id);
+    matchingDownload.conversionComplete = true;
+    setPercentUpdateState(0);
+  });
+  window.electron.ipcRenderer.on('item-fileSize-retrieved', (arg) => {
+    let id = arg[0];
+    let fileSize = arg[1];
+    let matchingDownload = getMatchingDownload(id);
+    matchingDownload.fileSize = fileSize;
+    setPercentUpdateState(fileSize);
   });
   return (
     <DownloadsContext.Provider
@@ -188,6 +216,7 @@ export const DownloadsContextProvider = (props) => {
         downloadsVideo: downloadsVideo,
         downloadsAudioState: downloadsAudioState,
         downloadsVideoState: downloadsVideoState,
+        percentUpdateState: percentUpdateState,
         downloadsWarpstagram: downloadsWarpstagram,
         getDownloadID: getDownloadID,
         downloadContextActionHandler: downloadContextActionHandler,

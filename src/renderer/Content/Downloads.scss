@@ -98,6 +98,28 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     }
 }
 
+@keyframes ckw {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes downloading {
+    0% {
+        transform: rotate3d(0, 1, 0, 180deg); //GOOD
+    }
+    100% {
+        // transform: rotate(360deg);
+        transform: rotate3d(0deg);
+    }
+}
+
+// animation-name: ckw;
+//   animation-duration: 0.5s;
+//   transform-origin: 50% 50%;
 .content__panel__toggle_collapse {
     // position: absolute;
     // display: none;
@@ -269,6 +291,20 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
         }
         &__file_fps {
             color: rgb(162, 162, 162);
+        }
+        &__file_downloading {
+            // animation-name: ckw;
+            // animation-iteration-count: 10;
+            // animation-duration: 0.5s;
+            -webkit-animation: downloading 1s linear 0s infinite;
+            // transform-origin: 50% 50%;
+        }
+        &__file_converting {
+            // animation-name: ckw;
+            // animation-iteration-count: 10;
+            // animation-duration: 0.5s;
+            -webkit-animation: ckw 1s linear 0s infinite;
+            // transform-origin: 50% 50%;
         }
         &__file_date {
             &__text {

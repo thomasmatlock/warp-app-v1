@@ -117,7 +117,7 @@ const isDebug =
   process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true';
 
 if (isDebug) {
-  require('electron-debug')(); // ENABLE FOR DEVTOOLS
+  // require('electron-debug')(); // ENABLE FOR DEVTOOLS
 }
 
 const installExtensions = async () => {
@@ -486,7 +486,7 @@ const windowController = {
     });
     view.setAutoResize({ width: true, height: true });
     view.setBackgroundColor('#1a1a1a');
-    console.log(randomYoutubeURL);
+    // console.log(randomYoutubeURL);
 
     view.webContents.loadURL(randomYoutubeURL);
     // view.webContents.loadURL('https://open.spotify.com/');
