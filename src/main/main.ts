@@ -317,6 +317,10 @@ let browserPanelState = 'default';
     }
   );
   // CONTEXT MENU LISTENERS
+  ipcMain.on('context: show_in_folder', async (event, matchingDownload) => {
+    console.log(matchingDownload);
+    shell.showItemInFolder(matchingDownload.path);
+  });
   ipcMain.on('context: copy_link_address', async (event, matchingDownload) => {
     let url = matchingDownload.video_url;
     clipboard.writeText(url);

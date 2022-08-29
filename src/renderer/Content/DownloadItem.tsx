@@ -49,15 +49,14 @@ const DownloadItem = (props) => {
   const sourceIcon = itemFormat.findSourceIcon(props.source);
   const resolution = `${props.resolution}`;
   const title = `${props.title}`;
-  // const downloadPercentageWidth = `${
-  //   props.downloadedPercentage / 2 + props.conversionPercentage / 2
-  // }%`;
-  // let downloadPercentageWidth = `${props.downloadedPercentage}%`;
-  //  width: calc(100% - 1.5rem);
   let downloadPercentageWidth = props.downloadComplete
     ? 'calc(100% - 1.5rem)'
     : `calc(${props.downloadedPercentage}% - 1.5rem)`;
-  // console.log(downloadPercentageWidth);
+
+  const showInFolderHandler = () => {
+    downloadsCtx.showInFolder(props.id);
+    // console.log('show in folder');
+  };
 
   const toggleContextMenu = () => {
     if (isContentMenuVisible) {
@@ -383,7 +382,10 @@ const DownloadItem = (props) => {
       </div>
       <div className="filterBar__menu filterBar__menu__right">
         {props.conversionComplete && (
-          <div className="filterBar__menu__item filterBar__menu__item__sort">
+          <div
+            className="filterBar__menu__item filterBar__menu__item__sort"
+            onClick={showInFolderHandler}
+          >
             <img
               title="Show in folder"
               src={iconFolder}

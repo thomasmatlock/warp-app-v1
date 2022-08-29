@@ -41,6 +41,7 @@ const DownloadsContext = React.createContext({
   percentUpdateState: {},
   downloadsWarpstagram: {},
   getDownloadID: () => {},
+  showInFolder: () => {},
   downloadContextActionHandler: () => {},
 });
 const getDownloadID = (id) => {
@@ -136,6 +137,14 @@ export const DownloadsContextProvider = (props) => {
       );
     }
   };
+  const showInFolder = (downloadID: string) => {
+    // console.log('show in folder', downloadID);
+    let matchingDownload = getMatchingDownload(downloadID);
+    window.electron.ipcRenderer.sendMessage(
+      'context: show_in_folder',
+      matchingDownload
+    );
+  };
   window.electron.ipcRenderer.on('main: item-downloaded', (arg) => {
     let item = arg[0];
     let mode = arg[1];
@@ -195,6 +204,7 @@ export const DownloadsContextProvider = (props) => {
     let id = arg[0];
     let progress = arg[1];
     // console.log(progress);
+    // console.log(progress);
     let matchingDownload = getMatchingDownload(id);
     matchingDownload.conversionPercentage = progress;
     setPercentUpdateState(progress);
@@ -222,6 +232,7 @@ export const DownloadsContextProvider = (props) => {
         percentUpdateState: percentUpdateState,
         downloadsWarpstagram: downloadsWarpstagram,
         getDownloadID: getDownloadID,
+        showInFolder: showInFolder,
         downloadContextActionHandler: downloadContextActionHandler,
       }}
     >
