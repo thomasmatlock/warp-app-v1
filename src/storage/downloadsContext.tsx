@@ -180,7 +180,7 @@ export const DownloadsContextProvider = (props) => {
   window.electron.ipcRenderer.on('item-download-progress', (arg) => {
     let id = arg[0];
     let progress = arg[1];
-    console.log(progress);
+    // console.log(progress);
 
     let matchingDownload = getMatchingDownload(id);
     matchingDownload.downloadedPercentage = progress;
@@ -194,6 +194,7 @@ export const DownloadsContextProvider = (props) => {
   window.electron.ipcRenderer.on('item-convert-progress', (arg) => {
     let id = arg[0];
     let progress = arg[1];
+    // console.log(progress);
     let matchingDownload = getMatchingDownload(id);
     matchingDownload.conversionPercentage = progress;
     setPercentUpdateState(progress);

@@ -71,6 +71,10 @@ const DownloadsVideo = () => {
               author={item.author.name}
               // backgroundURL={item.background.url}
               date={item.date}
+              downloadedPercentage={item.downloadedPercentage}
+              downloadComplete={item.downloadComplete}
+              conversionPercentage={item.conversionPercentage}
+              conversionComplete={item.conversionComplete}
               timestamp={item.timestamp}
               format={item.format}
               fps={item.fps}
