@@ -351,18 +351,18 @@ export default class MenuBuilder {
     const subMenuWarpstagram: MenuItemConstructorOptions = {
       label: 'Warpstagram',
       submenu: [
-        {
-          label: 'Paste',
-          enabled: false,
-          accelerator: 'CmdOrCtrl+V',
-          click: () => {
-            appWin.send('Audio: Downloads: Paste');
-          },
-        },
-        {
-          label: 'separator',
-          type: 'separator',
-        },
+        // {
+        //   label: 'Paste',
+        //   enabled: false,
+        //   accelerator: 'CmdOrCtrl+V',
+        //   click: () => {
+        //     appWin.send('Audio: Downloads: Paste');
+        //   },
+        // },
+        // {
+        //   label: 'separator',
+        //   type: 'separator',
+        // },
         {
           label: 'Pause All',
           enabled: false,
@@ -584,18 +584,18 @@ export default class MenuBuilder {
       {
         label: '&Audio',
         submenu: [
-          {
-            label: 'Paste',
-            enabled: false,
-            accelerator: 'CmdOrCtrl+V',
-            click: () => {
-              appWin.send('Audio: Downloads: Paste');
-            },
-          },
-          {
-            label: 'separator',
-            type: 'separator',
-          },
+          // {
+          //   label: 'Paste',
+          //   enabled: false,
+          //   accelerator: 'CmdOrCtrl+V',
+          //   click: () => {
+          //     appWin.send('Audio: Downloads: Paste');
+          //   },
+          // },
+          // {
+          //   label: 'separator',
+          //   type: 'separator',
+          // },
           {
             label: 'Pause All',
             enabled: false,
@@ -648,18 +648,18 @@ export default class MenuBuilder {
       {
         label: '&Video',
         submenu: [
-          {
-            label: 'Paste',
-            enabled: false,
-            accelerator: 'CmdOrCtrl+V',
-            click: () => {
-              appWin.send('Video: Downloads: Paste');
-            },
-          },
-          {
-            label: 'separator',
-            type: 'separator',
-          },
+          // {
+          //   label: 'Paste',
+          //   enabled: false,
+          //   accelerator: 'CmdOrCtrl+V',
+          //   click: () => {
+          //     appWin.send('Video: Downloads: Paste');
+          //   },
+          // },
+          // {
+          //   label: 'separator',
+          //   type: 'separator',
+          // },
           {
             label: 'Pause All',
             enabled: false,
