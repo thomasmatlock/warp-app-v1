@@ -240,11 +240,20 @@ export default class MenuBuilder {
         {
           label: 'Import Download Links',
           enabled: true,
-          accelerator: 'CmdOrCtrl+Shift+O',
+          // accelerator: 'CmdOrCtrl+Shift+O',
           click: () => {
             console.log('import');
-
-            appWin.send('Audio: File: Import Download Links');
+            dialog
+              .showOpenDialog({
+                properties: ['openFile', 'multiSelections'],
+                defaultPath: app.getPath('desktop'),
+              })
+              .then((result) => {
+                console.log(result);
+              })
+              .catch((err) => {
+                console.log(err);
+              });
           },
         },
         {
@@ -304,11 +313,20 @@ export default class MenuBuilder {
         {
           label: 'Import Download Links',
           enabled: true,
-          accelerator: 'CmdOrCtrl+O',
+          // accelerator: 'CmdOrCtrl+O',
           click: () => {
             console.log('import');
-
-            // appWin.send('Video: File: Import Download Links');
+            dialog
+              .showOpenDialog({
+                properties: ['openFile', 'multiSelections'],
+                defaultPath: app.getPath('desktop'),
+              })
+              .then((result) => {
+                console.log(result);
+              })
+              .catch((err) => {
+                console.log(err);
+              });
           },
         },
         {
@@ -403,10 +421,19 @@ export default class MenuBuilder {
         {
           label: 'Import Download Links',
           enabled: true,
-          accelerator: 'CmdOrCtrl+Shift+O',
+          // accelerator: 'CmdOrCtrl+Shift+O',
           click: () => {
-            console.log('import');
-
+            dialog
+              .showOpenDialog({
+                properties: ['openFile', 'multiSelections'],
+                defaultPath: app.getPath('desktop'),
+              })
+              .then((result) => {
+                console.log(result);
+              })
+              .catch((err) => {
+                console.log(err);
+              });
             // appWin.send('Audio: File: Import Download Links');
           },
         },
@@ -701,7 +728,7 @@ export default class MenuBuilder {
           {
             label: 'Import Download Links',
             enabled: true,
-            accelerator: 'CmdOrCtrl+O',
+            // accelerator: 'CmdOrCtrl+O',
             click: () => {
               dialog
                 .showOpenDialog({
