@@ -65,6 +65,7 @@ const DownloadsAudio = () => {
         15 -
         downloadsCtx.downloadsAudio.length +
         ' daily audio downloads remaining',
+      subtitle: 'subtitle for more',
       ctaText: 'Activate Unlimted Downloads',
     },
   ];
