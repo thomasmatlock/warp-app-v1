@@ -199,7 +199,7 @@ let browserPanelState = 'default';
     if (view)
       if (view.webContents.getURL().includes('pinterest')) {
         view.webContents.insertCSS('html, body, { background-color: #fff;  }');
-        view.webContents.insertCSS('::-webkit-scrollbar, {    width: 10px;}');
+        // view.webContents.insertCSS('::-webkit-scrollbar, {    width: 10px;}');
       }
   });
   ipcMain.on('source: change', async (event, arg) => {

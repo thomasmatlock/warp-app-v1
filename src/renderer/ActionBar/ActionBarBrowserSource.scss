@@ -139,8 +139,9 @@ $gradient-orange: linear-gradient(to left, #da2c4d 0%, #f8ab37 100%);
             }
             &__icon {
                 // margin-left: 20px;
-                margin: 1rem;
-                height: 1rem;
+                // margin: 1rem;
+                margin: 1rem 0.75rem;
+                height: 0.75rem;
                 fill: $gray-dark-light;
                 &__status {
                     animation: flash 1s ease-in-out !important; // default
