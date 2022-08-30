@@ -61,13 +61,18 @@ const DownloadsAudio = () => {
     downloadsCtx.downloadsAudioState,
     downloadsCtx.percentUpdateState,
   ]);
+  let dollarsSynArray = ['bucks', 'rupees'];
+  let randomDollarSyn =
+    dollarsSynArray[Math.floor(Math.random() * dollarsSynArray.length)];
+  let verbsArray = ['Spend', 'Invest'];
+  let randomVerb = verbsArray[Math.floor(Math.random() * verbsArray.length)];
   let audioDownloadsActivationArr = [
     {
       title:
         15 -
         downloadsCtx.downloadsAudio.length +
         ' daily audio downloads remaining',
-      subtitle: 'Activate a Personal or Professional License to download more',
+      subtitle: `${randomVerb} a few ${randomDollarSyn} on a Personal or Professional License for unlimited downloads and more `,
       ctaImage: iconLicenses,
       ctaText: 'Activate',
     },

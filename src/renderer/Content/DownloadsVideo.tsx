@@ -18,6 +18,11 @@ const DownloadsVideo = () => {
   const downloadsCtx = useContext(DownloadsContext);
   const inputCtx = useContext(InputContext);
   // console.log(downloadsCtx.downloadsVideo[0].background);
+  let dollarsSynArray = ['bucks', 'rupees'];
+  let randomDollarSyn =
+    dollarsSynArray[Math.floor(Math.random() * dollarsSynArray.length)];
+  let verbsArray = ['Spend', 'Invest'];
+  let randomVerb = verbsArray[Math.floor(Math.random() * verbsArray.length)];
   let videoDownloadsActivationArr = [
     {
       title:
@@ -25,8 +30,7 @@ const DownloadsVideo = () => {
         downloadsCtx.downloadsVideo.length +
         ' daily video downloads remaining',
       // subtitle: 'subtitle for more',
-      subtitle:
-        'Activate a Personal or Professional License for unlimited downloads, UHD resolutions, and more',
+      subtitle: `${randomVerb} a few ${randomDollarSyn} on a Personal or Professional License for unlimited downloads, UHD resolutions, and more`,
       ctaImage: iconLicenses,
       ctaText: 'Activate',
     },
