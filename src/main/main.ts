@@ -49,9 +49,13 @@ app
     Prefs.resetPrefs();
     prefs = Prefs.getPrefs();
     setActiveURL();
+    // User.upgradeUserModule('audio', 'free');
     // User.resetUser();
+    // console.log(User.canUserDownloadAudio());
+    // console.log(User.canUserDownloadVideo());
+    // console.log(User.canUserDownloadWarpstagram());
+
     user = User.getUser();
-    console.log(user.audioDownloadsCount);
 
     // Screen.resetScreenState();
     windowController.createmWin();
