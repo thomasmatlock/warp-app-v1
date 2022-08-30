@@ -59,9 +59,16 @@ const DownloadsAudio = () => {
     downloadsCtx.downloadsAudioState,
     downloadsCtx.percentUpdateState,
   ]);
-  const audioDownloadsActivationArr = [
-    { title: 'Title Placeholder', ctaText: 'Activate Audio Now' },
+  let audioDownloadsActivationArr = [
+    {
+      title:
+        15 -
+        downloadsCtx.downloadsAudio.length +
+        ' daily audio downloads remaining',
+      ctaText: 'Activate Unlimted Downloads',
+    },
   ];
+  // console.log(downloadsCtx.downloadsAudio.length);
 
   //  itemDetails.downloadedPercentage = 0;
   //  itemDetails.downloadComplete = false;

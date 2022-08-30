@@ -46,7 +46,7 @@ app
   .whenReady()
   .then(() => {
     PowerMonitor();
-    Prefs.resetPrefs();
+    // Prefs.resetPrefs();
     prefs = Prefs.getPrefs();
     setActiveURL();
     // User.upgradeUserModule('audio', 'free');

@@ -31,74 +31,29 @@ import itemFormat from './DownloadItemFormat';
 // console.log(itemFormat);
 
 const ActivationItem = (props) => {
-  console.log(props);
-
-  // const [fileSizeExists, setFileSizeExists] = useState(props.fileSize);
-  // // console.log(props);
-  // function shortenString(str, maxChars) {
-  //   return str.length > maxChars ? str.slice(0, maxChars - 1) + '...' : str;
-  // }
-  // const [isContentMenuVisible, setisContentMenuVisible] = useState(false);
-  // // const options = 'downloadItemContextMenu';
-  // // const sourcesCtx = useContext(SourcesContext);
+  // console.log(props);
   const themeCtx = useContext(ThemeContext);
   const downloadsCtx = useContext(DownloadsContext);
-  // const dateString = props.timestamp;
-  // const format = props.format ? props.format.toUpperCase() : '';
-  // const fps = `${props.fps}`;
-  // const length = `${props.length}`;
-  // // const fileSize = `${props.fileSize}`;
-  // const fileSizeInMB = `${(props.fileSize / 1000000).toFixed(1)}MB`;
-  // // const source = itemFormat.capitalizeFirstLetter(props.source);
-  // const sourceIcon = itemFormat.findSourceIcon(props.source);
-  // const resolution = `${props.resolution}`;
-  // const title = `${props.title}`;
-  // const titleShortened = shortenString(title, 120);
-  // let downloadPercentageWidth = props.downloadComplete
-  //   ? 'calc(100% - 1.5rem)'
-  //   : `calc(${props.downloadedPercentage}% - 1.5rem)`;
-
-  // const showInFolderHandler = () => {
-  //   downloadsCtx.showInFolder(props.id);
-  //   // console.log('show in folder');
-  // };
-
-  // const toggleContextMenu = () => {
-  //   if (isContentMenuVisible) {
-  //     setisContentMenuVisible(false);
-  //   } else {
-  //     setisContentMenuVisible(true);
-  //   }
-  // };
-  // const turnOffContextMenu = () => {
-  //   setisContentMenuVisible(false);
-  // };
   return (
     <li
-      onClick={() => {
-        // getSourceID(props.id);
-        // downloadsCtx.getDownloadID(props.id);
-      }}
-      className={
-        props.type === 'audio'
-          ? 'content__panel__downloads__list__item content__panel__downloads__list__item__audio'
-          : 'content__panel__downloads__list__item content__panel__downloads__list__item__video'
-      }
+      onClick={() => {}}
+      className={'content__panel__downloads__list__activation__item'}
       style={
         themeCtx.isDarkTheme
           ? {
               backgroundColor: themeCtx.nav.dark.backgroundColor,
-              width: 'calc(100% - 1.5rem)',
-              // width: downloadPercentageWidth,
             }
           : {
               backgroundColor: themeCtx.nav.light.backgroundColor,
-              width: 'calc(100% - 1.5rem)',
             }
       }
     >
-      <p>{props.title}</p>
-      <p>{props.ctaText}</p>
+      <div className="content__panel__downloads__list__activation__item__title">
+        <p>{props.title}</p>
+      </div>
+      <div className="content__panel__downloads__list__activation__item__cta">
+        <p>{props.ctaText}</p>
+      </div>
     </li>
   );
 };

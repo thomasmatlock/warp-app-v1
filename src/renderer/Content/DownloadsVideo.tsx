@@ -6,6 +6,7 @@ import DownloadsContext from '../../storage/downloadsContext';
 import InputContext from '../../storage/inputContext';
 
 import DownloadItem from './DownloadItem';
+import ActivationItem from './ActivationItem';
 import Sort from './Sort';
 
 import './Downloads.scss';
@@ -16,6 +17,15 @@ const DownloadsVideo = () => {
   const downloadsCtx = useContext(DownloadsContext);
   const inputCtx = useContext(InputContext);
   // console.log(downloadsCtx.downloadsVideo[0].background);
+  let videoDownloadsActivationArr = [
+    {
+      title:
+        15 -
+        downloadsCtx.downloadsVideo.length +
+        ' daily video downloads remaining',
+      ctaText: 'Activate Unlimted Downloads',
+    },
+  ];
 
   const [downloads, setDownloads] = useState(
     Array.from(downloadsCtx.downloadsVideo).sort((a, b) => {
@@ -92,6 +102,34 @@ const DownloadsVideo = () => {
       )}
     </ul>
   );
+  const videoDownloadsActivation = (
+    <ul className="content__panel__downloads__list__activation">
+      {videoDownloadsActivationArr.map((item) => (
+        <ActivationItem
+          title={item.title}
+          ctaText={item.ctaText}
+          // author={item.author.name}
+          // date={item.date}
+          // timestamp={item.timestamp}
+          // format={item.format}
+          // fps={item.fps}
+          // id={item.id}
+          // key={item.id}
+          // length={item.lengthDisplay}
+          // downloadedPercentage={item.downloadedPercentage}
+          // downloadComplete={item.downloadComplete}
+          // conversionPercentage={item.conversionPercentage}
+          // conversionComplete={item.conversionComplete}
+          // resolution={item.resolution}
+          // fileSize={item.fileSize}
+          // source={item.source}
+          // thumbnail={item.thumbnailDisplay}
+          // title={item.title}
+          // type={item.type}
+        />
+      ))}
+    </ul>
+  );
   return (
     <Fragment>
       <div
@@ -109,6 +147,7 @@ const DownloadsVideo = () => {
         }
       >
         {videoDownloads}
+        {videoDownloadsActivation}
       </div>
     </Fragment>
   );
