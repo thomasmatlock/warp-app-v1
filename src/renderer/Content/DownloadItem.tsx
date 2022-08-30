@@ -51,7 +51,7 @@ const DownloadItem = (props) => {
   const sourceIcon = itemFormat.findSourceIcon(props.source);
   const resolution = `${props.resolution}`;
   const title = `${props.title}`;
-  const titleShortened = shortenString(title, 70);
+  const titleShortened = shortenString(title, 120);
   let downloadPercentageWidth = props.downloadComplete
     ? 'calc(100% - 1.5rem)'
     : `calc(${props.downloadedPercentage}% - 1.5rem)`;
