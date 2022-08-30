@@ -327,6 +327,8 @@ let browserPanelState = 'default';
     clipboard.writeText(url);
   });
   ipcMain.on('context: open_in_browser', async (event, matchingDownload) => {
+    console.log(matchingDownload);
+
     let url = matchingDownload.video_url;
     if (view) view.webContents.loadURL(url);
   });

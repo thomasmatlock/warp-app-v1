@@ -33,7 +33,9 @@ import itemFormat from './DownloadItemFormat';
 const DownloadItem = (props) => {
   const [fileSizeExists, setFileSizeExists] = useState(props.fileSize);
   // console.log(props);
-
+  function shortenString(str, maxChars) {
+    return str.length > maxChars ? str.slice(0, maxChars - 1) + '...' : str;
+  }
   const [isContentMenuVisible, setisContentMenuVisible] = useState(false);
   const options = 'downloadItemContextMenu';
   const sourcesCtx = useContext(SourcesContext);
@@ -49,6 +51,7 @@ const DownloadItem = (props) => {
   const sourceIcon = itemFormat.findSourceIcon(props.source);
   const resolution = `${props.resolution}`;
   const title = `${props.title}`;
+  const titleShortened = shortenString(title, 70);
   let downloadPercentageWidth = props.downloadComplete
     ? 'calc(100% - 1.5rem)'
     : `calc(${props.downloadedPercentage}% - 1.5rem)`;
@@ -123,7 +126,7 @@ const DownloadItem = (props) => {
                   }
             }
           >
-            {title}
+            {titleShortened}
           </div>
         </div>
         <div className="content__panel__downloads__list__item__info__container content__panel__downloads__list__item__info__container__2">
