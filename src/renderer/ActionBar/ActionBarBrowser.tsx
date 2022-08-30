@@ -15,6 +15,7 @@ import ActionBarContext from '../../storage/actionBarContext';
 import NavContext from '../../storage/navContext';
 import PrefsContext from '../../storage/prefsContext';
 import SourcesContext from '../../storage/sourcesContext';
+import DownloadsContext from '../../storage/downloadsContext';
 
 const BrowserBar = () => {
   const themeCtx = useContext(ThemeContext);
@@ -22,6 +23,10 @@ const BrowserBar = () => {
   const navCtx = useContext(NavContext);
   const prefsCtx = useContext(PrefsContext);
   const sourcesCtx = useContext(SourcesContext);
+  const downloadsCtx = useContext(DownloadsContext);
+  console.log(downloadsCtx);
+  useEffect(() => {}, [downloadsCtx]);
+
   // console.log(sourcesCtx);
 
   const [audioFormat, setAudioFormat] = useState('MP3');
@@ -219,7 +224,12 @@ const BrowserBar = () => {
           actionBarCtx.videoExists && (
             <div
               onClick={downloadAudioHandler}
-              className="browserBarDownloadBtn browserBarDownloadBtn__audio"
+              // className="browserBarDownloadBtn browserBarDownloadBtn__audio"
+              className={
+                downloadsCtx.downloadsAudio.length === 0
+                  ? 'browserBarDownloadBtn browserBarDownloadBtn__audio highlight'
+                  : 'browserBarDownloadBtn browserBarDownloadBtn__audio'
+              }
             >
               <img src={IconFileTypeAudio} alt="playlistVideoIcon" />
               {actionBarCtx.videoExists && <p> Download Audio {audioFormat}</p>}
@@ -267,7 +277,11 @@ const BrowserBar = () => {
           actionBarCtx.videoExists && (
             <div
               onClick={downloadVideoHandler}
-              className="browserBarDownloadBtn browserBarDownloadBtn__video"
+              className={
+                downloadsCtx.downloadsVideo.length === 0
+                  ? 'browserBarDownloadBtn browserBarDownloadBtn__video highlight'
+                  : 'browserBarDownloadBtn browserBarDownloadBtn__video'
+              }
             >
               <img src={videoIcon} alt="playlistVideoIcon" />
               {actionBarCtx.videoExists && <p> Download Video {videoFormat}</p>}
