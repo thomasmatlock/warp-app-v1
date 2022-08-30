@@ -1,7 +1,5 @@
 import { Fragment, useState, useEffect, useContext } from 'react';
 import DownloadItem from './DownloadItem';
-import ActivationItem from './ActivationItem';
-// import DownloadsAudioActivation from './DownloadsAudioActivation';
 import ThemeContext from '../../storage/themeContext';
 import ActionBarContext from '../../storage/actionBarContext';
 import DownloadsContext from '../../storage/downloadsContext';
@@ -9,7 +7,7 @@ import InputContext from '../../storage/inputContext';
 import Sort from './Sort';
 import './Downloads.scss';
 
-const DownloadsAudio = () => {
+const DownloadsAudioActivation = () => {
   const themeCtx = useContext(ThemeContext);
   const actionBarCtx = useContext(ActionBarContext);
   const downloadsCtx = useContext(DownloadsContext);
@@ -59,16 +57,12 @@ const DownloadsAudio = () => {
     downloadsCtx.downloadsAudioState,
     downloadsCtx.percentUpdateState,
   ]);
-  const audioDownloadsActivationArr = [
-    { title: 'Title Placeholder', ctaText: 'Activate Audio Now' },
-  ];
-
   //  itemDetails.downloadedPercentage = 0;
   //  itemDetails.downloadComplete = false;
   //  itemDetails.conversionPercentage = 0;
   //  itemDetails.conversionComplete = false;
-  const audioDownloads = (
-    <ul className="content__panel__downloads__list">
+  const audioDownloadsActivation = (
+    <ul className="content__panel__downloads__list__activation">
       {downloads.map(
         (item) =>
           item.searchTags.toLowerCase().includes(inputCtx.searchText) && (
@@ -96,34 +90,6 @@ const DownloadsAudio = () => {
       )}
     </ul>
   );
-  const audioDownloadsActivation = (
-    <ul className="content__panel__downloads__list__activation">
-      {audioDownloadsActivationArr.map((item) => (
-        <ActivationItem
-          title={item.title}
-          ctaText={item.ctaText}
-          // author={item.author.name}
-          // date={item.date}
-          // timestamp={item.timestamp}
-          // format={item.format}
-          // fps={item.fps}
-          // id={item.id}
-          // key={item.id}
-          // length={item.lengthDisplay}
-          // downloadedPercentage={item.downloadedPercentage}
-          // downloadComplete={item.downloadComplete}
-          // conversionPercentage={item.conversionPercentage}
-          // conversionComplete={item.conversionComplete}
-          // resolution={item.resolution}
-          // fileSize={item.fileSize}
-          // source={item.source}
-          // thumbnail={item.thumbnailDisplay}
-          // title={item.title}
-          // type={item.type}
-        />
-      ))}
-    </ul>
-  );
   return (
     <Fragment>
       <div
@@ -140,10 +106,9 @@ const DownloadsAudio = () => {
               }
         }
       >
-        {audioDownloads}
         {audioDownloadsActivation}
       </div>
     </Fragment>
   );
 };
-export default DownloadsAudio;
+export default DownloadsAudioActivation;
