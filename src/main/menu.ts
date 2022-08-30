@@ -880,7 +880,7 @@ export default class MenuBuilder {
             label: 'Export Posts...',
             enabled: false,
             click: () => {
-              appWin.send('Warpstagram: File: Export Posts');
+              // appWin.send('Warpstagram: File: Export Posts');
             },
           },
         ],

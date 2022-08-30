@@ -49,7 +49,10 @@ app
     Prefs.resetPrefs();
     prefs = Prefs.getPrefs();
     setActiveURL();
+    // User.resetUser();
     user = User.getUser();
+    console.log(user.audioDownloadsCount);
+
     // Screen.resetScreenState();
     windowController.createmWin();
     // createTray(mWin);

@@ -5,6 +5,9 @@ const cryptr = new Cryptr('user');
 
 const userDefaults = {
   isEULAaccepted: false,
+  audioDownloadsCount: 0,
+  videoDownloadsCount: 0,
+  warpstagramDownloadsCount: 0,
   audio: 'free',
   video: 'free',
   warpstagram: 'free',
@@ -33,6 +36,73 @@ function setUser(user: any) {
 }
 function resetUser() {
   settings.delete('user');
+}
+function increaseAudioDownloadCount() {
+  let decryptedUser = getUser();
+  let updatedUser = { ...decryptedUser };
+  updatedUser.audioDownloadsCount++;
+  setUser(updatedUser);
+}
+function increaseVideoDownloadCount() {
+  let decryptedUser = getUser();
+  let updatedUser = { ...decryptedUser };
+  updatedUser.videoDownloadsCount++;
+  setUser(updatedUser);
+}
+
+function increaseWarpstagramDownloadCount() {
+  let decryptedUser = getUser();
+  let updatedUser = { ...decryptedUser };
+  updatedUser.warpstagramDownloadsCount++;
+  setUser(updatedUser);
+}
+function getAudioDownloadsCount() {
+  let decryptedUser = getUser();
+  return decryptedUser.audioDownloadsCount;
+}
+function getVideoDownloadsCount() {
+  let decryptedUser = getUser();
+  return decryptedUser.videoDownloadsCount;
+}
+function getWarpstagramDownloadsCount() {
+  let decryptedUser = getUser();
+  return decryptedUser.warpstagramDownloadsCount;
+}
+function canUserDownloadAudio() {
+  let decryptedUser = getUser();
+  if (decryptedUser.audio === 'free') {
+    if (decryptedUser.audioDownloadsCount < 16) {
+      return true;
+    } else {
+      return false;
+    }
+  } else {
+    return true;
+  }
+}
+function canUserDownloadVideo() {
+  let decryptedUser = getUser();
+  if (decryptedUser.video === 'free') {
+    if (decryptedUser.videoDownloadsCount < 16) {
+      return true;
+    } else {
+      return false;
+    }
+  } else {
+    return true;
+  }
+}
+function canUserDownloadWarpstagram() {
+  let decryptedUser = getUser();
+  if (decryptedUser.warpstagram === 'free') {
+    if (decryptedUser.warpstagramDownloadsCount < 3) {
+      return true;
+    } else {
+      return false;
+    }
+  } else {
+    return true;
+  }
 }
 function upgradeUserModule(moduleType: string, moduleEdition: string) {
   // console.log(moduleType, moduleEdition);
@@ -64,6 +134,15 @@ export function getUser() {
 module.exports = {
   getUser: getUser,
   setUser: setUser,
+  increaseAudioDownloadCount: increaseAudioDownloadCount,
+  increaseVideoDownloadCount: increaseVideoDownloadCount,
+  increaseWarpstagramDownloadCount: increaseWarpstagramDownloadCount,
+  getAudioDownloadsCount: getAudioDownloadsCount,
+  getVideoDownloadsCount: getVideoDownloadsCount,
+  getWarpstagramDownloadsCount: getWarpstagramDownloadsCount,
+  canUserDownloadAudio: canUserDownloadAudio,
+  canUserDownloadVideo: canUserDownloadVideo,
+  canUserDownloadWarpstagram: canUserDownloadWarpstagram,
   upgradeUserModule: upgradeUserModule,
   resetUser: resetUser,
 };
