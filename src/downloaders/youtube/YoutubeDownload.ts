@@ -38,7 +38,7 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
           .on('error', (err) => {
             console.log('An error occurred: ' + err.message);
             fs.unlink(tempPath, (err) => {
-              if (err) throw err;
+              // if (err) throw err;
             });
           })
           .on('progress', (progress) => {
@@ -56,7 +56,7 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
           })
           .on('end', () => {
             fs.unlink(tempPath, (err) => {
-              if (err) throw err;
+              // if (err) throw err;
             });
             downloadConversionComplete = true;
             mWin.webContents.send('item-conversion-complete', [item.id]);
