@@ -1,6 +1,8 @@
 import { Fragment, useState, useEffect, useContext } from 'react';
 import DownloadItem from './DownloadItem';
 import ActivationItem from './ActivationItem';
+import iconLicenses from '../../../assets/Modals/settings/shuttle.svg';
+//
 // import DownloadsAudioActivation from './DownloadsAudioActivation';
 import ThemeContext from '../../storage/themeContext';
 import ActionBarContext from '../../storage/actionBarContext';
@@ -65,12 +67,12 @@ const DownloadsAudio = () => {
         15 -
         downloadsCtx.downloadsAudio.length +
         ' daily audio downloads remaining',
-      subtitle: 'subtitle for more',
-      ctaText: 'Activate Unlimted Downloads',
+      subtitle: 'Activate a Personal or Professional License to download more',
+      ctaImage: iconLicenses,
+      ctaText: 'Activate',
     },
   ];
   // console.log(downloadsCtx.downloadsAudio.length);
-
   //  itemDetails.downloadedPercentage = 0;
   //  itemDetails.downloadComplete = false;
   //  itemDetails.conversionPercentage = 0;
@@ -109,6 +111,8 @@ const DownloadsAudio = () => {
       {audioDownloadsActivationArr.map((item) => (
         <ActivationItem
           title={item.title}
+          subtitle={item.subtitle}
+          ctaImage={item.ctaImage}
           ctaText={item.ctaText}
           // author={item.author.name}
           // date={item.date}

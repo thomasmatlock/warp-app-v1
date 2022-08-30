@@ -49,9 +49,16 @@ const ActivationItem = (props) => {
       }
     >
       <div className="content__panel__downloads__list__activation__item__title">
-        <p>{props.title}</p>
+        <p className="content__panel__downloads__list__activation__item__title__text1">
+          {props.title}
+        </p>{' '}
+        <p className="content__panel__downloads__list__activation__item__title__text2">
+          {props.subtitle}
+        </p>
       </div>
       <div className="content__panel__downloads__list__activation__item__cta">
+        <img src={props.ctaImage} />
+        {/* {actionBarCtx.videoExists && <p> Download Audio {audioFormat}</p>} */}
         <p>{props.ctaText}</p>
       </div>
     </li>

@@ -4,6 +4,7 @@ import ThemeContext from '../../storage/themeContext';
 import ActionBarContext from '../../storage/actionBarContext';
 import DownloadsContext from '../../storage/downloadsContext';
 import InputContext from '../../storage/inputContext';
+import iconLicenses from '../../../assets/Modals/settings/shuttle.svg';
 
 import DownloadItem from './DownloadItem';
 import ActivationItem from './ActivationItem';
@@ -23,7 +24,11 @@ const DownloadsVideo = () => {
         15 -
         downloadsCtx.downloadsVideo.length +
         ' daily video downloads remaining',
-      ctaText: 'Activate Unlimted Downloads',
+      // subtitle: 'subtitle for more',
+      subtitle:
+        'Activate a Personal or Professional License for unlimited downloads, UHD resolutions, and more',
+      ctaImage: iconLicenses,
+      ctaText: 'Activate',
     },
   ];
 
@@ -107,6 +112,8 @@ const DownloadsVideo = () => {
       {videoDownloadsActivationArr.map((item) => (
         <ActivationItem
           title={item.title}
+          subtitle={item.subtitle}
+          ctaImage={item.ctaImage}
           ctaText={item.ctaText}
           // author={item.author.name}
           // date={item.date}
