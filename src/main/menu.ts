@@ -242,7 +242,6 @@ export default class MenuBuilder {
           enabled: true,
           // accelerator: 'CmdOrCtrl+Shift+O',
           click: () => {
-            console.log('import');
             dialog
               .showOpenDialog({
                 properties: ['openFile', 'multiSelections'],
@@ -315,7 +314,6 @@ export default class MenuBuilder {
           enabled: true,
           // accelerator: 'CmdOrCtrl+O',
           click: () => {
-            console.log('import');
             dialog
               .showOpenDialog({
                 properties: ['openFile', 'multiSelections'],
