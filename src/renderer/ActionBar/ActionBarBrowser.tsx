@@ -121,7 +121,16 @@ const BrowserBar = () => {
   const browserReloadHandler = () => {
     window.electron.ipcRenderer.sendMessage('BrowserBar: button: reload');
   };
-
+  let highlight = {
+    boxShadow: '-0px 0px 25px #fff ',
+    animation: 'highlight infinite',
+    animationDuration: '1.5s',
+    animationTimingFunction: 'ease-in-out',
+  };
+  let noHighlight = {
+    boxShadow: 'none',
+    animation: 'none',
+  };
   return (
     <Fragment>
       <div className="browserBar">
