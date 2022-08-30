@@ -317,6 +317,21 @@ let browserPanelState = 'default';
       // event.reply('main: prefs', prefs);
     }
   );
+  ipcMain.on('item-download-progress', async (event, args) => {
+    // console.log(args);
+    let id = args[0];
+    let progress = args[1] / 100;
+
+    // let { id, progress } = args;
+    // console.log(id, progress);
+    if (mWin) mWin.setProgressBar(progress);
+    if (progress === 1) {
+      if (mWin) mWin.setProgressBar(-1);
+    }
+
+    // console.log(matchingDownload);
+    // shell.showItemInFolder(matchingDownload.path);
+  });
   // CONTEXT MENU LISTENERS
   ipcMain.on('context: show_in_folder', async (event, matchingDownload) => {
     // console.log(matchingDownload);

@@ -21,6 +21,7 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
     currentDownload.on('progress', (chunkLength, downloaded, total) => {
       progressPercentage = downloaded / total;
       progressPercentage = Math.round(progressPercentage * 100);
+
       mWin.webContents.send('item-download-progress', [
         item.id,
         progressPercentage,
@@ -47,6 +48,7 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
               (secondsConverted / totalLengthSeconds) *
               100
             ).toFixed(0);
+
             mWin.webContents.send('item-convert-progress', [
               item.id,
               conversionPercentage,

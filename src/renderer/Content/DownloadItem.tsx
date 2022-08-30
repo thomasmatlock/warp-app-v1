@@ -37,17 +37,17 @@ const DownloadItem = (props) => {
     return str.length > maxChars ? str.slice(0, maxChars - 1) + '...' : str;
   }
   const [isContentMenuVisible, setisContentMenuVisible] = useState(false);
-  const options = 'downloadItemContextMenu';
-  const sourcesCtx = useContext(SourcesContext);
+  // const options = 'downloadItemContextMenu';
+  // const sourcesCtx = useContext(SourcesContext);
   const themeCtx = useContext(ThemeContext);
   const downloadsCtx = useContext(DownloadsContext);
   const dateString = props.timestamp;
   const format = props.format ? props.format.toUpperCase() : '';
   const fps = `${props.fps}`;
   const length = `${props.length}`;
-  const fileSize = `${props.fileSize}`;
+  // const fileSize = `${props.fileSize}`;
   const fileSizeInMB = `${(props.fileSize / 1000000).toFixed(1)}MB`;
-  const source = itemFormat.capitalizeFirstLetter(props.source);
+  // const source = itemFormat.capitalizeFirstLetter(props.source);
   const sourceIcon = itemFormat.findSourceIcon(props.source);
   const resolution = `${props.resolution}`;
   const title = `${props.title}`;

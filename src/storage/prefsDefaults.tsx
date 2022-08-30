@@ -158,6 +158,11 @@ const prefs = {
         },
         options: [
           {
+            id: 'modal_dropdown_video_format_AVI',
+            value: 'video_format_AVI',
+            label: 'AVI',
+          },
+          {
             id: 'modal_dropdown_video_format_MP4',
             value: 'video_format_MP4',
             label: 'MP4',

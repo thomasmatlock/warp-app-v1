@@ -138,6 +138,7 @@ export const DownloadsContextProvider = (props) => {
       );
     }
   };
+
   const showInFolder = (downloadID: string) => {
     // console.log('show in folder', downloadID);
     let matchingDownload = getMatchingDownload(downloadID);
@@ -190,6 +191,10 @@ export const DownloadsContextProvider = (props) => {
   window.electron.ipcRenderer.on('item-download-progress', (arg) => {
     let id = arg[0];
     let progress = arg[1];
+    window.electron.ipcRenderer.sendMessage('item-download-progress', [
+      id,
+      progress,
+    ]);
     // console.log(progress);
 
     let matchingDownload = getMatchingDownload(id);
