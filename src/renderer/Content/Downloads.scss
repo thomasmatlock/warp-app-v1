@@ -349,13 +349,17 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
-    width: calc(50% - 0rem);
+    width: calc(100% - 0rem);
     right: 1.25rem;
     bottom: 0px;
     // height: 100%;
     min-height: 56px !important;
     max-height: 56px !important;
     position: absolute;
+    left: 0 !important;
+    position: relative;
+    margin: 0;
+    width: calc(100% - 0.5rem);
     // border: 1px dotted red;
     // animation: bondJamesBond 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
@@ -399,7 +403,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
         justify-content: space-evenly;
         align-items: center;
         height: 100%;
-        width: 75%;
+        width: 100%;
         // flex: 3;
         color: #fff;
         font-size: 0.75rem;
@@ -410,9 +414,12 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
         font-size: 0.75rem;
         justify-content: space-evenly;
         align-items: center;
+        right: 0;
         background-image: linear-gradient(to right, #ff0000, #ffbf00);
         height: 100%;
         width: 25%;
+        min-width: 250px;
+        max-width: 250px;
         // flex: 1;
         color: #000;
         margin: 1rem;
