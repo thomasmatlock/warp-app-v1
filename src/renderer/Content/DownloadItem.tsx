@@ -399,28 +399,30 @@ const DownloadItem = (props) => {
             />
           </div>
         )}
-        <div
-          onClick={toggleContextMenu}
-          className="filterBar__menu__item filterBar__menu__item__sort"
-        >
-          <img
-            title="More"
-            src={menuIcon}
-            style={
-              themeCtx.isDarkTheme
-                ? { filter: 'invert(0%)' }
-                : {
-                    filter: 'invert(100%)',
-                  }
-            }
-          />
-          {isContentMenuVisible && (
-            <ContextMenu
-              options={ContextMenuDownloadItemOptions}
-              downloadID={props.id}
+        {props.downloadComplete && (
+          <div
+            onClick={toggleContextMenu}
+            className="filterBar__menu__item filterBar__menu__item__sort"
+          >
+            <img
+              title="More"
+              src={menuIcon}
+              style={
+                themeCtx.isDarkTheme
+                  ? { filter: 'invert(0%)' }
+                  : {
+                      filter: 'invert(100%)',
+                    }
+              }
             />
-          )}
-        </div>
+            {isContentMenuVisible && (
+              <ContextMenu
+                options={ContextMenuDownloadItemOptions}
+                downloadID={props.id}
+              />
+            )}
+          </div>
+        )}
       </div>
     </li>
   );

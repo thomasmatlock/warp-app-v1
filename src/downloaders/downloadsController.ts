@@ -1,3 +1,4 @@
+import fs from 'fs';
 import { app, BrowserWindow } from 'electron';
 import Youtube from '../downloaders/youtube/Youtube';
 import downloadsAudioDefaults from '../storage/downloadsAudioDefaults';
@@ -99,6 +100,28 @@ export function removeAllDownloads(downloadID) {
     }
   }
 }
+export function deleteDownload(downloadID: string) {
+  let audioDownloads = getAudioDownloads();
+  let videoDownloads = getVideoDownloads();
+  for (const download of audioDownloads) {
+    if (download.id === downloadID) {
+      fs.unlink(download.path, (err) => {
+        // if (err) throw err;
+      });
+      removeMatchingDownload(downloadID);
+      return;
+    }
+  }
+  for (const download of videoDownloads) {
+    if (download.id === downloadID) {
+      fs.unlink(download.path, (err) => {
+        // if (err) throw err;
+      });
+      removeMatchingDownload(downloadID);
+      return;
+    }
+  }
+}
 settings.delete('audioDownloads'); // testing only, REMOVE for production
 settings.delete('videoDownloads'); // testing only, REMOVE for production
 module.exports = {
@@ -110,4 +133,5 @@ module.exports = {
   setVideoDownloads: setVideoDownloads,
   removeMatchingDownload: removeMatchingDownload,
   removeAllDownloads: removeAllDownloads,
+  deleteDownload: deleteDownload,
 };

@@ -131,9 +131,10 @@ export const DownloadsContextProvider = (props) => {
       }, 100);
     }
     if (contextActionID.includes('delete_file')) {
+      removeMatchingDownload(downloadID);
       window.electron.ipcRenderer.sendMessage(
         'context: delete_file',
-        matchingDownload
+        downloadID
       );
     }
   };

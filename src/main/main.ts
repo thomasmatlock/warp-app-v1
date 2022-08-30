@@ -199,6 +199,7 @@ let browserPanelState = 'default';
     if (view)
       if (view.webContents.getURL().includes('pinterest')) {
         view.webContents.insertCSS('html, body, { background-color: #fff;  }');
+        view.webContents.insertCSS('::-webkit-scrollbar, {    width: 10px;}');
       }
   });
   ipcMain.on('source: change', async (event, arg) => {
@@ -318,7 +319,7 @@ let browserPanelState = 'default';
   );
   // CONTEXT MENU LISTENERS
   ipcMain.on('context: show_in_folder', async (event, matchingDownload) => {
-    console.log(matchingDownload);
+    // console.log(matchingDownload);
     shell.showItemInFolder(matchingDownload.path);
   });
   ipcMain.on('context: copy_link_address', async (event, matchingDownload) => {
@@ -335,8 +336,8 @@ let browserPanelState = 'default';
   ipcMain.on('context: remove_all', async (event, matchingDownloadID) => {
     Downloads.removeAllDownloads(matchingDownloadID);
   });
-  ipcMain.on('context: delete_file', async (event, matchingDownload) => {
-    console.log(matchingDownload);
+  ipcMain.on('context: delete_file', async (event, downloadID) => {
+    Downloads.deleteDownload(downloadID);
   });
 })();
 
@@ -493,6 +494,7 @@ const windowController = {
     // console.log(randomYoutubeURL);
 
     view.webContents.loadURL(randomYoutubeURL);
+    // view.webContents.insertCSS('scrollbar{    width: 100px;}');
     // view.webContents.loadURL('https://open.spotify.com/');
     view.webContents.on('did-navigate-in-page', (e, url) => {
       // console.log(url);

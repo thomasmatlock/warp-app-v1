@@ -59,31 +59,31 @@ body {
     src: url('./fonts/Proxima Nova/ProximaNovaA-Bold.woff') format('woff');
 }
 
-::-webkit-scrollbar {
-    width: 10px;
-}
+
+/* Handle */
 
 
 /* Track */
 
+::-webkit-scrollbar {
+    width: 10px;
+}
+
 ::-webkit-scrollbar-track {
     background: #3a3a3a;
 }
-
-
-/* Handle */
 
 ::-webkit-scrollbar-thumb {
     background: #888;
     border-radius: 16px;
 }
 
-
-/* Handle on hover */
-
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
+
+
+/* Handle on hover */
 
 * {
     -webkit-touch-callout: none;
