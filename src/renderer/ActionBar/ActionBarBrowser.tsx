@@ -22,7 +22,7 @@ const BrowserBar = () => {
   const navCtx = useContext(NavContext);
   const prefsCtx = useContext(PrefsContext);
   const sourcesCtx = useContext(SourcesContext);
-  console.log(sourcesCtx);
+  // console.log(sourcesCtx);
 
   const [audioFormat, setAudioFormat] = useState('MP3');
   const [videoFormat, setVideoFormat] = useState('MP4');

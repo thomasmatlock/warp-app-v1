@@ -13,11 +13,12 @@ import {
   clipboard,
   dialog,
   globalShortcut,
+  Menu,
   nativeTheme,
   shell,
   ipcMain,
   screen,
-  Tray,
+  // Tray,
 } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
@@ -32,11 +33,13 @@ import Prefs from './prefsController';
 import PowerMonitor from './powerMonitor';
 import Screen from './screen';
 import Browser from './browserController';
+import createTray from './tray';
 import Shortcuts from './Shortcuts';
 // console.log(Downloads);
 // require('events').EventEmitter.defaultMaxListeners = 30; // removes error warnings
 let prefs;
 let user;
+// let tray;
 let mWin: BrowserWindow | null = null;
 let view: BrowserView | null = null;
 app
@@ -49,7 +52,10 @@ app
     user = User.getUser();
     // Screen.resetScreenState();
     windowController.createmWin();
+    // createTray(mWin);
     // Shortcuts(view);
+    // let tray = null;
+    // console.log(app.getAppPath());
 
     app.on('activate', () => {
       if (mWin === null) windowController.createmWin();

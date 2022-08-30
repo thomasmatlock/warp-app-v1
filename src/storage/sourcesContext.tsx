@@ -150,7 +150,7 @@ export const SourcesContextProvider = (props) => {
   );
   const [currentURL, setCurrentURL] = useState('');
   window.electron.ipcRenderer.on('browser-url-change', (arg) => {
-    console.log(arg);
+    // console.log(arg);
     setCurrentURL(arg);
   });
 

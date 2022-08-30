@@ -1,5 +1,6 @@
 import {
   app,
+  dialog,
   Menu,
   shell,
   BrowserWindow,
@@ -238,9 +239,11 @@ export default class MenuBuilder {
         },
         {
           label: 'Import Download Links',
-          enabled: false,
+          enabled: true,
           accelerator: 'CmdOrCtrl+Shift+O',
           click: () => {
+            console.log('import');
+
             appWin.send('Audio: File: Import Download Links');
           },
         },
@@ -300,10 +303,12 @@ export default class MenuBuilder {
         },
         {
           label: 'Import Download Links',
-          enabled: false,
+          enabled: true,
           accelerator: 'CmdOrCtrl+O',
           click: () => {
-            appWin.send('Video: File: Import Download Links');
+            console.log('import');
+
+            // appWin.send('Video: File: Import Download Links');
           },
         },
         {
@@ -397,10 +402,12 @@ export default class MenuBuilder {
         },
         {
           label: 'Import Download Links',
-          enabled: false,
+          enabled: true,
           accelerator: 'CmdOrCtrl+Shift+O',
           click: () => {
-            appWin.send('Audio: File: Import Download Links');
+            console.log('import');
+
+            // appWin.send('Audio: File: Import Download Links');
           },
         },
         {
@@ -580,7 +587,7 @@ export default class MenuBuilder {
           {
             label: 'Pause All',
             enabled: false,
-            enabled: false,
+            // enabled: false,
             click: () => {
               appWin.send('Audio: Downloads: Pause All');
             },
@@ -588,7 +595,7 @@ export default class MenuBuilder {
           {
             label: 'Resume All',
             enabled: false,
-            enabled: false,
+            // enabled: false,
             click: () => {
               appWin.send('Audio: Downloads: Resume All');
             },
@@ -610,18 +617,39 @@ export default class MenuBuilder {
           },
           {
             label: 'Import Download Links',
-            enabled: false,
-            accelerator: 'CmdOrCtrl+Shift+O',
+            enabled: true,
+            // accelerator: 'CmdOrCtrl+Shift+O',
             click: () => {
-              appWin.send('Audio: File: Import Download Links');
+              // console.log('import');
+              dialog
+                .showOpenDialog({
+                  properties: ['openFile', 'multiSelections'],
+                  defaultPath: app.getPath('desktop'),
+                })
+                .then((result) => {
+                  console.log(result);
+                })
+                .catch((err) => {
+                  console.log(err);
+                });
             },
           },
           {
             label: 'Export Download Links',
             enabled: false,
-            accelerator: 'CmdOrCtrl+Shift+S',
+            // accelerator: 'CmdOrCtrl+Shift+S',
             click: () => {
-              appWin.send('Audio: File: Export Download Links');
+              //  dialog
+              //    .showOpenDialog({
+              //      properties: ['openFile', 'multiSelections'],
+              //      defaultPath: app.getPath('desktop'),
+              //    })
+              //    .then((result) => {
+              //      console.log(result);
+              //    })
+              //    .catch((err) => {
+              //      console.log(err);
+              //    });
             },
           },
         ],
@@ -672,10 +700,20 @@ export default class MenuBuilder {
           },
           {
             label: 'Import Download Links',
-            enabled: false,
+            enabled: true,
             accelerator: 'CmdOrCtrl+O',
             click: () => {
-              appWin.send('Video: File: Import Download Links');
+              dialog
+                .showOpenDialog({
+                  properties: ['openFile', 'multiSelections'],
+                  defaultPath: app.getPath('desktop'),
+                })
+                .then((result) => {
+                  console.log(result);
+                })
+                .catch((err) => {
+                  console.log(err);
+                });
             },
           },
           {
