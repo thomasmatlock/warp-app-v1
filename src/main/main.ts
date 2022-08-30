@@ -152,17 +152,17 @@ let browserPanelState = 'default';
     event.reply('modal: preferences', prefs);
   }); // nav listeners
   ipcMain.on('nav: mode: audio', async (event, arg) => {
-    if (mWin) mWin.webContents.send('count-downloads');
+    // if (mWin) mWin.webContents.send('count-downloads');
     // console.log(arg);
 
     Title.setTitle(mWin, 'audio');
   });
   ipcMain.on('nav: mode: video', async (event, arg) => {
-    if (mWin) mWin.webContents.send('count-downloads');
+    // if (mWin) mWin.webContents.send('count-downloads');
     Title.setTitle(mWin, 'video');
   });
   ipcMain.on('nav: mode: warpstagram', async (event, arg) => {
-    if (mWin) mWin.webContents.send('count-downloads');
+    // if (mWin) mWin.webContents.send('count-downloads');
     Title.setTitle(mWin, 'warpstagram');
   });
   // SEARCH LISTENERS
@@ -514,7 +514,7 @@ const windowController = {
     // view.webContents.insertCSS('scrollbar{    width: 100px;}');
     // view.webContents.loadURL('https://open.spotify.com/');
     view.webContents.on('did-navigate-in-page', (e, url) => {
-      // console.log(url);
+      console.log(url);
 
       if (mWin) mWin.webContents.send('browser-url-change', url);
     });

@@ -13,6 +13,7 @@ import downloadSourceIconYoutube from '../../assets/BrowserBar/youtube.svg';
 let prefs;
 const SourcesContext = React.createContext({
   activeSource: '',
+  currentURL: '',
   enabledSources: [],
   // toggleAudioPanelCollapsed: () => {},
   setActiveSource: () => {},
@@ -147,6 +148,11 @@ export const SourcesContextProvider = (props) => {
   const [isActiveSource, setIsActiveSource] = useState(
     sources.filter((source) => source.active)
   );
+  const [currentURL, setCurrentURL] = useState('');
+  window.electron.ipcRenderer.on('browser-url-change', (arg) => {
+    console.log(arg);
+    setCurrentURL(arg);
+  });
 
   enabledSources = getEnabledSources(sources);
   activeSource = getActiveSource(enabledSources);
@@ -182,6 +188,7 @@ export const SourcesContextProvider = (props) => {
       value={{
         enabledSources: enabledSources,
         activeSource: activeSource,
+        currentURL: currentURL,
         setActiveSource: setActiveSource,
       }}
     >

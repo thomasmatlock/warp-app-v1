@@ -14,13 +14,15 @@ import ThemeContext from '../../storage/themeContext';
 import ActionBarContext from '../../storage/actionBarContext';
 import NavContext from '../../storage/navContext';
 import PrefsContext from '../../storage/prefsContext';
+import SourcesContext from '../../storage/sourcesContext';
 
 const BrowserBar = () => {
   const themeCtx = useContext(ThemeContext);
   const actionBarCtx = useContext(ActionBarContext);
   const navCtx = useContext(NavContext);
   const prefsCtx = useContext(PrefsContext);
-  // console.log(prefsCtx.prefs);
+  const sourcesCtx = useContext(SourcesContext);
+  console.log(sourcesCtx);
 
   const [audioFormat, setAudioFormat] = useState('MP3');
   const [videoFormat, setVideoFormat] = useState('MP4');
@@ -88,9 +90,9 @@ const BrowserBar = () => {
   window.electron.ipcRenderer.on('bView ready-to-show', (url) => {
     getURLpageType(url);
   });
-  window.electron.ipcRenderer.on('browser-url-change', (arg) => {
-    getURLpageType(arg);
-  });
+  useEffect(() => {
+    getURLpageType(sourcesCtx.currentURL);
+  }, [sourcesCtx.currentURL]);
   const downloadAudioHandler = () => {
     window.electron.ipcRenderer.sendMessage('screenshotting');
     window.electron.ipcRenderer.sendMessage(

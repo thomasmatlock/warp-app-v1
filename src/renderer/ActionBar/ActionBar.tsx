@@ -27,6 +27,14 @@ const ActionBar = (props) => {
     setAudioDownloadsTotal(downloadsCtx.downloadsAudioState);
     setVideoDownloadsTotal(downloadsCtx.downloadsVideoState);
   }, [downloadsCtx.downloadsAudioState, downloadsCtx.downloadsVideoState]);
+
+  useEffect(() => {
+    // console.log('ActionBar: useEffect');
+    if (navCtx.audioMode) countAudioDownloads();
+    if (navCtx.videoMode) countVideoDownloads();
+    if (navCtx.warpstagramMode) countWarpstagramDownloads();
+  }, [navCtx.audioMode, navCtx.videoMode, navCtx.warpstagramMode]);
+
   const [warpstagramDownloadsTotal, setWarpstagramDownloadsTotal] = useState(0);
   const [shouldSendScreenshot, setShouldSendScreenshot] = useState(true);
   const countAudioDownloads = () => {
@@ -60,9 +68,9 @@ const ActionBar = (props) => {
     if (navCtx.warpstagramMode) countWarpstagramDownloads();
     // }
   });
-  if (navCtx.audioMode) countAudioDownloads();
-  if (navCtx.videoMode) countVideoDownloads();
-  if (navCtx.warpstagramMode) countWarpstagramDownloads();
+  // if (navCtx.audioMode) countAudioDownloads();
+  // if (navCtx.videoMode) countVideoDownloads();
+  // if (navCtx.warpstagramMode) countWarpstagramDownloads();
   const mouseEnterHandler = () => {
     if (shouldSendScreenshot) {
       window.electron.ipcRenderer.sendMessage('screenshot', 'from actionBar');

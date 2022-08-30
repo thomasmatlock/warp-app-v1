@@ -5,6 +5,7 @@ import {
   BrowserWindow,
   MenuItemConstructorOptions,
 } from 'electron';
+import App from 'renderer/App';
 
 interface DarwinMenuItemConstructorOptions extends MenuItemConstructorOptions {
   selector?: string;
@@ -505,7 +506,7 @@ export default class MenuBuilder {
           },
         },
         {
-          label: 'Restart Warp',
+          label: 'Soft Restart Warp',
           enabled: true,
           accelerator: 'CmdOrCtrl+R',
           click: () => {
@@ -513,6 +514,16 @@ export default class MenuBuilder {
             // this.mWin.webContents.send('Menu: Shortcuts: Restart');
           },
         },
+        // {
+        //   label: 'Hard Restart Warp',
+        //   enabled: true,
+        //   accelerator: 'CmdOrCtrl+Shift+R',
+        //   click: () => {
+        //     app.relaunch();
+        //     app.exit(0);
+        //     // this.mWin.webContents.send('Menu: Shortcuts: Restart');
+        //   },
+        // },
       ],
     };
 
@@ -551,36 +562,6 @@ export default class MenuBuilder {
           },
         ],
       },
-      // {
-      //   label: '&Browser',
-      //   submenu: [
-      //     {
-      //       label: 'Go Back',
-      //       enabled: true,
-      //       accelerator: 'Alt+Left',
-      //       click: () => {
-      //         const { app, BrowserWindow, BrowserView } = require('electron');
-      //         if (view) view.webContents.goBack();
-      //         // if (view) view.webContents.goBack();
-      //         // this.mWin.webContents.send('modal: preferences: auths');
-      //         // this.view.webContents.goBack();
-      //         // await shell.openExternal('https://electronjs.org');
-      //         // window.electron.ipcRenderer.sendMessage('nav: mode: audio', [
-      //         //   `Nav change: Audio Mode`,
-      //         // ]);
-      //         //   appWin.send('Audio: File: Import Download Links');
-      //       },
-      //     },
-      //     {
-      //       label: 'Go Forward',
-      //       enabled: true,
-      //       accelerator: 'Alt+Right',
-      //       // click: () => {
-      //       //   appWin.send('Audio: File: Export Download Links');
-      //       // },
-      //     },
-      //   ],
-      // },
       {
         label: '&Audio',
         submenu: [
@@ -935,7 +916,7 @@ export default class MenuBuilder {
             },
           },
           {
-            label: 'Restart Warp',
+            label: 'Soft Restart Warp',
             enabled: true,
             accelerator: 'CmdOrCtrl+R',
             click: () => {
@@ -943,6 +924,16 @@ export default class MenuBuilder {
               // this.mWin.webContents.send('Menu: Shortcuts: Restart');
             },
           },
+          // {
+          //   label: 'Hard Restart Warp',
+          //   enabled: true,
+          //   accelerator: 'CmdOrCtrl+Shift+R',
+          //   click: () => {
+          //     app.relaunch();
+          //     app.exit(0);
+          //     // this.mWin.webContents.send('Menu: Shortcuts: Restart');
+          //   },
+          // },
         ],
       },
       {

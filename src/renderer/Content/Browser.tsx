@@ -21,9 +21,9 @@ const Browser = () => {
     });
   });
 
-  window.electron.ipcRenderer.on('SET_SOURCE', (arg) => {
-    // document.getElementById('contentPanel__browser__screenshot').src = arg;
-  });
+  // window.electron.ipcRenderer.on('SET_SOURCE', (arg) => {
+  //   // document.getElementById('contentPanel__browser__screenshot').src = arg;
+  // });
   window.electron.ipcRenderer.on('capturePage', (arg) => {
     // console.log(arg[0]);
     document.getElementById('contentPanel__browser__screenshot').src = arg[0];
