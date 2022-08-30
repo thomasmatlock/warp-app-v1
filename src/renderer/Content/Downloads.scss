@@ -349,8 +349,8 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
-    width: calc(50% - 0.5rem);
-    right: 0.5rem;
+    width: calc(50% - 0rem);
+    right: 1.25rem;
     bottom: 0px;
     // height: 100%;
     min-height: 56px !important;
@@ -368,7 +368,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     justify-content: space-evenly;
     align-items: center;
     will-change: transform;
-    width: calc(100% - 1.5rem);
+    width: calc(100% - 0rem);
     border: 1px solid $gray-dark-lightest;
     background-color: $gray-dark-light;
     // min-height: 56px !important;
@@ -384,7 +384,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     &:hover {
         border: 1px solid $gray-dark-lightest;
         // transform: scaleX(1.1001);
-        box-shadow: -20px 30px 80px 0 rgba(0, 0, 0, 1) !important;
+        // box-shadow: -20px 30px 80px 0 rgba(0, 0, 0, 1) !important;
         background-color: $gray-dark-lightest;
         // background-image: $gradient-blue;
         transition: all 0s ease-in-out !important;
@@ -415,15 +415,17 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
         width: 100%;
         flex: 1;
         color: #000;
+        margin: 1rem;
         // color: #fff;
         &:hover {
             // border: 1px solid $gray-dark-lightest;
             // transform: scaleX(1.1001);
             // box-shadow: -20px 30px 80px 0 white !important;
-            text-shadow: 0 0 5px #fff, 0 0 25px #fff, 0 0 50px #fff;
+            // text-shadow: 0 0 5px #fff, 0 0 25px #fff, 0 0 50px #fff;
             // background-color: $gray-dark-lightest;
             // background-image: $gradient-blue;
             // transition: all 0s ease-in-out !important;
+            box-shadow: -20px 30px 80px 0 rgba(0, 0, 0, 1) !important;
             // z-index: 1;
             cursor: pointer;
             background-size: 100%;
