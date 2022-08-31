@@ -117,6 +117,16 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     }
 }
 
+@keyframes infinity {
+    0% {
+        transform: rotate3d(1, 0, 0, 180deg); //GOOD
+    }
+    100% {
+        // transform: rotate(360deg);
+        transform: rotate3d(0deg);
+    }
+}
+
 .content__panel__toggle_collapse {
     top: 0;
     // left: calc(50vw + 25px);
@@ -300,11 +310,13 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
         &__file_eta_downloading {
             // position: absolute;
             // right: 10rem;
+            animation: infinity 1s linear 0s infinite;
             margin-left: 2.5rem;
         }
         &__file_eta_conversion {
             // position: absolute;
             // right: 10rem;
+            animation: infinity 1s linear 0s infinite;
             margin-left: 4rem;
         }
         &__file_date {
