@@ -216,6 +216,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
             height: 100%;
             // border: 1px dotted green;
             margin-left: 1.5rem;
+            overflow: hidden;
             &__container {
                 display: flex;
                 flex-direction: row !important;
