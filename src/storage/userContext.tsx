@@ -12,10 +12,20 @@ let directObjectArr = ['yourself', 'your workflow'];
 let randomDirectObject =
   directObjectArr[Math.floor(Math.random() * directObjectArr.length)];
 // CTA TEXT
-let audioCtaArr = ['Activate', 'I need unlimited audio downloads'];
+let audioCtaArr = [
+  // 'Activate',
+  'I need unlimited audio downloads',
+  'I need simultaneous audio downloads',
+  'I need simultaneous audio conversion',
+];
 let randomAudioCta =
   audioCtaArr[Math.floor(Math.random() * audioCtaArr.length)];
-let videoCtaArr = ['Activate', 'I need unlimited video downloads'];
+let videoCtaArr = [
+  // 'Activate',
+  'I need unlimited video downloads',
+  'I need simultaneous video downloads',
+  'I need simultaneous video conversion',
+];
 let randomVideoCta =
   videoCtaArr[Math.floor(Math.random() * videoCtaArr.length)];
 
@@ -55,7 +65,7 @@ export const UserContextProvider = (props) => {
     {
       id: '1',
       title: 15 - audioDownloadsCount + ' daily audio downloads remaining',
-      subtitle: `${randomVerb} a few ${randomDollarSyn} on yourself for a Personal or Professional License for unlimited audio downloads and more `,
+      subtitle: `${randomVerb} a few ${randomDollarSyn} on yourself for a lifetime License to get unlimited audio downloads, multiple formats, multiple simultaneous downloads, multiple simultaneous format conversion, and more `,
       ctaImage: iconLicenses,
       ctaText: randomAudioCta,
     },
@@ -65,7 +75,7 @@ export const UserContextProvider = (props) => {
       id: '1',
       title: 15 - videoDownloadsCount + ' daily video downloads remaining',
       // subtitle: 'subtitle for more',
-      subtitle: `${randomVerb} a few ${randomDollarSyn} for a Personal or Professional License for unlimited video downloads, UHD resolutions, and more`,
+      subtitle: `${randomVerb} a few ${randomDollarSyn} for a lifetime License for unlimited video downloads, UHD resolutions, simultaneous downloads, multiple simultaneous format conversion, and more`,
       ctaImage: iconLicenses,
       ctaText: randomVideoCta,
     },
