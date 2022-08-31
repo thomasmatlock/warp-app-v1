@@ -91,8 +91,10 @@ export default async function Youtube(mWin, itemURL, prefs, mode) {
       }
 
       itemDetails.downloadedPercentage = 0;
+      itemDetails.downloadSecondsRemaining = 1;
       itemDetails.downloadComplete = false;
       itemDetails.conversionPercentage = 0;
+      itemDetails.conversionSecondsRemaining = 1;
       itemDetails.conversionComplete = false;
     });
   } catch (error) {

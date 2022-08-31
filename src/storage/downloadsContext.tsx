@@ -195,6 +195,7 @@ export const DownloadsContextProvider = (props) => {
       id,
       progress,
     ]);
+
     // console.log(progress);
 
     let matchingDownload = getMatchingDownload(id);
@@ -206,6 +207,27 @@ export const DownloadsContextProvider = (props) => {
     // console.log(matchingDownload.downloadedPercentage);
     setPercentUpdateState(progress);
   });
+  window.electron.ipcRenderer.on(
+    'item-download-eta-seconds-remaining',
+    (arg) => {
+      let id = arg[0];
+      let secondsRemaining = arg[1];
+      let matchingDownload = getMatchingDownload(id);
+      matchingDownload.downloadSecondsRemaining = secondsRemaining;
+      // setPercentUpdateState(secondsRemaining);
+    }
+  );
+  window.electron.ipcRenderer.on(
+    'item-conversion-eta-seconds-remaining',
+    (arg) => {
+      let id = arg[0];
+      let secondsRemaining = arg[1];
+      let matchingDownload = getMatchingDownload(id);
+      matchingDownload.conversionSecondsRemaining = secondsRemaining;
+      // setPercentUpdateState(secondsRemaining);
+    }
+  );
+
   window.electron.ipcRenderer.on('item-convert-progress', (arg) => {
     let id = arg[0];
     let progress = arg[1];

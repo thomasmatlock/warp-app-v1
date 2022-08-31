@@ -7,6 +7,7 @@ const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
 const ffmpeg = require('fluent-ffmpeg');
 ffmpeg.setFfmpegPath(ffmpegPath);
 import convertToSeconds from './convertTimeToSeconds';
+import getETA from './getETA';
 
 export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
   let randomInt = (Math.floor(Math.random() * 1000000) + 1).toString();
@@ -20,7 +21,10 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
       // filter: (format) => (format.itag = item.matchedFormat),
     });
     currentDownload.pipe(fs.createWriteStream(tempPath));
+    let downloadBeginTime = Date.now();
+    let conversionBeginTime;
     currentDownload.on('progress', (chunkLength, downloaded, total) => {
+      // getETA(downloadBeginTime, Date.now(), downloaded / total);
       progressPercentage = downloaded / total;
       progressPercentage = Math.round(progressPercentage * 100);
 
@@ -28,8 +32,13 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
         item.id,
         progressPercentage,
       ]);
+      mWin.webContents.send('item-download-eta-seconds-remaining', [
+        item.id,
+        getETA(downloadBeginTime, Date.now(), downloaded / total),
+      ]);
       if (downloaded === total) {
         downloadComplete = true;
+        conversionBeginTime = Date.now();
       }
       if (downloadComplete) {
         let conversionPercentage;
@@ -45,16 +54,33 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
             });
           })
           .on('progress', (progress) => {
+            // console.log(progress);
+            // progress keys
+            //            frames: NaN,
+            // currentFps: NaN,
+            // currentKbps: 128,
+            // targetSize: 13607,
+            // timemark: '00:14:30.79'
+
             KBconverted = progress.currentKbps + KBconverted;
             let secondsConverted = convertToSeconds(progress.timemark);
             conversionPercentage = (
               (secondsConverted / totalLengthSeconds) *
               100
             ).toFixed(0);
+            // getETA(conversionBeginTime, Date.now(), conversionPercentage / 100);
 
             mWin.webContents.send('item-convert-progress', [
               item.id,
               conversionPercentage,
+            ]);
+            mWin.webContents.send('item-conversion-eta-seconds-remaining', [
+              item.id,
+              getETA(
+                conversionBeginTime,
+                Date.now(),
+                conversionPercentage / 100
+              ),
             ]);
           })
           .on('end', () => {

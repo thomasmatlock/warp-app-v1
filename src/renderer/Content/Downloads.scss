@@ -172,6 +172,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
         color: rgb(167, 167, 167);
         background-position: center;
         background-size: 0%;
+        position: relative;
         // overflow: hidden;
         &__img {
             width: 14px;
@@ -294,6 +295,17 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
             // animation-duration: 0.5s;
             animation: ckw 1s linear 0s infinite;
             // transform-origin: 50% 50%;
+            // width: auto;
+        }
+        &__file_eta_downloading {
+            // position: absolute;
+            // right: 10rem;
+            margin-left: 2.5rem;
+        }
+        &__file_eta_conversion {
+            // position: absolute;
+            // right: 10rem;
+            margin-left: 4rem;
         }
         &__file_date {
             &__text {

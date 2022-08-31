@@ -17,6 +17,7 @@ import IconFileTypeVideo from '../../../assets/Downloads/fileTypeVideo.svg';
 import iconFileResolution from '../../../assets/Downloads/resolution.svg';
 import IconFileFps from '../../../assets/Downloads/fps1.svg';
 import IconFileDownloading from '../../../assets/Downloads/download.svg';
+import IconFileETA from '../../../assets/Downloads/eta.svg';
 import IconFileConverting from '../../../assets/Downloads/converting.svg';
 import IconDate from '../../../assets/Downloads/date.svg';
 // import IconDate from '../../../assets/Downloads/date2.svg';
@@ -321,6 +322,33 @@ const DownloadItem = (props) => {
             >
               {props.downloadedPercentage}% downloaded
             </div>
+          )}{' '}
+          {!props.downloadComplete && (
+            <img
+              src={IconFileETA}
+              className=" content__panel__downloads__list__item__img content__panel__downloads__list__item__file_converting content__panel__downloads__list__item__file_eta_downloading"
+              style={
+                themeCtx.isDarkTheme
+                  ? { filter: 'invert(100%)' }
+                  : {
+                      filter: 'invert(0%)',
+                    }
+              }
+            ></img>
+          )}
+          {!props.downloadComplete && (
+            <div
+              className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_date content__panel__downloads__list__item__file_date__text"
+              style={
+                themeCtx.isDarkTheme
+                  ? { filter: 'invert(100%)' }
+                  : {
+                      filter: 'invert(0%)',
+                    }
+              }
+            >
+              ETA: {props.downloadSecondsRemaining} seconds to finish download
+            </div>
           )}
           {!props.conversionComplete && props.downloadComplete && (
             <img
@@ -347,6 +375,34 @@ const DownloadItem = (props) => {
               }
             >
               {props.conversionPercentage}% converted to {format}
+            </div>
+          )}
+          {!props.conversionComplete && props.downloadComplete && (
+            <img
+              src={IconFileETA}
+              className=" content__panel__downloads__list__item__img content__panel__downloads__list__item__file_converting content__panel__downloads__list__item__file_eta_conversion"
+              style={
+                themeCtx.isDarkTheme
+                  ? { filter: 'invert(100%)' }
+                  : {
+                      filter: 'invert(0%)',
+                    }
+              }
+            ></img>
+          )}
+          {!props.conversionComplete && props.downloadComplete && (
+            <div
+              className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_date content__panel__downloads__list__item__file_date__text"
+              style={
+                themeCtx.isDarkTheme
+                  ? { filter: 'invert(100%)' }
+                  : {
+                      filter: 'invert(0%)',
+                    }
+              }
+            >
+              ETA: {props.conversionSecondsRemaining} seconds to finish
+              conversion
             </div>
           )}
           {props.date != undefined &&
