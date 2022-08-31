@@ -36,9 +36,9 @@ export const UserContextProvider = (props) => {
     downloadsCtx.downloadsVideo.length
   );
   useEffect(() => {
-    console.log('UserContextProvider time to rerender');
-    console.log(downloadsCtx.downloadsAudio);
-    console.log(downloadsCtx.downloadsVideo);
+    // console.log('UserContextProvider time to rerender');
+    // console.log(downloadsCtx.downloadsAudio);
+    // console.log(downloadsCtx.downloadsVideo);
 
     setAudioDownloadsCount(downloadsCtx.downloadsAudio.length);
     setVideoDownloadsCount(downloadsCtx.downloadsVideo.length);

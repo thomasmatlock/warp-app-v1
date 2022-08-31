@@ -81,6 +81,7 @@ $gradient-orange: linear-gradient(to left, #da2c4d 0%, #f8ab37 100%);
     justify-content: center !important;
     background-image: $gradient-blue;
     top: 0;
+    position: relative;
     margin-top: 8px;
     margin-bottom: 8px;
     margin-right: 48px;
@@ -96,7 +97,7 @@ $gradient-orange: linear-gradient(to left, #da2c4d 0%, #f8ab37 100%);
     align-content: center;
     justify-content: center !important;
     cursor: pointer;
-    animation: flipInX 0.5s ease-in-out;
+    // animation: flipInX 0.5s ease-in-out;
     // transition: all 0.1s ease-in-out;
     &.browserBarDownloadBtn img {
         width: 1rem;

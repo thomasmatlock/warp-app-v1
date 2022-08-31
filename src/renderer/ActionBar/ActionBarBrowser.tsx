@@ -16,8 +16,10 @@ import NavContext from '../../storage/navContext';
 import PrefsContext from '../../storage/prefsContext';
 import SourcesContext from '../../storage/sourcesContext';
 import DownloadsContext from '../../storage/downloadsContext';
+import Loader from './Loader';
 
 const BrowserBar = () => {
+  const [canDownload, setCanDownload] = useState(true);
   const themeCtx = useContext(ThemeContext);
   const actionBarCtx = useContext(ActionBarContext);
   const navCtx = useContext(NavContext);
@@ -25,7 +27,12 @@ const BrowserBar = () => {
   const sourcesCtx = useContext(SourcesContext);
   const downloadsCtx = useContext(DownloadsContext);
   // console.log(downloadsCtx);
-  useEffect(() => {}, [downloadsCtx]);
+  useEffect(() => {
+    // console.log('BrowserBar useEffect');
+    //  setTimeout(() => {
+    setCanDownload(true);
+    //  }, 1000);
+  }, [downloadsCtx.downloadsAudioState, downloadsCtx.downloadsVideoState]);
 
   // console.log(sourcesCtx);
 
@@ -99,6 +106,10 @@ const BrowserBar = () => {
     getURLpageType(sourcesCtx.currentURL);
   }, [sourcesCtx.currentURL]);
   const downloadAudioHandler = () => {
+    setCanDownload(false);
+    // setTimeout(() => {
+    //   setCanDownload(true);
+    // }, 1000);
     window.electron.ipcRenderer.sendMessage('screenshotting');
     window.electron.ipcRenderer.sendMessage(
       'BrowserBar: button: downloadAudio',
@@ -107,6 +118,10 @@ const BrowserBar = () => {
   };
 
   const downloadVideoHandler = () => {
+    setCanDownload(false);
+    // setTimeout(() => {
+    //   setCanDownload(true);
+    // }, 1000);
     window.electron.ipcRenderer.sendMessage(
       'BrowserBar: button: downloadVideo',
       [`Download Video`]
@@ -222,6 +237,7 @@ const BrowserBar = () => {
               onClick={downloadAudioHandler}
               className="browserBarDownloadBtn browserBarDownloadBtn__audio"
             >
+              <Loader />
               <img src={playlistVideoIcon} alt="playlistVideoIcon" />
               {actionBarCtx.multiplePlaylistsExist && (
                 <p> Download Audio Playlists</p>
@@ -240,8 +256,13 @@ const BrowserBar = () => {
                   : 'browserBarDownloadBtn browserBarDownloadBtn__audio'
               }
             >
-              <img src={IconFileTypeAudio} alt="playlistVideoIcon" />
-              {actionBarCtx.videoExists && <p> Download Audio {audioFormat}</p>}
+              {!canDownload && <Loader />}
+              {canDownload && (
+                <img src={IconFileTypeAudio} alt="playlistVideoIcon" />
+              )}
+              {actionBarCtx.videoExists && canDownload && (
+                <p> Download Audio {audioFormat}</p>
+              )}
             </div>
           )}{' '}
         {navCtx.videoMode &&
@@ -292,8 +313,11 @@ const BrowserBar = () => {
                   : 'browserBarDownloadBtn browserBarDownloadBtn__video'
               }
             >
-              <img src={videoIcon} alt="playlistVideoIcon" />
-              {actionBarCtx.videoExists && <p> Download Video {videoFormat}</p>}
+              {!canDownload && <Loader />}
+              {canDownload && <img src={videoIcon} alt="playlistVideoIcon" />}
+              {actionBarCtx.videoExists && canDownload && (
+                <p> Download Video {videoFormat}</p>
+              )}
             </div>
           )}
       </div>
