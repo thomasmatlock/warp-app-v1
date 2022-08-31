@@ -347,7 +347,7 @@ const DownloadItem = (props) => {
                     }
               }
             >
-              ETA: {props.downloadSecondsRemaining} seconds to finish download
+              ETA: {props.downloadSecondsRemaining} seconds
             </div>
           )}
           {!props.conversionComplete && props.downloadComplete && (
@@ -401,8 +401,7 @@ const DownloadItem = (props) => {
                     }
               }
             >
-              ETA: {props.conversionSecondsRemaining} seconds to finish
-              conversion
+              ETA: {props.conversionSecondsRemaining} seconds
             </div>
           )}
           {props.date != undefined &&
