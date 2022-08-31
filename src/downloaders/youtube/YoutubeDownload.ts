@@ -38,6 +38,8 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
         ffmpeg(tempPath)
           .toFormat(item.format.toLowerCase())
           .on('error', (err) => {
+            console.log(err);
+
             fs.unlink(tempPath, (err) => {
               if (err) console.log(err);
             });

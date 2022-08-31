@@ -366,9 +366,11 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     width: calc(100% - 0.5rem);
     // border: 1px dotted red;
     // animation: bondJamesBond 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+    z-index: 10;
 }
 
 .content__panel__downloads__list__activation__item {
+    z-index: 10;
     padding: 5px;
     border-radius: 3px;
     display: flex;

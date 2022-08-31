@@ -9,66 +9,60 @@
     // border: 1px solid green;
 }
 
-$outerWidth: 32px;
-// $outerHeight: 32px;
-$midWidth: 24px;
-$innerWidth: 16px;
-.loader1 {
-    position: absolute;
-    top: calc(50% - $outerWidth / 2);
-    // left: 100px;
-    width: $outerWidth;
-    height: $outerWidth;
+$loader1Width: 32px;
+$loader2width: 24px;
+$loader3width: 16px;
+$loader4width: 8px;
+$loader5width: 4px;
+.loader {
     border-radius: 90px;
-    // border-top: solid 4px #fff;
-    border-top: solid 3px #fff;
-    border-left: solid 2px rgba(255, 255, 255, 0.66);
-    border-bottom: solid 1px rgba(255, 255, 255, 0.33);
-    -webkit-animation-name: spin;
-    -webkit-animation-duration: 0.3s;
-    -webkit-animation-iteration-count: infinite;
-    -webkit-animation-timing-function: linear;
+    position: absolute;
+    animation-name: spin;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+.loader1 {
+    top: calc(50% - $loader1Width / 2);
+    width: $loader1Width;
+    height: $loader1Width;
+    border-left: solid 1px rgba(255, 255, 255, 1);
+    animation-duration: 0.25s;
 }
 
 .loader2 {
-    height: $midWidth;
-    width: $midWidth;
-    top: calc(50% - $midWidth / 2);
-    position: absolute;
-    border-radius: 90px;
-    // border-top: solid 1px #fff;
-    // border-right: solid 1px rgb(221, 221, 221);
-    // border-bottom: solid 1px rgb(189, 189, 189);
-    // border-left: solid 1px rgb(146, 146, 146);
-    border-top: solid 3px #fff;
-    border-left: solid 2px rgba(255, 255, 255, 0.66);
-    border-bottom: solid 1px rgba(255, 255, 255, 0.33);
-    // border-right: solid 1px rgb(255, 255, 255, 0.25);
-    -webkit-animation-name: spin;
-    -webkit-animation-duration: 0.2s;
-    -webkit-animation-iteration-count: infinite;
-    -webkit-animation-timing-function: linear;
+    height: $loader2width;
+    width: $loader2width;
+    top: calc(50% - $loader2width / 2);
+    border-top: solid 1px rgba(255, 255, 255, 1);
+    animation-duration: 0.2s;
 }
 
 .loader3 {
-    height: $innerWidth;
-    width: $innerWidth;
-    top: calc(50% - $innerWidth / 2);
-    position: absolute;
-    border-radius: 90px;
-    // border-right: solid 1px #fff;
-    // border-left: solid 1px #fff;
-    border-top: solid 3px #fff;
-    border-left: solid 2px rgba(255, 255, 255, 0.66);
-    border-bottom: solid 1px rgba(255, 255, 255, 0.33);
-    // border-right: solid 1px rgb(255, 255, 255, 0.25);
-    -webkit-animation-name: spin;
-    -webkit-animation-duration: 0.1s;
-    -webkit-animation-iteration-count: infinite;
-    -webkit-animation-timing-function: linear;
+    height: $loader3width;
+    width: $loader3width;
+    top: calc(50% - $loader3width / 2);
+    border-right: solid 1px rgba(255, 255, 255, 1);
+    animation-duration: 0.15s;
 }
 
-@-webkit-keyframes spin {
+.loader4 {
+    height: $loader4width;
+    width: $loader4width;
+    top: calc(50% - $loader4width / 2);
+    border-bottom: solid 1px rgba(255, 255, 255, 1);
+    animation-duration: 0.1s;
+}
+
+.loader5 {
+    height: $loader5width;
+    width: $loader5width;
+    top: calc(50% - $loader5width / 2);
+    border-left: solid 1px rgba(255, 255, 255, 1);
+    animation-duration: 0.05s;
+}
+
+@keyframes spin {
     from {
         -webkit-transform: rotate(0deg);
     }
