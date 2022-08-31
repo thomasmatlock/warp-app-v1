@@ -77,6 +77,8 @@ const DownloadsVideo = () => {
               downloadComplete={item.downloadComplete}
               conversionPercentage={item.conversionPercentage}
               conversionComplete={item.conversionComplete}
+              downloadSecondsRemaining={item.downloadSecondsRemaining}
+              conversionSecondsRemaining={item.conversionSecondsRemaining}
               timestamp={item.timestamp}
               format={item.format}
               fps={item.fps}
