@@ -66,13 +66,16 @@ const DownloadsAudio = () => {
     dollarsSynArray[Math.floor(Math.random() * dollarsSynArray.length)];
   let verbsArray = ['Spend', 'Invest'];
   let randomVerb = verbsArray[Math.floor(Math.random() * verbsArray.length)];
+  let directObjectArr = ['yourself', 'your workflow'];
+  let randomDirectObject =
+    directObjectArr[Math.floor(Math.random() * directObjectArr.length)];
   let audioDownloadsActivationArr = [
     {
       title:
         15 -
         downloadsCtx.downloadsAudio.length +
         ' daily audio downloads remaining',
-      subtitle: `${randomVerb} a few ${randomDollarSyn} on a Personal or Professional License for unlimited downloads and more `,
+      subtitle: `${randomVerb} a few ${randomDollarSyn} on yourself for a Personal or Professional License for unlimited downloads and more `,
       ctaImage: iconLicenses,
       ctaText: 'Activate',
     },
