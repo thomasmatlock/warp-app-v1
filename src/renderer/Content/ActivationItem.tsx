@@ -36,6 +36,8 @@ const ActivationItem = (props) => {
   const downloadsCtx = useContext(DownloadsContext);
   return (
     <li
+      id={props.id}
+      key={props.id}
       onClick={() => {}}
       className={'content__panel__downloads__list__activation__item'}
       style={

@@ -24,7 +24,7 @@ const BrowserBar = () => {
   const prefsCtx = useContext(PrefsContext);
   const sourcesCtx = useContext(SourcesContext);
   const downloadsCtx = useContext(DownloadsContext);
-  console.log(downloadsCtx);
+  // console.log(downloadsCtx);
   useEffect(() => {}, [downloadsCtx]);
 
   // console.log(sourcesCtx);

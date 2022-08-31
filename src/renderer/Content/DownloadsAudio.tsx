@@ -7,6 +7,7 @@ import iconLicenses from '../../../assets/Modals/settings/shuttle.svg';
 import ThemeContext from '../../storage/themeContext';
 import ActionBarContext from '../../storage/actionBarContext';
 import DownloadsContext from '../../storage/downloadsContext';
+import UserContext from '../../storage/userContext';
 import InputContext from '../../storage/inputContext';
 import Sort from './Sort';
 import './Downloads.scss';
@@ -16,16 +17,14 @@ const DownloadsAudio = () => {
   const actionBarCtx = useContext(ActionBarContext);
   const downloadsCtx = useContext(DownloadsContext);
   const inputCtx = useContext(InputContext);
+  const userCtx = useContext(UserContext);
+
   const [downloads, setDownloads] = useState(
     Array.from(downloadsCtx.downloadsAudio).sort((a, b) => {
       if (actionBarCtx.sortAZ) {
-        // return a.title.localeCompare(b.title);
         return Sort.byAZ(downloadsCtx.downloadsAudio, 'title');
-        // return a.title.localeCompare(b.title);
       } else if (actionBarCtx.sortZA) {
         return Sort.byZA(downloadsCtx.downloadsAudio, 'title');
-        // return Sort.byZA(a, b);
-        // return b.title.localeCompare(a.title);
       } else if (actionBarCtx.sortNewOld) {
         return Sort.byDateNewToOld(downloadsCtx.downloadsAudio, 'date');
       } else if (actionBarCtx.sortOldNew) {
@@ -38,13 +37,9 @@ const DownloadsAudio = () => {
     setDownloads(
       Array.from(downloadsCtx.downloadsAudio).sort((a, b) => {
         if (actionBarCtx.sortAZ) {
-          // return a.title.localeCompare(b.title);
           return Sort.byAZ(downloadsCtx.downloadsAudio, 'title');
-          // return a.title.localeCompare(b.title);
         } else if (actionBarCtx.sortZA) {
           return Sort.byZA(downloadsCtx.downloadsAudio, 'title');
-          // return Sort.byZA(a, b);
-          // return b.title.localeCompare(a.title);
         } else if (actionBarCtx.sortNewOld) {
           return Sort.byDateNewToOld(downloadsCtx.downloadsAudio, 'date');
         } else if (actionBarCtx.sortOldNew) {
@@ -61,30 +56,6 @@ const DownloadsAudio = () => {
     downloadsCtx.downloadsAudioState,
     downloadsCtx.percentUpdateState,
   ]);
-  let dollarsSynArray = ['bucks', 'rupees'];
-  let randomDollarSyn =
-    dollarsSynArray[Math.floor(Math.random() * dollarsSynArray.length)];
-  let verbsArray = ['Spend', 'Invest'];
-  let randomVerb = verbsArray[Math.floor(Math.random() * verbsArray.length)];
-  let directObjectArr = ['yourself', 'your workflow'];
-  let randomDirectObject =
-    directObjectArr[Math.floor(Math.random() * directObjectArr.length)];
-  let audioDownloadsActivationArr = [
-    {
-      title:
-        15 -
-        downloadsCtx.downloadsAudio.length +
-        ' daily audio downloads remaining',
-      subtitle: `${randomVerb} a few ${randomDollarSyn} on yourself for a Personal or Professional License for unlimited downloads and more `,
-      ctaImage: iconLicenses,
-      ctaText: 'Activate',
-    },
-  ];
-  // console.log(downloadsCtx.downloadsAudio.length);
-  //  itemDetails.downloadedPercentage = 0;
-  //  itemDetails.downloadComplete = false;
-  //  itemDetails.conversionPercentage = 0;
-  //  itemDetails.conversionComplete = false;
   const audioDownloads = (
     <ul className="content__panel__downloads__list">
       {downloads.map(
@@ -116,30 +87,14 @@ const DownloadsAudio = () => {
   );
   const audioDownloadsActivation = (
     <ul className="content__panel__downloads__list__activation">
-      {audioDownloadsActivationArr.map((item) => (
+      {userCtx.audioDownloadsActivationArr.map((item) => (
         <ActivationItem
+          id={item.id}
+          key={item.id}
           title={item.title}
           subtitle={item.subtitle}
           ctaImage={item.ctaImage}
           ctaText={item.ctaText}
-          // author={item.author.name}
-          // date={item.date}
-          // timestamp={item.timestamp}
-          // format={item.format}
-          // fps={item.fps}
-          // id={item.id}
-          // key={item.id}
-          // length={item.lengthDisplay}
-          // downloadedPercentage={item.downloadedPercentage}
-          // downloadComplete={item.downloadComplete}
-          // conversionPercentage={item.conversionPercentage}
-          // conversionComplete={item.conversionComplete}
-          // resolution={item.resolution}
-          // fileSize={item.fileSize}
-          // source={item.source}
-          // thumbnail={item.thumbnailDisplay}
-          // title={item.title}
-          // type={item.type}
         />
       ))}
     </ul>

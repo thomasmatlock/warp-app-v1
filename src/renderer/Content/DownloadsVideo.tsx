@@ -5,7 +5,7 @@ import ActionBarContext from '../../storage/actionBarContext';
 import DownloadsContext from '../../storage/downloadsContext';
 import InputContext from '../../storage/inputContext';
 import iconLicenses from '../../../assets/Modals/settings/shuttle.svg';
-
+import UserContext from '../../storage/userContext';
 import DownloadItem from './DownloadItem';
 import ActivationItem from './ActivationItem';
 import Sort from './Sort';
@@ -17,24 +17,7 @@ const DownloadsVideo = () => {
   const actionBarCtx = useContext(ActionBarContext);
   const downloadsCtx = useContext(DownloadsContext);
   const inputCtx = useContext(InputContext);
-  // console.log(downloadsCtx.downloadsVideo[0].background);
-  let dollarsSynArray = ['bucks', 'rupees'];
-  let randomDollarSyn =
-    dollarsSynArray[Math.floor(Math.random() * dollarsSynArray.length)];
-  let verbsArray = ['Spend', 'Invest'];
-  let randomVerb = verbsArray[Math.floor(Math.random() * verbsArray.length)];
-  let videoDownloadsActivationArr = [
-    {
-      title:
-        15 -
-        downloadsCtx.downloadsVideo.length +
-        ' daily video downloads remaining',
-      // subtitle: 'subtitle for more',
-      subtitle: `${randomVerb} a few ${randomDollarSyn} on a Personal or Professional License for unlimited downloads, UHD resolutions, and more`,
-      ctaImage: iconLicenses,
-      ctaText: 'Activate',
-    },
-  ];
+  const userCtx = useContext(UserContext);
 
   const [downloads, setDownloads] = useState(
     Array.from(downloadsCtx.downloadsVideo).sort((a, b) => {
@@ -113,30 +96,14 @@ const DownloadsVideo = () => {
   );
   const videoDownloadsActivation = (
     <ul className="content__panel__downloads__list__activation">
-      {videoDownloadsActivationArr.map((item) => (
+      {userCtx.videoDownloadsActivationArr.map((item) => (
         <ActivationItem
+          id={item.id}
+          key={item.id}
           title={item.title}
           subtitle={item.subtitle}
           ctaImage={item.ctaImage}
           ctaText={item.ctaText}
-          // author={item.author.name}
-          // date={item.date}
-          // timestamp={item.timestamp}
-          // format={item.format}
-          // fps={item.fps}
-          // id={item.id}
-          // key={item.id}
-          // length={item.lengthDisplay}
-          // downloadedPercentage={item.downloadedPercentage}
-          // downloadComplete={item.downloadComplete}
-          // conversionPercentage={item.conversionPercentage}
-          // conversionComplete={item.conversionComplete}
-          // resolution={item.resolution}
-          // fileSize={item.fileSize}
-          // source={item.source}
-          // thumbnail={item.thumbnailDisplay}
-          // title={item.title}
-          // type={item.type}
         />
       ))}
     </ul>

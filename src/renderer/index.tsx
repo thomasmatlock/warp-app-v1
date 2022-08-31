@@ -9,27 +9,30 @@ import { InputContextProvider } from '../storage/inputContext';
 import { ModalsContextProvider } from '../storage/modalsContext';
 import { PrefsContextProvider } from '../storage/prefsContext';
 import { ProductsContextProvider } from '../storage/productsContext';
+import { UserContextProvider } from '../storage/userContext';
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
 root.render(
-  <PrefsContextProvider>
-    <ThemeContextProvider>
-      <NavContextProvider>
-        <ProductsContextProvider>
-          <ModalsContextProvider>
-            <InputContextProvider>
-              <DownloadsContextProvider>
-                <SourcesContextProvider>
-                  <ActionBarContextProvider>
-                    <App />
-                  </ActionBarContextProvider>
-                </SourcesContextProvider>
-              </DownloadsContextProvider>
-            </InputContextProvider>
-          </ModalsContextProvider>
-        </ProductsContextProvider>
-      </NavContextProvider>
-    </ThemeContextProvider>
-  </PrefsContextProvider>
+  <ThemeContextProvider>
+    <DownloadsContextProvider>
+      <UserContextProvider>
+        <PrefsContextProvider>
+          <NavContextProvider>
+            <ProductsContextProvider>
+              <ModalsContextProvider>
+                <InputContextProvider>
+                  <SourcesContextProvider>
+                    <ActionBarContextProvider>
+                      <App />
+                    </ActionBarContextProvider>
+                  </SourcesContextProvider>
+                </InputContextProvider>
+              </ModalsContextProvider>
+            </ProductsContextProvider>
+          </NavContextProvider>
+        </PrefsContextProvider>
+      </UserContextProvider>
+    </DownloadsContextProvider>
+  </ThemeContextProvider>
 );
