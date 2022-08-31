@@ -106,26 +106,30 @@ const BrowserBar = () => {
     getURLpageType(sourcesCtx.currentURL);
   }, [sourcesCtx.currentURL]);
   const downloadAudioHandler = () => {
-    setCanDownload(false);
     // setTimeout(() => {
     //   setCanDownload(true);
     // }, 1000);
-    window.electron.ipcRenderer.sendMessage('screenshotting');
-    window.electron.ipcRenderer.sendMessage(
-      'BrowserBar: button: downloadAudio',
-      [`Download Audio`]
-    );
+    if (canDownload) {
+      // window.electron.ipcRenderer.sendMessage('screenshotting');
+      window.electron.ipcRenderer.sendMessage(
+        'BrowserBar: button: downloadAudio',
+        [`Download Audio`]
+      );
+    }
+    setCanDownload(false);
   };
 
   const downloadVideoHandler = () => {
-    setCanDownload(false);
     // setTimeout(() => {
     //   setCanDownload(true);
     // }, 1000);
-    window.electron.ipcRenderer.sendMessage(
-      'BrowserBar: button: downloadVideo',
-      [`Download Video`]
-    );
+    if (canDownload) {
+      window.electron.ipcRenderer.sendMessage(
+        'BrowserBar: button: downloadVideo',
+        [`Download Video`]
+      );
+      setCanDownload(false);
+    }
   };
   const browserGoBackHandler = () => {
     window.electron.ipcRenderer.sendMessage('BrowserBar: button: goBack');
