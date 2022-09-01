@@ -34,29 +34,9 @@ export default async function Youtube(mWin, itemURL, prefs, mode) {
   try {
     await ytdl.getBasicInfo(itemURL).then((info) => {
       // console.log(
-      //   info.formats[0].height,
-      //   info.formats[0].mimeType,
-      //   info.formats[0].url
-      // );
-      // console.log(
-      //   info.formats[1].height,
-      //   info.formats[1].mimeType,
-      //   info.formats[1].url
-      // );
-      console.log(
-        info.formats[2].height,
-        info.formats[2].mimeType,
-        info.formats[2].url
-      );
-      console.log(
-        info.formats[3].height,
-        info.formats[3].mimeType,
-        info.formats[3].url
-      );
-      // console.log(
-      //   info.formats[4].height,
-      //   info.formats[4].mimeType,
-      //   info.formats[4].url
+      //   info.formats[2].height,
+      //   info.formats[2].mimeType,
+      //   info.formats[2].url
       // );
 
       itemDetails = info.videoDetails;

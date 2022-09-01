@@ -33,10 +33,15 @@ import Prefs from './prefsController';
 import PowerMonitor from './powerMonitor';
 import Screen from './screen';
 import Browser from './browserController';
+// import got from 'got';
+// import got from 'got';
+// const got = require('got');
+
 // import createTray from './tray';
 // import Shortcuts from './Shortcuts';
 const fs = require('fs');
 
+// console.log('got', got);
 let prefs;
 let user;
 // let tray;
@@ -52,6 +57,7 @@ app
     // Prefs.resetPrefs();
     prefs = Prefs.getPrefs();
     setActiveURL();
+
     // User.upgradeUserModule('audio', 'free');
     // User.resetUser();
     // console.log(User.canUserDownloadAudio());
