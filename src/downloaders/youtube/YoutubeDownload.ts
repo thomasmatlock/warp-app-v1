@@ -87,8 +87,7 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
               (secondsConverted / totalLengthSeconds) *
               100
             ).toFixed(0);
-            console.log(conversionPercentage + '% converted');
-            // getETA(conversionBeginTime, Date.now(), conversionPercentage / 100);
+            // console.log(conversionPercentage + '% converted');
 
             mWin.webContents.send('item-convert-progress', [
               item.id,
@@ -104,8 +103,6 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
             ]);
           })
           .on('end', () => {
-            // fs.unlink(tempPath, (err) => {
-
             mWin.webContents.send('item-conversion-complete', [item.id]);
             // fs.rename(tempPath, item.path, (err) => {});
             downloadConversionComplete = true;
@@ -115,6 +112,7 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
         let fileSize = fs.statSync(tempPath).size;
         fileSize = fileSize.toFixed(1);
         mWin.webContents.send('item-fileSize-retrieved', [item.id, fileSize]);
+        // fs.unlink(tempPath, (err) => {});
         // });
 
         // convertFile(mWin, item, tempPath);

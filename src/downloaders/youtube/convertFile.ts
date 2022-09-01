@@ -50,9 +50,7 @@ export default function convertFile(
         (secondsConverted / totalLengthSeconds) *
         100
       ).toFixed(0);
-      console.log(conversionPercentage + '% converted');
-      // getETA(conversionBeginTime, Date.now(), conversionPercentage / 100);
-
+      // console.log(conversionPercentage + '% converted');
       mWin.webContents.send('item-convert-progress', [
         item.id,
         conversionPercentage,
