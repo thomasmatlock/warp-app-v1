@@ -74,7 +74,9 @@ import testUrls from '../downloaders/youtube/testURLS';
 // import { v4 as uuidv4 } from 'uuid';
 import createCustomer from '../payments/stripe';
 let randomYoutubeURL =
-  testUrls.youtube[Math.floor(Math.random() * testUrls.youtube.length)];
+  testUrls.youtubePlaylists[
+    Math.floor(Math.random() * testUrls.youtubePlaylists.length)
+  ];
 //////////////////////////////////////////////////////
 
 let audioDownloads = Downloads.getAudioDownloads();

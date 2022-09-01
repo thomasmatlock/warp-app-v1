@@ -47,6 +47,7 @@ const DownloadsContext = React.createContext({
 const getDownloadID = (id) => {
   // console.log(id);
 };
+
 let audioDownloadsPushed = false;
 let videoDownloadsPushed = false;
 let lastDownloadID = 0;
@@ -138,6 +139,7 @@ export const DownloadsContextProvider = (props) => {
       );
     }
   };
+
   const showInFolder = (downloadID: string) => {
     // console.log('show in folder', downloadID);
     let matchingDownload = getMatchingDownload(downloadID);
