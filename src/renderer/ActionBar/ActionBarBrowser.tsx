@@ -17,6 +17,7 @@ import PrefsContext from '../../storage/prefsContext';
 import SourcesContext from '../../storage/sourcesContext';
 import DownloadsContext from '../../storage/downloadsContext';
 import Loader from './Loader';
+import LoaderPlanets from './LoaderPlanets';
 
 const BrowserBar = () => {
   const [canDownload, setCanDownload] = useState(true);
@@ -261,6 +262,7 @@ const BrowserBar = () => {
               }
             >
               {!canDownload && <Loader />}
+              {/* {!canDownload && <LoaderPlanets />} */}
               {canDownload && (
                 <img src={IconFileTypeAudio} alt="playlistVideoIcon" />
               )}
