@@ -41,7 +41,7 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
     // item.titleFS + '.' + item.format.toLowerCase()
     item.titleFS
   );
-  console.log(tempPath2);
+  // console.log(tempPath2);
 
   // CUSTOM METHOD
   try {
@@ -54,23 +54,12 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
     let conversionBeginTime;
     const customStream = got.stream(item.matchedFormat.url);
     customStream.pipe(fs.createWriteStream(tempPath2));
-
-    // fs.createReadStream(filename).pipe(str).pipe(fs.createWriteStream(output));
-    // customStream.on('progress', (chunkLength, downloaded, total) => {
-    //   progressPercentage = downloaded / total;
-    //   // console.log(progressPercentage);
-    //   // console.log('progress');
-    // });
-    // customStream.on('data', function (data, downloaded, total) {
-    //   console.log(data);
-    // });
-
     customStream.on('downloadProgress', (progress) => {
-      progress.percent = Math.floor(progress.percent * 100);
-      progressPercentage = progress.percent;
-      //     progress.percent
+      // progress.percent
       // progress.transferred
       // progress.total
+      progress.percent = Math.floor(progress.percent * 100);
+      progressPercentage = progress.percent;
       mWin.webContents.send('item-download-progress', [
         item.id,
         progressPercentage,
@@ -83,18 +72,8 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
           progress.transferred / progress.total
         ),
       ]);
-      // console.log(progress);
     });
-    // console.log(customStream);
-    // customStream.on('ended', function () {
-    //   console.log('ended');
-    // });
 
-    // customStream.on('progress', (chunkLength, downloaded, total) => {
-    //   progressPercentage = downloaded / total;
-    //   console.log(progressPercentage);
-    //   // mWin.webContents.send('download-progress', progressPercentage);
-    // });
     //  currentDownload.on('progress', (chunkLength, downloaded, total) => {
     //    // getETA(downloadBeginTime, Date.now(), downloaded / total);
     //    progressPercentage = downloaded / total;
