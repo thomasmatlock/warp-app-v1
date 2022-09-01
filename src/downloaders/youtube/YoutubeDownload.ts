@@ -9,6 +9,7 @@ const ffmpeg = require('fluent-ffmpeg');
 ffmpeg.setFfmpegPath(ffmpegPath);
 import convertToSeconds from './convertTimeToSeconds';
 import getETA from './getETA';
+import progress from 'progress-stream';
 // import HttpsProxyAgent from 'https-proxy-agent';
 
 // Remove 'user:pass@' if you don't need to authenticate to your proxy.
@@ -36,28 +37,34 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
   let tempPath = path.join(app.getPath('temp'), 'Warp Downloader' + randomInt);
   let tempPath2 = path.join(
     app.getPath('desktop'),
-    'Warp Downloader' + randomInt2
+    item.titleFS + '.' + item.format.toLowerCase()
   );
   // CUSTOM METHOD
   try {
-    console.log(item.matchedFormat);
+    // console.log(item);
 
     let progressPercentage;
     let downloadComplete = false;
     let downloadConversionComplete = false;
-    // const customStream = ytdl(item.url, {});
-    // customStream.pipe(fs.createWriteStream(tempPath2));
-    const mp4Url =
-      'https://rr3---sn-5uaeznez.googlevideo.com/videoplayback?expire=1662030409&ei=6T0QY8aZFY-akAOjm6tI&ip=97.80.132.152&id=o-AAxU4ti6O_egoBaVJdT-SGh5vvW12G2NNjXcoQ0iBaES&itag=137&aitags=133%2C134%2C135%2C136%2C137%2C160%2C242%2C243%2C244%2C247%2C248%2C278%2C394%2C395%2C396%2C397%2C398%2C399&source=youtube&requiressl=yes&vprv=1&mime=video%2Fmp4&ns=ZosW6d5XhVgVl7aOQnnXnpkH&gir=yes&clen=62108783&dur=201.784&lmt=1616721343697696&keepalive=yes&fexp=24001373,24007246&c=WEB&rbqsm=fr&txp=5432432&n=JRA1xMEp0_AA6VJ7C4&sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cdur%2Clmt&sig=AOq0QJ8wRgIhALSNNZtcb3mK4bV1k_qnrfxNvUh2s2YPGm83MecZwsXMAiEAvgZZm6i1XTPh0zeffZzgkOg1MChByC6MKKHGZF5Euqs%3D&redirect_counter=1&rm=sn-5uae7z7s&req_id=2a585ed01257a3ee&cms_redirect=yes&cmsv=e&ipbypass=yes&mh=Xg&mip=2600:6c5a:477f:4b73:183b:8d5b:deb2:d84a&mm=31&mn=sn-5uaeznez&ms=au&mt=1662008742&mv=m&mvi=3&pl=32&lsparams=ipbypass,mh,mip,mm,mn,ms,mv,mvi,pl&lsig=AG3C_xAwRQIhAIZp3Wf0u2v9TOOb2Rxz84CFLM2HqbNZ17migsaHk3krAiBFv1xLydbnDLKz1LLmlMy2x7_wUiGhhtKyCf2DtuTrSA%3D%3D';
-    const customStream = got.stream(mp4Url);
-    // console.log(customStream);
+    let downloadBeginTime = Date.now();
+    let conversionBeginTime;
+    const customStream = got.stream(item.matchedFormat.url);
+    customStream.pipe(fs.createWriteStream(item.path));
 
-    customStream.pipe(fs.createWriteStream(tempPath2));
-    // shell.showItemInFolder(tempPath2);
-    // app.get('/video', (req, res) => {
+    // fs.createReadStream(filename).pipe(str).pipe(fs.createWriteStream(output));
+    // customStream.on('progress', (chunkLength, downloaded, total) => {
+    //   progressPercentage = downloaded / total;
+    //   // console.log(progressPercentage);
+    //   // console.log('progress');
     // });
-    //  let downloadBeginTime = Date.now();
-    //  let conversionBeginTime;
+    customStream.on('finish', function () {
+      console.log('finish');
+    });
+    // customStream.on('progress', (chunkLength, downloaded, total) => {
+    //   progressPercentage = downloaded / total;
+    //   console.log(progressPercentage);
+    //   // mWin.webContents.send('download-progress', progressPercentage);
+    // });
     //  currentDownload.on('progress', (chunkLength, downloaded, total) => {
     //    // getETA(downloadBeginTime, Date.now(), downloaded / total);
     //    progressPercentage = downloaded / total;

@@ -17,7 +17,7 @@ export default function getAudioFormat(desiredQuality, formats) {
     // RETURNS HIGH QUALITY
   } else if (desiredQuality.toLowerCase().includes('high')) {
     formats.forEach((format) => {
-      console.log(format);
+      // console.log(format);
 
       if (format.audioQuality.toLowerCase().includes('high')) {
         // console.log(matchedFormat);
