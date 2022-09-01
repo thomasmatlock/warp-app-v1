@@ -55,7 +55,7 @@ export default async function Youtube(mWin, itemURL, prefs, mode) {
         // console.log(videoFormats.length);
         matchedFormat = getQuality(mode, videoQuality, info.formats);
       }
-      // itemDetails.info = info;
+      itemDetails.formats = info.formats;
       itemDetails.matchedFormat = matchedFormat;
       itemDetails.titleFS = formatTitle(itemDetails.title);
       itemDetails.fps = mode === 'video' ? matchedFormat.fps : '';
