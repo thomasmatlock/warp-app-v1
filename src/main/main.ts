@@ -74,7 +74,9 @@ import testUrls from '../downloaders/youtube/testURLS';
 // import { v4 as uuidv4 } from 'uuid';
 import createCustomer from '../payments/stripe';
 let randomYoutubeURL =
-  testUrls.youtube[Math.floor(Math.random() * testUrls.youtube.length)];
+  testUrls.youtubePlaylists[
+    Math.floor(Math.random() * testUrls.youtubePlaylists.length)
+  ];
 //////////////////////////////////////////////////////
 
 let audioDownloads = Downloads.getAudioDownloads();
@@ -226,14 +228,24 @@ let browserPanelState = 'default';
   });
   // BROWSERBAR DOWNLOAD BUTTON LISTENERS
   ipcMain.on('BrowserBar: button: downloadAudio', async (event, arg) => {
-    if (view)
-      Downloads.downloadItem(mWin, view.webContents.getURL(), prefs, 'audio');
-    event.reply('BrowserBar: button: downloadAudio successful');
+    let urls = [];
+    if (view) urls.push(view.webContents.getURL());
+    Downloads.DownloadItems(mWin, urls, prefs, 'audio');
+    // event.reply('BrowserBar: button: downloadAudio successful');
   });
+  ipcMain.on(
+    'BrowserBar: button: downloadAudioPlaylist',
+    async (event, arg) => {
+      // if (view) console.log(view.webContents.getURL());
+
+      Downloads.playlist(mWin, view.webContents.getURL(), prefs, 'audio');
+      // event.reply('BrowserBar: button: downloadAudio successful');
+    }
+  );
   ipcMain.on('BrowserBar: button: downloadVideo', async (event, arg) => {
-    if (view)
-      Downloads.downloadItem(mWin, view.webContents.getURL(), prefs, 'video');
-    event.reply('BrowserBar: button: downloadVideo successful'); // sends message to renderer
+    let urls = [];
+    if (view) urls.push(view.webContents.getURL());
+    Downloads.DownloadItems(mWin, urls, prefs, 'video');
   });
   ipcMain.on('browserPanelSize', async (event, arg) => {
     browserPanelState = arg;
