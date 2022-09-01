@@ -37,6 +37,42 @@ import createTray from './tray';
 import Shortcuts from './Shortcuts';
 const fs = require('fs');
 import m3u8stream from 'm3u8stream';
+import NetworkSpeed = require('network-speed'); // ES6
+// const NetworkSpeed = require('network-speed'); // ES5
+const testNetworkSpeed = new NetworkSpeed();
+
+getNetworkDownloadSpeed();
+
+async function getNetworkDownloadSpeed() {
+  const baseUrl = 'https://eu.httpbin.org/stream-bytes/500000';
+  // const baseUrl = 'https://warpdownload.com';
+  const fileSizeInBytes = 500000;
+  const speed = await testNetworkSpeed.checkDownloadSpeed(
+    baseUrl,
+    fileSizeInBytes
+  );
+  console.log(speed);
+}
+
+getNetworkUploadSpeed();
+
+async function getNetworkUploadSpeed() {
+  const options = {
+    hostname: 'www.google.com',
+    port: 80,
+    path: '/catchers/544b09b4599c1d0200000289',
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+  const fileSizeInBytes = 2000000;
+  const speed = await testNetworkSpeed.checkUploadSpeed(
+    options,
+    fileSizeInBytes
+  );
+  console.log(speed);
+}
 
 // console.log(Downloads);
 // require('events').EventEmitter.defaultMaxListeners = 30; // removes error warnings

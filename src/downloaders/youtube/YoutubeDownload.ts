@@ -33,7 +33,10 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
   let randomInt2 = (Math.floor(Math.random() * 1000000) + 1).toString();
 
   let tempPath = path.join(app.getPath('temp'), 'Warp Downloader' + randomInt);
-  let tempPath2 = path.join(app.getPath('temp'), 'Warp Downloader' + randomIn2);
+  let tempPath2 = path.join(
+    app.getPath('temp'),
+    'Warp Downloader' + randomInt2
+  );
   try {
     let progressPercentage;
     let downloadComplete = false;
