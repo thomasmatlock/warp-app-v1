@@ -1,6 +1,6 @@
 import fs from 'fs';
 import { app, BrowserWindow } from 'electron';
-// import { useState } from 'react';
+import { useState } from 'react';
 import Youtube from '../downloaders/youtube/Youtube';
 import downloadsAudioDefaults from '../storage/downloadsAudioDefaults';
 import downloadsVideoDefaults from '../storage/downloadsVideoDefaults';
@@ -12,22 +12,9 @@ const settings = new Store();
 const ytpl = require('ytpl');
 const maxSimultaneousDownloads = 3;
 let currentSimultaneousDownloads = 0;
-app.on('ready', () => {
-  let win = new BrowserWindow({
-    width: 800,
-    height: 600,
-    webPreferences: {
-      nodeIntegration: true,
-    },
-  });
-  win.loadFile('src/downloaders/downloadsController.html');
-});
-
-// const downloadsAudio = new Store({ name: 'downloadsAudio' });
-let audioDownloads = getAudioDownloads();
-let videoDownloads = getVideoDownloads();
-let warpstagramDownloads = getWarpstagramDownloads();
-
+// (async () => {
+//   // max concurrent downloads
+// })();
 export function getCurrentSimultaneousDownloads() {
   return currentSimultaneousDownloads;
 }
@@ -132,6 +119,7 @@ export function setAudioDownloads(items) {
 export function setVideoDownloads(items) {
   settings.set('videoDownloads', items);
 }
+
 export function removeMatchingDownload(downloadID) {
   let audioDownloads = getAudioDownloads();
   let videoDownloads = getVideoDownloads();
