@@ -5,7 +5,7 @@ import iconDelete from '../../../assets/ContextMenu/delete.svg';
 import iconRemoveAll from '../../../assets/ContextMenu/removeAll4.svg';
 const ContextMenuDownloadItemOptions = [
   {
-    name: 'Copy link address',
+    name: 'Copy link',
     id: 'copy_link_address',
     icon: iconCopy,
     onClick: () => {
