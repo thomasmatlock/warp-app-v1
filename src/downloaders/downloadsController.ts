@@ -6,30 +6,20 @@ import downloadsVideoDefaults from '../storage/downloadsVideoDefaults';
 import downloadsWarpstagramDefaults from '../storage/downloadsWarpstagramDefaults';
 import { v4 as uuidv4 } from 'uuid';
 const Store = require('electron-store');
-// import ytpl from 'ytpl';
-const ytpl = require('ytpl');
-
-// const playlist = await ytpl('UU_aEa8K-EOJ3D6gOs7HcyNg');
 
 const settings = new Store();
 export async function DownloadItems(
   mWin: BrowserWindow,
-  urls: Array<string>,
+  urls: any,
   prefs: any,
   mode: any
 ) {
-  console.log('DownloadItems', urls);
+  // console.log(urls);
   urls.forEach((url: any) => {
     if (url.startsWith('https://www.youtube.com/watch?v=')) {
       downloadItem(mWin, url, prefs, mode);
     }
   });
-  // const playlist = await ytpl('UU_aEa8K-EOJ3D6gOs7HcyNg');
-  // console.log(playlist);
-}
-export async function playlists() {
-  const playlist = await ytpl('UU_aEa8K-EOJ3D6gOs7HcyNg');
-  console.log(playlist);
 }
 export async function downloadItem(
   mWin: BrowserWindow,
@@ -37,7 +27,6 @@ export async function downloadItem(
   prefs,
   mode
 ) {
-  playlists();
   let item = await Youtube(mWin, url, prefs, mode);
   item.id = uuidv4();
   if (mWin && item != undefined)
