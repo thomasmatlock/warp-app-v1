@@ -40,22 +40,26 @@ export default async function Youtube(mWin, itemURL, prefs, mode) {
       // );
 
       itemDetails = info.videoDetails;
+      // itemDetails.formats = info.formats;
       let matchedFormat;
       let audioFormats;
       let videoFormats;
+      let videoAndAudioFormats;
       if (mode.includes('audio')) {
         // audioFormats = ytdl.filterFormats(info.formats, 'audioonly');
+        // itemDetails.videoandaudioFormats = ytdl.filterFormats(info.formats, 'videoandaudio');
         // itemDetails.formats = audioFormats;
         // console.log(audioFormats.length);
         matchedFormat = getQuality(mode, audioQuality, info.formats);
       }
       if (mode.includes('video')) {
-        // videoFormats = ytdl.filterFormats(info.formats, 'videoandaudio');
+        // itemDetails.videoAndAudioFormats = ytdl.filterFormats(info.formats, 'videoandaudio');
         // itemDetails.formats = videoFormats;
         // console.log(videoFormats.length);
         matchedFormat = getQuality(mode, videoQuality, info.formats);
       }
-      itemDetails.formats = info.formats;
+      // console.log(itemDetails.formats);
+
       itemDetails.matchedFormat = matchedFormat;
       itemDetails.titleFS = formatTitle(itemDetails.title);
       itemDetails.fps = mode === 'video' ? matchedFormat.fps : '';
@@ -74,6 +78,7 @@ export default async function Youtube(mWin, itemURL, prefs, mode) {
       itemDetails.type = mode;
       itemDetails.format = mode === 'audio' ? audioFormat : videoFormat;
       itemDetails.thumbnailDisplay = itemDetails.thumbnails[1].url;
+
       itemDetails.searchTags =
         itemDetails.ownerChannelName +
         ' ' +
@@ -100,6 +105,9 @@ export default async function Youtube(mWin, itemURL, prefs, mode) {
       itemDetails.conversionPercentage = 0;
       itemDetails.conversionSecondsRemaining = 1;
       itemDetails.conversionComplete = false;
+      // itemDetails.formats = [info.formats];
+      itemDetails.formats = info.formats;
+      // console.log(itemDetails.formats);
     });
   } catch (error) {
     console.log(itemURL, error);

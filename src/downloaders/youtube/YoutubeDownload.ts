@@ -13,27 +13,50 @@ import getETA from './getETA';
 export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
   let randomInt = (Math.floor(Math.random() * 1000000) + 1).toString();
   let randomInt2 = (Math.floor(Math.random() * 1000000) + 1).toString();
+  console.log(item.formats.length + ' formats');
+  console.log(item.type, item.format, item.path);
 
-  let tempPath = path.join(app.getPath('temp'), 'Warp Downloader' + randomInt);
-  let tempPath2 = path.join(
-    app.getPath('desktop'),
+  // let tempPath = path.join(app.getPath('temp'), 'Warp Downloader' + randomInt);
+  let audioTempPath = path.join(
+    app.getPath('temp'),
     // item.titleFS + '.' + item.format.toLowerCase()
-    item.titleFS
+    item.titleFS + '.m4a'
+    // item.titleFS + '.weba'
   );
+  // if (item.format.type === 'audio') {
+  //   tempPath = path.join(
+  //     app.getPath('desktop'),
+  //     // item.titleFS + '.' + item.format.toLowerCase()
+  //     item.titleFS + '.m4a'
+  //   );
+  // }
   // CUSTOM METHOD
   try {
-    // console.log(item.F);
-    // console.log(item.formats[0].url);
-    console.log(item.matchedFormat);
-
     let progressPercentage;
     let downloadComplete = false;
     let downloadConversionComplete = false;
     let downloadBeginTime = Date.now();
     let conversionBeginTime;
-    const customStream = got.stream(item.matchedFormat.url); // DEFAULT USE THIS
+    const body = Buffer.alloc(1024 * 1024); // 1MB
+    function* chunkify(buffer, chunkSize = 64 * 1024) {
+      for (let pos = 0; pos < buffer.byteLength; pos += chunkSize) {
+        yield buffer.subarray(pos, pos + chunkSize);
+      }
+    }
+    // https://github.com/sindresorhus/got/blob/main/documentation/3-streams.md
+    const customStream = got.stream(item.matchedFormat.url, {
+      // highWaterMark: 128 * 1024,
+    }); // DEFAULT USE THIS
+    if (item.type === 'video') {
+      shell.openExternal(item.matchedFormat.url);
+    }
+
     // const customStream = got.stream(item.formats[0].url); // TESTING ONLY, FOR SMALL FILE
-    customStream.pipe(fs.createWriteStream(tempPath));
+    // customStream.pipe(fs.createWriteStream(item.path));
+    customStream.pipe(fs.createWriteStream(audioTempPath), {
+      // chunkSize: 256 * 1024,
+      // highWaterMark: 128 * 1024,
+    });
     customStream.on('downloadProgress', (progress) => {
       // let downloaded
       // progress.percent
@@ -68,16 +91,15 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
         let conversionPercentage;
         let totalLengthSeconds = convertToSeconds(item.lengthSeconds);
         let KBconverted = 0;
-        ffmpeg(tempPath)
+        ffmpeg(audioTempPath)
           .toFormat(item.format.toLowerCase())
           .on('error', (err) => {
             // console.log(err);
-            // fs.unlink(tempPath, (err) => {
-            //   if (err) console.log(err);
-            // });
+            fs.unlink(audioTempPath, (err) => {
+              if (err) console.log(err);
+            });
           })
           .on('progress', (progress) => {
-            console.log(progress + '% converted');
             // progress keys
             //            frames: NaN,
             // currentFps: NaN,
@@ -91,6 +113,7 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
               (secondsConverted / totalLengthSeconds) *
               100
             ).toFixed(0);
+            console.log(conversionPercentage + '% converted');
             // getETA(conversionBeginTime, Date.now(), conversionPercentage / 100);
 
             mWin.webContents.send('item-convert-progress', [
@@ -107,7 +130,7 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
             ]);
           })
           .on('end', () => {
-            fs.unlink(tempPath, (err) => {
+            fs.unlink(audioTempPath, (err) => {
               // if (err) throw err;
               if (err) console.log(err);
             });
