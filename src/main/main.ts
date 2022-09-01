@@ -35,6 +35,9 @@ import Screen from './screen';
 import Browser from './browserController';
 import createTray from './tray';
 import Shortcuts from './Shortcuts';
+const fs = require('fs');
+import m3u8stream from 'm3u8stream';
+
 // console.log(Downloads);
 // require('events').EventEmitter.defaultMaxListeners = 30; // removes error warnings
 let prefs;
@@ -42,6 +45,9 @@ let user;
 // let tray;
 let mWin: BrowserWindow | null = null;
 let view: BrowserView | null = null;
+let testURL =
+  'https://rr2---sn-5ualdnll.googlevideo.com/videoplayback?expire=1662024457&ei=qCYQY7-eMOKgj-8PqeqEKA&ip=97.80.132.152&id=o-ANslxuWl_67HYy3j7wJ2-6TnR7YPuNt-KCIx8lWcxXbJ&itag=248&aitags=133%2C134%2C135%2C136%2C137%2C160%2C242%2C243%2C244%2C247%2C248%2C278&source=youtube&requiressl=yes&vprv=1&mime=video%2Fwebm&ns=76RZEM-BnMITv3VZTtXMIj8H&gir=yes&clen=28268014&dur=136.720&lmt=1605368706823811&keepalive=yes&fexp=24001373,24007246&c=WEB&rbqsm=fr&txp=5432434&n=-_E0Ss5aLMFUg3oHfS&sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cdur%2Clmt&sig=AOq0QJ8wRgIhAOrKiuM-isqDVUPD77rCALzYvD_Yq3WdkTKMjLSl_a9DAiEA7nQ7lK000dk-BKIzlBO04RUEykqmlbgkpXhcv2h8Zyc%3D&redirect_counter=1&rm=sn-5uae777l&req_id=245aafa0128ca3ee&cms_redirect=yes&cmsv=e&ipbypass=yes&mh=vK&mip=2600:6c5a:477f:4b73:183b:8d5b:deb2:d84a&mm=31&mn=sn-5ualdnll&ms=au&mt=1662002729&mv=m&mvi=2&pl=32&lsparams=ipbypass,mh,mip,mm,mn,ms,mv,mvi,pl&lsig=AG3C_xAwRgIhAI3q7mu_JtybgOz5xlfpUHNqp4rkww8Ehz0G1eKKRNAFAiEAiuAMrhZ9EHqWYHVTH8w9vBWT_vmOMEzf6I6Gl00ndWQ%3D';
+// m3u8stream(testURL).pipe(fs.createWriteStream('videofile.mp4'));
 app
   .whenReady()
   .then(() => {

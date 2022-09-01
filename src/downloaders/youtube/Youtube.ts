@@ -33,7 +33,7 @@ export default async function Youtube(mWin, itemURL, prefs, mode) {
   itemDetails.videoQuality = videoQuality;
   try {
     await ytdl.getBasicInfo(itemURL).then((info) => {
-      // console.log(info);
+      console.log(info.formats[0]);
 
       itemDetails = info.videoDetails;
       let matchedFormat;
