@@ -8,19 +8,6 @@ import { v4 as uuidv4 } from 'uuid';
 const Store = require('electron-store');
 
 const settings = new Store();
-export async function DownloadItems(
-  mWin: BrowserWindow,
-  urls: any,
-  prefs: any,
-  mode: any
-) {
-  // console.log(urls);
-  urls.forEach((url: any) => {
-    if (url.startsWith('https://www.youtube.com/watch?v=')) {
-      downloadItem(mWin, url, prefs, mode);
-    }
-  });
-}
 export async function downloadItem(
   mWin: BrowserWindow,
   url: string,
@@ -138,7 +125,6 @@ export function deleteDownload(downloadID: string) {
 settings.delete('audioDownloads'); // testing only, REMOVE for production
 settings.delete('videoDownloads'); // testing only, REMOVE for production
 module.exports = {
-  DownloadItems: DownloadItems,
   downloadItem: downloadItem,
   getAudioDownloads: getAudioDownloads,
   getVideoDownloads: getVideoDownloads,
