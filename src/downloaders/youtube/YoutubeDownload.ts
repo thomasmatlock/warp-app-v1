@@ -15,32 +15,13 @@ import convertFile from './convertFile';
 
 export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
   let randomInt = (Math.floor(Math.random() * 1000000) + 1).toString();
-  let randomInt2 = (Math.floor(Math.random() * 1000000) + 1).toString();
-  console.log(item.formats.length + ' formats');
-  console.log(item.type, item.format, item.path);
+  // console.log(item.formats.length + ' formats');
+  // console.log(item.type, item.format, item.path);
 
-  // let tempPath;
-  let tempPath = path.join(app.getPath('temp'), 'Warp Downloader' + randomInt);
-  let audioTempPath = path.join(
-    app.getPath('temp'),
-    'Warp Downloader' + randomInt + '.m4a'
-    // item.titleFS + '.' + item.format.toLowerCase()
-    // item.titleFS + '.m4a'
-    // item.titleFS + '.weba'
-  );
-  let videoTempPath = path.join(
-    app.getPath('temp'),
-    // item.titleFS + '.' + item.format.toLowerCase()
-    'Warp Downloader' + randomInt + '.mp4'
-    // item.titleFS + '.mp4'
-    // item.titleFS
-    // item.titleFS + '.weba'
-  );
-  if (item.format.type === 'audio') {
-    tempPath = audioTempPath;
-  } else {
-    tempPath = videoTempPath;
-  }
+  let tempPath =
+    item.type === 'audio'
+      ? path.join(app.getPath('temp'), 'Warp Downloader' + randomInt + '.m4a')
+      : path.join(app.getPath('temp'), 'Warp Downloader' + randomInt + '.mp4');
   // CUSTOM METHOD
   try {
     let progressPercentage;
@@ -48,35 +29,16 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
     let downloadConversionComplete = false;
     let downloadBeginTime = Date.now();
     let conversionBeginTime;
-    // stream.Readable.fromWeb;
     // https://github.com/sindresorhus/got/blob/main/documentation/3-streams.md
     const customStream = got.stream(item.matchedFormat.url, {}); // DEFAULT USE THIS
-    // console.log(customStream);
-
-    if (item.type === 'video') {
-      // shell.openExternal(item.matchedFormat.url);
-    }
-    // console.log(customStream);
-
-    // const customStream = got.stream(item.formats[0].url); // TESTING ONLY, FOR SMALL FILE
-    // customStream.pipe(fs.createWriteStream(item.path));
-    customStream.pipe(fs.createWriteStream(tempPath), {
-      // chunkSize: 256 * 1024,
-      // highWaterMark: 128 * 1024,
-      // highWaterMark: 1024 * 1024,
-    });
+    customStream.pipe(fs.createWriteStream(tempPath), {});
     customStream.on('downloadProgress', (progress) => {
-      // let downloaded
-      // progress.percent
-      // progress.transferred = downloaded;
-      // progress.total
       progress.percent = Math.floor(progress.percent * 100);
       progressPercentage = progress.percent;
       mWin.webContents.send('item-download-progress', [
         item.id,
         progressPercentage,
       ]);
-      // console.log(progressPercentage);
 
       mWin.webContents.send('item-download-eta-seconds-remaining', [
         item.id,
@@ -91,27 +53,88 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
         conversionBeginTime = Date.now();
       }
       // FILE CONVERSION
-      if (downloadComplete) {
-        // console.log('ready to convert');
-        // console.log('format: ', item.format);
+      if (downloadComplete && item.format != 'MP4') {
+        // console.log('download complete');
+        let conversionBeginTime = Date.now();
+        let downloadConversionComplete = false;
+        let conversionPercentage;
+        let totalLengthSeconds = convertToSeconds(item.lengthSeconds);
+        let KBconverted = 0;
+        // try {
+        // console.log('time to convert: ' + totalLengthSeconds);
+        // shell.showItemInFolder(tempPath);
+        // console.log(item.format);
 
-        // if (item.format != 'MP4') {
+        ffmpeg(tempPath)
+          .toFormat(item.format.toLowerCase())
+          .on('error', (err) => {
+            console.log(err);
+            fs.unlink(tempPath, (err) => {
+              // if (err) console.log(err);
+            });
+          })
+          .on('progress', (progress) => {
+            // progress keys
+            //            frames: NaN,
+            // currentFps: NaN,
+            // currentKbps: 128,
+            // targetSize: 13607,
+            // timemark: '00:14:30.79'
+
+            KBconverted = progress.currentKbps + KBconverted;
+            let secondsConverted = convertToSeconds(progress.timemark);
+            conversionPercentage = (
+              (secondsConverted / totalLengthSeconds) *
+              100
+            ).toFixed(0);
+            console.log(conversionPercentage + '% converted');
+            // getETA(conversionBeginTime, Date.now(), conversionPercentage / 100);
+
+            mWin.webContents.send('item-convert-progress', [
+              item.id,
+              conversionPercentage,
+            ]);
+            mWin.webContents.send('item-conversion-eta-seconds-remaining', [
+              item.id,
+              getETA(
+                conversionBeginTime,
+                Date.now(),
+                conversionPercentage / 100
+              ),
+            ]);
+          })
+          .on('end', () => {
+            // fs.unlink(tempPath, (err) => {
+
+            mWin.webContents.send('item-conversion-complete', [item.id]);
+            // fs.rename(tempPath, item.path, (err) => {});
+            downloadConversionComplete = true;
+          })
+          .save(item.path);
+        // .then(() => {
+        let fileSize = fs.statSync(tempPath).size;
+        fileSize = fileSize.toFixed(1);
+        mWin.webContents.send('item-fileSize-retrieved', [item.id, fileSize]);
+        // });
+
+        // convertFile(mWin, item, tempPath);
+        // if (item.format === 'MP4') {
+        //   let fileSize = fs.statSync(tempPath).size;
+        //   fileSize = fileSize.toFixed(1);
+        //   mWin.webContents.send('item-fileSize-retrieved', [item.id, fileSize]);
+        //   mWin.webContents.send('item-conversion-complete', [item.id]);
+        //   fs.rename(tempPath, item.path, (err) => {});
+        //   downloadConversionComplete = true;
+        // } else {
+        //   convertFile(mWin, item, tempPath);
         // }
-
-        if (item.format === 'MP4') {
-          console.log('its mp4');
-
-          let fileSize = fs.statSync(tempPath).size;
-          fileSize = fileSize.toFixed(1);
-          mWin.webContents.send('item-fileSize-retrieved', [item.id, fileSize]);
-          mWin.webContents.send('item-conversion-complete', [item.id]);
-          fs.rename(tempPath, item.path, (err) => {});
-          downloadConversionComplete = true;
-        } else {
-          console.log('its not mp4');
-
-          convertFile(mWin, item, tempPath);
-        }
+      } else if (downloadComplete && item.format == 'MP4') {
+        let fileSize = fs.statSync(tempPath).size;
+        fileSize = fileSize.toFixed(1);
+        mWin.webContents.send('item-fileSize-retrieved', [item.id, fileSize]);
+        mWin.webContents.send('item-conversion-complete', [item.id]);
+        fs.rename(tempPath, item.path, (err) => {});
+        downloadConversionComplete = true;
       }
     });
   } catch (error) {

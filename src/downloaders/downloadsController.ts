@@ -52,13 +52,18 @@ export async function playlist(
   prefs: any,
   mode: any
 ) {
+  let newURLS = [];
   // playlist.items RETURNS AN ARRAY OF OBJECTS
   const playlist = await ytpl(getYoutubePlaylistIDFromURL(url));
-  // let urls = playlist.items.map((item) => {
-  //   return item.url;
-  // });
+  let urls = playlist.items.map((item) => {
+    newURLS.push(item.url);
+    // console.log(item.url);
 
-  DownloadItems(mWin, playlist.items, prefs, mode);
+    // return item.url;
+  });
+  // console.log(urls);
+
+  // DownloadItems(mWin, playlist.items, prefs, mode);
 }
 export async function downloadItem(
   mWin: BrowserWindow,
