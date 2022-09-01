@@ -119,19 +119,6 @@ const BrowserBar = () => {
     }
     setCanDownload(false);
   };
-  const downloadAudioPlaylistHandler = () => {
-    // setTimeout(() => {
-    //   setCanDownload(true);
-    // }, 1000);
-    if (canDownload) {
-      // window.electron.ipcRenderer.sendMessage('screenshotting');
-      window.electron.ipcRenderer.sendMessage(
-        'BrowserBar: button: downloadAudioPlaylist',
-        [`Download Audio`]
-      );
-    }
-    setCanDownload(false);
-  };
 
   const downloadVideoHandler = () => {
     // setTimeout(() => {
@@ -239,8 +226,7 @@ const BrowserBar = () => {
           !actionBarCtx.isBrowserPanelCollapsed &&
           actionBarCtx.singlePlaylistExists && (
             <div
-              // onClick={downloadAudioHandler}
-              onClick={downloadAudioPlaylistHandler}
+              onClick={downloadAudioHandler}
               className="browserBarDownloadBtn browserBarDownloadBtn__audio"
             >
               <img src={playlistVideoIcon} alt="playlistVideoIcon" />
@@ -253,10 +239,10 @@ const BrowserBar = () => {
           !actionBarCtx.isBrowserPanelCollapsed &&
           actionBarCtx.multiplePlaylistsExist && (
             <div
-              onClick={downloadAudioPlaylistHandler}
+              onClick={downloadAudioHandler}
               className="browserBarDownloadBtn browserBarDownloadBtn__audio"
             >
-              {/* <Loader /> */}
+              <Loader />
               <img src={playlistVideoIcon} alt="playlistVideoIcon" />
               {actionBarCtx.multiplePlaylistsExist && (
                 <p> Download Audio Playlists</p>

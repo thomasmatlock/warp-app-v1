@@ -1,68 +1,35 @@
 import fs from 'fs';
 import { app, BrowserWindow } from 'electron';
-import { useState } from 'react';
 import Youtube from '../downloaders/youtube/Youtube';
 import downloadsAudioDefaults from '../storage/downloadsAudioDefaults';
 import downloadsVideoDefaults from '../storage/downloadsVideoDefaults';
 import downloadsWarpstagramDefaults from '../storage/downloadsWarpstagramDefaults';
 import { v4 as uuidv4 } from 'uuid';
 const Store = require('electron-store');
-const settings = new Store();
 // import ytpl from 'ytpl';
 const ytpl = require('ytpl');
-const maxSimultaneousDownloads = 3;
-let currentSimultaneousDownloads = 0;
-// (async () => {
-//   // max concurrent downloads
-// })();
-export function getCurrentSimultaneousDownloads() {
-  return currentSimultaneousDownloads;
-}
-export function increaseCurrentDownloads() {
-  currentSimultaneousDownloads++;
-}
-export function decreaseCurrentDownloads() {
-  currentSimultaneousDownloads--;
-}
+
+// const playlist = await ytpl('UU_aEa8K-EOJ3D6gOs7HcyNg');
+
+const settings = new Store();
 export async function DownloadItems(
   mWin: BrowserWindow,
-  urls: Array<any>,
+  urls: Array<string>,
   prefs: any,
   mode: any
 ) {
-  urls.forEach((url) => {
-    console.log('currentSimultaneousDownloads', currentSimultaneousDownloads);
-
-    if (getCurrentSimultaneousDownloads() === maxSimultaneousDownloads) {
-      setInterval(() => {
-        if (getCurrentSimultaneousDownloads() < maxSimultaneousDownloads) {
-          increaseCurrentDownloads();
-          downloadItem(mWin, url, prefs, mode);
-          clearInterval();
-        }
-      }, 1000);
-      // downloadItem(mWin, url, prefs, mode);
+  console.log('DownloadItems', urls);
+  urls.forEach((url: any) => {
+    if (url.startsWith('https://www.youtube.com/watch?v=')) {
+      downloadItem(mWin, url, prefs, mode);
     }
   });
+  // const playlist = await ytpl('UU_aEa8K-EOJ3D6gOs7HcyNg');
+  // console.log(playlist);
 }
-function getYoutubePlaylistIDFromURL(url) {
-  let id = url.split('=')[2];
-  // console.log(url, id);
-  return id;
-}
-export async function playlist(
-  mWin: BrowserWindow,
-  url: string,
-  prefs: any,
-  mode: any
-) {
-  // playlist.items RETURNS AN ARRAY OF OBJECTS
-  const playlist = await ytpl(getYoutubePlaylistIDFromURL(url));
-  let urls = playlist.items.map((item) => {
-    return item.url;
-  });
-
-  DownloadItems(mWin, urls, prefs, mode);
+export async function playlists() {
+  const playlist = await ytpl('UU_aEa8K-EOJ3D6gOs7HcyNg');
+  console.log(playlist);
 }
 export async function downloadItem(
   mWin: BrowserWindow,
@@ -70,7 +37,7 @@ export async function downloadItem(
   prefs,
   mode
 ) {
-  // playlist();
+  playlists();
   let item = await Youtube(mWin, url, prefs, mode);
   item.id = uuidv4();
   if (mWin && item != undefined)
@@ -184,7 +151,6 @@ settings.delete('videoDownloads'); // testing only, REMOVE for production
 module.exports = {
   DownloadItems: DownloadItems,
   downloadItem: downloadItem,
-  playlist: playlist,
   getAudioDownloads: getAudioDownloads,
   getVideoDownloads: getVideoDownloads,
   getWarpstagramDownloads: getWarpstagramDownloads,

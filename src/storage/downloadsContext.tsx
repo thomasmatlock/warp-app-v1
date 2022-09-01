@@ -55,7 +55,6 @@ export const DownloadsContextProvider = (props) => {
   const [downloadsAudioState, setDownloadsAudioState] = useState(0);
   const [downloadsVideoState, setDownloadsVideoState] = useState(0);
   const [percentUpdateState, setPercentUpdateState] = useState(0);
-  const [maxConcurrentDownloads, setMaxConcurrentDownloads] = useState(3);
   const getMatchingDownload = (downloadID) => {
     for (const download of downloadsAudio) {
       if (download.id === downloadID) {
