@@ -11,6 +11,7 @@ import convertToSeconds from './convertTimeToSeconds';
 import getETA from './getETA';
 import progress from 'progress-stream';
 // import HttpsProxyAgent from 'https-proxy-agent';
+// chunkLength;
 
 // Remove 'user:pass@' if you don't need to authenticate to your proxy.
 // const proxy = 'http://45.95.99.52:7612';
@@ -37,8 +38,11 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
   let tempPath = path.join(app.getPath('temp'), 'Warp Downloader' + randomInt);
   let tempPath2 = path.join(
     app.getPath('desktop'),
-    item.titleFS + '.' + item.format.toLowerCase()
+    // item.titleFS + '.' + item.format.toLowerCase()
+    item.titleFS
   );
+  console.log(tempPath2);
+
   // CUSTOM METHOD
   try {
     // console.log(item);
@@ -49,7 +53,7 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
     let downloadBeginTime = Date.now();
     let conversionBeginTime;
     const customStream = got.stream(item.matchedFormat.url);
-    customStream.pipe(fs.createWriteStream(item.path));
+    customStream.pipe(fs.createWriteStream(tempPath2));
 
     // fs.createReadStream(filename).pipe(str).pipe(fs.createWriteStream(output));
     // customStream.on('progress', (chunkLength, downloaded, total) => {
@@ -57,9 +61,35 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
     //   // console.log(progressPercentage);
     //   // console.log('progress');
     // });
-    customStream.on('finish', function () {
-      console.log('finish');
+    // customStream.on('data', function (data, downloaded, total) {
+    //   console.log(data);
+    // });
+
+    customStream.on('downloadProgress', (progress) => {
+      progress.percent = Math.floor(progress.percent * 100);
+      progressPercentage = progress.percent;
+      //     progress.percent
+      // progress.transferred
+      // progress.total
+      mWin.webContents.send('item-download-progress', [
+        item.id,
+        progressPercentage,
+      ]);
+      mWin.webContents.send('item-download-eta-seconds-remaining', [
+        item.id,
+        getETA(
+          downloadBeginTime,
+          Date.now(),
+          progress.transferred / progress.total
+        ),
+      ]);
+      // console.log(progress);
     });
+    // console.log(customStream);
+    // customStream.on('ended', function () {
+    //   console.log('ended');
+    // });
+
     // customStream.on('progress', (chunkLength, downloaded, total) => {
     //   progressPercentage = downloaded / total;
     //   console.log(progressPercentage);
