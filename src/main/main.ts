@@ -228,12 +228,9 @@ let browserPanelState = 'default';
   });
   // BROWSERBAR DOWNLOAD BUTTON LISTENERS
   ipcMain.on('BrowserBar: button: downloadAudio', async (event, arg) => {
-    let items = [];
-    let item = { url: '' };
-
-    if (view) item.url = view.webContents.getURL();
-    items.push(item);
-    Downloads.DownloadItems(mWin, items, prefs, 'audio');
+    let urls = [];
+    if (view) urls.push(view.webContents.getURL());
+    Downloads.DownloadItems(mWin, urls, prefs, 'audio');
     // event.reply('BrowserBar: button: downloadAudio successful');
   });
   ipcMain.on(
@@ -246,12 +243,9 @@ let browserPanelState = 'default';
     }
   );
   ipcMain.on('BrowserBar: button: downloadVideo', async (event, arg) => {
-    let items = [];
-    let item = { url: '' };
-
-    if (view) item.url = view.webContents.getURL();
-    items.push(item);
-    Downloads.DownloadItems(mWin, items, prefs, 'video');
+    let urls = [];
+    if (view) urls.push(view.webContents.getURL());
+    Downloads.DownloadItems(mWin, urls, prefs, 'video');
   });
   ipcMain.on('browserPanelSize', async (event, arg) => {
     browserPanelState = arg;

@@ -26,20 +26,24 @@ export function decreaseCurrentDownloads() {
 }
 export async function DownloadItems(
   mWin: BrowserWindow,
-  items: any[],
+  urls: Array<any>,
   prefs: any,
   mode: any
 ) {
-  items.forEach((item) => {
-    downloadItem(mWin, item.url, prefs, mode);
-    // console.log(item.url);
-  });
+  urls.forEach((url) => {
+    console.log('currentSimultaneousDownloads', currentSimultaneousDownloads);
 
-  // let newURLS = urls.forEach((url) => {
-  //   newURLS.push(url);
-  //   // url.status = 'pending';
-  // });
-  // });
+    if (getCurrentSimultaneousDownloads() === maxSimultaneousDownloads) {
+      setInterval(() => {
+        if (getCurrentSimultaneousDownloads() < maxSimultaneousDownloads) {
+          increaseCurrentDownloads();
+          downloadItem(mWin, url, prefs, mode);
+          clearInterval();
+        }
+      }, 1000);
+      // downloadItem(mWin, url, prefs, mode);
+    }
+  });
 }
 function getYoutubePlaylistIDFromURL(url) {
   let id = url.split('=')[2];
@@ -54,11 +58,11 @@ export async function playlist(
 ) {
   // playlist.items RETURNS AN ARRAY OF OBJECTS
   const playlist = await ytpl(getYoutubePlaylistIDFromURL(url));
-  // let urls = playlist.items.map((item) => {
-  //   return item.url;
-  // });
+  let urls = playlist.items.map((item) => {
+    return item.url;
+  });
 
-  DownloadItems(mWin, playlist.items, prefs, mode);
+  DownloadItems(mWin, urls, prefs, mode);
 }
 export async function downloadItem(
   mWin: BrowserWindow,
@@ -69,17 +73,14 @@ export async function downloadItem(
   // playlist();
   let item = await Youtube(mWin, url, prefs, mode);
   item.id = uuidv4();
-
   if (mWin && item != undefined)
     if (mode === 'audio') {
-      decreaseCurrentDownloads();
       let audioDownloads = getAudioDownloads();
       audioDownloads.push(item);
       setAudioDownloads(audioDownloads);
       mWin.webContents.send('main: item-downloaded', [item, 'audio']);
     }
   if (mode === 'video') {
-    decreaseCurrentDownloads();
     let videoDownloads = getVideoDownloads();
     videoDownloads.push(item);
     setVideoDownloads(videoDownloads);
