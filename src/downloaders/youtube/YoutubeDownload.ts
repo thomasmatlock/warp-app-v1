@@ -26,6 +26,7 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
     currentDownload.on('progress', (chunkLength, downloaded, total) => {
       // getETA(downloadBeginTime, Date.now(), downloaded / total);
       progressPercentage = downloaded / total;
+      // console.log(progressPercentage);
       progressPercentage = Math.round(progressPercentage * 100);
 
       mWin.webContents.send('item-download-progress', [
