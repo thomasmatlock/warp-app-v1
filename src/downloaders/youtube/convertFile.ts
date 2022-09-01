@@ -18,6 +18,8 @@ export default function convertFile(
     let conversionPercentage;
     let totalLengthSeconds = convertToSeconds(item.lengthSeconds);
     let KBconverted = 0;
+    console.log('time to convert: ' + totalLengthSeconds);
+
     ffmpeg(tempPath)
       .toFormat(item.format.toLowerCase())
       .on('error', (err) => {
@@ -53,17 +55,14 @@ export default function convertFile(
         ]);
       })
       .on('end', () => {
-        fs.unlink(tempPath, (err) => {
-          // if (err) throw err;
-          if (err) console.log(err);
-        });
-        downloadConversionComplete = true;
-        mWin.webContents.send('item-conversion-complete', [item.id]);
-        let fileSize = fs.statSync(item.path).size;
+        // fs.unlink(tempPath, (err) => {
+        let fileSize = fs.statSync(tempPath).size;
         fileSize = fileSize.toFixed(1);
         mWin.webContents.send('item-fileSize-retrieved', [item.id, fileSize]);
-      })
-      .save(item.path);
-    shell.showItemInFolder(item.path);
+        mWin.webContents.send('item-conversion-complete', [item.id]);
+        fs.rename(tempPath, item.path, (err) => {});
+        downloadConversionComplete = true;
+      });
+    // .save(item.path);
   } catch (error) {}
 }

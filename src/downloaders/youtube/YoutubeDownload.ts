@@ -51,7 +51,7 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
     // stream.Readable.fromWeb;
     // https://github.com/sindresorhus/got/blob/main/documentation/3-streams.md
     const customStream = got.stream(item.matchedFormat.url, {}); // DEFAULT USE THIS
-    console.log(customStream);
+    // console.log(customStream);
 
     if (item.type === 'video') {
       // shell.openExternal(item.matchedFormat.url);
@@ -87,34 +87,30 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
         ),
       ]);
       if (progress.transferred === progress.total) {
-        console.log('download complete');
-        // shell.showItemInFolder(tempPath);
         downloadComplete = true;
         conversionBeginTime = Date.now();
-        console.log(downloadComplete);
       }
       // FILE CONVERSION
       if (downloadComplete) {
-        // console.log(item.format);
+        // console.log('ready to convert');
+        // console.log('format: ', item.format);
 
-        if (item.format != 'MP4') {
-          convertFile(mWin, item, tempPath);
-        }
+        // if (item.format != 'MP4') {
+        // }
 
         if (item.format === 'MP4') {
+          console.log('its mp4');
+
           let fileSize = fs.statSync(tempPath).size;
-          shell.showItemInFolder(tempPath);
           fileSize = fileSize.toFixed(1);
           mWin.webContents.send('item-fileSize-retrieved', [item.id, fileSize]);
-          // fs.rename(tempPath, item.path, function (err) {
-          //   // if (err) throw err;
-          //   console.log('Successfully - AKA moved!');
-          // });
-          fs.rename(tempPath, item.path, (err) => {
-            if (err) throw err;
-            console.log('Move complete!');
-          });
           mWin.webContents.send('item-conversion-complete', [item.id]);
+          fs.rename(tempPath, item.path, (err) => {});
+          downloadConversionComplete = true;
+        } else {
+          console.log('its not mp4');
+
+          convertFile(mWin, item, tempPath);
         }
       }
     });
