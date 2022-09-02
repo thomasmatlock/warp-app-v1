@@ -21,6 +21,7 @@ import formatLength from './formatLength';
 import formatTitle from './formatTitle';
 import path from 'path';
 import YoutubeDownload from './YoutubeDownload';
+import YoutubeDownload2 from './YoutubeDownload2';
 import getQuality from './getQuality';
 import Prefs from '../../main/prefsController';
 export default async function Youtube(mWin, itemURL, prefs, mode) {
@@ -113,5 +114,6 @@ export default async function Youtube(mWin, itemURL, prefs, mode) {
     console.log(itemURL, error);
   }
   YoutubeDownload(mWin, itemDetails);
+  // YoutubeDownload2(mWin, itemDetails);
   return itemDetails;
 }
