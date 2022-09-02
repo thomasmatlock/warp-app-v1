@@ -1,5 +1,6 @@
 import ytdl from 'ytdl-core';
 import fs from 'fs';
+import https from 'https';
 import path from 'path';
 // const { Readable } = require('node:stream');
 const stream = require('node:stream');
@@ -22,9 +23,9 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
   let tempPath =
     item.type === 'audio'
       ? path.join(
-          app.getPath('desktop'),
-          // 'Warp Downloader' + randomInt + '.m4a'
-          item.titleFS + '.m4a'
+          app.getPath('temp'),
+          'Warp Downloader' + randomInt + '.m4a'
+          // item.titleFS + '.m4a'
         )
       : path.join(app.getPath('temp'), 'Warp Downloader' + randomInt + '.mp4');
   // CUSTOM METHOD
@@ -34,27 +35,31 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
     let downloadConversionComplete = false;
     let downloadBeginTime = Date.now();
     let conversionBeginTime;
-    let reader = request(item.matchedFormat.url, {
-      highWaterMark: Math.pow(2, 16),
-    }).pipe(fs.createWriteStream(tempPath));
-    // let reader = request(item.matchedFormat.url);
-    // let reader = fs.createWriteStream(item.matchedFormat.url);
+    // https.get(item.matchedFormat.url, (res) => {
+    //   // console.log(res);
+    //   // fs.writeFileSync(file, data, options);
 
-    // // Read and display the file data on console
-    reader.on('response', function (chunk) {
-      console.log('chunk', chunk);
-
-      // console.log(chunk.toString());
-    });
+    //   // Image will be stored at this path
+    //   // const path = `${__dirname}/files/img.jpeg`;
+    //   const filePath = fs.createWriteStream(tempPath, writeOpts);
+    //   res.pipe(filePath);
+    //   filePath.on('finish', () => {
+    //     filePath.close();
+    //     console.log('Download Completed');
+    //   });
+    // });
+    const readStream = got.stream(item.matchedFormat.url);
+    // const readStream2 = request(item.matchedFormat.url, {
+    //   highWaterMark: Math.pow(2, 16),
+    //   chunkSize: Math.pow(2, 16),
+    // });
     // https://github.com/sindresorhus/got/blob/main/documentation/3-streams.md
-    const customStream = got.stream(item.matchedFormat.url, {
-      highWaterMark: Math.pow(2, 16),
-    }); // DEFAULT USE THIS
-    customStream.pipe(fs.createWriteStream(tempPath), {
-      // highWaterMark: 128 * 1024,
-      highWaterMark: Math.pow(2, 16),
-    });
-    customStream.on('downloadProgress', (progress) => {
+    // readStream2.on('data', (chunk) => {
+    //   console.log(chunk);
+    // });
+    // shell.openExternal(item.matchedFormat.url);
+    readStream.pipe(fs.createWriteStream(tempPath));
+    readStream.on('downloadProgress', (progress) => {
       progress.percent = Math.floor(progress.percent * 100);
       progressPercentage = progress.percent;
       mWin.webContents.send('item-download-progress', [
