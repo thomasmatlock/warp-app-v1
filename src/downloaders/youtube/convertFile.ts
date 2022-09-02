@@ -14,43 +14,87 @@ export default function convertFile(
   item: any,
   tempPath: string
 ) {
-  console.log('converting file');
-  console.log(tempPath);
-
-  // let downloadBeginTime = Date.now();
+  // console.log('converting file');
+  // console.log(tempPath);
+  // // let downloadBeginTime = Date.now();
   let conversionBeginTime = Date.now();
   let downloadConversionComplete = false;
-  let conversionPercentage;
+  // let conversionPercentage;
   let totalLengthSeconds = convertToSeconds(item.lengthSeconds);
   let KBconverted = 0;
-  // try {
-  // console.log('time to convert: ' + totalLengthSeconds);
-  // shell.showItemInFolder(tempPath);
-  console.log(item.format);
-
+  // // try {
+  // // console.log('time to convert: ' + totalLengthSeconds);
+  // // shell.showItemInFolder(tempPath);
+  // console.log(item.format);
+  // ffmpeg(tempPath)
+  //   .toFormat(item.format.toLowerCase())
+  //   .on('error', (err) => {
+  //     console.log(err);
+  //     fs.unlink(tempPath, (err) => {
+  //       // if (err) console.log(err);
+  //     });
+  //   })
+  //   .on('progress', (progress) => {
+  //     // progress keys
+  //     //            frames: NaN,
+  //     // currentFps: NaN,
+  //     // currentKbps: 128,
+  //     // targetSize: 13607,
+  //     // timemark: '00:14:30.79'
+  //     KBconverted = progress.currentKbps + KBconverted;
+  //     let secondsConverted = convertToSeconds(progress.timemark);
+  //     conversionPercentage = (
+  //       (secondsConverted / totalLengthSeconds) *
+  //       100
+  //     ).toFixed(0);
+  //     // console.log(conversionPercentage + '% converted');
+  //     mWin.webContents.send('item-convert-progress', [
+  //       item.id,
+  //       conversionPercentage,
+  //     ]);
+  //     mWin.webContents.send('item-conversion-eta-seconds-remaining', [
+  //       item.id,
+  //       getETA(conversionBeginTime, Date.now(), conversionPercentage / 100),
+  //     ]);
+  //   })
+  //   .on('end', () => {
+  //     // fs.unlink(tempPath, (err) => {
+  //     let fileSize = fs.statSync(tempPath).size;
+  //     fileSize = fileSize.toFixed(1);
+  //     mWin.webContents.send('item-fileSize-retrieved', [item.id, fileSize]);
+  //     mWin.webContents.send('item-conversion-complete', [item.id]);
+  //     fs.rename(tempPath, item.path, (err) => {});
+  //     downloadConversionComplete = true;
+  //   });
+  // .save(item.path);
+  // } catch (error) {}
+  //////////////////////////////////////////////////////
+  let conversionPercentage;
+  // let totalLengthSeconds = convertToSeconds(item.lengthSeconds);
+  // let KBconverted = 0;
   ffmpeg(tempPath)
     .toFormat(item.format.toLowerCase())
     .on('error', (err) => {
       console.log(err);
-      fs.unlink(tempPath, (err) => {
-        // if (err) console.log(err);
-      });
+      // fs.unlink(tempPath, (err) => {
+      //   if (err) console.log(err);
+      // });
     })
     .on('progress', (progress) => {
+      // console.log(progress);
       // progress keys
       //            frames: NaN,
       // currentFps: NaN,
       // currentKbps: 128,
       // targetSize: 13607,
       // timemark: '00:14:30.79'
-
       KBconverted = progress.currentKbps + KBconverted;
       let secondsConverted = convertToSeconds(progress.timemark);
       conversionPercentage = (
         (secondsConverted / totalLengthSeconds) *
         100
       ).toFixed(0);
-      // console.log(conversionPercentage + '% converted');
+      // getETA(conversionBeginTime, Date.now(), conversionPercentage / 100);
       mWin.webContents.send('item-convert-progress', [
         item.id,
         conversionPercentage,
@@ -61,14 +105,15 @@ export default function convertFile(
       ]);
     })
     .on('end', () => {
-      // fs.unlink(tempPath, (err) => {
-      let fileSize = fs.statSync(tempPath).size;
+      fs.unlink(tempPath, (err) => {
+        // if (err) throw err;
+        if (err) console.log(err);
+      });
+      downloadConversionComplete = true;
+      mWin.webContents.send('item-conversion-complete', [item.id]);
+      let fileSize = fs.statSync(item.path).size;
       fileSize = fileSize.toFixed(1);
       mWin.webContents.send('item-fileSize-retrieved', [item.id, fileSize]);
-      mWin.webContents.send('item-conversion-complete', [item.id]);
-      fs.rename(tempPath, item.path, (err) => {});
-      downloadConversionComplete = true;
-    });
-  // .save(item.path);
-  // } catch (error) {}
+    })
+    .save(item.path);
 }
