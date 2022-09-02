@@ -25,7 +25,7 @@ export default function convertFile(
   let KBconverted = 0;
   // try {
   // console.log('time to convert: ' + totalLengthSeconds);
-  shell.showItemInFolder(tempPath);
+  // shell.showItemInFolder(tempPath);
   console.log(item.format);
 
   ffmpeg(tempPath)

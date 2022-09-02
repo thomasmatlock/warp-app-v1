@@ -13,6 +13,7 @@ ffmpeg.setFfmpegPath(ffmpegPath);
 const request = require('request');
 import convertToSeconds from './convertTimeToSeconds';
 import getETA from './getETA';
+// import convertFile from './convertFile';
 import convertFile from './convertFile';
 const Downloader = require('nodejs-file-downloader');
 
@@ -78,63 +79,61 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
         console.log(marker);
       }
       if (downloadComplete) {
-        let conversionPercentage;
-        let totalLengthSeconds = convertToSeconds(item.lengthSeconds);
-        let KBconverted = 0;
-        ffmpeg(tempPath)
-          .toFormat(item.format.toLowerCase())
-          .on('error', (err) => {
-            console.log(err);
-
-            // fs.unlink(tempPath, (err) => {
-            //   if (err) console.log(err);
-            // });
-          })
-          .on('progress', (progress) => {
-            // console.log(progress);
-            // progress keys
-            //            frames: NaN,
-            // currentFps: NaN,
-            // currentKbps: 128,
-            // targetSize: 13607,
-            // timemark: '00:14:30.79'
-
-            KBconverted = progress.currentKbps + KBconverted;
-            let secondsConverted = convertToSeconds(progress.timemark);
-            conversionPercentage = (
-              (secondsConverted / totalLengthSeconds) *
-              100
-            ).toFixed(0);
-            // getETA(conversionBeginTime, Date.now(), conversionPercentage / 100);
-
-            mWin.webContents.send('item-convert-progress', [
-              item.id,
-              conversionPercentage,
-            ]);
-            mWin.webContents.send('item-conversion-eta-seconds-remaining', [
-              item.id,
-              getETA(
-                conversionBeginTime,
-                Date.now(),
-                conversionPercentage / 100
-              ),
-            ]);
-          })
-          .on('end', () => {
-            fs.unlink(tempPath, (err) => {
-              // if (err) throw err;
-              if (err) console.log(err);
-            });
-            downloadConversionComplete = true;
-            mWin.webContents.send('item-conversion-complete', [item.id]);
-            let fileSize = fs.statSync(item.path).size;
-            fileSize = fileSize.toFixed(1);
-            mWin.webContents.send('item-fileSize-retrieved', [
-              item.id,
-              fileSize,
-            ]);
-          })
-          .save(item.path);
+        convertFile(mWin, item, tempPath);
+        // let conversionPercentage;
+        // let totalLengthSeconds = convertToSeconds(item.lengthSeconds);
+        // let KBconverted = 0;
+        // ffmpeg(tempPath)
+        //   .toFormat(item.format.toLowerCase())
+        //   .on('error', (err) => {
+        //     console.log(err);
+        //     // fs.unlink(tempPath, (err) => {
+        //     //   if (err) console.log(err);
+        //     // });
+        //   })
+        //   .on('progress', (progress) => {
+        //     // console.log(progress);
+        //     // progress keys
+        //     //            frames: NaN,
+        //     // currentFps: NaN,
+        //     // currentKbps: 128,
+        //     // targetSize: 13607,
+        //     // timemark: '00:14:30.79'
+        //     KBconverted = progress.currentKbps + KBconverted;
+        //     let secondsConverted = convertToSeconds(progress.timemark);
+        //     conversionPercentage = (
+        //       (secondsConverted / totalLengthSeconds) *
+        //       100
+        //     ).toFixed(0);
+        //     // getETA(conversionBeginTime, Date.now(), conversionPercentage / 100);
+        //     mWin.webContents.send('item-convert-progress', [
+        //       item.id,
+        //       conversionPercentage,
+        //     ]);
+        //     mWin.webContents.send('item-conversion-eta-seconds-remaining', [
+        //       item.id,
+        //       getETA(
+        //         conversionBeginTime,
+        //         Date.now(),
+        //         conversionPercentage / 100
+        //       ),
+        //     ]);
+        //   })
+        //   .on('end', () => {
+        //     fs.unlink(tempPath, (err) => {
+        //       // if (err) throw err;
+        //       if (err) console.log(err);
+        //     });
+        //     downloadConversionComplete = true;
+        //     mWin.webContents.send('item-conversion-complete', [item.id]);
+        //     let fileSize = fs.statSync(item.path).size;
+        //     fileSize = fileSize.toFixed(1);
+        //     mWin.webContents.send('item-fileSize-retrieved', [
+        //       item.id,
+        //       fileSize,
+        //     ]);
+        //   })
+        //   .save(item.path);
       }
     });
   } catch (error) {
