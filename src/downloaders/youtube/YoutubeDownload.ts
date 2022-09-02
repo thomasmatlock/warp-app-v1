@@ -150,7 +150,10 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
     let downloadComplete = false;
     let downloadConversionComplete = false;
     const currentDownload = ytdl(item.url, {
+      // https://github.com/fent/node-ytdl-core
+      // quality: 'highest',
       dlChunkSize: '10M',
+      highWaterMark: Math.pow(2, 16),
       // requestOptions: { agent },
       // filter: (format) => (format.itag = item.matchedFormat),
       // filter: (format) => (format.itag = 240),
