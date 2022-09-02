@@ -9,6 +9,7 @@ import ffmpeg from 'fluent-ffmpeg';
 const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
 const ffmpeg = require('fluent-ffmpeg');
 ffmpeg.setFfmpegPath(ffmpegPath);
+const request = require('request');
 import convertToSeconds from './convertTimeToSeconds';
 import getETA from './getETA';
 import convertFile from './convertFile';
@@ -20,7 +21,11 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
 
   let tempPath =
     item.type === 'audio'
-      ? path.join(app.getPath('temp'), 'Warp Downloader' + randomInt + '.m4a')
+      ? path.join(
+          app.getPath('desktop'),
+          // 'Warp Downloader' + randomInt + '.m4a'
+          item.titleFS + '.m4a'
+        )
       : path.join(app.getPath('temp'), 'Warp Downloader' + randomInt + '.mp4');
   // CUSTOM METHOD
   try {
@@ -29,9 +34,26 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
     let downloadConversionComplete = false;
     let downloadBeginTime = Date.now();
     let conversionBeginTime;
+    let reader = request(item.matchedFormat.url, {
+      highWaterMark: Math.pow(2, 16),
+    }).pipe(fs.createWriteStream(tempPath));
+    // let reader = request(item.matchedFormat.url);
+    // let reader = fs.createWriteStream(item.matchedFormat.url);
+
+    // // Read and display the file data on console
+    reader.on('response', function (chunk) {
+      console.log('chunk', chunk);
+
+      // console.log(chunk.toString());
+    });
     // https://github.com/sindresorhus/got/blob/main/documentation/3-streams.md
-    const customStream = got.stream(item.matchedFormat.url, {}); // DEFAULT USE THIS
-    customStream.pipe(fs.createWriteStream(tempPath), {});
+    const customStream = got.stream(item.matchedFormat.url, {
+      highWaterMark: Math.pow(2, 16),
+    }); // DEFAULT USE THIS
+    customStream.pipe(fs.createWriteStream(tempPath), {
+      // highWaterMark: 128 * 1024,
+      highWaterMark: Math.pow(2, 16),
+    });
     customStream.on('downloadProgress', (progress) => {
       progress.percent = Math.floor(progress.percent * 100);
       progressPercentage = progress.percent;
