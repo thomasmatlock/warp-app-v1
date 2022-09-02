@@ -19,9 +19,6 @@ const Downloader = require('nodejs-file-downloader');
 
 export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
   let randomInt = (Math.floor(Math.random() * 1000000) + 1).toString();
-  // console.log(item.formats.length + ' formats');
-  // console.log(item.type, item.format, item.path);
-
   let tempPath =
     item.type === 'audio'
       ? path.join(
@@ -31,7 +28,7 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
         )
       : path.join(app.getPath('temp'), 'Warp Downloader' + randomInt + '.mp4');
   let highWaterMark = Math.pow(4, 16);
-  let dlChunkSize = 20;
+  let dlChunkSize = 20; // 10 is default
   // console.log(highWaterMark);
   // console.log(dlChunkSize);
 
@@ -40,7 +37,7 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
     let downloadComplete = false;
     const currentDownload = ytdl(item.url, {
       // https://github.com/fent/node-ytdl-core
-      // dlChunkSize: dlChunkSize,
+      dlChunkSize: dlChunkSize,
       highWaterMark: highWaterMark,
       // requestOptions: { agent },
     });
