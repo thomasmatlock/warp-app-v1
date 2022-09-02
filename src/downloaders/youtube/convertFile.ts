@@ -19,7 +19,7 @@ export default function convertFile(
   // // let downloadBeginTime = Date.now();
   let conversionBeginTime = Date.now();
   let downloadConversionComplete = false;
-  // let conversionPercentage;
+  let conversionPercentage;
   let totalLengthSeconds = convertToSeconds(item.lengthSeconds);
   let KBconverted = 0;
   // // try {
@@ -69,25 +69,15 @@ export default function convertFile(
   // .save(item.path);
   // } catch (error) {}
   //////////////////////////////////////////////////////
-  let conversionPercentage;
-  // let totalLengthSeconds = convertToSeconds(item.lengthSeconds);
-  // let KBconverted = 0;
   ffmpeg(tempPath)
     .toFormat(item.format.toLowerCase())
     .on('error', (err) => {
       console.log(err);
-      // fs.unlink(tempPath, (err) => {
-      //   if (err) console.log(err);
-      // });
+      fs.unlink(tempPath, (err) => {
+        if (err) console.log(err);
+      });
     })
     .on('progress', (progress) => {
-      // console.log(progress);
-      // progress keys
-      //            frames: NaN,
-      // currentFps: NaN,
-      // currentKbps: 128,
-      // targetSize: 13607,
-      // timemark: '00:14:30.79'
       KBconverted = progress.currentKbps + KBconverted;
       let secondsConverted = convertToSeconds(progress.timemark);
       conversionPercentage = (
