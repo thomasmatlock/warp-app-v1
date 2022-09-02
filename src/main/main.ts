@@ -296,7 +296,7 @@ let browserPanelState = 'default';
       event.reply('FilterBar: Warpstagram: FilterTypeLocations successful'); // sends message to renderer
     }
   );
-  // MODAL PREFSLISTENERS
+  // MODAL PREFS LISTENERS
   ipcMain.on('main: prefs', async (event, arg) => {
     prefs = arg;
     Prefs.setPrefs(prefs);
