@@ -1,5 +1,5 @@
 *       text    eol=lf
-*.exe filter=lfs diff=lfs merge=lfs -text
+*.exe   binary
 *.png   binary
 *.jpg   binary
 *.jpeg  binary
