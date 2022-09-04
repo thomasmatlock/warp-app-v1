@@ -33,20 +33,13 @@ import Prefs from './prefsController';
 import PowerMonitor from './powerMonitor';
 import Screen from './screen';
 import Browser from './browserController';
+// import got from 'got';
+// import got from 'got';
+// const got = require('got');
 
 // import createTray from './tray';
 // import Shortcuts from './Shortcuts';
-// const fs = require('fs');
-import chalk from 'chalk';
-import * as dotenv from 'dotenv'; // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
-// import { Console } from 'console';
-dotenv.config({
-  path: './config.env',
-});
-dotenv.config({
-  path: './config.env',
-});
-console.log(chalk.green(process.env));
+const fs = require('fs');
 
 // console.log('got', got);
 let prefs;
