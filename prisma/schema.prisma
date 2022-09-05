@@ -1,0 +1,83 @@
+// Schema for a fictional music streaming service
+// This service contains songs, albums, artists & playlists, and tracks user interactions with each of them
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
+}
+
+datasource db {
+provider = "mysql"
+  url      = env("DATABASE_URL")
+  referentialIntegrity = "prisma"
+}
+
+model User {
+  id           String        @id @default(uuid())
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  name         String @db.Text
+  email        String        @unique
+  audio        String
+  interactions Interaction[]
+  playlists    Playlist[]
+
+}
+
+model Interaction {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  songId    String? @db.Text
+  userId    String? @db.Text
+  isLiked   Boolean  @default(false)
+  playCount Int
+  song      Song?    @relation(fields: [songId], references: [id])
+  user      User?    @relation(fields: [userId], references: [id])
+}
+
+model Song {
+  id           String        @id @default(uuid())
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  name         String @db.Text
+  albumId      String? @db.Text
+  artistId     String @db.Text
+  length       Float
+  track        Int?
+  lyrics       String? @db.Text
+  fileUrl      String @db.Text
+  album        Album?        @relation(fields: [albumId], references: [id])
+  artist       Artist        @relation(fields: [artistId], references: [id])
+  interactions Interaction[]
+  playlist     Playlist[]
+}
+
+model Artist {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  name      String @db.Text
+  songs     Song[]
+  albums    Album[]
+}
+
+model Album {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  name      String @db.Text
+  cover     String @db.Text
+  songs     Song[]
+  artists   Artist[]
+}
+
+model Playlist {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId    String? @db.Text
+  name      String @db.Text
+  user      User?    @relation(fields: [userId], references: [id])
+  songs     Song[]
+}

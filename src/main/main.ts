@@ -33,6 +33,42 @@ import Prefs from './prefsController';
 import PowerMonitor from './powerMonitor';
 import Screen from './screen';
 import Browser from './browserController';
+import { faker } from '@faker-js/faker';
+// or, if using CommonJS
+// const { faker } = require('@faker-js/faker');
+
+const randomName = faker.name.fullName(); // Rowan Nikolaus
+const randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
+// import {Prisma} from './prisma';
+import { PrismaClient } from '@prisma/client';
+const prisma = new PrismaClient();
+async function getUsers() {
+  // const test = await prisma.user.findMany({ take: 100 });
+  try {
+    ///////////////////////////////////////////////////////////////////
+    // const user = await prisma.user.findUnique({
+    //   where: {
+    //     // id: '41d3a920-3c2e-4031-8f83-96e51553161c',
+    //     // name: 'Tom',
+    //     // name: 'Nikki Matlock',
+    //     email: 'metaphorps@gmail.com',
+    //     // email: 'nxtlvlnikki@gmail.com',
+    //   },
+    // });
+    // console.log(user);
+    ///////////////////////////////////////////////////////////////////
+    const user = await prisma.user.create({
+      data: {
+        email: `${randomEmail}`,
+        name: `${randomName}`,
+      },
+    });
+    console.log(user);
+    ///////////////////////////////////////////////////////////////////
+  } catch (error) {}
+}
+getUsers();
+
 // import got from 'got';
 // import got from 'got';
 // const got = require('got');
@@ -67,14 +103,14 @@ app
     user = User.getUser();
 
     // Screen.resetScreenState();
-    windowController.createmWin();
+    // windowController.createmWin();
     // createTray(mWin);
     // Shortcuts(view);
     // let tray = null;
     // console.log(app.getAppPath());
 
     app.on('activate', () => {
-      if (mWin === null) windowController.createmWin();
+      // if (mWin === null) windowController.createmWin();
     });
   })
   .catch(console.log);
@@ -506,7 +542,7 @@ const windowController = {
         mWin.show();
 
         if (Screen.isMaximized) mWin.maximize();
-        if (view === null) windowController.createbView();
+        // if (view === null) windowController.createbView();
         mWin.webContents.send('appVersion', app.getVersion());
         mWin.webContents.send('main: prefs', prefs);
         mWin.webContents.send('main: audioDownloads', audioDownloads);
