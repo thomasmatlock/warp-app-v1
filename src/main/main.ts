@@ -56,7 +56,10 @@ app
 
     setActiveURL();
 
-    User.upgradeUserModule('audio', 'personal');
+    // User.upgradeUserModule('audio', 'free');
+    // User.upgradeUserModule('audio', 'personal');
+    // User.upgradeUserModule('audio', 'free');
+    User.upgradeAllUserModules('free');
     // User.resetUser();
     // console.log(User.canUserDownloadAudio());
     // console.log(User.canUserDownloadVideo());

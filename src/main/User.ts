@@ -18,29 +18,52 @@ export async function upgradeUserModule(
   let user = await getUser();
   let updatedUser = { ...user };
   console.log(moduleEdition);
-
-  for (const key in updatedUser) {
-    if (moduleType.includes(key)) {
-      updatedUser[key] = moduleEdition;
-      const updateUser = await prisma.user.update({
-        where: {
-          id: user.id,
-        },
-        data: {
-          audio: moduleType === 'audio' ? moduleEdition : user.audio,
-          video: moduleType === 'video' ? moduleEdition : user.video,
-          warpstagram:
-            moduleType === 'warpstagram' ? moduleEdition : user.warpstagram,
-        },
-      });
-      console.log(updateUser);
+  try {
+    for (const key in updatedUser) {
+      if (moduleType.includes(key)) {
+        updatedUser[key] = moduleEdition;
+        const updateUser = await prisma.user.update({
+          where: {
+            id: user.id,
+          },
+          data: {
+            audio: moduleType === 'audio' ? moduleEdition : user.audio,
+            video: moduleType === 'video' ? moduleEdition : user.video,
+            warpstagram:
+              moduleType === 'warpstagram' ? moduleEdition : user.warpstagram,
+          },
+        });
+        console.log(updateUser);
+      }
     }
+  } catch (error) {
+    console.log(error);
   }
   // console.log(updatedUser);
 
   // setUser(updatedUser);
   // // console.log(updatedUser);
   // return updatedUser;
+}
+export async function upgradeAllUserModules(moduleEdition: string) {
+  let user = await getUser();
+  let updatedUser = { ...user };
+  // console.log(moduleEdition);
+  try {
+    const updateUser = await prisma.user.update({
+      where: {
+        id: user.id,
+      },
+      data: {
+        audio: moduleEdition,
+        video: moduleEdition,
+        warpstagram: moduleEdition,
+      },
+    });
+    // console.log(updateUser);
+  } catch (error) {
+    console.log(error);
+  }
 }
 export async function createUser() {
   const user = await prisma.user.create({
@@ -72,4 +95,5 @@ export async function getUser() {
 module.exports = {
   getUser: getUser,
   upgradeUserModule: upgradeUserModule,
+  upgradeAllUserModules: upgradeAllUserModules,
 };
