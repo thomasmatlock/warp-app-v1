@@ -5,8 +5,9 @@ const cryptr = new Cryptr('user');
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 import { machineId, machineIdSync } from 'node-machine-id';
+let machine_id;
 async function getMachineId() {
-  let machine_id = await machineId();
+  machine_id = await machineId();
   return machine_id;
 }
 let userDefaults = {
@@ -128,13 +129,14 @@ export async function createUser() {
   console.log('creating user');
 
   let machineID = await getMachineId();
-  console.log(machineID);
+  // console.log(machineID);
 
   // setUser(user);
   try {
     const user = await prisma.user.create({
       data: {
-        // email: 'idk@gmail.com',
+        email: 'idk@gmail.com',
+
         machine_id: machineID,
         // isEULAaccepted: false,
         // audioDownloadsCount: 0,
@@ -148,15 +150,15 @@ export async function createUser() {
         // warpstagramAuthCode: '',
       },
     });
-    console.log('createUser', user);
-    // return user;
+    // console.log('createUser', user);
+    return user;
   } catch (error) {}
 }
 export async function getUser() {
   console.log('getting user');
 
   let userFromDB;
-  let machineID = await machineId();
+  let machineID = await getMachineId();
   // console.log('machineID', machineID);
   try {
     userFromDB = await prisma.user.findUnique({
@@ -173,7 +175,8 @@ export async function getUser() {
     // console.log('userFromDB', userFromDB);
     // return userFromDB;
   } catch (error) {
-    return createUser();
+    userFromDB = createUser();
+    return userFromDB;
   }
 
   // resetUser(); // REMOVE, FOR TESTING ONLY
