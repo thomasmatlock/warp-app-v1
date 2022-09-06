@@ -1,83 +1,60 @@
-// Schema for a fictional music streaming service
-// This service contains songs, albums, artists & playlists, and tracks user interactions with each of them
-
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
   previewFeatures = ["referentialIntegrity"]
 }
 
 datasource db {
-provider = "mysql"
-  url      = env("DATABASE_URL")
+  provider             = "mysql"
+  url                  = env("DATABASE_URL")
   referentialIntegrity = "prisma"
 }
 
 model User {
-  id           String        @id @default(uuid())
-  createdAt    DateTime      @default(now())
-  updatedAt    DateTime      @updatedAt
-  name         String @db.Text
-  email        String        @unique
-  audio        String
-  interactions Interaction[]
-  playlists    Playlist[]
-
+  id                   String   @id @default(uuid())
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+  email                String   @db.Text
+  isEULAaccepted       Boolean  @default(false)
+  audioDownloadsCount  Int      @default(0)
+  videoDownloadsCount  Int      @default(0)
+  warpstagramDownloads Int      @default(0)
+  audio                String   @default("free")
+  video                String   @default("free")
+  warpstagram          String   @default("free")
+  audioAuthCode        String   @default("")
+  videoAuthCode        String   @default("")
+  warpstagramAuthCode  String   @default("")
 }
 
-model Interaction {
-  id        String   @id @default(uuid())
+model b95bf_4b78_52da_afc4_1e15fd98c2aa_20220906013322_vrepl {
+  id        String   @id
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  songId    String? @db.Text
-  userId    String? @db.Text
-  isLiked   Boolean  @default(false)
-  playCount Int
-  song      Song?    @relation(fields: [songId], references: [id])
-  user      User?    @relation(fields: [userId], references: [id])
+  updatedAt DateTime
+  name      String?  @db.Text
+  email     String   @db.Text
+  accountId String?  @db.Text
+
+  @@map("_543b95bf_4b78_52da_afc4_1e15fd98c2aa_20220906013322_vrepl")
 }
 
-model Song {
-  id           String        @id @default(uuid())
-  createdAt    DateTime      @default(now())
-  updatedAt    DateTime      @updatedAt
-  name         String @db.Text
-  albumId      String? @db.Text
-  artistId     String @db.Text
-  length       Float
-  track        Int?
-  lyrics       String? @db.Text
-  fileUrl      String @db.Text
-  album        Album?        @relation(fields: [albumId], references: [id])
-  artist       Artist        @relation(fields: [artistId], references: [id])
-  interactions Interaction[]
-  playlist     Playlist[]
+model vt_HOLD_0a49447a067c57bf9fe4317e0160d0e5_20220907013319 {
+  id                   String   @id
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime
+  stripeCustomerId     String   @db.Text
+  stripeSubscriptionId String   @db.Text
+  referrer             String?  @db.Text
+  isActive             Boolean
+
+  @@map("_vt_HOLD_0a49447a067c57bf9fe4317e0160d0e5_20220907013319")
 }
 
-model Artist {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  name      String @db.Text
-  songs     Song[]
-  albums    Album[]
-}
+model vt_HOLD_f9a2a371d3fe53eeb47e6a1115b5b80a_20220907013320 {
+  id        String   @id
+  dateSent  DateTime @default(now())
+  email     String   @db.Text
+  accountId String?  @db.Text
+  isValid   Boolean  @default(true)
 
-model Album {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  name      String @db.Text
-  cover     String @db.Text
-  songs     Song[]
-  artists   Artist[]
-}
-
-model Playlist {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  userId    String? @db.Text
-  name      String @db.Text
-  user      User?    @relation(fields: [userId], references: [id])
-  songs     Song[]
+  @@map("_vt_HOLD_f9a2a371d3fe53eeb47e6a1115b5b80a_20220907013320")
 }

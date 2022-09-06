@@ -2,6 +2,8 @@ const Store = require('electron-store');
 const settings = new Store();
 const Cryptr = require('cryptr');
 const cryptr = new Cryptr('user');
+import { PrismaClient } from '@prisma/client';
+const prisma = new PrismaClient();
 
 const userDefaults = {
   isEULAaccepted: false,

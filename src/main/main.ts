@@ -56,11 +56,12 @@ async function getUsers() {
     //   },
     // });
     // console.log(user);
+
     ///////////////////////////////////////////////////////////////////
     const user = await prisma.user.create({
       data: {
         email: `${randomEmail}`,
-        name: `${randomName}`,
+        audio: 'personal',
       },
     });
     console.log(user);
