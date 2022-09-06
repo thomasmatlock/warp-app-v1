@@ -11,21 +11,53 @@ async function getMachineId() {
   machine_id = await machineId();
   return machine_id;
 }
-export async function createUser() {
-  console.log('creating user');
+export async function upgradeUserModule(
+  moduleType: string,
+  moduleEdition: string
+) {
+  // console.log(moduleType, moduleEdition);
+  // let decryptedUser = getUser();
+  let user = await getUser();
+  let updatedUser = { ...user };
+  for (const key in updatedUser) {
+    // console.log('key', key);
 
+    if (moduleType.includes(key)) {
+      // console.log('updatedUser[key]', updatedUser[key]);
+      console.log(moduleType, moduleEdition);
+
+      updatedUser[key] = moduleEdition;
+      console.log('updatedUser[key]', updatedUser[key]);
+
+      // user = updatedUser;
+      // console.log('updatedUser[key]', updatedUser[key]);
+      console.log(updatedUser);
+      const updateUser = await prisma.user.update({
+        where: {
+          id: user.id,
+        },
+        data: {
+          audio: moduleEdition,
+        },
+      });
+      console.log(updateUser);
+    }
+  }
+  // console.log(updatedUser);
+
+  // setUser(updatedUser);
+  // // console.log(updatedUser);
+  // return updatedUser;
+}
+export async function createUser() {
   const user = await prisma.user.create({
     data: {
       machine_1_id: await getMachineId(),
     },
   });
-  console.log('user created');
-  console.log(user);
   return user;
 }
 export async function getUser() {
-  console.log('getting user');
-
   let userFromDB;
   try {
     userFromDB = await prisma.user.findFirst({
@@ -34,11 +66,9 @@ export async function getUser() {
       },
     });
     if (userFromDB === null) {
-      console.log('user not found, creating user');
       userFromDB = await createUser();
       return userFromDB;
     } else if (userFromDB) {
-      console.log('found user!');
       return userFromDB;
     }
   } catch (error) {}
@@ -48,4 +78,5 @@ export async function getUser() {
 
 module.exports = {
   getUser: getUser,
+  upgradeUserModule: upgradeUserModule,
 };

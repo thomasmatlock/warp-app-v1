@@ -4,10 +4,9 @@ import User from './User';
 let user;
 (async function () {
   user = await User.getUser();
+  // console.log(user);
 })();
 const capitalizeFirstLetter = (string: string) => {
-  console.log(string);
-
   return string.charAt(0).toUpperCase() + string.slice(1);
 };
 export function setTitle(mWin: BrowserWindow, mode) {
