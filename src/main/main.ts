@@ -58,9 +58,11 @@ app
 
     // User.upgradeUserModule('audio', 'free');
     // User.upgradeUserModule('audio', 'personal');
-    // User.upgradeUserModule('audio', 'free');
-    // User.upgradeAllUserModules('personal');
-    User.upgradeAllUserModules('professional');
+    // User.upgradeUserModule('video', 'professional');
+    // User.upgradeUserModule('audio', 'professional');
+    // User.upgradeAllUserModules('free');
+    User.upgradeAllUserModules('personal');
+    // User.upgradeAllUserModules('professional');
     // User.resetUser();
     // console.log(User.canUserDownloadAudio());
     // console.log(User.canUserDownloadVideo());
