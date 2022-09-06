@@ -4,8 +4,13 @@ const Cryptr = require('cryptr');
 const cryptr = new Cryptr('user');
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
-
-const userDefaults = {
+import { machineId, machineIdSync } from 'node-machine-id';
+async function getMachineId() {
+  let machine_id = await machineId();
+  return machine_id;
+}
+let userDefaults = {
+  id: '',
   isEULAaccepted: false,
   audioDownloadsCount: 0,
   videoDownloadsCount: 0,
@@ -40,97 +45,148 @@ function resetUser() {
   settings.delete('user');
 }
 function increaseAudioDownloadCount() {
-  let decryptedUser = getUser();
-  let updatedUser = { ...decryptedUser };
-  updatedUser.audioDownloadsCount++;
-  setUser(updatedUser);
+  // let decryptedUser = getUser();
+  // let updatedUser = { ...decryptedUser };
+  // updatedUser.audioDownloadsCount++;
+  // setUser(updatedUser);
 }
 function increaseVideoDownloadCount() {
-  let decryptedUser = getUser();
-  let updatedUser = { ...decryptedUser };
-  updatedUser.videoDownloadsCount++;
-  setUser(updatedUser);
+  // let decryptedUser = getUser();
+  // let updatedUser = { ...decryptedUser };
+  // updatedUser.videoDownloadsCount++;
+  // setUser(updatedUser);
 }
 
 function increaseWarpstagramDownloadCount() {
-  let decryptedUser = getUser();
-  let updatedUser = { ...decryptedUser };
-  updatedUser.warpstagramDownloadsCount++;
-  setUser(updatedUser);
+  // let decryptedUser = getUser();
+  // let updatedUser = { ...decryptedUser };
+  // updatedUser.warpstagramDownloadsCount++;
+  // setUser(updatedUser);
 }
 function getAudioDownloadsCount() {
-  let decryptedUser = getUser();
-  return decryptedUser.audioDownloadsCount;
+  // let decryptedUser = getUser();
+  // return decryptedUser.audioDownloadsCount;
 }
 function getVideoDownloadsCount() {
-  let decryptedUser = getUser();
-  return decryptedUser.videoDownloadsCount;
+  // let decryptedUser = getUser();
+  // return decryptedUser.videoDownloadsCount;
 }
 function getWarpstagramDownloadsCount() {
-  let decryptedUser = getUser();
-  return decryptedUser.warpstagramDownloadsCount;
+  // let decryptedUser = getUser();
+  // return decryptedUser.warpstagramDownloadsCount;
 }
 function canUserDownloadAudio() {
-  let decryptedUser = getUser();
-  if (decryptedUser.audio === 'free') {
-    if (decryptedUser.audioDownloadsCount < 16) {
-      return true;
-    } else {
-      return false;
-    }
-  } else {
-    return true;
-  }
+  // let decryptedUser = getUser();
+  // if (decryptedUser.audio === 'free') {
+  //   if (decryptedUser.audioDownloadsCount < 16) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // } else {
+  //   return true;
+  // }
 }
 function canUserDownloadVideo() {
-  let decryptedUser = getUser();
-  if (decryptedUser.video === 'free') {
-    if (decryptedUser.videoDownloadsCount < 16) {
-      return true;
-    } else {
-      return false;
-    }
-  } else {
-    return true;
-  }
+  // let decryptedUser = getUser();
+  // if (decryptedUser.video === 'free') {
+  //   if (decryptedUser.videoDownloadsCount < 16) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // } else {
+  //   return true;
+  // }
 }
 function canUserDownloadWarpstagram() {
-  let decryptedUser = getUser();
-  if (decryptedUser.warpstagram === 'free') {
-    if (decryptedUser.warpstagramDownloadsCount < 3) {
-      return true;
-    } else {
-      return false;
-    }
-  } else {
-    return true;
-  }
+  // let decryptedUser = getUser();
+  // if (decryptedUser.warpstagram === 'free') {
+  //   if (decryptedUser.warpstagramDownloadsCount < 3) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // } else {
+  //   return true;
+  // }
 }
 function upgradeUserModule(moduleType: string, moduleEdition: string) {
-  // console.log(moduleType, moduleEdition);
-  let decryptedUser = getUser();
-  let updatedUser = { ...decryptedUser };
-  for (const key in updatedUser) {
-    if (moduleType.includes(key)) {
-      updatedUser[key] = moduleEdition;
-    }
-  }
-  setUser(updatedUser);
-  // console.log(updatedUser);
-  return updatedUser;
+  // // console.log(moduleType, moduleEdition);
+  // let decryptedUser = getUser();
+  // let updatedUser = { ...decryptedUser };
+  // for (const key in updatedUser) {
+  //   if (moduleType.includes(key)) {
+  //     updatedUser[key] = moduleEdition;
+  //   }
+  // }
+  // setUser(updatedUser);
+  // // console.log(updatedUser);
+  // return updatedUser;
 }
-export function getUser() {
-  // resetUser(); // REMOVE, FOR TESTING ONLY
-  let encryptedUser = settings.get('user');
-  if (encryptedUser === undefined) {
-    setUser(userDefaults);
-    return userDefaults;
-  } else {
-    encryptedUser = settings.get('user');
-    // console.log(encryptedUser);
-    let decryptedUser = decryptUser(encryptedUser);
-    return decryptedUser;
+export async function createUser() {
+  console.log('creating user');
+
+  let machineID = await getMachineId();
+  console.log(machineID);
+
+  // setUser(user);
+  try {
+    const user = await prisma.user.create({
+      data: {
+        // email: 'idk@gmail.com',
+        machine_id: machineID,
+        // isEULAaccepted: false,
+        // audioDownloadsCount: 0,
+        // videoDownloadsCount: 0,
+        // warpstagramDownloadsCount: 0,
+        // audio: 'free',
+        // video: 'free',
+        // warpstagram: 'free',
+        // audioAuthCode: '',
+        // videoAuthCode: '',
+        // warpstagramAuthCode: '',
+      },
+    });
+    console.log('createUser', user);
+    // return user;
+  } catch (error) {}
+}
+export async function getUser() {
+  console.log('getting user');
+
+  let userFromDB;
+  let machineID = await machineId();
+  // console.log('machineID', machineID);
+  try {
+    userFromDB = await prisma.user.findUnique({
+      where: {
+        id: machineID,
+      },
+    });
+    if (userFromDB) {
+      return userFromDB;
+    } else if (userFromDB === null) {
+      return createUser();
+    }
+
+    // console.log('userFromDB', userFromDB);
+    // return userFromDB;
+  } catch (error) {
+    return createUser();
   }
+
+  // resetUser(); // REMOVE, FOR TESTING ONLY
+  // let encryptedUser = settings.get('user');
+  // if (encryptedUser === undefined) {
+  //   setUser(userDefaults);
+  //   return userDefaults;
+  // } else {
+  //   encryptedUser = settings.get('user');
+  //   // console.log(encryptedUser);
+  //   let decryptedUser = decryptUser(encryptedUser);
+  //   return decryptedUser;
+  // }
 }
 
 module.exports = {

@@ -127,6 +127,7 @@
         "m3u8stream": "^0.8.6",
         "moment": "^2.29.4",
         "nanoid": "^4.0.0",
+        "node-machine-id": "^1.1.12",
         "nodejs-file-downloader": "^4.10.2",
         "progress-stream": "^2.0.0",
         "react": "^18.1.0",
