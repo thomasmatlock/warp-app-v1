@@ -66,7 +66,7 @@ app
     // Screen.resetScreenState();
     (async function () {
       user = await User.getUser();
-      console.log(user);
+      // console.log(user);
       // windowController.createmWin();
     })();
     // createTray(mWin);

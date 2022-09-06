@@ -159,7 +159,7 @@ export async function getUser() {
     },
   });
   console.log(user);
-
+  return user;
   // resetUser(); // REMOVE, FOR TESTING ONLY
   // let encryptedUser = settings.get('user');
   // if (encryptedUser === undefined) {
