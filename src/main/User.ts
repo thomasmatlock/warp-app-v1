@@ -19,7 +19,14 @@ export async function upgradeUserModule(
 ) {
   let user = await getUser();
   let updatedUser = { ...user };
-  console.log(moduleEdition);
+  let audioAuthCode;
+  let videoAuthCode;
+  let warpstagramAuthCode;
+  if (moduleEdition === 'free') {
+  }
+  if (moduleEdition != 'free') {
+  }
+  // console.log(moduleEdition);
   try {
     for (const key in updatedUser) {
       if (moduleType.includes(key)) {
@@ -36,47 +43,60 @@ export async function upgradeUserModule(
               moduleType === 'warpstagram' ? moduleEdition : user.warpstagram,
             //  ADD MODULE AUTH CODE IF NOT PRESENT
             audioAuthCode:
-              moduleType === 'audio' && user.audioAuthCode === ''
-                ? generateCode(moduleType, moduleEdition)
-                : user.audioAuthCode,
+              moduleType === 'audio' &&
+              moduleEdition !== 'free' &&
+              user.audioAuthCode === ''
+                ? generateCode('audio', moduleEdition)
+                : generateCode('audio', 'free'),
             videoAuthCode:
-              moduleType === 'video' && user.videoAuthCode === ''
-                ? generateCode(moduleType, moduleEdition)
-                : user.videoAuthCode,
+              moduleType === 'video' && moduleEdition !== 'free'
+                ? // user.videoAuthCode === null
+                  generateCode('video', moduleEdition)
+                : generateCode('video', 'free'),
             warpstagramAuthCode:
-              moduleType === 'warpstagram' && user.warpstagramAuthCode === ''
-                ? generateCode(moduleType, moduleEdition)
-                : user.warpstagramAuthCode,
-            // videoAuthCode:
-            //   moduleType === 'video' ? generateCode() : user.videoAuthCode,
-            // warpstagramAuthCode:
-            //   moduleType === 'warpstagram'
-            //     ? generateCode()
-            //     : user.warpstagramAuthCode,
+              moduleType === 'warpstagram' && moduleEdition !== 'free'
+                ? // user.warpstagramAuthCode === null
+                  generateCode('warpstagram', moduleEdition)
+                : generateCode('warpstagram', 'free'),
           },
         });
         console.log(updateUser);
       }
     }
+    return user;
+  } catch (error) {
+    console.log(error);
+  }
+}
+export async function resetUser() {
+  try {
+    let updateUser = await upgradeUserModule('audio', 'free');
+    updateUser = await upgradeUserModule('video', 'free');
+    updateUser = await upgradeUserModule('warpstagram', 'free');
+    return updateUser;
   } catch (error) {
     console.log(error);
   }
 }
 export async function upgradeAllUserModules(moduleEdition: string) {
-  let user = await getUser();
-  let updatedUser = { ...user };
+  // let user = await getUser();
+  // let updatedUser = { ...user };
   // console.log(moduleEdition);
   try {
-    const updateUser = await prisma.user.update({
-      where: {
-        id: user.id,
-      },
-      data: {
-        audio: moduleEdition,
-        video: moduleEdition,
-        warpstagram: moduleEdition,
-      },
-    });
+    // const updateUser = await prisma.user.update({
+    //   where: {
+    //     id: user.id,
+    //   },
+    //   data: {
+    //     audio: moduleEdition,
+    //     video: moduleEdition,
+    //     warpstagram: moduleEdition,
+    //   },
+    // });
+    let updateUser = await upgradeUserModule('audio', moduleEdition);
+    updateUser = await upgradeUserModule('video', moduleEdition);
+    updateUser = await upgradeUserModule('warpstagram', moduleEdition);
+    console.log(updateUser);
   } catch (error) {
     console.log(error);
   }
@@ -133,4 +153,5 @@ module.exports = {
   getUser: getUser,
   upgradeUserModule: upgradeUserModule,
   upgradeAllUserModules: upgradeAllUserModules,
+  resetUser: resetUser,
 };

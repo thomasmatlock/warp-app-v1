@@ -57,11 +57,15 @@ app
     setActiveURL();
 
     // User.upgradeUserModule('audio', 'free');
-    // User.upgradeUserModule('audio', 'personal');
-    // User.upgradeUserModule('video', 'professional');
+    User.upgradeUserModule('audio', 'personal');
+    // User.upgradeUserModule('video', 'free');
+    // User.upgradeUserModule('video', 'personal');
+    // User.upgradeUserModule('warpstagram', 'free');
+    // User.upgradeUserModule('video', 'free');
     // User.upgradeUserModule('audio', 'professional');
     // User.upgradeAllUserModules('free');
     // User.upgradeAllUserModules('personal');
+    // User.resetUser();
     // User.upgradeAllUserModules('professional');
     // User.upgradeAllUserModules('dev');
     // User.resetUser();
