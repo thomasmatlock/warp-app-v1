@@ -10,22 +10,21 @@ datasource db {
 }
 
 model User {
-  id                   String   @id @default(uuid())
-  machine_id           Array    @default([]) @db.VarChar(255)
-  audio                String   @default("free")
-  video                String   @default("free")
-  warpstagram          String   @default("free")
-  createdAt            DateTime @default(now())
-  updatedAt            DateTime @updatedAt
-  email                String   @db.Text
-  // audioAuthCode: '',
-  // videoAuthCode: '',
-  // warpstagramAuthCode: '',
-  isEULAaccepted       Boolean  @default(false)
-  audioDownloadsCount  Int      @default(0)
-  videoDownloadsCount  Int      @default(0)
-  warpstagramDownloads Int      @default(0)
-  audioAuthCode        String   @default("")
-  videoAuthCode        String   @default("")
-  warpstagramAuthCode  String   @default("")
+  id        String   @id @default(uuid())
+  email     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  // machine_1_id         String?
+  // machine_2_id         String?
+  // machine_3_id         String?
+  // audio                String   @default("free")
+  // video                String   @default("free")
+  // warpstagram          String   @default("free")
+  // isEULAaccepted       Boolean  @default(false)
+  // audioDownloadsCount  Int      @default(0)
+  // videoDownloadsCount  Int      @default(0)
+  // warpstagramDownloads Int      @default(0)
+  // audioAuthCode        String   @default("")
+  // videoAuthCode        String   @default("")
+  // warpstagramAuthCode  String   @default("")
 }

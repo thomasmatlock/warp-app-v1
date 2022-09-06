@@ -125,59 +125,40 @@ function upgradeUserModule(moduleType: string, moduleEdition: string) {
   // // console.log(updatedUser);
   // return updatedUser;
 }
-export async function createUser() {
-  console.log('creating user');
-
-  let machineID = await getMachineId();
-  // console.log(machineID);
-
-  // setUser(user);
-  try {
-    const user = await prisma.user.create({
-      data: {
-        email: 'idk@gmail.com',
-
-        machine_id: machineID,
-        // isEULAaccepted: false,
-        // audioDownloadsCount: 0,
-        // videoDownloadsCount: 0,
-        // warpstagramDownloadsCount: 0,
-        // audio: 'free',
-        // video: 'free',
-        // warpstagram: 'free',
-        // audioAuthCode: '',
-        // videoAuthCode: '',
-        // warpstagramAuthCode: '',
-      },
-    });
-    // console.log('createUser', user);
-    return user;
-  } catch (error) {}
-}
+import { faker } from '@faker-js/faker';
+export async function createUser() {}
+const randomName = faker.name.fullName(); // Rowan Nikolaus
+const randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
 export async function getUser() {
   console.log('getting user');
 
-  let userFromDB;
-  let machineID = await getMachineId();
+  // let userFromDB;
+  // let machineID = await getMachineId();
   // console.log('machineID', machineID);
-  try {
-    userFromDB = await prisma.user.findUnique({
-      where: {
-        id: machineID,
-      },
-    });
-    if (userFromDB) {
-      return userFromDB;
-    } else if (userFromDB === null) {
-      return createUser();
-    }
+  // try {
+  //   userFromDB = await prisma.user.findUnique({
+  //     where: {
+  //       id: machineID,
+  //     },
+  //   });
+  //   if (userFromDB) {
+  //     return userFromDB;
+  //   } else if (userFromDB === null) {
+  //     createUser();
+  //   }
 
-    // console.log('userFromDB', userFromDB);
-    // return userFromDB;
-  } catch (error) {
-    userFromDB = createUser();
-    return userFromDB;
-  }
+  //   // console.log('userFromDB', userFromDB);
+  //   // return userFromDB;
+  // } catch (error) {
+  //   userFromDB = createUser();
+  //   return userFromDB;
+  // }
+  const user = await prisma.user.create({
+    data: {
+      email: `${randomEmail}`,
+    },
+  });
+  console.log(user);
 
   // resetUser(); // REMOVE, FOR TESTING ONLY
   // let encryptedUser = settings.get('user');
