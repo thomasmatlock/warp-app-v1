@@ -15,29 +15,22 @@ export async function upgradeUserModule(
   moduleType: string,
   moduleEdition: string
 ) {
-  // console.log(moduleType, moduleEdition);
-  // let decryptedUser = getUser();
   let user = await getUser();
   let updatedUser = { ...user };
+  console.log(moduleEdition);
+
   for (const key in updatedUser) {
-    // console.log('key', key);
-
     if (moduleType.includes(key)) {
-      // console.log('updatedUser[key]', updatedUser[key]);
-      console.log(moduleType, moduleEdition);
-
       updatedUser[key] = moduleEdition;
-      console.log('updatedUser[key]', updatedUser[key]);
-
-      // user = updatedUser;
-      // console.log('updatedUser[key]', updatedUser[key]);
-      console.log(updatedUser);
       const updateUser = await prisma.user.update({
         where: {
           id: user.id,
         },
         data: {
-          audio: moduleEdition,
+          audio: moduleType === 'audio' ? moduleEdition : user.audio,
+          video: moduleType === 'video' ? moduleEdition : user.video,
+          warpstagram:
+            moduleType === 'warpstagram' ? moduleEdition : user.warpstagram,
         },
       });
       console.log(updateUser);
