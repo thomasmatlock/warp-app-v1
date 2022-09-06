@@ -155,7 +155,7 @@ export async function getUser() {
   // }
   const user = await prisma.user.create({
     data: {
-      email: `${randomEmail}`,
+      machine_1_id: await getMachineId(),
     },
   });
   console.log(user);
