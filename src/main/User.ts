@@ -79,7 +79,7 @@ export async function createUser() {
   return user;
 }
 export async function getUser() {
-  console.log(os.hostname(), os.platform(), os.type(), os.release());
+  // console.log(os.hostname(), os.platform(), os.type(), os.release());
 
   let userFromDB;
   try {
@@ -99,7 +99,7 @@ export async function getUser() {
       // userFromDB = await createUser();
       // return userFromDB;
     } else if (userFromDB) {
-      console.log('user with current machine found');
+      // console.log('user with current machine found');
 
       return userFromDB;
     }
