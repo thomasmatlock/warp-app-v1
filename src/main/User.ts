@@ -127,29 +127,29 @@ function upgradeUserModule(moduleType: string, moduleEdition: string) {
 }
 import { faker } from '@faker-js/faker';
 export async function createUser() {}
-const randomName = faker.name.fullName(); // Rowan Nikolaus
 const randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
 export async function getUser() {
   console.log('getting user');
 
-  // let userFromDB;
-  // let machineID = await getMachineId();
-  // console.log('machineID', machineID);
-  // try {
-  //   userFromDB = await prisma.user.findUnique({
-  //     where: {
-  //       id: machineID,
-  //     },
-  //   });
-  //   if (userFromDB) {
-  //     return userFromDB;
-  //   } else if (userFromDB === null) {
-  //     createUser();
-  //   }
+  let userFromDB;
+  try {
+    userFromDB = await prisma.user.findMany({
+      where: {
+        machine_1_id: await getMachineId(),
+      },
+    });
+    console.log('found user!');
+    console.log(userFromDB);
 
-  //   // console.log('userFromDB', userFromDB);
-  //   // return userFromDB;
-  // } catch (error) {
+    if (userFromDB) {
+      return userFromDB;
+    } else if (userFromDB === null) {
+      // createUser();
+    }
+
+    // console.log('userFromDB', userFromDB);
+    // return userFromDB;
+  } catch (error) {}
   //   userFromDB = createUser();
   //   return userFromDB;
   // }
@@ -158,7 +158,7 @@ export async function getUser() {
       machine_1_id: await getMachineId(),
     },
   });
-  console.log(user);
+  // console.log(user);
   return user;
   // resetUser(); // REMOVE, FOR TESTING ONLY
   // let encryptedUser = settings.get('user');
