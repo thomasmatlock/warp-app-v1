@@ -6,6 +6,7 @@ const cryptr = new Cryptr('user');
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 import UserOffline from './UserOffline';
+import generateCode from './UserAuthCodes';
 import { machineId, machineIdSync } from 'node-machine-id';
 let machine_id;
 async function getMachineId() {
@@ -28,10 +29,30 @@ export async function upgradeUserModule(
             id: user.id,
           },
           data: {
+            //  UPGRADE MODULE EDITION
             audio: moduleType === 'audio' ? moduleEdition : user.audio,
             video: moduleType === 'video' ? moduleEdition : user.video,
             warpstagram:
               moduleType === 'warpstagram' ? moduleEdition : user.warpstagram,
+            //  ADD MODULE AUTH CODE IF NOT PRESENT
+            audioAuthCode:
+              moduleType === 'audio' && user.audioAuthCode === ''
+                ? generateCode(moduleType, moduleEdition)
+                : user.audioAuthCode,
+            videoAuthCode:
+              moduleType === 'video' && user.videoAuthCode === ''
+                ? generateCode(moduleType, moduleEdition)
+                : user.videoAuthCode,
+            warpstagramAuthCode:
+              moduleType === 'warpstagram' && user.warpstagramAuthCode === ''
+                ? generateCode(moduleType, moduleEdition)
+                : user.warpstagramAuthCode,
+            // videoAuthCode:
+            //   moduleType === 'video' ? generateCode() : user.videoAuthCode,
+            // warpstagramAuthCode:
+            //   moduleType === 'warpstagram'
+            //     ? generateCode()
+            //     : user.warpstagramAuthCode,
           },
         });
         console.log(updateUser);
