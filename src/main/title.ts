@@ -3,7 +3,7 @@ import User from './User';
 
 let user;
 (async function () {
-  user = await User.getUser();
+  // user = await User.getUser();
   // console.log(user);
 })();
 const capitalizeFirstLetter = (string: string) => {

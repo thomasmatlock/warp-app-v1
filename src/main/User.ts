@@ -61,27 +61,46 @@ export async function upgradeAllUserModules(moduleEdition: string) {
   }
 }
 export async function createUser() {
+  console.log('creating user');
+
   const user = await prisma.user.create({
     data: {
-      machine_1_id: await getMachineId(),
+      machines: {
+        create: {
+          id: await getMachineId(),
+          hostname: os.hostname(),
+          platform: os.platform(),
+          type: os.type(),
+          release: os.release(),
+        },
+      },
     },
   });
   return user;
 }
 export async function getUser() {
-  console.log(os.hostname());
+  console.log(os.hostname(), os.platform(), os.type(), os.release());
 
   let userFromDB;
   try {
     userFromDB = await prisma.user.findFirst({
       where: {
-        machine_1_id: await getMachineId(),
+        machines: {
+          some: {
+            // id: 'e0b9b0b0-1b1a-11ec-8d3d-0242ac130003',
+            id: await getMachineId(),
+          },
+        },
       },
     });
     if (userFromDB === null) {
-      userFromDB = await createUser();
-      return userFromDB;
+      console.log('user with current machine not found');
+
+      // userFromDB = await createUser();
+      // return userFromDB;
     } else if (userFromDB) {
+      console.log('user with current machine found');
+
       return userFromDB;
     }
   } catch (error) {}

@@ -61,7 +61,7 @@ app
     // User.upgradeUserModule('video', 'professional');
     // User.upgradeUserModule('audio', 'professional');
     // User.upgradeAllUserModules('free');
-    User.upgradeAllUserModules('personal');
+    // User.upgradeAllUserModules('personal');
     // User.upgradeAllUserModules('professional');
     // User.resetUser();
     // console.log(User.canUserDownloadAudio());
