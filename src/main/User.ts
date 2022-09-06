@@ -1,4 +1,5 @@
 const Store = require('electron-store');
+import os from 'os';
 const settings = new Store();
 const Cryptr = require('cryptr');
 const cryptr = new Cryptr('user');
@@ -39,11 +40,6 @@ export async function upgradeUserModule(
   } catch (error) {
     console.log(error);
   }
-  // console.log(updatedUser);
-
-  // setUser(updatedUser);
-  // // console.log(updatedUser);
-  // return updatedUser;
 }
 export async function upgradeAllUserModules(moduleEdition: string) {
   let user = await getUser();
@@ -60,7 +56,6 @@ export async function upgradeAllUserModules(moduleEdition: string) {
         warpstagram: moduleEdition,
       },
     });
-    // console.log(updateUser);
   } catch (error) {
     console.log(error);
   }
@@ -74,6 +69,8 @@ export async function createUser() {
   return user;
 }
 export async function getUser() {
+  console.log(os.hostname());
+
   let userFromDB;
   try {
     userFromDB = await prisma.user.findFirst({
