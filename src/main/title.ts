@@ -2,10 +2,6 @@ import { app, BrowserWindow } from 'electron';
 import User from './User';
 
 let user;
-(async function () {
-  // user = await User.getUser();
-  // console.log(user);
-})();
 const capitalizeFirstLetter = (string: string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 };
