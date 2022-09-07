@@ -78,7 +78,7 @@ app
     (async function () {
       user = await User.getUser();
       // console.log(user);
-      windowController.createmWin();
+      // windowController.createmWin();
     })();
     // createTray(mWin);
     // Shortcuts(view);
