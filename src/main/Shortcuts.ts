@@ -1,12 +1,16 @@
 import { app, BrowserWindow, BrowserView, globalShortcut } from 'electron';
 import Browser from './browserController';
 export function addShortcuts(mWin: BrowserWindow, view: BrowserView) {
-  Browser.screenshot(mWin, view);
+  // Browser.screenshot(mWin, view);
   // console.log(mWin);
 
   // console.log('adding shortcuts');
 
   globalShortcut.register('Space', () => {
+    // mWin.webContents.sendInputEvent({
+    //   type: 'keyDown',
+    //   keyCode: 'Space',
+    // });
     // Browser.hideBrowser(view);
     // setTimeout(() => {
     //   Browser.showBrowser(mWin, view);

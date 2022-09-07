@@ -489,13 +489,13 @@ const windowController = {
       if (view) view.setBounds(displayBounds);
     });
     mWin.on('blur', () => {
-      console.log('mWin blurred');
+      // console.log('mWin blurred');
 
       Shortcuts.removeShortcuts();
       // Browser.resize(browserPanelState, mWin, view);
     });
     mWin.on('focus', () => {
-      console.log('mWin focused');
+      // console.log('mWin focused');
 
       Shortcuts.addShortcuts(mWin, view);
 

@@ -93,6 +93,8 @@ const Search = (props) => {
     }
   });
   window.addEventListener('keydown', (event) => {
+    console.log(event.key);
+
     Array.from(document.getElementsByClassName('search__input')).forEach(
       (item) => {
         if (!modalsCtx.isModalOpen) item.focus();
