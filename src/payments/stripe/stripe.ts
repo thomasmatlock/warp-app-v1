@@ -3,16 +3,21 @@
 // 4000000000003220  3D Secure 2 authentication must be completed for a successful payment.
 // 4000000000009995  Always fails with a decline code of insufficient_funds.
 import Stripe from 'stripe';
-const stripe = new Stripe('sk_live_ktgJvPC8iISH1qrb4oeJg65s', {
+import stripeKey from './stripeKey';
+const stripe = new Stripe(stripeKey, {
   apiVersion: '2022-08-01',
 });
+import getAllProducts from './stripeGetAllProducts';
 
 export default async function createCustomer() {
+  const products = await getAllProducts();
+  console.log(products.data.length);
+
   const params: Stripe.CustomerCreateParams = {
     email: 'metaphorps@gmail.com',
   };
 
-  const customer: Stripe.Customer = await stripe.customers.create(params);
+  const customer = await stripe.customers.create(params);
   // id: 'cus_MNzQJZI5BewhA9',
   // object: 'customer',
   // address: null,

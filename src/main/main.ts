@@ -79,7 +79,7 @@ app
       //   console.log(chalk.whiteBright.bgBlue('Professional mode'));
       // if (user.audio === 'developer')
       //   console.log(chalk.whiteBright.bgGreen('Developer mode'));
-      windowController.createmWin();
+      // windowController.createmWin();
     })();
     // createTray(mWin);
     // Shortcuts(view);
@@ -94,8 +94,8 @@ app
 
 import testUrls from '../downloaders/youtube/testURLS';
 // import { v4 as uuidv4 } from 'uuid';
-import createCustomer from '../payments/stripe';
-// console.log(createCustomer());
+import createCustomer from '../payments/stripe/stripe';
+createCustomer();
 
 let randomYoutubeURL =
   testUrls.youtube[Math.floor(Math.random() * testUrls.youtube.length)];
