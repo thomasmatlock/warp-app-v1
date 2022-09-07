@@ -34,12 +34,7 @@ import Prefs from './prefsController';
 import PowerMonitor from './powerMonitor';
 import Screen from './screen';
 import Browser from './browserController';
-import { faker } from '@faker-js/faker';
-// or, if using CommonJS
-// const { faker } = require('@faker-js/faker');
 
-const randomName = faker.name.fullName(); // Rowan Nikolaus
-const randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
 const fs = require('fs');
 let prefs;
 let user;
@@ -81,7 +76,8 @@ app
         console.log(chalk.whiteBright.bgYellow('Personal mode'));
       if (user.audio === 'professional')
         console.log(chalk.whiteBright.bgBlue('Professional mode'));
-      // if (user.audio === 'developer')        console.log(chalk.whiteBright.bgGreen('Developer mode'));
+      if (user.audio === 'developer')
+        console.log(chalk.whiteBright.bgGreen('Developer mode'));
 
       // windowController.createmWin();
     })();
@@ -99,6 +95,8 @@ app
 import testUrls from '../downloaders/youtube/testURLS';
 // import { v4 as uuidv4 } from 'uuid';
 import createCustomer from '../payments/stripe';
+// console.log(createCustomer());
+
 let randomYoutubeURL =
   testUrls.youtube[Math.floor(Math.random() * testUrls.youtube.length)];
 let randomYoutubePlaylistURL =
