@@ -69,7 +69,7 @@ app
       // user = await User.upgradeUserModule('warpstagram', 'professional');
       // user = await User.upgradeAllUserModules('personal');
       // user = await User.upgradeAllUserModules('professional');
-      // user = await User.upgradeAllUserModules('dev');
+      // user = await User.upgradeAllUserModules('developer');
       if (user !== undefined) console.log(user);
       // windowController.createmWin();
     })();
@@ -78,7 +78,7 @@ app
     (async function () {
       user = await User.getUser();
       // console.log(user);
-      // windowController.createmWin();
+      windowController.createmWin();
     })();
     // createTray(mWin);
     // Shortcuts(view);

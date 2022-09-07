@@ -11,7 +11,7 @@ function generateEditionPrefix(moduleEdition: string) {
   if (moduleEdition === 'free') editionPrefix = '0';
   if (moduleEdition === 'personal') editionPrefix = '1';
   if (moduleEdition === 'professional') editionPrefix = '2';
-  if (moduleEdition === 'dev') editionPrefix = '3';
+  if (moduleEdition.toLowerCase().includes('dev')) editionPrefix = '3';
   return editionPrefix;
 }
 export default function generateAuthCode(
