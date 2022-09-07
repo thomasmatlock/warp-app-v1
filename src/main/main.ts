@@ -530,7 +530,7 @@ const windowController = {
         Title.setTitle(mWin, 'audio', user);
 
         if (Screen.isMaximized) mWin.maximize();
-        if (view === null) windowController.createbView();
+        // if (view === null) windowController.createbView();
         mWin.webContents.send('appVersion', app.getVersion());
         mWin.webContents.send('main: prefs', prefs);
         mWin.webContents.send('main: audioDownloads', audioDownloads);

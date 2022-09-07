@@ -36,6 +36,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     width: calc(100% - 50%) !important;
     // min-width: 800px !important;
     min-height: 480px;
+    // min-width: 1000px;
     overflow: hidden !important;
     transition: all 0.1s ease-in-out;
     height: 300px;
@@ -43,10 +44,17 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     // width: 1000px !important;
     width: 800px !important;
     &__license_mode {
-        width: 60% !important;
-        height: 80% !important;
-        top: calc(50% - 40%);
-        left: calc(100% - 80%) !important;
+        $min-height: 800px;
+        $min-width: 1200px;
+        min-width: $min-width; // width: 1200px;
+        // width: 75%;
+        // width: clamp(1200px, 70%, 1600px) !important;
+        // width: clamp(1200px, 70%, 1600px) !important;
+        left: calc(50% - $min-width / 2) !important;
+        // height: 80% !important;
+        min-height: $min-height !important;
+        top: calc(50% - $min-height / 2) !important;
+        // width: 60% !important;
         // top: calc(50% - 475px);
         // left: calc(50% - 900px) !important;
     }
