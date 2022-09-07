@@ -431,10 +431,6 @@ let viewBounds = {
 };
 const windowController = {
   createmWin: async function () {
-    if (isDebug) {
-      await installExtensions();
-    }
-
     const RESOURCES_PATH = app.isPackaged
       ? path.join(process.resourcesPath, 'assets')
       : path.join(__dirname, '../../assets');
@@ -511,6 +507,9 @@ const windowController = {
       Screen.setScreenState(mWin);
     });
     mWin.on('minimize', () => {});
+    if (isDebug) {
+      // await installExtensions();
+    }
     mWin.on('ready-to-show', () => {
       if (mWin) mWin.webContents.send('ready-to-show');
 

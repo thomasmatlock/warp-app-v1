@@ -44,8 +44,8 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     // width: 1000px !important;
     width: 800px !important;
     &__license_mode {
-        $min-height: 800px;
-        $min-width: 1200px;
+        $min-height: 90%;
+        $min-width: 80%;
         min-width: $min-width; // width: 1200px;
         // width: 75%;
         // width: clamp(1200px, 70%, 1600px) !important;
