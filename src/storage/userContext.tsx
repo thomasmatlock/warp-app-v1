@@ -63,7 +63,7 @@ export const UserContextProvider = (props) => {
   //   directObjectArr[Math.floor(Math.random() * directObjectArr.length)];
   let audioDownloadsActivationArr = [
     {
-      id: '1',
+      id: 'activateAudio',
       title: 15 - audioDownloadsCount + ' daily audio downloads remaining',
       subtitle: `${randomVerb} a few ${randomDollarSyn} on yourself for a lifetime License to get unlimited audio downloads, multiple formats, multiple simultaneous downloads, multiple simultaneous format conversion, and more `,
       ctaImage: iconLicenses,
@@ -72,7 +72,7 @@ export const UserContextProvider = (props) => {
   ];
   let videoDownloadsActivationArr = [
     {
-      id: '1',
+      id: 'activateVideo',
       title: 15 - videoDownloadsCount + ' daily video downloads remaining',
       // subtitle: 'subtitle for more',
       subtitle: `${randomVerb} a few ${randomDollarSyn} for a lifetime License for unlimited video downloads, UHD resolutions, simultaneous downloads, multiple simultaneous format conversion, and more`,

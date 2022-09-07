@@ -28,9 +28,25 @@ import iconFolder from '../../../assets/Downloads/folder1.svg';
 import ContextMenu from '../ContextMenu/ContextMenu';
 import ContextMenuDownloadItemOptions from '../ContextMenu/ContextMenuDownloadItemOptions';
 import itemFormat from './DownloadItemFormat';
+import NavContext from '../../storage/navContext';
+import ModalsContext from '../../storage/modalsContext';
+import ProductsContext from '../../storage/productsContext';
 // console.log(itemFormat);
-
 const ActivationItem = (props) => {
+  const navCtx = useContext(NavContext);
+  const modalsCtx = useContext(ModalsContext);
+  const productsCtx = useContext(ProductsContext);
+
+  const clickHandler = () => {
+    navCtx.licenseModePrefsHandler();
+    modalsCtx.showModalHandler();
+    if (props.id.toLowerCase().includes('audio')) {
+      productsCtx.expandAudioCard();
+    }
+    if (props.id.toLowerCase().includes('video')) {
+      productsCtx.expandVideoCard();
+    }
+  };
   // console.log(props);
   const themeCtx = useContext(ThemeContext);
   const downloadsCtx = useContext(DownloadsContext);
@@ -38,7 +54,7 @@ const ActivationItem = (props) => {
     <li
       id={props.id}
       key={props.id}
-      onClick={() => {}}
+      onClick={clickHandler}
       className={'content__panel__downloads__list__activation__item'}
       style={
         themeCtx.isDarkTheme
