@@ -18,7 +18,34 @@ const Search = (props) => {
   const inputCtx = useContext(InputContext);
   const modalsCtx = useContext(ModalsContext);
   // console.log(navCtx);
-
+  window.electron.ipcRenderer.on('search focus', () => {
+    console.log('attempting to search focus');
+    document.getElementById('search__input').focus();
+    // Array.from(document.getElementsByClassName('search__input')).forEach(
+    //   (item) => {
+    //     item.focus();
+    //     //  if (!modalsCtx.isModalOpen) item.focus();
+    //     //  if (modalsCtx.isModalOpen) item.blur();
+    //     //  if (event.key === 'Escape') {
+    //     //    if (inputCtx.searchText.length === 0) item.blur();
+    //     //  }
+    //     //  if (event.key === 'Control') item.blur();
+    //     //  if (event.key === 'Shift') item.blur();
+    //     //  if (event.key === '!' || event.key === '@' || event.key === '#') {
+    //     item.blur();
+    //     //    setTimeout(() => {
+    //     //      // if (inputCtx.searchText.length != 0) item.focus();
+    //     //    }, 1000);
+    //     //  }
+    //   }
+    // );
+    // Array.from(document.getElementsByClassName('search__input')).forEach(
+    //   (el) => {
+    //     el.focus();
+    //   }
+    // );
+    // getURLpageType(url);
+  });
   const prefsCtx = useContext(PrefsContext);
   // console.log(prefsCtx.prefs);
 
@@ -66,6 +93,7 @@ const Search = (props) => {
       }, restoreInputDefaultWidthDelay);
     }
   };
+  const focusHandler = () => {};
   window.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
       if (modalsCtx.isModalOpen) {
@@ -76,7 +104,7 @@ const Search = (props) => {
     }
   });
   window.addEventListener('keydown', (event) => {
-    // console.log(event.key);
+    console.log(event.key);
     Array.from(document.getElementsByClassName('search__input')).forEach(
       (item) => {
         if (!modalsCtx.isModalOpen) item.focus();

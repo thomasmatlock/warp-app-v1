@@ -34,6 +34,7 @@ import Prefs from './prefsController';
 import PowerMonitor from './powerMonitor';
 import Screen from './screen';
 import Browser from './browserController';
+import Shortcuts from './Shortcuts';
 
 const fs = require('fs');
 let prefs;
@@ -78,7 +79,6 @@ app
       //   console.log(chalk.whiteBright.bgBlue('Professional mode'));
       // if (user.audio === 'developer')
       //   console.log(chalk.whiteBright.bgGreen('Developer mode'));
-
       windowController.createmWin();
     })();
     // createTray(mWin);
@@ -488,7 +488,17 @@ const windowController = {
       if (mWin) mWin.menuBarVisible = false;
       if (view) view.setBounds(displayBounds);
     });
+    mWin.on('blur', () => {
+      // console.log('mWin blurred');
+
+      Shortcuts.removeShortcuts();
+      // Browser.resize(browserPanelState, mWin, view);
+    });
     mWin.on('focus', () => {
+      // console.log('mWin focused');
+
+      Shortcuts.addShortcuts(mWin, view);
+
       Browser.resize(browserPanelState, mWin, view);
     });
     mWin.on('leave-full-screen', () => {});
@@ -520,7 +530,7 @@ const windowController = {
         Title.setTitle(mWin, 'audio', user);
 
         if (Screen.isMaximized) mWin.maximize();
-        // if (view === null) windowController.createbView();
+        if (view === null) windowController.createbView();
         mWin.webContents.send('appVersion', app.getVersion());
         mWin.webContents.send('main: prefs', prefs);
         mWin.webContents.send('main: audioDownloads', audioDownloads);
