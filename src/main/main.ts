@@ -59,7 +59,7 @@ app
 
     // Screen.resetScreenState();
     (async function () {
-      user = await User.resetUser();
+      // user = await User.resetUser();
       // user = await User.upgradeUserModule('audio', 'free');
       // user = await User.upgradeUserModule('audio', 'personal');
       // user = await User.upgradeUserModule('audio', 'professional');
@@ -71,10 +71,9 @@ app
       // user = await User.upgradeUserModule('warpstagram', 'professional');
       // user = await User.upgradeAllUserModules('personal');
       // user = await User.upgradeAllUserModules('professional');
-      // user = await User.upgradeAllUserModules('developer');
+      user = await User.upgradeAllUserModules('developer');
       // if (user !== undefined) console.log(user.audio);
       user = await User.getUser();
-      console.log('getUser', user.audio);
 
       if (user.audio === 'free') {
         console.log(chalk.whiteBright.bgRed('Free mode'));
