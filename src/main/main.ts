@@ -56,22 +56,23 @@ app
 
     setActiveURL();
 
-    // User.upgradeUserModule('audio', 'free');
-    User.upgradeUserModule('audio', 'personal');
-    // User.upgradeUserModule('video', 'free');
-    // User.upgradeUserModule('video', 'personal');
-    // User.upgradeUserModule('warpstagram', 'free');
-    // User.upgradeUserModule('video', 'free');
-    // User.upgradeUserModule('audio', 'professional');
-    // User.upgradeAllUserModules('free');
-    // User.upgradeAllUserModules('personal');
-    // User.resetUser();
-    // User.upgradeAllUserModules('professional');
-    // User.upgradeAllUserModules('dev');
-    // User.resetUser();
-    // console.log(User.canUserDownloadAudio());
-    // console.log(User.canUserDownloadVideo());
-    // console.log(User.canUserDownloadWarpstagram());
+    (async function () {
+      // user = await User.resetUser();
+      // user = await User.upgradeUserModule('audio', 'free');
+      // user = await User.upgradeUserModule('audio', 'personal');
+      // user = await User.upgradeUserModule('audio', 'professional');
+      //       user = await User.upgradeUserModule('video', 'free');
+      // user = await User.upgradeUserModule('video', 'personal');
+      // user = await User.upgradeUserModule('video', 'professional');
+      // user = await User.upgradeUserModule('warpstagram', 'free');
+      // user = await User.upgradeUserModule('warpstagram', 'personal');
+      // user = await User.upgradeUserModule('warpstagram', 'professional');
+      // user = await User.upgradeAllUserModules('personal');
+      // user = await User.upgradeAllUserModules('professional');
+      user = await User.upgradeAllUserModules('dev');
+      console.log(user);
+      // windowController.createmWin();
+    })();
 
     // Screen.resetScreenState();
     (async function () {

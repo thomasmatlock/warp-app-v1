@@ -23,15 +23,49 @@ export async function upgradeUserModule(
   let videoAuthCode;
   let warpstagramAuthCode;
   if (moduleEdition === 'free') {
+    if (moduleType === 'audio') audioAuthCode = '';
+    if (moduleType === 'video') videoAuthCode = '';
+    if (moduleType === 'warpstagram') warpstagramAuthCode = '';
+  } else if (moduleEdition != 'free') {
+    if (moduleType === 'audio') {
+      if (user.audioAuthCode === '') {
+        audioAuthCode = generateCode(moduleType, moduleEdition);
+      } else if (user.audioAuthCode != '') {
+        if (user.audio != moduleEdition) {
+          audioAuthCode = generateCode(moduleType, moduleEdition);
+        } else if (user.audio === moduleEdition) {
+          audioAuthCode = user.audioAuthCode;
+        }
+      }
+    }
+    if (moduleType === 'video') {
+      if (user.videoAuthCode === '') {
+        videoAuthCode = generateCode(moduleType, moduleEdition);
+      } else if (user.videoAuthCode != '') {
+        if (user.video != moduleEdition) {
+          videoAuthCode = generateCode(moduleType, moduleEdition);
+        } else if (user.video === moduleEdition) {
+          videoAuthCode = user.videoAuthCode;
+        }
+      }
+    }
+    if (moduleType === 'warpstagram') {
+      if (user.warpstagramAuthCode === '') {
+        warpstagramAuthCode = generateCode(moduleType, moduleEdition);
+      } else if (user.warpstagramAuthCode != '') {
+        if (user.warpstagram != moduleEdition) {
+          warpstagramAuthCode = generateCode(moduleType, moduleEdition);
+        } else if (user.warpstagram === moduleEdition) {
+          warpstagramAuthCode = user.warpstagramAuthCode;
+        }
+      }
+    }
   }
-  if (moduleEdition != 'free') {
-  }
-  // console.log(moduleEdition);
   try {
     for (const key in updatedUser) {
       if (moduleType.includes(key)) {
         updatedUser[key] = moduleEdition;
-        const updateUser = await prisma.user.update({
+        updatedUser = await prisma.user.update({
           where: {
             id: user.id,
           },
@@ -42,28 +76,16 @@ export async function upgradeUserModule(
             warpstagram:
               moduleType === 'warpstagram' ? moduleEdition : user.warpstagram,
             //  ADD MODULE AUTH CODE IF NOT PRESENT
-            audioAuthCode:
-              moduleType === 'audio' &&
-              moduleEdition !== 'free' &&
-              user.audioAuthCode === ''
-                ? generateCode('audio', moduleEdition)
-                : generateCode('audio', 'free'),
-            videoAuthCode:
-              moduleType === 'video' && moduleEdition !== 'free'
-                ? // user.videoAuthCode === null
-                  generateCode('video', moduleEdition)
-                : generateCode('video', 'free'),
-            warpstagramAuthCode:
-              moduleType === 'warpstagram' && moduleEdition !== 'free'
-                ? // user.warpstagramAuthCode === null
-                  generateCode('warpstagram', moduleEdition)
-                : generateCode('warpstagram', 'free'),
+            audioAuthCode: audioAuthCode,
+            videoAuthCode: videoAuthCode,
+            warpstagramAuthCode: warpstagramAuthCode,
           },
         });
-        console.log(updateUser);
       }
     }
-    return user;
+    // console.log(updatedUser);
+    return updatedUser;
+    // return user;
   } catch (error) {
     console.log(error);
   }
@@ -79,24 +101,24 @@ export async function resetUser() {
   }
 }
 export async function upgradeAllUserModules(moduleEdition: string) {
-  // let user = await getUser();
-  // let updatedUser = { ...user };
-  // console.log(moduleEdition);
+  let user = await getUser();
   try {
-    // const updateUser = await prisma.user.update({
-    //   where: {
-    //     id: user.id,
-    //   },
-    //   data: {
-    //     audio: moduleEdition,
-    //     video: moduleEdition,
-    //     warpstagram: moduleEdition,
-    //   },
-    // });
-    let updateUser = await upgradeUserModule('audio', moduleEdition);
-    updateUser = await upgradeUserModule('video', moduleEdition);
-    updateUser = await upgradeUserModule('warpstagram', moduleEdition);
-    console.log(updateUser);
+    user = await prisma.user.update({
+      where: {
+        id: user.id,
+      },
+      data: {
+        //  UPGRADE MODULE EDITION
+        audio: moduleEdition,
+        video: moduleEdition,
+        warpstagram: moduleEdition,
+        //  ADD MODULE AUTH CODE IF NOT PRESENT
+        audioAuthCode: generateCode('audio', moduleEdition),
+        videoAuthCode: generateCode('video', moduleEdition),
+        warpstagramAuthCode: generateCode('warpstagram', moduleEdition),
+      },
+    });
+    return user;
   } catch (error) {
     console.log(error);
   }

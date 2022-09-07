@@ -11,6 +11,7 @@ function generateEditionPrefix(moduleEdition: string) {
   if (moduleEdition === 'free') editionPrefix = '0';
   if (moduleEdition === 'personal') editionPrefix = '1';
   if (moduleEdition === 'professional') editionPrefix = '2';
+  if (moduleEdition === 'dev') editionPrefix = '3';
   return editionPrefix;
 }
 export default function generateAuthCode(
@@ -25,7 +26,7 @@ export default function generateAuthCode(
   const segment3 = uuidv4().slice(0, 5);
   let authCode =
     typePrefix + editionPrefix + segment1 + '-' + segment2 + '-' + segment3;
-  console.log(authCode);
+  // console.log(authCode);
   if (moduleEdition === 'free') {
     return '';
   } else {
