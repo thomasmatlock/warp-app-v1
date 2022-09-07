@@ -5,6 +5,7 @@
  * `./src/main.js` using webpack. This gives us some performance wins.
  */
 import path from 'path';
+import chalk from 'chalk';
 import fs from 'fs';
 import {
   app,
@@ -57,7 +58,7 @@ app
     setActiveURL();
 
     (async function () {
-      // user = await User.resetUser();
+      user = await User.resetUser();
       // user = await User.upgradeUserModule('audio', 'free');
       // user = await User.upgradeUserModule('audio', 'personal');
       // user = await User.upgradeUserModule('audio', 'professional');
@@ -69,14 +70,28 @@ app
       // user = await User.upgradeUserModule('warpstagram', 'professional');
       // user = await User.upgradeAllUserModules('personal');
       // user = await User.upgradeAllUserModules('professional');
-      user = await User.upgradeAllUserModules('developer');
-      if (user !== undefined) console.log(user);
+      // user = await User.upgradeAllUserModules('developer');
+      // if (user !== undefined) console.log(user);
       // windowController.createmWin();
     })();
 
     // Screen.resetScreenState();
     (async function () {
       user = await User.getUser();
+      if (user.audio === 'free') {
+        console.log(chalk.whiteBright.bgRed('Free mode'));
+      }
+
+      if (user.audio === 'personal') {
+        console.log(chalk.whiteBright.bgYellow('Personal mode'));
+      }
+      if (user.audio === 'professional') {
+        console.log(chalk.whiteBright.bgBlue('Professional mode'));
+      }
+      if (user.audio === 'developer') {
+        console.log(chalk.whiteBright.bgGreen('Developer mode'));
+      }
+
       // console.log(user);
       // windowController.createmWin();
     })();
