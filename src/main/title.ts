@@ -9,7 +9,7 @@ let user;
 const capitalizeFirstLetter = (string: string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 };
-export function setTitle(mWin: BrowserWindow, mode) {
+export function setTitle(mWin: BrowserWindow, mode, user) {
   console.log(user);
 
   let baseTitleString = `${app.getName()} | Download Anything |`;

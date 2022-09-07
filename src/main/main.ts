@@ -61,7 +61,7 @@ app
       // user = await User.upgradeUserModule('audio', 'free');
       // user = await User.upgradeUserModule('audio', 'personal');
       // user = await User.upgradeUserModule('audio', 'professional');
-      //       user = await User.upgradeUserModule('video', 'free');
+      // user = await User.upgradeUserModule('video', 'free');
       // user = await User.upgradeUserModule('video', 'personal');
       // user = await User.upgradeUserModule('video', 'professional');
       // user = await User.upgradeUserModule('warpstagram', 'free');
@@ -69,8 +69,8 @@ app
       // user = await User.upgradeUserModule('warpstagram', 'professional');
       // user = await User.upgradeAllUserModules('personal');
       // user = await User.upgradeAllUserModules('professional');
-      user = await User.upgradeAllUserModules('dev');
-      console.log(user);
+      // user = await User.upgradeAllUserModules('dev');
+      if (user !== undefined) console.log(user);
       // windowController.createmWin();
     })();
 
@@ -192,15 +192,15 @@ let browserPanelState = 'default';
   ipcMain.on('nav: mode: audio', async (event, arg) => {
     // if (mWin) mWin.webContents.send('count-downloads');
     // console.log(arg);
-    Title.setTitle(mWin, 'audio');
+    Title.setTitle(mWin, 'audio', user);
   });
   ipcMain.on('nav: mode: video', async (event, arg) => {
     // if (mWin) mWin.webContents.send('count-downloads');
-    Title.setTitle(mWin, 'video');
+    Title.setTitle(mWin, 'video', user);
   });
   ipcMain.on('nav: mode: warpstagram', async (event, arg) => {
     // if (mWin) mWin.webContents.send('count-downloads');
-    Title.setTitle(mWin, 'warpstagram');
+    Title.setTitle(mWin, 'warpstagram', user);
   });
   // SEARCH LISTENERS
   ipcMain.on('Search: InputChange', async (event, arg) => {
@@ -514,7 +514,7 @@ const windowController = {
         mWin.minimize();
       } else {
         mWin.show();
-        Title.setTitle(mWin, 'audio');
+        Title.setTitle(mWin, 'audio', user);
 
         if (Screen.isMaximized) mWin.maximize();
         // if (view === null) windowController.createbView();
