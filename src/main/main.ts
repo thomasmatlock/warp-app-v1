@@ -71,23 +71,17 @@ app
       // user = await User.upgradeUserModule('warpstagram', 'professional');
       // user = await User.upgradeAllUserModules('personal');
       // user = await User.upgradeAllUserModules('professional');
-      user = await User.upgradeAllUserModules('developer');
+      // user = await User.upgradeAllUserModules('developer');
       // if (user !== undefined) console.log(user.audio);
       user = await User.getUser();
 
-      if (user.audio === 'free') {
+      if (user.audio === 'free')
         console.log(chalk.whiteBright.bgRed('Free mode'));
-      }
-
-      if (user.audio === 'personal') {
+      if (user.audio === 'personal')
         console.log(chalk.whiteBright.bgYellow('Personal mode'));
-      }
-      if (user.audio === 'professional') {
+      if (user.audio === 'professional')
         console.log(chalk.whiteBright.bgBlue('Professional mode'));
-      }
-      if (user.audio === 'developer') {
-        console.log(chalk.whiteBright.bgGreen('Developer mode'));
-      }
+      // if (user.audio === 'developer')        console.log(chalk.whiteBright.bgGreen('Developer mode'));
 
       // windowController.createmWin();
     })();
