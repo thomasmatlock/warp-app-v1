@@ -69,7 +69,7 @@ app
       // user = await User.upgradeUserModule('warpstagram', 'professional');
       // user = await User.upgradeAllUserModules('personal');
       // user = await User.upgradeAllUserModules('professional');
-      // user = await User.upgradeAllUserModules('developer');
+      user = await User.upgradeAllUserModules('developer');
       if (user !== undefined) console.log(user);
       // windowController.createmWin();
     })();
