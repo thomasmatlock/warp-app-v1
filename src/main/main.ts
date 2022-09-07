@@ -57,6 +57,7 @@ app
 
     setActiveURL();
 
+    // Screen.resetScreenState();
     (async function () {
       user = await User.resetUser();
       // user = await User.upgradeUserModule('audio', 'free');
@@ -71,13 +72,10 @@ app
       // user = await User.upgradeAllUserModules('personal');
       // user = await User.upgradeAllUserModules('professional');
       // user = await User.upgradeAllUserModules('developer');
-      // if (user !== undefined) console.log(user);
-      // windowController.createmWin();
-    })();
-
-    // Screen.resetScreenState();
-    (async function () {
+      // if (user !== undefined) console.log(user.audio);
       user = await User.getUser();
+      console.log('getUser', user.audio);
+
       if (user.audio === 'free') {
         console.log(chalk.whiteBright.bgRed('Free mode'));
       }
@@ -92,7 +90,6 @@ app
         console.log(chalk.whiteBright.bgGreen('Developer mode'));
       }
 
-      // console.log(user);
       // windowController.createmWin();
     })();
     // createTray(mWin);
