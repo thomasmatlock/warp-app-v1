@@ -11,13 +11,13 @@ import getAllProducts from './stripeGetAllProducts';
 
 export default async function createCustomer() {
   const products = await getAllProducts();
-  console.log(products.data.length);
+  // console.log(products.data.length);
 
   const params: Stripe.CustomerCreateParams = {
     email: 'metaphorps@gmail.com',
   };
 
-  const customer = await stripe.customers.create(params);
+  // const customer = await stripe.customers.create(params);
   // id: 'cus_MNzQJZI5BewhA9',
   // object: 'customer',
   // address: null,
