@@ -26,7 +26,7 @@ import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
 import BrowserQuery from './browserQuery';
-import User from './User';
+import User from './UserOffline';
 import Paths from './paths';
 import Downloads from '../downloaders/downloadsController';
 import Title from './Title';
@@ -79,7 +79,7 @@ app
       //   console.log(chalk.whiteBright.bgBlue('Professional mode'));
       // if (user.audio === 'developer')
       //   console.log(chalk.whiteBright.bgGreen('Developer mode'));
-      // windowController.createmWin();
+      windowController.createmWin();
     })();
     // createTray(mWin);
     // Shortcuts(view);

@@ -113,7 +113,7 @@ export default async function Youtube(mWin, itemURL, prefs, mode) {
   } catch (error) {
     console.log(itemURL, error);
   }
-  YoutubeDownload(mWin, itemDetails);
+  // YoutubeDownload(mWin, itemDetails);
   // YoutubeDownload2(mWin, itemDetails);
   return itemDetails;
 }
