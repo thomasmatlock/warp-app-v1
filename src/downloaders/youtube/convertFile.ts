@@ -8,6 +8,8 @@ import ffmpeg from 'fluent-ffmpeg';
 // C:\Users\Tommy\AppData\Local\Programs\warp\resources\node_modules\@ffmpeg-installer\win32-x64
 // C:\Users\Tommy\AppData\Local\Programs\warp\resources\node_modules\@ffmpeg-installer\win32-x64\ffmpeg.exe
 let ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
+console.log(ffmpegPath);
+
 // ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
 if (ffmpegPath === undefined) {
   // const ffmpeg = require('fluent-ffmpeg');
@@ -28,6 +30,7 @@ if (ffmpegPath === undefined) {
 }
 
 // ffmpegPath = path.join(
+console.log(ffmpegPath);
 //   __dirname,
 //   '..',
 //   '..',
