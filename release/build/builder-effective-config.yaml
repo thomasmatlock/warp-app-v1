@@ -1,0 +1,54 @@
+directories:
+  output: release/build
+  buildResources: build
+  app: release/app
+productName: Warp
+appId: org.erb.Warp
+asar: true
+asarUnpack: '**\*.{node,dll}'
+files:
+  - filter:
+      - dist
+      - node_modules
+      - package.json
+afterSign: .erb/scripts/notarize.js
+mac:
+  target:
+    target: default
+    arch:
+      - arm64
+      - x64
+  type: distribution
+  hardenedRuntime: true
+  entitlements: assets/entitlements.mac.plist
+  entitlementsInherit: assets/entitlements.mac.plist
+  gatekeeperAssess: false
+dmg:
+  contents:
+    - x: 130
+      'y': 220
+    - x: 410
+      'y': 220
+      type: link
+      path: /Applications
+win:
+  target:
+    - nsis
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+linux:
+  target:
+    - AppImage
+  category: Development
+extraResources:
+  - filter:
+      - ./assets/**
+      - prisma/**/*
+      - node_modules/.prisma/**/*
+      - node_modules/@prisma/client/**/*
+publish:
+  provider: github
+  owner: electron-react-boilerplate
+  repo: electron-react-boilerplate
+electronVersion: 18.3.5
