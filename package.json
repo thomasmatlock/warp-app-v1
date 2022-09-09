@@ -137,7 +137,7 @@
         "request": "^2.88.2",
         "stripe": "^10.3.0",
         "uuid": "^8.3.2",
-        "ytdl-core": "^4.11.1",
+        "ytdl-core": "^4.11.2",
         "ytpl": "^2.3.0"
     },
     "prettier": {
@@ -228,7 +228,8 @@
         },
         "nsis": {
             "oneClick": false,
-            "allowToChangeInstallationDirectory": true
+            "allowToChangeInstallationDirectory": true,
+            "license": "eula.txt"
         },
         "linux": {
             "target": [
@@ -245,6 +246,7 @@
             "./assets/**",
             "prisma/**/*",
             "node_modules/.prisma/**/*",
+            "node_modules/fluent-ffmpeg/**/*",
             "node_modules/@prisma/client/**/*",
             "node_modules/@ffmpeg-installer/win32-x64/**/*"
         ],

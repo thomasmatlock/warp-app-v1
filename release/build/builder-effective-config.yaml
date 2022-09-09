@@ -1,3 +1,58 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:c9a7513796d07132ec7494100ca303ca149bb107a6083b9fd1f14d54c807d11f
-size 1127
+directories:
+  output: release/build
+  buildResources: build
+  app: release/app
+productName: Warp
+appId: org.erb.Warp
+artifactName: Warp Setup.${ext}
+asar: true
+asarUnpack: '**\*.{node,dll}'
+files:
+  - filter:
+      - dist
+      - node_modules
+      - package.json
+afterSign: .erb/scripts/notarize.js
+mac:
+  target:
+    target: default
+    arch:
+      - arm64
+      - x64
+  type: distribution
+  hardenedRuntime: true
+  entitlements: assets/entitlements.mac.plist
+  entitlementsInherit: assets/entitlements.mac.plist
+  gatekeeperAssess: false
+dmg:
+  contents:
+    - x: 130
+      'y': 220
+    - x: 410
+      'y': 220
+      type: link
+      path: /Applications
+win:
+  target:
+    - nsis
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  license: eula.txt
+linux:
+  target:
+    - AppImage
+  category: Development
+extraResources:
+  - filter:
+      - ./assets/**
+      - prisma/**/*
+      - node_modules/.prisma/**/*
+      - node_modules/fluent-ffmpeg/**/*
+      - node_modules/@prisma/client/**/*
+      - node_modules/@ffmpeg-installer/win32-x64/**/*
+publish:
+  provider: github
+  owner: electron-react-boilerplate
+  repo: electron-react-boilerplate
+electronVersion: 18.3.5

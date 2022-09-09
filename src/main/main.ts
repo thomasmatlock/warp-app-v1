@@ -43,13 +43,6 @@ let user;
 // let tray;
 let mWin: BrowserWindow | null = null;
 let view: BrowserView | null = null;
-const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
-const ffmpeg = require('fluent-ffmpeg');
-ffmpeg.setFfmpegPath(ffmpegPath);
-console.log(ffmpegPath);
-console.log(app.getPath('appData'));
-console.log(app.getPath('userData'));
-console.log(process.execPath);
 
 app
   .whenReady()
@@ -87,7 +80,7 @@ app
       //   console.log(chalk.whiteBright.bgBlue('Professional mode'));
       // if (user.audio === 'developer')
       //   console.log(chalk.whiteBright.bgGreen('Developer mode'));
-      // windowController.createmWin();
+      windowController.createmWin();
     })();
     // createTray(mWin);
     // Shortcuts(view);
@@ -538,7 +531,7 @@ const windowController = {
         Title.setTitle(mWin, 'audio', user);
 
         if (Screen.isMaximized) mWin.maximize();
-        // if (view === null) windowController.createbView();
+        if (view === null) windowController.createbView();
         mWin.webContents.send('appVersion', app.getVersion());
         mWin.webContents.send('main: prefs', prefs);
         mWin.webContents.send('main: audioDownloads', audioDownloads);

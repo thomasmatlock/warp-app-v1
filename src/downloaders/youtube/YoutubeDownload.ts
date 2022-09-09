@@ -6,11 +6,11 @@ import path from 'path';
 const stream = require('node:stream');
 import got from 'got';
 import { app, BrowserWindow, shell } from 'electron';
-import ffmpeg from 'fluent-ffmpeg';
-const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
-const ffmpeg = require('fluent-ffmpeg');
-ffmpeg.setFfmpegPath(ffmpegPath);
-const request = require('request');
+// import ffmpeg from 'fluent-ffmpeg';
+// const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
+// const ffmpeg = require('fluent-ffmpeg');
+// ffmpeg.setFfmpegPath(ffmpegPath);
+// const request = require('request');
 import convertToSeconds from './convertTimeToSeconds';
 import getETA from './getETA';
 // import convertFile from './convertFile';
@@ -62,7 +62,7 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
         conversionBeginTime = Date.now();
         let downloadTime = ((Date.now() - downloadBeginTime) / 1000).toFixed(1);
       }
-      if (downloadComplete) convertFile(mWin, item, tempPath);
+      // if (downloadComplete) convertFile(mWin, item, tempPath);
     });
   } catch (error) {
     console.log(error);
