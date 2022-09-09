@@ -1,18 +1,3 @@
-import { Channels } from 'main/preload';
-
-declare global {
-  interface Window {
-    electron: {
-      ipcRenderer: {
-        sendMessage(channel: Channels, args: unknown[]): void;
-        on(
-          channel: string,
-          func: (...args: unknown[]) => void
-        ): (() => void) | undefined;
-        once(channel: string, func: (...args: unknown[]) => void): void;
-      };
-    };
-  }
-}
-
-export {};
+version https://git-lfs.github.com/spec/v1
+oid sha256:d4153568016035d67e6d7a5930288f56f7f8ea14bdff104c486b73418794e36f
+size 408
