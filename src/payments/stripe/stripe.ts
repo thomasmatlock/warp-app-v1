@@ -7,7 +7,7 @@ import stripeKey from './stripeKey';
 const stripe = new Stripe(stripeKey, {
   apiVersion: '2022-08-01',
 });
-import getAllProducts from './stripeGetAllProducts';
+import getAllProducts from './products/stripeGetAllProducts';
 
 export default async function createCustomer() {
   const products = await getAllProducts();
