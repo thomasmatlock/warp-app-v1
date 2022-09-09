@@ -142,17 +142,15 @@
     },
     "prettier": {
         "singleQuote": true,
-        "overrides": [
-            {
-                "files": [
-                    ".prettierrc",
-                    ".eslintrc"
-                ],
-                "options": {
-                    "parser": "json"
-                }
+        "overrides": [{
+            "files": [
+                ".prettierrc",
+                ".eslintrc"
+            ],
+            "options": {
+                "parser": "json"
             }
-        ]
+        }]
     },
     "jest": {
         "moduleDirectories": [
@@ -210,8 +208,7 @@
             "gatekeeperAssess": false
         },
         "dmg": {
-            "contents": [
-                {
+            "contents": [{
                     "x": 130,
                     "y": 220
                 },
@@ -228,6 +225,10 @@
                 "nsis"
             ]
         },
+        "nsis": {
+            "oneClick": false,
+            "allowToChangeInstallationDirectory": true
+        },
         "linux": {
             "target": [
                 "AppImage"
@@ -236,7 +237,7 @@
         },
         "directories": {
             "app": "release/app",
-            "buildResources": "assets",
+            "buildResources": "build",
             "output": "release/build"
         },
         "extraResources": [

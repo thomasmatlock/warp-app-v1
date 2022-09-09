@@ -26,7 +26,8 @@ import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
 import BrowserQuery from './browserQuery';
-import User from './UserOffline';
+// import User from './UserOffline';
+import User from './User';
 import Paths from './paths';
 import Downloads from '../downloaders/downloadsController';
 import Title from './Title';
@@ -461,9 +462,10 @@ const windowController = {
       // }
 
       // nativeTheme.shouldUseDarkColors ? mWin.setBackgroundColor('#1a1a1a') : mWin.setBackgroundColor('#fff'),
-      icon: nativeTheme.shouldUseDarkColors
-        ? getAssetPath('iconDarkTheme.png')
-        : getAssetPath('iconLightTheme.png'),
+      icon: getAssetPath('icon.png'),
+      //  nativeTheme.shouldUseDarkColors
+      // ? getAssetPath('icon.png')
+      // : getAssetPath('icon.png'),
       webPreferences: {
         preload: app.isPackaged
           ? path.join(__dirname, 'preload.js')
