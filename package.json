@@ -229,6 +229,7 @@
         "nsis": {
             "oneClick": false,
             "allowToChangeInstallationDirectory": true,
+            "perMachine": true,
             "license": "eula.txt"
         },
         "linux": {
