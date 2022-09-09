@@ -1,34 +1,3 @@
-import { app, BrowserWindow } from 'electron';
-import User from './User';
-
-let user;
-const capitalizeFirstLetter = (string: string) => {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-};
-export function setTitle(mWin: BrowserWindow, mode, user) {
-  let baseTitleString = `${capitalizeFirstLetter(
-    app.getName()
-  )} | Download Anything |`;
-  let versionString;
-  let activatedString;
-  let modeString = capitalizeFirstLetter(mode);
-  if (mode === 'audio') {
-    versionString = capitalizeFirstLetter(user[mode]);
-  }
-  if (mode === 'video') {
-    versionString = capitalizeFirstLetter(user[mode]);
-  }
-  if (mode === 'warpstagram') {
-    versionString = capitalizeFirstLetter(user[mode]);
-  }
-  activatedString = versionString.toLowerCase().includes('free')
-    ? '- Not Activated'
-    : '';
-  mWin.setTitle(
-    `${baseTitleString} ${versionString} ${modeString} Edition ${activatedString}`
-  );
-}
-
-module.exports = {
-  setTitle: setTitle,
-};
+version https://git-lfs.github.com/spec/v1
+oid sha256:7f1f76528599736b45786c7a4c7e3876b59f8bf81243b9e2be6d4fb6fa49b0f5
+size 960
