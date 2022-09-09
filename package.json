@@ -185,6 +185,7 @@
     "build": {
         "productName": "Warp",
         "appId": "org.erb.Warp",
+        "artifactName": "Warp Setup.${ext}",
         "asar": true,
         "asarUnpack": "**\\*.{node,dll}",
         "files": [
@@ -244,7 +245,8 @@
             "./assets/**",
             "prisma/**/*",
             "node_modules/.prisma/**/*",
-            "node_modules/@prisma/client/**/*"
+            "node_modules/@prisma/client/**/*",
+            "node_modules/@ffmpeg-installer/win32-x64/**/*"
         ],
         "publish": {
             "provider": "github",

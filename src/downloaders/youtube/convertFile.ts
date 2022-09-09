@@ -9,7 +9,7 @@ import ffmpeg from 'fluent-ffmpeg';
 const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
 const ffmpeg = require('fluent-ffmpeg');
 ffmpeg.setFfmpegPath(ffmpegPath);
-// console.log(ffmpegPath);
+console.log(ffmpegPath);
 
 export default function convertFile(
   mWin: BrowserWindow,
