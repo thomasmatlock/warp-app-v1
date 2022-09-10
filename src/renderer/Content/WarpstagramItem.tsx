@@ -1,30 +1,13 @@
-import { Fragment, useState, useContext } from 'react';
+import { useState, useContext } from 'react';
 import refreshIcon from '../../../assets/Warpstagram/refresh1.svg';
 import pinIcon from '../../../assets/Warpstagram/pin.svg';
 import menuIcon from '../../../assets/Warpstagram/menu.svg';
 import './Warpstagram.scss';
-import dummy_post3 from '../../../assets/Content/Warpstagram/nintendoswitch/3.jpg';
-import dummy_post4 from '../../../assets/Content/Warpstagram/nintendoswitch/4.jpg';
-import dummy_post5 from '../../../assets/Content/Warpstagram/nintendoswitch/5.jpg';
-import dummy_post6 from '../../../assets/Content/Warpstagram/nintendoswitch/6.jpg';
-import dummy_post7 from '../../../assets/Content/Warpstagram/nintendoswitch/7.jpg';
-import dummy_post8 from '../../../assets/Content/Warpstagram/nintendoswitch/8.jpg';
-import dummy_post9 from '../../../assets/Content/Warpstagram/nintendoswitch/9.jpg';
-import dummy_post11 from '../../../assets/Content/Warpstagram/nintendoswitch/11.jpg';
-import dummy_post12 from '../../../assets/Content/Warpstagram/nintendoswitch/12.jpg';
-import dummy_post13 from '../../../assets/Content/Warpstagram/nintendoswitch/13.jpg';
-import dummy_post14 from '../../../assets/Content/Warpstagram/nintendoswitch/14.jpg';
-import dummy_post15 from '../../../assets/Content/Warpstagram/nintendoswitch/15.jpg';
-import dummy_avatar from '../../../assets/Content/Warpstagram/peaky/6.jpg';
-import SourcesContext from '../../storage/sourcesContext';
 import ThemeContext from 'storage/themeContext';
-import DownloadsContext from 'storage/downloadsContext';
 import ContextMenu from '../ContextMenu/ContextMenu';
 import ContextMenuOptionsWarpstagramAccount from '../ContextMenu/ContextMenuOptionsWarpstagramAccount';
 const WarpstagramItem = (props) => {
-  const sourcesCtx = useContext(SourcesContext);
   const themeCtx = useContext(ThemeContext);
-  const downloadsCtx = useContext(DownloadsContext);
 
   const [isContextMenuVisible, setisContextMenuVisible] = useState(false);
   const toggleContextMenuSort = () => {
@@ -51,7 +34,7 @@ const WarpstagramItem = (props) => {
     >
       <div className="content__panel__warpstagram__account__info">
         <img
-          src={dummy_avatar}
+          src="https://i.pinimg.com/564x/0b/84/d1/0b84d125e863158bce1c7c835f19de7d.jpg"
           className=" content__panel__warpstagram__account__info__avatar"
         ></img>
         <div
@@ -144,57 +127,57 @@ const WarpstagramItem = (props) => {
       </div>
       <div className="content__panel__warpstagram__account__posts">
         <img
-          src={dummy_post12}
+          src="https://i.pinimg.com/564x/d1/0e/9f/d10e9f68993b44ebe6e9b15b9a1b7071.jpg"
           alt="null"
           className="content__panel__warpstagram__account__posts__item"
         />
         <img
-          src={dummy_post3}
+          src="https://i.pinimg.com/564x/43/db/2b/43db2b9c11acf70e371e3e0de1a3d16d.jpg"
           alt="null"
           className="content__panel__warpstagram__account__posts__item"
         />
         <img
-          src={dummy_post4}
+          src="https://i.pinimg.com/564x/48/51/e0/4851e0c84e96f1535aff97b34daf52ad.jpg"
           alt="null"
           className="content__panel__warpstagram__account__posts__item"
         />
         <img
-          src={dummy_post5}
+          src="https://i.pinimg.com/564x/4e/27/66/4e2766cda38299ad8656c49dc9248756.jpg"
           alt="null"
           className="content__panel__warpstagram__account__posts__item"
         />
         <img
-          src={dummy_post6}
+          src="https://i.pinimg.com/564x/f2/6a/1c/f26a1cecefb436b9ac976c414b2207ea.jpg"
           alt="null"
           className="content__panel__warpstagram__account__posts__item"
         />
         <img
-          src={dummy_post7}
+          src="https://i.pinimg.com/564x/67/50/17/6750175985eef0795e780774b33fb16a.jpg"
           alt="null"
           className="content__panel__warpstagram__account__posts__item"
         />
         <img
-          src={dummy_post8}
+          src="https://i.pinimg.com/564x/59/2f/ff/592fffae37003cf4ad70e2bfceb7b9d5.jpg"
           alt="null"
           className="content__panel__warpstagram__account__posts__item"
         />
         <img
-          src={dummy_post9}
+          src="https://i.pinimg.com/564x/27/22/e0/2722e06b178604f2dde02f100e6f63c1.jpg"
           alt="null"
           className="content__panel__warpstagram__account__posts__item"
         />
         <img
-          src={dummy_post11}
+          src="https://i.pinimg.com/564x/36/0c/d9/360cd98b08f801b798798ab861aed3eb.jpg"
           alt="null"
           className="content__panel__warpstagram__account__posts__item"
         />
         <img
-          src={dummy_post14}
+          src="https://i.pinimg.com/564x/46/13/67/46136766b5d7012d8c3c9f8bfa22910a.jpg"
           alt="null"
           className="content__panel__warpstagram__account__posts__item"
         />{' '}
         <img
-          src={dummy_post15}
+          src="https://i.pinimg.com/564x/0b/84/d1/0b84d125e863158bce1c7c835f19de7d.jpg"
           alt="null"
           className="content__panel__warpstagram__account__posts__item"
         />
