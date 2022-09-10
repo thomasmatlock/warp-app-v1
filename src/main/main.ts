@@ -36,6 +36,7 @@ import PowerMonitor from './powerMonitor';
 import Screen from './screen';
 import Browser from './browserController';
 import Shortcuts from './Shortcuts';
+const appRootDir = require('app-root-dir').get();
 
 const fs = require('fs');
 let prefs;
@@ -533,6 +534,7 @@ const windowController = {
         if (Screen.isMaximized) mWin.maximize();
         if (view === null) windowController.createbView();
         mWin.webContents.send('appVersion', app.getVersion());
+        mWin.webContents.send('appRoot', appRootDir);
         mWin.webContents.send('main: prefs', prefs);
         mWin.webContents.send('main: audioDownloads', audioDownloads);
         mWin.webContents.send('main: videoDownloads', videoDownloads);
@@ -581,7 +583,7 @@ const windowController = {
     // view.webContents.insertCSS('scrollbar{    width: 100px;}');
     // view.webContents.loadURL('https://open.spotify.com/');
     view.webContents.on('did-navigate-in-page', (e, url) => {
-      console.log(url);
+      // console.log(url);
 
       if (mWin) mWin.webContents.send('browser-url-change', url);
     });

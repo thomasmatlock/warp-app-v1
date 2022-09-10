@@ -3,23 +3,76 @@ import path from 'path';
 import { app, BrowserWindow, shell } from 'electron';
 import convertToSeconds from './convertTimeToSeconds';
 import getETA from './getETA';
-import ffmpeg from 'fluent-ffmpeg';
-// const ffmpeg = require('fluent-ffmpeg');
-// C:\Users\Tommy\AppData\Local\Programs\warp\resources\node_modules\@ffmpeg-installer\win32-x64
-// C:\Users\Tommy\AppData\Local\Programs\warp\resources\node_modules\@ffmpeg-installer\win32-x64\ffmpeg.exe
-let ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
-console.log(ffmpegPath);
+// import ffmpeg from 'fluent-ffmpeg';
+var appRootDir = require('app-root-dir').get();
+// console.log(appRootDir);
 
+const ffmpeg = require('fluent-ffmpeg');
+// C:\Users\Tommy\AppData\Local\Programs\warp\resources\node_modules\@ffmpeg-installer\win32-x64
+// C:\Program Files\Warp\resources\node_modules\@ffmpeg-installer\win32-x64\ffmpeg.exe
+let ffmpegPath;
+// = require('@ffmpeg-installer/ffmpeg').path;
+// console.log(ffmpegPath);
+// find js files in all dirs
+
+// console.log(exeArr);
+
+// for (let i = 0; i < exeArr.length; i++) {
+//   if (exeArr[i].includes('ffmpeg.exe')) {
+//     ffmpegPath = exeArr[i];
+//   }
+// }
+// console.log(ffmpegPath);
+// (async () => {
+//   try {
+//   } catch (error) {
+//     console.log('ERROR');
+//   }
+// })();
+function getPackagedPath(targetPath: string) {
+  let packagedPathSplit = targetPath.split('\\');
+  let joined: string = '';
+  for (let i = 0; i < packagedPathSplit.length; i++) {
+    if (packagedPathSplit[i] != 'resources') {
+      joined = joined + packagedPathSplit[i] + '\\';
+    } else if (packagedPathSplit[i] === 'resources') {
+      break;
+    }
+  }
+  return joined;
+}
 // ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
-if (ffmpegPath === undefined) {
-  // const ffmpeg = require('fluent-ffmpeg');
-  if (process.platform === 'win32') {
+// if (ffmpegPath === undefined) {
+// const ffmpeg = require('fluent-ffmpeg');
+if (process.platform === 'win32') {
+  // IF DEV MODE
+  if (!app.isPackaged) {
+    // console.log('app.isPackaged', app.isPackaged);
     ffmpegPath = path.join(
-      app.getPath('home'),
-      'AppData',
-      'Local',
-      'Programs',
-      'warp',
+      appRootDir,
+      'node_modules',
+      '@ffmpeg-installer',
+      'win32-x64',
+      'ffmpeg.exe'
+    );
+  } else if (app.isPackaged) {
+    // let packagedPath = 'C:\\Program Files\\Warp\\resources\\app.asar\\dist';
+    // homedir .... C:\Program Files\Warp\resources\app.asar\dist //USE THIS
+    //ATTEMPT  --- PROGRAM FILES PATH --- // C:\Program Files\Warp\resources\node_modules\@ffmpeg-installer\win32-x64\ffmpeg.exe
+    // console.log('app.isPackaged', app.isPackaged);
+
+    // IF PRODUCTION MODE
+    // ffmpegPath = path.join(
+    //   appRootDir,
+    //   'resources',
+    //   'node_modules',
+    //   '@ffmpeg-installer',
+    //   'win32-x64',
+    //   'ffmpeg.exe'
+    // );
+    ffmpegPath = path.join(
+      getPackagedPath(appRootDir),
+      // getPackagedPath(packagedPath),
       'resources',
       'node_modules',
       '@ffmpeg-installer',
@@ -28,35 +81,24 @@ if (ffmpegPath === undefined) {
     );
   }
 }
-
-// ffmpegPath = path.join(
-console.log(ffmpegPath);
-//   __dirname,
-//   '..',
-//   '..',
-//   '..',
-//   'node_modules',
-//   '@ffmpeg-installer',
-//   process.platform,
-//   process.arch,
-//   'ffmpeg'
-// );
 // }
-ffmpeg.setFfmpegPath(ffmpegPath);
+
+// console.log(packagedPath);
+// console.log(joined);
+
+// console.log('packagedPathSplit', packagedPathSplit);
+
+// let packagedResourcesPath = 'C:\\Program Files\\Warp\\resources';
+// let test = path.dirname(packagedPath);
+// console.log(test);
+
+// import scanFolder from 'scan-folder';
+// let exeArr = scanFolder(packagedResourcesPath, 'exe', true);
+// let exeArr = scanFolder(packagedResourcesPath, 'exe', true);
+// console.log(exeArr);
 // console.log(ffmpegPath);
-console.log(ffmpegPath);
-// let pathTest = path.join(
-//   app.getPath('home'),
-//   'AppData',
-//   'Local',
-//   'warp',
-//   'resources',
-//   'node_modules',
-//   '@ffmpeg-installer',
-//   'win32-x64',
-//   'ffmpeg.exe'
-// );
-// console.log(pathTest);
+
+ffmpeg.setFfmpegPath(ffmpegPath);
 export default function convertFile(
   mWin: BrowserWindow,
   item: any,

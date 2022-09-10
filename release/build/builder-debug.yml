@@ -93,8 +93,8 @@ nsis:
     !macroend
 
     !addplugindir /x86-unicode "C:\Users\Tommy\AppData\Local\electron-builder\Cache\nsis\nsis-resources-3.4.1\plugins\x86-unicode"
-    !include "C:\Users\Tommy\AppData\Local\Temp\t-07Am23\0-messages.nsh"
-    !include "C:\Users\Tommy\AppData\Local\Temp\t-07Am23\1-messages.nsh"
+    !include "C:\Users\Tommy\AppData\Local\Temp\t-foaw9T\0-messages.nsh"
+    !include "C:\Users\Tommy\AppData\Local\Temp\t-foaw9T\1-messages.nsh"
     !macro licensePage
       !insertmacro MUI_PAGE_LICENSE "C:\Users\Tommy\Documents\GitHub\warp-app\eula.txt"
     !macroend
