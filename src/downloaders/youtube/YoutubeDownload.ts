@@ -10,7 +10,6 @@ import { app, BrowserWindow, shell } from 'electron';
 // const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
 // const ffmpeg = require('fluent-ffmpeg');
 // ffmpeg.setFfmpegPath(ffmpegPath);
-// const request = require('request');
 import convertToSeconds from './convertTimeToSeconds';
 import getETA from './getETA';
 // import convertFile from './convertFile';
