@@ -34,7 +34,7 @@ import Downloads from '../downloaders/downloadsController';
 import Title from './Title';
 import Prefs from './prefsController';
 import PowerMonitor from './powerMonitor';
-import Screen from './screen';
+import { setScreenState, getScreenState } from './screen';
 import Browser from './browserController';
 import Shortcuts from './Shortcuts';
 const appRootDir = require('app-root-dir').get();
@@ -56,7 +56,6 @@ app
 
     setActiveURL();
 
-    // Screen.resetScreenState();
     (async function () {
       // user = await User.resetUser();
       // user = await User.upgradeUserModule('audio', 'free');
@@ -443,10 +442,10 @@ const windowController = {
     };
 
     mWin = new BrowserWindow({
-      x: Screen.getScreenState().bounds.x,
-      y: Screen.getScreenState().bounds.y,
-      width: Screen.getScreenState().bounds.width,
-      height: Screen.getScreenState().bounds.height,
+      x: getScreenState().bounds.x,
+      y: getScreenState().bounds.y,
+      width: getScreenState().bounds.width,
+      height: getScreenState().bounds.height,
       minWidth: 850,
       minHeight: 500,
       show: false,
@@ -508,7 +507,7 @@ const windowController = {
     });
     mWin.on('maximize', () => {
       Browser.resize(browserPanelState, mWin, view);
-      Screen.setScreenState(mWin);
+      setScreenState(mWin);
     });
     mWin.on('minimize', () => {});
     if (isDebug) {
@@ -548,15 +547,15 @@ const windowController = {
 
     mWin.on('resize', () => {});
     mWin.on('moved', () => {
-      Screen.setScreenState(mWin);
+      setScreenState(mWin);
     });
     mWin.on('unmaximize', () => {
       Browser.resize(browserPanelState, mWin, view);
-      Screen.setScreenState(mWin);
+      setScreenState(mWin);
     });
     mWin.on('resized', () => {
       Browser.resize(browserPanelState, mWin, view);
-      Screen.setScreenState(mWin);
+      setScreenState(mWin);
     });
     mWin.on('restore', () => {
       Browser.resize(browserPanelState, mWin, view);
