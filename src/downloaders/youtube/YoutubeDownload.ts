@@ -4,6 +4,7 @@ import https from 'https';
 import path from 'path';
 // const { Readable } = require('node:stream');
 const stream = require('node:stream');
+import got from 'got';
 import { app, BrowserWindow, shell } from 'electron';
 // import ffmpeg from 'fluent-ffmpeg';
 // const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
