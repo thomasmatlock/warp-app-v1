@@ -34,17 +34,17 @@ import Downloads from '../downloaders/downloadsController';
 import Title from './Title';
 import Prefs from './prefsController';
 import PowerMonitor from './powerMonitor';
-import { setScreenState, getScreenState } from './screen';
+import ScreenClass from './screen';
 import Browser from './browserController';
 import Shortcuts from './Shortcuts';
 const appRootDir = require('app-root-dir').get();
 
-const fs = require('fs');
-let prefs;
-let user;
+let prefs: any;
+let user: any;
 // let tray;
 let mWin: BrowserWindow | null = null;
 let view: BrowserView | null = null;
+let Screen: ScreenClass;
 
 app
   .whenReady()
@@ -53,7 +53,7 @@ app
     // Prefs.resetPrefs();
     prefs = Prefs.getPrefs();
     // console.log(prefs);
-
+    Screen = new ScreenClass(mWin);
     setActiveURL();
 
     (async function () {
@@ -442,10 +442,10 @@ const windowController = {
     };
 
     mWin = new BrowserWindow({
-      x: getScreenState().bounds.x,
-      y: getScreenState().bounds.y,
-      width: getScreenState().bounds.width,
-      height: getScreenState().bounds.height,
+      x: Screen.getScreenState().bounds.x,
+      y: Screen.getScreenState().bounds.y,
+      width: Screen.getScreenState().bounds.width,
+      height: Screen.getScreenState().bounds.height,
       minWidth: 850,
       minHeight: 500,
       show: false,
@@ -507,7 +507,7 @@ const windowController = {
     });
     mWin.on('maximize', () => {
       Browser.resize(browserPanelState, mWin, view);
-      setScreenState(mWin);
+      Screen.setScreenState(mWin);
     });
     mWin.on('minimize', () => {});
     if (isDebug) {
@@ -547,15 +547,15 @@ const windowController = {
 
     mWin.on('resize', () => {});
     mWin.on('moved', () => {
-      setScreenState(mWin);
+      Screen.setScreenState(mWin);
     });
     mWin.on('unmaximize', () => {
       Browser.resize(browserPanelState, mWin, view);
-      setScreenState(mWin);
+      Screen.setScreenState(mWin);
     });
     mWin.on('resized', () => {
       Browser.resize(browserPanelState, mWin, view);
-      setScreenState(mWin);
+      Screen.setScreenState(mWin);
     });
     mWin.on('restore', () => {
       Browser.resize(browserPanelState, mWin, view);
