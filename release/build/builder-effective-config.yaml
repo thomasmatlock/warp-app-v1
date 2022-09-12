@@ -1,3 +1,59 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:db46350ff522bf4f91e1473da02119f335d64f1f6b6ebe4356bd7f6b0c104a6a
-size 1273
+directories:
+  output: release/build
+  buildResources: build
+  app: release/app
+productName: Warp
+appId: org.erb.Warp
+artifactName: Warp Setup.${ext}
+asar: true
+asarUnpack: '**\*.{node,dll}'
+files:
+  - filter:
+      - dist
+      - node_modules
+      - package.json
+afterSign: .erb/scripts/notarize.js
+mac:
+  target:
+    target: default
+    arch:
+      - arm64
+      - x64
+  type: distribution
+  hardenedRuntime: true
+  entitlements: assets/entitlements.mac.plist
+  entitlementsInherit: assets/entitlements.mac.plist
+  gatekeeperAssess: false
+dmg:
+  contents:
+    - x: 130
+      'y': 220
+    - x: 410
+      'y': 220
+      type: link
+      path: /Applications
+win:
+  target:
+    - nsis
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  perMachine: true
+  license: eula.txt
+linux:
+  target:
+    - AppImage
+  category: Development
+extraResources:
+  - filter:
+      - ./assets/**
+      - prisma/**/*
+      - node_modules/.prisma/**/*
+      - node_modules/fluent-ffmpeg/**/*
+      - node_modules/@prisma/client/**/*
+      - node_modules/@ffmpeg-installer/win32-x64/**/*
+publish:
+  provider: github
+  owner: superspreader-media
+  repo: warp-app
+electronVersion: 18.3.5
