@@ -21,14 +21,14 @@ import {
   screen,
   // Tray,
 } from 'electron';
-import { autoUpdater } from 'electron-updater';
+import updater from './updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
 import BrowserQuery from './browserQuery';
 // import User from './UserOffline';
-// import User from './UserOffline';
-import User from './User';
+import User from './UserOffline';
+// import User from './User';
 import Paths from './paths';
 import Downloads from '../downloaders/downloadsController';
 import Title from './Title';
@@ -177,13 +177,13 @@ const installExtensions = async () => {
     .catch(console.log);
 };
 
-class AppUpdater {
-  constructor() {
-    log.transports.file.level = 'info';
-    autoUpdater.logger = log;
-    autoUpdater.checkForUpdatesAndNotify();
-  }
-}
+// class AppUpdater {
+//   constructor() {
+//     log.transports.file.level = 'info';
+//     autoUpdater.logger = log;
+//     autoUpdater.checkForUpdatesAndNotify();
+//   }
+// }
 
 let browserPanelState = 'default';
 (function appListeners() {
@@ -515,6 +515,11 @@ const windowController = {
     }
     mWin.on('ready-to-show', () => {
       if (mWin) mWin.webContents.send('ready-to-show');
+      // setTimeout(() )
+      // copilot
+
+      // setTimeout;
+      updater(mWin);
 
       if (process.platform === 'win32' && mWin)
         mWin.webContents.send('platform', 'windows');
@@ -534,7 +539,7 @@ const windowController = {
         if (Screen.isMaximized) mWin.maximize();
         if (view === null) windowController.createbView();
         mWin.webContents.send('appVersion', app.getVersion());
-        mWin.webContents.send('appRoot', appRootDir);
+        // mWin.webContents.send('appRoot', appRootDir);
         mWin.webContents.send('main: prefs', prefs);
         mWin.webContents.send('main: audioDownloads', audioDownloads);
         mWin.webContents.send('main: videoDownloads', videoDownloads);

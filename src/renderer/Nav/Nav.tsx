@@ -15,6 +15,7 @@ import NavContext from '../../storage/navContext';
 import './Nav.scss';
 let appVersion: string = '1.0.0';
 let appRoot: string = '1.0.0';
+let updateMessage = ' No update available';
 
 const Nav = (props) => {
   const themeCtx = useContext(ThemeContext);
@@ -35,6 +36,9 @@ const Nav = (props) => {
   });
   window.electron.ipcRenderer.on('appRoot', (arg: string) => {
     appRoot = arg;
+  });
+  window.electron.ipcRenderer.on('update_available', (arg: string) => {
+    updateMessage = arg;
   });
 
   const mouseEnterHandler = () => {};
@@ -182,7 +186,9 @@ const Nav = (props) => {
               }
             >
               {`Version ` + appVersion}
-              {` Project root: ` + appRoot}
+              {` Update ` + updateMessage}
+
+              {/* {` Project root: ` + appRoot} */}
             </p>
           </a>
         </div>
