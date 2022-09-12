@@ -66,7 +66,7 @@
         "css-minimizer-webpack-plugin": "^3.4.1",
         "detect-port": "^1.3.0",
         "electron": "^18.2.3",
-        "electron-builder": "^23.0.3",
+        "electron-builder": "^23.3.3",
         "electron-devtools-installer": "^3.2.0",
         "electron-notarize": "^1.2.1",
         "electron-rebuild": "^3.2.7",
@@ -142,17 +142,15 @@
     },
     "prettier": {
         "singleQuote": true,
-        "overrides": [
-            {
-                "files": [
-                    ".prettierrc",
-                    ".eslintrc"
-                ],
-                "options": {
-                    "parser": "json"
-                }
+        "overrides": [{
+            "files": [
+                ".prettierrc",
+                ".eslintrc"
+            ],
+            "options": {
+                "parser": "json"
             }
-        ]
+        }]
     },
     "jest": {
         "moduleDirectories": [
@@ -211,8 +209,7 @@
             "gatekeeperAssess": false
         },
         "dmg": {
-            "contents": [
-                {
+            "contents": [{
                     "x": 130,
                     "y": 220
                 },
@@ -256,7 +253,7 @@
         ],
         "publish": {
             "provider": "github",
-            "owner": "superspreader-media",
+            "owner": "thomasmatlock",
             "repo": "warp-app"
         }
     },

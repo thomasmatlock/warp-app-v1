@@ -1,8 +1,0 @@
-version: 2.1.3
-files:
-  - url: Warp-Setup.exe
-    sha512: H9RWjMnCUKwjCOq43BAtwm/mYuQdPOUvX0QjlDAhMbk5cKjYpLtbYj/n60so9A15rSyyd8jKe3ZGYX02QY99cQ==
-    size: 91503248
-path: Warp-Setup.exe
-sha512: H9RWjMnCUKwjCOq43BAtwm/mYuQdPOUvX0QjlDAhMbk5cKjYpLtbYj/n60so9A15rSyyd8jKe3ZGYX02QY99cQ==
-releaseDate: '2022-09-10T05:39:36.773Z'
