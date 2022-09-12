@@ -18,6 +18,8 @@ node_modules
 # OSX
 .DS_Store
 
+release/build
+release/build/win-unpacked
 .erb/dll
 
 .idea
