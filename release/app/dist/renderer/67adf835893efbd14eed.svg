@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="448px" height="512px" viewBox="0 0 448 512" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <path d="M0 0L448 0L448 512L0 512L0 0Z" id="path_1" />
+    <clipPath id="mask_1">
+      <use xlink:href="#path_1" />
+    </clipPath>
+  </defs>
+  <g id="vimeo">
+    <path d="M0 0L448 0L448 512L0 512L0 0Z" id="Background" fill="#FFFFFF" fill-opacity="0" fill-rule="evenodd" stroke="none" />
+    <g clip-path="url(#mask_1)">
+      <path d="M403.2 32L44.8 32C20.1 32 0 52.1 0 76.8L0 435.2C0 459.9 20.1 480 44.8 480L403.2 480C427.9 480 448 459.9 448 435.2L448 76.8C448 52.1 427.9 32 403.2 32L403.2 32ZM377 180.8C375.6 212.3 353.6 255.5 311 310.2C267 367.4 229.7 396 199.3 396C180.4 396 164.5 378.6 151.4 343.7C125.9 250.4 115 195.7 94 195.7C91.6 195.7 83.1 200.8 68.6 210.9L53.4 191.3C90.7 158.5 126.3 122.1 148.6 120.1C173.8 117.7 189.3 134.9 195.1 171.8C215.8 303 225 322.8 262.7 263.4C276.2 242 283.5 225.7 284.5 214.5C288 181.3 258.6 183.6 238.7 192.1C254.6 140 285 114.7 329.9 116.1C363.2 117 378.9 138.6 377 180.8L377 180.8Z" id="Shape" fill="#FFFFFF" fill-rule="evenodd" stroke="none" />
+    </g>
+  </g>
+</svg>
