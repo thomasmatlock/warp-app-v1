@@ -18,7 +18,7 @@ node_modules
 # OSX
 .DS_Store
 
-release/build
+release/app/dist
 release/build/win-unpacked
 .erb/dll
 
@@ -32,4 +32,3 @@ npm-debug.log.*
 .vercel
 
 private/
-release/
