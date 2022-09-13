@@ -11,13 +11,13 @@
         "hot",
         "reload"
     ],
-    "homepage": "https://github.com/electron-react-boilerplate/electron-react-boilerplate#readme",
+    "homepage": "https://warpdownload.com",
     "bugs": {
-        "url": "https://github.com/electron-react-boilerplate/electron-react-boilerplate/issues"
+        "url": "https://github.com/thomasmatlock/warp-app/issues"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/electron-react-boilerplate/electron-react-boilerplate.git"
+        "url": "git+https://github.com/thomasmatlock/warp-app.git"
     },
     "license": "MIT",
     "author": {
@@ -227,7 +227,7 @@
         },
         "directories": {
             "app": "release/app",
-            "buildResources": "assets",
+            "buildResources": "build",
             "output": "release/build"
         },
         "extraResources": [
