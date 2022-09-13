@@ -177,8 +177,9 @@
         "webpack-merge": "^5.8.0"
     },
     "build": {
-        "productName": "ElectronReact",
-        "appId": "org.erb.ElectronReact",
+        "productName": "Warp",
+        "appId": "org.erb.Warp",
+        "artifactName": "Warp Setup.${ext}",
         "asar": true,
         "asarUnpack": "**\\*.{node,dll}",
         "files": [
