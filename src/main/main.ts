@@ -15,7 +15,7 @@ import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
 import updater from './updater';
-
+// about to merge everything back in
 // class AppUpdater {
 //   constructor() {
 //     log.transports.file.level = 'info';
