@@ -1,5 +1,5 @@
 import { autoUpdater } from 'electron-updater';
-import { BrowserWindow, dialog } from 'electron';
+import { app, BrowserWindow, dialog } from 'electron';
 import log from 'electron-log';
 log.transports.file.level = 'info';
 autoUpdater.autoDownload = false;
@@ -40,7 +40,10 @@ export default function () {
       })
       .then((result) => {
         let buttonIndex = result.response;
-        if (buttonIndex === 0) autoUpdater.quitAndInstall(false, true); // arg1 is silent install, arg2 is force run after install
+        if (buttonIndex === 0) {
+          autoUpdater.quitAndInstall(false, true); // arg1 is silent install, arg2 is force run after install
+          app.quit();
+        }
       });
   });
 }
