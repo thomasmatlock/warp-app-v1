@@ -94,7 +94,7 @@ const createWindow = async () => {
     } else {
       mainWindow.show();
     }
-    setTimeout(updater, 3000);
+    setTimeout(updater, 1500);
   });
 
   mainWindow.on('closed', () => {
