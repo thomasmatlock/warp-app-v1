@@ -41,7 +41,7 @@ export default function () {
       .then((result) => {
         let buttonIndex = result.response;
         if (buttonIndex === 0) {
-          autoUpdater.quitAndInstall(false, true); // arg1 is silent install, arg2 is force run after install
+          autoUpdater.quitAndInstall(true, true); // arg1 is silent install, arg2 is force run after install
           app.quit();
         }
       });
