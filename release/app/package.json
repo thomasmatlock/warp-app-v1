@@ -4,9 +4,9 @@
     "description": "Download Anything",
     "license": "MIT",
     "author": {
-        "name": "Electron React Boilerplate Maintainers",
-        "email": "electronreactboilerplate@gmail.com",
-        "url": "https://github.com/electron-react-boilerplate"
+        "name": "Warp",
+        "email": "hello@warpdownload.com",
+        "url": "https://warpdownload.com"
     },
     "main": "./dist/main/main.js",
     "scripts": {

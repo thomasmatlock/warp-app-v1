@@ -2,7 +2,7 @@ import { autoUpdater } from 'electron-updater';
 import { app, BrowserWindow, dialog } from 'electron';
 import log from 'electron-log';
 log.transports.file.level = 'info';
-// autoUpdater.autoDownload = false;
+autoUpdater.autoDownload = false;
 autoUpdater.logger = log;
 export default function () {
   autoUpdater.checkForUpdates();
