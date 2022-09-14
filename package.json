@@ -215,9 +215,12 @@
             ]
         },
         "win": {
-            "target": [
-                "nsis"
-            ]
+            "target": {
+                "target": "NSIS",
+                "arch": [
+                    "x64"
+                ]
+            }
         },
         "linux": {
             "target": [
