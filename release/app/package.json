@@ -1,7 +1,7 @@
 {
     "name": "warp",
-    "version": "0.0.3",
-    "description": "A foundation for scalable desktop apps",
+    "version": "1.0.1",
+    "description": "Download Anything",
     "license": "MIT",
     "author": {
         "name": "Electron React Boilerplate Maintainers",
