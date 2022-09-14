@@ -23,11 +23,13 @@
     "author": {
         "name": "Electron React Boilerplate Maintainers"
     },
-    "contributors": [{
-        "name": "Amila Welihinda",
-        "email": "amilajack@gmail.com",
-        "url": "https://github.com/amilajack"
-    }],
+    "contributors": [
+        {
+            "name": "Amila Welihinda",
+            "email": "amilajack@gmail.com",
+            "url": "https://github.com/amilajack"
+        }
+    ],
     "main": "./src/main/main.ts",
     "scripts": {
         "build": "concurrently \"npm run build:main\" \"npm run build:renderer\"",
@@ -61,15 +63,17 @@
     "browserslist": [],
     "prettier": {
         "singleQuote": true,
-        "overrides": [{
-            "files": [
-                ".prettierrc",
-                ".eslintrc"
-            ],
-            "options": {
-                "parser": "json"
+        "overrides": [
+            {
+                "files": [
+                    ".prettierrc",
+                    ".eslintrc"
+                ],
+                "options": {
+                    "parser": "json"
+                }
             }
-        }]
+        ]
     },
     "jest": {
         "moduleDirectories": [
@@ -102,12 +106,23 @@
         }
     },
     "dependencies": {
+        "app-root-dir": "^1.0.2",
+        "cryptr": "^6.0.3",
+        "electron-context-menu": "^3.5.0",
         "electron-debug": "^3.2.0",
         "electron-log": "^4.4.8",
+        "electron-store": "^8.1.0",
         "electron-updater": "^5.2.2",
+        "fluent-ffmpeg": "^2.1.2",
+        "moment": "^2.29.4",
+        "node-machine-id": "^1.1.12",
+        "nodejs-file-downloader": "^4.10.2",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "react-router-dom": "^6.3.0"
+        "react-router-dom": "^6.3.0",
+        "stripe": "^10.8.0",
+        "ytdl-core": "^4.11.2",
+        "ytpl": "^2.3.0"
     },
     "devDependencies": {
         "@pmmmwh/react-refresh-webpack-plugin": "^0.5.7",
@@ -202,7 +217,8 @@
             "gatekeeperAssess": false
         },
         "dmg": {
-            "contents": [{
+            "contents": [
+                {
                     "x": 130,
                     "y": 220
                 },
