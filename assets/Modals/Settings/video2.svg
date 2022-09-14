@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="512px" height="512px" viewBox="0 0 512 512" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <path d="M0 0L512 0L512 512L0 512L0 0Z" id="path_1" />
+    <clipPath id="mask_1">
+      <use xlink:href="#path_1" />
+    </clipPath>
+  </defs>
+  <g id="video2">
+    <path d="M0 0L512 0L512 512L0 512L0 0Z" id="Background" fill="#FFFFFF" fill-opacity="0" fill-rule="evenodd" stroke="none" />
+    <g clip-path="url(#mask_1)">
+      <g id="Group" transform="translate(0 31)">
+        <g id="Group" transform="translate(15 15)">
+          <path d="M0 360L0 420L241 420L482 420L482 360L241 360L0 360Z" id="Shape" fill="#DFE7F4" fill-rule="evenodd" stroke="none" />
+          <path d="M241 0L0 0L0 60L241 60L482 60L482 0L241 0Z" id="Shape" fill="#DFE7F4" fill-rule="evenodd" stroke="none" />
+        </g>
+        <path d="M256 15L497 15L497 75L256 75L256 15Z" id="Shape" fill="#C7CFE1" fill-rule="evenodd" stroke="none" />
+        <path d="M256 375L497 375L497 435L256 435L256 375Z" id="Shape" fill="#C7CFE1" fill-rule="evenodd" stroke="none" />
+        <path d="M256 75L30 75L30 375L256 375L482 375L482 75L256 75Z" id="Shape" fill="#FF641A" fill-rule="evenodd" stroke="none" />
+        <path d="M256 75L482 75L482 375L256 375L256 75Z" id="Shape" fill="#F03800" fill-rule="evenodd" stroke="none" />
+        <g id="Group">
+          <g id="Group">
+            <path d="M0 360L0 450L256 450L512 450L512 360L256 360L0 360ZM81 420L30 420L30 390L81 390L81 420ZM161 420L111 420L111 390L161 390L161 420ZM241 420L191 420L191 390L241 390L241 420ZM431 390L482 390L482 420L431 420L431 390ZM351 390L401 390L401 420L351 420L351 390ZM271 390L321 390L321 420L271 420L271 390Z" id="Shape" fill="#0463DB" fill-rule="evenodd" stroke="none" />
+            <path d="M256 0L0 0L0 90L256 90L512 90L512 0L256 0ZM81 60L30 60L30 30L81 30L81 60ZM161 60L111 60L111 30L161 30L161 60ZM241 60L191 60L191 30L241 30L241 60ZM321 60L271 60L271 30L321 30L321 60ZM401.001 60L351 60L351 30L401.001 30L401.001 60ZM482 60L430.901 60L430.901 30L482 30L482 60Z" id="Shape" fill="#0463DB" fill-rule="evenodd" stroke="none" />
+          </g>
+          <g id="Group" transform="translate(256 0)">
+            <path d="M65 60L15 60L15 30L65 30L65 60ZM145.001 60L95 60L95 30L145.001 30L145.001 60ZM0 0L0 90L256 90L256 0L0 0ZM226 60L174.901 60L174.901 30L226 30L226 60Z" id="Shape" fill="#0463DB" fill-rule="evenodd" stroke="none" />
+            <path d="M256 360L0 360L0 450L256 450L256 360ZM65 420L15 420L15 390L65 390L65 420ZM145 420L95 420L95 390L145 390L145 420ZM226 420L175 420L175 390L226 390L226 420Z" id="Shape" fill="#0463DB" fill-rule="evenodd" stroke="none" />
+          </g>
+        </g>
+        <path d="M256 166.976L211 136.978L211 313.022L256 283.024L343.041 225L256 166.976Z" id="Shape" fill="#F0F7FF" fill-rule="evenodd" stroke="none" />
+        <path d="M256 166.976L256 283.024L343.041 225L256 166.976Z" id="Shape" fill="#DFE7F4" fill-rule="evenodd" stroke="none" />
+      </g>
+    </g>
+  </g>
+</svg>
