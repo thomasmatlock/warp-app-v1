@@ -22,7 +22,6 @@ import {
   // Tray,
 } from 'electron';
 import updater from './updater';
-import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
 import BrowserQuery from './browserQuery';
@@ -105,7 +104,7 @@ let randomYoutubePlaylistURL =
   testUrls.youtubePlaylists[
     Math.floor(Math.random() * testUrls.youtubePlaylists.length)
   ];
-//////////////////////////////////////////////////////
+/// ///////////////////////////////////////////////////
 
 let audioDownloads = Downloads.getAudioDownloads();
 let videoDownloads = Downloads.getVideoDownloads();
@@ -432,7 +431,7 @@ let viewBounds = {
   y: 130,
 };
 const windowController = {
-  createmWin: async function () {
+  async createmWin() {
     const RESOURCES_PATH = app.isPackaged
       ? path.join(process.resourcesPath, 'assets')
       : path.join(__dirname, '../../assets');
@@ -570,7 +569,7 @@ const windowController = {
       Browser.resize(browserPanelState, mWin, view);
     });
   },
-  createbView: async function () {
+  async createbView() {
     view = new BrowserView();
     if (mWin) mWin.setBrowserView(view);
     view.setBounds({
