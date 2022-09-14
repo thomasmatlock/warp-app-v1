@@ -94,7 +94,7 @@ const createWindow = async () => {
     } else {
       mainWindow.show();
     }
-    setTimeout(updater, 1500);
+    // setTimeout(updater, 1500);
   });
 
   mainWindow.on('closed', () => {
@@ -130,6 +130,7 @@ app.on('window-all-closed', () => {
 app
   .whenReady()
   .then(() => {
+    updater();
     createWindow();
     app.on('activate', () => {
       // On macOS it's common to re-create a window in the app when the
