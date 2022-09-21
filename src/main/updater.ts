@@ -1,6 +1,10 @@
-import { autoUpdater } from 'electron-updater';
-import { app, BrowserWindow, dialog } from 'electron';
+/* eslint-disable no-console */
+/* eslint-disable promise/always-return */
+/* eslint-disable promise/catch-or-return */
 import log from 'electron-log';
+import { app, BrowserWindow, dialog } from 'electron';
+import { autoUpdater } from 'electron-updater';
+
 log.transports.file.level = 'info';
 autoUpdater.autoDownload = false;
 autoUpdater.logger = log;
@@ -17,27 +21,28 @@ export default function () {
         buttons: ['Update', 'No'],
       })
       .then((result) => {
-        let buttonIndex = result.response;
+        const buttonIndex = result.response;
         if (buttonIndex === 0) autoUpdater.downloadUpdate();
       });
   });
   autoUpdater.on('update-downloaded', () => {
-    // autoUpdater.quitAndInstall(true, true); // arg1 is silent install, arg2 is force run after install
-    // app.quit();
-    console.log('update downloaded');
-    dialog
-      .showMessageBox({
-        type: 'info',
-        title: 'Install Updates',
-        message: 'Updates downloaded, install and restart now?',
-        buttons: ['Yes', 'Later'],
-      })
-      .then((result) => {
-        let buttonIndex = result.response;
-        if (buttonIndex === 0) {
-          autoUpdater.quitAndInstall(true, true); // arg1 is silent install, arg2 is force run after install
-          app.quit();
-        }
-      });
+    try {
+      dialog
+        .showMessageBox({
+          type: 'info',
+          title: 'Install Updates',
+          message: 'Updates downloaded, install and restart now?',
+          buttons: ['Yes', 'Later'],
+        })
+        .then((result) => {
+          let buttonIndex = result.response;
+          if (buttonIndex === 0) {
+            autoUpdater.quitAndInstall(true, true); // arg1 is silent install, arg2 is force run after install
+            app.quit();
+          }
+        });
+    } catch (error) {
+      console.log(error);
+    }
   });
 }

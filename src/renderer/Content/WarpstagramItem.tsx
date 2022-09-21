@@ -1,11 +1,17 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/alt-text */
 import { useState, useContext } from 'react';
+import ThemeContext from 'storage/themeContext';
 import refreshIcon from '../../../assets/Warpstagram/refresh1.svg';
 import pinIcon from '../../../assets/Warpstagram/pin.svg';
 import menuIcon from '../../../assets/Warpstagram/menu.svg';
 import './Warpstagram.scss';
-import ThemeContext from 'storage/themeContext';
 import ContextMenu from '../ContextMenu/ContextMenu';
 import ContextMenuOptionsWarpstagramAccount from '../ContextMenu/ContextMenuOptionsWarpstagramAccount';
+
 const WarpstagramItem = (props) => {
   const themeCtx = useContext(ThemeContext);
 
@@ -36,7 +42,8 @@ const WarpstagramItem = (props) => {
         <img
           src="https://i.pinimg.com/564x/0b/84/d1/0b84d125e863158bce1c7c835f19de7d.jpg"
           className=" content__panel__warpstagram__account__info__avatar"
-        ></img>
+          alt=""
+        />
         <div
           className="content__panel__warpstagram__account__info__text content__panel__warpstagram__account__info__name"
           style={

@@ -13,8 +13,8 @@ import iconLinux from '../../../assets/Nav/platform/linux.svg';
 import ThemeContext from '../../storage/themeContext';
 import NavContext from '../../storage/navContext';
 import './Nav.scss';
-let appVersion: string = '1.0.0';
-let appRoot: string = '1.0.0';
+let appVersion = '1.0.0';
+let appRoot = '1.0.0';
 let updateMessage = ' No update available';
 
 const Nav = (props) => {
