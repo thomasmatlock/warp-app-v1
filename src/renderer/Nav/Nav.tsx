@@ -11,7 +11,7 @@ import iconAudio from '../../../assets/Modals/settings/audio.svg';
 import iconVideo from '../../../assets/Modals/settings/video3.svg';
 import iconWarpstagram from '../../../assets/Modals/settings/warpstagram.svg';
 import ProgressIcon from './downloading.svg';
-import NewVersionIcon from './new.svg';
+import NewVersionIcon from './new3.svg';
 // PLATFORM ICONS
 import iconWindows from '../../../assets/Nav/platform/windows.svg';
 import iconApple from '../../../assets/Nav/platform/apple.svg';
@@ -19,9 +19,10 @@ import iconLinux from '../../../assets/Nav/platform/linux.svg';
 import ThemeContext from '../../storage/themeContext';
 import NavContext from '../../storage/navContext';
 import './Nav.scss';
+import { app } from 'electron';
 let appVersion: string = '1.0.0';
 let appRoot: string = '1.0.0';
-let updateMessage = ' No update available';
+let updateMessage = '';
 
 const Nav = (props) => {
   const themeCtx = useContext(ThemeContext);
@@ -32,6 +33,8 @@ const Nav = (props) => {
   const [isLinux, setIsLinux] = useState(false);
   const [checkingForUpdate, setCheckingForUpdate] = useState(false);
   const [updateAvailable, setUpdateAvailable] = useState(false);
+  const [updateUnavailable, setUpdateUnavailable] = useState(false);
+  const [updateDownloading, setUpdateDownloading] = useState(false);
   const [updateDownloaded, setUpdateDownloaded] = useState(false);
   window.electron.ipcRenderer.on('platform', (arg) => {
     window.electron.ipcRenderer.sendMessage('package', []);
@@ -46,25 +49,44 @@ const Nav = (props) => {
   window.electron.ipcRenderer.on('appRoot', (arg: string) => {
     appRoot = arg;
   });
-  window.electron.ipcRenderer.on('checking-for-update', (arg) => {
-    console.log('checking-for-update');
-    setUpdateAvailable(true);
+  const disableUpdateStates = () => {
+    setCheckingForUpdate(false);
+    setUpdateAvailable(false);
+    setUpdateUnavailable(false);
+    setUpdateDownloading(false);
+    setUpdateDownloaded(false);
+  };
+  window.electron.ipcRenderer.on('checking-for-update', (arg: string) => {
+    disableUpdateStates();
+    setCheckingForUpdate(true);
     updateMessage = arg;
   });
   window.electron.ipcRenderer.on('update-available', (arg: string) => {
+    disableUpdateStates();
+    setUpdateAvailable(true);
+    updateMessage = arg;
+  });
+  window.electron.ipcRenderer.on('update-not-available', (arg: string) => {
+    disableUpdateStates();
+    setUpdateUnavailable(true);
     updateMessage = arg;
   });
   window.electron.ipcRenderer.on('download-progress', (arg: string) => {
+    disableUpdateStates();
+    setUpdateDownloading(true);
     updateMessage = arg;
   });
   window.electron.ipcRenderer.on('update-downloaded', (arg: string) => {
-    updateMessage = arg;
-    setUpdateAvailable(false);
+    disableUpdateStates();
     setUpdateDownloaded(true);
+    updateMessage = arg;
   });
 
   const mouseEnterHandler = () => {};
   const mouseLeaveHandler = () => {};
+  const restartHandler = () => {
+    window.electron.ipcRenderer.sendMessage('restart_and_update', []);
+  };
   return (
     <>
       <div
@@ -151,67 +173,71 @@ const Nav = (props) => {
           </div>
         </div>
         <div className="logoContainer">
+          {/* VERSION ICON */}
+          {updateUnavailable && (
+            <a className="navLogo">
+              {isWindows && (
+                <img
+                  className="platformImg"
+                  src={iconWindows}
+                  style={
+                    themeCtx.isDarkTheme
+                      ? { filter: 'invert(0%)' }
+                      : {
+                          filter: 'invert(100%)',
+                        }
+                  }
+                  alt="icon"
+                />
+              )}
+              {isApple && (
+                <img
+                  className="platformImg"
+                  src={iconApple}
+                  style={
+                    themeCtx.isDarkTheme
+                      ? { filter: 'invert(0%)' }
+                      : {
+                          filter: 'invert(100%)',
+                        }
+                  }
+                  alt="icon"
+                />
+              )}
+              {isLinux && (
+                <img
+                  className="platformImg"
+                  src={iconLinux}
+                  style={
+                    themeCtx.isDarkTheme
+                      ? { filter: 'invert(0%)' }
+                      : {
+                          filter: 'invert(100%)',
+                        }
+                  }
+                  alt="icon"
+                />
+              )}
+            </a>
+          )}
+          {/* VERSION TEXT */}
+          {updateUnavailable && (
+            <a className="navLogo">
+              <p
+                className="navVersion"
+                style={
+                  themeCtx.isDarkTheme
+                    ? { color: themeCtx.nav.dark.color }
+                    : {
+                        color: themeCtx.nav.light.color,
+                      }
+                }
+              >
+                {`Version ${appVersion}`}
+              </p>
+            </a>
+          )}
           <a className="navLogo">
-            {isWindows && (
-              <img
-                className="platformImg"
-                src={iconWindows}
-                style={
-                  themeCtx.isDarkTheme
-                    ? { filter: 'invert(0%)' }
-                    : {
-                        filter: 'invert(100%)',
-                      }
-                }
-                alt="icon"
-              />
-            )}
-            {isApple && (
-              <img
-                className="platformImg"
-                src={iconApple}
-                style={
-                  themeCtx.isDarkTheme
-                    ? { filter: 'invert(0%)' }
-                    : {
-                        filter: 'invert(100%)',
-                      }
-                }
-                alt="icon"
-              />
-            )}
-            {isLinux && (
-              <img
-                className="platformImg"
-                src={iconLinux}
-                style={
-                  themeCtx.isDarkTheme
-                    ? { filter: 'invert(0%)' }
-                    : {
-                        filter: 'invert(100%)',
-                      }
-                }
-                alt="icon"
-              />
-            )}
-            {/* <img className="navLogoText" alt="icon" src={navLogoText} /> */}
-          </a>
-          <a className="navLogo">
-            <p
-              className="navVersion"
-              style={
-                themeCtx.isDarkTheme
-                  ? { color: themeCtx.nav.dark.color }
-                  : {
-                      color: themeCtx.nav.light.color,
-                    }
-              }
-            >
-              {`Version ${appVersion}`}
-              {/* {updateMessage} */}
-
-              {/* {` Project root: ` + appRoot} */}
-            </p>
             {updateAvailable && (
               <img
                 className="platformImg update_icon"
@@ -241,7 +267,7 @@ const Nav = (props) => {
               />
             )}
             <p
-              className="navVersion"
+              className="updateMessages"
               style={
                 themeCtx.isDarkTheme
                   ? { filter: 'invert(0%)' }
@@ -250,11 +276,24 @@ const Nav = (props) => {
                     }
               }
             >
-              {/* {`Version ${appVersion}`} */}
               {updateMessage}
-
-              {/* {` Project root: ` + appRoot} */}
             </p>
+            {updateDownloaded && (
+              // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
+              <p
+                className="restartBtn"
+                onClick={restartHandler}
+                style={
+                  themeCtx.isDarkTheme
+                    ? { filter: 'invert(0%)' }
+                    : {
+                        filter: 'invert(100%)',
+                      }
+                }
+              >
+                Restart now
+              </p>
+            )}
           </a>
         </div>
       </div>

@@ -67,11 +67,11 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
 
 .navLogoImg {
     height: 20px;
-    margin: 0.5rem;
+    margin: 1rem;
 }
 
 .platformImgLarge {
-    height: 30px;
+    height: 20px;
     margin: 1rem;
 }
 
@@ -94,6 +94,18 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
 
 .navVersion {
     font-size: 0.6rem;
+}
+
+.updateMessages {
+    font-size: 0.75rem;
+}
+
+.restartBtn {
+    font-size: 0.75rem;
+    &:hover {
+        cursor: pointer;
+        // color: $nav-text-color_hover;
+    }
 }
 
 .navMainBtn {
