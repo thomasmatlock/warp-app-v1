@@ -5,12 +5,18 @@ import log from 'electron-log';
 import { app, BrowserWindow, dialog } from 'electron';
 import { autoUpdater } from 'electron-updater';
 
+// An updated version of Warp is available and will be installed at the next app launch. Restart Warp.
+
 log.transports.file.level = 'info';
 autoUpdater.autoDownload = false;
 autoUpdater.logger = log;
-export default function () {
+export default function (mWin: BrowserWindow) {
+  mWin.webContents.send('checking-for-update');
   autoUpdater.checkForUpdates();
   autoUpdater.on('update-available', () => {
+    mWin.webContents.send('update-available');
+    //  Event: download-progress
+
     autoUpdater.downloadUpdate();
     dialog
       .showMessageBox({
@@ -26,6 +32,7 @@ export default function () {
       });
   });
   autoUpdater.on('update-downloaded', () => {
+    mWin.webContents.send('update-downloaded');
     try {
       dialog
         .showMessageBox({

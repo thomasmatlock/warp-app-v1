@@ -1,15 +1,25 @@
+/* eslint-disable prefer-template */
+/* eslint-disable react/prop-types */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 // import classes from './CartItem.module.css';
 import React, { useState, useState, useContext } from 'react';
-import iconSourceFacebook from '../../../assets/BrowserBar/facebook.svg';
-import iconSourceInstagram from '../../../assets/BrowserBar/instagram.svg';
-import iconSourcePinterest from '../../../assets/BrowserBar/pinterest.svg';
-import iconSourceSoundcloud from '../../../assets/BrowserBar/soundcloud.svg';
-import iconSourceSnapchat from '../../../assets/BrowserBar/snapchat.svg';
-import iconSourceTiktok from '../../../assets/BrowserBar/tiktok.svg';
-import iconSourceTwitch from '../../../assets/BrowserBar/twitch.svg';
-import iconSourceTwitter from '../../../assets/BrowserBar/twitter.svg';
-import iconSourceVimeo from '../../../assets/BrowserBar/vimeo.svg';
-import iconSourceYoutube from '../../../assets/BrowserBar/youtube.svg';
+import DownloadsContext from 'storage/downloadsContext';
+import ThemeContext from 'storage/themeContext';
+// import SourcesContext from '../../storage/sourcesContext';
+// import iconSourceFacebook from '../../../assets/BrowserBar/facebook.svg';
+// import iconSourceInstagram from '../../../assets/BrowserBar/instagram.svg';
+// import iconSourcePinterest from '../../../assets/BrowserBar/pinterest.svg';
+// import iconSourceSoundcloud from '../../../assets/BrowserBar/soundcloud.svg';
+// import iconSourceSnapchat from '../../../assets/BrowserBar/snapchat.svg';
+// import iconSourceTiktok from '../../../assets/BrowserBar/tiktok.svg';
+// import iconSourceTwitch from '../../../assets/BrowserBar/twitch.svg';
+// import iconSourceTwitter from '../../../assets/BrowserBar/twitter.svg';
+// import iconSourceVimeo from '../../../assets/BrowserBar/vimeo.svg';
+// import iconSourceYoutube from '../../../assets/BrowserBar/youtube.svg';
 import iconLength from '../../../assets/Downloads/duration.svg';
 import iconFileSize from '../../../assets/Downloads/fileSize.svg';
 import IconFileTypeAudio from '../../../assets/Downloads/fileTypeAudio.svg';
@@ -22,9 +32,6 @@ import IconFileETA from '../../../assets/Downloads/infinity.svg';
 import IconFileConverting from '../../../assets/Downloads/converting.svg';
 import IconDate from '../../../assets/Downloads/date.svg';
 // import IconDate from '../../../assets/Downloads/date2.svg';
-import SourcesContext from '../../storage/sourcesContext';
-import ThemeContext from 'storage/themeContext';
-import DownloadsContext from 'storage/downloadsContext';
 import menuIcon from '../../../assets/Warpstagram/menu.svg';
 import iconFolder from '../../../assets/Downloads/folder1.svg';
 import ContextMenu from '../ContextMenu/ContextMenu';
@@ -35,7 +42,7 @@ import itemFormat from './DownloadItemFormat';
 const DownloadItem = (props) => {
   const [fileSizeExists, setFileSizeExists] = useState(props.fileSize);
   // console.log(props);
-  function shortenString(str, maxChars) {
+  function shortenString(str: string, maxChars: number) {
     return str.length > maxChars ? str.slice(0, maxChars - 1) + '...' : str;
   }
   const [isContentMenuVisible, setisContentMenuVisible] = useState(false);
@@ -143,7 +150,7 @@ const DownloadItem = (props) => {
                       filter: 'invert(0%)',
                     }
               }
-            ></img>
+            />
           )}{' '}
           {props.type === 'video' && (
             <img
@@ -156,7 +163,7 @@ const DownloadItem = (props) => {
                       filter: 'invert(0%)',
                     }
               }
-            ></img>
+            />
           )}
           <div
             className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_type"
@@ -180,7 +187,7 @@ const DownloadItem = (props) => {
                     filter: 'invert(100%)',
                   }
             }
-          ></img>
+          />
           <div
             className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_source"
             style={
@@ -203,7 +210,7 @@ const DownloadItem = (props) => {
                     filter: 'invert(0%)',
                   }
             }
-          ></img>
+          />
           <div
             className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_length"
             style={
@@ -227,7 +234,7 @@ const DownloadItem = (props) => {
                       filter: 'invert(0%)',
                     }
               }
-            ></img>
+            />
           )}
           {props.fileSize > 0 && (
             <div
@@ -243,7 +250,7 @@ const DownloadItem = (props) => {
               {fileSizeInMB}
             </div>
           )}
-          {props.type === 'video' && props.resolution != undefined && (
+          {props.type === 'video' && props.resolution !== undefined && (
             <img
               src={iconFileResolution}
               className=" content__panel__downloads__list__item__img content__panel__downloads__list__item__file_length"
@@ -256,7 +263,7 @@ const DownloadItem = (props) => {
               }
             />
           )}
-          {props.type === 'video' && props.resolution != undefined && (
+          {props.type === 'video' && props.resolution !== undefined && (
             <div
               className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_resolution"
               style={
@@ -270,7 +277,7 @@ const DownloadItem = (props) => {
               {resolution}
             </div>
           )}
-          {props.type === 'video' && props.fps != undefined && (
+          {props.type === 'video' && props.fps !== undefined && (
             <img
               src={IconFileFps}
               className=" content__panel__downloads__list__item__img content__panel__downloads__list__item__file_fps"
@@ -281,9 +288,9 @@ const DownloadItem = (props) => {
                       filter: 'invert(0%)',
                     }
               }
-            ></img>
+            />
           )}
-          {props.type === 'video' && props.fps != undefined && (
+          {props.type === 'video' && props.fps !== undefined && (
             <div
               className=" content__panel__downloads__list__item__text content__panel__downloads__list__item__file_fps"
               style={
@@ -308,7 +315,7 @@ const DownloadItem = (props) => {
                       filter: 'invert(0%)',
                     }
               }
-            ></img>
+            />
           )}
           {!props.downloadComplete && (
             <div
@@ -335,7 +342,7 @@ const DownloadItem = (props) => {
                       filter: 'invert(0%)',
                     }
               }
-            ></img>
+            />
           )}
           {!props.downloadComplete && (
             <div
@@ -362,7 +369,7 @@ const DownloadItem = (props) => {
                       filter: 'invert(0%)',
                     }
               }
-            ></img>
+            />
           )}
           {!props.conversionComplete && props.downloadComplete && (
             <div
@@ -389,7 +396,7 @@ const DownloadItem = (props) => {
                       filter: 'invert(0%)',
                     }
               }
-            ></img>
+            />
           )}
           {!props.conversionComplete && props.downloadComplete && (
             <div
@@ -405,7 +412,7 @@ const DownloadItem = (props) => {
               ETA: {props.conversionSecondsRemaining} seconds
             </div>
           )}
-          {props.date != undefined &&
+          {props.date !== undefined &&
             props.conversionComplete &&
             props.downloadComplete && (
               <img
@@ -418,9 +425,9 @@ const DownloadItem = (props) => {
                         filter: 'invert(0%)',
                       }
                 }
-              ></img>
+              />
             )}
-          {props.date != undefined &&
+          {props.date !== undefined &&
             props.conversionComplete &&
             props.downloadComplete && (
               // {props.type === 'video' && (

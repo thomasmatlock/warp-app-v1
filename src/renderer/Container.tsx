@@ -13,7 +13,7 @@ const Container = (props) => {
   return (
     <div className="container">
       <Search />
-      {/* <ActionBar /> */}
+      <ActionBar />
       {/* <BlackHole /> */}
       {/* <BlackHoleOld /> */}
       <Content />

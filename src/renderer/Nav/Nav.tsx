@@ -1,3 +1,7 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import { Fragment, useState, useContext } from 'react';
 // LOGO ICONS
 import NavLogoImg from '../../../assets/Nav/logo/blackhole.svg';
@@ -37,14 +41,20 @@ const Nav = (props) => {
   window.electron.ipcRenderer.on('appRoot', (arg: string) => {
     appRoot = arg;
   });
-  window.electron.ipcRenderer.on('update_available', (arg: string) => {
+  window.electron.ipcRenderer.on('checking-for-update', (arg: string) => {
+    updateMessage = arg;
+  });
+  window.electron.ipcRenderer.on('update-available', (arg: string) => {
+    updateMessage = arg;
+  });
+  window.electron.ipcRenderer.on('update-downloaded', (arg: string) => {
     updateMessage = arg;
   });
 
   const mouseEnterHandler = () => {};
   const mouseLeaveHandler = () => {};
   return (
-    <Fragment>
+    <>
       <div
         // onMouseEnter={mouseEnterHandler}
         // onMouseLeave={mouseLeaveHandler}
@@ -185,15 +195,15 @@ const Nav = (props) => {
                     }
               }
             >
-              {`Version ` + appVersion}
-              {` Update ` + updateMessage}
+              {`Version ${appVersion}`}
+              {updateMessage}
 
               {/* {` Project root: ` + appRoot} */}
             </p>
           </a>
         </div>
       </div>
-    </Fragment>
+    </>
   );
 };
 export default Nav;
