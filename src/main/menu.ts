@@ -448,17 +448,17 @@ export default class MenuBuilder {
     const subMenuTools: MenuItemConstructorOptions = {
       label: 'Tools',
       submenu: [
-        {
-          label: 'Check for updates...',
-          enabled: false,
-          click: () => {
-            // appWin.send('Check for update');
-          },
-        },
-        {
-          label: 'separator',
-          type: 'separator',
-        },
+        // {
+        //   label: 'Check for updates...',
+        //   enabled: false,
+        //   click: () => {
+        //     // appWin.send('Check for update');
+        //   },
+        // },
+        // {
+        //   label: 'separator',
+        //   type: 'separator',
+        // },
         {
           label: 'Preferences',
           enabled: true,
@@ -889,17 +889,17 @@ export default class MenuBuilder {
       {
         label: 'Tools',
         submenu: [
-          {
-            label: 'Check for updates...',
-            enabled: false,
-            click: () => {
-              // appWin.send('Check for update');
-            },
-          },
-          {
-            label: 'separator',
-            type: 'separator',
-          },
+          // {
+          //   label: 'Check for updates...',
+          //   enabled: false,
+          //   click: () => {
+          //     // appWin.send('Check for update');
+          //   },
+          // },
+          // {
+          //   label: 'separator',
+          //   type: 'separator',
+          // },
           {
             label: 'Preferences',
             enabled: true,

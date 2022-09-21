@@ -10,6 +10,8 @@ import navLogoText from '../../../assets/Nav/logo/logo.svg';
 import iconAudio from '../../../assets/Modals/settings/audio.svg';
 import iconVideo from '../../../assets/Modals/settings/video3.svg';
 import iconWarpstagram from '../../../assets/Modals/settings/warpstagram.svg';
+import ProgressIcon from './downloading.svg';
+import NewVersionIcon from './new.svg';
 // PLATFORM ICONS
 import iconWindows from '../../../assets/Nav/platform/windows.svg';
 import iconApple from '../../../assets/Nav/platform/apple.svg';
@@ -28,6 +30,9 @@ const Nav = (props) => {
   const [isWindows, setIsWindows] = useState(false);
   const [isApple, setIsApple] = useState(false);
   const [isLinux, setIsLinux] = useState(false);
+  const [checkingForUpdate, setCheckingForUpdate] = useState(false);
+  const [updateAvailable, setUpdateAvailable] = useState(false);
+  const [updateDownloaded, setUpdateDownloaded] = useState(false);
   window.electron.ipcRenderer.on('platform', (arg) => {
     window.electron.ipcRenderer.sendMessage('package', []);
     if (arg === 'windows') setIsWindows(true);
@@ -41,14 +46,21 @@ const Nav = (props) => {
   window.electron.ipcRenderer.on('appRoot', (arg: string) => {
     appRoot = arg;
   });
-  window.electron.ipcRenderer.on('checking-for-update', (arg: string) => {
+  window.electron.ipcRenderer.on('checking-for-update', (arg) => {
+    console.log('checking-for-update');
+    setUpdateAvailable(true);
     updateMessage = arg;
   });
   window.electron.ipcRenderer.on('update-available', (arg: string) => {
     updateMessage = arg;
   });
+  window.electron.ipcRenderer.on('download-progress', (arg: string) => {
+    updateMessage = arg;
+  });
   window.electron.ipcRenderer.on('update-downloaded', (arg: string) => {
     updateMessage = arg;
+    setUpdateAvailable(false);
+    setUpdateDownloaded(true);
   });
 
   const mouseEnterHandler = () => {};
@@ -196,6 +208,49 @@ const Nav = (props) => {
               }
             >
               {`Version ${appVersion}`}
+              {/* {updateMessage} */}
+
+              {/* {` Project root: ` + appRoot} */}
+            </p>
+            {updateAvailable && (
+              <img
+                className="platformImg update_icon"
+                src={ProgressIcon}
+                style={
+                  themeCtx.isDarkTheme
+                    ? { filter: 'invert(100%)' }
+                    : {
+                        filter: 'invert(0%)',
+                      }
+                }
+                alt="icon"
+              />
+            )}
+            {updateDownloaded && (
+              <img
+                className="platformImgLarge"
+                src={NewVersionIcon}
+                // style={
+                //   themeCtx.isDarkTheme
+                //     ? { filter: 'invert(100%)' }
+                //     : {
+                //         filter: 'invert(0%)',
+                //       }
+                // }
+                alt="icon"
+              />
+            )}
+            <p
+              className="navVersion"
+              style={
+                themeCtx.isDarkTheme
+                  ? { filter: 'invert(0%)' }
+                  : {
+                      filter: 'invert(100%)',
+                    }
+              }
+            >
+              {/* {`Version ${appVersion}`} */}
               {updateMessage}
 
               {/* {` Project root: ` + appRoot} */}
