@@ -1,16 +1,5 @@
 {
     "description": "A foundation for scalable desktop apps",
-    "keywords": [
-        "electron",
-        "boilerplate",
-        "react",
-        "typescript",
-        "ts",
-        "sass",
-        "webpack",
-        "hot",
-        "reload"
-    ],
     "homepage": "https://warpdownload.com",
     "bugs": {
         "url": "https://github.com/thomasmatlock/warp-app/issues"
@@ -21,15 +10,8 @@
     },
     "license": "MIT",
     "author": {
-        "name": "Electron React Boilerplate Maintainers"
+        "name": "Warp"
     },
-    "contributors": [
-        {
-            "name": "Amila Welihinda",
-            "email": "amilajack@gmail.com",
-            "url": "https://github.com/amilajack"
-        }
-    ],
     "main": "./src/main/main.ts",
     "scripts": {
         "build": "concurrently \"npm run build:main\" \"npm run build:renderer\"",
@@ -63,17 +45,15 @@
     "browserslist": [],
     "prettier": {
         "singleQuote": true,
-        "overrides": [
-            {
-                "files": [
-                    ".prettierrc",
-                    ".eslintrc"
-                ],
-                "options": {
-                    "parser": "json"
-                }
+        "overrides": [{
+            "files": [
+                ".prettierrc",
+                ".eslintrc"
+            ],
+            "options": {
+                "parser": "json"
             }
-        ]
+        }]
     },
     "jest": {
         "moduleDirectories": [
@@ -216,8 +196,7 @@
             "gatekeeperAssess": false
         },
         "dmg": {
-            "contents": [
-                {
+            "contents": [{
                     "x": 130,
                     "y": 220
                 },
