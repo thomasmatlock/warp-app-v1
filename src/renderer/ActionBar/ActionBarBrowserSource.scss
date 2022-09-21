@@ -1,0 +1,265 @@
+// https://www.w3schools.com/howto/howto_custom_select.asp
+// FONT
+$default-font-size: 1.6rem;
+// GRID
+$grid-width: 114rem; //1140px standard grid width, but use rem for dynamic page adapting to viewport size
+$gutter-vertical: 8rem; //80px -- gutter is space between columns
+$gutter-horizontal: 6rem; //60px
+// SHADOWS
+$shadow-none: 0 1.5rem 4rem rgba(0, 0, 0, 0);
+$shadow-light: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+$shadow-before: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+$shadow-after: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+// DIMENSIONS
+// Development TESTING
+$dev-border: 1px dotted rgba(255, 0, 0, 0.5);
+// Download items
+// TESTING BORDERS
+$border-heavy: 0px dotted black;
+$border-heavy2: 0px dotted red;
+$border-medium: 0px dotted black;
+$border-light: 0px dotted black;
+// GRAD TIMELAPSE DURATIONS
+$duration-1: 10s;
+$nav-text-color: #000;
+$nav-text-color_hover: #fff;
+$gray-dark-darkest: #1a1a1a;
+$gray-dark-dark: #202020;
+$gray-dark-light: #252525;
+$gray-dark-lightest: #313131;
+$gray-dark-lightest2: #414141;
+$gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, #19d2fc 100%);
+$gradient-orange: linear-gradient(to left, #da2c4d 0%, #f8ab37 100%);
+.browserBarDownloadSource {
+    height: 48px;
+    // width: clamp(150px, 200px, 200px);
+    // width: calc(100% - 480px);
+    // width: calc(100% - 650px);
+    width: calc(100% - 790px);
+    margin: 8px 200px;
+    border-radius: 3px;
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: $gray-dark-light;
+    z-index: 1;
+    background-color: $gray-dark-light;
+    &:hover {
+        // border: 1px solid $gray-dark-lightest;
+        // transform: scaleX(1.1001);
+        box-shadow: -20px 30px 80px 0 rgba(0, 0, 0, 1) !important;
+        background-color: $gray-dark-light;
+        cursor: pointer;
+    }
+    &:active {
+        box-shadow: -5px 10px 10px 0 rgba(0, 0, 0, 1) !important;
+        transition: 0.01s ease-in-out;
+        transform: scale(0.99);
+    }
+    &__list {
+        background-color: $gray-dark-light;
+        overflow: hidden;
+        box-shadow: $shadow-after;
+        // border: 1px dotted red;
+        transition: all 0.1s ease-in-out;
+        // border: 1px solid red;
+        // position: absolute;
+        z-index: 2;
+        // position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        margin: 0 auto;
+        width: 100%;
+        padding: 0 0;
+        // height: 48px;
+        list-style: none;
+        border-radius: 3px;
+        background-color: $gray-dark-lightest;
+        border: 1px solid $gray-dark-lightest;
+        &:hover {
+            box-shadow: -20px 30px 80px 0 rgba(0, 0, 0, 1) !important;
+            background-color: $gray-dark-light;
+            // background-image: $gradient-blue;
+            cursor: pointer;
+        }
+        &:active {
+            box-shadow: -5px 10px 10px 0 rgba(0, 0, 0, 1) !important;
+            transition: 0.01s ease-in-out;
+            transform: scale(0.99);
+        }
+        &__item {
+            // padding: 5px;
+            // border: 1px solid red !important;
+            border-radius: 3px;
+            display: flex;
+            border-radius: 3px;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            will-change: transform;
+            width: 100%;
+            flex: 1;
+            border-bottom: 1px solid $gray-dark-light;
+            background-color: $gray-dark-lightest;
+            &:hover {
+                background-color: $gray-dark-light !important;
+                box-shadow: -20px 30px 80px 0 rgba(0, 0, 0, 1) !important;
+                border-radius: 3px;
+                border-radius: 3px;
+                cursor: pointer;
+            }
+            &__container1 {
+                border-radius: 3px;
+                display: flex;
+                flex-direction: row;
+                justify-content: start;
+                width: 50%;
+                height: 100%;
+                align-items: center;
+                margin: 0 1vh;
+                // border: 1px solid red !important;
+            }
+            &__container2 {
+                width: 50%;
+                border-radius: 3px;
+                height: 100%;
+                margin: 0 1vh;
+                // border: 1px solid red !important;
+                display: flex;
+                flex-direction: row;
+                justify-content: end;
+                align-items: center;
+            }
+            &__icon {
+                // margin-left: 20px;
+                // margin: 1rem;
+                margin: 1rem 0.75rem;
+                height: 0.75rem;
+                fill: $gray-dark-light;
+                &__status {
+                    animation: flash 1s ease-in-out !important; // default
+                    &__1 {
+                        animation-delay: 2s;
+                    }
+                    &__2 {
+                        animation-delay: 2s;
+                    }
+                    &__3 {}
+                    &__4 {}
+                    &__5 {}
+                }
+            }
+            &__text {
+                margin-left: 1rem;
+                // font-size: 1rem;
+                font-size: 0.75rem;
+                // color: $gray-dark-darkest;
+                color: white;
+            }
+        }
+    }
+}
+
+.browserBarDownloadSource__hovering {
+    //  height: 48px;
+    // width: 300px;
+    // width: clamp(20%, 20vw, 250px);
+    // width: clamp(200px, 220px, 250px);
+    // width: calc(100% - 480px);
+    // width: calc(100% - 730px);
+    width: calc(100% - 790px);
+    // margin: 8px 48px;
+    // margin: 8px 148px;
+    margin: 8px 200px;
+    border-radius: 3px;
+    position: absolute;
+    // position: relative;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    border-radius: 3px;
+    // border: 1px solid red;
+    // height: auto;
+    // box-shadow: $shadow-after;
+    top: 0;
+    transition: all 0.25s ease-in-out;
+    // height: calc((9 * 48px) + 9px); // item height times number of items
+    cursor: pointer;
+    // border: 1px dotted red;
+    box-shadow: -20px 30px 80px 0 rgba(0, 0, 0, 1) !important;
+    &:hover {
+        // border: 1px solid $gray-dark-lightest;
+        // transform: scaleX(1.1001);
+        box-shadow: -20px 30px 80px 0 rgba(0, 0, 0, 1) !important;
+        background-color: $gray-dark-lightest;
+        // background-image: $gradient-blue;
+        cursor: pointer;
+    }
+    &:active {
+        box-shadow: -5px 10px 10px 0 rgba(0, 0, 0, 1) !important;
+        transition: 0.01s ease-in-out;
+        transform: scale(0.99);
+    }
+}
+
+.browserBarDownloadSource__hovering__list {
+    box-shadow: $shadow-after;
+    // border: 1px dotted red;
+    transition: all 0.1s ease-in-out;
+    // border: 1px solid red;
+    // position: absolute;
+    // z-index: 2;
+    z-index: 1;
+    // position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 0 auto;
+    width: 100%;
+    // width: calc(100% - 440px);
+    padding: 0 0;
+    list-style: none;
+    border-radius: 3px;
+    background-color: $gray-dark-light;
+    transition: all 0.1s ease-in-out !important;
+    box-shadow: $shadow-after;
+    border-radius: 3px;
+    // height: calc((9 * 48px) + 9px); // item height times number of items
+    box-shadow: -20px 30px 80px 0 rgba(0, 0, 0, 1) !important;
+    &:hover {
+        box-shadow: -20px 30px 80px 0 rgba(0, 0, 0, 1) !important;
+        background-color: $gray-dark-lightest;
+        cursor: pointer;
+    }
+    &:active {
+        box-shadow: -5px 10px 10px 0 rgba(0, 0, 0, 1) !important;
+        transition: 0.01s ease-in-out;
+        transform: scale(0.99);
+    }
+}
+
+.browserBarDownloadSource__list__item__active {
+    // background-color: $gray-dark-lightest;
+    // background-image: $gradient-blue;
+    border-radius: 3px;
+    display: flex;
+    border-radius: 3px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    will-change: transform;
+    width: 100%;
+    flex: 1;
+    border-bottom: 1px solid $gray-dark-light;
+    background-color: $gray-dark-lightest2 !important;
+    // background-color: $gray-dark-lightest;
+}

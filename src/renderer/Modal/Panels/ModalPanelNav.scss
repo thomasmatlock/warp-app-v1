@@ -1,0 +1,151 @@
+$nav-text-color: #000;
+$nav-text-color_hover: #fff;
+$gray-dark-darkest: #1a1a1a;
+$gray-dark-dark: #202020;
+$gray-dark-light: #252525;
+$gray-dark-lightest: #313131;
+$gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, #19d2fc 100%);
+.modalPrefsNav {
+    height: 100%;
+    width: 100%;
+    min-width: 60px;
+    width: 60px;
+    left: 0;
+    top: 50px;
+    // bottom: 80px;
+    position: absolute;
+    // border: 1px dotted red;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    background-color: $gray-dark-lightest;
+    border-radius: 0 0 0 10px;
+    overflow: hidden;
+    height: calc(100% - 50px) !important;
+    // z-index: 30;
+    // box-shadow: 0 10px 20px -8px #c5d6d6;
+    &:hover {
+        width: 180px;
+        // box-shadow: 0rem -1rem 3rem rgba(0, 0, 0, 0.6);
+    }
+}
+
+.modalPrefsNav_button {
+    display: flex;
+    // flex-grow: 1;
+    flex: 1;
+    width: 100%;
+    // height: 60px !important;
+    max-height: 50px !important;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    color: #ffffff60;
+    cursor: pointer;
+    justify-content: flex-start; // PRODUCTION
+    margin: 4px;
+    transition: all ease-out 0.1s;
+    border-radius: 4px;
+    &__icon {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        align-content: center;
+        justify-content: center;
+        margin-left: 20px;
+        // margin: 0 auto;
+        height: 20px;
+        filter: grayscale(100%);
+    }
+    &:hover {
+        // background-color: rgba(238, 238, 238, 0.205);
+        background-image: linear-gradient( to left, rgba(238, 238, 238, 0.205) 0%, rgba(102, 102, 102, 0.205) 100%);
+        color: #ffffff;
+        // border-radius: 2px 2px 0 0;
+        // border-radius: 4px;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        // transform: translateY(-0.2rem);
+        box-shadow: 0 0.6rem 1rem rgba(0, 0, 0, 0.6);
+        transform: scaleX(0.99) scaleY(0.99);
+        &::after {
+            // transform: scaleX(1.4) scaleY(1.6);
+        }
+    }
+    &:active {
+        /*heres what happens when it's active by user, aka a click lol*/
+        font-size: 0.75rem;
+        transform: scaleX(0.95) scaleY(0.95);
+        box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.2);
+    }
+}
+
+#modalPrefsNav_button_license_ID {
+    text-shadow: 0 0 5px #fff, 0 0 25px #fff;
+    color: white;
+}
+
+#modalPrefsNav_button_license_ID p {
+    text-shadow: 0 0 5px #fff, 0 0 25px #fff;
+}
+
+#modalPrefsNav_button_license_ID:hover {
+    box-shadow: -0rem -0.1rem 1rem #fff;
+    text-shadow: 0 0 5px #fff, 0 0 25px #fff;
+}
+
+.modalPrefsNav_button:hover .modalPrefsNav_button__icon {
+    filter: grayscale(0%);
+}
+
+.modalPrefsNav_button__active {
+    display: flex;
+    // flex-grow: 1;
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    flex-direction: row;
+    color: #ffffff60;
+    cursor: pointer;
+    justify-content: flex-start; // PRODUCTION
+    z-index: 20;
+    transition: all ease-out 0.1s;
+    display: flex;
+    font-size: 0.75rem;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    // background-color: #ffffff;
+    color: white;
+    border-radius: 4px;
+    transform: translateY(-0.2rem);
+    background-image: linear-gradient( to left, rgba(238, 238, 238, 0.205) 0%, rgba(102, 102, 102, 0.205) 100%);
+    width: 100%;
+    transform: scaleX(0.96) scaleY(0.96);
+    // padding: 2px;
+    // transform: translateY(-0.2rem);
+    /*this value is in relation to initial state, not hover state*/
+    box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.4);
+    filter: grayscale(0%);
+    transition: all ease-out 0.1s;
+    // margin: 16px;
+    margin: 4px;
+    // max-height: 60px;
+    max-height: 50px !important;
+}
+
+.modalPrefsNav_button__active img {
+    filter: grayscale(0%);
+}
+
+.modalPrefsNav_button p {
+    font-size: 0.75rem;
+    margin-left: 24px;
+}
+
+.modalPrefsNav_button__active p {
+    margin-left: 24px;
+}
