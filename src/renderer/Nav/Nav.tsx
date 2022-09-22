@@ -233,7 +233,7 @@ const Nav = (props) => {
                       }
                 }
               >
-                {`Version ${appVersion}`}
+                {`v${appVersion}`}
               </p>
             </a>
           )}
