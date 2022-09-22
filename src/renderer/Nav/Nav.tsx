@@ -266,6 +266,20 @@ const Nav = (props) => {
                 alt="icon"
               />
             )}
+            {updateDownloading && (
+              <img
+                className="platformImg update_icon"
+                src={ProgressIcon}
+                style={
+                  themeCtx.isDarkTheme
+                    ? { filter: 'invert(100%)' }
+                    : {
+                        filter: 'invert(0%)',
+                      }
+                }
+                alt="icon"
+              />
+            )}
             {updateDownloaded && (
               <img
                 className="platformImgLarge"

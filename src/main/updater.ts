@@ -26,7 +26,10 @@ export default function (mWin: BrowserWindow) {
     });
     autoUpdater.on('download-progress', (progress) => {
       const string = progress.percent.toFixed(0);
-      mWin.webContents.send('download-progress', `${string}% downloaded`);
+      mWin.webContents.send(
+        'download-progress',
+        `Update ${string}% downloaded`
+      );
     });
     autoUpdater.on('update-downloaded', () => {
       mWin.webContents.send(
