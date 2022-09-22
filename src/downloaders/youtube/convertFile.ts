@@ -1,3 +1,6 @@
+/* eslint-disable no-console */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable no-plusplus */
 import fs from 'fs';
 import path from 'path';
 import { app, BrowserWindow, shell } from 'electron';
@@ -32,11 +35,11 @@ let ffmpegPath;
 //   }
 // })();
 function getPackagedPath(targetPath: string) {
-  let packagedPathSplit = targetPath.split('\\');
-  let joined: string = '';
+  const packagedPathSplit = targetPath.split('\\');
+  let joined = '';
   for (let i = 0; i < packagedPathSplit.length; i++) {
     if (packagedPathSplit[i] != 'resources') {
-      joined = joined + packagedPathSplit[i] + '\\';
+      joined = `${joined + packagedPathSplit[i]}\\`;
     } else if (packagedPathSplit[i] === 'resources') {
       break;
     }
@@ -81,6 +84,25 @@ if (process.platform === 'win32') {
       'ffmpeg.exe'
     );
   }
+} else if (process.platform === 'darwin') {
+  if (!app.isPackaged) {
+    ffmpegPath = path.join(
+      appRootDir,
+      'node_modules',
+      '@ffmpeg-installer',
+      'darwin-x64',
+      'ffmpeg'
+    );
+  } else if (app.isPackaged) {
+    ffmpegPath = path.join(
+      getPackagedPath(appRootDir),
+      'resources',
+      'node_modules',
+      '@ffmpeg-installer',
+      'darwin-x64',
+      'ffmpeg'
+    );
+  }
 }
 // }
 
@@ -108,10 +130,10 @@ export default function convertFile(
   // console.log('converting file');
   // console.log(tempPath);
   // // let downloadBeginTime = Date.now();
-  let conversionBeginTime = Date.now();
+  const conversionBeginTime = Date.now();
   let downloadConversionComplete = false;
   let conversionPercentage;
-  let totalLengthSeconds = convertToSeconds(item.lengthSeconds);
+  const totalLengthSeconds = convertToSeconds(item.lengthSeconds);
   let KBconverted = 0;
   // // try {
   // // console.log('time to convert: ' + totalLengthSeconds);
@@ -159,7 +181,7 @@ export default function convertFile(
   //   });
   // .save(item.path);
   // } catch (error) {}
-  //////////////////////////////////////////////////////
+  /// ///////////////////////////////////////////////////
   ffmpeg(tempPath)
     .toFormat(item.format.toLowerCase())
     .on('error', (err) => {
