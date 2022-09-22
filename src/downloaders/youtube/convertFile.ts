@@ -38,20 +38,20 @@ if (process.platform === 'win32') {
       'ffmpeg.exe'
     );
   } else if (app.isPackaged) {
-    // ffmpegPath = path.join(
-    //   getPackagedPath(appRootDir),
-    //   'resources',
-    //   'node_modules',
-    //   '@ffmpeg-installer',
-    //   'win32-x64',
-    //   'ffmpeg.exe'
-    // );
     ffmpegPath = path.join(
       getPackagedPath(appRootDir),
       'resources',
-      'ffmpeg',
+      'node_modules',
+      '@ffmpeg-installer',
+      'win32-x64',
       'ffmpeg.exe'
     );
+    // ffmpegPath = path.join(
+    //   getPackagedPath(appRootDir),
+    //   'resources',
+    //   'ffmpeg',
+    //   'ffmpeg.exe'
+    // );
   }
 } else if (process.platform === 'darwin') {
   if (!app.isPackaged) {
@@ -60,21 +60,21 @@ if (process.platform === 'win32') {
   } else if (app.isPackaged) {
     // /Users/nikkirincon/Documents/GitHub/warp-app/node_modules/@ffmpeg-installer/darwin-arm64 MAC
     // /Users/nikkirincon/Documents/GitHub/warp-app/node_modules/@ffmpeg-installer/darwin-arm64
-    // ffmpegPath = path.join(
-    //   getPackagedPath(appRootDir),
-    //   'resources',
-    //   'node_modules',
-    //   '@ffmpeg-installer',
-    //   'darwin-x64',
-    //   'ffmpeg'
-    // );
     ffmpegPath = path.join(
       getPackagedPath(appRootDir),
       'resources',
-      'ffmpeg',
+      'node_modules',
+      '@ffmpeg-installer',
+      'darwin-arm64',
       'ffmpeg'
     );
-    console.log('ffmpegPath', ffmpegPath);
+    // ffmpegPath = path.join(
+    //   getPackagedPath(appRootDir),
+    //   'resources',
+    //   'ffmpeg',
+    //   'ffmpeg'
+    // );
+    // console.log('ffmpegPath', ffmpegPath);
   }
 }
 
