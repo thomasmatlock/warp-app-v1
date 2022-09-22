@@ -86,13 +86,15 @@ if (process.platform === 'win32') {
   }
 } else if (process.platform === 'darwin') {
   if (!app.isPackaged) {
-    ffmpegPath = path.join(
-      appRootDir,
-      'node_modules',
-      '@ffmpeg-installer',
-      'darwin-x64',
-      'ffmpeg'
-    );
+    console.log('not packaged, joining');
+    ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
+    // ffmpegPath = path.join(
+    //   appRootDir,
+    //   'node_modules',
+    //   '@ffmpeg-installer',
+    //   'darwin-x64',
+    //   'ffmpeg'
+    // );
   } else if (app.isPackaged) {
     ffmpegPath = path.join(
       getPackagedPath(appRootDir),
