@@ -7,6 +7,7 @@ import ffmpeg from 'fluent-ffmpeg';
 import { app, BrowserWindow, shell } from 'electron';
 import convertToSeconds from './convertTimeToSeconds';
 import getETA from './getETA';
+
 const appRootDir = require('app-root-dir').get();
 
 // Applications/Warp.app/Contents/Resources/dist/main/
