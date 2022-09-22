@@ -16,7 +16,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     justify-content: space-around !important;
     align-items: center;
     flex-direction: row;
-    //   border: 1px dotted rgb(146, 146, 146);
+    // border: 1px dotted rgb(146, 146, 146);
     //   z-index: 10;
     // box-shadow: -1rem 0 3rem #000;
 }
@@ -26,8 +26,8 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    // width: 25%;
-    width: clamp(0%, 20%, 25%);
+    width: 33%;
+    // width: clamp(0%, 100%, 25%);
     //   cursor: none !important;
     // border: 1px solid rgb(146, 146, 146);
     height: 100%;
@@ -54,6 +54,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
         display: none;
     }
     .buttonContainer {
+        // background-color: purple;
         width: 100% !important;
     }
 }
@@ -72,7 +73,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
 
 .platformImgLarge {
     height: 20px;
-    margin: 1rem;
+    margin: 0.75rem;
 }
 
 .platformImg {
@@ -88,7 +89,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     flex-direction: row;
     height: 100%;
     width: 33%;
-    max-width: 500px;
+    // max-width: 500px;
     //   border: 1px dotted rgb(146, 146, 146);
 }
 
@@ -119,11 +120,12 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     //
     display: flex;
     flex: 1;
-    width: 100%;
+    // width: 100%;
     max-height: 56px !important;
     flex-direction: row;
     align-items: center;
     align-content: center;
+    // border: 1px solid red;
     cursor: pointer;
     transition: all ease-out 0.1s !important;
     border-radius: 4px;

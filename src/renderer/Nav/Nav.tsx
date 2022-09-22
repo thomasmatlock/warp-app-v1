@@ -238,6 +238,20 @@ const Nav = (props) => {
             </a>
           )}
           <a className="navLogo">
+            {checkingForUpdate && (
+              <img
+                className="platformImg update_icon"
+                src={ProgressIcon}
+                style={
+                  themeCtx.isDarkTheme
+                    ? { filter: 'invert(100%)' }
+                    : {
+                        filter: 'invert(0%)',
+                      }
+                }
+                alt="icon"
+              />
+            )}
             {updateAvailable && (
               <img
                 className="platformImg update_icon"

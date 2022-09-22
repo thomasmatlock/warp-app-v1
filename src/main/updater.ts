@@ -25,10 +25,8 @@ export default function (mWin: BrowserWindow) {
       mWin.webContents.send('update-not-available', '');
     });
     autoUpdater.on('download-progress', (progress) => {
-      mWin.webContents.send(
-        'download-progress',
-        `${progress.percent}% downloaded`
-      );
+      const string = (progress.percent * 100).toFixed(0);
+      mWin.webContents.send('download-progress', `${string}% downloaded`);
     });
     autoUpdater.on('update-downloaded', () => {
       mWin.webContents.send(

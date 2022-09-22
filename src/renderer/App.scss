@@ -17,6 +17,11 @@ body {
     font-family: sans-serif;
     overflow: hidden;
     padding: 0;
+    background-color: $gray-dark-darkest;
+}
+
+html {
+    background-color: $gray-dark-darkest;
 }
 
 * {
