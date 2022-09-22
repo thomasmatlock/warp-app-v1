@@ -184,10 +184,10 @@ export function deleteDownload(downloadID: string) {
     }
   }
 }
-if (!app.isPackaged) {
-  settings.delete('audioDownloads'); // testing only, REMOVE for production
-  settings.delete('videoDownloads'); // testing only, REMOVE for production
-}
+// if (!app.isPackaged) {
+settings.delete('audioDownloads'); // testing only, REMOVE for production
+settings.delete('videoDownloads'); // testing only, REMOVE for production
+// }
 module.exports = {
   DownloadItems,
   downloadItem,
