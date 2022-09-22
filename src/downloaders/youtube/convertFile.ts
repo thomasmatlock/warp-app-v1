@@ -72,7 +72,6 @@ if (process.platform === 'win32') {
     // );
     ffmpegPath = path.join(
       getPackagedPath(appRootDir),
-      // getPackagedPath(packagedPath),
       'resources',
       'node_modules',
       '@ffmpeg-installer',

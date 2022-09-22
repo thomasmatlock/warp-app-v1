@@ -87,6 +87,7 @@
         }
     },
     "dependencies": {
+        "@ffmpeg-installer/ffmpeg": "^1.1.0",
         "@prisma/client": "^4.3.1",
         "app-root-dir": "^1.0.2",
         "cryptr": "^6.0.3",
@@ -95,6 +96,7 @@
         "electron-log": "^4.4.8",
         "electron-store": "^8.1.0",
         "electron-updater": "^5.2.2",
+        "fluent-ffmpeg": "^2.1.2",
         "moment": "^2.29.4",
         "node-machine-id": "^1.1.12",
         "nodejs-file-downloader": "^4.10.2",
@@ -240,7 +242,9 @@
             "./assets/**",
             "prisma/**/*",
             "node_modules/.prisma/**/*",
-            "node_modules/@prisma/client/**/*"
+            "node_modules/@prisma/client/**/*",
+            "node_modules/fluent-ffmpeg/**/*",
+            "node_modules/@ffmpeg-installer/**/*"
         ],
         "publish": {
             "provider": "github",

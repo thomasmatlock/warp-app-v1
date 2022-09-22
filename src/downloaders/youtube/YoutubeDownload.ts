@@ -57,7 +57,7 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
         conversionBeginTime = Date.now();
         let downloadTime = ((Date.now() - downloadBeginTime) / 1000).toFixed(1);
       }
-      // if (downloadComplete) convertFile(mWin, item, tempPath);
+      if (downloadComplete) convertFile(mWin, item, tempPath);
     });
   } catch (error) {
     console.log(error);

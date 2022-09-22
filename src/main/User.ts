@@ -1,3 +1,5 @@
+// import { PrismaClient } from '../extra/client';
+
 const Store = require('electron-store');
 // import express from 'express';
 import os from 'os';
