@@ -240,7 +240,7 @@ let browserPanelState = 'default';
     if (view)
       if (view.webContents.getURL().includes('pinterest')) {
         view.webContents.insertCSS('html, body, { background-color: #fff;  }');
-        // view.webContents.insertCSS('::-webkit-scrollbar, {    width: 10px;}');
+        view.webContents.insertCSS('scrollbar, {    width: 10px;}');
       }
   });
   ipcMain.on('source: change', async (event, arg) => {
@@ -588,7 +588,7 @@ const windowController = {
     } else {
       view.webContents.loadURL(randomYoutubeURL);
     }
-    // view.webContents.insertCSS('scrollbar{    width: 100px;}');
+    view.webContents.insertCSS('scrollbar{    width: 100px;}');
     // view.webContents.loadURL('https://open.spotify.com/');
     view.webContents.on('did-navigate-in-page', (e, url) => {
       // console.log(url);
