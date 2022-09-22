@@ -6,7 +6,7 @@ import getETA from './getETA';
 // import ffmpeg from 'fluent-ffmpeg';
 var appRootDir = require('app-root-dir').get();
 // console.log(appRootDir);
-
+// /Users/nikkirincon/Documents/GitHub/warp-app/node_modules/@ffmpeg-installer/darwin-arm64 MAC
 const ffmpeg = require('fluent-ffmpeg');
 // C:\Users\Tommy\AppData\Local\Programs\warp\resources\node_modules\@ffmpeg-installer\win32-x64
 // C:\Program Files\Warp\resources\node_modules\@ffmpeg-installer\win32-x64\ffmpeg.exe
