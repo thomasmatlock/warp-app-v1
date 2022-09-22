@@ -229,8 +229,18 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
             // background: grey;
             transition: all 0.1s ease-in-out;
             &:hover {
-                transform: scale(1.05);
-                // transform: scale(1.1) perspective(4000px) rotate3d(1, 100, 0, 0deg);
+                width: 540px;
+                /* you can use % */
+                // height: auto;
+                transform: scale(1.02);
+                // width: 80px;
+                // height: 80px;
+                // object-fit: contain;
+                // object-fit: contain; // fill contain
+                // object-position: 50% 500%;
+                // object-scale: 1.1;
+                // background-position: 100% 110%;
+                // transform: scale(1.02) perspective(4000px) rotate3d(1, 100, 0, 0deg);
                 box-shadow: 10px 70px 63px -60px #000000;
                 cursor: pointer;
             }
