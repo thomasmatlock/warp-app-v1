@@ -22,13 +22,13 @@ export default function (mWin: BrowserWindow) {
     autoUpdater.on('update-not-available', () => {
       mWin.webContents.send('update-not-available', '');
     });
-    autoUpdater.on('download-progress', (progress) => {
-      const string = progress.percent.toFixed(0);
-      mWin.webContents.send(
-        'download-progress',
-        `Update ${string}% downloaded`
-      );
-    });
+    // autoUpdater.on('download-progress', (progress) => {
+    //   const string = progress.percent.toFixed(0);
+    //   mWin.webContents.send(
+    //     'download-progress',
+    //     `Update ${string}% downloaded`
+    //   );
+    // });
     autoUpdater.on('update-downloaded', () => {
       mWin.webContents.send(
         'update-downloaded',

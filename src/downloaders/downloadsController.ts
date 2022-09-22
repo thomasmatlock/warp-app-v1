@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 import fs from 'fs';
 import { app, BrowserWindow } from 'electron';
 import { useState } from 'react';
@@ -185,18 +186,18 @@ export function deleteDownload(downloadID: string) {
 }
 if (!app.isPackaged) {
   settings.delete('audioDownloads'); // testing only, REMOVE for production
-  // settings.delete('videoDownloads'); // testing only, REMOVE for production
+  settings.delete('videoDownloads'); // testing only, REMOVE for production
 }
 module.exports = {
-  DownloadItems: DownloadItems,
-  downloadItem: downloadItem,
-  playlist: playlist,
-  getAudioDownloads: getAudioDownloads,
-  getVideoDownloads: getVideoDownloads,
-  getWarpstagramDownloads: getWarpstagramDownloads,
-  setAudioDownloads: setAudioDownloads,
-  setVideoDownloads: setVideoDownloads,
-  removeMatchingDownload: removeMatchingDownload,
-  removeAllDownloads: removeAllDownloads,
-  deleteDownload: deleteDownload,
+  DownloadItems,
+  downloadItem,
+  playlist,
+  getAudioDownloads,
+  getVideoDownloads,
+  getWarpstagramDownloads,
+  setAudioDownloads,
+  setVideoDownloads,
+  removeMatchingDownload,
+  removeAllDownloads,
+  deleteDownload,
 };
