@@ -38,6 +38,10 @@ if (process.platform === 'win32') {
       'ffmpeg.exe'
     );
   } else if (app.isPackaged) {
+    // ffmpegPath = require('@ffmpeg-installer/ffmpeg').path.replace(
+    //   'app.asar',
+    //   'app.asar.unpacked'
+    // );
     ffmpegPath = path.join(
       getPackagedPath(appRootDir),
       'resources',
