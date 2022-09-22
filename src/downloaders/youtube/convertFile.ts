@@ -55,19 +55,26 @@ if (process.platform === 'win32') {
   }
 } else if (process.platform === 'darwin') {
   if (!app.isPackaged) {
-    console.log('not packaged, joining');
     ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
+    console.log('ffmpegPath', ffmpegPath);
   } else if (app.isPackaged) {
     // /Users/nikkirincon/Documents/GitHub/warp-app/node_modules/@ffmpeg-installer/darwin-arm64 MAC
     // /Users/nikkirincon/Documents/GitHub/warp-app/node_modules/@ffmpeg-installer/darwin-arm64
+    // ffmpegPath = path.join(
+    //   getPackagedPath(appRootDir),
+    //   'resources',
+    //   'node_modules',
+    //   '@ffmpeg-installer',
+    //   'darwin-x64',
+    //   'ffmpeg'
+    // );
     ffmpegPath = path.join(
       getPackagedPath(appRootDir),
       'resources',
-      'node_modules',
-      '@ffmpeg-installer',
-      'darwin-x64',
+      'ffmpeg',
       'ffmpeg'
     );
+    console.log('ffmpegPath', ffmpegPath);
   }
 }
 
