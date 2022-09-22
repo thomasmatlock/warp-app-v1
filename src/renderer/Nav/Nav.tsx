@@ -292,22 +292,23 @@ const Nav = (props) => {
             >
               {updateMessage}
             </p>
-            {updateDownloaded && (
-              // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
-              <p
-                className="restartBtn"
-                onClick={restartHandler}
-                style={
-                  themeCtx.isDarkTheme
-                    ? { filter: 'invert(0%)' }
-                    : {
-                        filter: 'invert(100%)',
-                      }
-                }
-              >
-                Restart now
-              </p>
-            )}
+            {/* {updateDownloaded && ( */}
+            {/* // eslint-disable-next-line */}
+            {/* jsx-a11y/no-noninteractive-element-interactions */}
+            <div
+              className="restartBtn"
+              onClick={restartHandler}
+              style={
+                themeCtx.isDarkTheme
+                  ? { filter: 'invert(0%)' }
+                  : {
+                      filter: 'invert(100%)',
+                    }
+              }
+            >
+              Restart now
+            </div>
+            {/* )} */}
           </a>
         </div>
       </div>
