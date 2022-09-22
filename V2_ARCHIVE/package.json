@@ -247,8 +247,8 @@
             "./assets/**",
             "prisma/**/*",
             "node_modules/.prisma/**/*",
-            "node_modules/fluent-ffmpeg/**/*",
             "node_modules/@prisma/client/**/*",
+            "node_modules/fluent-ffmpeg/**/*",
             "node_modules/@ffmpeg-installer/win32-x64/**/*"
         ],
         "publish": {
