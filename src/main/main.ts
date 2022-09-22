@@ -517,7 +517,8 @@ const windowController = {
       // setTimeout(() )
       // copilot
 
-      // setTimeout;
+      // setTimeout(() => {
+      // }, 1000);
       updater(mWin);
 
       if (process.platform === 'win32' && mWin)
@@ -582,8 +583,11 @@ const windowController = {
     view.setAutoResize({ width: true, height: true });
     view.setBackgroundColor('#1a1a1a');
     // console.log(randomYoutubeURL);
-
-    view.webContents.loadURL(randomYoutubeURL);
+    if (app.isPackaged) {
+      view.webContents.loadURL('https://www.youtube.com');
+    } else {
+      view.webContents.loadURL(randomYoutubeURL);
+    }
     // view.webContents.insertCSS('scrollbar{    width: 100px;}');
     // view.webContents.loadURL('https://open.spotify.com/');
     view.webContents.on('did-navigate-in-page', (e, url) => {
