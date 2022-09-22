@@ -88,13 +88,19 @@ if (process.platform === 'win32') {
   if (!app.isPackaged) {
     console.log('not packaged, joining');
     ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
-    // ffmpegPath = path.join(
-    //   appRootDir,
-    //   'node_modules',
-    //   '@ffmpeg-installer',
-    //   'darwin-x64',
-    //   'ffmpeg'
-    // );
+    console.log(ffmpegPath);
+
+    let ffmpegPathTest2 = path.join(
+      getPackagedPath(appRootDir),
+      'Resources',
+      'node_modules',
+      '@ffmpeg-installer',
+      'darwin-x64',
+      'ffmpeg'
+    );
+    console.log(getPackagedPath(appRootDir));
+
+    console.log(ffmpegPathTest2);
   } else if (app.isPackaged) {
     ffmpegPath = path.join(
       getPackagedPath(appRootDir),
