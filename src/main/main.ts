@@ -33,7 +33,7 @@ import Downloads from '../downloaders/downloadsController';
 import Title from './Title';
 import Prefs from './prefsController';
 import PowerMonitor from './powerMonitor';
-import ScreenClass from './screen';
+import ScreenClass from './Screen';
 import Browser from './browserController';
 import Shortcuts from './Shortcuts';
 const appRootDir = require('app-root-dir').get();
