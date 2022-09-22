@@ -4,9 +4,11 @@ import { app, BrowserWindow, shell } from 'electron';
 import convertToSeconds from './convertTimeToSeconds';
 import getETA from './getETA';
 // import ffmpeg from 'fluent-ffmpeg';
-var appRootDir = require('app-root-dir').get();
+const appRootDir = require('app-root-dir').get();
 // console.log(appRootDir);
 // /Users/nikkirincon/Documents/GitHub/warp-app/node_modules/@ffmpeg-installer/darwin-arm64 MAC
+// /Users/nikkirincon/Documents/GitHub/warp-app/node_modules/@ffmpeg-installer/darwin-arm64
+// Applications/Warp.app/Contents/Resources/dist/main/
 const ffmpeg = require('fluent-ffmpeg');
 // C:\Users\Tommy\AppData\Local\Programs\warp\resources\node_modules\@ffmpeg-installer\win32-x64
 // C:\Program Files\Warp\resources\node_modules\@ffmpeg-installer\win32-x64\ffmpeg.exe
@@ -58,7 +60,7 @@ if (process.platform === 'win32') {
   } else if (app.isPackaged) {
     // let packagedPath = 'C:\\Program Files\\Warp\\resources\\app.asar\\dist';
     // homedir .... C:\Program Files\Warp\resources\app.asar\dist //USE THIS
-    //ATTEMPT  --- PROGRAM FILES PATH --- // C:\Program Files\Warp\resources\node_modules\@ffmpeg-installer\win32-x64\ffmpeg.exe
+    // ATTEMPT  --- PROGRAM FILES PATH --- // C:\Program Files\Warp\resources\node_modules\@ffmpeg-installer\win32-x64\ffmpeg.exe
     // console.log('app.isPackaged', app.isPackaged);
 
     // IF PRODUCTION MODE
