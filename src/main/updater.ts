@@ -13,7 +13,6 @@ export default function (mWin: BrowserWindow) {
     mWin.webContents.send('update-not-available', '');
   }
   if (app.isPackaged) {
-    mWin.webContents.send('update-not-available', '');
     // mWin.webContents.send('checking-for-update', 'checking for update...');
     autoUpdater.checkForUpdates();
     autoUpdater.on('update-available', () => {
