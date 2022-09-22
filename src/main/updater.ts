@@ -8,7 +8,7 @@ import { autoUpdater } from 'electron-updater';
 // An updated version of Warp is available and will be installed at the next app launch. Restart Warp.
 
 log.transports.file.level = 'info';
-autoUpdater.autoDownload = false;
+// autoUpdater.autoDownload = false;
 autoUpdater.logger = log;
 export default function (mWin: BrowserWindow) {
   if (!app.isPackaged) {

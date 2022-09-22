@@ -1,6 +1,6 @@
 // import classes from './CartItem.module.css';
 import React, { useState, useContext } from 'react';
-import downloadSourceIcon__available from '../../../assets/BrowserBar/codepen.svg';
+import downloadSourceIcon__available from './correct.svg';
 import downloadSourceIcon__unavailable from '../../../assets/BrowserBar/remove.svg';
 import SourcesContext from '../../storage/sourcesContext';
 import ThemeContext from 'storage/themeContext';

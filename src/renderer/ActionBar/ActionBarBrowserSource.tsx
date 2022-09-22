@@ -7,7 +7,7 @@ import ActionBarBrowserSourceItem from './/ActionBarBrowserSourceItem';
 import './ActionBarBrowserSource.scss';
 import browserBarDownloadSourceIcon1 from '../../../assets/ActionBar/youtube.svg';
 import browserBarDownloadSourceIcon2 from '../../../assets/ActionBar/caret-down.svg';
-import downloadSourceIcon__available from '../../../assets/BrowserBar/codepen.svg';
+import downloadSourceIcon__available from '../../../assets/BrowserBar/check.svg';
 import downloadSourceIcon__unavailable from '../../../assets/BrowserBar/remove.svg';
 import downloadSourceIconFacebook from '../../../assets/BrowserBar/facebook.svg';
 import downloadSourceIconPinterest from '../../../assets/BrowserBar/pinterest.svg';
