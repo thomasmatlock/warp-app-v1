@@ -15,13 +15,12 @@ export default async function createCustomer() {
     // const products = await getAllProducts();
   } catch (error) {}
   // console.log(products.data.length);
-
+  const randomEmail = Math.random().toString(36).substring(7);
   const params: Stripe.CustomerCreateParams = {
-    email: 'metaphorpsTest2@gmail.com',
+    email: `${randomEmail}@gmail.com`,
   };
-  let customer;
   try {
-    customer = await stripe.customers.create(params);
+    const customer = await stripe.customers.create(params);
     // console.log(customer);
   } catch (error) {}
 
