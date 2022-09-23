@@ -56,6 +56,8 @@ if (process.platform === 'win32') {
 } else if (process.platform === 'darwin') {
   if (!app.isPackaged) {
     console.log(appRootDir);
+    // /Users/nikkirincon/Documents/GitHub/warp-app
+
     ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
 
     // console.log('packagedPath', getWindowsPackagedPath(appRootDir));
@@ -72,6 +74,7 @@ if (process.platform === 'win32') {
       'darwin-arm64',
       'ffmpeg'
     );
+    // console.log('ffmpegPath', ffmpegPath);
   }
 }
 ffmpeg.setFfmpegPath(ffmpegPath);

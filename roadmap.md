@@ -1,9 +1,4 @@
-# 0.1.xxx autoupdater
-
-# 0.2.xxx ffmpeg
-
-# 0.3.xxx prisma
-
-# 0.4.xxx stripe
-
-# 0.5.xxx aws bucket deployment
+#1.0.x auto-updater
+#1.1.x prisma
+#1.2.x ffmpeg
+#1.3.x better error handling?
