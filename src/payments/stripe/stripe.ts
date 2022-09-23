@@ -20,7 +20,7 @@ export default async function createCustomer() {
     email: `${randomEmail}@gmail.com`,
   };
   try {
-    const customer = await stripe.customers.create(params);
+    // const customer = await stripe.customers.create(params);
     // console.log(customer);
   } catch (error) {}
 
