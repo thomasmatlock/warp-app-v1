@@ -5,17 +5,49 @@ import fs from 'fs';
 import path from 'path';
 import ffmpeg from 'fluent-ffmpeg';
 import { app, BrowserWindow, shell } from 'electron';
+// import Seven from 'node-7z';
+// console.log(Seven);
+
 import convertToSeconds from './convertTimeToSeconds';
 import getETA from './getETA';
 
 const appRootDir = require('app-root-dir').get();
+const Downloader = require('nodejs-file-downloader');
 
-// Applications/Warp.app/Contents/Resources/dist/main/
-// const ffmpeg = require('fluent-ffmpeg');
-// C:\Users\Tommy\AppData\Local\Programs\warp\resources\node_modules\@ffmpeg-installer\win32-x64
-// C:\Program Files\Warp\resources\node_modules\@ffmpeg-installer\win32-x64\ffmpeg.exe
 let ffmpegPath;
-// = require('@ffmpeg-installer/ffmpeg').path;
+async function downloadWindowsFFMPEG(path: string) {
+  //Wrapping the code with an async function, just for the sake of example.
+
+  const downloader = new Downloader({
+    // url: 'https://www.gyan.dev/ffmpeg/builds/ffmpeg-git-essentials.7z', // If the file name already exists, a new file with the name 200MB1.zip is created.
+    url: 'https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip', // If the file name already exists, a new file with the name 200MB1.zip is created.
+    directory: path, // This folder will be created, if it doesn't exist.
+    // directory:
+    // 'C:\\Program Files\\Warp\\resources\\node_modules\\@ffmpeg-installer\\win32-x64', // This folder will be created, if it doesn't exist.
+  });
+  const source = path + '\\ffmpeg-release-essentials.zip';
+  try {
+    if (!fs.existsSync(source)) {
+      const { filePath, downloadStatus } = await downloader.download(); // Downloader.download() resolves with some useful properties.
+    }
+
+    // console.log('All done');
+    // eslint-disable-next-line global-require
+
+    // async function main() {
+    try {
+      const extract = require('extract-zip');
+      console.log('Extracting...');
+      // const source = path + '\\ffmpeg-git-essentials.7z';
+      // await extract(source, { dir: path });
+      console.log('Extraction complete');
+    } catch (err) {
+      // handle any errors
+    }
+  } catch (error) {
+    console.log('Download failed', error);
+  }
+}
 function getPackagedPath(targetPath: string) {
   const packagedPathSplit = targetPath.split('\\');
   let joined = '';
@@ -29,6 +61,15 @@ function getPackagedPath(targetPath: string) {
   return joined;
 }
 if (process.platform === 'win32') {
+  const downloadPath = path.join(
+    getPackagedPath(appRootDir)
+    // 'resources',
+    // 'ffmpeg'
+    // 'node_modules',
+    // '@ffmpeg-installer',
+    // 'win32-x64'
+  );
+  // downloadWindowsFFMPEG(downloadPath);
   if (!app.isPackaged) {
     ffmpegPath = path.join(
       appRootDir,
@@ -46,6 +87,10 @@ if (process.platform === 'win32') {
       'win32-x64',
       'ffmpeg.exe'
     );
+    // if (ffmpegPath === undefined) {
+    //   downloadWindowsFFMPEG(ffmpegPath);
+    // }
+
     // ffmpegPath = path.join(
     //   getPackagedPath(appRootDir),
     //   'resources',
