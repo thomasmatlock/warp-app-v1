@@ -1,10 +1,14 @@
-import { BrowserWindow, screen } from 'electron';
+import { BrowserWindow } from 'electron';
+
 const Store = require('electron-store');
+
 const settings = new Store();
 export default class Screen {
   mWin: BrowserWindow;
-  defaults: any;
-  screenState: any;
+
+  defaults: unknown;
+
+  screenState: unknown;
 
   constructor(mWin: BrowserWindow) {
     this.mWin = mWin;
@@ -15,26 +19,28 @@ export default class Screen {
         width: 1600,
         height: 900,
       },
-      isMaximized: false,
+      isMaximized: true,
     };
   }
+
   setScreenState = (mWin: BrowserWindow) => {
-    let newState = this.getScreenState();
+    const newState = this.getScreenState();
     let newBounds = mWin.getBounds();
     newState.bounds = newBounds;
     newState.isMaximized = mWin.isMaximized();
     settings.set('screen', newState);
     this.screenState = newState;
   };
+
   getScreenState = () => {
     this.screenState = settings.get('screen');
     if (this.screenState === undefined) {
       settings.set('screen', this.defaults);
       return this.defaults;
-    } else {
-      return this.screenState;
     }
+    return this.screenState;
   };
+
   resetScreenState = () => {
     settings.delete('screenState');
     return this.defaults;

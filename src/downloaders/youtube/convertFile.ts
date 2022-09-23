@@ -7,13 +7,12 @@ import ffmpeg from 'fluent-ffmpeg';
 import { app, BrowserWindow, dialog } from 'electron';
 import convertToSeconds from './convertTimeToSeconds';
 import getETA from './getETA';
+import getFFMPEG from './ffmpeg';
+
+getFFMPEG();
 
 const appRootDir = require('app-root-dir').get();
 
-// Applications/Warp.app/Contents/Resources/dist/main/
-// const ffmpeg = require('fluent-ffmpeg');
-// C:\Users\Tommy\AppData\Local\Programs\warp\resources\node_modules\@ffmpeg-installer\win32-x64
-// C:\Program Files\Warp\resources\node_modules\@ffmpeg-installer\win32-x64\ffmpeg.exe
 let ffmpegPath;
 // = require('@ffmpeg-installer/ffmpeg').path;
 function getWindowsPackagedPath(targetPath: string) {
