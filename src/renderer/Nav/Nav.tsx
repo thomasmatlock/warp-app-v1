@@ -233,7 +233,7 @@ const Nav = (props) => {
                       }
                 }
               >
-                {`v${appVersion}`}
+                {`${appVersion}`}
                 {/* {appRoot} */}
               </p>
             </a>
