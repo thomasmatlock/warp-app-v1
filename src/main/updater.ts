@@ -17,8 +17,8 @@ export default function (mWin: BrowserWindow) {
     mWin.webContents.send('checking-for-update', 'checking for update...');
     autoUpdater.checkForUpdates();
     autoUpdater.on('update-available', () => {
-      mWin.webContents.send('update-available', 'update available...');
-      mWin.webContents.send('update-not-available', '');
+      mWin.webContents.send('update-available', 'downloading update...');
+      // mWin.webContents.send('update-not-available', '');
       autoUpdater.downloadUpdate();
     });
     autoUpdater.on('update-not-available', () => {
