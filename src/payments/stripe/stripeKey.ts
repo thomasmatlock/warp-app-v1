@@ -1,2 +1,3 @@
-const stripeKey: string = 'sk_live_ktgJvPC8iISH1qrb4oeJg65s';
+const stripeKey =
+  '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';
 export default stripeKey;
