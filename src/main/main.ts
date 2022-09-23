@@ -535,7 +535,6 @@ const windowController = {
       } else {
         mWin.show();
         Title.setTitle(mWin, 'audio', user);
-        console.log(Screen);
 
         if (Screen.screenState.isMaximized) mWin.maximize();
         if (view === null) windowController.createbView();
