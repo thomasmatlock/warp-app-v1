@@ -249,20 +249,19 @@ const BrowserBar = () => {
               )}
             </div>
           )} */}
-        {navCtx.audioMode &&
+        {/* {navCtx.audioMode &&
           !actionBarCtx.isBrowserPanelCollapsed &&
           actionBarCtx.multiplePlaylistsExist && (
             <div
               onClick={downloadAudioPlaylistHandler}
               className="browserBarDownloadBtn browserBarDownloadBtn__audio"
             >
-              {/* <Loader /> */}
               <img src={playlistVideoIcon} alt="playlistVideoIcon" />
               {actionBarCtx.multiplePlaylistsExist && (
                 <p> Download Audio Playlists</p>
               )}
             </div>
-          )}
+          )} */}
         {navCtx.audioMode &&
           !actionBarCtx.isBrowserPanelCollapsed &&
           actionBarCtx.videoExists && (
@@ -296,7 +295,7 @@ const BrowserBar = () => {
               {actionBarCtx.channelExists && <p> Download Channel Videos</p>}
             </div>
           )} */}
-        {navCtx.videoMode &&
+        {/* {navCtx.videoMode &&
           !actionBarCtx.isBrowserPanelCollapsed &&
           actionBarCtx.singlePlaylistExists && (
             <div
@@ -308,8 +307,8 @@ const BrowserBar = () => {
                 <p> Download Video Playlist</p>
               )}
             </div>
-          )}
-        {navCtx.videoMode &&
+          )} */}
+        {/* {navCtx.videoMode &&
           !actionBarCtx.isBrowserPanelCollapsed &&
           actionBarCtx.multiplePlaylistsExist && (
             <div
@@ -321,7 +320,7 @@ const BrowserBar = () => {
                 <p> Download Video Playlists</p>
               )}
             </div>
-          )}
+          )} */}
         {navCtx.videoMode &&
           !actionBarCtx.isBrowserPanelCollapsed &&
           actionBarCtx.videoExists && (
