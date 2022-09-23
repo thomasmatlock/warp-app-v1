@@ -1,9 +1,10 @@
-import { Fragment, useState, useContext } from 'react';
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+import { Fragment, useState, useContext, useEffect } from 'react';
 import ThemeContext from '../../storage/themeContext';
-import ActionBarContext from '../../storage/actionBarContext';
 import SourcesContext from '../../storage/sourcesContext';
 import ActionBarBrowserSourceItem from './/ActionBarBrowserSourceItem';
-
+import ActionBarContext from '../../storage/actionBarContext';
 import './ActionBarBrowserSource.scss';
 import browserBarDownloadSourceIcon1 from '../../../assets/ActionBar/youtube.svg';
 import browserBarDownloadSourceIcon2 from '../../../assets/ActionBar/caret-down.svg';
@@ -23,7 +24,7 @@ import { log } from 'console';
 const BrowserBarDownloadSource = () => {
   const themeCtx = useContext(ThemeContext);
   const sourcesCtx = useContext(SourcesContext);
-  // console.log(sourcesCtx);
+  const actionBarCtx = useContext(ActionBarContext);
 
   let sourcesCount = sourcesCtx.enabledSources.length;
   // window.electron.ipcRenderer.on('ready-to-show', (arg) => {
@@ -72,13 +73,20 @@ const BrowserBarDownloadSource = () => {
           ? 'browserBarDownloadSource__list'
           : 'browserBarDownloadSource__hovering__list'
       }
-      style={{ height: height_browserBarDownloadSource__hovering }}
+      style={{
+        height: height_browserBarDownloadSource__hovering,
+        // width: actionBarCtx.sourceWidth,
+      }}
     >
       {!isSourcesExpanded && (
         <ActionBarBrowserSourceItem
           key={sourcesCtx.activeSource[0].id}
           name={sourcesCtx.activeSource[0].name}
           src={sourcesCtx.activeSource[0].src}
+          style={{
+            height: height_browserBarDownloadSource__hovering,
+            width: actionBarCtx.sourceWidth,
+          }}
         />
       )}
       {sourcesCtx.enabledSources.map((item) => (
@@ -89,6 +97,10 @@ const BrowserBarDownloadSource = () => {
           src={item.src}
           isActive={item.active}
           onClick={() => sourceSelectedHandler(item.id)}
+          style={{
+            height: height_browserBarDownloadSource__hovering,
+            width: actionBarCtx.sourceWidth,
+          }}
         />
       ))}
     </ul>
@@ -97,7 +109,7 @@ const BrowserBarDownloadSource = () => {
   // return sourcesCtx.enabledSources.map((source) => {
 
   return (
-    <Fragment>
+    <>
       <div
         // onMouseEnter={mouseEnterHandler}
         onMouseLeave={mouseLeaveHandler}
@@ -110,13 +122,16 @@ const BrowserBarDownloadSource = () => {
         style={
           !isSourcesExpanded
             ? // { height: height_browserBarDownloadSource__hovering }
-              { height: 48 + 'px' }
-            : { height: height_browserBarDownloadSource__hovering }
+              { height: 48 + 'px', width: actionBarCtx.sourceWidth }
+            : {
+                height: height_browserBarDownloadSource__hovering,
+                width: actionBarCtx.sourceWidth,
+              }
         }
       >
         {sourceItems}
       </div>
-    </Fragment>
+    </>
   );
 };
 export default BrowserBarDownloadSource;

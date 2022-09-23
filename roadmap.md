@@ -7,3 +7,5 @@
 # 0.4.xxx stripe
 
 # 0.5.xxx aws bucket deployment
+add to dependencies for mac builds
+"@ffmpeg-installer/darwin-x64": "^4.1.0",

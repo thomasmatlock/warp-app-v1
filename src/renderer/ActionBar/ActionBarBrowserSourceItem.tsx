@@ -1,13 +1,20 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 // import classes from './CartItem.module.css';
-import React, { useState, useContext } from 'react';
-import downloadSourceIcon__available from './correct.svg';
-import downloadSourceIcon__unavailable from '../../../assets/BrowserBar/remove.svg';
-import SourcesContext from '../../storage/sourcesContext';
+import { useState, useContext, useEffect } from 'react';
 import ThemeContext from 'storage/themeContext';
+import downloadSourceIcon__available from './correct.svg';
+// import downloadSourceIcon__unavailable from '../../../assets/BrowserBar/remove.svg';
+import SourcesContext from '../../storage/sourcesContext';
+import ActionBarContext from '../../storage/actionBarContext';
 
 const ActionBarBrowserSourceItem = (props) => {
   const sourcesCtx = useContext(SourcesContext);
   const themeCtx = useContext(ThemeContext);
+  const actionBarCtx = useContext(ActionBarContext);
 
   const name = `${props.name}`;
   return (
@@ -20,6 +27,12 @@ const ActionBarBrowserSourceItem = (props) => {
         props.isActive
           ? 'browserBarDownloadSource__list__item__active'
           : 'browserBarDownloadSource__list__item'
+      }
+      style={
+        {
+          // width: sourceWidth,
+          // width: 'calc(100% - 790px)',
+        }
       }
       id={props.id}
     >

@@ -19,6 +19,9 @@ const ActionBarContext = React.createContext({
   sortZA: false,
   sortNewOld: false,
   sortOldNew: false,
+
+  sourceWidth: 'calc(100% - 790px)',
+  setSourceWidth: '',
   sortAZhandler: () => {},
   sortZAhandler: () => {},
   sortNewOldhandler: () => {},
@@ -72,6 +75,9 @@ export const ActionBarContextProvider = (props) => {
   // CHANNELS
   const [channelExists, setChannelExists] = useState(false);
   const [channelVideoExists, setChannelVideoExists] = useState(false);
+  const [sourceWidth, setSourceWidth] = useState(
+    videoExists ? 'calc(100% - 500px)' : 'calc(100% - 240px)'
+  );
 
   const disableAllStates = () => {
     setVideoExists(false);
@@ -79,6 +85,7 @@ export const ActionBarContextProvider = (props) => {
     setMultiplePlaylistsExist(false);
     setChannelExists(false);
     setChannelVideoExists(false);
+    setSourceWidth('calc(100% - 240px)');
   };
   const toggleDownloadsPanelCollapsed = () => {
     if (isDownloadsPanelCollapsed) {
@@ -102,33 +109,35 @@ export const ActionBarContextProvider = (props) => {
   return (
     <ActionBarContext.Provider
       value={{
-        videoExists: videoExists,
-        singlePlaylistExists: singlePlaylistExists,
-        multiplePlaylistsExist: multiplePlaylistsExist,
-        channelExists: channelExists,
-        channelVideoExists: channelVideoExists,
+        videoExists,
+        singlePlaylistExists,
+        multiplePlaylistsExist,
+        channelExists,
+        channelVideoExists,
 
-        setVideoExists: setVideoExists,
-        setSinglePlaylistExists: setSinglePlaylistExists,
-        setMultiplePlaylistsExist: setMultiplePlaylistsExist,
-        setChannelExists: setChannelExists,
-        setChannelVideoExists: setChannelVideoExists,
+        setVideoExists,
+        setSinglePlaylistExists,
+        setMultiplePlaylistsExist,
+        setChannelExists,
+        setChannelVideoExists,
 
-        sortAZ: sortAZ,
-        sortZA: sortZA,
-        sortNewOld: sortNewOld,
-        sortOldNew: sortOldNew,
-        sortAZhandler: sortAZhandler,
-        sortZAhandler: sortZAhandler,
-        sortNewOldhandler: sortNewOldhandler,
-        sortOldNewhandler: sortOldNewhandler,
+        sortAZ,
+        sortZA,
+        sortNewOld,
+        sortOldNew,
+        sourceWidth,
+        setSourceWidth,
+        sortAZhandler,
+        sortZAhandler,
+        sortNewOldhandler,
+        sortOldNewhandler,
 
-        disableAllStates: disableAllStates,
+        disableAllStates,
 
-        isBrowserPanelCollapsed: isBrowserPanelCollapsed,
-        isDownloadsPanelCollapsed: isDownloadsPanelCollapsed,
-        toggleDownloadsPanelCollapsed: toggleDownloadsPanelCollapsed,
-        toggleBrowserPanelCollapsed: toggleBrowserPanelCollapsed,
+        isBrowserPanelCollapsed,
+        isDownloadsPanelCollapsed,
+        toggleDownloadsPanelCollapsed,
+        toggleBrowserPanelCollapsed,
       }}
     >
       {props.children}

@@ -56,6 +56,7 @@ const BrowserBar = () => {
     if (url.includes('watch')) {
       // console.log('this is a video');
       actionBarCtx.setVideoExists(true);
+      actionBarCtx.setSourceWidth('calc(100% - 510px)');
     }
     if (url.includes('featured')) {
       // console.log('this is a featured video');
