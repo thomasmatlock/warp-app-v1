@@ -40,7 +40,7 @@ export default function (mWin: BrowserWindow) {
     });
     ipcMain.on('restart_and_update', () => {
       autoUpdater.quitAndInstall(false, true); // arg1 is silent install, arg2 is force run after install
-      // app.quit();
+      app.quit();
     });
   }
 }

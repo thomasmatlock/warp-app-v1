@@ -4,7 +4,7 @@
 import fs from 'fs';
 import path from 'path';
 import ffmpeg from 'fluent-ffmpeg';
-import { app, BrowserWindow, shell } from 'electron';
+import { app, BrowserWindow, dialog } from 'electron';
 import convertToSeconds from './convertTimeToSeconds';
 import getETA from './getETA';
 
@@ -16,7 +16,7 @@ const appRootDir = require('app-root-dir').get();
 // C:\Program Files\Warp\resources\node_modules\@ffmpeg-installer\win32-x64\ffmpeg.exe
 let ffmpegPath;
 // = require('@ffmpeg-installer/ffmpeg').path;
-function getPackagedPath(targetPath: string) {
+function getWindowsPackagedPath(targetPath: string) {
   const packagedPathSplit = targetPath.split('\\');
   let joined = '';
   for (let i = 0; i < packagedPathSplit.length; i++) {
@@ -39,7 +39,7 @@ if (process.platform === 'win32') {
     );
   } else if (app.isPackaged) {
     ffmpegPath = path.join(
-      getPackagedPath(appRootDir),
+      getWindowsPackagedPath(appRootDir),
       'resources',
       'node_modules',
       '@ffmpeg-installer',
@@ -47,7 +47,7 @@ if (process.platform === 'win32') {
       'ffmpeg.exe'
     );
     // ffmpegPath = path.join(
-    //   getPackagedPath(appRootDir),
+    //   getWindowsPackagedPath(appRootDir),
     //   'resources',
     //   'ffmpeg',
     //   'ffmpeg.exe'
@@ -55,35 +55,35 @@ if (process.platform === 'win32') {
   }
 } else if (process.platform === 'darwin') {
   if (!app.isPackaged) {
+    console.log(appRootDir);
+    // /Users/nikkirincon/Documents/GitHub/warp-app
+
     ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
-    console.log('ffmpegPath', ffmpegPath);
+
+    // console.log('packagedPath', getWindowsPackagedPath(appRootDir));
+    // console.log('ffmpegPath', ffmpegPath);
   } else if (app.isPackaged) {
     // /Users/nikkirincon/Documents/GitHub/warp-app/node_modules/@ffmpeg-installer/darwin-arm64 MAC
     // /Users/nikkirincon/Documents/GitHub/warp-app/node_modules/@ffmpeg-installer/darwin-arm64
+    // appRootDir =Applications/Warp.app/Contents/Resources/app.asar.dist
+    ffmpegPath = appRootDir.replace('/app.asar/dist', '');
     ffmpegPath = path.join(
-      getPackagedPath(appRootDir),
-      'resources',
+      ffmpegPath,
       'node_modules',
       '@ffmpeg-installer',
       'darwin-arm64',
       'ffmpeg'
     );
-    // ffmpegPath = path.join(
-    //   getPackagedPath(appRootDir),
-    //   'resources',
-    //   'ffmpeg',
-    //   'ffmpeg'
-    // );
     // console.log('ffmpegPath', ffmpegPath);
   }
 }
-
 ffmpeg.setFfmpegPath(ffmpegPath);
 export default function convertFile(
   mWin: BrowserWindow,
   item: any,
   tempPath: string
 ) {
+  mWin.webContents.send('appRoot', ffmpegPath);
   const conversionBeginTime = Date.now();
   let downloadConversionComplete = false;
   let conversionPercentage;

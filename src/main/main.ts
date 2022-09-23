@@ -539,7 +539,7 @@ const windowController = {
         if (Screen.isMaximized) mWin.maximize();
         if (view === null) windowController.createbView();
         mWin.webContents.send('appVersion', app.getVersion());
-        // mWin.webContents.send('appRoot', appRootDir);
+        mWin.webContents.send('appRoot', appRootDir);
         mWin.webContents.send('main: prefs', prefs);
         mWin.webContents.send('main: audioDownloads', audioDownloads);
         mWin.webContents.send('main: videoDownloads', videoDownloads);
