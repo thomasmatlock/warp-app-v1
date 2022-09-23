@@ -165,7 +165,7 @@ const BrowserBar = () => {
     animation: 'none',
   };
   return (
-    <Fragment>
+    <>
       <div className="browserBar">
         <div className="filterBar__menu filterBar__menu__left">
           {!actionBarCtx.isBrowserPanelCollapsed && (
@@ -224,7 +224,7 @@ const BrowserBar = () => {
           )}
         </div>
         {!actionBarCtx.isBrowserPanelCollapsed && <BrowserBarDownloadSource />}
-        {navCtx.audioMode &&
+        {/* {navCtx.audioMode &&
           !actionBarCtx.isBrowserPanelCollapsed &&
           actionBarCtx.channelExists && (
             <div
@@ -234,8 +234,8 @@ const BrowserBar = () => {
               <img src={channelIcon} alt="playlistVideoIcon" />
               {actionBarCtx.channelExists && <p> Download Channel Audio</p>}
             </div>
-          )}
-        {navCtx.audioMode &&
+          )} */}
+        {/* {navCtx.audioMode &&
           !actionBarCtx.isBrowserPanelCollapsed &&
           actionBarCtx.singlePlaylistExists && (
             <div
@@ -248,7 +248,7 @@ const BrowserBar = () => {
                 <p> Download Audio Playlist</p>
               )}
             </div>
-          )}
+          )} */}
         {navCtx.audioMode &&
           !actionBarCtx.isBrowserPanelCollapsed &&
           actionBarCtx.multiplePlaylistsExist && (
@@ -285,7 +285,7 @@ const BrowserBar = () => {
               )}
             </div>
           )}{' '}
-        {navCtx.videoMode &&
+        {/* {navCtx.videoMode &&
           !actionBarCtx.isBrowserPanelCollapsed &&
           actionBarCtx.channelExists && (
             <div
@@ -295,7 +295,7 @@ const BrowserBar = () => {
               <img src={channelIcon} alt="playlistVideoIcon" />
               {actionBarCtx.channelExists && <p> Download Channel Videos</p>}
             </div>
-          )}
+          )} */}
         {navCtx.videoMode &&
           !actionBarCtx.isBrowserPanelCollapsed &&
           actionBarCtx.singlePlaylistExists && (
@@ -341,7 +341,7 @@ const BrowserBar = () => {
             </div>
           )}
       </div>
-    </Fragment>
+    </>
   );
 };
 export default BrowserBar;
