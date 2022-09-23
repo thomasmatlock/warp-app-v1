@@ -181,7 +181,10 @@
         "appId": "org.erb.Warp",
         "asar": true,
         "asarUnpack": "**\\*.{node,dll}",
-        "files": [
+        "files": [{
+                "from": "node_modules/.prisma/client/",
+                "to": "node_modules/.prisma/client/"
+            },
             "dist",
             "node_modules",
             "package.json"
