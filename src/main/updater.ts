@@ -14,15 +14,14 @@ export default function (mWin: BrowserWindow) {
   }
   if (app.isPackaged) {
     mWin.webContents.send('update-not-available', '');
-    mWin.webContents.send('checking-for-update', 'checking for update...');
+    // mWin.webContents.send('checking-for-update', 'checking for update...');
     autoUpdater.checkForUpdates();
-    autoUpdater.on('update-available', () => {
-      mWin.webContents.send('update-available', 'downloading update...');
-      // mWin.webContents.send('update-not-available', '');
-      autoUpdater.downloadUpdate();
-    });
     autoUpdater.on('update-not-available', () => {
       mWin.webContents.send('update-not-available', '');
+    });
+    autoUpdater.on('update-available', () => {
+      mWin.webContents.send('update-available', 'downloading update...');
+      autoUpdater.downloadUpdate();
     });
     // autoUpdater.on('download-progress', (progress) => {
     //   const string = progress.percent.toFixed(0);
@@ -40,8 +39,8 @@ export default function (mWin: BrowserWindow) {
       //       app.quit();
     });
     ipcMain.on('restart_and_update', () => {
-      autoUpdater.quitAndInstall(false, false); // arg1 is silent install, arg2 is force run after install
-      app.quit();
+      autoUpdater.quitAndInstall(false, true); // arg1 is silent install, arg2 is force run after install
+      // app.quit();
     });
   }
 }
