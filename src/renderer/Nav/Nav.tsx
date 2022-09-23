@@ -20,7 +20,7 @@ import ThemeContext from '../../storage/themeContext';
 import NavContext from '../../storage/navContext';
 import './Nav.scss';
 import { app } from 'electron';
-let appVersion: string = '1.0.0';
+let appVersion: string = '';
 let appRoot: string = '1.0.0';
 let updateMessage = '';
 
