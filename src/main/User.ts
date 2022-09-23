@@ -7,6 +7,8 @@ const settings = new Store();
 const Cryptr = require('cryptr');
 const cryptr = new Cryptr('user');
 import { PrismaClient } from '@prisma/client';
+console.log(PrismaClient);
+
 const prisma = new PrismaClient();
 import UserOffline from './UserOffline';
 import generateCode from './UserAuthCodes';
