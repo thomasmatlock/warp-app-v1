@@ -178,7 +178,7 @@ const Nav = (props) => {
             <a className="navLogo">
               {isWindows && (
                 <img
-                  className="platformImg"
+                  className="platformIcon"
                   src={iconWindows}
                   style={
                     themeCtx.isDarkTheme
@@ -192,7 +192,7 @@ const Nav = (props) => {
               )}
               {isApple && (
                 <img
-                  className="platformImg"
+                  className="platformIcon"
                   src={iconApple}
                   style={
                     themeCtx.isDarkTheme
@@ -206,7 +206,7 @@ const Nav = (props) => {
               )}
               {isLinux && (
                 <img
-                  className="platformImg"
+                  className="platformIcon"
                   src={iconLinux}
                   style={
                     themeCtx.isDarkTheme
@@ -241,7 +241,7 @@ const Nav = (props) => {
           <a className="navLogo">
             {checkingForUpdate && (
               <img
-                className="platformImg update_icon"
+                className="platformIcon update_icon"
                 src={ProgressIcon}
                 style={
                   themeCtx.isDarkTheme
@@ -255,7 +255,7 @@ const Nav = (props) => {
             )}
             {updateAvailable && (
               <img
-                className="platformImg update_icon"
+                className="platformIcon update_icon"
                 src={ProgressIcon}
                 style={
                   themeCtx.isDarkTheme
@@ -269,7 +269,7 @@ const Nav = (props) => {
             )}
             {updateDownloading && (
               <img
-                className="platformImg update_icon"
+                className="platformIcon update_icon"
                 src={ProgressIcon}
                 style={
                   themeCtx.isDarkTheme
@@ -283,7 +283,7 @@ const Nav = (props) => {
             )}
             {updateDownloaded && (
               <img
-                className="platformImgLarge"
+                className="installNewVersion"
                 src={NewVersionIcon}
                 // style={
                 //   themeCtx.isDarkTheme

@@ -132,7 +132,7 @@ const Nav = (props) => {
           <a className="navLogo">
             {isWindows && (
               <img
-                className="platformImg"
+                className="platformIcon"
                 src={iconWindows}
                 style={
                   themeCtx.isDarkTheme
@@ -146,7 +146,7 @@ const Nav = (props) => {
             )}
             {isApple && (
               <img
-                className="platformImg"
+                className="platformIcon"
                 src={iconApple}
                 style={
                   themeCtx.isDarkTheme
@@ -160,7 +160,7 @@ const Nav = (props) => {
             )}
             {isLinux && (
               <img
-                className="platformImg"
+                className="platformIcon"
                 src={iconLinux}
                 style={
                   themeCtx.isDarkTheme
