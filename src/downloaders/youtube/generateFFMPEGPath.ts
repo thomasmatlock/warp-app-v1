@@ -16,7 +16,7 @@ function getWindowsPackagedPath(targetPath: string) {
   }
   return joined;
 }
-export default function genFFMPEGPath() {
+export default function generateFFMPEGPath() {
   let ffmpegPath;
   if (process.platform === 'win32') {
     if (!app.isPackaged) {
