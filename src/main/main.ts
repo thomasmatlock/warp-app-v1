@@ -534,7 +534,9 @@ const windowController = {
       if (process.env.START_MINIMIZED) {
         mWin.minimize();
       } else {
-        mWin.show();
+        // if (view) {
+        // }
+        // mWin.show();
         Title.setTitle(mWin, 'audio', user);
 
         if (Screen.screenState.isMaximized) mWin.maximize();
@@ -597,8 +599,17 @@ const windowController = {
       if (mWin) mWin.webContents.send('browser-url-change', url);
     });
     view.webContents.on('ready-to-show', (e, url) => {
-      if (mWin)
+      if (mWin) {
+        // mWin.show();
         mWin.webContents.send('bView ready-to-show', view.webContents.getURL());
+      }
+    });
+    view.webContents.on('did-finish-load', (e, url) => {
+      if (mWin) {
+        mWin.show();
+        mWin.webContents.send('bView ready-to-show', view.webContents.getURL());
+        // mWin.webContents.send('bView ready-to-show', view.webContents.getURL());
+      }
     });
   },
 };
