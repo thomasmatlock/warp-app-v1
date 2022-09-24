@@ -4,10 +4,24 @@
 import log from 'electron-log';
 import { app, BrowserWindow, ipcMain } from 'electron';
 import { autoUpdater } from 'electron-updater';
+import path from 'path';
+import fs from 'fs';
 
 log.transports.file.level = 'info';
 autoUpdater.autoDownload = false;
 autoUpdater.logger = log;
+async function isEmptyDir(path) {
+  try {
+    const directory = await fs.opendir(path);
+    const entry = await directory.read();
+    await directory.close();
+
+    return entry === null;
+  } catch (error) {
+    return false;
+  }
+}
+
 export default function (mWin: BrowserWindow) {
   if (!app.isPackaged) {
     mWin.webContents.send('update-not-available', '');
@@ -31,10 +45,36 @@ export default function (mWin: BrowserWindow) {
     //   );
     // });
     autoUpdater.on('update-downloaded', () => {
-      mWin.webContents.send(
-        'update-downloaded',
-        ' An updated version of Warp is ready to be installed at the next app launch.'
-      );
+      setTimeout(() => {
+        if (process.platform === 'win32') {
+          let binaryDirectory = path.join(
+            app.getPath('appData'),
+            'warp-updater',
+            'pending'
+          );
+          isEmptyDir(binaryDirectory).then((empty) => {
+            if (!empty) {
+              // mWin.webContents.send('update-downloaded', 'Update downloaded');
+              mWin.webContents.send(
+                'update-downloaded',
+                ' An updated version of Warp is ready to be installed at the next app launch.'
+              );
+            } else {
+              mWin.webContents.send(
+                'update-downloaded',
+                'Update downloaded, but binary not found'
+              );
+              // mWin.webContents.send('update-not-available', '');
+            }
+          });
+        } else if (process.platform === 'darwin') {
+          // mWin.webContents.send('update-downloaded', 'Update downloaded');
+          mWin.webContents.send(
+            'update-downloaded',
+            ' An updated version of Warp is ready to be installed at the next app launch.'
+          );
+        }
+      }, 2000);
       //       autoUpdater.quitAndInstall(true, true); // arg1 is silent install, arg2 is force run after install
       //       app.quit();
     });
