@@ -1,7 +1,7 @@
-import iconSortAZ from '../../../assets/ContextMenu/sortAZ.svg';
-import iconSortZA from '../../../assets/ContextMenu/sortZA.svg';
-import iconSortNewOld from '../../../assets/ContextMenu/sortOldNew.svg';
-import iconSortOldNew from '../../../assets/ContextMenu/sortNewOld.svg';
+import iconSortAZ from './sortAZ.svg';
+import iconSortZA from './sortZA.svg';
+import iconSortNewOld from './sortOldNew.svg';
+import iconSortOldNew from './sortNewOld.svg';
 const ContextMenuSortOptions = [
   {
     name: 'Show details',

@@ -1,8 +1,9 @@
-import iconCopy from '../../../assets/ContextMenu/copy.svg';
-import iconPaste from '../../../assets/ContextMenu/paste.svg';
-import iconRemove from '../../../assets/ContextMenu/remove.svg';
-import iconDelete from '../../../assets/ContextMenu/delete.svg';
-import iconRemoveAll from '../../../assets/ContextMenu/removeAll4.svg';
+import iconCopy from './copy.svg';
+import iconPaste from './paste.svg';
+import iconRemove from './remove.svg';
+import iconDelete from './delete.svg';
+import iconRemoveAll from './removeAll4.svg';
+
 const ContextMenuDownloadItemOptions = [
   {
     name: 'Copy link',
