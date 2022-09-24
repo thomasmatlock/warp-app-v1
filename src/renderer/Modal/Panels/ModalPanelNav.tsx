@@ -1,3 +1,9 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable react/jsx-fragments */
 import { Fragment } from 'react';
 import iconAudio from '../../../../assets/Modals/settings/audio.svg';
 import iconVideo from '../../../../assets/Modals/settings/video3.svg';

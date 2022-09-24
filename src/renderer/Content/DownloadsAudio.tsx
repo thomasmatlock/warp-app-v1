@@ -1,7 +1,6 @@
 import { Fragment, useState, useEffect, useContext } from 'react';
 import DownloadItem from './DownloadItem';
 import ActivationItem from './ActivationItem';
-import iconLicenses from '../../../assets/Modals/settings/shuttle.svg';
 //
 // import DownloadsAudioActivation from './DownloadsAudioActivation';
 import ThemeContext from '../../storage/themeContext';

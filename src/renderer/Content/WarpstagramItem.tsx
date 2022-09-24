@@ -5,9 +5,9 @@
 /* eslint-disable jsx-a11y/alt-text */
 import { useState, useContext } from 'react';
 import ThemeContext from 'storage/themeContext';
-import refreshIcon from '../../../assets/Warpstagram/refresh1.svg';
-import pinIcon from '../../../assets/Warpstagram/pin.svg';
-import menuIcon from '../../../assets/Warpstagram/menu.svg';
+import refreshIcon from './Warpstagram/refresh1.svg';
+import pinIcon from './Warpstagram/pin.svg';
+import menuIcon from './Warpstagram/menu.svg';
 import './Warpstagram.scss';
 import ContextMenu from '../ContextMenu/ContextMenu';
 import ContextMenuOptionsWarpstagramAccount from '../ContextMenu/ContextMenuOptionsWarpstagramAccount';

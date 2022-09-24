@@ -4,7 +4,6 @@ import ThemeContext from '../../storage/themeContext';
 import ActionBarContext from '../../storage/actionBarContext';
 import DownloadsContext from '../../storage/downloadsContext';
 import InputContext from '../../storage/inputContext';
-import iconLicenses from '../../../assets/Modals/settings/shuttle.svg';
 import UserContext from '../../storage/userContext';
 import DownloadItem from './DownloadItem';
 import ActivationItem from './ActivationItem';

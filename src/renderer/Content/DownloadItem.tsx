@@ -6,20 +6,9 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 // import classes from './CartItem.module.css';
-import React, { useState, useState, useContext } from 'react';
+import { useState, useContext } from 'react';
 import DownloadsContext from 'storage/downloadsContext';
 import ThemeContext from 'storage/themeContext';
-// import SourcesContext from '../../storage/sourcesContext';
-// import iconSourceFacebook from '../../../assets/BrowserBar/facebook.svg';
-// import iconSourceInstagram from '../../../assets/BrowserBar/instagram.svg';
-// import iconSourcePinterest from '../../../assets/BrowserBar/pinterest.svg';
-// import iconSourceSoundcloud from '../../../assets/BrowserBar/soundcloud.svg';
-// import iconSourceSnapchat from '../../../assets/BrowserBar/snapchat.svg';
-// import iconSourceTiktok from '../../../assets/BrowserBar/tiktok.svg';
-// import iconSourceTwitch from '../../../assets/BrowserBar/twitch.svg';
-// import iconSourceTwitter from '../../../assets/BrowserBar/twitter.svg';
-// import iconSourceVimeo from '../../../assets/BrowserBar/vimeo.svg';
-// import iconSourceYoutube from '../../../assets/BrowserBar/youtube.svg';
 import iconLength from '../../../assets/Downloads/duration.svg';
 import iconFileSize from '../../../assets/Downloads/fileSize.svg';
 import IconFileTypeAudio from '../../../assets/Downloads/fileTypeAudio.svg';
@@ -27,12 +16,10 @@ import IconFileTypeVideo from '../../../assets/Downloads/fileTypeVideo.svg';
 import iconFileResolution from '../../../assets/Downloads/resolution.svg';
 import IconFileFps from '../../../assets/Downloads/fps1.svg';
 import IconFileDownloading from '../../../assets/Downloads/download.svg';
-// import IconFileETA from '../../../assets/Downloads/eta.svg';
 import IconFileETA from '../../../assets/Downloads/infinity.svg';
 import IconFileConverting from '../../../assets/Downloads/converting.svg';
 import IconDate from '../../../assets/Downloads/date.svg';
-// import IconDate from '../../../assets/Downloads/date2.svg';
-import menuIcon from '../../../assets/Warpstagram/menu.svg';
+import menuIcon from './Warpstagram/menu.svg';
 import iconFolder from '../../../assets/Downloads/folder1.svg';
 import ContextMenu from '../ContextMenu/ContextMenu';
 import ContextMenuDownloadItemOptions from '../ContextMenu/ContextMenuDownloadItemOptions';
