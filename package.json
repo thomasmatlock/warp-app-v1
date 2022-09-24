@@ -243,7 +243,6 @@
             "prisma/**/*",
             "node_modules/.prisma/**/*",
             "node_modules/@prisma/client/**/*",
-            "node_modules/fluent-ffmpeg/**/*",
             "node_modules/@ffmpeg-installer/**/*"
         ],
         "publish": {
