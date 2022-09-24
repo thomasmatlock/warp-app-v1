@@ -10,18 +10,19 @@ import fs from 'fs';
 log.transports.file.level = 'info';
 autoUpdater.autoDownload = false;
 autoUpdater.logger = log;
-async function isEmptyDir(path) {
-  try {
-    const directory = await fs.opendir(path);
-    const entry = await directory.read();
-    await directory.close();
+// async function isEmptyDir(path) {
+//   try {
+//     const directory = await fs.opendir(path);
+//     const entry = await directory.read();
+//     await directory.close();
 
-    return entry === null;
-  } catch (error) {
-    return false;
-  }
-}
+//     return entry === null;
+//   } catch (error) {
+//     return false;
+//   }
+// }
 
+let updateDownloaded = false;
 export default function (mWin: BrowserWindow) {
   if (!app.isPackaged) {
     mWin.webContents.send('update-not-available', '');
@@ -36,7 +37,15 @@ export default function (mWin: BrowserWindow) {
     autoUpdater.on('update-available', () => {
       mWin.webContents.send('update-available', 'downloading update...');
       autoUpdater.downloadUpdate();
+      // setInterval(() => {
+      //   if (!updateDownloaded) {
+      //     autoUpdater.downloadUpdate();
+      //   } else {
+      //     clearInterval();
+      //   }
+      // }, 10000);
     });
+
     // autoUpdater.on('download-progress', (progress) => {
     //   const string = progress.percent.toFixed(0);
     //   mWin.webContents.send(
@@ -45,36 +54,69 @@ export default function (mWin: BrowserWindow) {
     //   );
     // });
     autoUpdater.on('update-downloaded', () => {
+      mWin.webContents.send(
+        'update-not-available',
+        'checking update integrity...'
+      );
+      mWin.webContents.send('update-available', 'checking update integrity...');
       setTimeout(() => {
         if (process.platform === 'win32') {
+          // let binaryDirectory = path.join(
+          //   app.getPath('appData'),
+          //   'Local',
+          //   'warp-updater',
+          //   'pending'
+          // );
           let binaryDirectory = path.join(
-            app.getPath('appData'),
+            app.getPath('home'),
+            'AppData',
+            'Local',
             'warp-updater',
             'pending'
           );
-          isEmptyDir(binaryDirectory).then((empty) => {
-            if (!empty) {
+          fs.readdir(binaryDirectory, function (err, files) {
+            if (err) {
+              throw err;
+              // some sort of error
+            } else if (!files.length) {
+              // directory appears to be empty
+              mWin.webContents.send(
+                'update-available',
+                'Update not saved, trying again...'
+              );
+              autoUpdater.downloadUpdate();
+            } else {
+              // directory contains files
+              updateDownloaded = true;
               // mWin.webContents.send('update-downloaded', 'Update downloaded');
               mWin.webContents.send(
                 'update-downloaded',
                 ' An updated version of Warp is ready to be installed at the next app launch.'
               );
-            } else {
-              mWin.webContents.send(
-                'update-downloaded',
-                'Update downloaded, but binary not found'
-              );
-              // mWin.webContents.send('update-not-available', '');
+              // mWin.webContents.send('update-downloaded', 'Update downloaded');
             }
           });
+          // isEmptyDir(binaryDirectory).then((empty) => {
+          // if (empty) {
+
+          // } else {
+
+          // mWin.webContents.send(
+          //   'update-downloaded',
+          //   'Update not saved, trying again...'
+          // );
+          // mWin.webContents.send('update-not-available', '');
+
+          // });
         } else if (process.platform === 'darwin') {
           // mWin.webContents.send('update-downloaded', 'Update downloaded');
+          updateDownloaded = true;
           mWin.webContents.send(
             'update-downloaded',
             ' An updated version of Warp is ready to be installed at the next app launch.'
           );
         }
-      }, 2000);
+      }, 15000);
       //       autoUpdater.quitAndInstall(true, true); // arg1 is silent install, arg2 is force run after install
       //       app.quit();
     });
