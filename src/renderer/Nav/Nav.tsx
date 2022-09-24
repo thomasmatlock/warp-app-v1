@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import { Fragment, useState, useContext } from 'react';
+import { useState, useContext } from 'react';
 // LOGO ICONS
 import NavLogoImg from './logo/blackhole.svg';
 import navLogoText from './logo/logo.svg';
@@ -10,7 +10,7 @@ import navLogoText from './logo/logo.svg';
 import iconAudio from './audio.svg';
 import iconVideo from './video3.svg';
 import iconWarpstagram from './warpstagram.svg';
-import ProgressIcon from './downloading.svg';
+import ProgressIcon from '../Common/status.svg';
 import NewVersionIcon from './new3.svg';
 // PLATFORM ICONS
 import iconWindows from './platform/windows.svg';
@@ -20,7 +20,7 @@ import ThemeContext from '../../storage/themeContext';
 import NavContext from '../../storage/navContext';
 import './Nav.scss';
 
-let appVersion = '';
+let appVersion: string = '';
 let appRoot = '1.0.0';
 let updateMessage = '';
 

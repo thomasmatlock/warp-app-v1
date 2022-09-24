@@ -1,7 +1,10 @@
-import { Fragment, useState, useContext } from 'react';
-import racingIcon from '../../../../assets/Products/racing.svg';
-import downloadsIcon from '../../../../assets/Products/downloading.svg';
-import ProductsContext from '../../../../src/storage/productsContext';
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+import { useContext } from 'react';
+import racingIcon from '../../Products/racing.svg';
+import downloadsIcon from '../../Common/status.svg';
+import ProductsContext from '../../../storage/productsContext';
 import './Product.scss';
 
 const Product = (props: object) => {
@@ -12,12 +15,12 @@ const Product = (props: object) => {
 
   const clickHandler = () => {
     // productsCtx.setViewingProduct(props.info.id);
-    console.log(props.info.id);
-    console.log(props.info.productID1);
+    // console.log(props.info.id);
+    // console.log(props.info.productID1);
   };
 
   return (
-    <Fragment>
+    <>
       <div className="product">
         <div className="product_header">
           {/* <img
@@ -232,7 +235,7 @@ const Product = (props: object) => {
           </div> */}
         </div>
       </div>
-    </Fragment>
+    </>
   );
 };
 export default Product;

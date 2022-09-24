@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<svg width="512px" height="512px" viewBox="0 0 512 512" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
-  <g id="copy">
-    <path d="M384 96L384 0L272 0C245.49 0 224 21.49 224 48L224 336C224 362.51 245.49 384 272 384L464 384C490.51 384 512 362.51 512 336L512 128L416.9 128C398.4 128 384 113.6 384 96L384 96ZM416 0L416 96L512 96L416 0L416 0ZM192 352L192 128L48 128C21.49 128 0 149.49 0 176L0 464C0 490.51 21.49 512 48 512L240 512C266.51 512 288 490.51 288 464L288 416L256 416C220.7 416 192 387.3 192 352L192 352Z" id="Shape" fill="#1A1A1A" fill-rule="evenodd" stroke="none" />
-  </g>
-</svg>

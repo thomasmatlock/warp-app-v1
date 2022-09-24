@@ -14,7 +14,7 @@ import IconAuths from '../../Common/auths1_white.svg';
 import ThemeContext from '../../../storage/themeContext';
 import './ModalPanelNav.scss';
 
-const ModalNav = (props) => {
+const ModalNav = (props: any) => {
   const themeCtx = useContext(ThemeContext);
   return (
     <Fragment>

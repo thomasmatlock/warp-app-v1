@@ -5,7 +5,7 @@ import forwardIcon from './browser/forward.svg';
 import reloadIcon from './browser/reload.svg';
 // import playlistVideoIcon from '../../../assets/BrowserBar/browser/playlistVideo.svg';
 // import playlistAudioIcon from '../../../assets/BrowserBar/browser/playlistAudio.svg';
-import videoIcon from '../../../assets/BrowserBar/browser/video.svg';
+import videoIcon from '../Common/video.svg';
 import IconFileTypeAudio from '../Common/fileTypeAudio.svg';
 // import IconFileTypeVideo from '../Common/fileTypeVideo.svg';
 // import channelIcon from '../../../assets/BrowserBar/browser/channel2.svg';
