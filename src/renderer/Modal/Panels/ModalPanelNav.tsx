@@ -4,16 +4,18 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/jsx-fragments */
-import { Fragment } from 'react';
-import iconAudio from '../../../../assets/Modals/settings/audio.svg';
-import iconVideo from '../../../../assets/Modals/settings/video3.svg';
-import iconWarpstagram from '../../../../assets/Modals/settings/warpstagram.svg';
-import iconGeneralDark from '../../../../assets/Modals/settings/gear.svg';
-import iconLicenses from '../../../../assets/Modals/settings/shuttle.svg';
-import IconAuths from '../../../../assets/Modals/settings/auths1_white.svg';
+import { Fragment, useContext } from 'react';
+import iconAudio from '../../Common/audio.svg';
+import iconVideo from '../../Common/video3.svg';
+import iconWarpstagram from '../../Common/warpstagram.svg';
+import iconGeneralDark from '../../Common/gear.svg';
+import iconLicenses from '../../Common/shuttle.svg';
+import IconAuths from '../../Common/auths1_white.svg';
+import ThemeContext from '../../../storage/themeContext';
 import './ModalPanelNav.scss';
 
 const ModalNav = (props) => {
+  const themeCtx = useContext(ThemeContext);
   return (
     <Fragment>
       <div className="modalPrefsNav">
@@ -108,6 +110,13 @@ const ModalNav = (props) => {
               props.isGeneralActive
                 ? 'modalPrefsNav_button__icon'
                 : 'modalPrefsNav_button__icon'
+            }
+            style={
+              themeCtx.isDarkTheme
+                ? { filter: 'invert(100%)' }
+                : {
+                    filter: 'invert(0%)',
+                  }
             }
             src={iconGeneralDark}
           />

@@ -1,6 +1,10 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable react/jsx-fragments */
 import { Fragment, useContext } from 'react';
 import './ModalHeader.scss';
-import clearTextIcon from '../../../../assets/Search/close.svg';
+import clearTextIcon from '../../Search/close.svg';
 // import astronaut from '../../../../assets/astronauts/png/Asset 8 whitened.png';
 import ThemeContext from '../../../storage/themeContext';
 const ModalHeader = (props) => {

@@ -1,10 +1,10 @@
 import { Fragment, useState, useContext } from 'react';
 import './Search.scss';
-import SearchIcon from '../../../assets/Search/lightning.svg';
-import SunIcon from '../../../assets/Search/sun.svg';
-import MoonIcon from '../../../assets/Search/moon.svg';
-import clearTextIcon from '../../../assets/Search/close.svg';
-import settingsIcon from '../../../assets/Search/gear.svg';
+import SearchIcon from './lightning.svg';
+import SunIcon from './sun.svg';
+import MoonIcon from './moon.svg';
+import clearTextIcon from './close.svg';
+import settingsIcon from '../Common/gear.svg';
 import ModalPreferences from '../Modal/ModalPreferences';
 import ThemeContext from '../../storage/themeContext';
 import NavContext from '../../storage/navContext';

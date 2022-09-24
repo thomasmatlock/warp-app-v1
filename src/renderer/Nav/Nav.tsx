@@ -4,24 +4,24 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { Fragment, useState, useContext } from 'react';
 // LOGO ICONS
-import NavLogoImg from '../../../assets/Nav/logo/blackhole.svg';
-import navLogoText from '../../../assets/Nav/logo/logo.svg';
+import NavLogoImg from './logo/blackhole.svg';
+import navLogoText from './logo/logo.svg';
 // NAV BUTTON ICONS
-import iconAudio from '../../../assets/Modals/settings/audio.svg';
-import iconVideo from '../../../assets/Modals/settings/video3.svg';
-import iconWarpstagram from '../../../assets/Modals/settings/warpstagram.svg';
+import iconAudio from './audio.svg';
+import iconVideo from './video3.svg';
+import iconWarpstagram from './warpstagram.svg';
 import ProgressIcon from './downloading.svg';
 import NewVersionIcon from './new3.svg';
 // PLATFORM ICONS
-import iconWindows from '../../../assets/Nav/platform/windows.svg';
-import iconApple from '../../../assets/Nav/platform/apple.svg';
-import iconLinux from '../../../assets/Nav/platform/linux.svg';
+import iconWindows from './platform/windows.svg';
+import iconApple from './platform/apple.svg';
+import iconLinux from './platform/linux.svg';
 import ThemeContext from '../../storage/themeContext';
 import NavContext from '../../storage/navContext';
 import './Nav.scss';
-import { app } from 'electron';
-let appVersion: string = '';
-let appRoot: string = '1.0.0';
+
+let appVersion = '';
+let appRoot = '1.0.0';
 let updateMessage = '';
 
 const Nav = (props) => {

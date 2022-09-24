@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import downloadSourceIconFacebook from '../../assets/BrowserBar/facebook.svg';
-import downloadSourceIconInstagram from '../../assets/BrowserBar/instagram.svg';
-import downloadSourceIconPinterest from '../../assets/BrowserBar/pinterest.svg';
-import downloadSourceIconSoundcloud from '../../assets/BrowserBar/soundcloud.svg';
-import downloadSourceIconSnapchat from '../../assets/BrowserBar/snapchat.svg';
-import downloadSourceIconTiktok from '../../assets/BrowserBar/tiktok.svg';
-import downloadSourceIconTwitch from '../../assets/BrowserBar/twitch.svg';
-import downloadSourceIconTwitter from '../../assets/BrowserBar/twitter.svg';
-import downloadSourceIconVimeo from '../../assets/BrowserBar/vimeo.svg';
-import downloadSourceIconYoutube from '../../assets/BrowserBar/youtube.svg';
+import downloadSourceIconFacebook from '../renderer/ActionBar/facebook.svg';
+import downloadSourceIconInstagram from '../renderer/ActionBar/instagram.svg';
+import downloadSourceIconPinterest from '../renderer/ActionBar/pinterest.svg';
+import downloadSourceIconSoundcloud from '../renderer/ActionBar/soundcloud.svg';
+import downloadSourceIconSnapchat from '../renderer/ActionBar/snapchat.svg';
+import downloadSourceIconTiktok from '../renderer/ActionBar/tiktok.svg';
+import downloadSourceIconTwitch from '../renderer/ActionBar/twitch.svg';
+import downloadSourceIconTwitter from '../renderer/ActionBar/twitter.svg';
+import downloadSourceIconVimeo from '../renderer/ActionBar/vimeo.svg';
+import downloadSourceIconYoutube from '../renderer/ActionBar/youtube.svg';
 // settings.get('sources');
 let prefs;
 const SourcesContext = React.createContext({

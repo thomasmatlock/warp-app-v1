@@ -1,13 +1,13 @@
-import iconSourceFacebook from '../../../assets/BrowserBar/facebook.svg';
-import iconSourceInstagram from '../../../assets/BrowserBar/instagram.svg';
-import iconSourcePinterest from '../../../assets/BrowserBar/pinterest.svg';
-import iconSourceSoundcloud from '../../../assets/BrowserBar/soundcloud.svg';
-import iconSourceSnapchat from '../../../assets/BrowserBar/snapchat.svg';
-import iconSourceTiktok from '../../../assets/BrowserBar/tiktok.svg';
-import iconSourceTwitch from '../../../assets/BrowserBar/twitch.svg';
-import iconSourceTwitter from '../../../assets/BrowserBar/twitter.svg';
-import iconSourceVimeo from '../../../assets/BrowserBar/vimeo.svg';
-import iconSourceYoutube from '../../../assets/BrowserBar/youtube.svg';
+import iconSourceFacebook from '../ActionBar/facebook.svg';
+import iconSourceInstagram from '../ActionBar/instagram.svg';
+import iconSourcePinterest from '../ActionBar/pinterest.svg';
+import iconSourceSoundcloud from '../ActionBar/soundcloud.svg';
+import iconSourceSnapchat from '../ActionBar/snapchat.svg';
+import iconSourceTiktok from '../ActionBar/tiktok.svg';
+import iconSourceTwitch from '../ActionBar/twitch.svg';
+import iconSourceTwitter from '../ActionBar/twitter.svg';
+import iconSourceVimeo from '../ActionBar/vimeo.svg';
+import iconSourceYoutube from '../ActionBar/youtube.svg';
 function capitalizeFirstLetter(string) {
   if (string != undefined) {
     return string.charAt(0).toUpperCase() + string.slice(1);
