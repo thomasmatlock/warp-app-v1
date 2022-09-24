@@ -25,92 +25,91 @@ autoUpdater.logger = log;
 
 let updateDownloaded = false;
 export default function (mWin: BrowserWindow) {
+  // mWin.webContents.send('update-not-available', '');
+  mWin.webContents.send('checking-for-update', 'checking for update...');
   if (!app.isPackaged) {
     mWin.webContents.send('update-not-available', '');
   }
   setTimeout(() => {
     if (app.isPackaged) {
-      mWin.webContents.send('update-not-available', '');
-      // mWin.webContents.send('checking-for-update', 'checking for update...');
+      // mWin.webContents.send('update-not-available', '');
       autoUpdater.checkForUpdates();
       autoUpdater.on('update-not-available', () => {
         mWin.webContents.send('update-not-available', '');
       });
       autoUpdater.on('update-available', () => {
-        if (process.platform === 'win32') {
-          mWin.webContents.send('update-available', 'downloading update...');
-        }
+        // mWin.webContents.send('update-available', 'downloading update...');
         autoUpdater.downloadUpdate();
       });
-      // autoUpdater.on('download-progress', (progress) => {
-      //   const string = progress.percent.toFixed(0);
-      //   mWin.webContents.send(
-      //     'download-progress',
-      //     `Update ${string}% downloaded`
-      //   );
-      // });
+      autoUpdater.on('download-progress', (progress) => {
+        const string = progress.percent.toFixed(0);
+        mWin.webContents.send(
+          'download-progress',
+          `Update ${string}% downloaded`
+        );
+      });
       autoUpdater.on('update-downloaded', () => {
+        // if (process.platform === 'win32') {
+        mWin.webContents.send(
+          'checking-for-update',
+          'checking update integrity...'
+        );
+        // }
+        // setTimeout(() => {
         if (process.platform === 'win32') {
+          let binaryDirectory = path.join(
+            app.getPath('home'),
+            'AppData',
+            'Local',
+            'warp-updater',
+            'pending'
+          );
+          fs.readdir(binaryDirectory, function (err, files) {
+            if (err) {
+              // throw err;
+              // some sort of error
+            } else if (!files.length) {
+              // directory appears to be empty
+              mWin.webContents.send(
+                'update-available',
+                'Update not saved, trying again...'
+              );
+              autoUpdater.downloadUpdate();
+            } else {
+              // directory contains files
+              // updateDownloaded = true;
+              // mWin.webContents.send('update-downloaded', 'Update downloaded');
+              mWin.webContents.send(
+                'update-downloaded',
+                ' An updated version of Warp is ready to be installed at the next app launch.'
+              );
+              // mWin.webContents.send('update-downloaded', 'Update downloaded');
+            }
+          });
+          // isEmptyDir(binaryDirectory).then((empty) => {
+          // if (empty) {
+
+          // } else {
+
+          // mWin.webContents.send(
+          //   'update-downloaded',
+          //   'Update not saved, trying again...'
+          // );
+          // mWin.webContents.send('update-not-available', '');
+
+          // });
+        } else if (process.platform === 'darwin') {
+          // mWin.webContents.send('update-downloaded', 'Update downloaded');
+          // updateDownloaded = true;
           mWin.webContents.send(
-            'checking-for-update',
-            'checking update integrity...'
+            'update-downloaded',
+            ' An updated version of Warp is ready to be installed at the next app launch.'
           );
         }
-        setTimeout(() => {
-          if (process.platform === 'win32') {
-            let binaryDirectory = path.join(
-              app.getPath('home'),
-              'AppData',
-              'Local',
-              'warp-updater',
-              'pending'
-            );
-            fs.readdir(binaryDirectory, function (err, files) {
-              if (err) {
-                throw err;
-                // some sort of error
-              } else if (!files.length) {
-                // directory appears to be empty
-                mWin.webContents.send(
-                  'update-available',
-                  'Update not saved, trying again...'
-                );
-                autoUpdater.downloadUpdate();
-              } else {
-                // directory contains files
-                updateDownloaded = true;
-                // mWin.webContents.send('update-downloaded', 'Update downloaded');
-                mWin.webContents.send(
-                  'update-downloaded',
-                  ' An updated version of Warp is ready to be installed at the next app launch.'
-                );
-                // mWin.webContents.send('update-downloaded', 'Update downloaded');
-              }
-            });
-            // isEmptyDir(binaryDirectory).then((empty) => {
-            // if (empty) {
-
-            // } else {
-
-            // mWin.webContents.send(
-            //   'update-downloaded',
-            //   'Update not saved, trying again...'
-            // );
-            // mWin.webContents.send('update-not-available', '');
-
-            // });
-          } else if (process.platform === 'darwin') {
-            // mWin.webContents.send('update-downloaded', 'Update downloaded');
-            updateDownloaded = true;
-            // mWin.webContents.send(
-            //   'update-downloaded',
-            //   ' An updated version of Warp is ready to be installed at the next app launch.'
-            // );
-          }
-        }, 10000);
+        // }, 3000);
       });
       ipcMain.on('restart_and_update', () => {
-        autoUpdater.quitAndInstall(false, true); // arg1 is silent install, arg2 is force run after install
+        autoUpdater.quitAndInstall(true, true); // arg1 is silent install, arg2 is force run after install
         app.quit();
       });
     }
