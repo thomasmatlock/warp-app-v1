@@ -35,17 +35,9 @@ export default function (mWin: BrowserWindow) {
       mWin.webContents.send('update-not-available', '');
     });
     autoUpdater.on('update-available', () => {
-      mWin.webContents.send('update-available', 'downloading update...');
+      // mWin.webContents.send('update-available', 'downloading update...');
       autoUpdater.downloadUpdate();
-      // setInterval(() => {
-      //   if (!updateDownloaded) {
-      //     autoUpdater.downloadUpdate();
-      //   } else {
-      //     clearInterval();
-      //   }
-      // }, 10000);
     });
-
     // autoUpdater.on('download-progress', (progress) => {
     //   const string = progress.percent.toFixed(0);
     //   mWin.webContents.send(
@@ -58,15 +50,8 @@ export default function (mWin: BrowserWindow) {
         'checking-for-update',
         'checking update integrity...'
       );
-      // mWin.webContents.send('update-available', 'checking update integrity...');
       setTimeout(() => {
         if (process.platform === 'win32') {
-          // let binaryDirectory = path.join(
-          //   app.getPath('appData'),
-          //   'Local',
-          //   'warp-updater',
-          //   'pending'
-          // );
           let binaryDirectory = path.join(
             app.getPath('home'),
             'AppData',
@@ -80,10 +65,10 @@ export default function (mWin: BrowserWindow) {
               // some sort of error
             } else if (!files.length) {
               // directory appears to be empty
-              mWin.webContents.send(
-                'update-available',
-                'Update not saved, trying again...'
-              );
+              // mWin.webContents.send(
+              //   'update-available',
+              //   'Update not saved, trying again...'
+              // );
               autoUpdater.downloadUpdate();
             } else {
               // directory contains files
