@@ -1,3 +1,5 @@
+/* eslint-disable global-require */
+/* eslint-disable import/no-dynamic-require */
 /* eslint-disable no-await-in-loop */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable import/order */
@@ -6,10 +8,81 @@
 
 // import { PrismaClient } from '@prisma/client'; // default
 // let prismaClientPath = '../@prisma/client';
-// import { app } from 'electron';
+import { app } from 'electron';
+import path from 'path';
 
 // if (!app.isPackaged) {
-import { PrismaClient } from '../@prisma/client'; // trying to use the prisma client here with new path
+// import { PrismaClient } from '../@prisma/client'; // trying to use the prisma client here with new path
+//  import { PrismaClient }
+let PrismaClient;
+const appRootDir = require('app-root-dir').get();
+// const unPackagedMacClient = './dir/someModule.js';
+// const packagedWindowsClient = './dir/someModule.js';
+// const packagedMacClient = './dir/someModule.js';
+// import { PrismaClient } from '@prisma/client';
+function getWindowsPackagedPath(targetPath: string) {
+  const packagedPathSplit = targetPath.split('\\');
+  let joined = '';
+  for (let i = 0; i < packagedPathSplit.length; i++) {
+    if (packagedPathSplit[i] !== 'resources') {
+      joined = `${joined + packagedPathSplit[i]}\\`;
+    } else if (packagedPathSplit[i] === 'resources') {
+      break;
+    }
+  }
+  return joined;
+}
+if (!app.isPackaged) {
+  if (process.platform === 'win32') {
+    const unPackagedClient = '@prisma/client';
+    // console.log('unPackagedClient', unPackagedClient);
+
+    PrismaClient =
+      require(`${`${appRootDir}\\node_modules\\@prisma\\client`}`).PrismaClient; // windows installation path
+
+    // PrismaClient = require(unPackagedClient).PrismaClient; // default node_modules path
+  } else if (process.platform === 'darwin') {
+    console.log('appRootDir', appRootDir);
+  }
+  // import(unPackagedWindowsClient).then((unPackagedWindowsClient) => {
+  //   PrismaClient = { ...unPackagedWindowsClient };
+  //   console.log('unPackagedWindowsClient', unPackagedWindowsClient);
+  // });
+} else if (app.isPackaged) {
+  if (process.platform === 'win32') {
+    // C:\Program Files\Warp\resources\node_modules\@prisma\client
+    PrismaClient =
+      // require(`${`${appRootDir}\\node_modules\\@prisma\\client`}`).PrismaClient;
+      require(`${`${getWindowsPackagedPath(
+        appRootDir
+      )}resources\\node_modules\\@prisma\\client`}`).PrismaClient;
+    // console.log(
+    //   `${appRootDir + '\\node_modules\\@prisma\\client'}`,
+    //   PrismaClient
+    // );
+
+    // const packagedWindowsClient = path.join(
+    //   getWindowsPackagedPath(appRootDir),
+    //   'resources',
+    //   'node_modules',
+    //   '@prisma',
+    //   'client'
+    // );
+    // console.log('packagedWindowsClient', packagedWindowsClient);
+    // PrismaClient = require(packagedWindowsClient).PrismaClient;
+  } else if (process.platform === 'darwin') {
+    console.log('appRootDir', appRootDir);
+  }
+}
+// unPackagedWindowsClient
+// import { PrismaClient } from '@prisma/client';
+//     .then((unPackagedWindowsClient) => {
+//       console.log('unPackagedWindowsClient', unPackagedWindowsClient);
+
+//       //  console.log(something.something);
+//     });
+// }
+// app.isPackaged ? import { PrismaClient } from '../@prisma/client' : import { PrismaClient } from '@prisma/client';
 // }
 // import { PrismaClient } from prismaClientPath; // trying to use the prisma client here with new path
 // import generatePrismaClientPath from './generatePrismaClientPath';
@@ -23,7 +96,14 @@ import os from 'os';
 const settings = new Store();
 const Cryptr = require('cryptr');
 const cryptr = new Cryptr('user');
-const prisma = new PrismaClient();
+// const prisma = new PrismaClient();
+const prisma = new PrismaClient({
+  __internal: {
+    engine: {
+      binaryPath: '/path/to/binary',
+    },
+  },
+});
 // import UserOffline from './UserOffline';
 import generateCode from './UserAuthCodes';
 
