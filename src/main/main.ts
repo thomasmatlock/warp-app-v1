@@ -520,7 +520,6 @@ const windowController = {
 
       // setTimeout(() => {
       // }, 1000);
-      updater(mWin);
 
       if (process.platform === 'win32' && mWin)
         mWin.webContents.send('platform', 'windows');
@@ -601,6 +600,7 @@ const windowController = {
     view.webContents.on('ready-to-show', (e, url) => {
       if (mWin) {
         // mWin.show();
+        updater(mWin);
         mWin.webContents.send('bView ready-to-show', view.webContents.getURL());
       }
     });
