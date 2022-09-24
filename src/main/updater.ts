@@ -35,7 +35,7 @@ export default function (mWin: BrowserWindow) {
       mWin.webContents.send('update-not-available', '');
     });
     autoUpdater.on('update-available', () => {
-      // mWin.webContents.send('update-available', 'downloading update...');
+      mWin.webContents.send('update-available', 'downloading update...');
       autoUpdater.downloadUpdate();
     });
     // autoUpdater.on('download-progress', (progress) => {
@@ -65,10 +65,10 @@ export default function (mWin: BrowserWindow) {
               // some sort of error
             } else if (!files.length) {
               // directory appears to be empty
-              // mWin.webContents.send(
-              //   'update-available',
-              //   'Update not saved, trying again...'
-              // );
+              mWin.webContents.send(
+                'update-available',
+                'Update not saved, trying again...'
+              );
               autoUpdater.downloadUpdate();
             } else {
               // directory contains files
