@@ -15,11 +15,12 @@ export default function (mWin: BrowserWindow) {
     mWin.webContents.send('update-not-available', '');
   }
   if (app.isPackaged) {
-    mWin.webContents.send('checking-for-update', 'checking for update...');
-    autoUpdater.on('update-available', () => {
-      mWin.webContents.send('update-available', 'downloading update...');
-      //  autoUpdater.downloadUpdate();
-    });
+    mWin.webContents.send('update-not-available', '');
+    // mWin.webContents.send('checking-for-update', 'checking for update...');
+    // autoUpdater.on('update-available', () => {
+    //   mWin.webContents.send('update-available', 'downloading update...');
+    //   //  autoUpdater.downloadUpdate();
+    // });
   }
   setTimeout(() => {
     if (app.isPackaged) {
