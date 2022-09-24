@@ -55,10 +55,10 @@ export default function (mWin: BrowserWindow) {
     // });
     autoUpdater.on('update-downloaded', () => {
       mWin.webContents.send(
-        'update-not-available',
+        'checking-for-update',
         'checking update integrity...'
       );
-      mWin.webContents.send('update-available', 'checking update integrity...');
+      // mWin.webContents.send('update-available', 'checking update integrity...');
       setTimeout(() => {
         if (process.platform === 'win32') {
           // let binaryDirectory = path.join(
