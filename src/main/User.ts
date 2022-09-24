@@ -1,15 +1,32 @@
+/* eslint-disable no-await-in-loop */
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable import/order */
+/* eslint-disable import/first */
 // import { PrismaClient } from '../extra/client';
+
+// import { PrismaClient } from '@prisma/client'; // default
+// let prismaClientPath = '../@prisma/client';
+// import { app } from 'electron';
+
+// if (!app.isPackaged) {
+import { PrismaClient } from '../@prisma/client'; // trying to use the prisma client here with new path
+// }
+// import { PrismaClient } from prismaClientPath; // trying to use the prisma client here with new path
+// import generatePrismaClientPath from './generatePrismaClientPath';
+// let prismaClientPath = generatePrismaClientPath();
+// import { PrismaClient } from generatePrismaClientPath(); // trying to use the prisma client here with new path
 
 const Store = require('electron-store');
 // import express from 'express';
 import os from 'os';
+
 const settings = new Store();
 const Cryptr = require('cryptr');
 const cryptr = new Cryptr('user');
-import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
-import UserOffline from './UserOffline';
+// import UserOffline from './UserOffline';
 import generateCode from './UserAuthCodes';
+
 import { machineId, machineIdSync } from 'node-machine-id';
 let machine_id;
 async function getMachineId() {
@@ -79,9 +96,9 @@ export async function upgradeUserModule(
             warpstagram:
               moduleType === 'warpstagram' ? moduleEdition : user.warpstagram,
             //  ADD MODULE AUTH CODE IF NOT PRESENT
-            audioAuthCode: audioAuthCode,
-            videoAuthCode: videoAuthCode,
-            warpstagramAuthCode: warpstagramAuthCode,
+            audioAuthCode,
+            videoAuthCode,
+            warpstagramAuthCode,
           },
         });
       }
@@ -175,8 +192,8 @@ export async function getUser() {
 }
 
 module.exports = {
-  getUser: getUser,
-  upgradeUserModule: upgradeUserModule,
-  upgradeAllUserModules: upgradeAllUserModules,
-  resetUser: resetUser,
+  getUser,
+  upgradeUserModule,
+  upgradeAllUserModules,
+  resetUser,
 };

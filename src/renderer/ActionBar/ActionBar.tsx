@@ -1,4 +1,6 @@
-import { Fragment, useState, useEffect, useContext } from 'react';
+/* eslint-disable @typescript-eslint/no-use-before-define */
+/* eslint-disable react/jsx-pascal-case */
+import { useState, useEffect, useContext } from 'react';
 import './ActionBar.scss';
 // import BrowserBar from '../ActionBar/BrowserBar/BrowserBar';
 import BrowserBar from './ActionBarBrowser';
@@ -61,7 +63,7 @@ const ActionBar = (props) => {
       setWarpstagramDownloadsTotal(warpstagramItems.length);
     }, 50);
   };
-  window.addEventListener('keydown', (event) => {
+  window.addEventListener('keydown', () => {
     // if (event.key === 'Escape') {
     if (navCtx.audioMode) countAudioDownloads();
     if (navCtx.videoMode) countVideoDownloads();
@@ -81,7 +83,7 @@ const ActionBar = (props) => {
     setShouldSendScreenshot(true);
   };
   return (
-    <Fragment>
+    <>
       <div
         onMouseEnter={mouseEnterHandler}
         onMouseLeave={mouseLeaveHandler}
@@ -106,7 +108,7 @@ const ActionBar = (props) => {
           <FilterBar warpstagramDownloadsTotal={warpstagramDownloadsTotal} />
         )}
       </div>
-    </Fragment>
+    </>
   );
 };
 export default ActionBar;

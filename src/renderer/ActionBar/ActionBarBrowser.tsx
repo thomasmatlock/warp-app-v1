@@ -1,3 +1,6 @@
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import { Fragment, useState, useEffect, useContext } from 'react';
 import './ActionBarBrowser.scss';
 import backIcon from './browser/back.svg';
@@ -5,7 +8,7 @@ import forwardIcon from './browser/forward.svg';
 import reloadIcon from './browser/reload.svg';
 // import playlistVideoIcon from '../../../assets/BrowserBar/browser/playlistVideo.svg';
 // import playlistAudioIcon from '../../../assets/BrowserBar/browser/playlistAudio.svg';
-import videoIcon from '../Common/video.svg';
+import videoIcon from '../Common/video-camera.svg';
 import IconFileTypeAudio from '../Common/fileTypeAudio.svg';
 // import IconFileTypeVideo from '../Common/fileTypeVideo.svg';
 // import channelIcon from '../../../assets/BrowserBar/browser/channel2.svg';
@@ -334,7 +337,19 @@ const BrowserBar = () => {
               }
             >
               {!canDownload && <Loader />}
-              {canDownload && <img src={videoIcon} alt="playlistVideoIcon" />}
+              {canDownload && (
+                <img
+                  src={videoIcon}
+                  // style={
+                  //   themeCtx.isDarkTheme
+                  //     ? { filter: 'grayscale(100%) invert(100%)' }
+                  //     : {
+                  //         filter: 'invert(100%)',
+                  //       }
+                  // }
+                  alt="playlistVideoIcon"
+                />
+              )}
               {actionBarCtx.videoExists && canDownload && (
                 <p> Download Video {videoFormat}</p>
               )}
