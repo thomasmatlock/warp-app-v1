@@ -10,6 +10,7 @@ import fs from 'fs';
 log.transports.file.level = 'info';
 autoUpdater.autoDownload = false;
 autoUpdater.logger = log;
+// autoUpdater.updateConfigPath = path.join(app.getPath('temp'), 'warp-updater');
 // async function isEmptyDir(path) {
 //   try {
 //     const directory = await fs.opendir(path);
@@ -35,7 +36,9 @@ export default function (mWin: BrowserWindow) {
       mWin.webContents.send('update-not-available', '');
     });
     autoUpdater.on('update-available', () => {
-      mWin.webContents.send('update-available', 'downloading update...');
+      if (process.platform === 'win32') {
+        mWin.webContents.send('update-available', 'downloading update...');
+      }
       autoUpdater.downloadUpdate();
     });
     // autoUpdater.on('download-progress', (progress) => {
@@ -46,10 +49,12 @@ export default function (mWin: BrowserWindow) {
     //   );
     // });
     autoUpdater.on('update-downloaded', () => {
-      mWin.webContents.send(
-        'checking-for-update',
-        'checking update integrity...'
-      );
+      if (process.platform === 'win32') {
+        mWin.webContents.send(
+          'checking-for-update',
+          'checking update integrity...'
+        );
+      }
       setTimeout(() => {
         if (process.platform === 'win32') {
           let binaryDirectory = path.join(
@@ -96,14 +101,12 @@ export default function (mWin: BrowserWindow) {
         } else if (process.platform === 'darwin') {
           // mWin.webContents.send('update-downloaded', 'Update downloaded');
           updateDownloaded = true;
-          mWin.webContents.send(
-            'update-downloaded',
-            ' An updated version of Warp is ready to be installed at the next app launch.'
-          );
+          // mWin.webContents.send(
+          //   'update-downloaded',
+          //   ' An updated version of Warp is ready to be installed at the next app launch.'
+          // );
         }
       }, 15000);
-      //       autoUpdater.quitAndInstall(true, true); // arg1 is silent install, arg2 is force run after install
-      //       app.quit();
     });
     ipcMain.on('restart_and_update', () => {
       autoUpdater.quitAndInstall(false, true); // arg1 is silent install, arg2 is force run after install
