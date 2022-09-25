@@ -96,14 +96,14 @@ import os from 'os';
 const settings = new Store();
 const Cryptr = require('cryptr');
 const cryptr = new Cryptr('user');
-const prisma = new PrismaClient();
-// const prisma = new PrismaClient({
-//   __internal: {
-//     engine: {
-//       binaryPath: '/path/to/binary',
-//     },
-//   },
-// });
+// const prisma = new PrismaClient();
+const prisma = new PrismaClient({
+  __internal: {
+    engine: {
+      binaryPath: '/path/to/binary',
+    },
+  },
+});
 // import UserOffline from './UserOffline';
 import generateCode from './UserAuthCodes';
 
