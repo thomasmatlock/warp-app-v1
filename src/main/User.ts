@@ -45,7 +45,7 @@ const settings = new Store();
 const Cryptr = require('cryptr');
 const cryptr = new Cryptr('user');
 const prisma = new PrismaClient();
-console.log(prisma);
+console.log(prisma._engine.config);
 
 // import UserOffline from './UserOffline';
 import generateCode from './UserAuthCodes';
@@ -187,7 +187,7 @@ export async function createUser() {
 }
 export async function getUser() {
   // console.log(os.hostname(), os.platform(), os.type(), os.release());
-
+  // return null;
   let userFromDB;
   try {
     userFromDB = await prisma.user.findFirst({
@@ -202,12 +202,10 @@ export async function getUser() {
     });
     if (userFromDB === null) {
       console.log('user with current machine not found');
-
       // userFromDB = await createUser();
       // return userFromDB;
     } else if (userFromDB) {
       // console.log('user with current machine found');
-
       return userFromDB;
     }
   } catch (error) {}
