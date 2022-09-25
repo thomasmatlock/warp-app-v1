@@ -535,7 +535,7 @@ const windowController = {
       } else {
         // if (view) {
         // }
-        // mWin.show();
+        mWin.show();
         Title.setTitle(mWin, 'audio', user);
 
         if (Screen.screenState.isMaximized) mWin.maximize();
@@ -606,7 +606,7 @@ const windowController = {
     });
     view.webContents.on('did-finish-load', (e, url) => {
       if (mWin) {
-        mWin.show();
+        // mWin.show();
         mWin.webContents.send('bView ready-to-show', view.webContents.getURL());
         // mWin.webContents.send('bView ready-to-show', view.webContents.getURL());
       }

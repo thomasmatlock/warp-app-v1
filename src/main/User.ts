@@ -9,7 +9,10 @@
 // import { app } from 'electron';
 
 // if (!app.isPackaged) {
-import { PrismaClient } from '../@prisma/client'; // trying to use the prisma client here with new path
+// import { PrismaClient } from '../@prisma/client'; // trying to use the prisma client here with new path
+import { PrismaClient } from '@prisma/client'; // trying to use the prisma client here with new path
+console.log(PrismaClient);
+
 // }
 // import { PrismaClient } from prismaClientPath; // trying to use the prisma client here with new path
 // import generatePrismaClientPath from './generatePrismaClientPath';
@@ -19,15 +22,36 @@ import { PrismaClient } from '../@prisma/client'; // trying to use the prisma cl
 const Store = require('electron-store');
 // import express from 'express';
 import os from 'os';
+// console.log(process);
+const asar = require('asar');
+// console.log(asar);
+
+const src = 'C:\\Program Files\\Warp\\resources';
+const dest = 'C:\\Users\\Tommy\\Desktop\\app.asar.unpacked';
+// shell.open
+// async function getMachineId2() {
+//   try {
+//     await asar.createPackage(src, dest);
+
+//     console.log('done.');
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
+// getMachineId2();
+console.log(process.env.INIT_CWD);
 
 const settings = new Store();
 const Cryptr = require('cryptr');
 const cryptr = new Cryptr('user');
 const prisma = new PrismaClient();
+console.log(prisma);
+
 // import UserOffline from './UserOffline';
 import generateCode from './UserAuthCodes';
 
 import { machineId, machineIdSync } from 'node-machine-id';
+import { shell } from 'electron';
 let machine_id;
 async function getMachineId() {
   machine_id = await machineId();
