@@ -20,7 +20,7 @@ import ThemeContext from '../../storage/themeContext';
 import NavContext from '../../storage/navContext';
 import './Nav.scss';
 
-let appVersion: string = '';
+let appVersion = '1.0.0';
 let appRoot = '1.0.0';
 let updateMessage = '';
 
@@ -239,7 +239,7 @@ const Nav = (props) => {
                 }
               >
                 {`${appVersion}`}
-                {appRoot}
+                {/* {appRoot} */}
               </p>
             </a>
           )}
