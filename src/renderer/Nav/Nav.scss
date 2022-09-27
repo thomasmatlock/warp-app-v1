@@ -185,7 +185,7 @@ $gradient-orange: linear-gradient(to left, #da2c4d 0%, #f8ab37 100%);
     font-size: 1rem;
     color: white;
     background-color: $gray-dark-light;
-    height: 50px !important;
+    height: 56px !important;
     //
     display: flex;
     flex: 1;
@@ -197,9 +197,7 @@ $gradient-orange: linear-gradient(to left, #da2c4d 0%, #f8ab37 100%);
     // border: 1px solid red;
     cursor: pointer;
     transition: all ease-out 0.1s !important;
-    border-radius: 3px;
-    border: 1px solid $gray-dark-lightest;
-    margin: 2px;
+    border-radius: 4px;
     &__icon {
         display: flex;
         flex-direction: column;
@@ -243,7 +241,7 @@ $gradient-orange: linear-gradient(to left, #da2c4d 0%, #f8ab37 100%);
     align-content: center;
     color: white;
     border-radius: 4px;
-    // background-image: linear-gradient( to left, rgba(238, 238, 238, 0.205) 0%, rgba(102, 102, 102, 0.205) 100%);
+    background-image: linear-gradient( to left, rgba(238, 238, 238, 0.205) 0%, rgba(102, 102, 102, 0.205) 100%);
     width: 100%;
     transform: scaleX(0.95) scaleY(0.95);
     box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.4) inset;
