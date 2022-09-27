@@ -103,7 +103,8 @@ $gradient-orange: linear-gradient(to left, #da2c4d 0%, #f8ab37 100%);
     align-items: center;
     flex-direction: row;
     height: 100%;
-    width: 33%;
+    width: 600px;
+    // width: 33%;
     // max-width: 500px;
     //   border: 1px dotted rgb(146, 146, 146);
 }
@@ -189,8 +190,8 @@ $gradient-orange: linear-gradient(to left, #da2c4d 0%, #f8ab37 100%);
     //
     display: flex;
     flex: 1;
-    // width: 100%;
-    max-height: 56px !important;
+    // max-width: 200px; // width: 100%;
+    max-height: 50px !important;
     flex-direction: row;
     align-items: center;
     align-content: center;
@@ -245,6 +246,7 @@ $gradient-orange: linear-gradient(to left, #da2c4d 0%, #f8ab37 100%);
     border-radius: 4px;
     // background-image: linear-gradient( to left, rgba(238, 238, 238, 0.205) 0%, rgba(102, 102, 102, 0.205) 100%);
     width: 100%;
+    // max-width: 200px; // width: 100%;
     transform: scaleX(0.95) scaleY(0.95);
     box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.4) inset;
     filter: grayscale(0%);
