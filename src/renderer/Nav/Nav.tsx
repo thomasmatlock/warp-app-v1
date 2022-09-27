@@ -8,8 +8,8 @@ import NavLogoImg from './logo/blackhole.svg';
 import navLogoText from './logo/logo.svg';
 // NAV BUTTON ICONS
 import iconAudio from './audio.svg';
-import iconVideo from './video4.svg';
-import iconWarpstagram from './warpstagram3.svg';
+import iconVideo from './video3.svg';
+import iconWarpstagram from './warpstagram.svg';
 import ProgressIcon from '../Common/status.svg';
 import NewVersionIcon from './new3.svg';
 // PLATFORM ICONS
@@ -20,7 +20,7 @@ import ThemeContext from '../../storage/themeContext';
 import NavContext from '../../storage/navContext';
 import './Nav.scss';
 
-let appVersion = '';
+let appVersion: string = '';
 let appRoot = '1.0.0';
 let updateMessage = '';
 
