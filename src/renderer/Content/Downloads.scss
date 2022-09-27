@@ -393,6 +393,13 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     z-index: 10;
 }
 
+.content__panel__downloads__list__activation__item__title {
+    // font-size: 0.75rem;
+    // margin-left: 0px;
+    // animation: bondJamesBond 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+    // border: 1px dotted red;
+}
+
 .content__panel__downloads__list__activation__item {
     z-index: 10;
     padding: 5px;
@@ -430,7 +437,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
         display: flex;
         flex-direction: column;
         // border: 1px dotted red;
-        justify-content: center !important;
+        justify-content: flex-start !important;
         align-items: left;
         height: 50px;
         width: 100%;
@@ -439,6 +446,8 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
         margin: 0;
         margin-left: 1rem;
         padding: 0;
+        overflow: hidden;
+        // border: 1px solid red;
         &__text1 {
             color: #fff;
             font-size: 0.9rem;
@@ -495,66 +504,9 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
             background-size: 100%;
         }
         & img {
-            width: 1.1rem;
+            width: 1rem;
             // height: 1.5rem;
-            margin-right: 0.5rem;
+            margin-right: 0.75rem;
         }
     }
-}
-
-.browserBarDownloadBtn {
-    // width: clamp(150px, 14rem, 14rem);
-    // // max-width: 250px;
-    // justify-content: center !important;
-    // background-image: $gradient-blue;
-    // top: 0;
-    // margin-top: 8px;
-    // margin-bottom: 8px;
-    // margin-right: 48px;
-    // height: 48px;
-    // border-radius: 3px;
-    // font-size: 0.75rem;
-    // // position: absolute;
-    // background-color: $gray-dark-lightest;
-    // color: white;
-    // display: flex;
-    // flex-direction: row;
-    // align-items: center;
-    // align-content: center;
-    // justify-content: center !important;
-    // cursor: pointer;
-    // animation: flipInX 0.5s ease-in-out;
-    // transition: all 0.1s ease-in-out;
-    // &.browserBarDownloadBtn img {
-    //     width: 1rem;
-    //     margin-right: 1rem;
-    //     filter: invert(1);
-    // }
-    // &__audio {
-    //     background-image: $gradient-orange;
-    //     &:hover {
-    //         background-image: $gradient-blue;
-    //     }
-    // }
-    // &__video {
-    //     background-image: $gradient-blue;
-    //     &:hover {
-    //         background-image: $gradient-orange;
-    //     }
-    // }
-    // &:hover {
-    //     // background-image: $gradient-orange;
-    //     box-shadow: -20px 30px 80px 0 rgba(0, 0, 0, 1) !important;
-    //     // transform: scale(1.01);
-    // }
-    // &:active {
-    //     background-image: $gradient-orange;
-    //     box-shadow: -5px 10px 10px 0 rgba(0, 0, 0, 1) !important;
-    //     transition: 0.01s ease-in-out;
-    //     transform: scale(0.99);
-    // }
-    // & p {
-    //     // transform: translate(-90px) translateY(0px);
-    //     // border: 1px dotted red;
-    // }
 }
