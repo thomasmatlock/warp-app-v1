@@ -39,7 +39,7 @@ const dest = 'C:\\Users\\Tommy\\Desktop\\app.asar.unpacked';
 //   }
 // }
 // getMachineId2();
-console.log(process.env.INIT_CWD);
+// console.log(process.env.INIT_CWD);
 
 const settings = new Store();
 const Cryptr = require('cryptr');
