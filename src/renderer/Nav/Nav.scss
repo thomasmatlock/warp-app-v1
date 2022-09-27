@@ -209,6 +209,7 @@ $gradient-orange: linear-gradient(to left, #da2c4d 0%, #f8ab37 100%);
         border-radius: 4px;
         font-size: 0.85rem;
         box-shadow: 0 0.6rem 1rem rgba(0, 0, 0, 0.6);
+        // border: 1px solid $gray-dark-darkest;
         // transform: scaleX(0.99) scaleY(0.99);
     }
     &:active {
