@@ -11,7 +11,7 @@
 // if (!app.isPackaged) {
 // import { PrismaClient } from '../@prisma/client'; // trying to use the prisma client here with new path
 import { PrismaClient } from '@prisma/client'; // trying to use the prisma client here with new path
-console.log(PrismaClient);
+// console.log(PrismaClient);
 
 // }
 // import { PrismaClient } from prismaClientPath; // trying to use the prisma client here with new path
@@ -45,7 +45,7 @@ const settings = new Store();
 const Cryptr = require('cryptr');
 const cryptr = new Cryptr('user');
 const prisma = new PrismaClient();
-console.log(prisma._engine.config);
+// console.log(prisma._engine.config);
 
 // import UserOffline from './UserOffline';
 import generateCode from './UserAuthCodes';
