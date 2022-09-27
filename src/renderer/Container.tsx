@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import Search from './Search/Search';
 import ActionBar from './ActionBar/ActionBar';
+import Rings from './Rings/Rings';
 // import BlackHoleOld from './BlackHole/BlackHoleOld';
 // import BlackHole from './BlackHole/BlackHole';
 import Content from './Content/Content';
@@ -14,7 +15,7 @@ const Container = (props) => {
     <div className="container">
       <Search />
       <ActionBar />
-      {/* <BlackHole /> */}
+      {/* <Rings /> */}
       {/* <BlackHoleOld /> */}
       <Content />
       <Nav />

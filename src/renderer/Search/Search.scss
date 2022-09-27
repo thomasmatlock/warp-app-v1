@@ -5,11 +5,25 @@ $gray-dark-dark: #202020;
 $gray-dark-light: #252525;
 $gray-dark-lightest: #313131;
 $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, #19d2fc 100%);
+@keyframes spin {
+    from {
+        // transform: scale(0);
+        opacity: 0;
+        // -webkit-transform: rotate(0deg);
+    }
+    to {
+        opacity: 1;
+        // transform: scale(1);
+        // -webkit-transform: rotate(360deg);
+    }
+}
+
 .overview_display__search__input:focus~* {
     transform: translateX(-25px);
 }
 
 .search {
+    animation: spin 1s ease-out;
     min-height: 64px;
     max-height: 64px;
     width: 100%;

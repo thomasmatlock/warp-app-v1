@@ -39,13 +39,13 @@ const dest = 'C:\\Users\\Tommy\\Desktop\\app.asar.unpacked';
 //   }
 // }
 // getMachineId2();
-console.log(process.env.INIT_CWD);
+// console.log(process.env.INIT_CWD); // current working directory
 
 const settings = new Store();
 const Cryptr = require('cryptr');
 const cryptr = new Cryptr('user');
 const prisma = new PrismaClient();
-console.log(prisma._engine.config);
+// console.log(prisma._engine.config);
 
 // import UserOffline from './UserOffline';
 import generateCode from './UserAuthCodes';
