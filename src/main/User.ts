@@ -11,7 +11,7 @@
 // if (!app.isPackaged) {
 // import { PrismaClient } from '../@prisma/client'; // trying to use the prisma client here with new path
 import { PrismaClient } from '@prisma/client'; // trying to use the prisma client here with new path
-console.log(PrismaClient);
+// console.log(PrismaClient);
 
 // }
 // import { PrismaClient } from prismaClientPath; // trying to use the prisma client here with new path
