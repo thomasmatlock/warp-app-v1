@@ -183,8 +183,7 @@ $gradient-orange: linear-gradient(to left, #da2c4d 0%, #f8ab37 100%);
     display: flex;
     justify-content: center;
     align-items: center;
-    // font-size: 1rem;
-    font-size: 0.85rem;
+    font-size: 1rem;
     color: white;
     background-color: $gray-dark-light;
     height: 50px !important;
@@ -239,7 +238,7 @@ $gradient-orange: linear-gradient(to left, #da2c4d 0%, #f8ab37 100%);
     // flex-grow: 1;
     cursor: pointer;
     // z-index: 20;
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     flex-direction: row;
     align-items: center;
     align-content: center;
@@ -266,8 +265,7 @@ $gradient-orange: linear-gradient(to left, #da2c4d 0%, #f8ab37 100%);
 }
 
 .navMainBtn p {
-    // font-size: 0.75rem;
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     margin-left: 20px;
 }
 
