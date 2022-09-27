@@ -74,7 +74,6 @@ app
       user = await User.getUser();
 
       // if (user.audio === 'free')
-      windowController.createmWin();
       //   console.log(chalk.whiteBright.bgRed('Free mode'));
       // if (user.audio === 'personal')
       //   console.log(chalk.whiteBright.bgYellow('Personal mode'));
@@ -82,6 +81,7 @@ app
       //   console.log(chalk.whiteBright.bgBlue('Professional mode'));
       // if (user.audio === 'developer')
       //   console.log(chalk.whiteBright.bgGreen('Developer mode'));
+      windowController.createmWin();
     })();
     // createTray(mWin);
     // Shortcuts(view);
