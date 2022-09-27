@@ -7,9 +7,9 @@ import { useState, useContext } from 'react';
 import NavLogoImg from './logo/blackhole.svg';
 import navLogoText from './logo/logo.svg';
 // NAV BUTTON ICONS
-import iconAudio from './audio.svg';
-import iconVideo from './video3.svg';
-import iconWarpstagram from './warpstagram.svg';
+import iconAudio from '../Common/fileTypeAudio.svg';
+import iconVideo from './video4.svg';
+import iconWarpstagram from './warpstagram2.svg';
 import ProgressIcon from '../Common/status.svg';
 import NewVersionIcon from './new3.svg';
 // PLATFORM ICONS
@@ -138,6 +138,11 @@ const Nav = (props) => {
             <img
               className={
                 navCtx.audioMode ? 'navMainBtn__icon' : 'navMainBtn__icon'
+              }
+              style={
+                themeCtx.isDarkTheme
+                  ? { filter: 'invert(100%)' }
+                  : { filter: 'invert(0%)' }
               }
               src={iconAudio}
             />
