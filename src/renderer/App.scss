@@ -115,6 +115,10 @@ html {
     }
 }
 
+* {
+    animation: fadeIn 1s ease-out;
+}
+
 ul,
 li {
     margin: 0;
