@@ -4,7 +4,7 @@
 /* eslint-disable import/first */
 const appRootDir = require('app-root-dir').get();
 import { app } from 'electron';
-import { PrismaClient } from '../.prisma/client';
+import { PrismaClient } from '../@prisma/client';
 const Cryptr = require('cryptr');
 if (!app.isPackaged) {
   // ffmpegPath = path.join(
