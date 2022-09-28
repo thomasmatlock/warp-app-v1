@@ -26,6 +26,19 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     }
 }
 
+@keyframes fadeIn {
+    from {
+        // transform: scale(0);
+        opacity: 0;
+        // -webkit-transform: rotate(0deg);
+    }
+    to {
+        opacity: 1;
+        // transform: scale(1);
+        // -webkit-transform: rotate(360deg);
+    }
+}
+
 @keyframes flipInX {
     from {
         transform: perspective(400px) rotate3d(1, 0, 0, 90deg);

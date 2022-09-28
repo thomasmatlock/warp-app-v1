@@ -6,6 +6,19 @@ $gray-dark-light: #252525;
 $gray-dark-lightest: #313131;
 // $gray-light-lightest: #454545;
 $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, #19d2fc 100%);
+@keyframes fadeIn {
+    from {
+        // transform: scale(0);
+        opacity: 0;
+        // -webkit-transform: rotate(0deg);
+    }
+    to {
+        opacity: 1;
+        // transform: scale(1);
+        // -webkit-transform: rotate(360deg);
+    }
+}
+
 .content {
     box-sizing: content-box;
     // position: relative;
@@ -16,6 +29,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     position: relative;
     justify-content: center;
     height: calc(100vh - 192px);
+    animation: fadeIn 1s ease-out;
     // border: 1px solid red;
     // height: 100%;
 }
@@ -34,6 +48,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     flex-direction: column;
     align-items: center;
     justify-content: start;
+    animation: fadeIn 1s ease-out;
     &__collapsed {
         height: calc(100vh - 192px);
         // border: 1px solid red;
