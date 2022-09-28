@@ -46,17 +46,15 @@
     "browserslist": [],
     "prettier": {
         "singleQuote": true,
-        "overrides": [
-            {
-                "files": [
-                    ".prettierrc",
-                    ".eslintrc"
-                ],
-                "options": {
-                    "parser": "json"
-                }
+        "overrides": [{
+            "files": [
+                ".prettierrc",
+                ".eslintrc"
+            ],
+            "options": {
+                "parser": "json"
             }
-        ]
+        }]
     },
     "jest": {
         "moduleDirectories": [
@@ -212,8 +210,7 @@
             "gatekeeperAssess": false
         },
         "dmg": {
-            "contents": [
-                {
+            "contents": [{
                     "x": 130,
                     "y": 220
                 },
@@ -252,6 +249,7 @@
         },
         "extraResources": [
             "./assets/**",
+            "./prisma/**",
             "prisma/**/*",
             "node_modules/.prisma/**/*",
             "node_modules/@prisma/client/**/*",

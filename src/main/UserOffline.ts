@@ -1,9 +1,22 @@
 const Store = require('electron-store');
+import path from 'path';
+import fs from 'fs';
 const settings = new Store();
 const Cryptr = require('cryptr');
 const cryptr = new Cryptr('user');
+// process.env.INIT_CWD = process.cwd();
+import { PrismaClient } from '@prisma/client'; // trying to use the prisma client here with new path
+//        datamodelPath: 'C:\\Users\\Tommy\\Documents\\GitHub\\warp-app\\node_modules\\.prisma\\client\\schema.prisma',
+let schemaLocation = path.join(process.cwd(), 'prisma', 'schema.prisma');
+// const prisma = new PrismaClient({ schema: fs.readFileSync(schemaLocation) });
+const prisma = new PrismaClient({ _engineConfig: schemaLocation });
+// const prisma = new PrismaClient({
+//   datamodelPath: '/node_modules/.prisma/client/schema.prisma',
+// });
+console.log(prisma);
 
 import { machineId, machineIdSync } from 'node-machine-id';
+import { config } from 'process';
 let machine_id;
 async function getMachineId() {
   machine_id = await machineId();

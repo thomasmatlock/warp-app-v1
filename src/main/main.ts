@@ -36,8 +36,7 @@ import PowerMonitor from './powerMonitor';
 import ScreenClass from './Screen';
 import Browser from './browserController';
 import Shortcuts from './Shortcuts';
-import { PrismaClient } from '@prisma/client'; // trying to use the prisma client here with new path
-const prisma = new PrismaClient();
+
 const appRootDir = require('app-root-dir').get();
 // test, just added apple id/pass to gh secrets
 let prefs: any;
