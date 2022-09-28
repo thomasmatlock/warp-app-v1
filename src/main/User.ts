@@ -6,38 +6,7 @@ const appRootDir = require('app-root-dir').get();
 import { app } from 'electron';
 import { PrismaClient } from '../@prisma/client';
 const Cryptr = require('cryptr');
-if (!app.isPackaged) {
-  // ffmpegPath = path.join(
-  //   appRootDir,
-  //   'node_modules',
-  //   '@ffmpeg-installer',
-  //   'win32-x64',
-  //   'ffmpeg.exe'
-  // );
-} else if (app.isPackaged) {
-  // ffmpegPath = path.join(
-  //   getWindowsPackagedPath(appRootDir),
-  //   'resources',
-  //   'node_modules',
-  //   '@ffmpeg-installer',
-  //   'win32-x64',
-  //   'ffmpeg.exe'
-  // );
-}
-const packagedClientPath =
-  'C:\\Program Files\\Warp\\resources\\node_modules\\.prisma';
-const prisma = new PrismaClient({
-  // __internal: {
-  //   debug: true,
-  //   engine: {
-  //     cwd: packagedClientPath,
-  //   },
-  // },
-});
-// cwd: 'C:\\Users\\Tommy\\Documents\\GitHub\\warp-app\\prisma',
-//   // log: ['query', 'info'],
-// schemaPath: packagedClientPath,
-// console.log(prisma._engine.config);
+const prisma = new PrismaClient();
 
 import generateCode from './UserAuthCodes';
 
