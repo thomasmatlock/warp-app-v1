@@ -45,7 +45,14 @@ const settings = new Store();
 const Cryptr = require('cryptr');
 const cryptr = new Cryptr('user');
 const prisma = new PrismaClient({
-  log: ['query', 'info'],
+  // __internal: {
+  //   // debug: true,
+  //   engine: {
+  //     cwd: process.env.INIT_CWD,
+  //     // cwd: 'C:\\Users\\Tommy\\Documents\\GitHub\\warp-app\\prisma',
+  //   },
+  //   // log: ['query', 'info'],
+  // },
 });
 // console.log(prisma._engine.config);
 
