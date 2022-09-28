@@ -51,9 +51,6 @@ export default function generateFFMPEGPath() {
       // /Users/nikkirincon/Documents/GitHub/warp-app
 
       ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
-
-      // console.log('packagedPath', getWindowsPackagedPath(appRootDir));
-      // console.log('ffmpegPath', ffmpegPath);
     } else if (app.isPackaged) {
       // /Users/nikkirincon/Documents/GitHub/warp-app/node_modules/@ffmpeg-installer/darwin-arm64 MAC
       // /Users/nikkirincon/Documents/GitHub/warp-app/node_modules/@ffmpeg-installer/darwin-arm64

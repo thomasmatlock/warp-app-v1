@@ -12,9 +12,6 @@ if (!fs.existsSync(defaultAudioPath)) fs.mkdirSync(defaultAudioPath);
 if (!fs.existsSync(defaultVideoPath)) fs.mkdirSync(defaultVideoPath);
 if (!fs.existsSync(defaultWarpstagramPath))
   fs.mkdirSync(defaultWarpstagramPath);
-// fs.mkdirSync(defaultAudioPath);
-// fs.mkdirSync(defaultVideoPath);
-// fs.mkdirSync(defaultWarpstagramPath);
 
 export function getDefaultAudioPath() {
   return defaultAudioPath;
@@ -28,7 +25,7 @@ export function getDefaultWarpstagramPath() {
 }
 
 module.exports = {
-  getDefaultAudioPath: getDefaultAudioPath,
-  getDefaultVideoPath: getDefaultVideoPath,
-  getDefaultWarpstagramPath: getDefaultWarpstagramPath,
+  getDefaultAudioPath,
+  getDefaultVideoPath,
+  getDefaultWarpstagramPath,
 };

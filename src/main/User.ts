@@ -2,65 +2,46 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable import/order */
 /* eslint-disable import/first */
-// import { PrismaClient } from '../extra/client';
-
-// import { PrismaClient } from '@prisma/client'; // default
-// let prismaClientPath = '../@prisma/client';
-// import { app } from 'electron';
-
-// if (!app.isPackaged) {
-// import { PrismaClient } from '../@prisma/client'; // trying to use the prisma client here with new path
-import { PrismaClient } from '@prisma/client'; // trying to use the prisma client here with new path
-// console.log(PrismaClient);
-
-// }
-// import { PrismaClient } from prismaClientPath; // trying to use the prisma client here with new path
-// import generatePrismaClientPath from './generatePrismaClientPath';
-// let prismaClientPath = generatePrismaClientPath();
-// import { PrismaClient } from generatePrismaClientPath(); // trying to use the prisma client here with new path
-
-const Store = require('electron-store');
-// import express from 'express';
-import os from 'os';
-// console.log(process);
-const asar = require('asar');
-// console.log(asar);
-
-const src = 'C:\\Program Files\\Warp\\resources';
-const dest = 'C:\\Users\\Tommy\\Desktop\\app.asar.unpacked';
-// shell.open
-// async function getMachineId2() {
-//   try {
-//     await asar.createPackage(src, dest);
-
-//     console.log('done.');
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
-// getMachineId2();
-// console.log(process.env.INIT_CWD);
-
-const settings = new Store();
+const appRootDir = require('app-root-dir').get();
+import { app } from 'electron';
+import { PrismaClient } from '../.prisma/client';
 const Cryptr = require('cryptr');
-const cryptr = new Cryptr('user');
+if (!app.isPackaged) {
+  // ffmpegPath = path.join(
+  //   appRootDir,
+  //   'node_modules',
+  //   '@ffmpeg-installer',
+  //   'win32-x64',
+  //   'ffmpeg.exe'
+  // );
+} else if (app.isPackaged) {
+  // ffmpegPath = path.join(
+  //   getWindowsPackagedPath(appRootDir),
+  //   'resources',
+  //   'node_modules',
+  //   '@ffmpeg-installer',
+  //   'win32-x64',
+  //   'ffmpeg.exe'
+  // );
+}
+const packagedClientPath =
+  'C:\\Program Files\\Warp\\resources\\node_modules\\.prisma';
 const prisma = new PrismaClient({
   // __internal: {
-  //   // debug: true,
+  //   debug: true,
   //   engine: {
-  //     cwd: process.env.INIT_CWD,
-  //     // cwd: 'C:\\Users\\Tommy\\Documents\\GitHub\\warp-app\\prisma',
+  //     cwd: packagedClientPath,
   //   },
-  //   // log: ['query', 'info'],
   // },
 });
+// cwd: 'C:\\Users\\Tommy\\Documents\\GitHub\\warp-app\\prisma',
+//   // log: ['query', 'info'],
+// schemaPath: packagedClientPath,
 // console.log(prisma._engine.config);
 
-// import UserOffline from './UserOffline';
 import generateCode from './UserAuthCodes';
 
 import { machineId, machineIdSync } from 'node-machine-id';
-import { shell } from 'electron';
 let machine_id;
 async function getMachineId() {
   machine_id = await machineId();
