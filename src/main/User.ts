@@ -44,7 +44,9 @@ const dest = 'C:\\Users\\Tommy\\Desktop\\app.asar.unpacked';
 const settings = new Store();
 const Cryptr = require('cryptr');
 const cryptr = new Cryptr('user');
-const prisma = new PrismaClient();
+const prisma = new PrismaClient({
+  log: ['query', 'info'],
+});
 // console.log(prisma._engine.config);
 
 // import UserOffline from './UserOffline';

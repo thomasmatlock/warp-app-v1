@@ -180,7 +180,9 @@
         "productName": "Warp",
         "appId": "org.erb.Warp",
         "asar": true,
-        "asarUnpack": "**\\*.{node,dll}",
+        "asarUnpack": [
+            "**/node_modules/@prisma/*"
+        ],
         "files": [
             "dist",
             "node_modules",
