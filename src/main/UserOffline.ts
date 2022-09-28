@@ -1,11 +1,7 @@
-import { PrismaClient } from '@prisma/client'; // trying to use the prisma client here with new path
-
 const Store = require('electron-store');
 const settings = new Store();
 const Cryptr = require('cryptr');
 const cryptr = new Cryptr('user');
-
-console.log(PrismaClient);
 
 import { machineId, machineIdSync } from 'node-machine-id';
 let machine_id;
