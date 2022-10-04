@@ -2,51 +2,15 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable import/order */
 /* eslint-disable import/first */
-const appRootDir = require('app-root-dir').get();
-
-import { app } from 'electron';
-// import downloadHelper from 'nodejs-file-downloader';
-import path from 'path';
-// const { DownloaderHelper } = require('node-downloader-helper');
-const Downloader = require('nodejs-file-downloader');
-const windowsBinaryURL =
-  'https://github.com/thomasmatlock/ffmpeg-binaries/raw/main/win32-x64/ffmpeg.exe'; // windows binary URL
-
-// https://github.com/thomasmatlock/ffmpeg-binaries/raw/main/darwin-arm64/ffmpeg, mac arm64 binary URL
-// https://github.com/thomasmatlock/ffmpeg-binaries/raw/main/darwin-x64/ffmpeg, mac x64 binary URL
-// const { DownloaderHelper } = require('node-downloader-helper');
-(async () => {
-  //Wrapping the code with an async function, just for the sake of example.
-
-  const downloader = new Downloader({
-    url: windowsBinaryURL, //If the file name already exists, a new file with the name 200MB1.zip is created.
-    // directory: './downloads', //This folder will be created, if it doesn't exist.
-    directory: path.join(appRootDir, 'resources'), //This folder will be created, if it doesn't exist.
-  });
-  try {
-    const { filePath, downloadStatus } = await downloader.download(); //Downloader.download() resolves with some useful properties.
-    console.log(filePath);
-    console.log(downloadStatus);
-
-    console.log('All done');
-  } catch (error) {
-    //IMPORTANT: Handle a possible error. An error is thrown in case of network errors, or status codes of 400 and above.
-    //Note that if the maxAttempts is set to higher than 1, the error is thrown only if all attempts fail.
-    console.log('Download failed', error);
-  }
-})();
 
 import os from 'os';
 import { PrismaClient } from '../@prisma/client';
-
-// const Cryptr = require('cryptr');
 
 const prisma = new PrismaClient();
 
 import generateCode from './UserAuthCodes';
 
 import { machineId } from 'node-machine-id';
-import { path } from '@ffmpeg-installer/ffmpeg';
 
 let machineID;
 async function getMachineId() {

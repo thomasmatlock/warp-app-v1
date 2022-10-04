@@ -1,7 +1,11 @@
 /* eslint-disable no-plusplus */
-import path from 'path';
-
 import { app } from 'electron';
+import path from 'path';
+import fs from 'fs';
+
+import downloadFFMPEGbinary from './downloadFFMPEGbinary';
+
+// downloadFFMPEGbinary();
 
 const appRootDir = require('app-root-dir').get();
 
@@ -37,20 +41,31 @@ export default function generateFFMPEGPath() {
         'win32-x64',
         'ffmpeg.exe'
       );
-      // ffmpegPath = path.join(
-      //   getWindowsPackagedPath(appRootDir),
-      //   'resources',
-      //   'ffmpeg',
-      //   'ffmpeg.exe'
-      // );
     }
+    let testPath = path.join(
+      appRootDir,
+      'resources',
+      'ffmpeg',
+      'win32-x64',
+      'ffmpeg.exe'
+    );
+    try {
+      if (fs.existsSync(testPath)) {
+        // console.log('FFMPEG binary exists');
+      } else if (!fs.existsSync(testPath)) {
+        console.log('FFMPEG binary does not exist');
+        downloadFFMPEGbinary(testPath);
+      }
+    } catch (err) {
+      // console.log('FFMPEG binary does NOT exists');
+      console.error(err);
+    }
+    // check if file exists
+
     return ffmpegPath;
   }
   if (process.platform === 'darwin') {
     if (!app.isPackaged) {
-      console.log(appRootDir);
-      // /Users/nikkirincon/Documents/GitHub/warp-app
-
       ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
     } else if (app.isPackaged) {
       // /Users/nikkirincon/Documents/GitHub/warp-app/node_modules/@ffmpeg-installer/darwin-arm64 MAC
