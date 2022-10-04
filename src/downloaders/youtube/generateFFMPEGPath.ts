@@ -1,5 +1,6 @@
 /* eslint-disable no-plusplus */
 import path from 'path';
+
 import { app } from 'electron';
 
 const appRootDir = require('app-root-dir').get();
