@@ -189,7 +189,7 @@ const Search = (props) => {
           />
         )}
       </form>
-      {themeCtx.isDarkTheme && (
+      {/* {themeCtx.isDarkTheme && (
         <div onClick={themeCtx.toggleTheme} className="theme">
           <img
             src={MoonIcon}
@@ -203,12 +203,10 @@ const Search = (props) => {
                   }
             }
             title="Change Theme"
-            // className="theme__icon theme__icon__moon"
-            // onClick={showModalHandler}
           />
         </div>
-      )}{' '}
-      {!themeCtx.isDarkTheme && (
+      )} */}
+      {/* {!themeCtx.isDarkTheme && (
         <div onClick={themeCtx.toggleTheme} className="theme">
           <img
             src={SunIcon}
@@ -222,12 +220,9 @@ const Search = (props) => {
                   }
             }
             title="Change Theme"
-
-            // className="theme__icon theme__icon__sun"
-            // onClick={showModalHandler}
           />
         </div>
-      )}
+      )} */}
       <div className="settings">
         <img
           src={settingsIcon}
