@@ -1,5 +1,6 @@
-import { app, BrowserView, BrowserWindow } from 'electron';
-let viewBounds = {
+import { BrowserView, BrowserWindow } from 'electron';
+
+const viewBounds = {
   x: 0,
   y: 130,
 };
@@ -7,22 +8,26 @@ export function hideBrowser(view) {
   if (view) view.setBounds({ x: 0, y: 0, width: 0, height: 0 });
 }
 export function showBrowser(mWin: BrowserWindow, view: BrowserView) {
-  if (view && mWin)
-    view.setBounds({
-      x: viewBounds.x,
-      y: viewBounds.y,
-      width: mWin.getContentBounds().width / 2,
-      height: mWin.getContentBounds().height - 192,
-    });
+  try {
+    if (view && mWin)
+      view.setBounds({
+        x: viewBounds.x,
+        y: viewBounds.y,
+        width: mWin.getContentBounds().width / 2,
+        height: mWin.getContentBounds().height - 192,
+      });
+  } catch (error) {}
 }
 export async function resize(
   browserWidth: string | undefined,
   mWin: BrowserWindow,
   view: BrowserView
 ) {
-  let defaultWidthDifference = Math.round(mWin.getContentBounds().width / 2);
-  let collapsedWidthDifference = 72;
-  let expandedWidthDifference = Math.round(mWin.getContentBounds().width - 72);
+  const defaultWidthDifference = Math.round(mWin.getContentBounds().width / 2);
+  const collapsedWidthDifference = 72;
+  const expandedWidthDifference = Math.round(
+    mWin.getContentBounds().width - 72
+  );
   // COLLAPSED VIEW
   if (browserWidth === 'collapse') {
     if (view && mWin)
@@ -80,8 +85,8 @@ export async function screenshot(mWin: BrowserWindow, view: BrowserView) {
         });
 }
 module.exports = {
-  hideBrowser: hideBrowser,
-  showBrowser: showBrowser,
-  resize: resize,
-  screenshot: screenshot,
+  hideBrowser,
+  showBrowser,
+  resize,
+  screenshot,
 };

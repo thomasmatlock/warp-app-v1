@@ -3,18 +3,24 @@
 /* eslint-disable import/order */
 /* eslint-disable import/first */
 const appRootDir = require('app-root-dir').get();
+
 import { app } from 'electron';
+
+import os from 'os';
 import { PrismaClient } from '../@prisma/client';
-const Cryptr = require('cryptr');
+
+// const Cryptr = require('cryptr');
+
 const prisma = new PrismaClient();
 
 import generateCode from './UserAuthCodes';
 
-import { machineId, machineIdSync } from 'node-machine-id';
-let machine_id;
+import { machineId } from 'node-machine-id';
+
+let machineID;
 async function getMachineId() {
-  machine_id = await machineId();
-  return machine_id;
+  machineID = await machineId();
+  return machineID;
 }
 export async function upgradeUserModule(
   moduleType: string,
