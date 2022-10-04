@@ -189,7 +189,7 @@ const Search = (props) => {
           />
         )}
       </form>
-      {/* {themeCtx.isDarkTheme && (
+      {themeCtx.isDarkTheme && (
         <div onClick={themeCtx.toggleTheme} className="theme">
           <img
             src={MoonIcon}
@@ -205,8 +205,8 @@ const Search = (props) => {
             title="Change Theme"
           />
         </div>
-      )} */}
-      {/* {!themeCtx.isDarkTheme && (
+      )}
+      {!themeCtx.isDarkTheme && (
         <div onClick={themeCtx.toggleTheme} className="theme">
           <img
             src={SunIcon}
@@ -222,7 +222,7 @@ const Search = (props) => {
             title="Change Theme"
           />
         </div>
-      )} */}
+      )}
       <div className="settings">
         <img
           src={settingsIcon}
