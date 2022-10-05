@@ -37,6 +37,11 @@ import ScreenClass from './Screen';
 import Browser from './browserController';
 import Shortcuts from './Shortcuts';
 
+const isSingleInstance = app.requestSingleInstanceLock();
+if (!isSingleInstance) {
+  app.quit();
+}
+
 const appRootDir = require('app-root-dir').get();
 // test, just added apple id/pass to gh secrets
 let prefs: any;
