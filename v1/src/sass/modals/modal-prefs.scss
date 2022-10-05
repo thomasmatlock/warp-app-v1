@@ -1,0 +1,103 @@
+// semi transparent layer behind modals
+.modalBackground {
+    position: absolute;
+    width: 100%;
+    height: 300%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    z-index: 10;
+    display: none;
+}
+
+.modalParent {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    // top: 10;
+    width: 100%;
+    height: 85%;
+    // animation: moveInBottom 0.25s ease-out;
+    transition: all 1s ease-in-out;
+    // animation: moveInTop 1s ease-out;
+    // border: 1px dotted red;
+}
+
+// exterior panel containing the content panel
+.modalContainer {
+    // animation: moveInTop 0.1s ease-out;
+    animation: moveInTop 0.25s ease-out;
+    // position: absolute;
+    // top: 10;
+    margin: 0 auto;
+    width: 900px;
+    // width: 70vw;
+    // height: 780px;
+    // height: 100%;
+    max-height: 900px;
+    // min-height: 550px;
+    max-width: 70rem;
+    min-width: 30rem;
+    background: #2a2a2a;
+    border-radius: 4px;
+    z-index: 11;
+    box-shadow: $shadow-after;
+    display: none;
+    // display: flex;
+    flex-direction: column;
+    // align-items: flex-start;
+    // align-content: flex-start;
+    transition: all 0.5s ease-in-out;
+    // border: 1px dotted red;
+}
+
+// interior panel to contain all content within modal
+.contentContainer {
+    // animation: moveInBottom 0.25s ease-out;
+    width: 93%;
+    height: 97%;
+    // width: 100%;
+    // height: 100%;
+    display: flex;
+    flex-direction: column;
+    // border: 1px dotted green;
+    margin: 0 auto;
+    border-radius: 4px;
+    transition: all 0.1s ease-in-out;
+    // animation: moveInTop 0.1s ease-out;
+}
+
+.modalPrefsContentPanel {
+    display: flex;
+    transition: all 0.1s ease-in-out;
+    flex-direction: column;
+    // animation: moveInTop 0.5s ease-out;
+}
+
+.modalPrefsContentPanel_bottom {
+    // animation: moveInTop 0.5s ease-out;
+    margin-bottom: 2rem; // pushes away from bottom
+}
+
+.modalPrefsContentPanel_top {
+    // animation: moveInTop 0.25s ease-out;
+    margin-top: 1rem; // pushes away from top
+}
+
+.modalContainer,
+.contentContainer * {
+    // animation: moveInTop 0.25s ease-out;
+    -webkit-user-select: none;
+    /* Safari */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* IE10+/Edge */
+    user-select: none;
+    /* Standard */
+}

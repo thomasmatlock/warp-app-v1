@@ -1,0 +1,67 @@
+    @import 'base/animations';
+    @import 'glitch';
+    @import 'components/splash-title';
+    @import 'components/splash-status';
+    @import 'base/whoa-animations';
+    @import 'base/animateCSS';
+    $themeTextColor: #0E0F0F; // fallback
+    $themeBackgroundColor: #ECECEC; // fallback
+    body {
+        background: $themeBackgroundColor;
+        background: -webkit-radial-gradient(75%, #2a2a2a, #000 50%);
+        border-radius: 5px;
+        overflow: hidden;
+        height: 400px;
+        width: 980px;
+        cursor: none;
+        // font-family: "Century Gothic", 'Lato', sans-serif;
+    }
+    
+    h1 {
+        font-family: "Proxima Nova";
+        // font-family: "Century Gothic", 'Lato', sans-serif;
+        position: absolute;
+    }
+    
+    .container {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        height: 400px;
+        width: 980px;
+        border-radius: 5px;
+        background: transparent;
+    }
+    
+    #version,
+    #status,
+    #legal {
+        position: absolute;
+        color: $themeTextColor;
+        width: auto;
+        left: 52px;
+        display: flex;
+        align-items: center;
+    }
+    
+    #version {
+        top: 158px;
+        font-size: 20px;
+        font-weight: 300;
+    }
+    
+    #legal {
+        top: 320px;
+        font-size: 8px;
+        font-weight: 100;
+        line-height: 150%;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+    }
+    
+    #gui {
+        left: 0;
+        position: fixed;
+        top: 0;
+        z-index: 1;
+    }

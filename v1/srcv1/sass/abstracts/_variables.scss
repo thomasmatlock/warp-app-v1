@@ -1,0 +1,28 @@
+// FONT
+$default-font-size: 1.6rem;
+// GRID
+$grid-width: 114rem; //1140px standard grid width, but use rem for dynamic page adapting to viewport size
+$gutter-vertical: 8rem; //80px -- gutter is space between columns
+$gutter-horizontal: 6rem; //60px
+// SHADOWS
+$shadow-none: 0 1.5rem 4rem rgba(0, 0, 0, 0);
+$shadow-light: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+$shadow-before: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+$shadow-after: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+// DIMENSIONS
+$nav_A-height: 60px;
+// $nav_A-height: 8vh;
+$nav_A-max-height: 60px;
+// Development TESTING
+$dev-border: 1px dotted rgba(255, 0, 0, 0.5);
+// Download items
+$download-item-video-height: 60px; // 4k vid dl has 57px min, 71px max
+$download-item-video-min-height: 60px;
+$download-item-video-max-height: 60px;
+// TESTING BORDERS
+$border-heavy: 0px dotted black;
+$border-heavy2: 0px dotted red;
+$border-medium: 0px dotted black;
+$border-light: 0px dotted black;
+// GRAD TIMELAPSE DURATIONS
+$duration-1: 10s;

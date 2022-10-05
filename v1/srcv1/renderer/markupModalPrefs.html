@@ -1,0 +1,476 @@
+<!-- STATIC CONTENT, TOP -->
+
+<!-- TITLE -->
+<div class="modalPrefsContentPanel_top">
+
+
+    <div class="modalPrefsTitle">
+        <div class="modalPrefsTitle_child modalPrefsTitle_child_left">
+            <p>Preferences</p>
+        </div>
+        <div class="modalPrefsTitle_child modalPrefsTitle_child_right">
+            <i id="closePrefsModal" class="fas fa-times fa-2x"></i>
+        </div>
+    </div>
+
+    <!-- MODAL-SPACER -->
+    <div class="modalSpacer_space"></div>
+
+    <!-- NAV -->
+    <div class="modalPrefsNav">
+        <div id="modalPrefsNav_button_audio_ID" class="modalPrefsNav_button modalPrefsNav_button_background">
+            <!-- <i class="fas fa-tools"></i> -->
+            <i class="fas fa-headphones-alt"></i>
+            <p>Audio</p>
+        </div>
+        <div id="modalPrefsNav_button_video_ID" class="modalPrefsNav_button modalPrefsNav_button_background">
+            <i class="fas fa-video"></i>
+            <p>Video</p>
+        </div>
+        <div id="modalPrefsNav_button_warpstagram_ID" class="modalPrefsNav_button modalPrefsNav_button_background">
+            <i class="fas fa-camera"></i>
+            <p>Warpstagram</p>
+        </div>
+        <div id="modalPrefsNav_button_general_ID" class="modalPrefsNav_button modalPrefsNav_button_background">
+            <i class="fas fa-sliders-h"></i>
+            <p>General</p>
+        </div>
+        <div id="modalPrefsNav_button_license_ID" class="modalPrefsNav_button modalPrefsNav_button_background">
+            <i class="fas fa-rocket"></i>
+            <p>License</p>
+        </div>
+    </div>
+    <!-- MODAL-UNDERLINE -->
+    <div class="modalSpacer_line">
+    </div>
+    <div class="modalSpacer_space">
+    </div>
+</div>
+<!-- DYNAMIC CONTENT -->
+<!-- AUDIO -->
+<div id="modalPrefsContentPanel_audio" class="modalPrefsContentPanel">
+
+    <!-- MODAL-TEXT-INPUT -->
+    <div id="modalPrefsOutputFolderComponent_audio" class="modalOutputFolder">
+        <div class="modalOutputFolder_title">
+            <p>Audio Output Folder</p>
+        </div>
+        <div class="modalOutputFolder_userInput">
+            <div class="modalOutputFolder_userInput__textInput">
+                <input id="modalPrefsOutputFolder_audio" type="text" placeholder="C:/Users/Tommy/Documents/Warp Downloader" autofocus />
+            </div>
+            <div id="modalOutputFolderBtn_audio" class="modalOutputFolder_userInput__button">
+                <p>Browse</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL-SPACER -->
+    <div class="modalSpacer_space"></div>
+    <div class="modalSpacer_space"></div>
+
+    <!-- DROPDOWN -->
+    <div class="modalDropdownContainer">
+        <div class="modalDropdownColumn modalDropdownColumn_left">
+            <div class="modalDropdownContent">
+                <div class="modalDropdown_title modalDropdown_child">
+                    <p>Audio Quality</p>
+                </div>
+                <div class="modalDropdown modalDropdown_child">
+                    <select id="modalDropdown_audioQuality" name="modalDropdown_select">
+                        <option id="modalDropdown_audioQuality_best" value="audioQuality_best">Best Available
+                        </option>
+                        <option id="modalDropdown_audioQuality_high" value="audioQuality_high">High quality
+                            (320kbps)
+                        </option>
+                        <option id="modalDropdown_audioQuality_medium" value="audioQuality_medium">Medium
+                            quality
+                            (256kbps)
+                        </option>
+                        <option id="modalDropdown_audioQuality_low" value="audioQuality_low">Low
+                            quality
+                            (128kbps)
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="modalDropdownColumn">
+            <div class="modalDropdownContent">
+                <div class="modalDropdown_title modalDropdown_child">
+                    <p>Audio Format</p>
+                </div>
+                <div class="modalDropdown modalDropdown_child">
+                    <select id="modalDropdown_audioFormat" name="modalDropdown_select">
+                        <option id="modalDropdown_audioFormat_MP3" value="audioFormat_MP3">MP3</option>
+                        <option id="modalDropdown_audioFormat_M4A" value="audioFormat_M4A">M4A</option>
+                        <option id="modalDropdown_audioFormat_OGG" value="audioFormat_OGG">OGG</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<!-- VIDEO -->
+<div id="modalPrefsContentPanel_video" class="modalPrefsContentPanel">
+
+    <!-- MODAL-TEXT-INPUT -->
+    <div id="modalPrefsOutputFolderComponent_video" class="modalOutputFolder">
+        <div class="modalOutputFolder_title">
+            <p>Video Output Folder</p>
+        </div>
+        <div class="modalOutputFolder_userInput">
+            <div class="modalOutputFolder_userInput__textInput">
+                <input id="modalPrefsOutputFolder_video" type="text" placeholder="C:/Users/Tommy/Documents/Warp Downloader" autofocus />
+            </div>
+            <div id="modalOutputFolderBtn_video" class="modalOutputFolder_userInput__button">
+                <p>Browse</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL-SPACER -->
+    <div class="modalSpacer_space"></div>
+    <div class="modalSpacer_space"></div>
+
+    <!-- DROPDOWN -->
+    <div class="modalDropdownContainer">
+        <div class="modalDropdownColumn modalDropdownColumn_left">
+            <div class="modalDropdownContent">
+                <div class="modalDropdown_title modalDropdown_child">
+                    <p>Video Quality</p>
+                </div>
+                <div class="modalDropdown modalDropdown_child">
+                    <select id="modalDropdown_videoQuality" name="modalDropdown_select">
+                        <option id="modalDropdown_videoQuality_best" value="videoQuality_best">Best Available
+                        </option>
+                        <option id="modalDropdown_videoQuality_8k_60fps" value="videoQuality_8k_60fps">8k
+                            60fps</option>
+                        <option id="modalDropdown_videoQuality_8k" value="videoQuality_8k">8k</option>
+                        <option id="modalDropdown_videoQuality_4k_60fps" value="videoQuality_4k_60fps">4k
+                            60fps</option>
+                        <option id="modalDropdown_videoQuality_4k" value="videoQuality_4k">4k</option>
+                        <option id="modalDropdown_videoQuality_1080p_60fps" value="videoQuality_1080p_60fps">
+                            1080p 60fps</option>
+                        <option id="modalDropdown_videoQuality_1080p" value="videoQuality_1080p">1080p
+                        </option>
+                        <option id="modalDropdown_videoQuality_720p_60fps" value="videoQuality_720p_60fps">
+                            720p 60fps</option>
+                        <option id="modalDropdown_videoQuality_720p" value="videoQuality_720p">720p</option>
+                        <option id="modalDropdown_videoQuality_480p" value="videoQuality_480p">480p</option>
+                        <option id="modalDropdown_videoQuality_360p" value="videoQuality_360p">360p</option>
+                        <option id="modalDropdown_videoQuality_240p" value="videoQuality_240p">240p</option>
+                    </select>
+                </div>
+            </div>
+            <!-- <div class="modalDropdownContent">
+                        <div class="modalDropdown_title modalDropdown_child">
+                            <p>Audio Format</p>
+                        </div>
+                        <div class="modalDropdown modalDropdown_child">
+                            <select name="modalDropdown_select">
+                                <option value=" volvo ">System</option>
+                                <option value=" saab ">Saab</option>
+                                <option value=" mercedes ">Mercedes</option>
+                                <option value=" audi ">Audi</option>
+                            </select>
+                        </div>
+                    </div> -->
+        </div>
+        <div class="modalDropdownColumn">
+            <div class="modalDropdownContent">
+                <div class="modalDropdown_title modalDropdown_child">
+                    <p>Video Format</p>
+                </div>
+                <div class="modalDropdown modalDropdown_child">
+                    <select id="modalDropdown_videoFormat" name="modalDropdown_select">
+                        <option id="modalDropdown_videoFormat_MP4" value="videoFormat_MP4">MP4</option>
+                        <option id="modalDropdown_videoFormat_MKV" value="videoFormat_MKV">MKV</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL-SPACER -->
+    <div class="modalSpacer_space"></div>
+    <div class="modalSpacer_space"></div>
+
+    <!-- MODAL-ACTION -->
+    <div id="modalActionComponent_login_1" class="modalActionComponent modalActionComponent_licenseActivation">
+        <div id="modalActionComponent_panel_top_audio" class="modalActionComponent_panel modalActionComponent_panel_primary">
+            <div class="modalActionComponent_child  modalActionComponent_child_title">
+                <p>Login to Instagram</p>
+            </div>
+            <div id='loginInstagramButton' class="modalActionComponent_child modalActionComponent_child_btn">
+                <p>Login</p>
+            </div>
+        </div>
+        <div id="modalActionComponent_panel_middle_audio" class="modalActionComponent_panel modalActionComponent_panel_collapsible"></div>
+        <div id="modalActionComponent_panel_bottom_audio" class="modalActionComponent_panel modalActionComponent_panel_secondary modalActionComponent_panel_collapsible"></div>
+    </div>
+
+    <!-- MODAL-ACTION -->
+    <div id="modalActionComponent_login_2" class="modalActionComponent modalActionComponent_licenseActivation">
+        <div id="modalActionComponent_panel_top_audio" class="modalActionComponent_panel modalActionComponent_panel_primary">
+            <div class="modalActionComponent_child  modalActionComponent_child_title">
+                <p>Login to Youtube</p>
+            </div>
+            <div id='loginYoutubeButton' class="modalActionComponent_child modalActionComponent_child_btn">
+                <p>Login</p>
+            </div>
+        </div>
+        <div id="modalActionComponent_panel_middle_audio" class="modalActionComponent_panel modalActionComponent_panel_collapsible"></div>
+        <div id="modalActionComponent_panel_bottom_audio" class="modalActionComponent_panel modalActionComponent_panel_secondary modalActionComponent_panel_collapsible"></div>
+    </div>
+
+</div>
+</div>
+
+<div id="modalPrefsContentPanel_warpstagram" class="modalPrefsContentPanel">
+
+    <!-- MODAL-TEXT-INPUT -->
+    <div id="modalPrefsOutputFolderComponent_warpstagram" class="modalOutputFolder">
+        <div class="modalOutputFolder_title">
+            <p>Warpstagram Output Folder</p>
+        </div>
+        <div class="modalOutputFolder_userInput">
+            <div class="modalOutputFolder_userInput__textInput">
+                <input id="modalPrefsOutputFolder_warpstagram" type="text" placeholder="C:/Users/Tommy/Documents/Warp Downloader" autofocus />
+            </div>
+            <div id="modalOutputFolderBtn_warpstagram" class="modalOutputFolder_userInput__button">
+                <p>Browse</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL-SPACER -->
+    <div class="modalSpacer_space"></div>
+    <div class="modalSpacer_space"></div>
+
+    <!-- DROPDOWN -->
+    <div class="modalDropdownContainer">
+        <div class="modalDropdownColumn modalDropdownColumn_left">
+            <div class="modalDropdownContent">
+                <div class="modalDropdown_title modalDropdown_child">
+                    <p>Auto update</p>
+                </div>
+                <div class="modalDropdown modalDropdown_child">
+                    <select id="modalDropdown_warpstagram_updateSelected" name="modalDropdown_select">
+                        <option id="modalDropdown_warpstagram_updateSelected_all" value="warpstagram_updateSelected_all">
+                            Update All</option>
+                        <option id="modalDropdown_warpstagram_updateSelected_pinned" value="warpstagram_updateSelected_pinned">Update Pinned</option>
+                        <option id="modalDropdown_warpstagram_updateSelected_disabled" value="warpstagram_updateSelected_disabled">Disabled</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modalDropdownContent">
+                <div class="modalDropdown_title modalDropdown_child">
+                    <p>Post sorting</p>
+                </div>
+                <div class="modalDropdown modalDropdown_child">
+                    <select id="modalDropdown_warpstagram_postSorting" name="modalDropdown_select">
+                        <option id="modalDropdown_warpstagram_postSorting_default" value="warpstagram_postSorting_default">Default</option>
+                        <option id="modalDropdown_warpstagram_postSorting_new_to_old" value="warpstagram_postSorting_new_to_old">Newest to oldest</option>
+                        <option id="modalDropdown_warpstagram_postSorting_old_to_new" value="warpstagram_postSorting_old_to_new">Oldest to newest</option>
+                        <option id="modalDropdown_warpstagram_postSorting_AZ" value="warpstagram_postSorting_AZ">A to Z
+                        </option>
+                        <option id="modalDropdown_warpstagram_postSorting_ZA" value="warpstagram_postSorting_ZA">Z to A
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="modalDropdownColumn">
+            <div class="modalDropdownContent">
+                <div class="modalDropdown_title modalDropdown_child">
+                    <p>Auto update frequency</p>
+                </div>
+                <div class="modalDropdown modalDropdown_child">
+                    <select id="modalDropdown_warpstagram_autoUpdateFrequency" name="modalDropdown_select">
+                        <option id="modalDropdown_warpstagram_autoUpdateFrequency_24" value="warpstagram_autoUpdateFrequency_24">Daily</option>
+                        <option id="modalDropdown_warpstagram_autoUpdateFrequency_12" value="warpstagram_autoUpdateFrequency_12">12 hours</option>
+                        <option id="modalDropdown_warpstagram_autoUpdateFrequency_6" value="warpstagram_autoUpdateFrequency_6">6 hours</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL-SPACER -->
+    <div class="modalSpacer_space"></div>
+    <div class="modalSpacer_space"></div>
+
+
+
+</div>
+
+<div id="modalPrefsContentPanel_general" class="modalPrefsContentPanel">
+    <!-- theme, dark, light -->
+
+    <!-- DROPDOWN -->
+    <div class="modalDropdownContainer">
+        <!-- LEFT SIDE, TOP DROPDOWN -->
+        <div class="modalDropdownColumn modalDropdownColumn_left">
+            <div class="modalDropdownContent">
+                <div class="modalDropdown_title modalDropdown_child">
+                    <p>Theme</p>
+                </div>
+                <div class="modalDropdown modalDropdown_child">
+                    <select id="modalDropdown_general_theme" name="modalDropdown_select">
+                        <option id="modalDropdown_general_theme_dark" value="general_theme_dark">
+                            Dark theme (default theme of Warp )</option>
+                        <option id="modalDropdown_general_theme_light" value="general_theme_light">
+                            Light theme</option>
+                    </select>
+                </div>
+            </div>
+            <!-- LEFT SIDE, BOTTOM DROPDOWN -->
+            <!-- <div class="modalDropdownContent">
+                <div class="modalDropdown_title modalDropdown_child">
+                    <p>Post sorting</p>
+                </div>
+                <div class="modalDropdown modalDropdown_child">
+                    <select id="modalDropdown_warpstagram_postSorting2" name="modalDropdown_select">
+                        <option value="warpstagram_postSorting_default">Default</option>
+                        <option value="warpstagram_postSorting_new_to_old">Newest to oldest</option>
+                        <option value="warpstagram_postSorting_old_to_new">Oldest to newest</option>
+                        <option value="warpstagram_postSorting_AZ">A to Z</option>
+                        <option value="warpstagram_postSorting_ZA">Z to A</option>
+                    </select>
+                </div>
+            </div> -->
+        </div>
+        <!-- RIGHT SIDE -->
+        <!-- RIGHT SIDE, TOP DROPDOWN -->
+        <div class="modalDropdownColumn">
+            <div class="modalDropdownContent">
+                <div class="modalDropdown_title modalDropdown_child">
+                    <p>Startup tab on launch</p>
+                </div>
+                <div class="modalDropdown modalDropdown_child">
+                    <select id="modalDropdown_general_startupTab" name="modalDropdown_select">
+                        <option id="modalDropdown_general_startupTab_audio" value="general_startupTab_audio">
+                            Audio (default startup tab)</option>
+                        <option id="modalDropdown_general_startupTab_video" value="general_startupTab_video">
+                            Video</option>
+                        <option id="modalDropdown_general_startupTab_warpstagram" value="general_startupTab_warpstagram">Warpstagram</option>
+                        <!-- <option id="modalDropdown_general_startupTab_recent" value="general_startupTab_recent">Most recently used tab</option> -->
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div id="modalPrefsContentPanel_license" class="modalPrefsContentPanel">
+    <div class="modalActionComponent_Container">
+
+
+        <!-- MODAL-ACTION -->
+        <div id="modalActionComponent_audio" class="modalActionComponent modalActionComponent_licenseActivation">
+            <div id="modalActionComponent_panel_top_audio" class="modalActionComponent_panel modalActionComponent_panel_primary">
+                <div class="modalActionComponent_child  modalActionComponent_child_title">
+                    <p>Audio Downloader only</p>
+                </div>
+                <div class="modalActionComponent_child modalActionComponent_child_btn">
+                    <p>Activate</p>
+                </div>
+            </div>
+            <div id="modalActionComponent_panel_middle_audio" class="modalActionComponent_panel modalActionComponent_panel_collapsible"></div>
+            <div id="modalActionComponent_panel_bottom_audio" class="modalActionComponent_panel modalActionComponent_panel_secondary modalActionComponent_panel_collapsible"></div>
+        </div>
+        <div id="modalActionComponent_video" class="modalActionComponent modalActionComponent_licenseActivation">
+            <div id="modalActionComponent_panel_top_video" class="modalActionComponent_panel modalActionComponent_panel_primary">
+                <div class="modalActionComponent_child  modalActionComponent_child_title">
+                    <p>Video Downloader only</p>
+                </div>
+                <div class="modalActionComponent_child modalActionComponent_child_btn">
+                    <p>Activate</p>
+                </div>
+            </div>
+            <div id="modalActionComponent_panel_middle_video" class="modalActionComponent_panel modalActionComponent_panel_collapsible"></div>
+            <div id="modalActionComponent_panel_bottom_video" class="modalActionComponent_panel modalActionComponent_panel_secondary modalActionComponent_panel_collapsible"></div>
+        </div>
+        <div id="modalActionComponent_warpstagram" class="modalActionComponent modalActionComponent_licenseActivation">
+            <div id="modalActionComponent_panel_top_warpstagram" class="modalActionComponent_panel modalActionComponent_panel_primary">
+                <div class="modalActionComponent_child  modalActionComponent_child_title">
+                    <p>Warpstagram only</p>
+                </div>
+                <div class="modalActionComponent_child modalActionComponent_child_btn">
+                    <p>Activate</p>
+                </div>
+            </div>
+            <div id="modalActionComponent_panel_middle_warpstagram" class="modalActionComponent_panel modalActionComponent_panel_collapsible"></div>
+            <div id="modalActionComponent_panel_bottom_warpstagram" class="modalActionComponent_panel modalActionComponent_panel_secondary modalActionComponent_panel_collapsible"></div>
+        </div>
+        <div id="modalActionComponent_bundle" class="modalActionComponent modalActionComponent_licenseActivation modalActionComponent_active">
+            <div id="modalActionComponent_panel_top_bundle" class="modalActionComponent_panel  modalActionComponent_panel_primary">
+                <div class="modalActionComponent_child  modalActionComponent_child_title">
+                    <p>Warp BUNDLE</p>
+                </div>
+                <!-- <div class="modalActionComponent_child  modalActionComponent_child_activated">
+                    <p>Activated</p>
+                </div> -->
+                <div class="modalActionComponent_child modalActionComponent_child_btn">
+                    <p>Activate</p>
+                </div>
+            </div>
+            <div id="modalActionComponent_panel_middle_bundle" class="modalActionComponent_panel modalActionComponent_panel_collapsible"></div>
+            <div id="modalActionComponent_panel_bottom_bundle" class="modalActionComponent_panel modalActionComponent_panel_secondary modalActionComponent_panel_collapsible">
+                <div class="modalActionComponent_child  modalActionComponent_child_title">
+                    <!-- <p>Warp BUNDLE (all 3 downloaders)</p> -->
+                </div>
+                <!-- <div class="modalActionComponent_child  modalActionComponent_child_activated">
+                    <p>Activated</p>
+                </div> -->
+                <!-- <div class="modalActionComponent_child modalActionComponent_child_btn">
+                    <p>Activate</p>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- STATIC CONTENT, BOTTOM -->
+<div class="modalPrefsContentPanel modalPrefsContentPanel_bottom">
+
+    <!-- MODAL-SPACER -->
+    <div class="modalSpacer_space"></div>
+    <div class="modalSpacer_space"></div>
+    <div class="modalSpacer_line"></div>
+    <div class="modalSpacer_space"></div>
+
+    <!-- CHECKBOX -->
+    <div class="modalPrefsCheckbox">
+        <div class="modalPrefsCheckbox_child modalPrefsCheckbox_child_left">
+            <p>Automatically start Warp on system start</p>
+        </div>
+        <div class="modalPrefsCheckbox_child modalPrefsCheckbox_child_right">
+            <div class="button r modalCheckbox" id="modalPrefsCheckbox_autostartWarp">
+                <input type="checkbox" class="checkbox" id="modalPrefsCheckbox_autostartWarp_checkbox">
+                <div class="knobs "></div>
+                <div class="layer "></div>
+            </div>
+        </div>
+    </div>
+    <div class="modalPrefsCheckbox">
+        <div class="modalPrefsCheckbox_child modalPrefsCheckbox_child_left">
+            <p>Warp will minimize to your system tray when you close it</p>
+        </div>
+        <div class="modalPrefsCheckbox_child modalPrefsCheckbox_child_right">
+            <div class="button r modalCheckbox" id="modalPrefsCheckbox_minimizeToTrayOnClose">
+                <input type="checkbox" class="checkbox" id="modalPrefsCheckbox_minimizeToTrayOnClose_checkbox">
+                <div class="knobs "></div>
+                <div class="layer "></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- MODAL-DROPDOWN-RADIOSELECT -->

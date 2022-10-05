@@ -1,0 +1,62 @@
+// FLEX PARENT
+.example {
+    //// SIZE
+    width: 10rem;
+    max-width: 10rem;
+    height: 5rem;
+    //// SPACING
+    margin: auto 2rem;
+    //// FLEX
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    flex: 1 2;
+}
+
+// FLEX CHILDREN
+.example {
+    //// SIZE
+    width: 10rem;
+    max-width: 10rem;
+    height: 5rem;
+    //// SPACING
+    margin: auto 2rem;
+    //// CONTENT
+    font-size: 1.4rem;
+    color: #000;
+    font-weight: 900;
+    //// POSITION
+    // position: absolute;
+    //// FLEX
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    flex: 1 2;
+    //// DECORATIVE
+    // border: dotted 1px red; // test
+    background: $gray-light;
+    border-radius: 4px;
+    box-shadow: $shadow-before;
+    //// ANIMATION
+    transition: all ease-out 0.3s;
+    animation-name: moveInTop;
+    animation-duration: 0.6s;
+    &:hover {
+        //// CONTENT
+        color: white;
+        // background-image: $codepen-orange-1;
+        //// DECORATIVE
+        box-shadow: $shadow-after;
+        border-radius: 4px;
+        //// ANIMATION
+        transform: scale(1.01);
+    }
+    &:active {
+        background-color: yellow;
+        transform: scale(0.95);
+    }
+}

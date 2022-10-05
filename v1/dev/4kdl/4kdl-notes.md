@@ -1,0 +1,1 @@
+-   removing downloaded items from the app doesnt remove them from local directory

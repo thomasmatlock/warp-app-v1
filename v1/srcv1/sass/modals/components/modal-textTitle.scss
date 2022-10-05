@@ -1,0 +1,43 @@
+.modalPrefsTitle {
+    display: flex;
+    // border: 1px dotted white;
+    flex-direction: row;
+    height: 40px;
+    width: 100%;
+}
+
+.modalPrefsTitle_child {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    // border: 1px dotted white;
+    flex-grow: 1;
+}
+
+.modalPrefsTitle_child p {
+    color: white;
+    font-size: 1.5rem;
+    // margin-left: 1rem;
+    font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
+    cursor: default;
+    letter-spacing: 0.1rem;
+}
+
+.modalPrefsTitle_child i {
+    color: white;
+    // margin-right: 1rem;
+    cursor: pointer;
+}
+
+.modalPrefsTitle_child_left {
+    // background-color: rgb(226, 177, 177);
+    justify-content: flex-start;
+}
+
+.modalPrefsTitle_child_right {
+    // background-color: rgb(224, 211, 211);
+    justify-content: flex-end;
+    // border: 1px solid white;
+    // width: auto;
+}

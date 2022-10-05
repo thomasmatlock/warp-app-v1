@@ -1,0 +1,14 @@
+{
+    "cSpell.ignoreWords": ["container", "modal", "warpstagram"],
+    "cSpell.words": ["container", "modal", "warpstagram"],
+    "html.format.wrapLineLength": 0,
+    "editor.minimap.scale": 2,
+    "editor.fontFamily": "Segoe UI",
+    "editor.fontSize": 12,
+    "html-css-class-completion.JavaScriptLanguages": [
+        "javascript",
+        "javascriptreact",
+        "typescriptreact"
+    ],
+    "liveServer.settings.port": 5501
+}
