@@ -21,11 +21,11 @@ import {
   screen,
   // Tray,
 } from 'electron';
+import GetUser from './GetUser';
 import updater from './updater';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
 import BrowserQuery from './browserQuery';
-import GetUser from './GetUser';
 import Paths from './paths';
 import Downloads from '../downloaders/downloadsController';
 import Title from './Title';
@@ -84,7 +84,7 @@ app
       //   console.log(chalk.whiteBright.bgBlue('Professional mode'));
       // if (user.audio === 'developer')
       //   console.log(chalk.whiteBright.bgGreen('Developer mode'));
-      // windowController.createmWin();
+      windowController.createmWin();
     })();
     // createTray(mWin);
     // Shortcuts(view);

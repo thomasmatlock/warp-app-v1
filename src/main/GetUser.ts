@@ -37,7 +37,7 @@ export default async function getUser() {
     // console.log('requesting user data from', apiURL);
 
     userFromDB = await got(apiURL).json();
-    console.log(userFromDB.id);
+    // console.log(userFromDB.id);
   } catch (error) {
     console.log('error', error);
   }
