@@ -28,6 +28,9 @@ import BrowserQuery from './browserQuery';
 // import User from './UserOffline';
 import User from './UserOffline';
 // import User from './User';
+import GetUser from './GetUser';
+GetUser();
+
 import Paths from './paths';
 import Downloads from '../downloaders/downloadsController';
 import Title from './Title';

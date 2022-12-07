@@ -1,2 +1,1 @@
-export default function ResetUser() {
-  
+export default function ResetUser() {}
