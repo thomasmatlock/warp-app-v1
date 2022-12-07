@@ -5,13 +5,18 @@ import { machineId } from 'node-machine-id';
 
 export default async function getUser() {
   const userFromDB = {};
+  // console.log(os);
+  // console.log(os.loadavg());
+  // console.log(os.arch());
+
   const baseURL = 'https://warp-api.vercel.app/api/v1/user';
   const machineID = await machineId();
+  const arch = os.arch();
   const hostname = os.hostname();
   const platform = os.platform();
   const type = os.type();
   const release = os.release();
-  const apiURL = `${baseURL}?machine_id=${machineID}&hostname=${hostname}&platform=${platform}&type=${type}&release=${release}`;
+  const apiURL = `${baseURL}?machine_id=${machineID}&hostname=${hostname}&platform=${platform}&type=${type}&release=${release}&arch=${arch}`;
   try {
     return await got(apiURL).json();
   } catch (error) {
