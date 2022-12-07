@@ -21,6 +21,7 @@ export default async function getUser() {
   let userFromDB: any;
   try {
     machineID = await getMachineId();
+    // console.log(machineID);
   } catch (error) {
     console.log('error', error);
   }
@@ -28,15 +29,15 @@ export default async function getUser() {
   // const apiURL = 'https://warp-api.vercel.app/api/v1/user';
   // const apiURL = `https://warpdownload.com/api/v1/user?id=Alice`;
   const baseURL = 'https://warp-api.vercel.app/api/v1/user';
-  const apiURL = `${baseURL}?id=${machineID}&hostname=${hostname}&platform=${platform}&type=${type}&release=${release}`;
+  const apiURL = `${baseURL}?machine_id=${machineID}&hostname=${hostname}&platform=${platform}&type=${type}&release=${release}`;
   const placeholder =
     'https://warp-api.vercel.app/api/v1/user?hostname=dummy_hostname&platform=dummy_platform&type=dummy_type&release=dummy_release&machine_id=426e55fe-bfaf-4f5e-9030-edb84acd331';
   // const apiURL = `https://warp-api.vercel.app/api/v1/user?id=${machineID}`;
   try {
-    console.log('requesting user data from', apiURL);
+    // console.log('requesting user data from', apiURL);
 
     userFromDB = await got(apiURL).json();
-    console.log(userFromDB);
+    console.log(userFromDB.id);
   } catch (error) {
     console.log('error', error);
   }
