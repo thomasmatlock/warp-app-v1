@@ -84,7 +84,7 @@ app
       //   console.log(chalk.whiteBright.bgBlue('Professional mode'));
       // if (user.audio === 'developer')
       //   console.log(chalk.whiteBright.bgGreen('Developer mode'));
-      windowController.createmWin();
+      // windowController.createmWin();
     })();
     // createTray(mWin);
     // Shortcuts(view);
