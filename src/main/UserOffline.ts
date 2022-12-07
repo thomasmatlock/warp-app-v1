@@ -146,19 +146,19 @@ export async function getUser() {
 }
 
 module.exports = {
-  getUser: getUser,
-  setUser: setUser,
-  increaseAudioDownloadCount: increaseAudioDownloadCount,
-  increaseVideoDownloadCount: increaseVideoDownloadCount,
-  increaseWarpstagramDownloadCount: increaseWarpstagramDownloadCount,
-  getAudioDownloadsCount: getAudioDownloadsCount,
-  getVideoDownloadsCount: getVideoDownloadsCount,
-  getWarpstagramDownloadsCount: getWarpstagramDownloadsCount,
-  canUserDownloadAudio: canUserDownloadAudio,
-  canUserDownloadVideo: canUserDownloadVideo,
-  canUserDownloadWarpstagram: canUserDownloadWarpstagram,
-  upgradeUserModule: upgradeUserModule,
-  resetUser: resetUser,
+  getUser,
+  setUser,
+  increaseAudioDownloadCount,
+  increaseVideoDownloadCount,
+  increaseWarpstagramDownloadCount,
+  getAudioDownloadsCount,
+  getVideoDownloadsCount,
+  getWarpstagramDownloadsCount,
+  canUserDownloadAudio,
+  canUserDownloadVideo,
+  canUserDownloadWarpstagram,
+  upgradeUserModule,
+  resetUser,
 };
 // USE TO UPGRADE USER
 // User.upgradeUserModule('audio', 'free');
