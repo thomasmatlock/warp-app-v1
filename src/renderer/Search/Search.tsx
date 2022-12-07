@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import { Fragment, useState, useContext } from 'react';
 import './Search.scss';
 import SearchIcon from './lightning.svg';
@@ -119,7 +120,7 @@ const Search = (props) => {
   const mouseLeaveHandler = () => {};
 
   return (
-    <Fragment>
+    <>
       <form
         onMouseEnter={mouseEnterHandler}
         onMouseLeave={mouseLeaveHandler}
@@ -244,7 +245,7 @@ const Search = (props) => {
           // isLicenseMode={navCtx.licenseMode}
         />
       )}
-    </Fragment>
+    </>
   );
 };
 export default Search;

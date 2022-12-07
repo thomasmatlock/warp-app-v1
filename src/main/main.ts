@@ -75,16 +75,7 @@ app
       // user = await User.upgradeAllUserModules('developer');
       // if (user !== undefined) console.log(user.audio);
       user = await GetUser();
-
-      // if (user.audio === 'free')
-      //   console.log(chalk.whiteBright.bgRed('Free mode'));
-      // if (user.audio === 'personal')
-      //   console.log(chalk.whiteBright.bgYellow('Personal mode'));
-      // if (user.audio === 'professional')
-      //   console.log(chalk.whiteBright.bgBlue('Professional mode'));
-      // if (user.audio === 'developer')
-      //   console.log(chalk.whiteBright.bgGreen('Developer mode'));
-      // windowController.createmWin();
+      windowController.createmWin();
     })();
     // createTray(mWin);
     // Shortcuts(view);
