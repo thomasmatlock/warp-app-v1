@@ -25,12 +25,7 @@ import updater from './updater';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
 import BrowserQuery from './browserQuery';
-// import User from './UserOffline';
-import User from './UserOffline';
-// import User from './User';
 import GetUser from './GetUser';
-GetUser();
-
 import Paths from './paths';
 import Downloads from '../downloaders/downloadsController';
 import Title from './Title';
@@ -79,7 +74,7 @@ app
       // user = await User.upgradeAllUserModules('professional');
       // user = await User.upgradeAllUserModules('developer');
       // if (user !== undefined) console.log(user.audio);
-      user = await User.getUser();
+      user = await GetUser();
 
       // if (user.audio === 'free')
       //   console.log(chalk.whiteBright.bgRed('Free mode'));
@@ -89,7 +84,7 @@ app
       //   console.log(chalk.whiteBright.bgBlue('Professional mode'));
       // if (user.audio === 'developer')
       //   console.log(chalk.whiteBright.bgGreen('Developer mode'));
-      windowController.createmWin();
+      // windowController.createmWin();
     })();
     // createTray(mWin);
     // Shortcuts(view);
