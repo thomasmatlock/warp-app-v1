@@ -15,17 +15,17 @@ export default function ffmpegInit(mWin: BrowserWindow) {
   if (!initialized) {
     initialized = true;
     setTimeout(() => {
-      mWin.webContents.send(
-        'download-progress',
-        `ffmpegController, downloading ffmpeg to path: ${generateFFMPEGPath()}`
-        // `verifying ${platformSnippet} binaries integrity..`
-      );
+      // mWin.webContents.send(
+      //   'download-progress',
+      //   `ffmpegController, downloading ffmpeg to path: ${generateFFMPEGPath()}`
+      //   // `verifying ${platformSnippet} binaries integrity..`
+      // );
       try {
         if (fs.existsSync(generateFFMPEGPath())) {
-          console.log(
-            'ffmpegController, ffmpeg exists, path: ',
-            generateFFMPEGPath()
-          );
+          // console.log(
+          //   'ffmpegController, ffmpeg exists, path: ',
+          //   generateFFMPEGPath()
+          // );
           // mWin.webContents.send('update-not-available', '');
         } else if (!fs.existsSync(generateFFMPEGPath())) {
           console.log(
@@ -35,7 +35,7 @@ export default function ffmpegInit(mWin: BrowserWindow) {
           mWin.webContents.send(
             'download-progress',
             // `installing FFMPEG to ${generateFFMPEGPath()}...`
-            `installing FFMPEG...`
+            `installing FFMPEG to ${getFFMPEGDir()}...`
             // `verifying ${platformSnippet} binaries integrity..`
           );
           downloadFFMPEGbinary(mWin, getFFMPEGDir());
