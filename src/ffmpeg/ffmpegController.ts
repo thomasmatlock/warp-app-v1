@@ -17,14 +17,21 @@ export default function ffmpegInit(mWin: BrowserWindow) {
     setTimeout(() => {
       mWin.webContents.send(
         'download-progress',
-        `downloading ffmpeg to path: ${generateFFMPEGPath()}`
+        `ffmpegController, downloading ffmpeg to path: ${generateFFMPEGPath()}`
         // `verifying ${platformSnippet} binaries integrity..`
       );
       try {
         if (fs.existsSync(generateFFMPEGPath())) {
-          console.log('ffmpeg path: ', generateFFMPEGPath());
+          console.log(
+            'ffmpegController, ffmpeg exists, path: ',
+            generateFFMPEGPath()
+          );
           // mWin.webContents.send('update-not-available', '');
         } else if (!fs.existsSync(generateFFMPEGPath())) {
+          console.log(
+            'ffmpegController, ffmpeg DOES NOT exist, path: ',
+            generateFFMPEGPath()
+          );
           mWin.webContents.send(
             'download-progress',
             // `installing FFMPEG to ${generateFFMPEGPath()}...`
