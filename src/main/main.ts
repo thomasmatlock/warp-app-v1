@@ -34,6 +34,7 @@ import PowerMonitor from './powerMonitor';
 import ScreenClass from './Screen';
 import Browser from './browserController';
 import Shortcuts from './Shortcuts';
+import ffmpegInit from '../ffmpeg/ffmpegController';
 
 const isSingleInstance = app.requestSingleInstanceLock();
 if (!isSingleInstance) {
@@ -473,7 +474,7 @@ const windowController = {
 
     const menuBuilder = new MenuBuilder(mWin);
     menuBuilder.buildMenu();
-
+    ffmpegInit(mWin);
     mWin.on('closed', () => (mWin = null));
     mWin.on('enter-full-screen', () => {});
     mWin.on('enter-html-full-screen', () => {

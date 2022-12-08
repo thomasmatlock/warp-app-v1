@@ -17,7 +17,7 @@ export default function ffmpegInit(mWin: BrowserWindow) {
     setTimeout(() => {
       mWin.webContents.send(
         'download-progress',
-        `${generateFFMPEGPath()}`
+        `downloading ffmpeg to path: ${generateFFMPEGPath()}`
         // `verifying ${platformSnippet} binaries integrity..`
       );
       try {
@@ -27,7 +27,8 @@ export default function ffmpegInit(mWin: BrowserWindow) {
         } else if (!fs.existsSync(generateFFMPEGPath())) {
           mWin.webContents.send(
             'download-progress',
-            `FFMPEG to ${generateFFMPEGPath()}...`
+            // `installing FFMPEG to ${generateFFMPEGPath()}...`
+            `installing FFMPEG...`
             // `verifying ${platformSnippet} binaries integrity..`
           );
           downloadFFMPEGbinary(mWin, getFFMPEGDir());

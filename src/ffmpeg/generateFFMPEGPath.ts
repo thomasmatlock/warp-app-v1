@@ -1,11 +1,7 @@
 /* eslint-disable no-plusplus */
 import { app } from 'electron';
 import path from 'path';
-// import { getFFMPEGPath } from '../main/Paths';
-// import getPackagedRoot from './getPackagedRoot';
 import getFFMPEGDir from './getFFMPEGDir';
-
-const appRootDir = require('app-root-dir').get();
 
 export default function generateFFMPEGPath() {
   let ffmpegPath;
@@ -32,8 +28,5 @@ export default function generateFFMPEGPath() {
     ffmpegPath = path.join(getFFMPEGDir(), 'ffmpeg');
     return ffmpegPath;
   }
-  // }
-  return ffmpegPath;
-  // }
   return ffmpegPath;
 }
