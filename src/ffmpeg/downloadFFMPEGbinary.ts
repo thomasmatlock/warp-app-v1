@@ -17,7 +17,7 @@ export default async function downloadFFMPEGbinary(
   mWin: BrowserWindow,
   binaryPath: string
 ) {
-  console.log(binaryPath);
+  console.log('downloadFFMPEGbinary, binaryPath: ', binaryPath);
 
   if (!initialized) {
     initialized = true;
