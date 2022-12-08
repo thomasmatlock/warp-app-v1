@@ -7,9 +7,11 @@ import ffmpeg from 'fluent-ffmpeg';
 import { app, BrowserWindow, dialog } from 'electron';
 import convertToSeconds from './convertTimeToSeconds';
 import getETA from './getETA';
-import generateFFMPEGPath from './generateFFMPEGPath';
+import generateFFMPEGPath from '../../ffmpeg/generateFFMPEGPath';
 
 const ffmpegPath = generateFFMPEGPath();
+console.log('convertFile', ffmpegPath);
+
 ffmpeg.setFfmpegPath(ffmpegPath);
 export default function convertFile(
   mWin: BrowserWindow,

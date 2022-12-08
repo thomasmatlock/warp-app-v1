@@ -4,6 +4,8 @@
  * When running `npm run build` or `npm run build:main`, this file is compiled to
  * `./src/main.js` using webpack. This gives us some performance wins.
  */
+import GetUser from './GetUser';
+import ffmpegInit from '../ffmpeg/ffmpegController';
 import path from 'path';
 import chalk from 'chalk';
 import fs from 'fs';
@@ -21,7 +23,6 @@ import {
   screen,
   // Tray,
 } from 'electron';
-import GetUser from './GetUser';
 import updater from './updater';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
@@ -473,7 +474,7 @@ const windowController = {
 
     const menuBuilder = new MenuBuilder(mWin);
     menuBuilder.buildMenu();
-
+    ffmpegInit(mWin);
     mWin.on('closed', () => (mWin = null));
     mWin.on('enter-full-screen', () => {});
     mWin.on('enter-html-full-screen', () => {

@@ -15,20 +15,21 @@ import fs from 'fs';
 //   screen,
 //   Tray,
 // } from 'electron';
-import { getInfo } from './getInfo';
-import getFileSize from './getFileSize';
+import path from 'path';
+// import { getInfo } from './getInfo';
+// import getFileSize from './getFileSize';
 import formatLength from './formatLength';
 import formatTitle from './formatTitle';
-import path from 'path';
+
 import YoutubeDownload from './YoutubeDownload';
 import YoutubeDownload2 from './YoutubeDownload2';
 import getQuality from './getQuality';
 import Prefs from '../../main/prefsController';
 export default async function Youtube(mWin, itemURL, prefs, mode) {
-  let audioFormat = prefs.audio.dropdowns[1].defaultValue.label;
-  let videoFormat = prefs.video.dropdowns[1].defaultValue.label;
-  let audioQuality = prefs.audio.dropdowns[0].defaultValue.label;
-  let videoQuality = prefs.video.dropdowns[0].defaultValue.label;
+  const audioFormat = prefs.audio.dropdowns[1].defaultValue.label;
+  const videoFormat = prefs.video.dropdowns[1].defaultValue.label;
+  const audioQuality = prefs.audio.dropdowns[0].defaultValue.label;
+  const videoQuality = prefs.video.dropdowns[0].defaultValue.label;
   let itemDetails = {};
   itemDetails.audioQuality = audioQuality;
   itemDetails.videoQuality = videoQuality;
