@@ -10,6 +10,8 @@ import getETA from './getETA';
 import generateFFMPEGPath from './generateFFMPEGPath';
 
 const ffmpegPath = generateFFMPEGPath();
+console.log();
+
 ffmpeg.setFfmpegPath(ffmpegPath);
 export default function convertFile(
   mWin: BrowserWindow,
