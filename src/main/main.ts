@@ -35,6 +35,9 @@ import PowerMonitor from './powerMonitor';
 import ScreenClass from './Screen';
 import Browser from './browserController';
 import Shortcuts from './Shortcuts';
+// console.log(process.env.APPLE_ID);
+
+// console.log(dotenv);
 
 const isSingleInstance = app.requestSingleInstanceLock();
 if (!isSingleInstance) {
