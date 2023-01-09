@@ -70,6 +70,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     // margin: 2rem;
     // left: 0px;
     transition: 0.3s ease-out;
+    transition: all 0.25s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;
     // z-index: 999;
     &:hover {
         // transform: scale(1.01);

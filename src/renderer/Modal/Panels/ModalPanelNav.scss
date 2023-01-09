@@ -27,6 +27,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     height: calc(100% - 50px) !important;
     // z-index: 30;
     // box-shadow: 0 10px 20px -8px #c5d6d6;
+    transition: all 0.25s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;
     &:hover {
         width: 180px;
         // box-shadow: 0rem -1rem 3rem rgba(0, 0, 0, 0.6);
@@ -49,6 +50,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     margin: 4px;
     transition: all ease-out 0.1s;
     border-radius: 4px;
+    transition: all 0.25s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;
     &__icon {
         display: flex;
         flex-direction: column;
@@ -135,6 +137,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     margin: 4px;
     // max-height: 60px;
     max-height: 50px !important;
+    transition: all 0.25s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;
 }
 
 .modalPrefsNav_button__active img {

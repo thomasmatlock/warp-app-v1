@@ -22,6 +22,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     position: fixed;
     // top: 25%;
     top: calc(50% - 300px);
+    // top: calc(50% - 5vh);
     left: calc(50% - 400px) !important;
     background-color: transparent;
     display: flex;
@@ -38,14 +39,17 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     min-height: 480px;
     // min-width: 1000px;
     overflow: hidden !important;
-    transition: all 0.1s ease-in-out;
+    // transition: all 0.1s ease-in-out;
     height: 300px;
     // height: 800px;
     // width: 1000px !important;
-    width: 800px !important;
+    // width: 800px !important;
+    transition: all 0.25s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;
     &__license_mode {
-        $min-height: 900px;
-        $min-width: 1600px;
+        $min-height: calc(100% - 10vh);
+        $min-height: clamp(480px, 100%, 90vh);
+        // $min-width: 1600px;
+        $min-width: clamp(1200px, 70%, 1600px);
         min-width: $min-width; // width: 1200px;
         // width: 75%;
         // width: clamp(1200px, 70%, 1600px) !important;
@@ -57,6 +61,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
         // width: 60% !important;
         // top: calc(50% - 475px);
         // left: calc(50% - 900px) !important;
+        transition: all 0.25s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;
     }
     &__astronaut {
         height: 60px !important;
@@ -82,6 +87,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
         justify-content: center;
         // border: 3px dotted red;
         background-color: $gray-dark-darkest;
+        transition: all 0.25s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;
     }
 }
 

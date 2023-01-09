@@ -1,6 +1,8 @@
 .modalPrefsPanel {
     height: 100%;
-    width: 100%;
+    height: clamp(180px, 100%, 90vh);
+    // width: 100%;
+    width: clamp(180px, 100%, 90vw);
     // min-width: 180px;
     // border: 1px dotted green;
     // padding: 1rem;
@@ -10,6 +12,8 @@
     justify-content: flex-start;
     align-items: center;
     align-content: center;
+    margin: 0 auto;
+    transition: all 0.25s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;
     // background-color: $gray-dark-lightest;
     // box-shadow: 0 10px 20px -8px #c5d6d6;
 }

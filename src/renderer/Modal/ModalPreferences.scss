@@ -17,6 +17,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     background-color: $gray-dark-darkest;
     // width: 1600px;
     // height: 400px;
+    transition: all 0.25s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;
     &__content {
         height: 100%;
         width: 100%;
@@ -24,6 +25,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
         flex-direction: row;
         justify-content: space-evenly;
         align-items: center;
+        transition: all 0.25s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;
         &__panel {
             height: 100%;
             width: 100%;
@@ -31,6 +33,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
             flex-direction: column;
             justify-content: flex-start;
             align-items: center;
+            transition: all 0.25s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;
             &__nav {
                 display: flex;
                 justify-content: flex-start !important;
@@ -54,6 +57,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
                 width: 100%;
                 // flex: 1;
                 // height: 100%;
+                transition: all 0.25s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;
             }
         }
     }
