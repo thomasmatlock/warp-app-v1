@@ -4,40 +4,44 @@
  * When running `npm run build` or `npm run build:main`, this file is compiled to
  * `./src/main.js` using webpack. This gives us some performance wins.
  */
-import GetUser from './GetUser';
-import ffmpegInit from '../ffmpeg/ffmpegController';
 import path from 'path';
-import chalk from 'chalk';
-import fs from 'fs';
+
+// import chalk from 'chalk';
+// import fs from 'fs';
 import {
   app,
   BrowserView,
   BrowserWindow,
   clipboard,
   dialog,
-  globalShortcut,
-  Menu,
-  nativeTheme,
+  // globalShortcut,
+  // Menu,
+  // nativeTheme,
   shell,
   ipcMain,
   screen,
   // Tray,
 } from 'electron';
+
+import ffmpegInit from '../ffmpeg/ffmpegController';
+import GetUser from './GetUser';
 import updater from './updater';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
 import BrowserQuery from './browserQuery';
-import Paths from './paths';
-import Downloads from '../downloaders/downloadsController';
-import Title from './Title';
-import Prefs from './prefsController';
+import * as Paths from './paths';
+import * as Downloads from '../downloaders/downloadsController';
+import * as Title from './title';
+import * as Prefs from './prefsController';
 import PowerMonitor from './powerMonitor';
 import ScreenClass from './Screen';
-import Browser from './browserController';
-import Shortcuts from './Shortcuts';
+import * as Browser from './browserController';
+import * as Shortcuts from './Shortcuts';
 // console.log(process.env.APPLE_ID);
+import testUrls from '../downloaders/youtube/testURLS';
 
 // console.log(dotenv);
+import createCustomer from '../payments/stripe/stripe';
 
 const isSingleInstance = app.requestSingleInstanceLock();
 if (!isSingleInstance) {
@@ -46,76 +50,21 @@ if (!isSingleInstance) {
 
 const appRootDir = require('app-root-dir').get();
 // test, just added apple id/pass to gh secrets
-let prefs: any;
-let user: any;
+let prefs: object;
+let user: object;
+let browserPanelState = 'default';
+
 // let tray;
-let mWin: BrowserWindow | null = null;
+let mWin: BrowserWindow | null;
 let view: BrowserView | null = null;
 let Screen: ScreenClass;
-
-app
-  .whenReady()
-  .then(() => {
-    PowerMonitor();
-    // Prefs.resetPrefs();
-    prefs = Prefs.getPrefs();
-    // console.log(prefs);
-    Screen = new ScreenClass(mWin);
-    setActiveURL();
-
-    (async function () {
-      // user = await User.resetUser();
-      // user = await User.upgradeUserModule('audio', 'free');
-      // user = await User.upgradeUserModule('audio', 'personal');
-      // user = await User.upgradeUserModule('audio', 'professional');
-      // user = await User.upgradeUserModule('video', 'free');
-      // user = await User.upgradeUserModule('video', 'personal');
-      // user = await User.upgradeUserModule('video', 'professional');
-      // user = await User.upgradeUserModule('warpstagram', 'free');
-      // user = await User.upgradeUserModule('warpstagram', 'personal');
-      // user = await User.upgradeUserModule('warpstagram', 'professional');
-      // user = await User.upgradeAllUserModules('personal');
-      // user = await User.upgradeAllUserModules('professional');
-      // user = await User.upgradeAllUserModules('developer');
-      // if (user !== undefined) console.log(user.audio);
-      user = await GetUser();
-      windowController.createmWin();
-    })();
-    // createTray(mWin);
-    // Shortcuts(view);
-    // let tray = null;
-    // console.log(app.getAppPath());
-
-    app.on('activate', () => {
-      // if (mWin === null) windowController.createmWin();
-    });
-  })
-  .catch(console.log);
-
-import testUrls from '../downloaders/youtube/testURLS';
-// import { v4 as uuidv4 } from 'uuid';
-import createCustomer from '../payments/stripe/stripe';
-createCustomer();
-
-let randomYoutubeURL =
-  testUrls.youtube[Math.floor(Math.random() * testUrls.youtube.length)];
-let randomYoutubePlaylistURL =
-  testUrls.youtubePlaylists[
-    Math.floor(Math.random() * testUrls.youtubePlaylists.length)
-  ];
-/// ///////////////////////////////////////////////////
-
-let audioDownloads = Downloads.getAudioDownloads();
-let videoDownloads = Downloads.getVideoDownloads();
-let warpstagramDownloads = Downloads.getWarpstagramDownloads();
-
-async function submitSearchQuery(currentURL, query) {
-  let joinedQuery = await BrowserQuery(currentURL, query);
-  // console.log(joinedQuery);
-  if (view) view.webContents.loadURL(joinedQuery);
-}
-
-let activeURL: string;
+const audioDownloads = Downloads.getAudioDownloads();
+const videoDownloads = Downloads.getVideoDownloads();
+const warpstagramDownloads = Downloads.getWarpstagramDownloads();
+const viewBounds = {
+  x: 0,
+  y: 130,
+};
 const setActiveURL = () => {
   // console.log(prefs.general.dropdowns[1].defaultValue);
 
@@ -145,8 +94,263 @@ const setActiveURL = () => {
   // if (prefs.general.dropdowns[1].defaultValue.id.includes('reddit'))        view.webContents.loadURL('https://reddit.com');
   // if (prefs.general.dropdowns[1].defaultValue.id.includes('deviantart'))    view.webContents.loadURL('https://deviantart.com');
 };
+const windowController = {
+  async createmWin() {
+    const RESOURCES_PATH = app.isPackaged
+      ? path.join(process.resourcesPath, 'assets')
+      : path.join(__dirname, '../../assets');
+
+    const getAssetPath = (...paths: string[]): string => {
+      return path.join(RESOURCES_PATH, ...paths);
+    };
+
+    mWin = new BrowserWindow({
+      x: Screen.getScreenState().bounds.x,
+      y: Screen.getScreenState().bounds.y,
+      width: Screen.getScreenState().bounds.width,
+      height: Screen.getScreenState().bounds.height,
+      minWidth: 850,
+      minHeight: 500,
+      show: false,
+      darkTheme: true,
+      // titleBarStyle: 'hidden',
+      // titleBarOverlay: {
+      //   color: '#1a1a1a',
+      //   symbolColor: '#eee',
+      //   height: 40,
+      // },
+      // if (nativeTheme.shouldUseDarkColors === true) {
+      //   mWin.setBackgroundColor('#1a1a1a');
+      // } else {
+      //   mWin.setBackgroundColor('#fff');
+      // }
+
+      // nativeTheme.shouldUseDarkColors ? mWin.setBackgroundColor('#1a1a1a') : mWin.setBackgroundColor('#fff'),
+      icon: getAssetPath('icon.png'),
+      //  nativeTheme.shouldUseDarkColors
+      // ? getAssetPath('icon.png')
+      // : getAssetPath('icon.png'),
+      webPreferences: {
+        preload: app.isPackaged
+          ? path.join(__dirname, 'preload.js')
+          : path.join(__dirname, '../../.erb/dll/preload.js'),
+      },
+    });
+    mWin.loadURL(resolveHtmlPath('index.html'));
+
+    const wc = mWin.webContents;
+
+    const menuBuilder = new MenuBuilder(mWin);
+    menuBuilder.buildMenu();
+    ffmpegInit(mWin);
+    mWin.on('closed', () => (mWin = null));
+    mWin.on('enter-full-screen', () => {});
+    mWin.on('enter-html-full-screen', () => {
+      const displayBounds = screen.getAllDisplays()[0].bounds;
+      if (mWin) mWin.menuBarVisible = false;
+      if (view) view.setBounds(displayBounds);
+    });
+    mWin.on('blur', () => {
+      // console.log('mWin blurred');
+
+      Shortcuts.removeShortcuts();
+      // Browser.resize(browserPanelState, mWin, view);
+    });
+    mWin.on('focus', () => {
+      // console.log('mWin focused');
+
+      Shortcuts.addShortcuts(mWin, view);
+
+      Browser.resize(browserPanelState, mWin, view);
+    });
+    mWin.on('leave-full-screen', () => {});
+    mWin.on('leave-html-full-screen', () => {
+      if (mWin) mWin.menuBarVisible = true;
+      if (view) Browser.showBrowser(mWin, view);
+    });
+    mWin.on('maximize', () => {
+      Browser.resize(browserPanelState, mWin, view);
+      Screen.setScreenState(mWin);
+    });
+    mWin.on('minimize', () => {});
+    // if (isDebug) {
+    //   // await installExtensions();
+    // }
+    mWin.on('ready-to-show', () => {
+      if (mWin) mWin.webContents.send('ready-to-show');
+      // setTimeout(() )
+      // copilot
+
+      // setTimeout(() => {
+      // }, 1000);
+
+      if (process.platform === 'win32' && mWin)
+        mWin.webContents.send('platform', 'windows');
+      if (process.platform === 'darwin' && mWin)
+        mWin.webContents.send('platform', 'darwin');
+      if (process.platform === 'linux' && mWin)
+        mWin.webContents.send('platform', 'linux');
+      if (!mWin) {
+        throw new Error('"mWin" is not defined');
+      }
+      if (process.env.START_MINIMIZED) {
+        mWin.minimize();
+      } else {
+        // if (view) {
+        // }
+        mWin.show();
+        Title.setTitle(mWin, 'audio', user);
+
+        if (Screen.screenState.isMaximized) mWin.maximize();
+        // if (view === null) windowController.createbView();
+        mWin.webContents.send('appVersion', app.getVersion());
+        mWin.webContents.send('appRoot', appRootDir);
+        mWin.webContents.send('main: prefs', prefs);
+        mWin.webContents.send('main: audioDownloads', audioDownloads);
+        mWin.webContents.send('main: videoDownloads', videoDownloads);
+        mWin.webContents.send(
+          'main: warpstagramDownloads',
+          warpstagramDownloads
+        );
+      }
+    });
+
+    mWin.on('resize', () => {});
+    mWin.on('moved', () => {
+      Screen.setScreenState(mWin);
+    });
+    mWin.on('unmaximize', () => {
+      Browser.resize(browserPanelState, mWin, view);
+      Screen.setScreenState(mWin);
+    });
+    mWin.on('resized', () => {
+      Browser.resize(browserPanelState, mWin, view);
+      Screen.setScreenState(mWin);
+    });
+    mWin.on('restore', () => {
+      Browser.resize(browserPanelState, mWin, view);
+    });
+
+    mWin.on('show', () => {
+      Browser.resize(browserPanelState, mWin, view);
+    });
+  },
+  // console.log('mWin', mWin);
+
+  async createbView() {
+    view = new BrowserView();
+    if (mWin) mWin.setBrowserView(view);
+    if (mWin)
+      view.setBounds({
+        x: viewBounds.x,
+        y: viewBounds.y,
+        width: Math.round(mWin.getContentBounds().width / 2),
+        // width: mWin.getContentBounds().width / 2,
+        height: mWin.getContentBounds().height - 192,
+      });
+    view.setAutoResize({ width: true, height: true });
+    view.setBackgroundColor('#1a1a1a');
+    // console.log(randomYoutubeURL);
+    if (app.isPackaged) {
+      view.webContents.loadURL('https://www.youtube.com');
+    } else {
+      view.webContents.loadURL(randomYoutubeURL);
+    }
+    view.webContents.insertCSS('scrollbar{    width: 100px;}');
+    // view.webContents.loadURL('https://open.spotify.com/');
+    view.webContents.on('did-navigate-in-page', (e, url) => {
+      // console.log(url);
+
+      if (mWin) mWin.webContents.send('browser-url-change', url);
+    });
+    view.webContents.on('ready-to-show', (e, url) => {
+      if (mWin) {
+        // mWin.show();
+        updater(mWin);
+        if (view)
+          mWin.webContents.send(
+            'bView ready-to-show',
+            view.webContents.getURL()
+          );
+      }
+    });
+    view.webContents.on('did-finish-load', (e, url: string) => {
+      if (mWin) {
+        // mWin.show();
+        mWin.webContents.send('bView ready-to-show', view.webContents.getURL());
+        // mWin.webContents.send('bView ready-to-show', view.webContents.getURL());
+      }
+    });
+  },
+};
+app
+  .whenReady()
+  .then(() => {
+    PowerMonitor();
+    // Prefs.resetPrefs();
+    prefs = Prefs.getPrefs();
+    // console.log(prefs);
+    Screen = new ScreenClass(mWin);
+    // console.log('Screen', Screen);
+
+    setActiveURL();
+
+    (async function init() {
+      // user = await User.resetUser();
+      // user = await User.upgradeUserModule('audio', 'free');
+      // user = await User.upgradeUserModule('audio', 'personal');
+      // user = await User.upgradeUserModule('audio', 'professional');
+      // user = await User.upgradeUserModule('video', 'free');
+      // user = await User.upgradeUserModule('video', 'personal');
+      // user = await User.upgradeUserModule('video', 'professional');
+      // user = await User.upgradeUserModule('warpstagram', 'free');
+      // user = await User.upgradeUserModule('warpstagram', 'personal');
+      // user = await User.upgradeUserModule('warpstagram', 'professional');
+      // user = await User.upgradeAllUserModules('personal');
+      // user = await User.upgradeAllUserModules('professional');
+      // user = await User.upgradeAllUserModules('developer');
+      // if (user !== undefined) console.log(user.audio);
+      user = await GetUser();
+      console.log('user', user);
+
+      // console.log(typeof user);
+
+      windowController.createmWin();
+    })();
+    // createTray(mWin);
+    // Shortcuts(view);
+    // let tray = null;
+    // console.log(app.getAppPath());
+
+    app.on('activate', () => {
+      // if (mWin === null) windowController.createmWin();
+    });
+  })
+  .catch(console.log);
+
+// import { v4 as uuidv4 } from 'uuid';
+
+createCustomer();
+
+let randomYoutubeURL =
+  testUrls.youtube[Math.floor(Math.random() * testUrls.youtube.length)];
+// const randomYoutubePlaylistURL =
+//   testUrls.youtubePlaylists[
+//     Math.floor(Math.random() * testUrls.youtubePlaylists.length)
+//   ];
+/// ///////////////////////////////////////////////////
+
+async function submitSearchQuery(currentURL: string, query: string) {
+  // let joinedQuery: string;
+  const joinedQuery = await BrowserQuery(currentURL, query);
+  // console.log(joinedQuery);
+  if (view) view.webContents.loadURL(joinedQuery);
+}
+
+// let activeURL: string;
 
 const contextMenu = require('electron-context-menu');
+
 contextMenu({});
 
 if (process.env.NODE_ENV === 'production') {
@@ -161,19 +365,19 @@ if (isDebug) {
   // require('electron-debug')(); // ENABLE FOR DEVTOOLS
 }
 
-const installExtensions = async () => {
-  const installer = require('electron-devtools-installer');
-  const forceDownload = !!process.env.UPGRADE_EXTENSIONS;
+// const installExtensions = async () => {
+//   const installer = require('electron-devtools-installer');
+//   const forceDownload = !!process.env.UPGRADE_EXTENSIONS;
 
-  const extensions = ['REACT_DEVELOPER_TOOLS'];
+//   const extensions = ['REACT_DEVELOPER_TOOLS'];
 
-  return installer
-    .default(
-      extensions.map((name) => installer[name]),
-      forceDownload
-    )
-    .catch(console.log);
-};
+//   return installer
+//     .default(
+//       extensions.map((name) => installer[name]),
+//       forceDownload
+//     )
+//     .catch(console.log);
+// };
 
 // class AppUpdater {
 //   constructor() {
@@ -183,7 +387,6 @@ const installExtensions = async () => {
 //   }
 // }
 
-let browserPanelState = 'default';
 (function appListeners() {
   // MENU LISTENERS
   ipcMain.on('Menu: Shortcuts: Restart', async (event, arg) => {
@@ -246,15 +449,18 @@ let browserPanelState = 'default';
     // console.log('source: change', arg);
 
     if (view) view.webContents.loadURL(arg);
-    if (view.webContents.getURL().includes('pinterest')) {
-      if (view)
-        view.webContents.insertCSS('html, body, { background-color: #fff;  }');
-    }
+    if (view)
+      if (view.webContents.getURL().includes('pinterest')) {
+        if (view)
+          view.webContents.insertCSS(
+            'html, body, { background-color: #fff;  }'
+          );
+      }
   });
   // BROWSERBAR DOWNLOAD BUTTON LISTENERS
   ipcMain.on('BrowserBar: button: downloadAudio', async (event, arg) => {
-    let items = [];
-    let item = { url: '' };
+    const items = [];
+    const item = { url: '' };
 
     if (view) item.url = view.webContents.getURL();
     items.push(item);
@@ -271,8 +477,8 @@ let browserPanelState = 'default';
     }
   );
   ipcMain.on('BrowserBar: button: downloadVideo', async (event, arg) => {
-    let items = [];
-    let item = { url: '' };
+    const items = [];
+    const item = { url: '' };
 
     if (view) item.url = view.webContents.getURL();
     items.push(item);
@@ -347,7 +553,7 @@ let browserPanelState = 'default';
           .then((result) => {
             if (!result.canceled) Prefs.setVideoPath(result.filePaths[0]);
             prefs = Prefs.getPrefs();
-            mWin.webContents.send('main: prefs', prefs);
+            if (mWin) mWin.webContents.send('main: prefs', prefs);
           })
           .catch((err) => {
             console.log(err);
@@ -363,7 +569,7 @@ let browserPanelState = 'default';
           .then((result) => {
             if (!result.canceled) Prefs.setWarpstagramPath(result.filePaths[0]);
             prefs = Prefs.getPrefs();
-            mWin.webContents.send('main: prefs', prefs);
+            if (mWin) mWin.webContents.send('main: prefs', prefs);
           })
           .catch((err) => {
             console.log(err);
@@ -375,8 +581,8 @@ let browserPanelState = 'default';
   );
   ipcMain.on('item-download-progress', async (event, args) => {
     // console.log(args);
-    let id = args[0];
-    let progress = args[1] / 100;
+    // let id = args[0];
+    const progress = args[1] / 100;
 
     // let { id, progress } = args;
     // console.log(id, progress);
@@ -403,7 +609,7 @@ let browserPanelState = 'default';
     let url = matchingDownload.video_url;
     if (view) view.webContents.loadURL(url);
   });
-  ipcMain.on('context: remove_item', async (event, matchingDownload) => {
+  ipcMain.on('context: remove_item', async (_event, matchingDownload) => {
     Downloads.removeMatchingDownload(matchingDownload.id);
   });
   ipcMain.on('context: remove_all', async (event, matchingDownloadID) => {
@@ -425,192 +631,7 @@ let browserPanelState = 'default';
     Browser.showBrowser(mWin, view);
   });
 })();
-let viewBounds = {
-  x: 0,
-  y: 130,
-};
-const windowController = {
-  async createmWin() {
-    const RESOURCES_PATH = app.isPackaged
-      ? path.join(process.resourcesPath, 'assets')
-      : path.join(__dirname, '../../assets');
 
-    const getAssetPath = (...paths: string[]): string => {
-      return path.join(RESOURCES_PATH, ...paths);
-    };
-
-    mWin = new BrowserWindow({
-      x: Screen.getScreenState().bounds.x,
-      y: Screen.getScreenState().bounds.y,
-      width: Screen.getScreenState().bounds.width,
-      height: Screen.getScreenState().bounds.height,
-      minWidth: 850,
-      minHeight: 500,
-      show: false,
-      darkTheme: true,
-      // titleBarStyle: 'hidden',
-      // titleBarOverlay: {
-      //   color: '#1a1a1a',
-      //   symbolColor: '#eee',
-      //   height: 40,
-      // },
-      // if (nativeTheme.shouldUseDarkColors === true) {
-      //   mWin.setBackgroundColor('#1a1a1a');
-      // } else {
-      //   mWin.setBackgroundColor('#fff');
-      // }
-
-      // nativeTheme.shouldUseDarkColors ? mWin.setBackgroundColor('#1a1a1a') : mWin.setBackgroundColor('#fff'),
-      icon: getAssetPath('icon.png'),
-      //  nativeTheme.shouldUseDarkColors
-      // ? getAssetPath('icon.png')
-      // : getAssetPath('icon.png'),
-      webPreferences: {
-        preload: app.isPackaged
-          ? path.join(__dirname, 'preload.js')
-          : path.join(__dirname, '../../.erb/dll/preload.js'),
-      },
-    });
-    mWin.loadURL(resolveHtmlPath('index.html'));
-
-    const wc = mWin.webContents;
-
-    const menuBuilder = new MenuBuilder(mWin);
-    menuBuilder.buildMenu();
-    ffmpegInit(mWin);
-    mWin.on('closed', () => (mWin = null));
-    mWin.on('enter-full-screen', () => {});
-    mWin.on('enter-html-full-screen', () => {
-      let displayBounds = screen.getAllDisplays()[0].bounds;
-      if (mWin) mWin.menuBarVisible = false;
-      if (view) view.setBounds(displayBounds);
-    });
-    mWin.on('blur', () => {
-      // console.log('mWin blurred');
-
-      Shortcuts.removeShortcuts();
-      // Browser.resize(browserPanelState, mWin, view);
-    });
-    mWin.on('focus', () => {
-      // console.log('mWin focused');
-
-      Shortcuts.addShortcuts(mWin, view);
-
-      Browser.resize(browserPanelState, mWin, view);
-    });
-    mWin.on('leave-full-screen', () => {});
-    mWin.on('leave-html-full-screen', () => {
-      if (mWin) mWin.menuBarVisible = true;
-      if (view) Browser.showBrowser(mWin, view);
-    });
-    mWin.on('maximize', () => {
-      Browser.resize(browserPanelState, mWin, view);
-      Screen.setScreenState(mWin);
-    });
-    mWin.on('minimize', () => {});
-    if (isDebug) {
-      // await installExtensions();
-    }
-    mWin.on('ready-to-show', () => {
-      if (mWin) mWin.webContents.send('ready-to-show');
-      // setTimeout(() )
-      // copilot
-
-      // setTimeout(() => {
-      // }, 1000);
-
-      if (process.platform === 'win32' && mWin)
-        mWin.webContents.send('platform', 'windows');
-      if (process.platform === 'darwin' && mWin)
-        mWin.webContents.send('platform', 'darwin');
-      if (process.platform === 'linux' && mWin)
-        mWin.webContents.send('platform', 'linux');
-      if (!mWin) {
-        throw new Error('"mWin" is not defined');
-      }
-      if (process.env.START_MINIMIZED) {
-        mWin.minimize();
-      } else {
-        // if (view) {
-        // }
-        mWin.show();
-        Title.setTitle(mWin, 'audio', user);
-
-        if (Screen.screenState.isMaximized) mWin.maximize();
-        // if (view === null) windowController.createbView();
-        mWin.webContents.send('appVersion', app.getVersion());
-        mWin.webContents.send('appRoot', appRootDir);
-        mWin.webContents.send('main: prefs', prefs);
-        mWin.webContents.send('main: audioDownloads', audioDownloads);
-        mWin.webContents.send('main: videoDownloads', videoDownloads);
-        mWin.webContents.send(
-          'main: warpstagramDownloads',
-          warpstagramDownloads
-        );
-      }
-    });
-
-    mWin.on('resize', () => {});
-    mWin.on('moved', () => {
-      Screen.setScreenState(mWin);
-    });
-    mWin.on('unmaximize', () => {
-      Browser.resize(browserPanelState, mWin, view);
-      Screen.setScreenState(mWin);
-    });
-    mWin.on('resized', () => {
-      Browser.resize(browserPanelState, mWin, view);
-      Screen.setScreenState(mWin);
-    });
-    mWin.on('restore', () => {
-      Browser.resize(browserPanelState, mWin, view);
-    });
-
-    mWin.on('show', () => {
-      Browser.resize(browserPanelState, mWin, view);
-    });
-  },
-  async createbView() {
-    view = new BrowserView();
-    if (mWin) mWin.setBrowserView(view);
-    view.setBounds({
-      x: viewBounds.x,
-      y: viewBounds.y,
-      width: Math.round(mWin.getContentBounds().width / 2),
-      // width: mWin.getContentBounds().width / 2,
-      height: mWin.getContentBounds().height - 192,
-    });
-    view.setAutoResize({ width: true, height: true });
-    view.setBackgroundColor('#1a1a1a');
-    // console.log(randomYoutubeURL);
-    if (app.isPackaged) {
-      view.webContents.loadURL('https://www.youtube.com');
-    } else {
-      view.webContents.loadURL(randomYoutubeURL);
-    }
-    view.webContents.insertCSS('scrollbar{    width: 100px;}');
-    // view.webContents.loadURL('https://open.spotify.com/');
-    view.webContents.on('did-navigate-in-page', (e, url) => {
-      // console.log(url);
-
-      if (mWin) mWin.webContents.send('browser-url-change', url);
-    });
-    view.webContents.on('ready-to-show', (e, url) => {
-      if (mWin) {
-        // mWin.show();
-        updater(mWin);
-        mWin.webContents.send('bView ready-to-show', view.webContents.getURL());
-      }
-    });
-    view.webContents.on('did-finish-load', (e, url) => {
-      if (mWin) {
-        // mWin.show();
-        mWin.webContents.send('bView ready-to-show', view.webContents.getURL());
-        // mWin.webContents.send('bView ready-to-show', view.webContents.getURL());
-      }
-    });
-  },
-};
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit();

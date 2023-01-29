@@ -10,6 +10,8 @@ export default class Screen {
 
   screenState: unknown;
 
+  newState: unknown;
+
   constructor(mWin: BrowserWindow) {
     this.mWin = mWin;
     this.defaults = {
@@ -25,7 +27,7 @@ export default class Screen {
 
   setScreenState = (mWin: BrowserWindow) => {
     const newState = this.getScreenState();
-    let newBounds = mWin.getBounds();
+    const newBounds = mWin.getBounds();
     newState.bounds = newBounds;
     newState.isMaximized = mWin.isMaximized();
     settings.set('screen', newState);

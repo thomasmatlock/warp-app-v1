@@ -10,7 +10,7 @@ import getETA from './getETA';
 import generateFFMPEGPath from '../../ffmpeg/generateFFMPEGPath';
 
 const ffmpegPath = generateFFMPEGPath();
-console.log('convertFile', ffmpegPath);
+// console.log('convertFile', ffmpegPath);
 
 ffmpeg.setFfmpegPath(ffmpegPath);
 export default function convertFile(
@@ -21,7 +21,7 @@ export default function convertFile(
   mWin.webContents.send('appRoot', ffmpegPath);
   const conversionBeginTime = Date.now();
   let downloadConversionComplete = false;
-  let conversionPercentage;
+  let conversionPercentage: any = 0;
   const totalLengthSeconds = convertToSeconds(item.lengthSeconds);
   let KBconverted = 0;
   ffmpeg(tempPath)
@@ -32,9 +32,9 @@ export default function convertFile(
         if (err) console.log(err);
       });
     })
-    .on('progress', (progress) => {
+    .on('progress', (progress: any) => {
       KBconverted = progress.currentKbps + KBconverted;
-      let secondsConverted = convertToSeconds(progress.timemark);
+      const secondsConverted = convertToSeconds(progress.timemark);
       conversionPercentage = (
         (secondsConverted / totalLengthSeconds) *
         100

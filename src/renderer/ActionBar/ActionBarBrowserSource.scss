@@ -87,6 +87,7 @@ $gradient-orange: linear-gradient(to left, #da2c4d 0%, #f8ab37 100%);
         &:hover {
             box-shadow: -20px 30px 80px 0 rgba(0, 0, 0, 1) !important;
             background-color: $gray-dark-light;
+            // z-index: 999;
             // background-image: $gradient-blue;
             cursor: pointer;
         }

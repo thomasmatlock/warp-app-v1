@@ -1,16 +1,19 @@
+import { machineId, machineIdSync } from 'node-machine-id';
+// import { config } from 'process';
+
 const Store = require('electron-store');
+
 const settings = new Store();
 const Cryptr = require('cryptr');
+
 const cryptr = new Cryptr('user');
 
-import { machineId, machineIdSync } from 'node-machine-id';
-import { config } from 'process';
-let machine_id;
+let machineID;
 async function getMachineId() {
-  machine_id = await machineId();
-  return machine_id;
+  machineID = await machineId();
+  return machineID;
 }
-let userDefaults = {
+const userDefaults = {
   id: '',
   email: '',
   createdAt: Date.now(),
@@ -95,7 +98,7 @@ function canUserDownloadAudio() {
   }
 }
 function canUserDownloadVideo() {
-  let decryptedUser = getUser();
+  const decryptedUser = getUser();
   if (decryptedUser.video === 'free') {
     if (decryptedUser.videoDownloadsCount < 16) {
       return true;

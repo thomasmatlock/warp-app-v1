@@ -27,9 +27,9 @@ export function decreaseCurrentDownloads() {
 }
 export async function DownloadItems(
   mWin: BrowserWindow,
-  items: any[],
-  prefs: any,
-  mode: any
+  items: [],
+  prefs: unknown,
+  mode: unknown
 ) {
   items.forEach((item) => {
     downloadItem(mWin, item.url, prefs, mode);

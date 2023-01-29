@@ -612,5 +612,5 @@ const urls = {
     'https://www.tiktok.com/@foodies/video/6895167017570127109',
   ],
 };
-
-module.exports = urls;
+export default urls;
+// module.exports = urls;

@@ -1,6 +1,6 @@
-export default async function BrowserQuery(currentURL, query) {
+export default async function BrowserQuery(currentURL: string, query: string) {
   if (currentURL.includes('youtube')) {
-    let prefixURL = 'https://www.youtube.com/results?search_query=';
+    const prefixURL = 'https://www.youtube.com/results?search_query=';
     return prefixURL + query;
   }
 }
