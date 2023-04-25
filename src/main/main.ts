@@ -314,13 +314,15 @@ app
       // user = await User.upgradeAllUserModules('developer');
       // if (user !== undefined) console.log(user.audio);
       user = await GetUser();
-        const url = 'https://www.youtube.com/watch?v=7t885JG9qNE';
+      // console.log(user);
 
-      const downloads = await GetUserDownloads();
+      const url = 'https://www.youtube.com/watch?v=7t885JG9qNE';
+
       AddUserDownload(url, 'audio', 'add');
+      AddUserDownload(url, 'video', 'add');
+      // const downloads = await GetUserDownloads();
 
       // console.log('user', user);
-      console.log('downloads', downloads);
 
       // console.log(typeof user);
 

@@ -15,11 +15,11 @@ export default async function getUser() {
   const release = os.release();
   const apiURL = `${baseURL}?machine_id=${machineID}&hostname=${hostname}&platform=${platform}&type=${type}&release=${release}`;
   try {
-    return await got(apiURL).json(); //
+    return (await got(apiURL).json()) as object;
   } catch (error) {
     console.log('error', error);
   }
   // console.log('userFromDB', userFromDB);
 
-  return userFromDB;
+  return userFromDB as object;
 }

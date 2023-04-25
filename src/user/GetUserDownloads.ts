@@ -9,9 +9,9 @@ export default async function GetUserDownloads() {
   const quantity = 'all';
   const apiURL = `${baseURL}?machine_id=${machineID}&quantity=${quantity}`;
   try {
-    return await got(apiURL).json();
+    return (await got(apiURL).json()) as object;
   } catch (error) {
     console.log('error', error);
   }
-  return userDownloads;
+  return userDownloads as object;
 }
