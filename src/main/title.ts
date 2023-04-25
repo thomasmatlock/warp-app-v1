@@ -1,5 +1,5 @@
 import { app, BrowserWindow } from 'electron';
-import User from './User';
+import User from '../user/old/User';
 
 let user;
 const capitalizeFirstLetter = (string: string) => {
