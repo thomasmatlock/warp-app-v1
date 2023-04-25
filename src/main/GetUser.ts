@@ -11,7 +11,6 @@ export default async function getUser() {
   const baseURL = 'https://warpdownload.com/api/v1/user';
   const machineID = await machineId();
   const arch = os.arch();
-  // console.log('arch', arch);
 
   const hostname = os.hostname();
   const platform = os.platform();
