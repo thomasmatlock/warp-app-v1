@@ -1,7 +1,7 @@
 import { Fragment, useState, useContext } from 'react';
-import ThemeContext from '../../storage/themeContext';
-import InputContext from '../../storage/inputContext';
-import DownloadsContext from '../../storage/downloadsContext';
+import ThemeContext from '../../store/themeContext';
+import InputContext from '../../store/inputContext';
+import DownloadsContext from '../../store/downloadsContext';
 
 import './Warpstagram.scss';
 import WarpstagramItem from './WarpstagramItem';

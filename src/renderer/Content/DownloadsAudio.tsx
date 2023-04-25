@@ -3,11 +3,11 @@ import DownloadItem from './DownloadItem';
 import ActivationItem from './ActivationItem';
 //
 // import DownloadsAudioActivation from './DownloadsAudioActivation';
-import ThemeContext from '../../storage/themeContext';
-import ActionBarContext from '../../storage/actionBarContext';
-import DownloadsContext from '../../storage/downloadsContext';
-import UserContext from '../../storage/userContext';
-import InputContext from '../../storage/inputContext';
+import ThemeContext from '../../store/themeContext';
+import ActionBarContext from '../../store/actionBarContext';
+import DownloadsContext from '../../store/downloadsContext';
+import UserContext from '../../store/userContext';
+import InputContext from '../../store/inputContext';
 import Sort from './Sort';
 import './Downloads.scss';
 

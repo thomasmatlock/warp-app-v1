@@ -1,10 +1,10 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { Fragment, useState, useContext, useEffect } from 'react';
-import ThemeContext from '../../storage/themeContext';
-import SourcesContext from '../../storage/sourcesContext';
+import ThemeContext from '../../store/themeContext';
+import SourcesContext from '../../store/sourcesContext';
 import ActionBarBrowserSourceItem from './/ActionBarBrowserSourceItem';
-import ActionBarContext from '../../storage/actionBarContext';
+import ActionBarContext from '../../store/actionBarContext';
 import './ActionBarBrowserSource.scss';
 // import browserBarDownloadSourceIcon1 from '../../../assets/ActionBar/youtube.svg';
 // import browserBarDownloadSourceIcon2 from '../../../assets/ActionBar/caret-down.svg';

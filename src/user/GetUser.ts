@@ -4,13 +4,12 @@ import os from 'os';
 import { machineId } from 'node-machine-id';
 
 export default async function getUser() {
-  // console.log('getUser');
-
   const userFromDB: object = {};
-  // const baseURL = 'https://warp-api.vercel.app/api/v1/user'; // warp-api
   const baseURL = 'https://warpdownload.com/api/v1/user';
   const machineID = await machineId();
-  const arch = os.arch();
+  console.log('machineID', machineID);
+
+  // const arch = os.arch();
 
   const hostname = os.hostname();
   const platform = os.platform();
@@ -22,7 +21,7 @@ export default async function getUser() {
   } catch (error) {
     console.log('error', error);
   }
-  console.log('userFromDB', userFromDB);
+  // console.log('userFromDB', userFromDB);
 
   return userFromDB;
 }

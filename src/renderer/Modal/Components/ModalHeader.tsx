@@ -6,7 +6,7 @@ import { Fragment, useContext } from 'react';
 import './ModalHeader.scss';
 import clearTextIcon from '../../Search/close.svg';
 // import astronaut from '../../../../assets/astronauts/png/Asset 8 whitened.png';
-import ThemeContext from '../../../storage/themeContext';
+import ThemeContext from '../../../store/themeContext';
 const ModalHeader = (props) => {
   const themeCtx = useContext(ThemeContext);
   return (

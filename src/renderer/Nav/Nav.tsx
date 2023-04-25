@@ -16,8 +16,8 @@ import NewVersionIcon from './new3.svg';
 import iconWindows from './platform/windows.svg';
 import iconApple from './platform/apple.svg';
 import iconLinux from './platform/linux.svg';
-import ThemeContext from '../../storage/themeContext';
-import NavContext from '../../storage/navContext';
+import ThemeContext from '../../store/themeContext';
+import NavContext from '../../store/navContext';
 import './Nav.scss';
 
 let appVersion = '1.0.0';

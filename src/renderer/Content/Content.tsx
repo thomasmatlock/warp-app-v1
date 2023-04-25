@@ -4,7 +4,7 @@ import DownloadsAudio from './DownloadsAudio';
 
 import DownloadsVideo from './DownloadsVideo';
 import Warpstagram from './Warpstagram';
-import NavContext from '../../storage/navContext';
+import NavContext from '../../store/navContext';
 import './Content.scss';
 const Content = () => {
   const navCtx = useContext(NavContext);

@@ -1,6 +1,6 @@
 import { Fragment, useState, useContext } from 'react';
 import ReactDOM from 'react-dom';
-import NavContext from '../../storage/navContext';
+import NavContext from '../../store/navContext';
 import './Modal.scss';
 import astronaut from '../../../assets/astronauts/png/Asset 8 whitened.png';
 const Backdrop = (props) => {

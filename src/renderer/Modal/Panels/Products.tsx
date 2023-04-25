@@ -1,7 +1,7 @@
 import { Fragment, useContext } from 'react';
 import './Products.scss';
 import Product from './Product';
-import ProductsContext from '../../../../src/storage/productsContext';
+import ProductsContext from '../../../store/productsContext';
 
 const Products = (props) => {
   const productsCtx = useContext(ProductsContext);

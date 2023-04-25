@@ -5,11 +5,11 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 // import classes from './CartItem.module.css';
 import { useState, useContext, useEffect } from 'react';
-import ThemeContext from 'storage/themeContext';
+import ThemeContext from 'store/themeContext';
 import downloadSourceIcon__available from './correct.svg';
 // import downloadSourceIcon__unavailable from '../../../assets/BrowserBar/remove.svg';
-import SourcesContext from '../../storage/sourcesContext';
-import ActionBarContext from '../../storage/actionBarContext';
+import SourcesContext from '../../store/sourcesContext';
+import ActionBarContext from '../../store/actionBarContext';
 
 const ActionBarBrowserSourceItem = (props) => {
   const sourcesCtx = useContext(SourcesContext);

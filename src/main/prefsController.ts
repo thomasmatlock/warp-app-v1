@@ -1,6 +1,6 @@
 const Store = require('electron-store');
 const settings = new Store();
-import prefsDefault from '../storage/prefsDefaults';
+import prefsDefault from '../store/prefsDefaults';
 import paths from './paths';
 let prefs: any = {};
 prefsDefault.audio.folders[0].placeholder = paths.getDefaultAudioPath();

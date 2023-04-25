@@ -16,11 +16,11 @@ import ModalPanelMorph from './Panels/ModalPanelMorph';
 import ModalPanelVideo from './Panels/ModalPanelVideo';
 import ModalPanelAuths from './Panels/ModalPanelAuths';
 import ModalPanelWarpstagram from './Panels/ModalPanelWarpstagram';
-import ThemeContext from '../../storage/themeContext';
-import NavContext from '../../storage/navContext';
-import InputContext from '../../storage/inputContext';
-import ModalsContext from '../../storage/modalsContext';
-import PrefsContext from 'storage/prefsContext';
+import ThemeContext from '../../store/themeContext';
+import NavContext from '../../store/navContext';
+import InputContext from '../../store/inputContext';
+import ModalsContext from '../../store/modalsContext';
+import PrefsContext from 'store/prefsContext';
 
 const ModalPreferences = (props) => {
   const themeCtx = useContext(ThemeContext);

@@ -1,10 +1,10 @@
 import { Fragment, useState, useEffect, useContext } from 'react';
 
-import ThemeContext from '../../storage/themeContext';
-import ActionBarContext from '../../storage/actionBarContext';
-import DownloadsContext from '../../storage/downloadsContext';
-import InputContext from '../../storage/inputContext';
-import UserContext from '../../storage/userContext';
+import ThemeContext from '../../store/themeContext';
+import ActionBarContext from '../../store/actionBarContext';
+import DownloadsContext from '../../store/downloadsContext';
+import InputContext from '../../store/inputContext';
+import UserContext from '../../store/userContext';
 import DownloadItem from './DownloadItem';
 import ActivationItem from './ActivationItem';
 import Sort from './Sort';

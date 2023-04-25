@@ -11,7 +11,7 @@ import iconWarpstagram from '../../Common/warpstagram.svg';
 import iconGeneralDark from '../../Common/gear.svg';
 import iconLicenses from '../../Common/shuttle.svg';
 import IconAuths from '../../Common/auths1_white.svg';
-import ThemeContext from '../../../storage/themeContext';
+import ThemeContext from '../../../store/themeContext';
 import './ModalPanelNav.scss';
 
 const ModalNav = (props: any) => {

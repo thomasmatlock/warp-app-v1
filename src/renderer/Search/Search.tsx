@@ -7,11 +7,11 @@ import MoonIcon from './moon.svg';
 import clearTextIcon from './close.svg';
 import settingsIcon from '../Common/gear.svg';
 import ModalPreferences from '../Modal/ModalPreferences';
-import ThemeContext from '../../storage/themeContext';
-import NavContext from '../../storage/navContext';
-import InputContext from '../../storage/inputContext';
-import ModalsContext from '../../storage/modalsContext';
-import PrefsContext from '../../storage/prefsContext';
+import ThemeContext from '../../store/themeContext';
+import NavContext from '../../store/navContext';
+import InputContext from '../../store/inputContext';
+import ModalsContext from '../../store/modalsContext';
+import PrefsContext from '../../store/prefsContext';
 
 const Search = (props) => {
   const themeCtx = useContext(ThemeContext);

@@ -7,8 +7,8 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 // import classes from './CartItem.module.css';
 import { useState, useContext } from 'react';
-import DownloadsContext from 'storage/downloadsContext';
-import ThemeContext from 'storage/themeContext';
+import DownloadsContext from 'store/downloadsContext';
+import ThemeContext from 'store/themeContext';
 import iconLength from './duration.svg';
 import iconFileSize from './fileSize.svg';
 import IconFileTypeAudio from './fileTypeAudio.svg';

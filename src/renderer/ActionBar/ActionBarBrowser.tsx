@@ -13,12 +13,12 @@ import IconFileTypeAudio from '../Common/fileTypeAudio.svg';
 // import IconFileTypeVideo from '../Common/fileTypeVideo.svg';
 // import channelIcon from '../../../assets/BrowserBar/browser/channel2.svg';
 import BrowserBarDownloadSource from './ActionBarBrowserSource';
-import ThemeContext from '../../storage/themeContext';
-import ActionBarContext from '../../storage/actionBarContext';
-import NavContext from '../../storage/navContext';
-import PrefsContext from '../../storage/prefsContext';
-import SourcesContext from '../../storage/sourcesContext';
-import DownloadsContext from '../../storage/downloadsContext';
+import ThemeContext from '../../store/themeContext';
+import ActionBarContext from '../../store/actionBarContext';
+import NavContext from '../../store/navContext';
+import PrefsContext from '../../store/prefsContext';
+import SourcesContext from '../../store/sourcesContext';
+import DownloadsContext from '../../store/downloadsContext';
 import Loader from './Loader';
 import LoaderPlanets from './LoaderPlanets';
 

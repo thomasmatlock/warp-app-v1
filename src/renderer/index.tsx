@@ -1,15 +1,15 @@
 import { createRoot } from 'react-dom/client';
 import App from './App';
-import { ThemeContextProvider } from '../storage/themeContext';
-import { ActionBarContextProvider } from '../storage/actionBarContext';
-import { SourcesContextProvider } from '../storage/sourcesContext';
-import { DownloadsContextProvider } from '../storage/downloadsContext';
-import { NavContextProvider } from '../storage/navContext';
-import { InputContextProvider } from '../storage/inputContext';
-import { ModalsContextProvider } from '../storage/modalsContext';
-import { PrefsContextProvider } from '../storage/prefsContext';
-import { ProductsContextProvider } from '../storage/productsContext';
-import { UserContextProvider } from '../storage/userContext';
+import { ThemeContextProvider } from '../store/themeContext';
+import { ActionBarContextProvider } from '../store/actionBarContext';
+import { SourcesContextProvider } from '../store/sourcesContext';
+import { DownloadsContextProvider } from '../store/downloadsContext';
+import { NavContextProvider } from '../store/navContext';
+import { InputContextProvider } from '../store/inputContext';
+import { ModalsContextProvider } from '../store/modalsContext';
+import { PrefsContextProvider } from '../store/prefsContext';
+import { ProductsContextProvider } from '../store/productsContext';
+import { UserContextProvider } from '../store/userContext';
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);

@@ -24,7 +24,9 @@ import {
 } from 'electron';
 
 import ffmpegInit from '../ffmpeg/ffmpegController';
-import GetUser from './GetUser';
+import GetUser from '../user/GetUser';
+import GetUserDownloads from '../user/GetUserDownloads';
+
 import updater from './updater';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
@@ -202,7 +204,7 @@ const windowController = {
         Title.setTitle(mWin, 'audio', user);
 
         if (Screen.screenState.isMaximized) mWin.maximize();
-        // if (view === null) windowController.createbView();
+        if (view === null) windowController.createbView();
         mWin.webContents.send('appVersion', app.getVersion());
         mWin.webContents.send('appRoot', appRootDir);
         mWin.webContents.send('main: prefs', prefs);
@@ -311,7 +313,10 @@ app
       // user = await User.upgradeAllUserModules('developer');
       // if (user !== undefined) console.log(user.audio);
       user = await GetUser();
-      console.log('user', user);
+      const downloads = await GetUserDownloads();
+
+      // console.log('user', user);
+      console.log('downloads', downloads);
 
       // console.log(typeof user);
 

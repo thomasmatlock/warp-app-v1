@@ -1,9 +1,9 @@
 import { Fragment, useState, useEffect, useContext } from 'react';
 import DownloadItem from './DownloadItem';
-import ThemeContext from '../../storage/themeContext';
-import ActionBarContext from '../../storage/actionBarContext';
-import DownloadsContext from '../../storage/downloadsContext';
-import InputContext from '../../storage/inputContext';
+import ThemeContext from '../../store/themeContext';
+import ActionBarContext from '../../store/actionBarContext';
+import DownloadsContext from '../../store/downloadsContext';
+import InputContext from '../../store/inputContext';
 import Sort from './Sort';
 import './Downloads.scss';
 

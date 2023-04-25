@@ -1,9 +1,9 @@
 import { Fragment, useContext } from 'react';
 import './ContextMenu.scss';
-import ThemeContext from '../../storage/themeContext';
+import ThemeContext from '../../store/themeContext';
 import ContextMenuItem from './ContextMenuItem';
-import ActionBarContext from '../../storage/actionBarContext';
-import DownloadsContext from 'storage/downloadsContext';
+import ActionBarContext from '../../store/actionBarContext';
+import DownloadsContext from 'store/downloadsContext';
 
 const ContextMenu = (props) => {
   const themeCtx = useContext(ThemeContext);

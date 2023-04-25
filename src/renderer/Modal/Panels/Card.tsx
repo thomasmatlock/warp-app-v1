@@ -5,7 +5,7 @@ import './Product.scss';
 import './Products.scss';
 import Product from './Product';
 import Products from './Products';
-import ProductsContext from '../../../../src/storage/productsContext';
+import ProductsContext from '../../../store/productsContext';
 
 const Card = (props) => {
   const productsCtx = useContext(ProductsContext);
