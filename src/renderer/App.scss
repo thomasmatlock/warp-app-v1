@@ -124,3 +124,20 @@ li {
     margin: 0;
     padding: 0;
 }
+
+.app {
+    height: 100%;
+    // width: 99.85%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    margin: 0;
+    // position: fixed;
+    position: absolute;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: hidden;
+}

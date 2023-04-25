@@ -1,16 +1,16 @@
-// import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
+import Search from './Search/Search';
+import ActionBar from './ActionBar/ActionBar';
+import Content from './Content/Content';
+import Nav from './Nav/Nav';
 import './App.scss';
-import Container from './Container';
-// import Youtube from '../downloaders/youtube/Youtube';
-// import ThemeContext from '../storage/themeContext';
 
 export default function App() {
-  // console.log(Youtube);
-  // const themeCtx = useContext(ThemeContext);
   return (
-    <>
-      {/* <h1>hello</h1> */}
-      <Container />
-    </>
+    <div className="app">
+      <Search />
+      <ActionBar />
+      <Content />
+      <Nav />
+    </div>
   );
 }

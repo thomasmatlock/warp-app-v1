@@ -74,7 +74,7 @@ const viewBounds = {
   y: 130,
 };
 const setActiveURL = () => {
-  console.log(prefs);
+  // console.log(prefs);
 
   // console.log(prefs.general.dropdowns[1].defaultValue);
 
@@ -333,7 +333,7 @@ app
         const withinLast24Hours = time.isTimestampInLast24Hours(
           download.createdAt
         );
-        console.log(withinLast24Hours);
+        // console.log(withinLast24Hours);
 
         // if (withinLast24Hours) {
         //   console.log('within last 24 hours');
@@ -362,17 +362,8 @@ app
   })
   .catch(console.log);
 
-// import { v4 as uuidv4 } from 'uuid';
-
-createCustomer();
-
 let randomYoutubeURL =
   testUrls.youtube[Math.floor(Math.random() * testUrls.youtube.length)];
-// const randomYoutubePlaylistURL =
-//   testUrls.youtubePlaylists[
-//     Math.floor(Math.random() * testUrls.youtubePlaylists.length)
-//   ];
-/// ///////////////////////////////////////////////////
 
 async function submitSearchQuery(currentURL: string, query: string) {
   // let joinedQuery: string;
