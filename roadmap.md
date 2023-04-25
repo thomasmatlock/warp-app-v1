@@ -1,4 +1,3 @@
-- AddUserDownload
 - UpgradeUser
 - fix notarizing
 - add the codepen book thing to checkout

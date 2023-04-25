@@ -27,6 +27,7 @@ import ffmpegInit from '../ffmpeg/ffmpegController';
 import GetUser from '../user/GetUser';
 import GetUserDownloads from '../user/GetUserDownloads';
 import AddUserDownload from '../user/AddUserDownload';
+import UpgradeUser from '../user/UpgradeUser';
 
 import updater from './updater';
 import MenuBuilder from './menu';
@@ -286,6 +287,16 @@ const windowController = {
     });
   },
 };
+function isTimestampInLast24Hours(timestamp: string) {
+  const now = new Date().getTime();
+  const yesterday = now - 86400000;
+  const timestampDate = new Date(timestamp).getTime();
+  if (timestampDate > yesterday) {
+    return true;
+  }
+  return false;
+}
+
 app
   .whenReady()
   .then(() => {
@@ -299,28 +310,41 @@ app
     setActiveURL();
 
     (async function init() {
-      // user = await User.resetUser();
-      // user = await User.upgradeUserModule('audio', 'free');
-      // user = await User.upgradeUserModule('audio', 'personal');
-      // user = await User.upgradeUserModule('audio', 'professional');
-      // user = await User.upgradeUserModule('video', 'free');
-      // user = await User.upgradeUserModule('video', 'personal');
-      // user = await User.upgradeUserModule('video', 'professional');
-      // user = await User.upgradeUserModule('warpstagram', 'free');
-      // user = await User.upgradeUserModule('warpstagram', 'personal');
-      // user = await User.upgradeUserModule('warpstagram', 'professional');
-      // user = await User.upgradeAllUserModules('personal');
-      // user = await User.upgradeAllUserModules('professional');
-      // user = await User.upgradeAllUserModules('developer');
-      // if (user !== undefined) console.log(user.audio);
       user = await GetUser();
-      // console.log(user);
-
       const url = 'https://www.youtube.com/watch?v=7t885JG9qNE';
 
-      AddUserDownload(url, 'audio', 'add');
-      AddUserDownload(url, 'video', 'add');
-      // const downloads = await GetUserDownloads();
+      // AddUserDownload(url, 'audio', 'add');
+      const email = 'hello@gmail.com';
+      const moduleTypes = ['audio', 'video', 'warpstagram']; // audio, video, warpstagram, all
+
+      const moduleEditions = ['free', 'personal', 'professional', 'developer']; // free, personal, professional, developer
+      const action = 'upgrade'; // add, upgrade, downgrade, remove
+
+      // user = await UpgradeUser(
+      //   email,
+      //   moduleTypes[0],
+      //   moduleEditions[1],
+      //   action
+      // );
+
+      const downloads = await GetUserDownloads();
+      // console.log(downloads.audio.length, downloads.video.length);
+      for (let i = 0; i < downloads.audio.length; i++) {
+        const download = downloads.audio[i];
+        // console.log(download);
+
+        const withinLast24Hours = isTimestampInLast24Hours(download.createdAt);
+        console.log(withinLast24Hours);
+
+        // if (withinLast24Hours) {
+        //   console.log('within last 24 hours');
+        //   // console.log(download);
+        // }
+        // if (!withinLast24Hours) {
+        //   console.log('not within last 24 hours');
+        //   // console.log(download);
+        // }
+      }
 
       // console.log('user', user);
 
