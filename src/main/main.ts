@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint global-require: off, no-console: off, promise/always-return: off */
 
 /**
@@ -47,7 +48,7 @@ import * as Shortcuts from './Shortcuts';
 import testUrls from '../downloaders/youtube/testURLS';
 
 // console.log(dotenv);
-import createCustomer from '../user/payments/stripe/stripe';
+// import createCustomer from '../user/payments/stripe/stripe';
 
 const isSingleInstance = app.requestSingleInstanceLock();
 if (!isSingleInstance) {
@@ -56,7 +57,7 @@ if (!isSingleInstance) {
 
 const appRootDir = require('app-root-dir').get();
 // test, just added apple id/pass to gh secrets
-let prefs: object;
+let prefs: object = {};
 let user: object;
 let browserPanelState = 'default';
 
@@ -64,6 +65,7 @@ let browserPanelState = 'default';
 let mWin: BrowserWindow | null;
 let view: BrowserView | null = null;
 let Screen: ScreenClass;
+let activeURL: string;
 const audioDownloads = Downloads.getAudioDownloads();
 const videoDownloads = Downloads.getVideoDownloads();
 const warpstagramDownloads = Downloads.getWarpstagramDownloads();
@@ -72,6 +74,8 @@ const viewBounds = {
   y: 130,
 };
 const setActiveURL = () => {
+  console.log(prefs);
+
   // console.log(prefs.general.dropdowns[1].defaultValue);
 
   if (prefs.general.dropdowns[1].defaultValue.id.includes('facebook'))
@@ -101,7 +105,7 @@ const setActiveURL = () => {
   // if (prefs.general.dropdowns[1].defaultValue.id.includes('deviantart'))    view.webContents.loadURL('https://deviantart.com');
 };
 const windowController = {
-  async createmWin() {
+  async createMainWin() {
     const RESOURCES_PATH = app.isPackaged
       ? path.join(process.resourcesPath, 'assets')
       : path.join(__dirname, '../../assets');
@@ -345,7 +349,7 @@ app
 
       // console.log(typeof user);
 
-      windowController.createmWin();
+      windowController.createMainWin();
     })();
     // createTray(mWin);
     // Shortcuts(view);
@@ -353,7 +357,7 @@ app
     // console.log(app.getAppPath());
 
     app.on('activate', () => {
-      // if (mWin === null) windowController.createmWin();
+      // if (mWin === null) windowController.createMainWin();
     });
   })
   .catch(console.log);

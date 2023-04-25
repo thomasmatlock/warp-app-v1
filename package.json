@@ -46,15 +46,17 @@
     "browserslist": [],
     "prettier": {
         "singleQuote": true,
-        "overrides": [{
-            "files": [
-                ".prettierrc",
-                ".eslintrc"
-            ],
-            "options": {
-                "parser": "json"
+        "overrides": [
+            {
+                "files": [
+                    ".prettierrc",
+                    ".eslintrc"
+                ],
+                "options": {
+                    "parser": "json"
+                }
             }
-        }]
+        ]
     },
     "jest": {
         "moduleDirectories": [
@@ -108,7 +110,7 @@
         "react-router-dom": "^6.3.0",
         "stripe": "^10.8.0",
         "uuid": "^9.0.0",
-        "ytdl-core": "^4.11.2",
+        "ytdl-core": "^4.11.4",
         "ytpl": "^2.3.0"
     },
     "devDependencies": {
@@ -217,7 +219,8 @@
             "gatekeeperAssess": false
         },
         "dmg": {
-            "contents": [{
+            "contents": [
+                {
                     "x": 130,
                     "y": 220
                 },
