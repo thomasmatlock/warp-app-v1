@@ -26,6 +26,7 @@ import {
 import ffmpegInit from '../ffmpeg/ffmpegController';
 import GetUser from '../user/GetUser';
 import GetUserDownloads from '../user/GetUserDownloads';
+import AddUserDownload from '../user/AddUserDownload';
 
 import updater from './updater';
 import MenuBuilder from './menu';
@@ -313,7 +314,10 @@ app
       // user = await User.upgradeAllUserModules('developer');
       // if (user !== undefined) console.log(user.audio);
       user = await GetUser();
+        const url = 'https://www.youtube.com/watch?v=7t885JG9qNE';
+
       const downloads = await GetUserDownloads();
+      AddUserDownload(url, 'audio', 'add');
 
       // console.log('user', user);
       console.log('downloads', downloads);
