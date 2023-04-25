@@ -26,9 +26,11 @@ import {
 import ffmpegInit from '../ffmpeg/ffmpegController';
 import GetUser from '../user/GetUser';
 import GetUserDownloads from '../user/GetUserDownloads';
+
 import AddUserDownload from '../user/AddUserDownload';
 import UpgradeUser from '../user/UpgradeUser';
 
+import * as time from '../util/Time';
 import updater from './updater';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
@@ -45,7 +47,7 @@ import * as Shortcuts from './Shortcuts';
 import testUrls from '../downloaders/youtube/testURLS';
 
 // console.log(dotenv);
-import createCustomer from '../payments/stripe/stripe';
+import createCustomer from '../user/payments/stripe/stripe';
 
 const isSingleInstance = app.requestSingleInstanceLock();
 if (!isSingleInstance) {
@@ -287,15 +289,6 @@ const windowController = {
     });
   },
 };
-function isTimestampInLast24Hours(timestamp: string) {
-  const now = new Date().getTime();
-  const yesterday = now - 86400000;
-  const timestampDate = new Date(timestamp).getTime();
-  if (timestampDate > yesterday) {
-    return true;
-  }
-  return false;
-}
 
 app
   .whenReady()
@@ -333,7 +326,9 @@ app
         const download = downloads.audio[i];
         // console.log(download);
 
-        const withinLast24Hours = isTimestampInLast24Hours(download.createdAt);
+        const withinLast24Hours = time.isTimestampInLast24Hours(
+          download.createdAt
+        );
         console.log(withinLast24Hours);
 
         // if (withinLast24Hours) {
