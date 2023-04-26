@@ -11,8 +11,8 @@ import Logo from '../components/Logo/Logo';
 
 // NAV BUTTON ICONS
 import iconAudio from '../Global/fileTypeAudio.svg';
-import iconVideo from './assets/video4.svg';
-import iconWarpstagram from './assets/warpstagram2.svg';
+import iconVideo from './assets/video.svg';
+import iconWarpstagram from './assets/warpstagram.svg';
 import ProgressIcon from '../Global/status.svg';
 import NewVersionIcon from './assets/new3.svg';
 // PLATFORM ICONS
@@ -26,7 +26,7 @@ import './Nav.scss';
 let appVersion = '1.0.0';
 let appRoot = '1.0.0';
 let updateMessage = '';
-// console.log('appVersion', appVersion);
+console.log('appVersion', appVersion);
 
 const Nav = (props) => {
   const themeCtx = useContext(ThemeContext);
@@ -244,7 +244,7 @@ const Nav = (props) => {
                 }
               >
                 {`${appVersion}`}
-                {appRoot}
+                {/* {appRoot} */}
               </p>
             </a>
           )}

@@ -1,11 +1,11 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import { Fragment, useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import './ActionBarBrowser.scss';
-import backIcon from './browser/back.svg';
-import forwardIcon from './browser/forward.svg';
-import reloadIcon from './browser/reload.svg';
+import backIcon from './assets/browser/back.svg';
+import forwardIcon from './assets/browser/forward.svg';
+import reloadIcon from './assets/browser/reload.svg';
 // import playlistVideoIcon from '../../../assets/BrowserBar/browser/playlistVideo.svg';
 // import playlistAudioIcon from '../../../assets/BrowserBar/browser/playlistAudio.svg';
 import videoIcon from '../Global/video-camera.svg';

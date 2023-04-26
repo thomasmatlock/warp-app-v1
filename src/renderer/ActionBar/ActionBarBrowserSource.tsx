@@ -3,7 +3,7 @@
 import { Fragment, useState, useContext, useEffect } from 'react';
 import ThemeContext from '../../store/themeContext';
 import SourcesContext from '../../store/sourcesContext';
-import ActionBarBrowserSourceItem from './/ActionBarBrowserSourceItem';
+import ActionBarBrowserSourceItem from './ActionBarBrowserSourceItem';
 import ActionBarContext from '../../store/actionBarContext';
 import './ActionBarBrowserSource.scss';
 // import browserBarDownloadSourceIcon1 from '../../../assets/ActionBar/youtube.svg';
@@ -19,14 +19,13 @@ import './ActionBarBrowserSource.scss';
 // import downloadSourceIconTwitter from '../../../assets/BrowserBar/twitter.svg';
 // import downloadSourceIconVimeo from '../../../assets/BrowserBar/vimeo.svg';
 // import downloadSourceIconYoutube from '../../../assets/BrowserBar/youtube.svg';
-import { log } from 'console';
 
 const BrowserBarDownloadSource = () => {
   const themeCtx = useContext(ThemeContext);
   const sourcesCtx = useContext(SourcesContext);
   const actionBarCtx = useContext(ActionBarContext);
 
-  let sourcesCount = sourcesCtx.enabledSources.length;
+  const sourcesCount = sourcesCtx.enabledSources.length;
   // window.electron.ipcRenderer.on('ready-to-show', (arg) => {
   //   // console.log(sourcesCtx.activeSource[0].URL);
   //   setTimeout(() => {

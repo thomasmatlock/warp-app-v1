@@ -50,7 +50,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     margin: 4px;
     transition: all ease-out 0.1s;
     border-radius: 4px;
-    transition: all 0.25s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;
+    transition: all 0.1s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;
     &__icon {
         display: flex;
         flex-direction: column;

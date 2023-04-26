@@ -70,7 +70,7 @@ const prefs = {
       {
         title: 'Audio Downloads Folder',
         id: 'modal_prefs_audio_outputFolder',
-        placeholder: 'C:/Users/Tommy/Documents/Warp Downloader/Audio',
+        placeholder: 'C:/Users/Tommy/Documents/Warp/Audio',
       },
     ],
   },
@@ -185,7 +185,7 @@ const prefs = {
       {
         title: 'Video Downloads Folder',
         id: 'modal_prefs_video_outputFolder',
-        placeholder: 'C:/Users/Tommy/Documents/Warp Downloader/Video',
+        placeholder: 'C:/Users/Tommy/Documents/Warp/Video',
       },
     ],
   },
@@ -279,7 +279,7 @@ const prefs = {
       {
         title: 'Warpstagram Downloads Folder',
         id: 'modal_prefs_warpstagram_outputFolder',
-        placeholder: 'C:/Users/Tommy/Documents/Warp Downloader/Warpstagram',
+        placeholder: 'C:/Users/Tommy/Documents/Warp/Warpstagram',
       },
     ],
   },

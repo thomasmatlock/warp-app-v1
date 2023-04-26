@@ -24,10 +24,10 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
     item.type === 'audio'
       ? path.join(
           app.getPath('temp'),
-          'Warp Downloader' + randomInt + '.m4a'
+          'Warp' + randomInt + '.m4a'
           // item.titleFS + '.m4a'
         )
-      : path.join(app.getPath('temp'), 'Warp Downloader' + randomInt + '.mp4');
+      : path.join(app.getPath('temp'), 'Warp' + randomInt + '.mp4');
   // CUSTOM METHOD
   try {
     let progressPercentage;

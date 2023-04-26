@@ -11,7 +11,7 @@ import ContextMenuSortOptions from '../ContextMenu/ContextMenuOptionsSort';
 import './ActionBarWarpstagram';
 
 const FilterBar = (props) => {
-  console.log(props);
+  // console.log(props);
 
   const [isContextMenuVisible, setisContextMenuVisible] = useState(false);
   const toggleContextMenuSort = () => {

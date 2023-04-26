@@ -5,8 +5,11 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/jsx-fragments */
 import { Fragment, useContext } from 'react';
-import iconAudio from '../../Global/audio.svg';
-import iconVideo from '../../Global/video3.svg';
+// import iconAudio from '../../Global/audio.svg';
+import iconAudio from '../../Global/fileTypeAudio.svg';
+
+// import iconAudio from '../../Nav/assets/audio.svg';
+import iconVideo from '../../Nav/assets/video.svg';
 import iconWarpstagram from '../../Global/warpstagram.svg';
 import iconGeneralDark from '../../Global/gear.svg';
 import iconLicenses from '../../Global/shuttle.svg';
