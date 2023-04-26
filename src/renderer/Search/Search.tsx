@@ -5,7 +5,7 @@ import SearchIcon from './lightning.svg';
 import SunIcon from './sun.svg';
 import MoonIcon from './moon.svg';
 import clearTextIcon from './close.svg';
-import settingsIcon from '../Common/gear.svg';
+import settingsIcon from '../Global/gear.svg';
 import ModalPreferences from '../Modal/ModalPreferences';
 import ThemeContext from '../../store/themeContext';
 import NavContext from '../../store/navContext';
