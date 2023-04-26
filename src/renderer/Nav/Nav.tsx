@@ -8,10 +8,10 @@ import NavLogoImg from './logo/blackhole.svg';
 import navLogoText from './logo/logo.svg';
 // NAV BUTTON ICONS
 import iconAudio from '../Global/fileTypeAudio.svg';
-import iconVideo from './video4.svg';
-import iconWarpstagram from './warpstagram2.svg';
+import iconVideo from './assets/video4.svg';
+import iconWarpstagram from './assets/warpstagram2.svg';
 import ProgressIcon from '../Global/status.svg';
-import NewVersionIcon from './new3.svg';
+import NewVersionIcon from './assets/new3.svg';
 // PLATFORM ICONS
 import iconWindows from './platform/windows.svg';
 import iconApple from './platform/apple.svg';
