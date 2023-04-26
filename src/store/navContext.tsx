@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+// console.log(process.platform);
+
 let prefs;
 const NavContext = React.createContext({
   audioMode: true,
@@ -58,6 +60,8 @@ export const NavContextProvider = (props) => {
   const randomFromArray = (array) => {
     return array[Math.floor(Math.random() * array.length)];
   };
+  // console.log(process.platform);
+
   const audioPlaceholders = [
     'audio search...beep boop',
     'start typing to instantly find any audio file',

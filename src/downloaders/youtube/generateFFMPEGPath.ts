@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 /* eslint-disable no-plusplus */
 import { app } from 'electron';
 import path from 'path';

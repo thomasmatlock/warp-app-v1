@@ -33,8 +33,8 @@ export function removeShortcuts() {
   globalShortcut.unregisterAll();
 }
 module.exports = {
-  addShortcuts: addShortcuts,
-  removeShortcuts: removeShortcuts,
+  addShortcuts,
+  removeShortcuts,
 };
 // });
 // }});
