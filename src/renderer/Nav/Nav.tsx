@@ -23,7 +23,7 @@ import './Nav.scss';
 let appVersion = '1.0.0';
 let appRoot = '1.0.0';
 let updateMessage = '';
-console.log('appVersion', appVersion);
+// console.log('appVersion', appVersion);
 
 const Nav = (props) => {
   const themeCtx = useContext(ThemeContext);

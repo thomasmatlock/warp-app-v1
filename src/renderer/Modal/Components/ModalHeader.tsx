@@ -7,7 +7,8 @@ import './ModalHeader.scss';
 import clearTextIcon from '../../Search/assets/close.svg';
 // import astronaut from '../../../../assets/astronauts/png/Asset 8 whitened.png';
 import ThemeContext from '../../../store/themeContext';
-const ModalHeader = (props) => {
+
+const ModalHeader = (props: Record<string, unknown>) => {
   const themeCtx = useContext(ThemeContext);
   return (
     <Fragment>
