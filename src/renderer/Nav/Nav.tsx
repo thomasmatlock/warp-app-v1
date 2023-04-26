@@ -6,6 +6,9 @@ import { useState, useContext } from 'react';
 // LOGO ICONS
 import NavLogoImg from './logo/blackhole.svg';
 import navLogoText from './logo/logo.svg';
+
+import Logo from '../components/Logo/Logo';
+
 // NAV BUTTON ICONS
 import iconAudio from '../Global/fileTypeAudio.svg';
 import iconVideo from './assets/video4.svg';
@@ -103,7 +106,7 @@ const Nav = (props) => {
         }
       >
         <div className="logoContainer">
-          <a className="navLogo">
+          {/* <a className="navLogo">
             <img
               className="navLogoImg"
               style={
@@ -128,7 +131,8 @@ const Nav = (props) => {
               alt="icon"
               src={navLogoText}
             />
-          </a>
+          </a> */}
+          <Logo />
         </div>
         <div className="buttonContainer">
           <div
