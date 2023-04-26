@@ -7,8 +7,8 @@
 import { Fragment, useContext } from 'react';
 // import iconAudio from '../../Global/audio.svg';
 import iconAudio from '../../Global/fileTypeAudio.svg';
+// import iconAudio from '../../Global/warpstagram.svg';
 
-// import iconAudio from '../../Nav/assets/audio.svg';
 import iconVideo from '../../Nav/assets/video.svg';
 import iconWarpstagram from '../../Global/warpstagram.svg';
 import iconGeneralDark from '../../Global/gear.svg';
@@ -37,6 +37,7 @@ const ModalNav = (props: any) => {
                 ? 'modalPrefsNav_button__icon'
                 : 'modalPrefsNav_button__icon'
             }
+            style={{ filter: 'invert(1)' }}
             src={iconAudio}
           />
           <p>Audio</p>
@@ -57,6 +58,7 @@ const ModalNav = (props: any) => {
                 : 'modalPrefsNav_button__icon'
             }
             src={iconVideo}
+            // invert
           />
           <p>Video</p>
         </div>

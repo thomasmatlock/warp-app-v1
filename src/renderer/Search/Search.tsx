@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 import { Fragment, useState, useContext } from 'react';
 import './Search.scss';
-import SearchIcon from './assets/lightning.svg';
+import SearchIcon from '../Global/lightning.svg';
 import SunIcon from './assets/sun.svg';
 // import MoonIcon from './assetsmoon.svg';
 import clearTextIcon from './assets/close.svg';
