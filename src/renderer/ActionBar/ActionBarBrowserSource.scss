@@ -112,12 +112,16 @@ $sourceHeight: 48px;
             flex: 1;
             border-bottom: 1px solid $gray-dark-light;
             background-color: $gray-dark-lightest;
+            // transition: 0.1s ease-in-out;
             &:hover {
                 background-color: $gray-dark-light !important;
                 box-shadow: -20px 30px 80px 0 rgba(0, 0, 0, 1) !important;
                 border-radius: 3px;
                 border-radius: 3px;
                 cursor: pointer;
+                z-index: 3;
+                // transition: 0.1s ease-in-out;
+                // border: 1px solid red;
             }
             &__container1 {
                 border-radius: 3px;
