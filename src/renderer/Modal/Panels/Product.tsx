@@ -3,7 +3,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useContext } from 'react';
 import racingIcon from '../../Products/racing.svg';
-import downloadsIcon from '../../Common/status.svg';
+import downloadsIcon from '../../Global/status.svg';
 import ProductsContext from '../../../store/productsContext';
 import './Product.scss';
 
