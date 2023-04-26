@@ -1,10 +1,10 @@
 /* eslint-disable jsx-a11y/alt-text */
 import { Fragment, useState, useContext } from 'react';
 import './Search.scss';
-import SearchIcon from './lightning.svg';
-import SunIcon from './sun.svg';
-import MoonIcon from './moon.svg';
-import clearTextIcon from './close.svg';
+import SearchIcon from './assets/lightning.svg';
+import SunIcon from './assets/sun.svg';
+// import MoonIcon from './assetsmoon.svg';
+import clearTextIcon from './assets/close.svg';
 import settingsIcon from '../Global/gear.svg';
 import ModalPreferences from '../Modal/ModalPreferences';
 import ThemeContext from '../../store/themeContext';
