@@ -1,7 +1,7 @@
 import { Fragment, useState, useContext } from 'react';
-import sortIcon from './sort.svg';
-import collapseIcon from './collapse.svg';
-import expandIcon from './expand.svg';
+import sortIcon from './assets/sort.svg';
+import collapseIcon from './assets/collapse.svg';
+import expandIcon from './assets/expand.svg';
 import ThemeContext from '../../store/themeContext';
 import ActionBarContext from '../../store/actionBarContext';
 

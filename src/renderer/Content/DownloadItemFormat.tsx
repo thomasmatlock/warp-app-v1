@@ -1,13 +1,13 @@
-import iconSourceFacebook from '../ActionBar/facebook.svg';
-import iconSourceInstagram from '../ActionBar/instagram.svg';
-import iconSourcePinterest from '../ActionBar/pinterest.svg';
-import iconSourceSoundcloud from '../ActionBar/soundcloud.svg';
-import iconSourceSnapchat from '../ActionBar/snapchat.svg';
-import iconSourceTiktok from '../ActionBar/tiktok.svg';
-import iconSourceTwitch from '../ActionBar/twitch.svg';
-import iconSourceTwitter from '../ActionBar/twitter.svg';
-import iconSourceVimeo from '../ActionBar/vimeo.svg';
-import iconSourceYoutube from '../ActionBar/youtube.svg';
+import iconSourceFacebook from '../ActionBar/assets/facebook.svg';
+import iconSourceInstagram from '../ActionBar/assets/instagram.svg';
+import iconSourcePinterest from '../ActionBar/assets/pinterest.svg';
+import iconSourceSoundcloud from '../ActionBar/assets/soundcloud.svg';
+import iconSourceSnapchat from '../ActionBar/assets/snapchat.svg';
+import iconSourceTiktok from '../ActionBar/assets/tiktok.svg';
+import iconSourceTwitch from '../ActionBar/assets/twitch.svg';
+import iconSourceTwitter from '../ActionBar/assets/twitter.svg';
+import iconSourceVimeo from '../ActionBar/assets/vimeo.svg';
+import iconSourceYoutube from '../ActionBar/assets/youtube.svg';
 function capitalizeFirstLetter(string) {
   if (string != undefined) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -17,41 +17,50 @@ function findSourceIcon(source) {
   // console.log(source);
   if (source.toLowerCase().includes('facebook')) {
     return iconSourceFacebook;
-  } else if (source.toLowerCase().includes('instagram')) {
+  }
+  if (source.toLowerCase().includes('instagram')) {
     return iconSourceInstagram;
-  } else if (source.toLowerCase().includes('pinterest')) {
+  }
+  if (source.toLowerCase().includes('pinterest')) {
     return iconSourcePinterest;
-  } else if (source.toLowerCase().includes('soundcloud')) {
+  }
+  if (source.toLowerCase().includes('soundcloud')) {
     return iconSourceSoundcloud;
-  } else if (source.toLowerCase().includes('snapchat')) {
+  }
+  if (source.toLowerCase().includes('snapchat')) {
     return iconSourceSnapchat;
-  } else if (source.toLowerCase().includes('tiktok')) {
+  }
+  if (source.toLowerCase().includes('tiktok')) {
     return iconSourceTiktok;
-  } else if (source.toLowerCase().includes('twitch')) {
+  }
+  if (source.toLowerCase().includes('twitch')) {
     return iconSourceTwitch;
-  } else if (source.toLowerCase().includes('twitter')) {
+  }
+  if (source.toLowerCase().includes('twitter')) {
     return iconSourceTwitter;
-  } else if (source.toLowerCase().includes('vimeo')) {
+  }
+  if (source.toLowerCase().includes('vimeo')) {
     return iconSourceVimeo;
-  } else if (source.toLowerCase().includes('youtube')) {
+  }
+  if (source.toLowerCase().includes('youtube')) {
     return iconSourceYoutube;
   }
 }
 // DATE STRING FORMATTING
 function convertDayToWeekday(date) {
-  var weekday = new Array(
+  const weekday = [
     'Sunday',
     'Monday',
     'Tuesday',
     'Wednesday',
     'Thursday',
     'Friday',
-    'Saturday'
-  );
+    'Saturday',
+  ];
   return `${weekday[date.getDay()]}`;
 }
 function convertMonthToMonthName(date) {
-  var month = new Array(
+  const month = [
     'January',
     'February',
     'March',
@@ -63,9 +72,9 @@ function convertMonthToMonthName(date) {
     'September',
     'October',
     'November',
-    'December'
-  );
-  console.log(date.getMonth());
+    'December',
+  ];
+  // console.log(date.getMonth());
 
   //   itemMonth = `${month[date.getMonth()]}`;
   return `${month[date.getMonth()]}`;
@@ -75,7 +84,7 @@ function convertDateToDate(date) {
   return `${date.getDate()}`;
 }
 function formatDate(date) {
-  console.log(date);
+  // console.log(date);
   let itemMonth;
   let itemDate;
   // let itemYear = date.getFullYear();

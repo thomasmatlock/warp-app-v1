@@ -1,5 +1,5 @@
 import { Fragment, useState, useContext } from 'react';
-import sortIcon from './sort.svg';
+import sortIcon from './assets/sort.svg';
 import ThemeContext from '../../store/themeContext';
 import ActionBarContext from '../../store/actionBarContext';
 import ContextMenu from '../ContextMenu/ContextMenu';
