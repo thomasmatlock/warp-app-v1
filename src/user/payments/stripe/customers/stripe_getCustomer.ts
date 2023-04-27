@@ -1,5 +1,6 @@
 import Stripe from 'stripe';
 import stripeKey from '../stripeKey';
+
 const stripe = new Stripe(stripeKey, {
   apiVersion: '2022-08-01',
 });

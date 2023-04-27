@@ -1,4 +1,6 @@
 import { useState, useContext } from 'react';
+import PrefsContext from 'store/prefsContext';
+
 import './ModalPreferences.scss';
 import './Components/ModalCheckbox.scss';
 import './Components/ModalDropdownList.scss';
@@ -20,7 +22,6 @@ import ThemeContext from '../../store/themeContext';
 import NavContext from '../../store/navContext';
 import InputContext from '../../store/inputContext';
 import ModalsContext from '../../store/modalsContext';
-import PrefsContext from 'store/prefsContext';
 
 const ModalPreferences = (props) => {
   const themeCtx = useContext(ThemeContext);

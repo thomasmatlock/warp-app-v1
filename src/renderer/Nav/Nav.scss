@@ -261,7 +261,7 @@ $gradient-orange: linear-gradient(to left, #da2c4d 0%, #f8ab37 100%);
     // max-width: 200px; // width: 100%;
     // transform: scaleX(0.95) scaleY(0.95);
     box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.4) inset;
-    filter: grayscale(0%);
+    filter: grayscale(100%);
     // margin-bottom: 8px;
     border: 1px solid transparent;
     max-height: 50px;
@@ -269,7 +269,7 @@ $gradient-orange: linear-gradient(to left, #da2c4d 0%, #f8ab37 100%);
 }
 
 .navMainBtn:hover .navMainBtn__icon {
-    filter: grayscale(0%);
+    filter: grayscale(100%);
 }
 
 .navMainBtn:hover .navMainBtn_slidingBackground {
