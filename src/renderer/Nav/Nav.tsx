@@ -3,22 +3,18 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useState, useContext } from 'react';
-// LOGO ICONS
-import NavLogoImg from './logo/blackhole.svg';
-import navLogoText from './logo/logo.svg';
-
 import Logo from '../components/Logo/Logo';
 
 // NAV BUTTON ICONS
-import iconAudio from '../Global/fileTypeAudio.svg';
-import iconVideo from './assets/video.svg';
-import iconWarpstagram from './assets/warpstagram.svg';
+import iconAudio from '../Global/audio.svg';
+import iconVideo from '../Global/video.svg';
+import iconWarpstagram from '../Global/warpstagram.svg';
 import ProgressIcon from '../Global/status.svg';
-import NewVersionIcon from './assets/new3.svg';
+import NewVersionIcon from '../Global/rocket.svg';
 // PLATFORM ICONS
-import iconWindows from './platform/windows.svg';
-import iconApple from './platform/apple.svg';
-import iconLinux from './platform/linux.svg';
+import iconWindows from '../Global/platform/windows.svg';
+import iconApple from '../Global/platform/apple.svg';
+import iconLinux from '../Global/platform/linux.svg';
 import ThemeContext from '../../store/themeContext';
 import NavContext from '../../store/navContext';
 import './Nav.scss';

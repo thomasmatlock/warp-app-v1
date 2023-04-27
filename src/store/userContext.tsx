@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 // import iconLicenses from '../../../assets/Modals/settings/shuttle.svg';
-import iconLicenses from '../renderer/Global/shuttle.svg';
+import iconLicenses from '../renderer/Global/rocket.svg';
 import DownloadsContext from './downloadsContext';
 
 let dollarsSynArray = ['bucks', 'rupees'];

@@ -5,14 +5,13 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/jsx-fragments */
 import { Fragment, useContext } from 'react';
-// import iconAudio from '../../Global/audio.svg';
-import iconAudio from '../../Global/fileTypeAudio.svg';
+import iconAudio from '../../Global/audio.svg';
 // import iconAudio from '../../Global/warpstagram.svg';
 
 import iconVideo from '../../Nav/assets/video.svg';
 import iconWarpstagram from '../../Global/warpstagram.svg';
 import iconGeneralDark from '../../Global/gear.svg';
-import iconLicenses from '../../Global/shuttle.svg';
+import iconLicenses from '../../Global/rocket.svg';
 import IconAuths from '../../Global/auths1_white.svg';
 import ThemeContext from '../../../store/themeContext';
 import './ModalPanelNav.scss';
@@ -79,6 +78,10 @@ const ModalNav = (props: any) => {
                 : 'modalPrefsNav_button__icon'
             }
             src={iconWarpstagram}
+            // grayscale
+            style={{
+              filter: 'grayscale(100%)',
+            }}
           />
           <p>Warpstagram</p>
         </div>
