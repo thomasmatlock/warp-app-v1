@@ -38,9 +38,9 @@ export default class Screen {
     this.screenState = settings.get('screen');
     if (this.screenState === undefined) {
       settings.set('screen', this.defaults);
-      return this.defaults;
+      return this.defaults as object;
     }
-    return this.screenState;
+    return this.screenState as object;
   };
 
   resetScreenState = () => {

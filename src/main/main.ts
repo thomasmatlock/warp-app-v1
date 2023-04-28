@@ -57,7 +57,7 @@ if (!isSingleInstance) {
 
 const appRootDir = require('app-root-dir').get();
 // test, just added apple id/pass to gh secrets
-let prefs: object = {};
+let prefs: object;
 let user: object;
 let browserPanelState = 'default';
 
@@ -74,10 +74,6 @@ const viewBounds = {
   y: 130,
 };
 const setActiveURL = () => {
-  // console.log(prefs);
-
-  // console.log(prefs.general.dropdowns[1].defaultValue);
-
   if (prefs.general.dropdowns[1].defaultValue.id.includes('facebook'))
     activeURL = 'http://facebook.com';
   if (prefs.general.dropdowns[1].defaultValue.id.includes('instagram'))
