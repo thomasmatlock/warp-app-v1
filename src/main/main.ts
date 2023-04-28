@@ -208,7 +208,7 @@ const windowController = {
         setTitle(mWin, 'audio', user);
 
         if (Screen.screenState.isMaximized) mWin.maximize();
-        // if (view === null) windowController.createbView();
+        if (view === null) windowController.createbView();
         mWin.webContents.send('appVersion', app.getVersion());
         mWin.webContents.send('appRoot', appRootDir);
         mWin.webContents.send('main: prefs', prefs);
@@ -345,7 +345,7 @@ app
 
       // console.log(typeof user);
 
-      // windowController.createMainWin();
+      windowController.createMainWin();
     })();
     // createTray(mWin);
     // Shortcuts(view);

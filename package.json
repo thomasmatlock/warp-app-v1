@@ -108,7 +108,7 @@
         "react-router-dom": "^6.3.0",
         "stripe": "^10.8.0",
         "uuid": "^9.0.0",
-        "ytdl-core": "^4.11.4",
+        "ytdl-core": "npm:@distube/ytdl-core",
         "ytpl": "^2.3.0"
     },
     "devDependencies": {
