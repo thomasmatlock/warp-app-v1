@@ -9,6 +9,8 @@ export default function setTitle(
   mode: string,
   user: object
 ) {
+  console.log(mode);
+
   const baseTitleString = `${capitalizeFirstLetter(
     app.getName()
   )} | Download Anything |`;

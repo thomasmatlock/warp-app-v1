@@ -25,15 +25,6 @@ export default class Screen {
     };
   }
 
-  setScreenState = (mWin: BrowserWindow) => {
-    const newState = this.getScreenState();
-    const newBounds = mWin.getBounds();
-    newState.bounds = newBounds;
-    newState.isMaximized = mWin.isMaximized();
-    settings.set('screen', newState);
-    this.screenState = newState;
-  };
-
   getScreenState = () => {
     this.screenState = settings.get('screen');
     if (this.screenState === undefined) {
@@ -41,6 +32,15 @@ export default class Screen {
       return this.defaults as object;
     }
     return this.screenState as object;
+  };
+
+  setScreenState = (mWin: BrowserWindow) => {
+    const newState = this.getScreenState() as any;
+    const newBounds = mWin.getBounds();
+    newState.bounds = newBounds;
+    newState.isMaximized = mWin.isMaximized();
+    settings.set('screen', newState);
+    this.screenState = newState;
   };
 
   resetScreenState = () => {
