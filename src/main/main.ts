@@ -345,7 +345,7 @@ app
 
       // console.log(typeof user);
 
-      windowController.createMainWin();
+      // windowController.createMainWin();
     })();
     // createTray(mWin);
     // Shortcuts(view);

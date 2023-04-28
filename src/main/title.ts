@@ -1,9 +1,6 @@
 import { app, BrowserWindow } from 'electron';
+import { capitalizeFirstLetter } from './util/strings';
 
-// let user;
-const capitalizeFirstLetter = (string: string) => {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-};
 export default function setTitle(
   mWin: BrowserWindow,
   mode: string,
