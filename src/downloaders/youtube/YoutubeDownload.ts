@@ -13,8 +13,8 @@ const stream = require('node:stream');
 const Downloader = require('nodejs-file-downloader');
 
 export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
-  let randomInt = (Math.floor(Math.random() * 1000000) + 1).toString();
-  let tempPath =
+  const randomInt = (Math.floor(Math.random() * 1000000) + 1).toString();
+  const tempPath =
     item.type === 'audio'
       ? path.join(
           app.getPath('temp'),
