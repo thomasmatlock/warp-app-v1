@@ -22,7 +22,7 @@ import formatLength from './formatLength';
 import formatTitle from './formatTitle';
 
 import YoutubeDownload from './YoutubeDownload';
-import YoutubeDownload2 from './YoutubeDownload2';
+// import YoutubeDownload2 from './YoutubeDownload2';
 import getQuality from './getQuality';
 import Prefs from '../../main/prefsController';
 export default async function Youtube(mWin, itemURL, prefs, mode) {
