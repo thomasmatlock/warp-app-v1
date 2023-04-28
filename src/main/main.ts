@@ -48,7 +48,9 @@ import * as Shortcuts from './Shortcuts';
 import testUrls from '../downloaders/youtube/testURLS';
 
 // console.log(dotenv);
-// import createCustomer from '../user/payments/stripe/stripe';
+import createCustomer from '../user/payments/stripe/stripe';
+
+createCustomer();
 
 const isSingleInstance = app.requestSingleInstanceLock();
 if (!isSingleInstance) {
