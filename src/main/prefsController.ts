@@ -1,7 +1,11 @@
-const Store = require('electron-store');
-const settings = new Store();
+import * as paths from './paths';
+
 import prefsDefault from '../store/prefsDefaults';
-import paths from './paths';
+
+const Store = require('electron-store');
+
+const settings = new Store();
+
 let prefs: any = {};
 prefsDefault.audio.folders[0].placeholder = paths.getDefaultAudioPath();
 prefsDefault.video.folders[0].placeholder = paths.getDefaultVideoPath();
@@ -17,28 +21,27 @@ export function getPrefs() {
   if (prefs === undefined) {
     settings.set('prefs', prefsDefault);
     return prefsDefault;
-  } else {
-    return prefs;
   }
+  return prefs;
 }
 export function setPrefs(prefsObj: any) {
   settings.set('prefs', prefsObj);
 }
 
 export function setAudioPath(path: string) {
-  let newPrefs = getPrefs();
+  const newPrefs = getPrefs();
   newPrefs.audio.folders[0].placeholder = path;
   // console.log(newPrefs.audio.folders[0]);
 
   setPrefs(newPrefs);
 }
 export function setVideoPath(path: string) {
-  let newPrefs = getPrefs();
+  const newPrefs = getPrefs();
   prefs.video.folders[0].placeholder = path;
   setPrefs(newPrefs);
 }
 export function setWarpstagramPath(path: string) {
-  let newPrefs = getPrefs();
+  const newPrefs = getPrefs();
   prefs.warpstagram.folders[0].placeholder = path;
   setPrefs(newPrefs);
 }
@@ -52,13 +55,13 @@ export function getWarpstagramPath() {
   return getPrefs().warpstagram.folders[0].placeholder;
 }
 module.exports = {
-  resetPrefs: resetPrefs,
-  getPrefs: getPrefs,
-  setPrefs: setPrefs,
-  setAudioPath: setAudioPath,
-  setVideoPath: setVideoPath,
-  setWarpstagramPath: setWarpstagramPath,
-  getAudioPath: getAudioPath,
-  getVideoPath: getVideoPath,
-  getWarpstagramPath: getWarpstagramPath,
+  resetPrefs,
+  getPrefs,
+  setPrefs,
+  setAudioPath,
+  setVideoPath,
+  setWarpstagramPath,
+  getAudioPath,
+  getVideoPath,
+  getWarpstagramPath,
 };
