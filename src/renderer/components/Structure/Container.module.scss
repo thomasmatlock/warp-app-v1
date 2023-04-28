@@ -1,0 +1,91 @@
+@import './components/Structure/structure_variables.module.scss';
+.container,
+.container_reverse,
+.container_trust,
+.container_overlap,
+.container_wrapup,
+.container_overlap2 {
+    margin: 0rem auto;
+    width: 100%;
+    // max-width: 1600px;
+    // width: 1200px;
+    width: clamp(1200px, 66vw, 1600px);
+    height: 100%;
+    border: 1px dotted $border_color;
+    padding: 0rem;
+    display: flex;
+    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.container_reverse {
+    // flex-direction: row-reverse;
+    // background-color: #1a1a1a;
+}
+
+.container_trust {
+    // flex-direction: row-reverse;
+    margin: 0 auto;
+    // padding: -1rem;
+    max-width: 750px;
+    // background-color: #1a1a1a;
+}
+
+.container_overlap,
+.container_overlap2 {
+    transform: translateY(100px);
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.5);
+    // max-width: 1400px;
+    width: clamp(1000px, 66vw, 1200px);
+    border-radius: 3px;
+}
+
+.container_overlap2 {
+    width: clamp(1200px, 70vw, 1300px);
+    background-color: #1a1a1a;
+}
+
+// #container_trust {
+//     max-width: 1000px;
+//     border: 1px solid red;
+// }
+@media screen and (max-width: $breakpoint_tablet) {
+    .container,
+    .container_reverse {
+        max-width: 100% !important;
+        width: 100%;
+        margin-top: 1rem;
+    }
+    .container {
+        flex-direction: column;
+        // border: 1px solid red;
+        // height: auto;
+        // visibility: hidden;
+    }
+    .container_reverse {
+        flex-direction: column-reverse;
+    }
+    .container_trust {
+        flex-direction: column;
+        max-width: 100%;
+        width: 100%;
+        // border: 1px solid red;
+    }
+    .container_overlap,
+    .container_overlap2 {
+        flex-direction: column;
+        max-width: 100%;
+        width: 95vw;
+        // border: 1px solid red;
+    }
+    .container_overlap {
+        margin-top: -10vh;
+    }
+    .container_wrapup {
+        flex-direction: column-reverse;
+        width: 100vw;
+    }
+}

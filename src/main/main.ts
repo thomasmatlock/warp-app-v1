@@ -38,11 +38,11 @@ import { resolveHtmlPath } from './util';
 import BrowserQuery from './browserQuery';
 import * as Paths from './paths';
 import * as Downloads from '../downloaders/downloadsController';
-import * as Title from './title';
+import setTitle from './title';
 import * as Prefs from './prefsController';
 import PowerMonitor from './powerMonitor';
 import ScreenClass from './Screen';
-import * as Browser from './browserController';
+import * as Browser from '../Browser/browserController';
 import * as Shortcuts from './Shortcuts';
 // console.log(process.env.APPLE_ID);
 import testUrls from '../downloaders/youtube/testURLS';
@@ -209,7 +209,7 @@ const windowController = {
         // if (view) {
         // }
         mWin.show();
-        Title.setTitle(mWin, 'audio', user);
+        setTitle(mWin, 'audio', user);
 
         if (Screen.screenState.isMaximized) mWin.maximize();
         // if (view === null) windowController.createbView();
@@ -423,15 +423,15 @@ if (isDebug) {
   ipcMain.on('nav: mode: audio', async (event, arg) => {
     // if (mWin) mWin.webContents.send('count-downloads');
     // console.log(arg);
-    Title.setTitle(mWin, 'audio', user);
+    setTitle(mWin, 'audio', user);
   });
   ipcMain.on('nav: mode: video', async (event, arg) => {
     // if (mWin) mWin.webContents.send('count-downloads');
-    Title.setTitle(mWin, 'video', user);
+    setTitle(mWin, 'video', user);
   });
   ipcMain.on('nav: mode: warpstagram', async (event, arg) => {
     // if (mWin) mWin.webContents.send('count-downloads');
-    Title.setTitle(mWin, 'warpstagram', user);
+    setTitle(mWin, 'warpstagram', user);
   });
   // SEARCH LISTENERS
   ipcMain.on('Search: InputChange', async (event, arg) => {

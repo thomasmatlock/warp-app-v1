@@ -1,0 +1,17 @@
+@import './components/Structure/structure_variables.module.scss';
+.separator {
+    height: 1px;
+    width: 100%;
+    border: 1px dotted rgb(47, 47, 47);
+    margin: 0 auto;
+}
+
+@media screen and (max-width: $breakpoint_tablet) {
+    .separator {
+        // max-width: 100vw !important;
+        // width: 100%;
+        // width: 100%;
+        // max-width: 100%;
+        // margin: 1rem auto;
+    }
+}

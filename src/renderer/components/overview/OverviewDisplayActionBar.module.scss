@@ -1,0 +1,205 @@
+@import 'OverviewDisplayActionBarSource.module.scss';
+@import 'OverviewDisplayActionBarWarpstagram.module.scss';
+$nav-text-color: #000;
+$nav-text-color_hover: #fff;
+$gray-dark-darkest: #1a1a1a;
+$gray-dark-dark: #202020;
+$gray-dark-light: #252525;
+$gray-dark-lightest: #313131;
+$gradient-blue: linear-gradient(to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, #19d2fc 100%);
+$minHeight: 48px;
+$maxHeight: 64px;
+.actionBar {
+    margin: 0 auto;
+    left: 0;
+    top: clamp($minHeight, 4vh, $maxHeight);
+    width: 100%;
+    position: absolute;
+    // height: 64px;
+    // min-height: $height1;
+    // max-height: $height1;
+    height: clamp($minHeight, 4vh, $maxHeight);
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    justify-content: space-between;
+    align-items: center;
+    // background-color: $gray-dark-light;
+    background-color: $gray-dark-dark;
+    border: 1px solid $gray-dark-lightest;
+    // border: 1px solid red;
+}
+
+$nav-text-color: #000;
+$nav-text-color_hover: #fff;
+$gray-dark-darkest: #1a1a1a;
+$gray-dark-dark: #202020;
+$gray-dark-light: #252525;
+$gray-dark-lightest: #313131;
+$gradient-blue: linear-gradient(to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, #19d2fc 100%);
+$gradient-orange: linear-gradient(to left, #da2c4d 0%, #f8ab37 100%);
+@keyframes flipInX {
+    from {
+        transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+        animation-timing-function: ease-in;
+        // opacity: 0;
+    }
+    40% {
+        transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+        animation-timing-function: ease-in;
+    }
+    60% {
+        transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+    }
+    80% {
+        transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+    }
+    to {
+        transform: perspective(400px);
+        opacity: 1;
+    }
+}
+
+@keyframes highlight {
+    from {
+        box-shadow: -20px 30px 80px white !important;
+        // opacity: 1;
+        // transform: scale3d(1, 1, 1);
+        // text-shadow: 0 0 5px #005eff, 0 0 25px #005eff, 0 0 50px #005eff, 0 0 200px rgb(255, 255, 255);
+        transform: scale(0.95);
+        // z-index: 100;
+    }
+    50% {
+        box-shadow: -20px 30px 80px white !important;
+        // opacity: 1;
+        // transform: scale3d(1.1, 1.1, 1.1);
+        transform: scale(1.05);
+        // z-index: 100;
+    }
+    to {
+        // text-shadow: 0 0 5px #fff, 0 0 25px #fff, 0 0 50px #fff, 0 0 200px rgb(255, 255, 255);
+        // box-shadow: -10px 15px 40px red !important;
+        transform: scale(0.95);
+        // opacity: 0;
+    }
+}
+
+.browserBar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    justify-content: space-evenly;
+    // background-color: #f5f5f5;
+    // border: 1px solid #e0e0e0;
+    // width: 50%;
+    display: flex;
+    height: 100%;
+    // min-height: 64px;
+    // max-height: 64px;
+    // flex: 1;
+    position: relative;
+    flex-direction: row;
+    align-items: center;
+    // border: 1px solid red;
+    // border: 1px solid $gray-dark-lightest;
+    // border: 1px dotted red;
+    width: 50%;
+    height: clamp($minHeight, 4vh, $maxHeight);
+}
+
+// https://www.w3schools.com/howto/howto_custom_select.asp
+.browserBarDownloadBtn {
+    width: clamp(5vh, 10rem, 12rem);
+    // max-width: 250px;
+    justify-content: center !important;
+    background-image: $gradient-blue;
+    top: 0;
+    position: relative;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    margin-right: 48px;
+    height: 48px;
+    border-radius: 3px;
+    font-size: 0.75rem;
+    // position: absolute;
+    background-color: $gray-dark-lightest;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    justify-content: center !important;
+    cursor: pointer;
+    height: clamp(36px, 3vh, 48px);
+    // animation: flipInX 0.5s ease-in-out;
+    transition: all 0.1s ease-in-out;
+    font-size: 10px;
+    user-select: none;
+    // border: 1px solid red;
+    &.browserBarDownloadBtn img {
+        width: 12px;
+        height: 12px;
+        // border: 1px solid red;
+        // margin-right: 1rem;
+        margin: 0 auto;
+        filter: invert(1);
+    }
+    &__audio {
+        background-image: $gradient-orange;
+        &:hover {
+            user-select: none;
+            cursor: default;
+            background-image: $gradient-blue;
+        }
+    }
+    &__video {
+        background-image: $gradient-blue;
+        &:hover {
+            user-select: none;
+            cursor: default;
+            background-image: $gradient-orange;
+        }
+    }
+    &:hover {
+        // background-image: $gradient-orange;
+        box-shadow: -20px 30px 80px 0 rgba(0, 0, 0, 1) !important;
+        // transform: scale(1.01);
+    }
+    &:active {
+        background-image: $gradient-orange;
+        box-shadow: -5px 10px 10px 0 rgba(0, 0, 0, 1) !important;
+        transition: 0.01s ease-in-out;
+        transform: scale(0.99);
+    }
+    & p {
+        // width: 10px;
+        margin: 0 auto;
+        margin-left: -0.25rem;
+        // transform: translate(-90px) translateY(0px);
+        // border: 1px dotted red;
+    }
+}
+
+.highlight {
+    animation: highlight infinite;
+    animation-duration: 2s;
+    // animation-delay: 0.5s;
+    box-shadow: -0px 0px 25px white !important;
+    animation-timing-function: ease-in-out;
+    // animation-delay: 0.5s;
+}
+
+@media screen and (max-width: 768px) {
+    .browserBar {
+        width: 100vw;
+        justify-content: center;
+        // border: 1px solid red;
+    }
+    .browserBarDownloadBtn {
+        margin-right: 1rem;
+    }
+    .browserBarDownloadBtn p {
+        font-size: 10px;
+    }
+}

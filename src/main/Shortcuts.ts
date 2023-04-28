@@ -1,5 +1,5 @@
 import { app, BrowserWindow, BrowserView, globalShortcut } from 'electron';
-import Browser from './browserController';
+import Browser from '../Browser/browserController';
 export function addShortcuts(mWin: BrowserWindow, view: BrowserView) {
   // Browser.screenshot(mWin, view);
   // console.log(mWin);

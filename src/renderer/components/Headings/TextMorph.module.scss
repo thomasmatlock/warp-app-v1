@@ -1,0 +1,158 @@
+@import './components/Structure/structure_variables.module.scss';
+$PrefixFontSize: 2.5rem;
+$SuffixFontSize: 2rem;
+#MorphPrefix,
+#MorphSuffix {
+    // border: 1px solid red;
+    // line-height: 2rem;
+    // height: 15vh;
+    margin: -2vh auto;
+    // margin-bottom: -2vh;
+    padding: 0;
+}
+
+#MorphSuffix {
+    margin-top: -3rem;
+}
+
+#suffix_static {
+    justify-content: flex-start;
+    transform: translateX(-4rem);
+    font-size: $SuffixFontSize;
+    // border: 1px solid red;
+}
+
+#prefix_static {
+    justify-content: flex-start;
+    transform: translateX(7.5rem);
+    font-size: $PrefixFontSize;
+    // border: 1px solid red;
+}
+
+#suffix_static,
+#prefix_static {
+    display: flex;
+    white-space: nowrap;
+    position: absolute;
+    width: auto;
+    flex-direction: row;
+    font-family: 'GreycliffCF-Bold', sans-serif; // margin: 20px auto;
+    // filter: url(#threshold) blur(0.5px);
+    // filter: url(#threshold2) blur(0.5px);
+}
+
+#suffix_morphing_text,
+#prefix_morphing_text {
+    // line-height: 1rem;
+    // border: 1px solid red;
+    display: flex;
+    white-space: nowrap;
+    position: absolute;
+    width: auto;
+    flex-direction: row;
+    font-family: 'GreycliffCF-Bold', sans-serif; // margin: 20px auto;
+    // filter: url(#threshold) blur(0.5px);
+    filter: url(#threshold2) blur(0.25px);
+}
+
+#prefix_morphing_text {
+    justify-content: flex-end;
+    transform: translateX(-2.1rem) translateY(-1.5rem);
+}
+
+#suffix_morphing_text {
+    justify-content: flex-start;
+    transform: translateX(12.9rem) translateY(-1.2rem);
+}
+
+#Suffix1,
+#Suffix2,
+#Prefix1,
+#Prefix2 {
+    position: absolute;
+    color: transparent;
+    background-position: 0% 0%; // moving
+    -webkit-background-clip: text;
+    font-family: 'GreycliffCF-Bold', sans-serif !important; // margin: 20px auto;
+}
+
+#Suffix1,
+#Suffix2 {
+    // font-size: 2.5rem; // text-align: start;
+    font-size: $SuffixFontSize;
+}
+
+#Prefix1,
+#Prefix2 {
+    // font-size: 3rem; // text-align: start;
+    font-size: $PrefixFontSize;
+}
+
+@media screen and (max-width: $breakpoint_tablet) {
+    #suffix_static,
+    #Suffix1,
+    #Suffix2 {
+        font-size: 2rem;
+        text-align: center;
+    }
+    #prefix_static,
+    #Prefix1,
+    #Prefix2 {
+        font-size: 2.5rem;
+    }
+    #suffix_static {
+        justify-content: center;
+        transform: translateX(0rem);
+        position: relative;
+        width: 100%;
+        white-space: normal;
+    }
+    #prefix_static {
+        justify-content: center;
+        transform: translateX(0rem);
+        white-space: normal;
+        position: relative;
+    }
+    #prefix_morphing_text {
+        // position: relative;
+        justify-content: center;
+        transform: translateX(0rem);
+    }
+    #suffix_morphing_text {
+        justify-content: center;
+        transform: translateX(0rem) translateY(-2.1rem);
+    }
+    #MorphPrefix,
+    #MorphSuffix {
+        // border: 1px solid red;
+        // line-height: 2rem;
+        // height: 15vh;
+        justify-content: center;
+        height: auto;
+        margin: 0 auto;
+        // margin-bottom: -8vh;
+        padding: 0;
+    }
+    #MorphSuffix {
+        justify-content: center;
+        height: auto;
+        margin: 0 auto;
+        margin-top: 2rem;
+        margin-bottom: -9vh;
+        padding: 0;
+    }
+    #MorphPrefix {
+        justify-content: center;
+        height: auto;
+        margin: 0 auto;
+        margin-top: -2rem;
+        margin-bottom: -0vh;
+        padding: 0;
+    }
+    // #Suffix1,
+    // #Suffix2,
+    // #Prefix1,
+    // #Prefix2 {
+    //     // background-position: 100% 0%; // moving
+    // }
+}
