@@ -306,6 +306,8 @@ app
 
     (async function init() {
       user = await GetUser();
+      // console.log(user);
+
       const url = 'https://www.youtube.com/watch?v=7t885JG9qNE';
 
       // AddUserDownload(url, 'audio', 'add');
