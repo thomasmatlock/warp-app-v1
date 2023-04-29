@@ -46,15 +46,17 @@
     "browserslist": [],
     "prettier": {
         "singleQuote": true,
-        "overrides": [{
-            "files": [
-                ".prettierrc",
-                ".eslintrc"
-            ],
-            "options": {
-                "parser": "json"
+        "overrides": [
+            {
+                "files": [
+                    ".prettierrc",
+                    ".eslintrc"
+                ],
+                "options": {
+                    "parser": "json"
+                }
             }
-        }]
+        ]
     },
     "jest": {
         "moduleDirectories": [
@@ -100,6 +102,7 @@
         "electron-updater": "^5.2.2",
         "fluent-ffmpeg": "^2.1.2",
         "got": "^11.8.3",
+        "ip-address": "^8.1.0",
         "moment": "^2.29.4",
         "node-machine-id": "^1.1.12",
         "nodejs-file-downloader": "^4.10.2",
@@ -217,7 +220,8 @@
             "gatekeeperAssess": false
         },
         "dmg": {
-            "contents": [{
+            "contents": [
+                {
                     "x": 130,
                     "y": 220
                 },

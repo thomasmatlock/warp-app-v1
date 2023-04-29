@@ -1,4 +1,4 @@
-export default function convertToSeconds(timeString: string) {
+export function convertToSeconds(timeString: string) {
   // console.log(timeString);
 
   // let timeString = '00:00:00';
@@ -9,4 +9,17 @@ export default function convertToSeconds(timeString: string) {
   }
   // console.log(seconds, 'seconds');
   return seconds;
+}
+
+export function isTimestampInLast24Hours(timestamp: string) {
+  const now = new Date().getTime();
+  const yesterday = now - 86400000;
+  const timestampDate = new Date(timestamp).getTime();
+  if (timestampDate > yesterday) {
+    return true;
+  }
+  return false;
+}
+export function Test() {
+  console.log('Test');
 }

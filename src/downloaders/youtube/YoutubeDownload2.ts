@@ -10,7 +10,8 @@ import ffmpeg from 'fluent-ffmpeg';
 const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
 const ffmpeg = require('fluent-ffmpeg');
 ffmpeg.setFfmpegPath(ffmpegPath);
-import convertToSeconds from '../../main/util/time';
+import { convertToSeconds } from '../../main/util/time';
+
 import getETA from './getETA';
 import convertFile from './convertFile';
 const Downloader = require('nodejs-file-downloader');

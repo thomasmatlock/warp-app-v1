@@ -4,8 +4,9 @@
 import fs from 'fs';
 import path from 'path';
 import ffmpeg from 'fluent-ffmpeg';
+
 import { app, BrowserWindow, dialog } from 'electron';
-import convertToSeconds from './convertTimeToSeconds';
+import { convertToSeconds } from '../../main/util/time';
 import getETA from './getETA';
 import generateFFMPEGPath from '../../ffmpeg/generateFFMPEGPath';
 

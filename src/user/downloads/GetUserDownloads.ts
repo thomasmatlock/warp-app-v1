@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import got from 'got';
 import { machineId } from 'node-machine-id';
-import APIVariables from './API Variables';
+import APIVariables from '../API Variables';
 
 export default async function GetUserDownloads() {
   const userDownloads: object = {};
@@ -11,6 +11,6 @@ export default async function GetUserDownloads() {
     return (await got(apiURL).json()) as object;
   } catch (error) {
     console.log('error', error);
+    return userDownloads as object;
   }
-  return userDownloads as object;
 }

@@ -26,12 +26,12 @@ import {
 
 import ffmpegInit from '../ffmpeg/ffmpegController';
 import GetUser from '../user/GetUser';
-import GetUserDownloads from '../user/GetUserDownloads';
+import GetUserDownloads from '../user/downloads/GetUserDownloads';
 
-import AddUserDownload from '../user/AddUserDownload';
-import UpgradeUser from '../user/UpgradeUser';
+// import AddUserDownload from '../user/downloads/AddUserDownload';
+// import UpgradeUser from '../user/UpgradeUser';
 
-import * as time from '../util/Time';
+import * as time from './util/time';
 import updater from './updater';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
@@ -51,6 +51,11 @@ import testUrls from '../downloaders/youtube/testURLS';
 import createCustomer from '../user/payments/stripe/stripe';
 
 createCustomer();
+// const { networkInterfaces } = require('os');
+// console.log(networkInterfaces());
+
+// const { Address6 } = require('ip-address').Address6;
+// console.log(new Address6('2001:db8:1234::1').isValid());
 
 const isSingleInstance = app.requestSingleInstanceLock();
 if (!isSingleInstance) {
