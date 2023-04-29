@@ -8,8 +8,6 @@ export default async function GetUserDownloads() {
   const machineID = await machineId();
   const apiURL = `${APIVariables.downloadsEndpoint}?machine_id=${machineID}`;
   try {
-    console.log(await got(apiURL).json());
-
     return (await got(apiURL).json()) as object;
   } catch (error) {
     console.log('error', error);

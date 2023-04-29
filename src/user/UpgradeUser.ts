@@ -12,7 +12,6 @@ export default async function GetUserDownloads(
   const machineID = await machineId();
   const apiURL = `${APIVariables.userEndpoint}?machine_id=${machineID}&email=${email}&moduleType=${moduleType}&moduleEdition=${moduleEdition}&action=${action}`;
   try {
-    // return await got(apiURL).json();
     return await got.put(apiURL).json();
   } catch (error) {
     console.log('error', error);
