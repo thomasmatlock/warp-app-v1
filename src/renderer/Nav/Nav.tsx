@@ -19,28 +19,20 @@ const Nav = (props) => {
   const themeCtx = useContext(ThemeContext);
 
   return (
-    <>
-      <div
-        className="navMain"
-        style={
-          themeCtx.isDarkTheme
-            ? { backgroundColor: themeCtx.nav.dark.backgroundColor }
-            : {
-                backgroundColor: themeCtx.nav.light.backgroundColor,
-              }
-        }
-      >
-        <div className="logoContainer">
-          <Logo />
-        </div>
-        <NavButtons />
-        <div className="logoContainer">
-          <NavStatus />
-
-          {/* <a className="navLogo"></a> */}
-        </div>
-      </div>
-    </>
+    <div
+      className="navMain"
+      style={
+        themeCtx.isDarkTheme
+          ? { backgroundColor: themeCtx.nav.dark.backgroundColor }
+          : {
+              backgroundColor: themeCtx.nav.light.backgroundColor,
+            }
+      }
+    >
+      <Logo />
+      <NavButtons />
+      <NavStatus />
+    </div>
   );
 };
 export default Nav;

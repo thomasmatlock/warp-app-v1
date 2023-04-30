@@ -1,5 +1,16 @@
 // @import '/styles/base/animations.module.scss';
 // @import '/components/Structure/structure_variables.module.scss';
+.logoContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 33%;
+    height: 100%;
+    // height: auto;
+    color: white;
+}
+
 .logo {
     width: auto;
     height: auto;
