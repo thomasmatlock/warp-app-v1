@@ -185,7 +185,7 @@ export const PrefsContextProvider = (props) => {
       // console.log('outputFolder', id);
       // if (id.toLowerCase().includes('audio')) {
       window.electron.ipcRenderer.sendMessage(
-        'main: prefs: chooseOutputFolder',
+        'main: global: prefs: chooseOutputFolder',
         id
       );
       // }

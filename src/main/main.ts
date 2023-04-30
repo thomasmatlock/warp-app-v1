@@ -89,7 +89,6 @@ const appRootDir = require('app-root-dir').get();
 let prefs: object;
 let user: object;
 let browserPanelState = 'default';
-let status: object;
 let global = {
   prefs: {},
   user: {},
@@ -182,7 +181,7 @@ const windowController = {
     });
     mWin.loadURL(resolveHtmlPath('index.html'));
 
-    const wc = mWin.webContents;
+    // const wc = mWin.webContents;
 
     const menuBuilder = new MenuBuilder(mWin);
     menuBuilder.buildMenu();
@@ -230,12 +229,6 @@ const windowController = {
         global.appVersion = app.getVersion();
         console.log(global);
       }
-      // if (process.platform === 'win32' && mWin)
-      //   mWin.webContents.send('platform', 'windows');
-      // if (process.platform === 'darwin' && mWin)
-      //   mWin.webContents.send('platform', 'darwin');
-      // if (process.platform === 'linux' && mWin)
-      //   mWin.webContents.send('platform', 'linux');
       if (!mWin) {
         throw new Error('"mWin" is not defined');
       }
@@ -252,7 +245,7 @@ const windowController = {
 
         // mWin.webContents.send('status', status);
         mWin.webContents.send('main: global', global);
-        mWin.webContents.send('main: prefs', prefs);
+        mWin.webContents.send('main: prefs', global.prefs);
         mWin.webContents.send('main: audioDownloads', audioDownloads);
         mWin.webContents.send('main: videoDownloads', videoDownloads);
         mWin.webContents.send(
@@ -563,13 +556,13 @@ if (isDebug) {
   );
   // MODAL PREFS LISTENERS
   ipcMain.on('main: prefs', async (event, arg) => {
-    prefs = arg;
-    Prefs.setPrefs(prefs);
-    event.reply('main: prefs', prefs);
+    global.prefs = arg;
+    Prefs.setPrefs(global.prefs);
+    event.reply('main: prefs', global.prefs);
     //  event.reply('FilterBar: Warpstagram: FilterTypeLocations successful'); // sends message to renderer
   });
   ipcMain.on(
-    'main: prefs: chooseOutputFolder',
+    'main: global: prefs: chooseOutputFolder',
     async (event, outputFolderID) => {
       // console.log(outputFolderID);
       if (outputFolderID.toLowerCase().includes('audio')) {
@@ -581,8 +574,8 @@ if (isDebug) {
           })
           .then((result) => {
             if (!result.canceled) Prefs.setAudioPath(result.filePaths[0]);
-            prefs = Prefs.getPrefs();
-            mWin.webContents.send('main: prefs', prefs);
+            global.prefs = Prefs.getPrefs();
+            mWin.webContents.send('main: prefs', global.prefs);
           })
           .catch((err) => {
             console.log(err);
@@ -597,8 +590,8 @@ if (isDebug) {
           })
           .then((result) => {
             if (!result.canceled) Prefs.setVideoPath(result.filePaths[0]);
-            prefs = Prefs.getPrefs();
-            if (mWin) mWin.webContents.send('main: prefs', prefs);
+            global.prefs = Prefs.getPrefs();
+            if (mWin) mWin.webContents.send('main: prefs', global.prefs);
           })
           .catch((err) => {
             console.log(err);
@@ -613,15 +606,13 @@ if (isDebug) {
           })
           .then((result) => {
             if (!result.canceled) Prefs.setWarpstagramPath(result.filePaths[0]);
-            prefs = Prefs.getPrefs();
-            if (mWin) mWin.webContents.send('main: prefs', prefs);
+            global.prefs = Prefs.getPrefs();
+            if (mWin) mWin.webContents.send('main: prefs', global.prefs);
           })
           .catch((err) => {
             console.log(err);
           });
       }
-
-      // event.reply('main: prefs', prefs);
     }
   );
   ipcMain.on('item-download-progress', async (event, args) => {
@@ -651,7 +642,7 @@ if (isDebug) {
   ipcMain.on('context: open_in_browser', async (event, matchingDownload) => {
     console.log(matchingDownload);
 
-    let url = matchingDownload.video_url;
+    const url = matchingDownload.video_url;
     if (view) view.webContents.loadURL(url);
   });
   ipcMain.on('context: remove_item', async (_event, matchingDownload) => {
