@@ -58,11 +58,10 @@ function getLastItemOfArray(array: any) {
   return array[array.length - 1];
 }
 (async () => {
-  const products = await getProducts();
+  // const products = await getProducts();
   // console.log(products);
-  const lastProduct = await getLastItemOfArray(products.data);
+  // const lastProduct = await getLastItemOfArray(products.data);
   // console.log(lastProduct);
-
   // const customer = await createCustomer();
   // console.log(customer);
   // if (customer !== undefined) {
@@ -239,12 +238,12 @@ const windowController = {
         setTitle(mWin, 'audio', user);
 
         if (Screen.screenState.isMaximized) mWin.maximize();
-        // if (view === null) windowController.createbView();
+        if (view === null) windowController.createbView();
         mWin.webContents.send('appVersion', app.getVersion());
 
         mWin.webContents.send('appRoot', appRootDir);
 
-        mWin.webContents.send('status', status);
+        // mWin.webContents.send('status', status);
         mWin.webContents.send('main: prefs', prefs);
         mWin.webContents.send('main: audioDownloads', audioDownloads);
         mWin.webContents.send('main: videoDownloads', videoDownloads);

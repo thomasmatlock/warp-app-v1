@@ -18,7 +18,10 @@ import iconLinux from '../Global/platform/linux.svg';
 import ThemeContext from '../../store/themeContext';
 import NavContext from '../../store/navContext';
 import './Nav.scss';
-import Notification from './Status';
+import StatusText from './StatusText';
+import StatusIcon from './StatusIcon';
+import NavButtons from './NavButtons';
+// console.log(typeof ProgressIcon);
 
 let appVersion = '1.0.0';
 let appRoot = '1.0.0';
@@ -52,16 +55,12 @@ const Nav = (props) => {
     appRoot = arg;
   });
   window.electron.ipcRenderer.on('status', (arg) => {
-    console.log(typeof arg);
-
-    const { complete, inProgress, pending } = arg;
-    console.log(complete[0]);
-
-    setFeatureCompleteStatus(complete[0]);
-    console.log(featureCompleteStatus);
-
+    // console.log(typeof arg);
+    // const { complete, inProgress, pending } = arg;
+    // console.log(complete[0]);
+    // setFeatureCompleteStatus(complete[0]);
     // console.log(featureCompleteStatus);
-
+    // console.log(featureCompleteStatus);
     // setStatus(arg);
   });
   const disableUpdateStates = () => {
@@ -105,8 +104,6 @@ const Nav = (props) => {
   return (
     <>
       <div
-        // onMouseEnter={mouseEnterHandler}
-        // onMouseLeave={mouseLeaveHandler}
         className="navMain"
         style={
           themeCtx.isDarkTheme
@@ -117,84 +114,9 @@ const Nav = (props) => {
         }
       >
         <div className="logoContainer">
-          {/* <a className="navLogo">
-            <img
-              className="navLogoImg"
-              style={
-                themeCtx.isDarkTheme
-                  ? { filter: 'invert(0%)' }
-                  : {
-                      filter: 'invert(100%)',
-                    }
-              }
-              alt="icon"
-              src={NavLogoImg}
-            />
-            <img
-              className="navLogoText"
-              style={
-                themeCtx.isDarkTheme
-                  ? { filter: 'invert(0%)' }
-                  : {
-                      filter: 'invert(100%)',
-                    }
-              }
-              alt="icon"
-              src={navLogoText}
-            />
-          </a> */}
           <Logo />
         </div>
-        <div className="buttonContainer">
-          <div
-            onClick={navCtx.audioModeHandler}
-            id="navMainBtnAudio"
-            className={navCtx.audioMode ? 'navMainBtnActive' : 'navMainBtn'}
-          >
-            {/* <div className="navMainBtn_slidingBackground" /> */}
-
-            <img
-              className={
-                navCtx.audioMode ? 'navMainBtn__icon' : 'navMainBtn__icon'
-              }
-              style={
-                themeCtx.isDarkTheme
-                  ? { filter: 'invert(100%)' }
-                  : { filter: 'invert(0%)' }
-              }
-              src={iconAudio}
-            />
-            <p>Audio</p>
-          </div>
-          <div
-            onClick={navCtx.videoModeHandler}
-            id="navMainBtnVideo"
-            className={navCtx.videoMode ? 'navMainBtnActive' : 'navMainBtn'}
-          >
-            <img
-              className={
-                navCtx.videoMode ? 'navMainBtn__icon' : 'navMainBtn__icon'
-              }
-              src={iconVideo}
-            />
-            <p>Video</p>
-          </div>
-          <div
-            onClick={navCtx.warpstagramModeHandler}
-            id="navMainBtnWarpstagram"
-            className={
-              navCtx.warpstagramMode ? 'navMainBtnActive' : 'navMainBtn'
-            }
-          >
-            <img
-              className={
-                navCtx.warpstagramMode ? 'navMainBtn__icon' : 'navMainBtn__icon'
-              }
-              src={iconWarpstagram}
-            />
-            <p>Warpstagram</p>
-          </div>
-        </div>
+        <NavButtons />
         <div className="logoContainer">
           {/* VERSION ICON */}
           {updateUnavailable && (
@@ -244,67 +166,13 @@ const Nav = (props) => {
             </a>
           )}
           {/* VERSION TEXT */}
-          {updateUnavailable && (
-            <a className="navLogo">
-              <p
-                className="navVersion"
-                style={
-                  themeCtx.isDarkTheme
-                    ? { color: themeCtx.nav.dark.color }
-                    : {
-                        color: themeCtx.nav.light.color,
-                      }
-                }
-              >
-                {`${appVersion}`}
-                {/* {appRoot} */}
-              </p>
-            </a>
-          )}{' '}
-          <Notification message={featureCompleteStatus} />
+          {updateUnavailable && <StatusText message={appVersion} />}
+          <StatusText message={featureCompleteStatus} />
+          <StatusIcon icon={ProgressIcon} />
+          {checkingForUpdate && <StatusIcon icon={ProgressIcon} />}
+          {updateAvailable && <StatusIcon icon={ProgressIcon} />}
+          {updateDownloading && <StatusIcon icon={ProgressIcon} />}
           <a className="navLogo">
-            {checkingForUpdate && (
-              <img
-                className="platformIcon update_icon"
-                src={ProgressIcon}
-                style={
-                  themeCtx.isDarkTheme
-                    ? { filter: 'invert(100%)' }
-                    : {
-                        filter: 'invert(0%)',
-                      }
-                }
-                alt="icon"
-              />
-            )}
-            {updateAvailable && (
-              <img
-                className="platformIcon update_icon"
-                src={ProgressIcon}
-                style={
-                  themeCtx.isDarkTheme
-                    ? { filter: 'invert(100%)' }
-                    : {
-                        filter: 'invert(0%)',
-                      }
-                }
-                alt="icon"
-              />
-            )}
-            {updateDownloading && (
-              <img
-                className="platformIcon update_icon"
-                src={ProgressIcon}
-                style={
-                  themeCtx.isDarkTheme
-                    ? { filter: 'invert(100%)' }
-                    : {
-                        filter: 'invert(0%)',
-                      }
-                }
-                alt="icon"
-              />
-            )}
             {updateDownloaded && (
               <img
                 className="installNewVersion"
