@@ -1,6 +1,7 @@
+/* eslint-disable prefer-destructuring */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 
 import ThemeContext from '../../../store/themeContext';
 
@@ -18,7 +19,11 @@ let appVersion = '1.0.0';
 // let appRoot = '';
 let updaterMessage = '';
 const restartBtnMessage = 'Restart now';
-
+type Status = {
+  complete: string[];
+  inProgress: string[];
+  pending: string[];
+};
 export default function NavStatus() {
   const themeCtx = useContext(ThemeContext);
 
@@ -30,7 +35,9 @@ export default function NavStatus() {
   const [updateUnavailable, setUpdateUnavailable] = useState(true);
   const [updateDownloading, setUpdateDownloading] = useState(false);
   const [updateDownloaded, setUpdateDownloaded] = useState(false);
-  // const [featureCompleteStatus, setFeatureCompleteStatus] = useState('');
+  const [featureCompleteStatus, setFeatureCompleteStatus] = useState('');
+  const [featurePendingStatus, setFeaturePendingStatus] = useState('');
+  const [featureInProgressStatus, setFeatureInProgressStatus] = useState('');
 
   const disableUpdateStates = () => {
     setCheckingForUpdate(false);
@@ -51,14 +58,21 @@ export default function NavStatus() {
   window.electron.ipcRenderer.on('appRoot', (arg: string) => {
     appRoot = arg;
   });
-  window.electron.ipcRenderer.on('status', (arg) => {
-    // console.log(typeof arg);
-    // const { complete, inProgress, pending } = arg;
+  window.electron.ipcRenderer.on('status', (arg: Status) => {
+    // console.log(arg);
+
+    let { complete, inProgress, pending } = arg;
+    complete = complete[0];
+    inProgress = inProgress[0];
+    pending = pending[0];
+    console.log(complete);
+    console.log(inProgress);
+    console.log(pending);
+
     // console.log(complete[0]);
-    // setFeatureCompleteStatus(complete[0]);
-    // console.log(featureCompleteStatus);
-    // console.log(featureCompleteStatus);
-    // setStatus(arg);
+    setFeatureCompleteStatus(complete);
+    setFeatureInProgressStatus(inProgress);
+    setFeaturePendingStatus(pending);
   });
   window.electron.ipcRenderer.on('checking-for-update', (arg: string) => {
     disableUpdateStates();
@@ -100,7 +114,9 @@ export default function NavStatus() {
       )}
       {/* VERSION TEXT */}
       {updateUnavailable && <StatusText message={appVersion} />}
+      {/* API STATUS TEXT */}
       {/* <StatusText message={featureCompleteStatus} /> */}
+
       {/* <StatusIcon icon={ProgressIcon} animated /> */}
 
       {/* UPDATER  */}
