@@ -5,18 +5,9 @@
 import { useState, useContext } from 'react';
 import Logo from '../components/Logo/Logo';
 
-// NAV BUTTON ICONS
-import ProgressIcon from '../Global/status.svg';
-import NewVersionIcon from '../Global/rocket.svg';
-// PLATFORM ICONS
-import iconWindows from '../Global/platform/windows.svg';
-import iconApple from '../Global/platform/apple.svg';
-import iconLinux from '../Global/platform/linux.svg';
 import ThemeContext from '../../store/themeContext';
 // import NavContext from '../../store/navContext';
 import './Nav.scss';
-import StatusText from './NavStatusText';
-import StatusIcon from './NavStatusIcon';
 import NavButtons from './NavButtons';
 import NavStatus from './NavStatus';
 
@@ -114,38 +105,7 @@ const Nav = (props) => {
         <div className="logoContainer">
           <NavStatus />
 
-          <a className="navLogo">
-            {updateDownloaded && (
-              <img
-                className="installNewVersion"
-                src={NewVersionIcon}
-                // style={
-                //   themeCtx.isDarkTheme
-                //     ? { filter: 'invert(100%)' }
-                //     : {
-                //         filter: 'invert(0%)',
-                //       }
-                // }
-                alt="icon"
-              />
-            )}
-
-            {updateDownloaded && (
-              <div
-                className="restartBtn"
-                onClick={restartHandler}
-                style={
-                  themeCtx.isDarkTheme
-                    ? { filter: 'invert(0%)' }
-                    : {
-                        filter: 'invert(100%)',
-                      }
-                }
-              >
-                Restart now
-              </div>
-            )}
-          </a>
+          {/* <a className="navLogo"></a> */}
         </div>
       </div>
     </>

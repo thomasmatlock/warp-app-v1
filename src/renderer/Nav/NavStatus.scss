@@ -1,3 +1,11 @@
+$nav-text-color: #000;
+$nav-text-color_hover: #fff;
+$gray-dark-darkest: #1a1a1a;
+$gray-dark-dark: #202020;
+$gray-dark-light: #252525;
+$gray-dark-lightest: #313131;
+$gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, #19d2fc 100%);
+$gradient-orange: linear-gradient(to left, #da2c4d 0%, #f8ab37 100%);
 .statusContainer {
     display: flex;
     flex-direction: row;
@@ -6,4 +14,48 @@
     width: 33%;
     height: 100%;
     color: white;
+}
+
+.restartBtn {
+    font-size: 0.75rem;
+    &:hover {
+        cursor: pointer;
+        // color: $nav-text-color_hover;
+    }
+}
+
+.restartBtn {
+    // width: clamp(150px, 8rem, 8rem);
+    width: 6rem;
+    // max-width: 250px;
+    justify-content: center !important;
+    height: 2rem;
+    border-radius: 3px;
+    font-size: 0.75rem;
+    background-color: $gray-dark-light;
+    color: white;
+    display: flex;
+    margin: 0.5rem;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    justify-content: center !important;
+    // border: 1px solid red;
+    cursor: pointer;
+    &.browserBarDownloadBtn img {
+        width: 1rem;
+        margin-right: 1rem;
+        filter: invert(1);
+    }
+    &:hover {
+        background-color: $gray-dark-lightest;
+        box-shadow: -20px 30px 80px 0 rgba(0, 0, 0, 0.25) !important;
+        // transform: scale(1.01);
+    }
+    &:active {
+        background-color: $gray-dark-light;
+        // background-image: $gradient-orange;
+        box-shadow: 0px 0px 10px 0 rgba(0, 0, 0, 0.5) !important;
+        // transform: scale(0.99);
+    }
 }
