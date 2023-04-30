@@ -24,8 +24,8 @@ import {
   // Tray,
 } from 'electron';
 
-import ffmpegInit from '../ffmpeg/ffmpegController';
 import GetUser from '../user/GetUser';
+import ffmpegInit from '../ffmpeg/ffmpegController';
 import GetUserDownloads from '../user/downloads/GetUserDownloads';
 
 // import AddUserDownload from '../user/downloads/AddUserDownload';
@@ -44,13 +44,36 @@ import PowerMonitor from './powerMonitor';
 import ScreenClass from './Screen';
 import * as Browser from '../Browser/browserController';
 import * as Shortcuts from './Shortcuts';
-// console.log(process.env.APPLE_ID);
+console.log(process.env.APPLE_ID);
 import testUrls from '../downloaders/youtube/testURLS';
 
 // console.log(dotenv);
-import createCustomer from '../user/payments/stripe/stripe';
+import { createCustomer } from '../user/payments/stripe/stripe';
+import getProducts from '../user/payments/stripe/products/stripeGetAllProducts';
+// import createStripeCharge
+import createCheckoutSession from '../user/payments/stripe/createStripeCharge';
+import getStatus from '../user/status';
+// createStripeCharge();
+function getLastItemOfArray(array: any) {
+  return array[array.length - 1];
+}
+(async () => {
+  const products = await getProducts();
+  // console.log(products);
+  const lastProduct = await getLastItemOfArray(products.data);
+  // console.log(lastProduct);
 
-createCustomer();
+  // const customer = await createCustomer();
+  // console.log(customer);
+  // if (customer !== undefined) {
+  // const session = await createCheckoutSession(
+  //   customer.id,
+  //   lastProduct.default_price
+  // );
+  // console.log(session);
+  // }
+})();
+
 // const { networkInterfaces } = require('os');
 // console.log(networkInterfaces());
 
@@ -67,6 +90,7 @@ const appRootDir = require('app-root-dir').get();
 let prefs: object;
 let user: object;
 let browserPanelState = 'default';
+let status: object;
 
 // let tray;
 let mWin: BrowserWindow | null;
@@ -217,7 +241,10 @@ const windowController = {
         if (Screen.screenState.isMaximized) mWin.maximize();
         // if (view === null) windowController.createbView();
         mWin.webContents.send('appVersion', app.getVersion());
+
         mWin.webContents.send('appRoot', appRootDir);
+
+        mWin.webContents.send('status', status);
         mWin.webContents.send('main: prefs', prefs);
         mWin.webContents.send('main: audioDownloads', audioDownloads);
         mWin.webContents.send('main: videoDownloads', videoDownloads);
@@ -353,6 +380,8 @@ app
       // console.log('user', user);
 
       // console.log(typeof user);
+      status = await getStatus();
+      // console.log(status);
 
       windowController.createMainWin();
     })();

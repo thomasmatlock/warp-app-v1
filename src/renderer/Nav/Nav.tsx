@@ -18,11 +18,12 @@ import iconLinux from '../Global/platform/linux.svg';
 import ThemeContext from '../../store/themeContext';
 import NavContext from '../../store/navContext';
 import './Nav.scss';
+import Notification from './Status';
 
 let appVersion = '1.0.0';
 let appRoot = '1.0.0';
 let updateMessage = '';
-console.log('appVersion', appVersion);
+// console.log('appVersion', appVersion);
 
 const Nav = (props) => {
   const themeCtx = useContext(ThemeContext);
@@ -33,9 +34,10 @@ const Nav = (props) => {
   const [isLinux, setIsLinux] = useState(false);
   const [checkingForUpdate, setCheckingForUpdate] = useState(false);
   const [updateAvailable, setUpdateAvailable] = useState(false);
-  const [updateUnavailable, setUpdateUnavailable] = useState(false);
+  const [updateUnavailable, setUpdateUnavailable] = useState(true);
   const [updateDownloading, setUpdateDownloading] = useState(false);
   const [updateDownloaded, setUpdateDownloaded] = useState(false);
+  const [featureCompleteStatus, setFeatureCompleteStatus] = useState('');
   window.electron.ipcRenderer.on('platform', (arg) => {
     window.electron.ipcRenderer.sendMessage('package', []);
     if (arg === 'windows') setIsWindows(true);
@@ -48,6 +50,19 @@ const Nav = (props) => {
   });
   window.electron.ipcRenderer.on('appRoot', (arg: string) => {
     appRoot = arg;
+  });
+  window.electron.ipcRenderer.on('status', (arg) => {
+    console.log(typeof arg);
+
+    const { complete, inProgress, pending } = arg;
+    console.log(complete[0]);
+
+    setFeatureCompleteStatus(complete[0]);
+    console.log(featureCompleteStatus);
+
+    // console.log(featureCompleteStatus);
+
+    // setStatus(arg);
   });
   const disableUpdateStates = () => {
     setCheckingForUpdate(false);
@@ -82,8 +97,8 @@ const Nav = (props) => {
     updateMessage = arg;
   });
 
-  const mouseEnterHandler = () => {};
-  const mouseLeaveHandler = () => {};
+  // const mouseEnterHandler = () => {};
+  // const mouseLeaveHandler = () => {};
   const restartHandler = () => {
     window.electron.ipcRenderer.sendMessage('restart_and_update', []);
   };
@@ -245,7 +260,8 @@ const Nav = (props) => {
                 {/* {appRoot} */}
               </p>
             </a>
-          )}
+          )}{' '}
+          <Notification message={featureCompleteStatus} />
           <a className="navLogo">
             {checkingForUpdate && (
               <img

@@ -1,5 +1,6 @@
 import Stripe from 'stripe';
 import stripeKey from '../stripeKey';
+
 const stripe = new Stripe(stripeKey, {
   apiVersion: '2022-08-01',
 });
@@ -9,7 +10,7 @@ export default async function getProduct(id: string) {
     ids: [id],
     active: true,
   });
-  return products;
+  // return products;
   //   id: 'prod_MHWtfELZ9fNZH8',
   // object: 'product',
   // active: true,

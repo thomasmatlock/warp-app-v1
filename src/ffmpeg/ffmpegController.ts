@@ -42,7 +42,7 @@ export default function ffmpegInit(mWin: BrowserWindow) {
           // console.log(getFFMPEGDir());
         }
       } catch (err) {
-        console.error(err);
+        // console.error(err);
       }
     }, 2500);
   }

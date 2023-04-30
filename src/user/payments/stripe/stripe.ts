@@ -4,13 +4,13 @@
 // 4000000000009995  Always fails with a decline code of insufficient_funds.
 import Stripe from 'stripe';
 import stripeKey from './stripeKey';
-import getAllProducts from './products/stripeGetAllProducts';
+// import getAllProducts from './products/stripeGetAllProducts';
 
-const stripe = new Stripe(stripeKey, {
+export const stripe = new Stripe(stripeKey, {
   apiVersion: '2022-08-01',
 });
 
-export default async function createCustomer() {
+export async function createCustomer() {
   try {
     // const products = await getAllProducts();
   } catch (error) {}
@@ -20,10 +20,11 @@ export default async function createCustomer() {
     email: `${randomEmail}@gmail.com`,
   };
   try {
-    // const customer = await stripe.customers.create(params);
+    return await stripe.customers.create(params);
     // console.log(customer);
   } catch (error) {
     // console.log(error);
+    return error;
   }
 
   // id: 'cus_MNzQJZI5BewhA9',
