@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useContext } from 'react';
 import NavContext from '../../store/navContext';
 import ThemeContext from '../../store/themeContext';
@@ -13,7 +15,7 @@ export default function NavButtons() {
   return (
     <div className="buttonContainer">
       <div
-        // onClick={navCtx.audioModeHandler}
+        onClick={navCtx.audioModeHandler}
         id="navMainBtnAudio"
         className={navCtx.audioMode ? 'navMainBtnActive' : 'navMainBtn'}
       >
@@ -32,7 +34,7 @@ export default function NavButtons() {
         <p>Audio</p>
       </div>
       <div
-        // onClick={navCtx.videoModeHandler}
+        onClick={navCtx.videoModeHandler}
         id="navMainBtnVideo"
         className={navCtx.videoMode ? 'navMainBtnActive' : 'navMainBtn'}
       >
@@ -44,7 +46,7 @@ export default function NavButtons() {
         <p>Video</p>
       </div>
       <div
-        // onClick={navCtx.warpstagramModeHandler}
+        onClick={navCtx.warpstagramModeHandler}
         id="navMainBtnWarpstagram"
         className={navCtx.warpstagramMode ? 'navMainBtnActive' : 'navMainBtn'}
       >
