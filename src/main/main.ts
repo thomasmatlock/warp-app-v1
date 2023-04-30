@@ -90,8 +90,20 @@ let prefs: object;
 let user: object;
 let browserPanelState = 'default';
 let global = {
+  serverAuthenticated: false,
   prefs: {},
-  user: {},
+  user: {
+    id: '',
+    audio: 'free',
+    video: 'free',
+    warpstagram: 'free',
+    audioAuthCode: '',
+    videoAuthCode: '',
+    warpstagramAuthCode: '',
+    email: null,
+    createdAt: '',
+    updatedAt: '',
+  },
   status: {},
   platform: '',
   appVersion: '',
@@ -111,25 +123,25 @@ const viewBounds = {
   y: 130,
 };
 const setActiveURL = () => {
-  if (prefs.general.dropdowns[1].defaultValue.id.includes('facebook'))
+  if (global.prefs.general.dropdowns[1].defaultValue.id.includes('facebook'))
     activeURL = 'http://facebook.com';
-  if (prefs.general.dropdowns[1].defaultValue.id.includes('instagram'))
+  if (global.prefs.general.dropdowns[1].defaultValue.id.includes('instagram'))
     activeURL = 'http://instagram.com';
-  if (prefs.general.dropdowns[1].defaultValue.id.includes('pinterest'))
+  if (global.prefs.general.dropdowns[1].defaultValue.id.includes('pinterest'))
     activeURL = 'http://pinterest.com';
-  if (prefs.general.dropdowns[1].defaultValue.id.includes('soundcloud'))
+  if (global.prefs.general.dropdowns[1].defaultValue.id.includes('soundcloud'))
     activeURL = 'http://soundcloud.com';
-  if (prefs.general.dropdowns[1].defaultValue.id.includes('snapchat'))
+  if (global.prefs.general.dropdowns[1].defaultValue.id.includes('snapchat'))
     activeURL = 'http://snapchat.com';
-  if (prefs.general.dropdowns[1].defaultValue.id.includes('tiktok'))
+  if (global.prefs.general.dropdowns[1].defaultValue.id.includes('tiktok'))
     activeURL = 'http://tiktok.com';
-  if (prefs.general.dropdowns[1].defaultValue.id.includes('twitch'))
+  if (global.prefs.general.dropdowns[1].defaultValue.id.includes('twitch'))
     activeURL = 'http://twitch.com';
-  if (prefs.general.dropdowns[1].defaultValue.id.includes('twitter'))
+  if (global.prefs.general.dropdowns[1].defaultValue.id.includes('twitter'))
     activeURL = 'http://twitter.com';
-  if (prefs.general.dropdowns[1].defaultValue.id.includes('vimeo'))
+  if (global.prefs.general.dropdowns[1].defaultValue.id.includes('vimeo'))
     activeURL = 'http://vimeo.com';
-  if (prefs.general.dropdowns[1].defaultValue.id.includes('youtube'))
+  if (global.prefs.general.dropdowns[1].defaultValue.id.includes('youtube'))
     activeURL = 'http://youtube.com';
   // if (prefs.general.dropdowns[1].defaultValue.id.includes('bandcamp'))      view.webContents.loadURL('https://bandcamp.com');
   // if (prefs.general.dropdowns[1].defaultValue.id.includes('mixer'))         view.webContents.loadURL('https://mixer.com');
@@ -227,7 +239,6 @@ const windowController = {
         if (process.platform === 'linux') global.platform = 'linux';
 
         global.appVersion = app.getVersion();
-        console.log(global);
       }
       if (!mWin) {
         throw new Error('"mWin" is not defined');
@@ -241,11 +252,11 @@ const windowController = {
         setTitle(mWin, 'audio', user);
 
         if (Screen.screenState.isMaximized) mWin.maximize();
-        // if (view === null) windowController.createbView();
+        // if (view === null && global.serverAuthenticated)
+        //   windowController.createbView();
 
         // mWin.webContents.send('status', status);
         mWin.webContents.send('main: global', global);
-        mWin.webContents.send('main: prefs', global.prefs);
         mWin.webContents.send('main: audioDownloads', audioDownloads);
         mWin.webContents.send('main: videoDownloads', videoDownloads);
         mWin.webContents.send(
@@ -290,7 +301,6 @@ const windowController = {
       });
     view.setAutoResize({ width: true, height: true });
     view.setBackgroundColor('#1a1a1a');
-    // console.log(randomYoutubeURL);
     if (app.isPackaged) {
       view.webContents.loadURL('https://www.youtube.com');
     } else {
@@ -329,8 +339,7 @@ app
   .then(() => {
     PowerMonitor();
     // Prefs.resetPrefs();
-    prefs = Prefs.getPrefs();
-    global.prefs = prefs;
+    global.prefs = Prefs.getPrefs();
     // console.log(prefs);
     Screen = new ScreenClass(mWin);
     // console.log('Screen', Screen);
@@ -338,8 +347,18 @@ app
     setActiveURL();
 
     (async function init() {
-      global.status = await getStatus();
-      global.user = await GetUser();
+      try {
+        global.status = await getStatus();
+      } catch (error) {
+        console.log(error);
+      }
+      try {
+        global.user = await GetUser();
+        global.serverAuthenticated = true;
+      } catch (error) {
+        console.log(error);
+      }
+
       user = global.user;
       // console.log(user);
 
@@ -555,10 +574,10 @@ if (isDebug) {
     }
   );
   // MODAL PREFS LISTENERS
-  ipcMain.on('main: prefs', async (event, arg) => {
-    global.prefs = arg;
+  ipcMain.on('main: global', async (event, arg) => {
+    global = arg;
     Prefs.setPrefs(global.prefs);
-    event.reply('main: prefs', global.prefs);
+    event.reply('main: global', global);
     //  event.reply('FilterBar: Warpstagram: FilterTypeLocations successful'); // sends message to renderer
   });
   ipcMain.on(
@@ -575,7 +594,7 @@ if (isDebug) {
           .then((result) => {
             if (!result.canceled) Prefs.setAudioPath(result.filePaths[0]);
             global.prefs = Prefs.getPrefs();
-            mWin.webContents.send('main: prefs', global.prefs);
+            mWin.webContents.send('main: global', global);
           })
           .catch((err) => {
             console.log(err);
@@ -591,7 +610,7 @@ if (isDebug) {
           .then((result) => {
             if (!result.canceled) Prefs.setVideoPath(result.filePaths[0]);
             global.prefs = Prefs.getPrefs();
-            if (mWin) mWin.webContents.send('main: prefs', global.prefs);
+            if (mWin) mWin.webContents.send('main: global', global);
           })
           .catch((err) => {
             console.log(err);
@@ -607,7 +626,7 @@ if (isDebug) {
           .then((result) => {
             if (!result.canceled) Prefs.setWarpstagramPath(result.filePaths[0]);
             global.prefs = Prefs.getPrefs();
-            if (mWin) mWin.webContents.send('main: prefs', global.prefs);
+            if (mWin) mWin.webContents.send('main: global', global);
           })
           .catch((err) => {
             console.log(err);

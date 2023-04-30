@@ -1,14 +1,16 @@
 import React, { useState, useContext } from 'react';
-// let prefs;
+
+let global = {};
+
 const PrefsContext = React.createContext({
   prefs: {},
   getID: () => {},
 });
 export const PrefsContextProvider = (props) => {
   const [prefs, setPrefs] = useState({});
-  window.electron.ipcRenderer.on('main: prefs', (arg) => {
+  window.electron.ipcRenderer.on('main: global', (arg) => {
     // console.log(arg);
-    setPrefs(arg);
+    setPrefs(arg.prefs);
     // prefs = arg;
   });
   const checkboxHandler = (id) => {
@@ -18,7 +20,8 @@ export const PrefsContextProvider = (props) => {
         checkbox.checked = !checkbox.checked;
       }
     });
-    window.electron.ipcRenderer.sendMessage('main: prefs', newPrefs);
+    global.prefs = newPrefs;
+    window.electron.ipcRenderer.sendMessage('main: global', global);
   };
   const getMatchingDropdownOption = (id: string, options: boolean[]) => {
     let newDefault;
@@ -56,7 +59,8 @@ export const PrefsContextProvider = (props) => {
         });
       }
     }
-    window.electron.ipcRenderer.sendMessage('main: prefs', newPrefs);
+    global.prefs = newPrefs;
+    window.electron.ipcRenderer.sendMessage('main: global', global);
   };
   const dropdownHandler = (id: string) => {
     let mode;

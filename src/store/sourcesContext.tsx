@@ -114,8 +114,8 @@ const getActiveSource = (sources) => {
 };
 let enabledSources;
 let activeSource;
-window.electron.ipcRenderer.on('main: prefs', (arg) => {
-  prefs = arg;
+window.electron.ipcRenderer.on('main: global', (arg) => {
+  prefs = arg.prefs;
   // console.log(prefs.general.dropdowns);
   prefs.general.dropdowns.forEach((dropdown) => {
     if (dropdown.id.includes('source') || dropdown.id.includes('Source')) {
