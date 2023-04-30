@@ -153,12 +153,12 @@ export const DownloadsContextProvider = (props) => {
     let mode = arg[1];
     // console.log(item, mode);
 
-    if (mode === 'audio' && item.id != lastDownloadID) {
+    if (mode === 'audio' && item.id !== lastDownloadID) {
       downloadsAudio.push(item);
       setDownloadsAudioState(downloadsAudio.length);
       lastDownloadID = item.id;
     }
-    if (mode === 'video' && item.id != lastDownloadID) {
+    if (mode === 'video' && item.id !== lastDownloadID) {
       downloadsVideo.push(item);
       setDownloadsVideoState(downloadsVideo.length);
       lastDownloadID = item.id;

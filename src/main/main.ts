@@ -257,6 +257,7 @@ const windowController = {
 
         mWin.webContents.send('global', global);
         mWin.webContents.send('main: audioDownloads', audioDownloads);
+
         mWin.webContents.send('main: videoDownloads', videoDownloads);
         mWin.webContents.send(
           'main: warpstagramDownloads',
