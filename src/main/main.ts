@@ -91,9 +91,12 @@ let user: object;
 let browserPanelState = 'default';
 let status: object;
 let global = {
-  prefs: Object,
-  user: Object,
-  status: Object,
+  prefs: {},
+  user: {},
+  status: {},
+  platform: '',
+  appVersion: '',
+  appRoot: appRootDir,
 };
 
 // let tray;
@@ -219,18 +222,20 @@ const windowController = {
     // }
     mWin.on('ready-to-show', () => {
       if (mWin) mWin.webContents.send('ready-to-show');
-      // setTimeout(() )
-      // copilot
+      if (mWin) {
+        if (process.platform === 'win32') global.platform = 'windows';
+        if (process.platform === 'darwin') global.platform = 'darwin';
+        if (process.platform === 'linux') global.platform = 'linux';
 
-      // setTimeout(() => {
-      // }, 1000);
-
-      if (process.platform === 'win32' && mWin)
-        mWin.webContents.send('platform', 'windows');
-      if (process.platform === 'darwin' && mWin)
-        mWin.webContents.send('platform', 'darwin');
-      if (process.platform === 'linux' && mWin)
-        mWin.webContents.send('platform', 'linux');
+        global.appVersion = app.getVersion();
+        console.log(global);
+      }
+      // if (process.platform === 'win32' && mWin)
+      //   mWin.webContents.send('platform', 'windows');
+      // if (process.platform === 'darwin' && mWin)
+      //   mWin.webContents.send('platform', 'darwin');
+      // if (process.platform === 'linux' && mWin)
+      //   mWin.webContents.send('platform', 'linux');
       if (!mWin) {
         throw new Error('"mWin" is not defined');
       }
@@ -244,11 +249,9 @@ const windowController = {
 
         if (Screen.screenState.isMaximized) mWin.maximize();
         // if (view === null) windowController.createbView();
-        mWin.webContents.send('appVersion', app.getVersion());
 
-        mWin.webContents.send('appRoot', appRootDir);
-
-        mWin.webContents.send('status', status);
+        // mWin.webContents.send('status', status);
+        mWin.webContents.send('main: global', global);
         mWin.webContents.send('main: prefs', prefs);
         mWin.webContents.send('main: audioDownloads', audioDownloads);
         mWin.webContents.send('main: videoDownloads', videoDownloads);
@@ -334,6 +337,7 @@ app
     PowerMonitor();
     // Prefs.resetPrefs();
     prefs = Prefs.getPrefs();
+    global.prefs = prefs;
     // console.log(prefs);
     Screen = new ScreenClass(mWin);
     // console.log('Screen', Screen);
@@ -341,7 +345,9 @@ app
     setActiveURL();
 
     (async function init() {
-      user = await GetUser();
+      global.status = await getStatus();
+      global.user = await GetUser();
+      user = global.user;
       // console.log(user);
 
       const url = 'https://www.youtube.com/watch?v=7t885JG9qNE';
@@ -384,8 +390,6 @@ app
       // console.log('user', user);
 
       // console.log(typeof user);
-      status = await getStatus();
-      // console.log(status);
 
       windowController.createMainWin();
     })();
@@ -427,28 +431,6 @@ const isDebug =
 if (isDebug) {
   // require('electron-debug')(); // ENABLE FOR DEVTOOLS
 }
-
-// const installExtensions = async () => {
-//   const installer = require('electron-devtools-installer');
-//   const forceDownload = !!process.env.UPGRADE_EXTENSIONS;
-
-//   const extensions = ['REACT_DEVELOPER_TOOLS'];
-
-//   return installer
-//     .default(
-//       extensions.map((name) => installer[name]),
-//       forceDownload
-//     )
-//     .catch(console.log);
-// };
-
-// class AppUpdater {
-//   constructor() {
-//     log.transports.file.level = 'info';
-//     autoUpdater.logger = log;
-//     autoUpdater.checkForUpdatesAndNotify();
-//   }
-// }
 
 (function appListeners() {
   // MENU LISTENERS

@@ -54,8 +54,8 @@ export const ModalsContextProvider = (props) => {
     }
   });
   // let prefs;
-  window.electron.ipcRenderer.on('main: prefs', (arg) => {
-    prefs = arg;
+  window.electron.ipcRenderer.on('main: global', (arg) => {
+    prefs = arg.prefs;
     // showModalHandler(); // TESTING ONLY, REMOVE FOR PRODUCTION
   });
   const getID = (id: string) => {

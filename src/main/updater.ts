@@ -12,7 +12,7 @@ autoUpdater.logger = log;
 export default function (mWin: BrowserWindow) {
   // mWin.webContents.send('update-not-available', '');
   if (!app.isPackaged) {
-    mWin.webContents.send('update-not-available', '');
+    mWin.webContents.send('update-not-available', 'hello');
   }
   if (app.isPackaged) {
     mWin.webContents.send('update-not-available', '');

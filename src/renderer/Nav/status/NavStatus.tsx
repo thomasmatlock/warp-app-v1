@@ -16,8 +16,9 @@ import NewVersionIcon from '../../Global/rocket.svg';
 import './NavStatus.scss';
 
 let appVersion = '1.0.0';
-// let appRoot = '';
+let appRoot = '';
 let updaterMessage = '';
+let status = {};
 const restartBtnMessage = 'Restart now';
 type Status = {
   complete: string[];
@@ -27,18 +28,13 @@ type Status = {
 export default function NavStatus() {
   const themeCtx = useContext(ThemeContext);
 
-  const [isWindows, setIsWindows] = useState(false);
-  const [isApple, setIsApple] = useState(false);
-  const [isLinux, setIsLinux] = useState(false);
   const [checkingForUpdate, setCheckingForUpdate] = useState(false);
   const [updateAvailable, setUpdateAvailable] = useState(false);
   const [updateUnavailable, setUpdateUnavailable] = useState(true);
   const [updateDownloading, setUpdateDownloading] = useState(false);
   const [updateDownloaded, setUpdateDownloaded] = useState(false);
-  const [featureCompleteStatus, setFeatureCompleteStatus] = useState('');
-  const [featurePendingStatus, setFeaturePendingStatus] = useState('');
-  const [featureInProgressStatus, setFeatureInProgressStatus] = useState('');
   const [statusHovered, setStatusHovered] = useState(false);
+  const [platformIcon, setPlatformIcon] = useState(iconWindows);
 
   const disableUpdateStates = () => {
     setCheckingForUpdate(false);
@@ -47,34 +43,16 @@ export default function NavStatus() {
     setUpdateDownloading(false);
     setUpdateDownloaded(false);
   };
-  window.electron.ipcRenderer.on('platform', (arg) => {
-    window.electron.ipcRenderer.sendMessage('package', []);
-    if (arg === 'windows') setIsWindows(true);
-    if (arg === 'darwin') setIsApple(true);
-    if (arg === 'linux') setIsLinux(true);
-  });
-  window.electron.ipcRenderer.on('appVersion', (arg: string) => {
-    appVersion = arg;
-  });
-  window.electron.ipcRenderer.on('appRoot', (arg: string) => {
-    appRoot = arg;
-  });
-  window.electron.ipcRenderer.on('status', (arg: Status) => {
-    // console.log(arg);
 
-    let { complete, inProgress, pending } = arg;
-    complete = complete[0];
-    inProgress = inProgress[0];
-    pending = pending[0];
-    console.log(complete);
-    console.log(inProgress);
-    console.log(pending);
-
-    // console.log(complete[0]);
-    setFeatureCompleteStatus(complete);
-    setFeatureInProgressStatus(inProgress);
-    setFeaturePendingStatus(pending);
+  window.electron.ipcRenderer.on('main: global', (arg) => {
+    if (arg.platform === 'windows') setPlatformIcon(iconWindows);
+    if (arg.platform === 'darwin') setPlatformIcon(iconApple);
+    if (arg.platform === 'linux') setPlatformIcon(iconLinux);
+    appVersion = arg.appVersion;
+    appRoot = arg.appRoot;
+    status = arg.status;
   });
+
   window.electron.ipcRenderer.on('checking-for-update', (arg: string) => {
     disableUpdateStates();
     setCheckingForUpdate(true);
@@ -116,18 +94,12 @@ export default function NavStatus() {
       onMouseLeave={mouseLeaveStatusHandler}
     >
       {/* PLATFORM ICON */}
-      {updateUnavailable && isApple && (
-        <StatusIcon icon={iconApple} animated={false} hovered={statusHovered} />
-      )}
-      {updateUnavailable && isWindows && (
+      {updateUnavailable && (
         <StatusIcon
-          icon={iconWindows}
+          icon={platformIcon}
           animated={false}
           hovered={statusHovered}
         />
-      )}
-      {updateUnavailable && isLinux && (
-        <StatusIcon icon={iconLinux} animated={false} hovered={statusHovered} />
       )}
       {/* VERSION TEXT */}
       {updateUnavailable && (
