@@ -40,11 +40,10 @@ $gradient-orange: linear-gradient(to left, #da2c4d 0%, #f8ab37 100%);
     height: 16px;
     width: 16px;
     margin: 0.5rem;
-    // transform: translateY(-1px);
     animation: fadeIn 1s ease-out;
 }
 
-.status_icon__updating {
+.status_icon__animated {
     animation: clockWise 1s linear infinite !important;
     // border: 1px solid red;
 }

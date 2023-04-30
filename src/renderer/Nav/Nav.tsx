@@ -6,9 +6,6 @@ import { useState, useContext } from 'react';
 import Logo from '../components/Logo/Logo';
 
 // NAV BUTTON ICONS
-import iconAudio from '../Global/audio.svg';
-import iconVideo from '../Global/video.svg';
-import iconWarpstagram from '../Global/warpstagram.svg';
 import ProgressIcon from '../Global/status.svg';
 import NewVersionIcon from '../Global/rocket.svg';
 // PLATFORM ICONS
@@ -16,12 +13,12 @@ import iconWindows from '../Global/platform/windows.svg';
 import iconApple from '../Global/platform/apple.svg';
 import iconLinux from '../Global/platform/linux.svg';
 import ThemeContext from '../../store/themeContext';
-import NavContext from '../../store/navContext';
+// import NavContext from '../../store/navContext';
 import './Nav.scss';
-import StatusText from './StatusText';
-import StatusIcon from './StatusIcon';
+import StatusText from './NavStatusText';
+import StatusIcon from './NavStatusIcon';
 import NavButtons from './NavButtons';
-// console.log(typeof ProgressIcon);
+import NavStatus from './NavStatus';
 
 let appVersion = '1.0.0';
 let appRoot = '1.0.0';
@@ -30,7 +27,6 @@ let updateMessage = '';
 
 const Nav = (props) => {
   const themeCtx = useContext(ThemeContext);
-  const navCtx = useContext(NavContext);
 
   const [isWindows, setIsWindows] = useState(false);
   const [isApple, setIsApple] = useState(false);
@@ -48,9 +44,9 @@ const Nav = (props) => {
     if (arg === 'linux') setIsLinux(true);
   });
 
-  window.electron.ipcRenderer.on('appVersion', (arg: string) => {
-    appVersion = arg;
-  });
+  // window.electron.ipcRenderer.on('appVersion', (arg: string) => {
+  //   appVersion = arg;
+  // });
   window.electron.ipcRenderer.on('appRoot', (arg: string) => {
     appRoot = arg;
   });
@@ -96,8 +92,6 @@ const Nav = (props) => {
     updateMessage = arg;
   });
 
-  // const mouseEnterHandler = () => {};
-  // const mouseLeaveHandler = () => {};
   const restartHandler = () => {
     window.electron.ipcRenderer.sendMessage('restart_and_update', []);
   };
@@ -118,60 +112,8 @@ const Nav = (props) => {
         </div>
         <NavButtons />
         <div className="logoContainer">
-          {/* VERSION ICON */}
-          {updateUnavailable && (
-            <a className="navLogo">
-              {isWindows && (
-                <img
-                  className="platformIcon"
-                  src={iconWindows}
-                  style={
-                    themeCtx.isDarkTheme
-                      ? { filter: 'invert(0%)' }
-                      : {
-                          filter: 'invert(100%)',
-                        }
-                  }
-                  alt="icon"
-                />
-              )}
-              {isApple && (
-                <img
-                  className="platformIcon"
-                  src={iconApple}
-                  style={
-                    themeCtx.isDarkTheme
-                      ? { filter: 'invert(0%)' }
-                      : {
-                          filter: 'invert(100%)',
-                        }
-                  }
-                  alt="icon"
-                />
-              )}
-              {isLinux && (
-                <img
-                  className="platformIcon"
-                  src={iconLinux}
-                  style={
-                    themeCtx.isDarkTheme
-                      ? { filter: 'invert(0%)' }
-                      : {
-                          filter: 'invert(100%)',
-                        }
-                  }
-                  alt="icon"
-                />
-              )}
-            </a>
-          )}
-          {/* VERSION TEXT */}
-          {updateUnavailable && <StatusText message={appVersion} />}
-          <StatusText message={featureCompleteStatus} />
-          <StatusIcon icon={ProgressIcon} />
-          {checkingForUpdate && <StatusIcon icon={ProgressIcon} />}
-          {updateAvailable && <StatusIcon icon={ProgressIcon} />}
-          {updateDownloading && <StatusIcon icon={ProgressIcon} />}
+          <NavStatus />
+
           <a className="navLogo">
             {updateDownloaded && (
               <img
@@ -187,18 +129,7 @@ const Nav = (props) => {
                 alt="icon"
               />
             )}
-            <p
-              className="updateMessages"
-              style={
-                themeCtx.isDarkTheme
-                  ? { filter: 'invert(0%)' }
-                  : {
-                      filter: 'invert(100%)',
-                    }
-              }
-            >
-              {updateMessage}
-            </p>
+
             {updateDownloaded && (
               <div
                 className="restartBtn"

@@ -19,8 +19,6 @@ export default function NavButtons() {
         id="navMainBtnAudio"
         className={navCtx.audioMode ? 'navMainBtnActive' : 'navMainBtn'}
       >
-        {/* <div className="navMainBtn_slidingBackground" /> */}
-
         <img
           className={navCtx.audioMode ? 'navMainBtn__icon' : 'navMainBtn__icon'}
           style={
