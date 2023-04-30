@@ -10,6 +10,7 @@ $gray-dark-dark: #202020;
 $gray-dark-light: #252525;
 $gray-dark-lightest: #313131;
 $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, #19d2fc 100%);
+html,
 body {
     box-sizing: content-box;
     width: 100%;
@@ -17,10 +18,6 @@ body {
     font-family: sans-serif;
     overflow: hidden;
     padding: 0;
-    background-color: $gray-dark-darkest;
-}
-
-html {
     background-color: $gray-dark-darkest;
 }
 
@@ -113,10 +110,6 @@ html {
     to {
         opacity: 1;
     }
-}
-
-* {
-    // animation: fadeIn 1s ease-out;
 }
 
 ul,

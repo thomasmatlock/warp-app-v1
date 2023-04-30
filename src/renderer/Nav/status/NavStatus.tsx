@@ -131,10 +131,18 @@ export default function NavStatus() {
       )}
       {/* VERSION TEXT */}
       {updateUnavailable && (
-        <StatusText message={appVersion} hovered={statusHovered} />
+        <StatusText
+          message={appVersion}
+          hovered={statusHovered}
+          position="relative"
+        />
       )}
       {/* API STATUS TEXT */}
-      {/* <StatusText message={featureCompleteStatus} /> */}
+      {/* <StatusText
+        message={featureCompleteStatus}
+        hovered={!statusHovered}
+        position="absolute"
+      /> */}
 
       {/* NOT SURE */}
       {/* <StatusIcon icon={ProgressIcon} animated hovered={false} /> */}
