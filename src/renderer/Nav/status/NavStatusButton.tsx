@@ -11,7 +11,7 @@ export default function NavStatusButton(props: Props) {
   const themeCtx = useContext(ThemeContext);
   const { message } = props;
   const restartHandler = () => {
-    window.electron.ipcRenderer.sendMessage('restart_and_update', []);
+    window.electron.ipcRenderer.sendMessage('updater_restart_and_update', []);
   };
   return (
     <div

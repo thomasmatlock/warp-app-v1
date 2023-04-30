@@ -10,43 +10,43 @@ autoUpdater.autoDownload = false;
 autoUpdater.logger = log;
 
 export default function (mWin: BrowserWindow) {
-  // mWin.webContents.send('update-not-available', '');
+  // mWin.webContents.send('updater_update_not_available', '');
   if (!app.isPackaged) {
-    mWin.webContents.send('update-not-available', 'hello');
+    mWin.webContents.send('updater_update_not_available', 'hello');
   }
   if (app.isPackaged) {
-    mWin.webContents.send('update-not-available', '');
+    mWin.webContents.send('updater_update_not_available', '');
     // mWin.webContents.send('checking-for-update', 'checking for update...');
-    // autoUpdater.on('update-available', () => {
-    //   mWin.webContents.send('update-available', 'downloading update...');
+    // autoUpdater.on('updater_update_available', () => {
+    //   mWin.webContents.send('updater_update_available', 'downloading update...');
     //   //  autoUpdater.downloadUpdate();
     // });
   }
   setTimeout(() => {
     if (app.isPackaged) {
-      // mWin.webContents.send('update-not-available', '');
+      // mWin.webContents.send('updater_update_not_available', '');
       autoUpdater.checkForUpdates();
-      autoUpdater.on('update-not-available', () => {
-        mWin.webContents.send('update-not-available', '');
+      autoUpdater.on('updater_update_not_available', () => {
+        mWin.webContents.send('updater_update_not_available', '');
       });
-      autoUpdater.on('update-available', () => {
-        // mWin.webContents.send('update-available', 'downloading update...');
+      autoUpdater.on('updater_update_available', () => {
+        // mWin.webContents.send('updater_update_available', 'downloading update...');
         autoUpdater.downloadUpdate();
       });
-      autoUpdater.on('download-progress', (progress) => {
+      autoUpdater.on('updater_download_progress', (progress) => {
         const string = progress.percent.toFixed(0);
         // mWin.webContents.send(
-        //   'download-progress',
+        //   'updater_download_progress',
         //   `Update ${string}% downloaded`
         // );
       });
-      autoUpdater.on('update-downloaded', () => {
+      autoUpdater.on('updater_update_downloaded', () => {
         mWin.webContents.send(
-          'update-downloaded',
+          'updater_update_downloaded',
           ' An updated version of Warp is ready to be installed at the next app launch.'
         );
       });
-      ipcMain.on('restart_and_update', () => {
+      ipcMain.on('updater_restart_and_update', () => {
         autoUpdater.quitAndInstall(true, true); // arg1 is silent install, arg2 is force run after install
         app.quit();
       });
