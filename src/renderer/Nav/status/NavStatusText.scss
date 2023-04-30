@@ -1,22 +1,16 @@
-$nav-text-color: #000;
-$nav-text-color_hover: #fff;
-$gray-dark-darkest: #1a1a1a;
-$gray-dark-dark: #202020;
-$gray-dark-light: #252525;
-$gray-dark-lightest: #313131;
-$gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, #19d2fc 100%);
-$gradient-orange: linear-gradient(to left, #da2c4d 0%, #f8ab37 100%);
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+@import '../animations.scss';
+@import '../colors.scss';
+.status_text,
+.status_text__hovered {
+    font-size: 0.75rem;
+    transform: translateY(0.5px);
 }
 
 .status_text {
-    font-size: 0.75rem;
-    transform: translateY(0.5px);
-    animation: fadeIn 1s ease-out;
+    animation: fadeInDown 0.5s ease-out;
+}
+
+.status_text__hovered {
+    animation: fadeOutUp 0.5s ease-out;
+    font-size: 0px;
 }

@@ -38,6 +38,7 @@ export default function NavStatus() {
   const [featureCompleteStatus, setFeatureCompleteStatus] = useState('');
   const [featurePendingStatus, setFeaturePendingStatus] = useState('');
   const [featureInProgressStatus, setFeatureInProgressStatus] = useState('');
+  const [statusHovered, setStatusHovered] = useState(false);
 
   const disableUpdateStates = () => {
     setCheckingForUpdate(false);
@@ -99,21 +100,39 @@ export default function NavStatus() {
     setUpdateDownloaded(true);
     updaterMessage = arg;
   });
+  const mouseEnterStatusHandler = () => {
+    // console.log('mouse enter');
+    setStatusHovered(true);
+  };
+  const mouseLeaveStatusHandler = () => {
+    // console.log('mouse enter');
+    setStatusHovered(false);
+  };
 
   return (
-    <div className="statusContainer">
+    <div
+      className="statusContainer"
+      onMouseEnter={mouseEnterStatusHandler}
+      onMouseLeave={mouseLeaveStatusHandler}
+    >
       {/* PLATFORM ICON */}
       {updateUnavailable && isApple && (
-        <StatusIcon icon={iconApple} animated={false} />
+        <StatusIcon icon={iconApple} animated={false} hovered={statusHovered} />
       )}
       {updateUnavailable && isWindows && (
-        <StatusIcon icon={iconWindows} animated={false} />
+        <StatusIcon
+          icon={iconWindows}
+          animated={false}
+          hovered={statusHovered}
+        />
       )}
       {updateUnavailable && isLinux && (
-        <StatusIcon icon={iconLinux} animated={false} />
+        <StatusIcon icon={iconLinux} animated={false} hovered={statusHovered} />
       )}
       {/* VERSION TEXT */}
-      {updateUnavailable && <StatusText message={appVersion} />}
+      {updateUnavailable && (
+        <StatusText message={appVersion} hovered={statusHovered} />
+      )}
       {/* API STATUS TEXT */}
       {/* <StatusText message={featureCompleteStatus} /> */}
 
@@ -121,13 +140,19 @@ export default function NavStatus() {
       {/* <StatusIcon icon={ProgressIcon} animated /> */}
 
       {/* UPDATER  */}
-      {checkingForUpdate && <StatusIcon icon={ProgressIcon} animated />}
-      {updateAvailable && <StatusIcon icon={ProgressIcon} animated />}
-      {updateDownloading && <StatusIcon icon={ProgressIcon} animated />}
-      {updateDownloaded && (
-        <StatusIcon icon={NewVersionIcon} animated={false} />
+      {checkingForUpdate && (
+        <StatusIcon icon={ProgressIcon} animated hovered={false} />
       )}
-      <StatusText message={updaterMessage} />
+      {updateAvailable && (
+        <StatusIcon icon={ProgressIcon} animated hovered={false} />
+      )}
+      {updateDownloading && (
+        <StatusIcon icon={ProgressIcon} animated hovered={false} />
+      )}
+      {updateDownloaded && (
+        <StatusIcon icon={NewVersionIcon} animated={false} hovered={false} />
+      )}
+      <StatusText message={updaterMessage} hovered={false} />
 
       {/* UPDATE & RESTART BUTTON */}
       {updateDownloaded && <NavStatusButton message={restartBtnMessage} />}
