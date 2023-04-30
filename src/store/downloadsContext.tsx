@@ -148,6 +148,9 @@ export const DownloadsContextProvider = (props) => {
       matchingDownload
     );
   };
+  window.electron.ipcRenderer.on('global', (arg) => {
+    console.log(arg);
+  });
   window.electron.ipcRenderer.on('main: item-downloaded', (arg) => {
     let item = arg[0];
     let mode = arg[1];
@@ -175,6 +178,7 @@ export const DownloadsContextProvider = (props) => {
       audioDownloadsPushed = true;
     }
   });
+
   window.electron.ipcRenderer.on('main: videoDownloads', (items) => {
     // console.log(items);
     if (!videoDownloadsPushed) {
