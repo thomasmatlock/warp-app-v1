@@ -44,7 +44,7 @@ export default function NavStatus() {
     setUpdateDownloaded(false);
   };
 
-  window.electron.ipcRenderer.on('main: global', (arg) => {
+  window.electron.ipcRenderer.on('global', (arg) => {
     if (arg.platform === 'windows') setPlatformIcon(iconWindows);
     if (arg.platform === 'darwin') setPlatformIcon(iconApple);
     if (arg.platform === 'linux') setPlatformIcon(iconLinux);

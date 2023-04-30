@@ -114,7 +114,7 @@ const getActiveSource = (sources) => {
 };
 let enabledSources;
 let activeSource;
-window.electron.ipcRenderer.on('main: global', (arg) => {
+window.electron.ipcRenderer.on('global', (arg) => {
   prefs = arg.prefs;
   // console.log(prefs.general.dropdowns);
   prefs.general.dropdowns.forEach((dropdown) => {

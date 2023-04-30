@@ -255,8 +255,7 @@ const windowController = {
         // if (view === null && global.serverAuthenticated)
         //   windowController.createbView();
 
-        // mWin.webContents.send('status', status);
-        mWin.webContents.send('main: global', global);
+        mWin.webContents.send('global', global);
         mWin.webContents.send('main: audioDownloads', audioDownloads);
         mWin.webContents.send('main: videoDownloads', videoDownloads);
         mWin.webContents.send(
@@ -574,14 +573,14 @@ if (isDebug) {
     }
   );
   // MODAL PREFS LISTENERS
-  ipcMain.on('main: global', async (event, arg) => {
+  ipcMain.on('global', async (event, arg) => {
     global = arg;
     Prefs.setPrefs(global.prefs);
-    event.reply('main: global', global);
+    event.reply('global', global);
     //  event.reply('FilterBar: Warpstagram: FilterTypeLocations successful'); // sends message to renderer
   });
   ipcMain.on(
-    'main: global: prefs: chooseOutputFolder',
+    'global: prefs: chooseOutputFolder',
     async (event, outputFolderID) => {
       // console.log(outputFolderID);
       if (outputFolderID.toLowerCase().includes('audio')) {
@@ -594,7 +593,7 @@ if (isDebug) {
           .then((result) => {
             if (!result.canceled) Prefs.setAudioPath(result.filePaths[0]);
             global.prefs = Prefs.getPrefs();
-            mWin.webContents.send('main: global', global);
+            mWin.webContents.send('global', global);
           })
           .catch((err) => {
             console.log(err);
@@ -610,7 +609,7 @@ if (isDebug) {
           .then((result) => {
             if (!result.canceled) Prefs.setVideoPath(result.filePaths[0]);
             global.prefs = Prefs.getPrefs();
-            if (mWin) mWin.webContents.send('main: global', global);
+            if (mWin) mWin.webContents.send('global', global);
           })
           .catch((err) => {
             console.log(err);
@@ -626,7 +625,7 @@ if (isDebug) {
           .then((result) => {
             if (!result.canceled) Prefs.setWarpstagramPath(result.filePaths[0]);
             global.prefs = Prefs.getPrefs();
-            if (mWin) mWin.webContents.send('main: global', global);
+            if (mWin) mWin.webContents.send('global', global);
           })
           .catch((err) => {
             console.log(err);

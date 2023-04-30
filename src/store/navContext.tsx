@@ -30,7 +30,7 @@ const NavContext = React.createContext({
   // warpstagramModeHandler: () => {},
 });
 export const NavContextProvider = (props) => {
-  window.electron.ipcRenderer.on('main: global', (arg) => {
+  window.electron.ipcRenderer.on('global', (arg) => {
     prefs = arg.prefs;
     // console.log(prefs.general.dropdowns);
     prefs.general.dropdowns.forEach((dropdown) => {

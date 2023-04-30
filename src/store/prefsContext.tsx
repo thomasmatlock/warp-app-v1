@@ -8,7 +8,7 @@ const PrefsContext = React.createContext({
 });
 export const PrefsContextProvider = (props) => {
   const [prefs, setPrefs] = useState({});
-  window.electron.ipcRenderer.on('main: global', (arg) => {
+  window.electron.ipcRenderer.on('global', (arg) => {
     // console.log(arg);
     setPrefs(arg.prefs);
     // prefs = arg;
@@ -21,7 +21,7 @@ export const PrefsContextProvider = (props) => {
       }
     });
     global.prefs = newPrefs;
-    window.electron.ipcRenderer.sendMessage('main: global', global);
+    window.electron.ipcRenderer.sendMessage('global', global);
   };
   const getMatchingDropdownOption = (id: string, options: boolean[]) => {
     let newDefault;
@@ -60,7 +60,7 @@ export const PrefsContextProvider = (props) => {
       }
     }
     global.prefs = newPrefs;
-    window.electron.ipcRenderer.sendMessage('main: global', global);
+    window.electron.ipcRenderer.sendMessage('global', global);
   };
   const dropdownHandler = (id: string) => {
     let mode;
@@ -189,7 +189,7 @@ export const PrefsContextProvider = (props) => {
       // console.log('outputFolder', id);
       // if (id.toLowerCase().includes('audio')) {
       window.electron.ipcRenderer.sendMessage(
-        'main: global: prefs: chooseOutputFolder',
+        'global: prefs: chooseOutputFolder',
         id
       );
       // }
