@@ -6,14 +6,26 @@ $gray-dark-light: #252525;
 $gray-dark-lightest: #313131;
 $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, #19d2fc 100%);
 $gradient-orange: linear-gradient(to left, #da2c4d 0%, #f8ab37 100%);
-.statusContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    width: 33%;
-    height: 100%;
-    color: white;
+@keyframes fadeIn {
+    from {
+        // transform: scale(0);
+        opacity: 0;
+        // -webkit-transform: rotate(0deg);
+    }
+    to {
+        opacity: 1;
+        // transform: scale(1);
+        // -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes clockWise {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .restartBtn {

@@ -2,20 +2,22 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useState, useContext } from 'react';
 
-import ThemeContext from '../../store/themeContext';
+import ThemeContext from '../../../store/themeContext';
 
 import StatusText from './NavStatusText';
 import StatusIcon from './NavStatusIcon';
-import iconWindows from '../Global/platform/windows.svg';
-import iconApple from '../Global/platform/apple.svg';
-import iconLinux from '../Global/platform/linux.svg';
-import ProgressIcon from '../Global/status.svg';
-import NewVersionIcon from '../Global/rocket.svg';
+import NavStatusButton from './NavStatusButton';
+import iconWindows from '../../Global/platform/windows.svg';
+import iconApple from '../../Global/platform/apple.svg';
+import iconLinux from '../../Global/platform/linux.svg';
+import ProgressIcon from '../../Global/status.svg';
+import NewVersionIcon from '../../Global/rocket.svg';
 import './NavStatus.scss';
 
 let appVersion = '1.0.0';
-let appRoot = '';
+// let appRoot = '';
 let updaterMessage = '';
+const restartBtnMessage = 'Restart now';
 
 export default function NavStatus() {
   const themeCtx = useContext(ThemeContext);
@@ -28,7 +30,7 @@ export default function NavStatus() {
   const [updateUnavailable, setUpdateUnavailable] = useState(true);
   const [updateDownloading, setUpdateDownloading] = useState(false);
   const [updateDownloaded, setUpdateDownloaded] = useState(false);
-  const [featureCompleteStatus, setFeatureCompleteStatus] = useState('');
+  // const [featureCompleteStatus, setFeatureCompleteStatus] = useState('');
 
   const disableUpdateStates = () => {
     setCheckingForUpdate(false);
@@ -84,9 +86,6 @@ export default function NavStatus() {
     updaterMessage = arg;
   });
 
-  const restartHandler = () => {
-    window.electron.ipcRenderer.sendMessage('restart_and_update', []);
-  };
   return (
     <div className="statusContainer">
       {/* PLATFORM ICON */}
@@ -103,6 +102,8 @@ export default function NavStatus() {
       {updateUnavailable && <StatusText message={appVersion} />}
       {/* <StatusText message={featureCompleteStatus} /> */}
       {/* <StatusIcon icon={ProgressIcon} animated /> */}
+
+      {/* UPDATER  */}
       {checkingForUpdate && <StatusIcon icon={ProgressIcon} animated />}
       {updateAvailable && <StatusIcon icon={ProgressIcon} animated />}
       {updateDownloading && <StatusIcon icon={ProgressIcon} animated />}
@@ -110,22 +111,9 @@ export default function NavStatus() {
         <StatusIcon icon={NewVersionIcon} animated={false} />
       )}
       <StatusText message={updaterMessage} />
-      {/* RESTART BUTTON */}
-      {updateDownloaded && (
-        <div
-          className="restartBtn"
-          onClick={restartHandler}
-          style={
-            themeCtx.isDarkTheme
-              ? { filter: 'invert(0%)' }
-              : {
-                  filter: 'invert(100%)',
-                }
-          }
-        >
-          Restart now
-        </div>
-      )}
+
+      {/* UPDATE & RESTART BUTTON */}
+      {updateDownloaded && <NavStatusButton message={restartBtnMessage} />}
     </div>
   );
 }

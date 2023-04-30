@@ -1,6 +1,6 @@
 import './NavStatusIcon.scss';
 import { useContext } from 'react';
-import ThemeContext from '../../store/themeContext';
+import ThemeContext from '../../../store/themeContext';
 
 type Props = {
   icon: string;
