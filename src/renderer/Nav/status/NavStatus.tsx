@@ -137,7 +137,7 @@ export default function NavStatus() {
       {/* <StatusText message={featureCompleteStatus} /> */}
 
       {/* NOT SURE */}
-      {/* <StatusIcon icon={ProgressIcon} animated /> */}
+      {/* <StatusIcon icon={ProgressIcon} animated hovered={false} /> */}
 
       {/* UPDATER  */}
       {checkingForUpdate && (

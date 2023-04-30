@@ -12,13 +12,14 @@ export default function NavStatusIcon(props: Props) {
   const { icon, animated, hovered } = props;
   const animatedClass = animated ? 'status_icon__animated' : '';
   console.log('hovered', hovered);
+  const styling = hovered ? 'status_icon__img__hovered' : 'status_icon__img';
 
   return (
     <div className="status_icon">
       <img
         src={icon}
         alt="icon"
-        className={animatedClass}
+        className={styling + ' ' + animatedClass}
         style={
           themeCtx.isDarkTheme
             ? { filter: 'invert(0%)' }

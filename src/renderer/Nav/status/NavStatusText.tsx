@@ -10,7 +10,7 @@ export default function NavStatusText(props: Props) {
   const themeCtx = useContext(ThemeContext);
 
   const { message, hovered } = props;
-  const textStyling = hovered ? 'status_text__hovered' : 'status_text';
+  const styling = hovered ? 'status_text__hovered' : 'status_text';
 
-  return <p className={textStyling}>{message}</p>;
+  return <p className={styling}>{message}</p>;
 }
