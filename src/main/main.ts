@@ -44,7 +44,7 @@ import PowerMonitor from './powerMonitor';
 import ScreenClass from './Screen';
 import * as Browser from '../Browser/browserController';
 import * as Shortcuts from './Shortcuts';
-console.log(process.env.APPLE_ID);
+// console.log(process.env.APPLE_ID);
 import testUrls from '../downloaders/youtube/testURLS';
 
 // console.log(dotenv);
@@ -90,6 +90,11 @@ let prefs: object;
 let user: object;
 let browserPanelState = 'default';
 let status: object;
+let global = {
+  prefs: Object,
+  user: Object,
+  status: Object,
+};
 
 // let tray;
 let mWin: BrowserWindow | null;
