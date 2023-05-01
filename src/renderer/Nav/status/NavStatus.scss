@@ -1,5 +1,5 @@
-@import '../animations.scss';
-@import '../colors.scss';
+@import '/src/renderer/Global/Animations.scss';
+@import '/src/renderer/Global/Colors.scss';
 .statusContainer {
     display: flex;
     flex-direction: row;
