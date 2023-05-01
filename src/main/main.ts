@@ -35,7 +35,7 @@ import * as time from './util/time';
 import updater from './updater';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
-import BrowserQuery from './browserQuery';
+import BrowserQuery from '../Browser/browserQuery';
 import * as Paths from './paths';
 import * as Downloads from '../downloaders/downloadsController';
 import setTitle from './title';
@@ -90,8 +90,13 @@ let prefs: object;
 let user: object;
 let browserPanelState = 'default';
 let global = {
-  serverAuthenticated: false,
+  appVersion: '',
+  appRoot: appRootDir,
+  platform: '',
   prefs: {},
+  serverDownloads: { audio: [], video: [] },
+  serverAuthenticated: false,
+  status: {},
   user: {
     id: '',
     audio: 'free',
@@ -104,11 +109,6 @@ let global = {
     createdAt: '',
     updatedAt: '',
   },
-  serverDownloads: { audio: [], video: [] },
-  status: {},
-  platform: '',
-  appVersion: '',
-  appRoot: appRootDir,
 };
 
 // let tray;
@@ -253,8 +253,8 @@ const windowController = {
         setTitle(mWin, 'audio', user);
 
         if (Screen.screenState.isMaximized) mWin.maximize();
-        if (view === null && global.serverAuthenticated)
-          windowController.createbView();
+        // if (view === null && global.serverAuthenticated)
+        // windowController.createbView();
 
         mWin.webContents.send('global', global);
         mWin.webContents.send('main: audioDownloads', audioDownloads);
