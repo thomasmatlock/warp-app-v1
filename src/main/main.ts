@@ -355,6 +355,8 @@ app
       }
       try {
         global.user = await GetUser();
+        console.log(global.user);
+
         global.serverAuthenticated = true;
       } catch (error) {
         console.log(error);

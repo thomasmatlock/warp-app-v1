@@ -31,6 +31,19 @@ const randomVideoCta =
   videoCtaArr[Math.floor(Math.random() * videoCtaArr.length)];
 
 const UserContext = React.createContext({
+  user: {
+    id: '',
+    audio: 'free',
+    video: 'free',
+    warpstagram: 'free',
+    audioAuthCode: '',
+    videoAuthCode: '',
+    warpstagramAuthCode: '',
+    email: null,
+    createdAt: '',
+    updatedAt: '',
+  },
+
   audioDownloadsActivationArr: [
     {
       id: 'activateAudio',
@@ -56,6 +69,18 @@ export const UserContextProvider = (props) => {
   const downloadsCtx = useContext(DownloadsContext);
 
   // console.log(downloadsCtx);
+  const [user, setUser] = useState({
+    id: '',
+    audio: 'free',
+    video: 'free',
+    warpstagram: 'free',
+    audioAuthCode: '',
+    videoAuthCode: '',
+    warpstagramAuthCode: '',
+    email: null,
+    createdAt: '',
+    updatedAt: '',
+  });
   const [audioFreeDownloadsMax, setAudioFreeDownloadsMax] = useState(15);
   const [videoFreeDownloadsMax, setVideoFreeDownloadsMax] = useState(15);
   const [audioDownloadsCount, setAudioDownloadsCount] = useState(
@@ -74,8 +99,11 @@ export const UserContextProvider = (props) => {
     setServerDownloads(serverDownloads);
   }, [downloadsCtx, serverDownloads]);
   window.electron.ipcRenderer.on('global', (arg) => {
+    // console.log(arg.user);
+
     //  serverDownloads = arg.serverDownloads;
     setServerDownloads(arg.serverDownloads);
+    setUser(arg.user);
 
     // console.log(serverDownloads);
   });
@@ -113,6 +141,7 @@ export const UserContextProvider = (props) => {
   return (
     <UserContext.Provider
       value={{
+        user,
         audioDownloadsActivationArr,
         videoDownloadsActivationArr,
         // getID: getID,

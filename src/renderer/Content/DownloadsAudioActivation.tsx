@@ -91,24 +91,22 @@ const DownloadsAudioActivation = () => {
     </ul>
   );
   return (
-    <Fragment>
-      <div
-        className={
-          actionBarCtx.isDownloadsPanelCollapsed
-            ? 'contentPanel__collapsed'
-            : 'contentPanel'
-        }
-        style={
-          themeCtx.isDarkTheme
-            ? { backgroundColor: themeCtx.content.dark.backgroundColor }
-            : {
-                backgroundColor: themeCtx.content.light.backgroundColor,
-              }
-        }
-      >
-        {audioDownloadsActivation}
-      </div>
-    </Fragment>
+    <div
+      className={
+        actionBarCtx.isDownloadsPanelCollapsed
+          ? 'contentPanel__collapsed'
+          : 'contentPanel'
+      }
+      style={
+        themeCtx.isDarkTheme
+          ? { backgroundColor: themeCtx.content.dark.backgroundColor }
+          : {
+              backgroundColor: themeCtx.content.light.backgroundColor,
+            }
+      }
+    >
+      {audioDownloadsActivation}
+    </div>
   );
 };
 export default DownloadsAudioActivation;

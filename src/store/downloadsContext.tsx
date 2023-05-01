@@ -176,7 +176,7 @@ export const DownloadsContextProvider = (props: {
   window.electron.ipcRenderer.on('global', (arg) => {
     serverDownloads = arg.serverDownloads;
 
-    console.log(serverDownloads);
+    // console.log(serverDownloads);
   });
   window.electron.ipcRenderer.on('main: item-downloaded', (arg) => {
     let item = arg[0];

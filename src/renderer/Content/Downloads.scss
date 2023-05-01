@@ -487,11 +487,11 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
         height: 50px;
         width: 25%;
         min-width: 250px;
-        max-width: 250px;
+        // max-width: 250px;
         // flex: 1;
         color: #000;
         margin: 1rem;
-        width: clamp(150px, 14rem, 14rem);
+        width: clamp(250px, 14rem, 14rem);
         // max-width: 250px;
         // justify-content: center !important;
         background-image: $gradient-blue;
@@ -521,5 +521,29 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
             // height: 1.5rem;
             margin-right: 0.75rem;
         }
+    }
+}
+
+@media (min-width: 800px) and (max-width: 1200px) {
+    .content__panel__downloads__list__activation__item__title {
+        // width: 100%;
+        font-size: 0px;
+        // background-color: purple;
+        // display: none;
+        display: none;
+        &__text1 {
+            font-size: 0px;
+            // display: none;
+        }
+        &__text2 {
+            font-size: 0px;
+            // display: none;
+        }
+    }
+    .content__panel__downloads__list__activation__item__cta {
+        // width: 100% !important;
+        // border: 1px solid red;
+        width: clamp(250px, 100%, 100%);
+        // font-size: 0px;
     }
 }

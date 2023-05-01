@@ -7,7 +7,7 @@ $gray-dark-lightest: #313131;
 // $gray-light-lightest: #454545;
 $minHeight: 48px;
 $maxHeight: 64px;
-$gradient-blue: linear-gradient(to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, #19d2fc 100%);
+$gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, #19d2fc 100%);
 @keyframes moveInLeftDownload {
     0% {
         opacity: 0;
@@ -496,7 +496,7 @@ $gradient-blue: linear-gradient(to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, #
         height: 50px;
         width: 100%;
         // flex: 3;
-        // font-size: 0.75rem;
+        font-size: 0.75rem;
         margin: 0;
         margin-left: 1rem;
         padding: 0;

@@ -17,6 +17,8 @@ const DownloadsAudio = () => {
   const downloadsCtx = useContext(DownloadsContext);
   const inputCtx = useContext(InputContext);
   const userCtx = useContext(UserContext);
+  const [audioIsFree, setAudioIsFree] = useState(userCtx.user.audio === 'free');
+  // console.log(userCtx.user.audio);
 
   const [downloads, setDownloads] = useState(
     Array.from(downloadsCtx.downloadsAudio).sort((a, b) => {
