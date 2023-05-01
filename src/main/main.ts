@@ -104,6 +104,7 @@ let global = {
     createdAt: '',
     updatedAt: '',
   },
+  serverDownloads: { audio: [], video: [] },
   status: {},
   platform: '',
   appVersion: '',
@@ -379,6 +380,9 @@ app
       // );
 
       const downloads = await GetUserDownloads();
+      global.serverDownloads = downloads;
+      // console.log(global.downloads);
+
       // console.log(downloads.audio.length, downloads.video.length);
       for (let i = 0; i < downloads.audio.length; i++) {
         const download = downloads.audio[i];

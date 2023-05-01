@@ -12,6 +12,7 @@ const directObjectArr = ['yourself', 'your workflow'];
 const randomDirectObject =
   directObjectArr[Math.floor(Math.random() * directObjectArr.length)];
 // CTA TEXT
+
 const audioCtaArr = [
   // 'Activate',
   'I need unlimited audio downloads',
@@ -53,22 +54,31 @@ const UserContext = React.createContext({
 
 export const UserContextProvider = (props) => {
   const downloadsCtx = useContext(DownloadsContext);
-  // console.log(downloadsCtx);
 
+  // console.log(downloadsCtx);
+  const [audioFreeDownloadsMax, setAudioFreeDownloadsMax] = useState(15);
+  const [videoFreeDownloadsMax, setVideoFreeDownloadsMax] = useState(15);
   const [audioDownloadsCount, setAudioDownloadsCount] = useState(
-    downloadsCtx.downloadsAudio.length
+    downloadsCtx.downloadsVideo.length
   );
   const [videoDownloadsCount, setVideoDownloadsCount] = useState(
     downloadsCtx.downloadsVideo.length
   );
+  const [serverDownloads, setServerDownloads] = useState({
+    audio: [],
+    video: [],
+  });
   useEffect(() => {
-    // console.log('UserContextProvider time to rerender');
-    // console.log(downloadsCtx.downloadsAudio);
-    // console.log(downloadsCtx.downloadsVideo);
+    setAudioDownloadsCount(serverDownloads.audio.length);
+    setVideoDownloadsCount(serverDownloads.video.length);
+    setServerDownloads(serverDownloads);
+  }, [downloadsCtx, serverDownloads]);
+  window.electron.ipcRenderer.on('global', (arg) => {
+    //  serverDownloads = arg.serverDownloads;
+    setServerDownloads(arg.serverDownloads);
 
-    setAudioDownloadsCount(downloadsCtx.downloadsAudio.length);
-    setVideoDownloadsCount(downloadsCtx.downloadsVideo.length);
-  }, [downloadsCtx]);
+    // console.log(serverDownloads);
+  });
   // let dollarsSynArray = ['bucks', 'rupees'];
   // let randomDollarSyn =
   //   dollarsSynArray[Math.floor(Math.random() * dollarsSynArray.length)];
@@ -80,7 +90,9 @@ export const UserContextProvider = (props) => {
   const audioDownloadsActivationArr = [
     {
       id: 'activateAudio',
-      title: `${15 - audioDownloadsCount} daily audio downloads remaining`,
+      title: `${
+        audioFreeDownloadsMax - serverDownloads.audio.length
+      } daily audio downloads remaining`,
       subtitle: `${randomVerb} a few ${randomDollarSyn} on yourself for a lifetime License to get unlimited audio downloads, multiple formats, multiple simultaneous downloads, multiple simultaneous format conversion, and more `,
       ctaImage: iconLicenses,
       ctaText: randomAudioCta,
@@ -89,7 +101,9 @@ export const UserContextProvider = (props) => {
   const videoDownloadsActivationArr = [
     {
       id: 'activateVideo',
-      title: `${15 - videoDownloadsCount} daily video downloads remaining`,
+      title: `${
+        videoFreeDownloadsMax - serverDownloads.video.length
+      } daily video downloads remaining`,
       // subtitle: 'subtitle for more',
       subtitle: `${randomVerb} a few ${randomDollarSyn} for a lifetime License for unlimited video downloads, UHD resolutions, simultaneous downloads, multiple simultaneous format conversion, and more`,
       ctaImage: iconLicenses,

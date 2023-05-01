@@ -1,7 +1,12 @@
+/* eslint-disable no-restricted-syntax */
 import React, { useState, useEffect } from 'react';
 
-let downloadsAudio = [];
-let downloadsVideo = [];
+let downloadsAudio: any[] = [];
+let downloadsVideo: any[] = [];
+let serverDownloads: {
+  audio: any[];
+  video: any[];
+};
 let downloadsWarpstagram = {
   subscribed: [
     {
@@ -34,6 +39,7 @@ let downloadsWarpstagram = {
   pinned: [],
 };
 const DownloadsContext = React.createContext({
+  serverDownloads: {},
   downloadsAudio: [],
   downloadsVideo: [],
   downloadsAudioState: {},
@@ -44,19 +50,30 @@ const DownloadsContext = React.createContext({
   showInFolder: () => {},
   downloadContextActionHandler: () => {},
 });
-const getDownloadID = (id) => {
+const getDownloadID = (id: any) => {
   // console.log(id);
 };
 
 let audioDownloadsPushed = false;
 let videoDownloadsPushed = false;
 let lastDownloadID = 0;
-export const DownloadsContextProvider = (props) => {
+export const DownloadsContextProvider = (props: {
+  children:
+    | string
+    | number
+    | boolean
+    | React.ReactElement<any, string | React.JSXElementConstructor<any>>
+    | React.ReactFragment
+    | React.ReactPortal
+    | null
+    | undefined;
+}) => {
   const [downloadsAudioState, setDownloadsAudioState] = useState(0);
   const [downloadsVideoState, setDownloadsVideoState] = useState(0);
   const [percentUpdateState, setPercentUpdateState] = useState(0);
+
   const [maxConcurrentDownloads, setMaxConcurrentDownloads] = useState(3);
-  const getMatchingDownload = (downloadID) => {
+  const getMatchingDownload = (downloadID: string) => {
     for (const download of downloadsAudio) {
       if (download.id === downloadID) {
         return download;
@@ -68,7 +85,7 @@ export const DownloadsContextProvider = (props) => {
       }
     }
   };
-  const removeMatchingDownload = (downloadID) => {
+  const removeMatchingDownload = (downloadID: any) => {
     for (const download of downloadsAudio) {
       if (download.id === downloadID) {
         downloadsAudio.splice(downloadsAudio.indexOf(download), 1);
@@ -84,7 +101,12 @@ export const DownloadsContextProvider = (props) => {
       }
     }
   };
-  const removeAllDownloads = (downloadID) => {
+  const removeAllDownloads = (downloadID: any) => {
+    // for (let i = 0; i < downloadsAudio.length; i++) {
+    //   if (downloadsAudio[i].id === downloadID) {
+    //     downloadsAudio.splice(i, 1);
+    //   }
+    // }
     for (const download of downloadsAudio) {
       if (download.id === downloadID) {
         downloadsAudio = [];
@@ -100,7 +122,10 @@ export const DownloadsContextProvider = (props) => {
       }
     }
   };
-  const downloadContextActionHandler = (contextActionID, downloadID) => {
+  const downloadContextActionHandler = (
+    contextActionID: string | string[],
+    downloadID: unknown[]
+  ) => {
     let matchingDownload = getMatchingDownload(downloadID);
 
     if (contextActionID.includes('copy_link_address')) {
@@ -142,14 +167,16 @@ export const DownloadsContextProvider = (props) => {
 
   const showInFolder = (downloadID: string) => {
     // console.log('show in folder', downloadID);
-    let matchingDownload = getMatchingDownload(downloadID);
+    const matchingDownload = getMatchingDownload(downloadID);
     window.electron.ipcRenderer.sendMessage(
       'context: show_in_folder',
       matchingDownload
     );
   };
   window.electron.ipcRenderer.on('global', (arg) => {
-    console.log(arg);
+    serverDownloads = arg.serverDownloads;
+
+    console.log(serverDownloads);
   });
   window.electron.ipcRenderer.on('main: item-downloaded', (arg) => {
     let item = arg[0];
@@ -173,7 +200,7 @@ export const DownloadsContextProvider = (props) => {
     // items.forEach((item) => downloadsAudio.push(item));
     // downloadsVideo.push(item);
     if (!audioDownloadsPushed) {
-      items.forEach((item) => downloadsAudio.push(item));
+      items.forEach((item: any) => downloadsAudio.push(item));
       setDownloadsAudioState(downloadsAudio.length);
       audioDownloadsPushed = true;
     }
@@ -182,7 +209,7 @@ export const DownloadsContextProvider = (props) => {
   window.electron.ipcRenderer.on('main: videoDownloads', (items) => {
     // console.log(items);
     if (!videoDownloadsPushed) {
-      items.forEach((item) => downloadsVideo.push(item));
+      items.forEach((item: any) => downloadsVideo.push(item));
       setDownloadsVideoState(downloadsVideo.length);
       videoDownloadsPushed = true;
     }
@@ -258,15 +285,16 @@ export const DownloadsContextProvider = (props) => {
   return (
     <DownloadsContext.Provider
       value={{
-        downloadsAudio: downloadsAudio,
-        downloadsVideo: downloadsVideo,
-        downloadsAudioState: downloadsAudioState,
-        downloadsVideoState: downloadsVideoState,
-        percentUpdateState: percentUpdateState,
-        downloadsWarpstagram: downloadsWarpstagram,
-        getDownloadID: getDownloadID,
-        showInFolder: showInFolder,
-        downloadContextActionHandler: downloadContextActionHandler,
+        serverDownloads,
+        downloadsAudio,
+        downloadsVideo,
+        downloadsAudioState,
+        downloadsVideoState,
+        percentUpdateState,
+        downloadsWarpstagram,
+        getDownloadID,
+        showInFolder,
+        downloadContextActionHandler,
       }}
     >
       {props.children}

@@ -109,7 +109,6 @@ const getEnabledSources = (sources) => {
   return sources.filter((source) => source.enabled);
 };
 const getActiveSource = (sources) => {
-  // console.log('getActiveSource');
   return sources.filter((source) => source.active);
 };
 let enabledSources;
