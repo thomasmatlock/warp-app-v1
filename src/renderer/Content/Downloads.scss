@@ -1,150 +1,8 @@
-$nav-text-color: #000;
-$nav-text-color_hover: #fff;
-$gray-dark-darkest: #1a1a1a;
-$gray-dark-dark: #202020;
-$gray-dark-light: #252525;
-$gray-dark-lightest: #313131;
-// $gray-light-lightest: #454545;
-$gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, #19d2fc 100%);
-@keyframes moveInLeftDownload {
-    0% {
-        opacity: 0;
-        // transform: translateX(-500px) scale(3); // start keyframe, just translate position on x axis to left 10rem
-        // transform: translateX(-350px) scale(1); // start keyframe, just translate position on x axis to left 10rem
-        transform: perspective(40px) rotate3d(1, 0, 0, 0deg) translateY(60px) translateX(-400px) scale(0);
-        // z-index: 5;
-        // transform: translateX( -500px); // start keyframe, just translate position on x axis to left 10rem
-        // transform: translateX( -20rem); // start keyframe, just translate position on x axis to left 10rem
-    }
-    80% {
-        // transform: translateX(1rem);
-    }
-    100% {
-        opacity: 1;
-        // transform: scale(1);
-        //putting zero basically places elements how it looks normally above we just offset the starting keyframes by translating it over
-    }
-}
-
-@keyframes fadeIn {
-    from {
-        // transform: scale(0);
-        opacity: 0;
-        // -webkit-transform: rotate(0deg);
-    }
-    to {
-        opacity: 1;
-        // transform: scale(1);
-        // -webkit-transform: rotate(360deg);
-    }
-}
-
-@keyframes flipInX {
-    from {
-        transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
-        animation-timing-function: ease-in;
-        // opacity: 0;
-    }
-    // 40% {
-    //     transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
-    //     animation-timing-function: ease-in;
-    // }
-    // 60% {
-    //     transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
-    // }
-    // 80% {
-    //     transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
-    // }
-    to {
-        // transform: perspective(400px);
-        opacity: 1;
-    }
-}
-
-@keyframes fadeIn {
-    0% {
-        background: rgba(0, 0, 0, 0);
-    }
-    100% {
-        background: rgba(0, 0, 0, 0.7);
-    }
-}
-
-@keyframes sketchIn {
-    0% {
-        stroke-dashoffset: 7780;
-    }
-    100% {
-        stroke-dashoffset: 0;
-    }
-}
-
-@keyframes bondJamesBond {
-    0% {
-        transform: translateX(-1000px) rotate3d(1, 0, 0, 90deg) scale(0);
-        width: 0px;
-        // transform: perspective(40px) rotate3d(1, 0, 0, 0deg) translateY(60px) translateX(-400px) scale(0);
-        opacity: 0;
-        // height: 0px;
-        border-radius: 0px 250px 0px 0px;
-        // width: 90%;
-        box-shadow: -20px 30px 80px 0 rgba(0, 0, 0, 1) !important;
-        z-index: 3;
-    }
-    80% {
-        transform: translateX(0px);
-        // height: 20px;
-        // height: 75px;
-        // width: 75px;
-        // border-radius: 35px;
-    }
-    90% {
-        // border-radius: 15px;
-        // height: 182px;
-        // width: 247px;
-    }
-    100% {
-        // border-radius: 3px;
-        // height: 162px;
-        // width: 227px;
-        // opacity: 1;
-    }
-}
-
-@keyframes ckw {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
-@keyframes downloading {
-    0% {
-        transform: rotate3d(0, 1, 0, 180deg); //GOOD
-    }
-    100% {
-        // transform: rotate(360deg);
-        transform: rotate3d(0deg);
-    }
-}
-
-@keyframes infinity {
-    0% {
-        transform: rotate3d(1, 0, 0, 180deg); //GOOD
-    }
-    100% {
-        // transform: rotate(360deg);
-        transform: rotate3d(0deg);
-    }
-}
-
+@import '/src/renderer/Global/Animations.scss';
+@import '/src/renderer/Global/Colors.scss';
 .content__panel__toggle_collapse {
     top: 0;
-    // left: calc(50vw + 25px);
     left: calc(50vw + 0px);
-    // left: 50vw - 50px;
     height: 100%;
     width: 25px;
     // border: 1px solid red;
@@ -171,7 +29,6 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     list-style: none;
     overflow-y: scroll;
     overflow-x: hidden;
-    // border: 1px dotted red;
     height: 100%;
     &:hover .content__panel__toggle_collapse {
         display: flex;
@@ -189,52 +46,36 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
         background-color: $gray-dark-light;
         min-height: 56px !important;
         max-height: 56px !important;
-        // animation: bondJamesBond 0.25s cubic-bezier(0.165, 0.84, 0.44, 1) forwards; // USE THIS
         background-color: #1a1a1a;
-        // border: 1px dotted red;
         color: rgb(167, 167, 167);
         background-position: center;
         background-size: 0%;
         position: relative;
-        // overflow: hidden;
         &__img {
             width: 14px;
-            // border-radius: 50%;
-            // margin-left: 8px;
-            // margin-right: 10px;
         }
         &:hover {
             border: 1px solid $gray-dark-lightest;
             // transform: scaleX(1.1001);
             box-shadow: -20px 30px 80px 0 rgba(0, 0, 0, 1) !important;
             background-color: $gray-dark-lightest;
-            // background-image: $gradient-blue;
             transition: all 0s ease-in-out !important;
             z-index: 1;
             cursor: pointer;
             background-size: 100%;
-            // min-height: 128px !important;
         }
         &:hover .filterBar__menu__item {
             transition: all 0s ease-in-out;
             opacity: 1;
-            // border: 1px solid red;
-            // background-color: $gray-dark-darkest;
-            // animation: bondJamesBond 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
         }
         &__thumbnail {
             border-radius: 1px;
-            // height: 100%;
             display: block;
             max-height: 56px;
-            // width: auto;
-            // height: auto;
-            // animation: bondJamesBond 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
         }
         &__info {
             display: flex;
             flex-direction: column;
-            // justify-content: center;
             justify-content: space-evenly;
             justify-content: space-around;
             align-items: center;
@@ -247,20 +88,10 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
                 display: flex;
                 flex-direction: row !important;
                 justify-content: flex-start;
-                // justify-content: center !important;
-                // animation: bondJamesBond 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
                 align-items: center;
                 width: 100%;
-                &__1 {
-                    text-overflow: hidden !important;
-                }
+                &__1,
                 &__2 {
-                    // white-space: nowrap;
-                    // height: 14px !important;
-                    // border: 1px dotted red;
-                    // text-overflow: ellipsis;
-                    // overflow-wrap: hidden;
-                    // white-space: normal;
                     text-overflow: hidden !important;
                 }
             }
@@ -271,30 +102,21 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
             margin-right: 16px;
             margin-left: 8px;
             // border: 1px dotted red;
-            // color: $gray-dark-darkest;
-            // width: 50px;
             color: white;
-            // text-overflow: hidden !important;
         }
         &__title {
-            // font-size: 7px;
             margin-left: 0px;
             font-size: 0.75rem;
-            // animation: bondJamesBond 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
             // border: 1px dotted red;
         }
         &__file_source {
             color: rgb(162, 162, 162);
-            // width: 50px;
-            // width: 100%;
-            // word-wrap: none;
         }
         &__file_length {
             color: rgb(162, 162, 162);
         }
         &__file_type {
             color: rgb(162, 162, 162);
-            // font-size: 7px;
         }
         &__file_size {
             color: rgb(162, 162, 162);
@@ -306,29 +128,16 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
             color: rgb(162, 162, 162);
         }
         &__file_downloading {
-            // animation-name: ckw;
-            // animation-iteration-count: 10;
-            // animation-duration: 0.5s;
             animation: downloading 1s linear 0s infinite;
-            // transform-origin: 50% 50%;
         }
         &__file_converting {
-            // animation-name: ckw;
-            // animation-iteration-count: 10;
-            // animation-duration: 0.5s;
-            animation: ckw 1s linear 0s infinite;
-            // transform-origin: 50% 50%;
-            // width: auto;
+            animation: clockWise 1s linear 0s infinite;
         }
         &__file_eta_downloading {
-            // position: absolute;
-            // right: 10rem;
             animation: infinity 1s linear 0s infinite;
             margin-left: 2.5rem;
         }
         &__file_eta_conversion {
-            // position: absolute;
-            // right: 10rem;
             animation: infinity 1s linear 0s infinite;
             margin-left: 4rem;
         }
@@ -343,42 +152,6 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     }
 }
 
-// @media (min-width: 1400px) and (max-width: 1600px) {
-//     .content__panel__downloads__list__item__file_date {
-//         display: none;
-//     }
-// }
-// @media screen and (max-width: 1800px) {
-//     .content__panel__downloads__list__item__file_date {
-//         /* Apply some styles */
-//         display: none;
-//     }
-// }
-// @media screen and (max-width: 1600px) {
-//     // .content__panel__downloads__list__item__file_date {
-//     .content__panel__downloads__list__item__file_file_type,
-//     .content__panel__downloads__list__item__file_source {
-//         /* Apply some styles */
-//         display: none;
-//     }
-// }
-// @media (min-width: 800px) and (max-width: 1650px) {
-//     .content__panel__downloads__list__item__file_source,
-//     .content__panel__downloads__list__item__file_file_type {
-//         display: none;
-//     }
-// }
-// @media (min-width: 800px) and (max-width: 1650px) {
-//     .content__panel__downloads__list__item__file_source,
-//     .content__panel__downloads__list__item__file_file_type {
-//         display: none;
-//     }
-// }
-// @media (min-width: 800px) and (max-width: 1650px) {
-//     .content__panel__downloads__list__item__file_file_type {
-//         display: none;
-//     }
-// }
 .content__panel__downloads__list__item .filterBar__menu__item {
     opacity: 0;
     transition: all 0s ease-in-out !important;
@@ -393,7 +166,6 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     width: calc(100% - 0rem);
     right: 1.25rem;
     bottom: 0px;
-    // height: 100%;
     min-height: 56px !important;
     max-height: 56px !important;
     position: absolute;
@@ -402,15 +174,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     margin: 0;
     width: calc(100% - 0.5rem);
     // border: 1px dotted red;
-    // animation: bondJamesBond 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
     z-index: 10;
-}
-
-.content__panel__downloads__list__activation__item__title {
-    // font-size: 0.75rem;
-    // margin-left: 0px;
-    // animation: bondJamesBond 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
-    // border: 1px dotted red;
 }
 
 .content__panel__downloads__list__activation__item {
@@ -425,11 +189,8 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     width: calc(100% - 0rem);
     border: 1px solid $gray-dark-lightest;
     background-color: $gray-dark-light;
-    // min-height: 56px !important;
-    // max-height: 56px !important;
     min-height: 56px !important;
     max-height: 56px !important;
-    // animation: bondJamesBond 0.25s cubic-bezier(0.165, 0.84, 0.44, 1) forwards; // USE THIS
     background-color: #1a1a1a;
     // border: 1px dotted red;
     color: rgb(167, 167, 167);
@@ -437,10 +198,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     background-size: 0%;
     &:hover {
         border: 1px solid $gray-dark-lightest;
-        // transform: scaleX(1.1001);
-        // box-shadow: -20px 30px 80px 0 rgba(0, 0, 0, 1) !important;
         background-color: $gray-dark-lightest;
-        // background-image: $gradient-blue;
         transition: all 0s ease-in-out !important;
         z-index: 1;
         cursor: pointer;
@@ -454,17 +212,13 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
         align-items: left;
         height: 50px;
         width: 100%;
-        // flex: 3;
-        // font-size: 0.75rem;
         margin: 0;
         margin-left: 1rem;
         padding: 0;
         overflow: hidden;
-        // border: 1px solid red;
         &__text1 {
             color: #fff;
             font-size: 0.9rem;
-            // font-size: 0.75rem;
             margin: 0;
             padding: 0;
             padding: 2px;
@@ -487,13 +241,9 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
         height: 50px;
         width: 25%;
         min-width: 250px;
-        // max-width: 250px;
-        // flex: 1;
         color: #000;
         margin: 1rem;
         width: clamp(250px, 14rem, 14rem);
-        // max-width: 250px;
-        // justify-content: center !important;
         background-image: $gradient-blue;
         // top: 0;
         margin-top: 8px;
@@ -510,7 +260,6 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
         align-content: center;
         justify-content: center !important;
         cursor: pointer;
-        // animation: flipInX 0.5s ease-in-out;
         &:hover {
             box-shadow: -20px 30px 80px 0 rgba(0, 0, 0, 1) !important;
             cursor: pointer;
@@ -518,7 +267,6 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
         }
         & img {
             width: 1rem;
-            // height: 1.5rem;
             margin-right: 0.75rem;
         }
     }
@@ -526,24 +274,17 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
 
 @media (min-width: 800px) and (max-width: 1200px) {
     .content__panel__downloads__list__activation__item__title {
-        // width: 100%;
         font-size: 0px;
-        // background-color: purple;
-        // display: none;
         display: none;
         &__text1 {
             font-size: 0px;
-            // display: none;
         }
         &__text2 {
             font-size: 0px;
-            // display: none;
         }
     }
     .content__panel__downloads__list__activation__item__cta {
-        // width: 100% !important;
         // border: 1px solid red;
         width: clamp(250px, 100%, 100%);
-        // font-size: 0px;
     }
 }

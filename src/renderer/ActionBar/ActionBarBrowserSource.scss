@@ -1,35 +1,5 @@
-// https://www.w3schools.com/howto/howto_custom_select.asp
-// FONT
-$default-font-size: 1.6rem;
-// GRID
-$grid-width: 114rem; //1140px standard grid width, but use rem for dynamic page adapting to viewport size
-$gutter-vertical: 8rem; //80px -- gutter is space between columns
-$gutter-horizontal: 6rem; //60px
-// SHADOWS
-$shadow-none: 0 1.5rem 4rem rgba(0, 0, 0, 0);
-$shadow-light: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
-$shadow-before: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
-$shadow-after: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-// DIMENSIONS
-// Development TESTING
-$dev-border: 1px dotted rgba(255, 0, 0, 0.5);
-// Download items
-// TESTING BORDERS
-$border-heavy: 0px dotted black;
-$border-heavy2: 0px dotted red;
-$border-medium: 0px dotted black;
-$border-light: 0px dotted black;
-// GRAD TIMELAPSE DURATIONS
-$duration-1: 10s;
-$nav-text-color: #000;
-$nav-text-color_hover: #fff;
-$gray-dark-darkest: #1a1a1a;
-$gray-dark-dark: #202020;
-$gray-dark-light: #252525;
-$gray-dark-lightest: #313131;
-$gray-dark-lightest2: #414141;
-$gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, #19d2fc 100%);
-$gradient-orange: linear-gradient(to left, #da2c4d 0%, #f8ab37 100%);
+@import '/src/renderer/Global/Animations.scss';
+@import '/src/renderer/Global/Colors.scss';
 $sourceWidth: calc(100% - 790px);
 $sourceHeight: 48px;
 $transitionTime: 0.1s;

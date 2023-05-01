@@ -20,34 +20,19 @@
     justify-content: center;
     align-items: center;
     width: 33%;
-    // width: clamp(0%, 100%, 25%);
-    //   cursor: none !important;
-    // border: 1px solid rgb(146, 146, 146);
     height: 100%;
     color: white;
 }
 
-@keyframes ckw {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
 .update_icon {
-    animation: ckw 1s linear infinite;
+    animation: clockWise 1s linear infinite;
 }
 
 @media (min-width: 800px) and (max-width: 1200px) {
     .logoContainer {
-        // width: 100%;
-        // background-color: purple;
         display: none;
     }
     .buttonContainer {
-        // background-color: purple;
         width: 100% !important;
     }
 }
@@ -72,9 +57,7 @@
 
 .platformIcon {
     height: 16px;
-    // width: auto;
     margin: 0.5rem;
-    // transform: translateY(-1px);
     animation: fadeIn 1s ease-out;
 }
 
@@ -85,9 +68,6 @@
     flex-direction: row;
     height: 100%;
     width: 500px;
-    // width: 33%;
-    // max-width: 500px;
-    //   border: 1px dotted rgb(146, 146, 146);
 }
 
 .navVersion {
@@ -107,7 +87,6 @@
     //
     display: flex;
     flex: 1;
-    // max-width: 200px; // width: 100%;
     max-height: 50px !important;
     flex-direction: row;
     align-items: center;
@@ -125,8 +104,6 @@
         align-items: center;
         align-content: center;
         justify-content: center;
-        // margin-left: 24px;
-        // margin: 0 auto;
         height: 1.25rem;
         filter: grayscale(100%);
     }
@@ -140,7 +117,6 @@
     &:active {
         // font-size: 0.75rem;
         transition: 0s all !important;
-        // transform: scaleX(0.95) scaleY(0.95);
         box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.2);
         box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.2) inset;
     }
@@ -154,8 +130,6 @@
     justify-content: center;
     flex: 1;
     transition: 0.1s all !important;
-    // background-color: white;
-    // flex-grow: 1;
     cursor: pointer;
     font-size: 0.75rem;
     flex-direction: row;
@@ -164,10 +138,6 @@
     color: white;
     border-radius: 3px;
     margin: 2px;
-    // background-image: linear-gradient( to left, rgba(238, 238, 238, 0.205) 0%, rgba(102, 102, 102, 0.205) 100%);
-    // width: 100%;
-    // max-width: 200px; // width: 100%;
-    // transform: scaleX(0.95) scaleY(0.95);
     box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.4) inset;
     filter: grayscale(100%);
     // margin-bottom: 8px;
@@ -180,16 +150,11 @@
     filter: grayscale(100%);
 }
 
-.navMainBtn:hover .navMainBtn_slidingBackground {
-    // transform: translateX(100%);
-}
-
 .navMainBtnActive img {
     filter: grayscale(0%);
 }
 
 .navMainBtn p {
-    // font-size: 0.75rem;
     font-size: 0.75rem;
     margin-left: 1rem;
 }

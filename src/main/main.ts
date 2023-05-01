@@ -144,11 +144,6 @@ const setActiveURL = () => {
     activeURL = 'http://vimeo.com';
   if (global.prefs.general.dropdowns[1].defaultValue.id.includes('youtube'))
     activeURL = 'http://youtube.com';
-  // if (prefs.general.dropdowns[1].defaultValue.id.includes('bandcamp'))      view.webContents.loadURL('https://bandcamp.com');
-  // if (prefs.general.dropdowns[1].defaultValue.id.includes('mixer'))         view.webContents.loadURL('https://mixer.com');
-  // if (prefs.general.dropdowns[1].defaultValue.id.includes('spotify'))       view.webContents.loadURL('https://spotify.com');
-  // if (prefs.general.dropdowns[1].defaultValue.id.includes('reddit'))        view.webContents.loadURL('https://reddit.com');
-  // if (prefs.general.dropdowns[1].defaultValue.id.includes('deviantart'))    view.webContents.loadURL('https://deviantart.com');
 };
 const windowController = {
   async createMainWin() {

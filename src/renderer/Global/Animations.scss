@@ -37,3 +37,50 @@
         transform: translateY(-10px) scale(1) rotate3d(1, 0, 0, 90deg);
     }
 }
+
+@keyframes downloading {
+    0% {
+        transform: rotate3d(0, 1, 0, 180deg); //GOOD
+    }
+    100% {
+        transform: rotate3d(0deg);
+    }
+}
+
+@keyframes infinity {
+    0% {
+        transform: rotate3d(1, 0, 0, 180deg); //GOOD
+    }
+    100% {
+        transform: rotate3d(0deg);
+    }
+}
+
+@keyframes sketchIn {
+    0% {
+        stroke-dashoffset: 7780;
+    }
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes flipInX {
+    from {
+        transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+        animation-timing-function: ease-in;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes moveInLeftDownload {
+    0% {
+        opacity: 0;
+        transform: perspective(40px) rotate3d(1, 0, 0, 0deg) translateY(60px) translateX(-400px) scale(0);
+    }
+    100% {
+        opacity: 1;
+    }
+}
