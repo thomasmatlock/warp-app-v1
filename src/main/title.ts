@@ -9,7 +9,7 @@ export default function setTitle(
   // console.log(mode);
 
   const baseTitleString = `${capitalizeFirstLetter(
-    app.getName()
+    'Warp'
   )} | Download Anything |`;
   let versionString = '';
   let activatedString = '';
