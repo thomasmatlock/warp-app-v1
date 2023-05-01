@@ -43,6 +43,8 @@ const UserContext = React.createContext({
     createdAt: '',
     updatedAt: '',
   },
+  audioDownloadsLocked: false,
+  videoDownloadsLocked: false,
 
   audioDownloadsActivationArr: [
     {
@@ -93,11 +95,23 @@ export const UserContextProvider = (props) => {
     audio: [],
     video: [],
   });
+  const [audioDownloadsLocked, setAudioDownloadsLocked] = useState(false);
+  const [videoDownloadsLocked, setVideoDownloadsLocked] = useState(false);
   useEffect(() => {
     setAudioDownloadsCount(serverDownloads.audio.length);
     setVideoDownloadsCount(serverDownloads.video.length);
     setServerDownloads(serverDownloads);
   }, [downloadsCtx, serverDownloads]);
+  function lockAudioDownloads() {
+    if (serverDownloads.audio.length >= audioFreeDownloadsMax) {
+      setAudioDownloadsLocked(true);
+    }
+  }
+  function lockVideoDownloads() {
+    if (serverDownloads.video.length >= videoFreeDownloadsMax) {
+      setVideoDownloadsLocked(true);
+    }
+  }
   window.electron.ipcRenderer.on('global', (arg) => {
     // console.log(arg.user);
 
@@ -142,6 +156,8 @@ export const UserContextProvider = (props) => {
     <UserContext.Provider
       value={{
         user,
+        audioDownloadsLocked,
+        videoDownloadsLocked,
         audioDownloadsActivationArr,
         videoDownloadsActivationArr,
         // getID: getID,

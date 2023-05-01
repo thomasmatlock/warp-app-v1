@@ -19,6 +19,7 @@ import NavContext from '../../store/navContext';
 import PrefsContext from '../../store/prefsContext';
 import SourcesContext from '../../store/sourcesContext';
 import DownloadsContext from '../../store/downloadsContext';
+import UserContext from '../../store/userContext';
 import Loader from './Loader';
 import LoaderPlanets from './LoaderPlanets';
 
@@ -30,7 +31,9 @@ const BrowserBar = () => {
   const prefsCtx = useContext(PrefsContext);
   const sourcesCtx = useContext(SourcesContext);
   const downloadsCtx = useContext(DownloadsContext);
-  // console.log(downloadsCtx);
+  const userCtx = useContext(UserContext);
+
+  console.log(userCtx);
   useEffect(() => {
     // console.log('BrowserBar useEffect');
     //  setTimeout(() => {

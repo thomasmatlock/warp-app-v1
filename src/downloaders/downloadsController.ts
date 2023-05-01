@@ -33,7 +33,7 @@ export async function DownloadItems(
 ) {
   items.forEach((item) => {
     downloadItem(mWin, item.url, prefs, mode);
-    // console.log(item.url);
+    console.log(item.url);
   });
 
   // let newURLS = urls.forEach((url) => {

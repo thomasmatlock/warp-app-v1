@@ -253,8 +253,8 @@ const windowController = {
         setTitle(mWin, 'audio', user);
 
         if (Screen.screenState.isMaximized) mWin.maximize();
-        // if (view === null && global.serverAuthenticated)
-        //   windowController.createbView();
+        if (view === null && global.serverAuthenticated)
+          windowController.createbView();
 
         mWin.webContents.send('global', global);
         mWin.webContents.send('main: audioDownloads', audioDownloads);
@@ -266,6 +266,11 @@ const windowController = {
         );
       }
     });
+    // mWin.maximize();
+    // setTimeout(() => {
+    //   mWin.maximize();
+    // }, 1000);
+    // console.log(mWin.isMaximized());
 
     mWin.on('resize', () => {});
     mWin.on('moved', () => {
@@ -363,7 +368,7 @@ app
       }
 
       user = global.user;
-      console.log(user);
+      // console.log(user);
 
       const url = 'https://www.youtube.com/watch?v=7t885JG9qNE';
 

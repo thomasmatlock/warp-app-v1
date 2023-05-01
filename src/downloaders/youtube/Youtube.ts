@@ -25,6 +25,7 @@ import YoutubeDownload from './YoutubeDownload';
 // import YoutubeDownload2 from './YoutubeDownload2';
 import getQuality from './getQuality';
 import Prefs from '../../main/prefsController';
+
 export default async function Youtube(mWin, itemURL, prefs, mode) {
   const audioFormat = prefs.audio.dropdowns[1].defaultValue.label;
   const videoFormat = prefs.video.dropdowns[1].defaultValue.label;
@@ -35,6 +36,8 @@ export default async function Youtube(mWin, itemURL, prefs, mode) {
   itemDetails.videoQuality = videoQuality;
   try {
     await ytdl.getBasicInfo(itemURL).then((info) => {
+      console.log(info);
+
       // console.log(
       //   info.formats[2].height,
       //   info.formats[2].mimeType,
