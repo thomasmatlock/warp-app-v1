@@ -8,6 +8,22 @@ import React, { useState } from 'react';
 // put default contexts into this
 const ThemeContext = React.createContext({
   isDarkTheme: true,
+  content: {
+    dark: {
+      color: '#ECECEC',
+      placeholderColor: '#ECECEC',
+      backgroundColor: '#1a1a1a',
+      inputBackgroundColor: '#202020',
+      inputBorderColor: '#202020',
+    },
+    light: {
+      color: '#000000',
+      placeholderColor: '#1a1a1a',
+      backgroundColor: '#FFFFFF',
+      inputBackgroundColor: '#FFFFFF',
+      inputBorderColor: '#DBDCDB',
+    },
+  },
   toggleTheme: () => {},
 });
 
@@ -124,13 +140,13 @@ export const ThemeContextProvider = (props) => {
   return (
     <ThemeContext.Provider
       value={{
-        search: search,
-        actionBar: actionBar,
-        content: content,
-        downloads: downloads,
-        nav: nav,
-        isDarkTheme: isDarkTheme,
-        toggleTheme: toggleTheme,
+        search,
+        actionBar,
+        content,
+        downloads,
+        nav,
+        isDarkTheme,
+        toggleTheme,
       }}
     >
       {props.children}

@@ -355,7 +355,7 @@ app
       }
       try {
         global.user = await GetUser();
-        console.log(global.user);
+        // console.log(global.user);
 
         global.serverAuthenticated = true;
       } catch (error) {
@@ -363,7 +363,7 @@ app
       }
 
       user = global.user;
-      // console.log(user);
+      console.log(user);
 
       const url = 'https://www.youtube.com/watch?v=7t885JG9qNE';
 

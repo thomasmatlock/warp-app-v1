@@ -17,6 +17,11 @@ const DownloadsVideo = () => {
   const downloadsCtx = useContext(DownloadsContext);
   const inputCtx = useContext(InputContext);
   const userCtx = useContext(UserContext);
+  const [videoIsFree, setVideoIsFree] = useState(userCtx.user.video === 'free');
+
+  useEffect(() => {
+    setVideoIsFree(userCtx.user.video === 'free');
+  }, [userCtx]);
 
   const [downloads, setDownloads] = useState(
     Array.from(downloadsCtx.downloadsVideo).sort((a, b) => {
@@ -126,7 +131,8 @@ const DownloadsVideo = () => {
         }
       >
         {videoDownloads}
-        {videoDownloadsActivation}
+        {/* {videoDownloadsActivation} */}
+        {videoIsFree && <>{videoDownloadsActivation}</>}
       </div>
     </Fragment>
   );
