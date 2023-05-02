@@ -36,7 +36,7 @@
 
 .content__panel__warpstagram__accounts {
     overflow: hidden;
-    // overflow-y: scroll;
+    // overflow-x: scroll;
     height: calc(100vh - 192px);
     list-style: none;
     // border: 1px dotted red;
@@ -139,6 +139,7 @@
         margin: 15px;
         // border: 1px dotted white;
         overflow: hidden;
+        overflow-x: scroll;
         &__item {
             // border: 1px dotted white;
             margin-left: 4px;
