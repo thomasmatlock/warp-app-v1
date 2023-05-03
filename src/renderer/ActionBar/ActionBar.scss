@@ -1,10 +1,5 @@
-$nav-text-color: #000;
-$nav-text-color_hover: #fff;
-$gray-dark-darkest: #1a1a1a;
-$gray-dark-dark: #202020;
-$gray-dark-light: #252525;
-$gray-dark-lightest: #313131;
-$gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, #19d2fc 100%);
+@import '/src/renderer/Global/Animations.scss';
+@import '/src/renderer/Global/Colors.scss';
 .actionBar {
     margin: 0 auto;
     left: 0;
@@ -18,7 +13,7 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     justify-content: flex-start;
     justify-content: space-between;
     align-items: center;
-    border: 1px solid red;
+    // border: 1px solid red;
     // background-color: $gray-dark-light;
     background-color: $gray-dark-dark;
     border: 1px solid $gray-dark-lightest;

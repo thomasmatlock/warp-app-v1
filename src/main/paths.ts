@@ -1,12 +1,12 @@
 import path from 'path';
 import fs from 'fs';
-import os from 'os';
+// import os from 'os';
 import { app } from 'electron';
-// let mainPath = path.join(os.homedir(), 'Documents', 'Warp Downloader');
-let mainPath = path.join(app.getPath('documents'), 'Warp Downloader');
-let defaultAudioPath = path.join(mainPath, 'Audio');
-let defaultVideoPath = path.join(mainPath, 'Video');
-let defaultWarpstagramPath = path.join(mainPath, 'Warpstagram');
+
+const mainPath = path.join(app.getPath('documents'), 'Warp');
+const defaultAudioPath = path.join(mainPath, 'Audio');
+const defaultVideoPath = path.join(mainPath, 'Video');
+const defaultWarpstagramPath = path.join(mainPath, 'Warpstagram');
 if (!fs.existsSync(mainPath)) fs.mkdirSync(mainPath);
 if (!fs.existsSync(defaultAudioPath)) fs.mkdirSync(defaultAudioPath);
 if (!fs.existsSync(defaultVideoPath)) fs.mkdirSync(defaultVideoPath);

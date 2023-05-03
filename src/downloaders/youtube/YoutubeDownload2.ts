@@ -10,7 +10,8 @@ import ffmpeg from 'fluent-ffmpeg';
 const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
 const ffmpeg = require('fluent-ffmpeg');
 ffmpeg.setFfmpegPath(ffmpegPath);
-import convertToSeconds from './convertTimeToSeconds';
+import { convertToSeconds } from '../../main/util/time';
+
 import getETA from './getETA';
 import convertFile from './convertFile';
 const Downloader = require('nodejs-file-downloader');
@@ -24,10 +25,10 @@ export default async function YoutubeDownload(mWin: BrowserWindow, item: any) {
     item.type === 'audio'
       ? path.join(
           app.getPath('temp'),
-          'Warp Downloader' + randomInt + '.m4a'
+          'Warp' + randomInt + '.m4a'
           // item.titleFS + '.m4a'
         )
-      : path.join(app.getPath('temp'), 'Warp Downloader' + randomInt + '.mp4');
+      : path.join(app.getPath('temp'), 'Warp' + randomInt + '.mp4');
   // CUSTOM METHOD
   try {
     let progressPercentage;

@@ -1,9 +1,9 @@
 import { Fragment, useState, useEffect, useContext } from 'react';
 import DownloadItem from './DownloadItem';
-import ThemeContext from '../../storage/themeContext';
-import ActionBarContext from '../../storage/actionBarContext';
-import DownloadsContext from '../../storage/downloadsContext';
-import InputContext from '../../storage/inputContext';
+import ThemeContext from '../../store/themeContext';
+import ActionBarContext from '../../store/actionBarContext';
+import DownloadsContext from '../../store/downloadsContext';
+import InputContext from '../../store/inputContext';
 import Sort from './Sort';
 import './Downloads.scss';
 
@@ -91,24 +91,22 @@ const DownloadsAudioActivation = () => {
     </ul>
   );
   return (
-    <Fragment>
-      <div
-        className={
-          actionBarCtx.isDownloadsPanelCollapsed
-            ? 'contentPanel__collapsed'
-            : 'contentPanel'
-        }
-        style={
-          themeCtx.isDarkTheme
-            ? { backgroundColor: themeCtx.content.dark.backgroundColor }
-            : {
-                backgroundColor: themeCtx.content.light.backgroundColor,
-              }
-        }
-      >
-        {audioDownloadsActivation}
-      </div>
-    </Fragment>
+    <div
+      className={
+        actionBarCtx.isDownloadsPanelCollapsed
+          ? 'contentPanel__collapsed'
+          : 'contentPanel'
+      }
+      style={
+        themeCtx.isDarkTheme
+          ? { backgroundColor: themeCtx.content.dark.backgroundColor }
+          : {
+              backgroundColor: themeCtx.content.light.backgroundColor,
+            }
+      }
+    >
+      {audioDownloadsActivation}
+    </div>
   );
 };
 export default DownloadsAudioActivation;

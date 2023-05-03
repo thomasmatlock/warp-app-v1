@@ -10,7 +10,7 @@ const ModalPanelWarpstagram = (props) => {
   const outputFolders = {
     label: 'Warpstagram Downloads Folder',
     id: 'modalPrefsOutputFolder_warpstagram',
-    placeholder: 'C:/Users/Tommy/Documents/Warp Downloader/Warpstagram',
+    placeholder: 'C:/Users/Tommy/Documents/Warp/Warpstagram',
   };
 
   return (

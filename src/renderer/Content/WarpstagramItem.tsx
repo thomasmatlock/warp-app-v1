@@ -4,7 +4,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/alt-text */
 import { useState, useContext } from 'react';
-import ThemeContext from 'storage/themeContext';
+import ThemeContext from 'store/themeContext';
 import refreshIcon from './Warpstagram/refresh1.svg';
 import pinIcon from './Warpstagram/pin.svg';
 import menuIcon from './Warpstagram/menu.svg';

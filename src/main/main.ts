@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint global-require: off, no-console: off, promise/always-return: off */
 
 /**
@@ -23,25 +24,60 @@ import {
   // Tray,
 } from 'electron';
 
+import GetUser from '../user/GetUser';
 import ffmpegInit from '../ffmpeg/ffmpegController';
-import GetUser from './GetUser';
+import GetUserDownloads from '../user/downloads/GetUserDownloads';
+
+// import AddUserDownload from '../user/downloads/AddUserDownload';
+// import UpgradeUser from '../user/UpgradeUser';
+
+import * as time from './util/time';
 import updater from './updater';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
-import BrowserQuery from './browserQuery';
+import BrowserQuery from '../Browser/browserQuery';
 import * as Paths from './paths';
 import * as Downloads from '../downloaders/downloadsController';
-import * as Title from './title';
+import setTitle from './title';
 import * as Prefs from './prefsController';
 import PowerMonitor from './powerMonitor';
 import ScreenClass from './Screen';
-import * as Browser from './browserController';
+import * as Browser from '../Browser/browserController';
 import * as Shortcuts from './Shortcuts';
 // console.log(process.env.APPLE_ID);
 import testUrls from '../downloaders/youtube/testURLS';
 
 // console.log(dotenv);
-import createCustomer from '../payments/stripe/stripe';
+import { createCustomer } from '../user/payments/stripe/stripe';
+import getProducts from '../user/payments/stripe/products/stripeGetAllProducts';
+// import createStripeCharge
+import createCheckoutSession from '../user/payments/stripe/createStripeCharge';
+import getStatus from '../user/status';
+// createStripeCharge();
+function getLastItemOfArray(array: any) {
+  return array[array.length - 1];
+}
+(async () => {
+  // const products = await getProducts();
+  // console.log(products);
+  // const lastProduct = await getLastItemOfArray(products.data);
+  // console.log(lastProduct);
+  // const customer = await createCustomer();
+  // console.log(customer);
+  // if (customer !== undefined) {
+  // const session = await createCheckoutSession(
+  //   customer.id,
+  //   lastProduct.default_price
+  // );
+  // console.log(session);
+  // }
+})();
+
+// const { networkInterfaces } = require('os');
+// console.log(networkInterfaces());
+
+// const { Address6 } = require('ip-address').Address6;
+// console.log(new Address6('2001:db8:1234::1').isValid());
 
 const isSingleInstance = app.requestSingleInstanceLock();
 if (!isSingleInstance) {
@@ -53,11 +89,33 @@ const appRootDir = require('app-root-dir').get();
 let prefs: object;
 let user: object;
 let browserPanelState = 'default';
+let global = {
+  appVersion: '',
+  appRoot: appRootDir,
+  platform: '',
+  prefs: {},
+  serverDownloads: { audio: [], video: [] },
+  serverAuthenticated: false,
+  status: {},
+  user: {
+    id: '',
+    audio: 'free',
+    video: 'free',
+    warpstagram: 'free',
+    audioAuthCode: '',
+    videoAuthCode: '',
+    warpstagramAuthCode: '',
+    email: null,
+    createdAt: '',
+    updatedAt: '',
+  },
+};
 
 // let tray;
 let mWin: BrowserWindow | null;
 let view: BrowserView | null = null;
 let Screen: ScreenClass;
+let activeURL: string;
 const audioDownloads = Downloads.getAudioDownloads();
 const videoDownloads = Downloads.getVideoDownloads();
 const warpstagramDownloads = Downloads.getWarpstagramDownloads();
@@ -66,36 +124,29 @@ const viewBounds = {
   y: 130,
 };
 const setActiveURL = () => {
-  // console.log(prefs.general.dropdowns[1].defaultValue);
-
-  if (prefs.general.dropdowns[1].defaultValue.id.includes('facebook'))
+  if (global.prefs.general.dropdowns[1].defaultValue.id.includes('facebook'))
     activeURL = 'http://facebook.com';
-  if (prefs.general.dropdowns[1].defaultValue.id.includes('instagram'))
+  if (global.prefs.general.dropdowns[1].defaultValue.id.includes('instagram'))
     activeURL = 'http://instagram.com';
-  if (prefs.general.dropdowns[1].defaultValue.id.includes('pinterest'))
+  if (global.prefs.general.dropdowns[1].defaultValue.id.includes('pinterest'))
     activeURL = 'http://pinterest.com';
-  if (prefs.general.dropdowns[1].defaultValue.id.includes('soundcloud'))
+  if (global.prefs.general.dropdowns[1].defaultValue.id.includes('soundcloud'))
     activeURL = 'http://soundcloud.com';
-  if (prefs.general.dropdowns[1].defaultValue.id.includes('snapchat'))
+  if (global.prefs.general.dropdowns[1].defaultValue.id.includes('snapchat'))
     activeURL = 'http://snapchat.com';
-  if (prefs.general.dropdowns[1].defaultValue.id.includes('tiktok'))
+  if (global.prefs.general.dropdowns[1].defaultValue.id.includes('tiktok'))
     activeURL = 'http://tiktok.com';
-  if (prefs.general.dropdowns[1].defaultValue.id.includes('twitch'))
+  if (global.prefs.general.dropdowns[1].defaultValue.id.includes('twitch'))
     activeURL = 'http://twitch.com';
-  if (prefs.general.dropdowns[1].defaultValue.id.includes('twitter'))
+  if (global.prefs.general.dropdowns[1].defaultValue.id.includes('twitter'))
     activeURL = 'http://twitter.com';
-  if (prefs.general.dropdowns[1].defaultValue.id.includes('vimeo'))
+  if (global.prefs.general.dropdowns[1].defaultValue.id.includes('vimeo'))
     activeURL = 'http://vimeo.com';
-  if (prefs.general.dropdowns[1].defaultValue.id.includes('youtube'))
+  if (global.prefs.general.dropdowns[1].defaultValue.id.includes('youtube'))
     activeURL = 'http://youtube.com';
-  // if (prefs.general.dropdowns[1].defaultValue.id.includes('bandcamp'))      view.webContents.loadURL('https://bandcamp.com');
-  // if (prefs.general.dropdowns[1].defaultValue.id.includes('mixer'))         view.webContents.loadURL('https://mixer.com');
-  // if (prefs.general.dropdowns[1].defaultValue.id.includes('spotify'))       view.webContents.loadURL('https://spotify.com');
-  // if (prefs.general.dropdowns[1].defaultValue.id.includes('reddit'))        view.webContents.loadURL('https://reddit.com');
-  // if (prefs.general.dropdowns[1].defaultValue.id.includes('deviantart'))    view.webContents.loadURL('https://deviantart.com');
 };
 const windowController = {
-  async createmWin() {
+  async createMainWin() {
     const RESOURCES_PATH = app.isPackaged
       ? path.join(process.resourcesPath, 'assets')
       : path.join(__dirname, '../../assets');
@@ -138,7 +189,7 @@ const windowController = {
     });
     mWin.loadURL(resolveHtmlPath('index.html'));
 
-    const wc = mWin.webContents;
+    // const wc = mWin.webContents;
 
     const menuBuilder = new MenuBuilder(mWin);
     menuBuilder.buildMenu();
@@ -178,18 +229,13 @@ const windowController = {
     // }
     mWin.on('ready-to-show', () => {
       if (mWin) mWin.webContents.send('ready-to-show');
-      // setTimeout(() )
-      // copilot
+      if (mWin) {
+        if (process.platform === 'win32') global.platform = 'windows';
+        if (process.platform === 'darwin') global.platform = 'darwin';
+        if (process.platform === 'linux') global.platform = 'linux';
 
-      // setTimeout(() => {
-      // }, 1000);
-
-      if (process.platform === 'win32' && mWin)
-        mWin.webContents.send('platform', 'windows');
-      if (process.platform === 'darwin' && mWin)
-        mWin.webContents.send('platform', 'darwin');
-      if (process.platform === 'linux' && mWin)
-        mWin.webContents.send('platform', 'linux');
+        global.appVersion = app.getVersion();
+      }
       if (!mWin) {
         throw new Error('"mWin" is not defined');
       }
@@ -199,14 +245,15 @@ const windowController = {
         // if (view) {
         // }
         mWin.show();
-        Title.setTitle(mWin, 'audio', user);
+        setTitle(mWin, 'audio', user);
 
         if (Screen.screenState.isMaximized) mWin.maximize();
-        // if (view === null) windowController.createbView();
-        mWin.webContents.send('appVersion', app.getVersion());
-        mWin.webContents.send('appRoot', appRootDir);
-        mWin.webContents.send('main: prefs', prefs);
+        // if (view === null && global.serverAuthenticated)
+        // windowController.createbView();
+
+        mWin.webContents.send('global', global);
         mWin.webContents.send('main: audioDownloads', audioDownloads);
+
         mWin.webContents.send('main: videoDownloads', videoDownloads);
         mWin.webContents.send(
           'main: warpstagramDownloads',
@@ -214,6 +261,11 @@ const windowController = {
         );
       }
     });
+    // mWin.maximize();
+    // setTimeout(() => {
+    //   mWin.maximize();
+    // }, 1000);
+    // console.log(mWin.isMaximized());
 
     mWin.on('resize', () => {});
     mWin.on('moved', () => {
@@ -250,7 +302,6 @@ const windowController = {
       });
     view.setAutoResize({ width: true, height: true });
     view.setBackgroundColor('#1a1a1a');
-    // console.log(randomYoutubeURL);
     if (app.isPackaged) {
       view.webContents.loadURL('https://www.youtube.com');
     } else {
@@ -283,12 +334,13 @@ const windowController = {
     });
   },
 };
+
 app
   .whenReady()
   .then(() => {
     PowerMonitor();
     // Prefs.resetPrefs();
-    prefs = Prefs.getPrefs();
+    global.prefs = Prefs.getPrefs();
     // console.log(prefs);
     Screen = new ScreenClass(mWin);
     // console.log('Screen', Screen);
@@ -296,26 +348,68 @@ app
     setActiveURL();
 
     (async function init() {
-      // user = await User.resetUser();
-      // user = await User.upgradeUserModule('audio', 'free');
-      // user = await User.upgradeUserModule('audio', 'personal');
-      // user = await User.upgradeUserModule('audio', 'professional');
-      // user = await User.upgradeUserModule('video', 'free');
-      // user = await User.upgradeUserModule('video', 'personal');
-      // user = await User.upgradeUserModule('video', 'professional');
-      // user = await User.upgradeUserModule('warpstagram', 'free');
-      // user = await User.upgradeUserModule('warpstagram', 'personal');
-      // user = await User.upgradeUserModule('warpstagram', 'professional');
-      // user = await User.upgradeAllUserModules('personal');
-      // user = await User.upgradeAllUserModules('professional');
-      // user = await User.upgradeAllUserModules('developer');
-      // if (user !== undefined) console.log(user.audio);
-      user = await GetUser();
-      console.log('user', user);
+      try {
+        global.status = await getStatus();
+      } catch (error) {
+        console.log(error);
+      }
+      try {
+        global.user = await GetUser();
+        // console.log(global.user);
+
+        global.serverAuthenticated = true;
+      } catch (error) {
+        console.log(error);
+      }
+
+      user = global.user;
+      // console.log(user);
+
+      const url = 'https://www.youtube.com/watch?v=7t885JG9qNE';
+
+      // AddUserDownload(url, 'audio', 'add');
+      const email = 'hello@gmail.com';
+      const moduleTypes = ['audio', 'video', 'warpstagram']; // audio, video, warpstagram, all
+
+      const moduleEditions = ['free', 'personal', 'professional', 'developer']; // free, personal, professional, developer
+      const action = 'upgrade'; // add, upgrade, downgrade, remove
+
+      // user = await UpgradeUser(
+      //   email,
+      //   moduleTypes[0],
+      //   moduleEditions[1],
+      //   action
+      // );
+
+      const downloads = await GetUserDownloads();
+      global.serverDownloads = downloads;
+      // console.log(global.downloads);
+
+      // console.log(downloads.audio.length, downloads.video.length);
+      for (let i = 0; i < downloads.audio.length; i++) {
+        const download = downloads.audio[i];
+        // console.log(download);
+
+        const withinLast24Hours = time.isTimestampInLast24Hours(
+          download.createdAt
+        );
+        // console.log(withinLast24Hours);
+
+        // if (withinLast24Hours) {
+        //   console.log('within last 24 hours');
+        //   // console.log(download);
+        // }
+        // if (!withinLast24Hours) {
+        //   console.log('not within last 24 hours');
+        //   // console.log(download);
+        // }
+      }
+
+      // console.log('user', user);
 
       // console.log(typeof user);
 
-      windowController.createmWin();
+      windowController.createMainWin();
     })();
     // createTray(mWin);
     // Shortcuts(view);
@@ -323,22 +417,13 @@ app
     // console.log(app.getAppPath());
 
     app.on('activate', () => {
-      // if (mWin === null) windowController.createmWin();
+      // if (mWin === null) windowController.createMainWin();
     });
   })
   .catch(console.log);
 
-// import { v4 as uuidv4 } from 'uuid';
-
-createCustomer();
-
 let randomYoutubeURL =
   testUrls.youtube[Math.floor(Math.random() * testUrls.youtube.length)];
-// const randomYoutubePlaylistURL =
-//   testUrls.youtubePlaylists[
-//     Math.floor(Math.random() * testUrls.youtubePlaylists.length)
-//   ];
-/// ///////////////////////////////////////////////////
 
 async function submitSearchQuery(currentURL: string, query: string) {
   // let joinedQuery: string;
@@ -365,28 +450,6 @@ if (isDebug) {
   // require('electron-debug')(); // ENABLE FOR DEVTOOLS
 }
 
-// const installExtensions = async () => {
-//   const installer = require('electron-devtools-installer');
-//   const forceDownload = !!process.env.UPGRADE_EXTENSIONS;
-
-//   const extensions = ['REACT_DEVELOPER_TOOLS'];
-
-//   return installer
-//     .default(
-//       extensions.map((name) => installer[name]),
-//       forceDownload
-//     )
-//     .catch(console.log);
-// };
-
-// class AppUpdater {
-//   constructor() {
-//     log.transports.file.level = 'info';
-//     autoUpdater.logger = log;
-//     autoUpdater.checkForUpdatesAndNotify();
-//   }
-// }
-
 (function appListeners() {
   // MENU LISTENERS
   ipcMain.on('Menu: Shortcuts: Restart', async (event, arg) => {
@@ -398,15 +461,15 @@ if (isDebug) {
   ipcMain.on('nav: mode: audio', async (event, arg) => {
     // if (mWin) mWin.webContents.send('count-downloads');
     // console.log(arg);
-    Title.setTitle(mWin, 'audio', user);
+    setTitle(mWin, 'audio', user);
   });
   ipcMain.on('nav: mode: video', async (event, arg) => {
     // if (mWin) mWin.webContents.send('count-downloads');
-    Title.setTitle(mWin, 'video', user);
+    setTitle(mWin, 'video', user);
   });
   ipcMain.on('nav: mode: warpstagram', async (event, arg) => {
     // if (mWin) mWin.webContents.send('count-downloads');
-    Title.setTitle(mWin, 'warpstagram', user);
+    setTitle(mWin, 'warpstagram', user);
   });
   // SEARCH LISTENERS
   ipcMain.on('Search: InputChange', async (event, arg) => {
@@ -517,14 +580,14 @@ if (isDebug) {
     }
   );
   // MODAL PREFS LISTENERS
-  ipcMain.on('main: prefs', async (event, arg) => {
-    prefs = arg;
-    Prefs.setPrefs(prefs);
-    event.reply('main: prefs', prefs);
+  ipcMain.on('global', async (event, arg) => {
+    global = arg;
+    Prefs.setPrefs(global.prefs);
+    event.reply('global', global);
     //  event.reply('FilterBar: Warpstagram: FilterTypeLocations successful'); // sends message to renderer
   });
   ipcMain.on(
-    'main: prefs: chooseOutputFolder',
+    'global: prefs: chooseOutputFolder',
     async (event, outputFolderID) => {
       // console.log(outputFolderID);
       if (outputFolderID.toLowerCase().includes('audio')) {
@@ -536,8 +599,8 @@ if (isDebug) {
           })
           .then((result) => {
             if (!result.canceled) Prefs.setAudioPath(result.filePaths[0]);
-            prefs = Prefs.getPrefs();
-            mWin.webContents.send('main: prefs', prefs);
+            global.prefs = Prefs.getPrefs();
+            mWin.webContents.send('global', global);
           })
           .catch((err) => {
             console.log(err);
@@ -552,8 +615,8 @@ if (isDebug) {
           })
           .then((result) => {
             if (!result.canceled) Prefs.setVideoPath(result.filePaths[0]);
-            prefs = Prefs.getPrefs();
-            if (mWin) mWin.webContents.send('main: prefs', prefs);
+            global.prefs = Prefs.getPrefs();
+            if (mWin) mWin.webContents.send('global', global);
           })
           .catch((err) => {
             console.log(err);
@@ -568,15 +631,13 @@ if (isDebug) {
           })
           .then((result) => {
             if (!result.canceled) Prefs.setWarpstagramPath(result.filePaths[0]);
-            prefs = Prefs.getPrefs();
-            if (mWin) mWin.webContents.send('main: prefs', prefs);
+            global.prefs = Prefs.getPrefs();
+            if (mWin) mWin.webContents.send('global', global);
           })
           .catch((err) => {
             console.log(err);
           });
       }
-
-      // event.reply('main: prefs', prefs);
     }
   );
   ipcMain.on('item-download-progress', async (event, args) => {
@@ -606,7 +667,7 @@ if (isDebug) {
   ipcMain.on('context: open_in_browser', async (event, matchingDownload) => {
     console.log(matchingDownload);
 
-    let url = matchingDownload.video_url;
+    const url = matchingDownload.video_url;
     if (view) view.webContents.loadURL(url);
   });
   ipcMain.on('context: remove_item', async (_event, matchingDownload) => {

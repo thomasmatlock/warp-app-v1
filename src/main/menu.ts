@@ -169,43 +169,11 @@ export default class MenuBuilder {
             shell.openExternal('https://warpdownload.com');
           },
         },
-        // {
-        //   label: 'Documentation',
-        //   click() {
-        //     shell.openExternal(
-        //       'https://github.com/electron/electron/tree/main/docs#readme'
-        //     );
-        //   },
-        // },
-        // {
-        //   label: 'Community Discussions',
-        //   click() {
-        //     shell.openExternal('https://www.electronjs.org/community');
-        //   },
-        // },
-        // {
-        //   label: 'Search Issues',
-        //   click() {
-        //     shell.openExternal('https://github.com/electron/electron/issues');
-        //   },
-        // },
       ],
     };
     const subMenuAudio: MenuItemConstructorOptions = {
       label: 'Audio',
       submenu: [
-        // {
-        //   label: 'Paste',
-        //   enabled: false,
-        //   accelerator: 'CmdOrCtrl+V',
-        //   click: () => {
-        //     appWin.send('Audio: Downloads: Paste');
-        //   },
-        // },
-        // {
-        //   label: 'separator',
-        //   type: 'separator',
-        // },
         {
           label: 'Pause All',
           enabled: false,
@@ -503,7 +471,7 @@ export default class MenuBuilder {
         {
           label: 'Audio Mode',
           enabled: true,
-          accelerator: 'Shift+1',
+          accelerator: 'CmdOrCtrl+1',
           click: () => {
             this.mWin.webContents.send('nav: mode: audio');
           },
@@ -511,7 +479,7 @@ export default class MenuBuilder {
         {
           label: 'Video Mode',
           enabled: true,
-          accelerator: 'Shift+2',
+          accelerator: 'CmdOrCtrl+2',
           click: () => {
             this.mWin.webContents.send('nav: mode: video');
           },
@@ -519,7 +487,7 @@ export default class MenuBuilder {
         {
           label: 'Warpstagram Mode',
           enabled: true,
-          accelerator: 'Shift+3',
+          accelerator: 'CmdOrCtrl+3',
           click: () => {
             this.mWin.webContents.send('nav: mode: warpstagram');
           },
@@ -889,17 +857,6 @@ export default class MenuBuilder {
       {
         label: 'Tools',
         submenu: [
-          // {
-          //   label: 'Check for updates...',
-          //   enabled: false,
-          //   click: () => {
-          //     // appWin.send('Check for update');
-          //   },
-          // },
-          // {
-          //   label: 'separator',
-          //   type: 'separator',
-          // },
           {
             label: 'Preferences',
             enabled: true,

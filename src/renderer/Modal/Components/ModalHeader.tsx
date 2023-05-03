@@ -4,10 +4,11 @@
 /* eslint-disable react/jsx-fragments */
 import { Fragment, useContext } from 'react';
 import './ModalHeader.scss';
-import clearTextIcon from '../../Search/close.svg';
+import clearTextIcon from '../../Search/assets/close.svg';
 // import astronaut from '../../../../assets/astronauts/png/Asset 8 whitened.png';
-import ThemeContext from '../../../storage/themeContext';
-const ModalHeader = (props) => {
+import ThemeContext from '../../../store/themeContext';
+
+const ModalHeader = (props: Record<string, unknown>) => {
   const themeCtx = useContext(ThemeContext);
   return (
     <Fragment>

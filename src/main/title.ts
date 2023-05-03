@@ -1,17 +1,19 @@
 import { app, BrowserWindow } from 'electron';
-import User from './User';
+import { capitalizeFirstLetter } from './util/strings';
 
-let user;
-const capitalizeFirstLetter = (string: string) => {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-};
-export function setTitle(mWin: BrowserWindow, mode, user) {
-  let baseTitleString = `${capitalizeFirstLetter(
-    app.getName()
+export default function setTitle(
+  mWin: BrowserWindow,
+  mode: string,
+  user: object
+) {
+  // console.log(mode);
+
+  const baseTitleString = `${capitalizeFirstLetter(
+    'Warp'
   )} | Download Anything |`;
-  let versionString;
-  let activatedString;
-  let modeString = capitalizeFirstLetter(mode);
+  let versionString = '';
+  let activatedString = '';
+  const modeString = capitalizeFirstLetter(mode);
   if (mode === 'audio') {
     versionString = capitalizeFirstLetter(user[mode]);
   }
@@ -28,7 +30,3 @@ export function setTitle(mWin: BrowserWindow, mode, user) {
     `${baseTitleString} ${versionString} ${modeString} Edition ${activatedString}`
   );
 }
-
-module.exports = {
-  setTitle: setTitle,
-};

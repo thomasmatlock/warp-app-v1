@@ -1,0 +1,23 @@
+@import './components/Structure/structure_variables.module.scss';
+.section,
+.section_alternate,
+.section_overlap {
+    margin: 0 auto;
+    width: 100%;
+    border: 1px dotted $border_color;
+    // margin-top: 60px;
+    // min-height: 50vh;
+    padding: 0rem;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.section_alternate {
+    background-color: #1a1a1a;
+}
+
+.section_overlap {
+    // background-color: #1a1a1a;
+}

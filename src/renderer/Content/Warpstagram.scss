@@ -1,20 +1,9 @@
-$nav-text-color: #000;
-$nav-text-color_hover: #fff;
-$gray-dark-darkest: #1a1a1a;
-$gray-dark-dark: #202020;
-$gray-dark-light: #252525;
-$gray-dark-lightest: #313131;
-// $gray-light-lightest: #454545;
-$gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, #19d2fc 100%);
+@import '/src/renderer/Global/Animations.scss';
+@import '/src/renderer/Global/Colors.scss';
 @keyframes moveInLeftWarpstagramAccount {
     0% {
         opacity: 0;
         transform: perspective(400px) rotate3d(1, 0, 0, 90deg) translateX(-1000px);
-        // transform: translateX( -1000px); // start keyframe, just translate position on x axis to left 10rem
-    }
-    80% {
-        // opacity: 0.2;
-        // transform: translateX(8px) skewX(-8deg);
     }
     100% {
         opacity: 1;
@@ -45,49 +34,9 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     }
 }
 
-@keyframes bondJamesBond {
-    0% {
-        transform: translateX(-2000px) rotate3d(1, 0, 0, 90deg) scale(0);
-        width: 0px;
-        // transform: perspective(40px) rotate3d(1, 0, 0, 0deg) translateY(60px) translateX(-400px) scale(0);
-        opacity: 0;
-        // height: 0px;
-        border-radius: 0px 250px 0px 0px;
-        // width: 90%;
-        box-shadow: -20px 30px 80px 0 rgba(0, 0, 0, 1) !important;
-        z-index: 3;
-    }
-    80% {
-        transform: translateX(0px);
-        // height: 20px;
-        // height: 75px;
-        // width: 75px;
-        // border-radius: 35px;
-    }
-    90% {
-        // border-radius: 15px;
-        // height: 182px;
-        // width: 247px;
-    }
-    100% {
-        // border-radius: 3px;
-        // height: 162px;
-        // width: 227px;
-        // opacity: 1;
-    }
-}
-
 .content__panel__warpstagram__accounts {
-    // height: 100%;
-    // width: 98%;
-    // display: flex;
-    // flex-direction: column;
-    // justify-content: flex-start;
-    // align-items: center;
-    // margin: 0 auto;
-    // padding: 2px 8px 2px 8px !important;
     overflow: hidden;
-    // overflow-y: scroll;
+    // overflow-x: scroll;
     height: calc(100vh - 192px);
     list-style: none;
     // border: 1px dotted red;
@@ -108,10 +57,6 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     overflow-x: hidden;
     // border: 1px dotted red;
     height: 100%;
-    // padding: 4px 16px;
-    // &:hover> :not(:hover) * {
-    //     // filter: brightness(1) saturate(1) contrast(1) blur(0px);
-    // }
 }
 
 .content__panel__warpstagram__account {
@@ -119,30 +64,15 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
     width: calc(100% - 32px);
     display: flex;
     margin-top: 1rem;
-    // margin-bottom: 8px;
-    // margin-left: 24px;
-    // margin-right: 16px;
-    // margin-right: 48px;
-    // margin: 4px 16px;
     flex-direction: column;
-    // justify-content: center;
     align-items: left;
-    // align-items: flex-start;
     border: 1px solid rgb(79, 79, 79);
-    // border: 1px solid $gray-dark-lightest;
     background-color: $gray-dark-light;
     border-radius: 4px;
-    // margin: 2px 4px !important;
     will-change: transform;
-    // animation: moveInLeftWarpstagramAccount 0.5s ease-in-out;
-    // animation: bondJamesBond 0.25s ease-in-out;
-    // border: 1px dotted red;
     &:hover {
         background-color: $gray-dark-lightest;
-        // transform: scaleX(1.001);
         box-shadow: -20px 30px 80px 0 rgba(0, 0, 0, 0.54) !important;
-        // transform: scale(1.01);
-        // cursor: pointer;
     }
     &__info {
         display: flex;
@@ -156,8 +86,6 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
         height: 24px;
         letter-spacing: 0.01rem;
         // border: 1px dotted white;
-        // height: auto;
-        // width: 100%;
         &__text {
             display: flex;
             flex-direction: row;
@@ -166,7 +94,6 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
             align-content: center;
             color: rgb(162, 162, 162);
             font-size: 0.75rem;
-            // margin: 8px 0;
             font-weight: 400 !important;
             letter-spacing: 0.01rem;
             // border: 1px dotted white;
@@ -212,12 +139,10 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
         margin: 15px;
         // border: 1px dotted white;
         overflow: hidden;
+        overflow-x: scroll;
         &__item {
             // border: 1px dotted white;
             margin-left: 4px;
-            // animation: moveInLeftWarpstagramAccount 0.5s ease-in-out;
-            // animation: bondJamesBond 0.25s ease-in-out;
-            // animation-delay: 0.25s;
             border-radius: 2px;
             min-height: 164px !important;
             max-height: 164px !important;
@@ -226,21 +151,10 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
             will-change: transform;
             // overflow: hidden;
             object-fit: cover; // fill contain
-            // background: grey;
             transition: all 0.1s ease-in-out;
             &:hover {
                 width: 540px;
-                /* you can use % */
-                // height: auto;
                 transform: scale(1.02);
-                // width: 80px;
-                // height: 80px;
-                // object-fit: contain;
-                // object-fit: contain; // fill contain
-                // object-position: 50% 500%;
-                // object-scale: 1.1;
-                // background-position: 100% 110%;
-                // transform: scale(1.02) perspective(4000px) rotate3d(1, 100, 0, 0deg);
                 box-shadow: 10px 70px 63px -60px #000000;
                 cursor: pointer;
             }

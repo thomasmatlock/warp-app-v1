@@ -1,15 +1,18 @@
 import { Fragment, useState, useContext } from 'react';
-import sortIcon from './sort.svg';
-import collapseIcon from './collapse.svg';
-import expandIcon from './expand.svg';
-import ThemeContext from '../../storage/themeContext';
-import ActionBarContext from '../../storage/actionBarContext';
+import sortIcon from './assets/sort.svg';
+import collapseIcon from './assets/collapse.svg';
+import expandIcon from './assets/expand.svg';
+import ThemeContext from '../../store/themeContext';
+import ActionBarContext from '../../store/actionBarContext';
 
 import ContextMenu from '../ContextMenu/ContextMenu';
 import ContextMenuSortOptions from '../ContextMenu/ContextMenuOptionsSort';
 
 import './ActionBarWarpstagram';
+
 const FilterBar = (props) => {
+  // console.log(props);
+
   const [isContextMenuVisible, setisContextMenuVisible] = useState(false);
   const toggleContextMenuSort = () => {
     if (isContextMenuVisible) {

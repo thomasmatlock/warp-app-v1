@@ -10,7 +10,7 @@ const ModalPanelVideo = (props) => {
   const outputFolders = {
     label: 'Video Downloads Folder',
     id: 'modalPrefsOutputFolder_video',
-    placeholder: 'C:/Users/Tommy/Documents/Warp Downloader/Video',
+    placeholder: 'C:/Users/Tommy/Documents/Warp/Video',
   };
   return (
     <Fragment>

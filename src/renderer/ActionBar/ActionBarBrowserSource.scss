@@ -1,41 +1,14 @@
-// https://www.w3schools.com/howto/howto_custom_select.asp
-// FONT
-$default-font-size: 1.6rem;
-// GRID
-$grid-width: 114rem; //1140px standard grid width, but use rem for dynamic page adapting to viewport size
-$gutter-vertical: 8rem; //80px -- gutter is space between columns
-$gutter-horizontal: 6rem; //60px
-// SHADOWS
-$shadow-none: 0 1.5rem 4rem rgba(0, 0, 0, 0);
-$shadow-light: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
-$shadow-before: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
-$shadow-after: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-// DIMENSIONS
-// Development TESTING
-$dev-border: 1px dotted rgba(255, 0, 0, 0.5);
-// Download items
-// TESTING BORDERS
-$border-heavy: 0px dotted black;
-$border-heavy2: 0px dotted red;
-$border-medium: 0px dotted black;
-$border-light: 0px dotted black;
-// GRAD TIMELAPSE DURATIONS
-$duration-1: 10s;
-$nav-text-color: #000;
-$nav-text-color_hover: #fff;
-$gray-dark-darkest: #1a1a1a;
-$gray-dark-dark: #202020;
-$gray-dark-light: #252525;
-$gray-dark-lightest: #313131;
-$gray-dark-lightest2: #414141;
-$gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, #19d2fc 100%);
-$gradient-orange: linear-gradient(to left, #da2c4d 0%, #f8ab37 100%);
+@import '/src/renderer/Global/Animations.scss';
+@import '/src/renderer/Global/Colors.scss';
+$sourceWidth: calc(100% - 790px);
+$sourceHeight: 48px;
+$transitionTime: 0.1s;
 .browserBarDownloadSource {
-    height: 48px;
+    height: $sourceHeight;
     // width: clamp(150px, 200px, 200px);
     // width: calc(100% - 480px);
     // width: calc(100% - 650px);
-    width: calc(100% - 790px);
+    width: $sourceWidth;
     margin: 8px 200px;
     border-radius: 3px;
     position: absolute;
@@ -53,13 +26,13 @@ $gradient-orange: linear-gradient(to left, #da2c4d 0%, #f8ab37 100%);
     &:hover {
         // border: 1px solid $gray-dark-lightest;
         // transform: scaleX(1.1001);
-        box-shadow: -20px 30px 80px 0 rgba(0, 0, 0, 1) !important;
+        // box-shadow: -20px 30px 80px 0 rgba(0, 0, 0, 1) !important;
         background-color: $gray-dark-light;
         cursor: pointer;
     }
     &:active {
-        box-shadow: -5px 10px 10px 0 rgba(0, 0, 0, 1) !important;
-        transition: 0.01s ease-in-out;
+        // box-shadow: -5px 10px 10px 0 rgba(0, 0, 0, 1) !important;
+        transition: $transitionTime ease-in-out;
         transform: scale(0.99);
     }
     &__list {
@@ -67,7 +40,7 @@ $gradient-orange: linear-gradient(to left, #da2c4d 0%, #f8ab37 100%);
         overflow: hidden;
         box-shadow: $shadow-after;
         // border: 1px dotted red;
-        transition: all 0.1s ease-in-out;
+        transition: all $transitionTime ease-in-out;
         // border: 1px solid red;
         // position: absolute;
         z-index: 2;
@@ -85,14 +58,14 @@ $gradient-orange: linear-gradient(to left, #da2c4d 0%, #f8ab37 100%);
         background-color: $gray-dark-lightest;
         border: 1px solid $gray-dark-lightest;
         &:hover {
-            box-shadow: -20px 30px 80px 0 rgba(0, 0, 0, 1) !important;
+            // box-shadow: -20px 30px 80px 0 rgba(0, 0, 0, 1) !important;
             background-color: $gray-dark-light;
             // z-index: 999;
             // background-image: $gradient-blue;
             cursor: pointer;
         }
         &:active {
-            box-shadow: -5px 10px 10px 0 rgba(0, 0, 0, 1) !important;
+            // box-shadow: -5px 10px 10px 0 rgba(0, 0, 0, 1) !important;
             transition: 0.01s ease-in-out;
             transform: scale(0.99);
         }
@@ -110,12 +83,16 @@ $gradient-orange: linear-gradient(to left, #da2c4d 0%, #f8ab37 100%);
             flex: 1;
             border-bottom: 1px solid $gray-dark-light;
             background-color: $gray-dark-lightest;
+            // transition: 0.1s ease-in-out;
             &:hover {
                 background-color: $gray-dark-light !important;
-                box-shadow: -20px 30px 80px 0 rgba(0, 0, 0, 1) !important;
+                // box-shadow: -20px 30px 80px 0 rgba(0, 0, 0, 1) !important;
                 border-radius: 3px;
                 border-radius: 3px;
                 cursor: pointer;
+                z-index: 3;
+                // transition: 0.1s ease-in-out;
+                // border: 1px solid red;
             }
             &__container1 {
                 border-radius: 3px;
@@ -123,7 +100,7 @@ $gradient-orange: linear-gradient(to left, #da2c4d 0%, #f8ab37 100%);
                 flex-direction: row;
                 justify-content: start;
                 width: 50%;
-                height: 100%;
+                height: 48px;
                 align-items: center;
                 margin: 0 1vh;
                 // border: 1px solid red !important;
@@ -189,10 +166,9 @@ $gradient-orange: linear-gradient(to left, #da2c4d 0%, #f8ab37 100%);
     z-index: 1;
     border-radius: 3px;
     // border: 1px solid red;
-    // height: auto;
     // box-shadow: $shadow-after;
     top: 0;
-    transition: all 0.25s ease-in-out;
+    transition: all $transitionTime ease-in-out;
     // height: calc((9 * 48px) + 9px); // item height times number of items
     cursor: pointer;
     // border: 1px dotted red;

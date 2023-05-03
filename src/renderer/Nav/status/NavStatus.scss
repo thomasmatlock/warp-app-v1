@@ -1,0 +1,17 @@
+@import '/src/renderer/Global/Animations.scss';
+@import '/src/renderer/Global/Colors.scss';
+.statusContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 33%;
+    height: 100%;
+    color: white;
+}
+
+@media (min-width: 800px) and (max-width: 1200px) {
+    .statusContainer {
+        display: none;
+    }
+}

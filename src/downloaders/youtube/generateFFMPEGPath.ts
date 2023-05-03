@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 /* eslint-disable no-plusplus */
 import { app } from 'electron';
 import path from 'path';
@@ -53,12 +54,12 @@ export default function generateFFMPEGPath() {
       if (fs.existsSync(testPath)) {
         // console.log('FFMPEG binary exists');
       } else if (!fs.existsSync(testPath)) {
-        console.log('FFMPEG binary does not exist');
+        // console.log('FFMPEG binary does not exist');
         downloadFFMPEGbinary(testPath);
       }
     } catch (err) {
       // console.log('FFMPEG binary does NOT exists');
-      console.error(err);
+      // console.error(err);
     }
     // check if file exists
 

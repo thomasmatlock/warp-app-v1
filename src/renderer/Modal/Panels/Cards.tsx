@@ -1,7 +1,7 @@
 import { Fragment, useState, useContext } from 'react';
 import './Cards.scss';
 import Card from './Card';
-import ProductsContext from '../../../../src/storage/productsContext';
+import ProductsContext from '../../../store/productsContext';
 import IconFileTypeAudio from '../../../../assets/Modals/license/fileTypeAudio.svg';
 import IconFileTypeVideo from '../../../../assets/Modals/license/fileTypeVideo.svg';
 

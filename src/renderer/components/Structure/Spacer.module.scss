@@ -1,0 +1,22 @@
+@import './components/Structure/structure_variables.module.scss';
+.spacer,
+.spacer_mobile {
+    margin: 0;
+    width: 100%;
+    border: 1px dotted $border_color;
+    height: 3vh;
+    min-height: 60px;
+}
+
+.spacer_mobile {
+    display: none;
+}
+
+@media screen and (max-width: $breakpoint_tablet) {
+    .spacer {
+        display: none;
+    }
+    .spacer_mobile {
+        display: flex;
+    }
+}

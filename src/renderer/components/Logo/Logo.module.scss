@@ -1,0 +1,71 @@
+// @import '/styles/base/animations.module.scss';
+// @import '/components/Structure/structure_variables.module.scss';
+.logoContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 33%;
+    height: 100%;
+    // height: auto;
+    color: white;
+}
+
+.logo {
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    // border: 1px dotted red;
+    -webkit-tap-highlight-color: transparent;
+    &:hover {
+        cursor: default;
+    }
+}
+
+.logo:hover .logo__img {
+    animation-name: ckw;
+    animation-duration: 0.5s;
+    transform-origin: 50% 50%;
+}
+
+.logo:hover * {
+    // transform: scale(1.01, 1.01);
+    transition: transform 0.1s ease-in-out;
+    // box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.logo img {
+    height: 1rem;
+    width: auto;
+    margin: 0px;
+    // border: 1px dotted red;
+}
+
+.logo__text {
+    display: flex;
+    flex-direction: row;
+    font-size: 1rem; // font-size: 1vh;
+    color: #fff;
+    margin-left: 0.5rem !important;
+    // border: 1px dotted red;
+}
+
+// @media screen and (max-width: $breakpoint_tablet) {
+//     .logo {
+//         // visibility: hidden;
+//         // background-color: #fff;
+//         // height: 3rem;
+//         // width: 3rem;
+//         // border: 1px solid red;
+//     }
+//     .logo img {
+//         height: 1.25rem;
+//         width: auto;
+//         margin: 0px;
+//         // filter: invert(1);
+//         // border: 1px dotted red;
+//     }
+// }

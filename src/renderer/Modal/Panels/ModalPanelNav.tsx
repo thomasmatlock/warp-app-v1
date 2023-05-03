@@ -5,13 +5,15 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/jsx-fragments */
 import { Fragment, useContext } from 'react';
-import iconAudio from '../../Common/audio.svg';
-import iconVideo from '../../Common/video3.svg';
-import iconWarpstagram from '../../Common/warpstagram.svg';
-import iconGeneralDark from '../../Common/gear.svg';
-import iconLicenses from '../../Common/shuttle.svg';
-import IconAuths from '../../Common/auths1_white.svg';
-import ThemeContext from '../../../storage/themeContext';
+import iconAudio from '../../Global/audio.svg';
+// import iconAudio from '../../Global/warpstagram.svg';
+
+import iconVideo from '../../Global/video.svg';
+import iconWarpstagram from '../../Global/warpstagram.svg';
+import iconGeneralDark from '../../Global/gear.svg';
+import iconLicenses from '../../Global/rocket.svg';
+import IconAuths from '../../Global/auths1_white.svg';
+import ThemeContext from '../../../store/themeContext';
 import './ModalPanelNav.scss';
 
 const ModalNav = (props: any) => {
@@ -34,6 +36,7 @@ const ModalNav = (props: any) => {
                 ? 'modalPrefsNav_button__icon'
                 : 'modalPrefsNav_button__icon'
             }
+            style={{ filter: 'invert(1)' }}
             src={iconAudio}
           />
           <p>Audio</p>
@@ -54,6 +57,7 @@ const ModalNav = (props: any) => {
                 : 'modalPrefsNav_button__icon'
             }
             src={iconVideo}
+            // invert
           />
           <p>Video</p>
         </div>
@@ -74,6 +78,10 @@ const ModalNav = (props: any) => {
                 : 'modalPrefsNav_button__icon'
             }
             src={iconWarpstagram}
+            // grayscale
+            style={{
+              filter: 'grayscale(100%)',
+            }}
           />
           <p>Warpstagram</p>
         </div>

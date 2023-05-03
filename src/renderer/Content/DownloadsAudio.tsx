@@ -3,11 +3,11 @@ import DownloadItem from './DownloadItem';
 import ActivationItem from './ActivationItem';
 //
 // import DownloadsAudioActivation from './DownloadsAudioActivation';
-import ThemeContext from '../../storage/themeContext';
-import ActionBarContext from '../../storage/actionBarContext';
-import DownloadsContext from '../../storage/downloadsContext';
-import UserContext from '../../storage/userContext';
-import InputContext from '../../storage/inputContext';
+import ThemeContext from '../../store/themeContext';
+import ActionBarContext from '../../store/actionBarContext';
+import DownloadsContext from '../../store/downloadsContext';
+import UserContext from '../../store/userContext';
+import InputContext from '../../store/inputContext';
 import Sort from './Sort';
 import './Downloads.scss';
 
@@ -17,6 +17,7 @@ const DownloadsAudio = () => {
   const downloadsCtx = useContext(DownloadsContext);
   const inputCtx = useContext(InputContext);
   const userCtx = useContext(UserContext);
+  const [audioIsFree, setAudioIsFree] = useState(userCtx.user.audio === 'free');
 
   const [downloads, setDownloads] = useState(
     Array.from(downloadsCtx.downloadsAudio).sort((a, b) => {
@@ -31,7 +32,9 @@ const DownloadsAudio = () => {
       }
     })
   );
-
+  useEffect(() => {
+    setAudioIsFree(userCtx.user.audio === 'free');
+  }, [userCtx]);
   useEffect(() => {
     setDownloads(
       Array.from(downloadsCtx.downloadsAudio).sort((a, b) => {
@@ -86,6 +89,7 @@ const DownloadsAudio = () => {
       )}
     </ul>
   );
+
   const audioDownloadsActivation = (
     <ul className="content__panel__downloads__list__activation">
       {userCtx.audioDownloadsActivationArr.map((item) => (
@@ -101,25 +105,24 @@ const DownloadsAudio = () => {
     </ul>
   );
   return (
-    <Fragment>
-      <div
-        className={
-          actionBarCtx.isDownloadsPanelCollapsed
-            ? 'contentPanel__collapsed'
-            : 'contentPanel'
-        }
-        style={
-          themeCtx.isDarkTheme
-            ? { backgroundColor: themeCtx.content.dark.backgroundColor }
-            : {
-                backgroundColor: themeCtx.content.light.backgroundColor,
-              }
-        }
-      >
-        {audioDownloads}
-        {audioDownloadsActivation}
-      </div>
-    </Fragment>
+    <div
+      className={
+        actionBarCtx.isDownloadsPanelCollapsed
+          ? 'contentPanel__collapsed'
+          : 'contentPanel'
+      }
+      style={
+        themeCtx.isDarkTheme
+          ? { backgroundColor: themeCtx.content.dark.backgroundColor }
+          : {
+              backgroundColor: themeCtx.content.light.backgroundColor,
+            }
+      }
+    >
+      {audioDownloads}
+      {/* audioIsFree */}
+      {audioIsFree && <>{audioDownloadsActivation}</>}
+    </div>
   );
 };
 export default DownloadsAudio;

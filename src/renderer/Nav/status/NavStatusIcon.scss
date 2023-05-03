@@ -1,0 +1,30 @@
+@import '/src/renderer/Global/Animations.scss';
+@import '/src/renderer/Global/Colors.scss';
+.status_icon {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 1s ease-out;
+}
+
+.status_icon__img {
+    height: 16px;
+    width: 16px;
+    margin: 0.5rem;
+    animation: fadeInDown 0.5s ease-out;
+}
+
+.status_icon__img__hovered {
+    animation: fadeOutUp 0.25s ease-out;
+    // height: 0px;
+    // width: 0px;
+    height: 16px;
+    width: 16px;
+    transform: rotate3d(1, 0, 0, 90deg);
+    margin: 0.5rem;
+}
+
+.status_icon__animated {
+    animation: clockWise 1s linear infinite !important;
+}

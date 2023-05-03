@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import ThemeContext from 'storage/themeContext';
-import DownloadsContext from 'storage/downloadsContext';
+import ThemeContext from 'store/themeContext';
+import DownloadsContext from 'store/downloadsContext';
 const ContextMenuItem = (props) => {
   const themeCtx = useContext(ThemeContext);
   const downloadsCtx = useContext(DownloadsContext);

@@ -1,8 +1,8 @@
 import { Fragment, useContext } from 'react';
 import './Browser.scss';
 // import screenshotPlaceholder from '../../../assets/screenshot.png';
-import ThemeContext from '../../storage/themeContext';
-import ActionBarContext from '../../storage/actionBarContext';
+import ThemeContext from '../../store/themeContext';
+import ActionBarContext from '../../store/actionBarContext';
 
 const Browser = () => {
   const themeCtx = useContext(ThemeContext);

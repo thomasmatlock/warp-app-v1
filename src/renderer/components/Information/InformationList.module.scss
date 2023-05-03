@@ -1,0 +1,17 @@
+.information_list {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    font-size: 1rem;
+    text-align: center;
+    max-width: 60vw;
+    line-height: 2rem;
+    // margin: 1rem;
+    margin-top: 1rem;
+    // list-style:  none;
+    list-style: inside;
+    // text-justify: inter-word;
+    padding: 0 1rem;
+    // border: 1px dotted gray;
+    text-align: justify;
+}

@@ -1,0 +1,1 @@
+        "ytdl-core": "npm:@distube/ytdl-core",

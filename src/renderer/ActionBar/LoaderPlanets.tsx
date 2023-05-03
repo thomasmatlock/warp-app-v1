@@ -1,9 +1,8 @@
-import { Fragment } from 'react';
 import './LoaderPlanets.scss';
 
-const LoaderPlanets = (props) => {
+const LoaderPlanets = () => {
   return (
-    <Fragment>
+    <>
       <div className="game-loader">
         {/* //-<div className='game-loader__background'> */}
         <div className="game-loader__planet">
@@ -67,7 +66,7 @@ const LoaderPlanets = (props) => {
           feblend(in='SourceGraphic', in2='goo') */}
         </div>
       </div>
-    </Fragment>
+    </>
   );
 };
 export default LoaderPlanets;

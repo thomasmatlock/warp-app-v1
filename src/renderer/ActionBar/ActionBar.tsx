@@ -7,10 +7,10 @@ import BrowserBar from './ActionBarBrowser';
 import FilterBar from './ActionBarWarpstagram';
 import FilterBar_DownloadsAudio from './ActionBarAudio';
 import FilterBar_DownloadsVideo from './ActionBarVideo';
-import ThemeContext from '../../storage/themeContext';
+import ThemeContext from '../../store/themeContext';
 // import ActionBarContext from '../../storage/actionBarContext';
-import NavContext from '../../storage/navContext';
-import DownloadsContext from '../../storage/downloadsContext';
+import NavContext from '../../store/navContext';
+import DownloadsContext from '../../store/downloadsContext';
 // import DownloadsContext from 'storage/downloadsContext';
 
 const ActionBar = (props) => {

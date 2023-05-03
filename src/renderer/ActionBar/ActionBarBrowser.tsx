@@ -1,24 +1,25 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import { Fragment, useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import './ActionBarBrowser.scss';
-import backIcon from './browser/back.svg';
-import forwardIcon from './browser/forward.svg';
-import reloadIcon from './browser/reload.svg';
+import backIcon from './assets/browser/back.svg';
+import forwardIcon from './assets/browser/forward.svg';
+import reloadIcon from './assets/browser/reload.svg';
 // import playlistVideoIcon from '../../../assets/BrowserBar/browser/playlistVideo.svg';
 // import playlistAudioIcon from '../../../assets/BrowserBar/browser/playlistAudio.svg';
-import videoIcon from '../Common/video-camera.svg';
-import IconFileTypeAudio from '../Common/fileTypeAudio.svg';
+import videoIcon from '../Global/video_alt.svg';
+import IconFileTypeAudio from '../Global/audio.svg';
 // import IconFileTypeVideo from '../Common/fileTypeVideo.svg';
 // import channelIcon from '../../../assets/BrowserBar/browser/channel2.svg';
 import BrowserBarDownloadSource from './ActionBarBrowserSource';
-import ThemeContext from '../../storage/themeContext';
-import ActionBarContext from '../../storage/actionBarContext';
-import NavContext from '../../storage/navContext';
-import PrefsContext from '../../storage/prefsContext';
-import SourcesContext from '../../storage/sourcesContext';
-import DownloadsContext from '../../storage/downloadsContext';
+import ThemeContext from '../../store/themeContext';
+import ActionBarContext from '../../store/actionBarContext';
+import NavContext from '../../store/navContext';
+import PrefsContext from '../../store/prefsContext';
+import SourcesContext from '../../store/sourcesContext';
+import DownloadsContext from '../../store/downloadsContext';
+import UserContext from '../../store/userContext';
 import Loader from './Loader';
 import LoaderPlanets from './LoaderPlanets';
 
@@ -30,7 +31,9 @@ const BrowserBar = () => {
   const prefsCtx = useContext(PrefsContext);
   const sourcesCtx = useContext(SourcesContext);
   const downloadsCtx = useContext(DownloadsContext);
-  // console.log(downloadsCtx);
+  const userCtx = useContext(UserContext);
+
+  console.log(userCtx);
   useEffect(() => {
     // console.log('BrowserBar useEffect');
     //  setTimeout(() => {
