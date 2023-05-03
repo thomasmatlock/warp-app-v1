@@ -48,8 +48,8 @@ import * as Shortcuts from './Shortcuts';
 import testUrls from '../downloaders/youtube/testURLS';
 
 // console.log(dotenv);
-import { createCustomer } from '../user/payments/stripe/stripe';
-import getProducts from '../user/payments/stripe/products/stripeGetAllProducts';
+// import { createCustomer } from '../user/payments/stripe/stripe';
+// import getProducts from '../user/payments/stripe/products/stripeGetAllProducts';
 // import createStripeCharge
 import createCheckoutSession from '../user/payments/stripe/createStripeCharge';
 import getStatus from '../user/status';
