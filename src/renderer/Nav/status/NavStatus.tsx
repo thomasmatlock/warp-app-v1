@@ -130,8 +130,10 @@ export default function NavStatus() {
       {updateDownloaded && (
         <StatusIcon icon={NewVersionIcon} animated={false} hovered={false} />
       )}
-      {/* <NavStatusTextAbsolute message={updaterMessage} hovered={false} /> */}
-      <NavStatusTextAbsolute status={status} hovered={!statusHovered} />
+      <StatusText message={updaterMessage} hovered={false} />
+      {updateUnavailable && (
+        <NavStatusTextAbsolute status={status} hovered={!statusHovered} />
+      )}
       {/* UPDATE & RESTART BUTTON */}
       {updateDownloaded && <NavStatusButton message={restartBtnMessage} />}
     </div>
