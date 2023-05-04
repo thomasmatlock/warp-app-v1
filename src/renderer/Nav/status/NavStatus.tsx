@@ -8,12 +8,15 @@ import ThemeContext from '../../../store/themeContext';
 import StatusText from './NavStatusText';
 import NavStatusTextAbsolute from './NavStatusTextAbsolute';
 import StatusIcon from './NavStatusIcon';
+import StatusIconAbsolute from './NavStatusIconAbsolute';
 import NavStatusButton from './NavStatusButton';
 import iconWindows from '../../Global/platform/windows.svg';
 import iconApple from '../../Global/platform/apple.svg';
+// import iconApple from '../../Global/map.png';
 import iconLinux from '../../Global/platform/linux.svg';
 import ProgressIcon from '../../Global/status.svg';
 import NewVersionIcon from '../../Global/rocket.svg';
+import iconMap from '../../Global/map_w.png';
 import './NavStatus.scss';
 
 let appVersion = '1.0.0';
@@ -131,6 +134,9 @@ export default function NavStatus() {
         <StatusIcon icon={NewVersionIcon} animated={false} hovered={false} />
       )}
       <StatusText message={updaterMessage} hovered={false} />
+      {/* {updateUnavailable && ( */}
+      {/* // <StatusIconAbsolute icon={iconMap} hovered={!statusHovered} /> */}
+      {/* )} */}
       {updateUnavailable && (
         <NavStatusTextAbsolute status={status} hovered={!statusHovered} />
       )}
