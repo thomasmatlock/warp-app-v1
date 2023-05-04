@@ -3,7 +3,6 @@ import './NavStatusText.scss';
 // import ThemeContext from '../../../store/themeContext';
 
 type Props = {
-  // status: object;
   status: {
     complete: string[];
     inProgress: string[];
