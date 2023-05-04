@@ -229,6 +229,8 @@ const windowController = {
     // }
     mWin.on('ready-to-show', () => {
       if (mWin) mWin.webContents.send('ready-to-show');
+      if (mWin) updater(mWin);
+
       if (mWin) {
         if (process.platform === 'win32') global.platform = 'windows';
         if (process.platform === 'darwin') global.platform = 'darwin';
@@ -317,7 +319,9 @@ const windowController = {
     view.webContents.on('ready-to-show', (e, url) => {
       if (mWin) {
         // mWin.show();
-        updater(mWin);
+        // console.log('updater');
+
+        // updater(mWin);
         if (view)
           mWin.webContents.send(
             'bView ready-to-show',
@@ -411,6 +415,7 @@ app
       // console.log(typeof user);
 
       windowController.createMainWin();
+      updater(mWin);
     })();
     // createTray(mWin);
     // Shortcuts(view);

@@ -58,25 +58,25 @@ export default function NavStatus() {
     setCheckingForUpdate(true);
     updaterMessage = arg;
   });
-  window.electron.ipcRenderer.on('updater_update_available', (arg: string) => {
+  window.electron.ipcRenderer.on('update-available', (arg: string) => {
     disableUpdateStates();
     setUpdateAvailable(true);
     updaterMessage = arg;
   });
-  window.electron.ipcRenderer.on(
-    'updater_update_not_available',
-    (arg: string) => {
-      disableUpdateStates();
-      setUpdateUnavailable(true);
-      updaterMessage = arg;
-    }
-  );
+  window.electron.ipcRenderer.on('update-not-available', (arg: string) => {
+    // console.log(arg);
+    console.log('update-not-available');
+
+    disableUpdateStates();
+    setUpdateUnavailable(true);
+    updaterMessage = arg;
+  });
   window.electron.ipcRenderer.on('updater_download_progress', (arg: string) => {
     disableUpdateStates();
     setUpdateDownloading(true);
     updaterMessage = arg;
   });
-  window.electron.ipcRenderer.on('updater_update_downloaded', (arg: string) => {
+  window.electron.ipcRenderer.on('update-downloaded', (arg: string) => {
     disableUpdateStates();
     setUpdateDownloaded(true);
     updaterMessage = arg;
@@ -135,7 +135,11 @@ export default function NavStatus() {
       {updateDownloaded && (
         <StatusIcon icon={NewVersionIcon} animated={false} hovered={false} />
       )}
-      <StatusText message={updaterMessage} hovered={false} />
+      <StatusText
+        message={updaterMessage}
+        hovered={false}
+        position="relative"
+      />
 
       {/* UPDATE & RESTART BUTTON */}
       {updateDownloaded && <NavStatusButton message={restartBtnMessage} />}

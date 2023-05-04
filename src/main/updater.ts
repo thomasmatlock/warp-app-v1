@@ -10,27 +10,31 @@ autoUpdater.autoDownload = false;
 autoUpdater.logger = log;
 
 export default function (mWin: BrowserWindow) {
-  // mWin.webContents.send('updater_update_not_available', '');
+  // mWin.webContents.send('update-not-available', '');
   if (!app.isPackaged) {
-    mWin.webContents.send('updater_update_not_available', 'hello');
+    mWin.webContents.send('update-not-available', '');
+    // log.info('Not packaged');
+    // console.log('Not packaged');
   }
   if (app.isPackaged) {
-    mWin.webContents.send('updater_update_not_available', '');
+    mWin.webContents.send('update-not-available', '');
     // mWin.webContents.send('checking-for-update', 'checking for update...');
-    // autoUpdater.on('updater_update_available', () => {
-    //   mWin.webContents.send('updater_update_available', 'downloading update...');
+    // autoUpdater.on('update-available', () => {
+    //   mWin.webContents.send('update-available', 'downloading update...');
     //   //  autoUpdater.downloadUpdate();
     // });
   }
   setTimeout(() => {
     if (app.isPackaged) {
-      // mWin.webContents.send('updater_update_not_available', '');
+      // mWin.webContents.send('update-not-available', '');
       autoUpdater.checkForUpdates();
-      autoUpdater.on('updater_update_not_available', () => {
-        mWin.webContents.send('updater_update_not_available', '');
+      autoUpdater.on('update-not-available', () => {
+        mWin.webContents.send('update-not-available', '');
       });
-      autoUpdater.on('updater_update_available', () => {
-        // mWin.webContents.send('updater_update_available', 'downloading update...');
+      autoUpdater.on('update-available', () => {
+        console.log('update available');
+
+        mWin.webContents.send('update-available', 'downloading update...');
         autoUpdater.downloadUpdate();
       });
       autoUpdater.on('updater_download_progress', (progress) => {
@@ -40,9 +44,9 @@ export default function (mWin: BrowserWindow) {
         //   `Update ${string}% downloaded`
         // );
       });
-      autoUpdater.on('updater_update_downloaded', () => {
+      autoUpdater.on('update-downloaded', () => {
         mWin.webContents.send(
-          'updater_update_downloaded',
+          'update-downloaded',
           ' An updated version of Warp is ready to be installed at the next app launch.'
         );
       });

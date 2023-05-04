@@ -33,7 +33,7 @@ const BrowserBar = () => {
   const downloadsCtx = useContext(DownloadsContext);
   const userCtx = useContext(UserContext);
 
-  console.log(userCtx);
+  // console.log(userCtx);
   useEffect(() => {
     // console.log('BrowserBar useEffect');
     //  setTimeout(() => {
