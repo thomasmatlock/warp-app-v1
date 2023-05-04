@@ -349,7 +349,7 @@ app
 
     (async function init() {
       try {
-        global.status = await getStatus();
+        global.status = await getStatus(); // ONLINE
       } catch (error) {
         console.log(error);
       }
@@ -381,7 +381,8 @@ app
       //   action
       // );
 
-      const downloads = await GetUserDownloads();
+      const downloads = await GetUserDownloads(); // ONLINE
+      // const downloads = { audio: [], video: [] }; // OFFLINE
       global.serverDownloads = downloads;
       // console.log(global.downloads);
 
