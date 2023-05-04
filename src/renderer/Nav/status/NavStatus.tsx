@@ -71,7 +71,7 @@ export default function NavStatus() {
     setUpdateUnavailable(true);
     updaterMessage = arg;
   });
-  window.electron.ipcRenderer.on('updater_download_progress', (arg: string) => {
+  window.electron.ipcRenderer.on('download-progress', (arg: string) => {
     disableUpdateStates();
     setUpdateDownloading(true);
     updaterMessage = arg;
