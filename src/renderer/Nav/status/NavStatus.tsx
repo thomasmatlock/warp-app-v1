@@ -6,6 +6,7 @@ import { useState, useContext, useEffect } from 'react';
 import ThemeContext from '../../../store/themeContext';
 
 import StatusText from './NavStatusText';
+import NavStatusTextAbsolute from './NavStatusTextAbsolute';
 import StatusIcon from './NavStatusIcon';
 import NavStatusButton from './NavStatusButton';
 import iconWindows from '../../Global/platform/windows.svg';
@@ -17,7 +18,7 @@ import './NavStatus.scss';
 
 let appVersion = '1.0.0';
 let appRoot = '';
-let updaterMessage = '';
+let updaterMessage = 'hello';
 let status = {};
 const restartBtnMessage = 'Restart now';
 type Status = {
@@ -65,7 +66,7 @@ export default function NavStatus() {
   });
   window.electron.ipcRenderer.on('update-not-available', (arg: string) => {
     // console.log(arg);
-    console.log('update-not-available');
+    // console.log('update-not-available');
 
     disableUpdateStates();
     setUpdateUnavailable(true);
@@ -106,11 +107,7 @@ export default function NavStatus() {
       )}
       {/* VERSION TEXT */}
       {updateUnavailable && (
-        <StatusText
-          message={appVersion}
-          hovered={statusHovered}
-          position="relative"
-        />
+        <StatusText message={appVersion} hovered={statusHovered} />
       )}
       {/* API STATUS TEXT */}
       {/* <StatusText
@@ -118,10 +115,8 @@ export default function NavStatus() {
         hovered={!statusHovered}
         position="absolute"
       /> */}
-
       {/* NOT SURE */}
       {/* <StatusIcon icon={ProgressIcon} animated hovered={false} /> */}
-
       {/* UPDATER  */}
       {checkingForUpdate && (
         <StatusIcon icon={ProgressIcon} animated hovered={false} />
@@ -135,12 +130,8 @@ export default function NavStatus() {
       {updateDownloaded && (
         <StatusIcon icon={NewVersionIcon} animated={false} hovered={false} />
       )}
-      <StatusText
-        message={updaterMessage}
-        hovered={false}
-        position="relative"
-      />
-
+      {/* <NavStatusTextAbsolute message={updaterMessage} hovered={false} /> */}
+      <NavStatusTextAbsolute status={status} hovered={!statusHovered} />
       {/* UPDATE & RESTART BUTTON */}
       {updateDownloaded && <NavStatusButton message={restartBtnMessage} />}
     </div>

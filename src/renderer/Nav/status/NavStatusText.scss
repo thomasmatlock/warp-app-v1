@@ -1,7 +1,9 @@
 @import '/src/renderer/Global/Animations.scss';
 @import '/src/renderer/Global/Colors.scss';
 .status_text,
-.status_text__hovered {
+.status_text__hovered,
+.status_text__absolute,
+.status_text__absolute__hovered {
     font-size: 0.75rem;
     // transform: translateY(0.5px);
 }
@@ -12,5 +14,17 @@
 
 .status_text__hovered {
     animation: fadeOutUp 0.25s ease-out;
+    transform: rotate3d(1, 0, 0, 90deg);
+}
+
+.status_text__absolute {
+    position: absolute;
+    animation: fadeInUp 0.5s ease-out;
+    // animation: fadeInDown 0.5s ease-out;
+}
+
+.status_text__absolute__hovered {
+    position: absolute;
+    animation: fadeOutDown 0.25s ease-out !important;
     transform: rotate3d(1, 0, 0, 90deg);
 }

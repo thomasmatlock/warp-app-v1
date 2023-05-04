@@ -354,6 +354,7 @@ app
     (async function init() {
       try {
         global.status = await getStatus(); // ONLINE
+        console.log(global.status);
       } catch (error) {
         console.log(error);
       }
