@@ -439,14 +439,14 @@ export default class MenuBuilder {
           label: 'separator',
           type: 'separator',
         },
-        {
-          label: 'Manage logins',
-          enabled: true,
-          accelerator: 'CmdOrCtrl+Alt+L',
-          click: () => {
-            this.mWin.webContents.send('modal: preferences: auths');
-          },
-        },
+        // {
+        //   label: 'Manage logins',
+        //   enabled: true,
+        //   accelerator: 'CmdOrCtrl+Alt+L',
+        //   click: () => {
+        //     this.mWin.webContents.send('modal: preferences: auths');
+        //   },
+        // },
         {
           label: 'separator',
           type: 'separator',

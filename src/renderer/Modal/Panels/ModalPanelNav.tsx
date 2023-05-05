@@ -130,7 +130,7 @@ const ModalNav = (props: any) => {
           />
           <p>General</p>
         </div>
-        <div
+        {/* <div
           onClick={props.showAuths}
           id="modalPrefsNav_button_general_ID"
           className={
@@ -148,7 +148,7 @@ const ModalNav = (props: any) => {
             src={IconAuths}
           />
           <p>Authorizations</p>
-        </div>
+        </div> */}
         <div
           onClick={props.showLicenses}
           id="modalPrefsNav_button_license_ID"
