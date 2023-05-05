@@ -3,7 +3,9 @@ import { useContext } from 'react';
 import ThemeContext from '../../../store/themeContext';
 import StatusText from './NavStatusText';
 import StatusIcon from './NavStatusIcon';
-import iconMap from '../../Global/map_w.png';
+// import iconMap from '../../Global/map_w.png';
+import iconMap from '../../Global/map_white.png';
+// import iconMap from '../../Global/map_black.png';
 
 type Props = {
   status: {

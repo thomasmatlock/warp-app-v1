@@ -32,14 +32,14 @@ import GetUserDownloads from '../user/downloads/GetUserDownloads';
 // import UpgradeUser from '../user/UpgradeUser';
 
 import * as time from './util/time';
-import updater from './updater';
-import MenuBuilder from './menu';
+import updater from './Updater';
+import MenuBuilder from './Menu';
 import { resolveHtmlPath } from './util';
 import BrowserQuery from '../Browser/browserQuery';
 import * as Paths from './paths';
 import * as Downloads from '../downloaders/downloadsController';
-import setTitle from './title';
-import * as Prefs from './prefsController';
+import setTitle from './Title';
+import * as Prefs from './prefs';
 import PowerMonitor from './powerMonitor';
 import ScreenClass from './Screen';
 import * as Browser from '../Browser/browserController';

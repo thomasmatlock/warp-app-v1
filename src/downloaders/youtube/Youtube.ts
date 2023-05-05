@@ -24,7 +24,7 @@ import formatTitle from './formatTitle';
 import YoutubeDownload from './YoutubeDownload';
 // import YoutubeDownload2 from './YoutubeDownload2';
 import getQuality from './getQuality';
-import Prefs from '../../main/prefsController';
+import Prefs from '../../main/prefs';
 
 export default async function Youtube(mWin, itemURL, prefs, mode) {
   const audioFormat = prefs.audio.dropdowns[1].defaultValue.label;
