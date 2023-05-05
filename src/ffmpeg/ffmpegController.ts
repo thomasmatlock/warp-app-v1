@@ -33,7 +33,7 @@ export default function ffmpegInit(mWin: BrowserWindow) {
             generateFFMPEGPath()
           );
           mWin.webContents.send(
-            'download-progress',
+            'updater_download_progress',
             // `installing FFMPEG to ${generateFFMPEGPath()}...`
             `installing FFMPEG to ${getFFMPEGDir()}...`
             // `verifying ${platformSnippet} binaries integrity..`

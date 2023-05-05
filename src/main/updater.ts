@@ -9,19 +9,19 @@ log.transports.file.level = 'info';
 autoUpdater.autoDownload = false;
 autoUpdater.logger = log;
 function simulateProgress(mWin: BrowserWindow) {
-  // mWin.webContents.send('update-available', 'downloading update...');
-  // setTimeout(() => {
-  // progress = incrementZeroToHundred(progress);
-  // }, 100);
-  // mWin.webContents.send('download-progress', `Update ${50}% downloaded`);
+  // mWin.webContents.send('updater_update_available', 'downloading update...');
   // mWin.webContents.send(
-  //   'update-downloaded',
+  //   'updater_download_progress',
+  //   `Update ${50}% downloaded`
+  // );
+  // mWin.webContents.send(
+  //   'updater_update_downloaded',
   //   ' An updated version of Warp is ready to be installed at the next app launch.'
   // );
 }
 // let updateChecked = false;
 export default function (mWin: BrowserWindow) {
-  mWin.webContents.send('update-not-available', '');
+  mWin.webContents.send('updater_update_not_available', '');
   const delay = app.isPackaged ? 3000 : 1000;
   // if (updateChecked) return;
   setTimeout(() => {
@@ -32,24 +32,27 @@ export default function (mWin: BrowserWindow) {
       // mWin.webContents.send('update-not-available', '');
       autoUpdater.checkForUpdates();
       autoUpdater.on('update-not-available', () => {
-        mWin.webContents.send('update-not-available', '');
+        mWin.webContents.send('updater_update_not_available', '');
       });
       autoUpdater.on('update-available', () => {
-        console.log('update available');
+        // console.log('update available');
 
-        mWin.webContents.send('update-available', 'downloading update...');
+        mWin.webContents.send(
+          'updater_update_available',
+          'downloading update...'
+        );
         autoUpdater.downloadUpdate();
       });
       autoUpdater.on('download-progress', (progress) => {
         const string = progress.percent.toFixed(0);
         mWin.webContents.send(
-          'download-progress',
+          'updater_download_progress',
           `Update ${string}% downloaded`
         );
       });
       autoUpdater.on('update-downloaded', () => {
         mWin.webContents.send(
-          'update-downloaded',
+          'updater_update_downloaded',
           ' An updated version of Warp is ready to be installed at the next app launch.'
         );
       });
