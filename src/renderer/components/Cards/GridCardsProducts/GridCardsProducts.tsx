@@ -19,27 +19,23 @@ export default function GridCards(props: any) {
   };
 
   if (typeof window !== 'undefined') {
-    // setTimeout(() => {
-    //   // const cards = document.getElementsByClassName(styles.hoverCards);
-    //   const cards = document.getElementById(styles.hoverCards);
-    //   const cardsArray = document.getElementsByClassName(styles.card);
-    //   cards.onmousemove = (e) => {
-    //     // card1.style.backgroundImage = `url('${background.src}')`;
-    //     for (const card of cardsArray as any) {
-    //       const rect = card.getBoundingClientRect(),
-    //         x = e.clientX - rect.left,
-    //         y = e.clientY - rect.top;
-    //       // card.style. = cardBackgroundStyle;
-    //       card.style.setProperty('--mouse-x', `${x}px`);
-    //       card.style.setProperty('--mouse-y', `${y}px`);
-    //     }
-    //   };
-    // }, 500);
+    setTimeout(() => {
+      // const cards = document.getElementsByClassName(styles.hoverCards);
+      const cards = document.getElementById(styles.hoverCards);
+      const cardsArray = document.getElementsByClassName(styles.card);
+      cards.onmousemove = (e) => {
+        for (const card of cardsArray as any) {
+          const rect = card.getBoundingClientRect(),
+            x = e.clientX - rect.left,
+            y = e.clientY - rect.top;
+          // card.style. = cardBackgroundStyle;
+          card.style.setProperty('--mouse-x', `${x}px`);
+          card.style.setProperty('--mouse-y', `${y}px`);
+        }
+      };
+    }, 500);
   }
   return (
-    // <div>
-    //   <h1>HELLO</h1>
-    // </div>
     <ul
       id={styles.hoverCards}
       className={styles.hoverCards}
