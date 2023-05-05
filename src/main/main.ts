@@ -54,6 +54,7 @@ import testUrls from '../downloaders/youtube/testURLS';
 import createCheckoutSession from '../user/payments/stripe/createStripeCharge';
 import getStatus from '../user/status';
 // createStripeCharge();
+import * as automate from './automate';
 function getLastItemOfArray(array: any) {
   return array[array.length - 1];
 }
@@ -261,8 +262,11 @@ const windowController = {
         // if (view === null && global.serverAuthenticated)
         // windowController.createbView();
 
+        // automate.openPrefsLicense(mWin, 250);
         setTimeout(() => {
           mWin.webContents.send('global', global);
+          if (!app.isPackaged)
+            mWin.webContents.send('modal: preferences: license'); // automated
         }, 250);
         mWin.webContents.send('main: audioDownloads', audioDownloads);
 

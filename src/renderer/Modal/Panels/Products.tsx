@@ -16,7 +16,7 @@ const Products = (props) => {
     productID2: 'product_audio_2',
   };
   return (
-    <Fragment>
+    <>
       {props.info.id.includes('audio') && (
         <div className="products_carousel">
           {productsCtx.isViewingAudio1 && <Product info={props.info} />}
@@ -47,7 +47,7 @@ const Products = (props) => {
           {/* <Product info={props.info} /> */}
         </div>
       )}
-    </Fragment>
+    </>
   );
 };
 export default Products;

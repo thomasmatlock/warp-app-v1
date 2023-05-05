@@ -4,7 +4,7 @@
     // width: 100%;
     width: clamp(180px, 100%, 90vw);
     // min-width: 180px;
-    // border: 1px dotted green;
+    border: 1px dotted green;
     // padding: 1rem;
     display: flex;
     // display: grid;
@@ -14,6 +14,6 @@
     align-content: center;
     margin: 0 auto;
     transition: all 0.25s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;
-    // background-color: $gray-dark-lightest;
+    background-color: white;
     // box-shadow: 0 10px 20px -8px #c5d6d6;
 }
