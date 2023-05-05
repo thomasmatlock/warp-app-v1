@@ -18,6 +18,6 @@
 
 .status_absolute__hovered {
     position: absolute;
-    animation: fadeOutDown 0.25s ease-out !important;
+    animation: fadeOutDown 0.1s ease-out !important;
     transform: rotate3d(1, 0, 0, 90deg);
 }
