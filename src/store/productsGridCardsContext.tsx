@@ -22,12 +22,12 @@ const ProductsGridCardsContext = createContext({
       description: `The Warp team are developers, designers, and editors. We solved our own frustrations and made it available to you, too!`,
     },
     // then
-    {
-      id: 'hoverCard3',
-      iconString: hoverCardImg3,
-      title: 'Free bird',
-      description: `No hidden fees. No ads. No subscriptions. The free version of Warp is identical, fast, and as fun to use as the premium version.`,
-    },
+    // {
+    //   id: 'hoverCard3',
+    //   iconString: hoverCardImg3,
+    //   title: 'Free bird',
+    //   description: `No hidden fees. No ads. No subscriptions. The free version of Warp is identical, fast, and as fun to use as the premium version.`,
+    // },
   ],
   getCardID: (card: object) => {},
   toggleUserInteracting: () => {},
@@ -40,23 +40,23 @@ export function ProductsGridCardsContextProvider(props: any) {
       id: 'hoverCard1',
       iconString: hoverCardImg1,
       // title: 'Download at the speed of thought',
-      title: 'Control Alt Download',
+      title: 'Audio Personal Edition',
       description: `Built-in, lightning-fast Chrome browser side by side with all your downloads in one place, with a dual search to simultaneously find what you want - online and offline.`,
       alt: '',
     },
     {
       id: 'hoverCard2',
       iconString: hoverCardImg2,
-      title: 'For creators, by creators',
+      title: 'Video Personal Edition',
       description: `The Warp team are developers, designers, and editors. We solved our own frustrations and made it available to you, too!`,
     },
     // then
-    {
-      id: 'hoverCard3',
-      iconString: hoverCardImg3,
-      title: 'Free bird',
-      description: `No hidden fees. No ads. No subscriptions. The free version of Warp is identical, fast, and as fun to use as the premium version.`,
-    },
+    // {
+    //   id: 'hoverCard3',
+    //   iconString: hoverCardImg3,
+    //   title: 'Free bird',
+    //   description: `No hidden fees. No ads. No subscriptions. The free version of Warp is identical, fast, and as fun to use as the premium version.`,
+    // },
   ];
   const getCardID = (id) => {
     // console.log(id);
