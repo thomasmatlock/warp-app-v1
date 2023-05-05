@@ -5,7 +5,7 @@ import GridCardsProducts from '../../components/Cards/GridCardsProducts/GridCard
 
 const ModalPanelLicenses = () => {
   return (
-    <div id="" className="modalPrefsPanel">
+    <div id="" className="modalPrefsPanel_licenses">
       {/* <Cards /> */}
       <GridCardsProducts />
     </div>
