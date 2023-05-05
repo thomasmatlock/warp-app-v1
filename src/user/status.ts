@@ -9,7 +9,11 @@ export default async function getStatus() {
   //   .then((data) => {
   //     return data;
   //   });
-  const status = {};
+  const status = {
+    complete: [''],
+    inProgress: ['Development status on server currently unreachable'],
+    pending: [''],
+  };
   const apiURL = `${APIVariables.statusEndpoint}`;
 
   try {

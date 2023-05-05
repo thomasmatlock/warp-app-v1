@@ -27,35 +27,6 @@
     transform: rotate3d(1, 0, 0, 90deg);
 }
 
-.status_icon__absolute {
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    animation: fadeIn 1s ease-out;
-    border: 1px solid white;
-    position: absolute;
-    width: 33vw;
-    transform: translateX(-20%);
-}
-
-.status_icon__img__absolute {
-    position: absolute;
-    height: 16px;
-    width: 16px;
-    margin: 0.5rem;
-    animation: fadeInUp 0.5s ease-out;
-}
-
-.status_icon__img__absolute__hovered {
-    position: absolute;
-    animation: fadeOutDown 0.25s ease-out !important;
-    height: 16px;
-    width: 16px;
-    transform: rotate3d(1, 0, 0, 90deg);
-    margin: 0.5rem;
-}
-
 .status_icon__animated {
     animation: clockWise 1s linear infinite !important;
 }

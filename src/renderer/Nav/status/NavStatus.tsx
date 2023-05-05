@@ -6,9 +6,8 @@ import { useState, useContext, useEffect } from 'react';
 import ThemeContext from '../../../store/themeContext';
 
 import StatusText from './NavStatusText';
-import NavStatusTextAbsolute from './NavStatusTextAbsolute';
 import StatusIcon from './NavStatusIcon';
-import StatusIconAbsolute from './NavStatusIconAbsolute';
+import NavStatusServer from './NavStatusServer';
 import NavStatusButton from './NavStatusButton';
 import iconWindows from '../../Global/platform/windows.svg';
 import iconApple from '../../Global/platform/apple.svg';
@@ -16,7 +15,6 @@ import iconApple from '../../Global/platform/apple.svg';
 import iconLinux from '../../Global/platform/linux.svg';
 import ProgressIcon from '../../Global/status.svg';
 import NewVersionIcon from '../../Global/rocket.svg';
-import iconMap from '../../Global/map_w.png';
 import './NavStatus.scss';
 
 let appVersion = '1.0.0';
@@ -112,12 +110,7 @@ export default function NavStatus() {
       {updateUnavailable && (
         <StatusText message={appVersion} hovered={statusHovered} />
       )}
-      {/* API STATUS TEXT */}
-      {/* <StatusText
-        message={featureCompleteStatus}
-        hovered={!statusHovered}
-        position="absolute"
-      /> */}
+
       {/* NOT SURE */}
       {/* <StatusIcon icon={ProgressIcon} animated hovered={false} /> */}
       {/* UPDATER  */}
@@ -134,11 +127,10 @@ export default function NavStatus() {
         <StatusIcon icon={NewVersionIcon} animated={false} hovered={false} />
       )}
       <StatusText message={updaterMessage} hovered={false} />
-      {/* {updateUnavailable && ( */}
-      {/* // <StatusIconAbsolute icon={iconMap} hovered={!statusHovered} /> */}
-      {/* )} */}
+
+      {/* SERVER STATUS */}
       {updateUnavailable && (
-        <NavStatusTextAbsolute status={status} hovered={!statusHovered} />
+        <NavStatusServer status={status} hovered={!statusHovered} />
       )}
       {/* UPDATE & RESTART BUTTON */}
       {updateDownloaded && <NavStatusButton message={restartBtnMessage} />}
