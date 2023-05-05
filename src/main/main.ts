@@ -261,7 +261,9 @@ const windowController = {
         // if (view === null && global.serverAuthenticated)
         // windowController.createbView();
 
-        mWin.webContents.send('global', global);
+        setTimeout(() => {
+          mWin.webContents.send('global', global);
+        }, 250);
         mWin.webContents.send('main: audioDownloads', audioDownloads);
 
         mWin.webContents.send('main: videoDownloads', videoDownloads);

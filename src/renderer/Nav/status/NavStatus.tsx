@@ -16,9 +16,10 @@ import iconLinux from '../../Global/platform/linux.svg';
 import ProgressIcon from '../../Global/status.svg';
 import NewVersionIcon from '../../Global/rocket.svg';
 import './NavStatus.scss';
+import { log } from 'console';
 
-let appVersion = '';
-let appRoot = '';
+// let appVersion = '';
+// let appRoot = '';
 let updaterMessage = '';
 let status = {};
 const restartBtnMessage = 'Restart now';
@@ -37,6 +38,8 @@ export default function NavStatus() {
   const [updateDownloaded, setUpdateDownloaded] = useState(false);
   const [statusHovered, setStatusHovered] = useState(false);
   const [platformIcon, setPlatformIcon] = useState(iconWindows);
+  const [appVersion, setAppVersion] = useState('');
+  const [appRoot, setAppRoot] = useState('');
 
   const disableUpdateStates = () => {
     setCheckingForUpdate(false);
@@ -47,11 +50,15 @@ export default function NavStatus() {
   };
 
   window.electron.ipcRenderer.on('global', (arg) => {
+    console.log(arg);
+
     if (arg.platform === 'windows') setPlatformIcon(iconWindows);
     if (arg.platform === 'darwin') setPlatformIcon(iconApple);
     if (arg.platform === 'linux') setPlatformIcon(iconLinux);
-    appVersion = arg.appVersion;
-    appRoot = arg.appRoot;
+    // appVersion = arg.appVersion;
+    setAppVersion(arg.appVersion);
+    setAppRoot(arg.appRoot);
+    // appRoot = arg.appRoot;
     status = arg.status;
   });
 
