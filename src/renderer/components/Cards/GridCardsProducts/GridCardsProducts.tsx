@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import styles from './GridCards.module.scss';
+import styles from './GridCardsProducts.module.scss';
 
 import GridCardProduct from './GridCardProduct';
 

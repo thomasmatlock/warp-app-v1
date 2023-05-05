@@ -4,7 +4,7 @@ import { useContext } from 'react';
 // import HorizontalCardsContextProvider from '../../../store/gridCardsContext';
 import ProductsContext from '../../../../store/productsGridCardsContext';
 
-import styles from './GridCards.module.scss';
+import styles from './GridCardsProducts.module.scss';
 
 export default function GridCard(props: any) {
   const cardsCtx = useContext(ProductsContext);
