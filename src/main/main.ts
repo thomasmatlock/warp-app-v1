@@ -32,7 +32,7 @@ import GetUserDownloads from '../user/downloads/GetUserDownloads';
 // import UpgradeUser from '../user/UpgradeUser';
 
 import * as time from './util/time';
-import updater from './Updater';
+import updater from './updater';
 import MenuBuilder from './Menu';
 import { resolveHtmlPath } from './util';
 import BrowserQuery from '../Browser/browserQuery';
