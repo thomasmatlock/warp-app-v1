@@ -37,10 +37,10 @@ export default function (mWin: BrowserWindow) {
       autoUpdater.on('update-available', () => {
         // console.log('update available');
 
-        mWin.webContents.send(
-          'updater_update_available',
-          'downloading update...'
-        );
+        // mWin.webContents.send(
+        //   'updater_update_available',
+        //   'downloading update...'
+        // );
         autoUpdater.downloadUpdate();
       });
       autoUpdater.on('download-progress', (progress) => {
