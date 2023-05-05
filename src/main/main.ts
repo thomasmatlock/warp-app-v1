@@ -86,6 +86,7 @@ if (!isSingleInstance) {
 
 const appRootDir = require('app-root-dir').get();
 // test, just added apple id/pass to gh secrets
+let updateChecked = false;
 let prefs: object;
 let user: object;
 let browserPanelState = 'default';
@@ -229,7 +230,14 @@ const windowController = {
     // }
     mWin.on('ready-to-show', () => {
       if (mWin) mWin.webContents.send('ready-to-show');
-      if (mWin) updater(mWin);
+      if (mWin) {
+        updateChecked = true;
+        if (!updateChecked) {
+          // setTimeout(() => {
+          updater(mWin);
+          // }, 500);
+        }
+      }
 
       if (mWin) {
         if (process.platform === 'win32') global.platform = 'windows';

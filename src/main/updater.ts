@@ -19,12 +19,14 @@ function simulateProgress(mWin: BrowserWindow) {
   //   ' An updated version of Warp is ready to be installed at the next app launch.'
   // );
 }
-
+// let updateChecked = false;
 export default function (mWin: BrowserWindow) {
   mWin.webContents.send('update-not-available', '');
   const delay = app.isPackaged ? 3000 : 1000;
-
+  // if (updateChecked) return;
   setTimeout(() => {
+    // updateChecked = true;
+    // log.info('checking for updates');
     simulateProgress(mWin);
     if (app.isPackaged) {
       // mWin.webContents.send('update-not-available', '');

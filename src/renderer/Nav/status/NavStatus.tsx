@@ -17,9 +17,9 @@ import ProgressIcon from '../../Global/status.svg';
 import NewVersionIcon from '../../Global/rocket.svg';
 import './NavStatus.scss';
 
-let appVersion = '1.0.0';
+let appVersion = '';
 let appRoot = '';
-let updaterMessage = 'hello';
+let updaterMessage = '';
 let status = {};
 const restartBtnMessage = 'Restart now';
 type Status = {
