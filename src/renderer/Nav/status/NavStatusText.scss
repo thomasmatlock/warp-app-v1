@@ -16,15 +16,3 @@
     animation: fadeOutUp 0.25s ease-out;
     transform: rotate3d(1, 0, 0, 90deg);
 }
-
-.status_text__absolute {
-    position: absolute;
-    animation: fadeInUp 0.5s ease-out;
-    // animation: fadeInDown 0.5s ease-out;
-}
-
-.status_text__absolute__hovered {
-    position: absolute;
-    animation: fadeOutDown 0.25s ease-out !important;
-    transform: rotate3d(1, 0, 0, 90deg);
-}
