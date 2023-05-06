@@ -2,10 +2,10 @@
 // import Image from 'next/image';
 import { useContext } from 'react';
 // import HorizontalCardsContextProvider from '../../../store/gridCardsContext';
+import CTAProduct from 'renderer/components/CTA/CTAProduct';
 import ProductsContext from '../../../../store/productsGridCardsContext';
 
 import styles from './GridCardsProducts.module.scss';
-import CTA from 'renderer/components/CTA/CTA';
 
 export default function GridCard(props: any) {
   const cardsCtx = useContext(ProductsContext);
@@ -23,7 +23,7 @@ export default function GridCard(props: any) {
   return (
     //                         {overviewDisplayCtx.audioMode && <a className={browserBarBtnClass1}>Download Audio MP3</a>}
 
-    <li
+    <div
       className={styles.card}
       id={props.id}
       onMouseEnter={mouseEnterHandler}
@@ -44,9 +44,10 @@ export default function GridCard(props: any) {
               <h3>{props.title}</h3>
               <h4>{props.description}</h4>
             </div>
+            <CTAProduct message={props.ctaMessage} />
           </div>
         </div>
       </div>
-    </li>
+    </div>
   );
 }

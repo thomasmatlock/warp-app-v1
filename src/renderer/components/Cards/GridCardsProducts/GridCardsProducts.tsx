@@ -51,6 +51,7 @@ export default function GridCards(props: any) {
           title={item.title}
           iconString={item.iconString}
           description={item.description}
+          ctaMessage={item.ctaMessage}
         />
       ))}
     </ul>

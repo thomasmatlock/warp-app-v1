@@ -89,7 +89,6 @@ $mouse-y: 0px;
 .card {
     background-color: #1a1a1a;
     border-radius: 10px;
-    cursor: pointer;
     display: flex;
     // border: 1px solid red;
     flex-direction: column;
@@ -102,7 +101,6 @@ $mouse-y: 0px;
     // height: clamp(300px, 400px, 400px);
     height: auto;
     flex: 1;
-    cursor: default;
     transition: all $transitionSpeed ease-in-out;
     // max-width: 400px;
     will-change: transform;
@@ -117,14 +115,7 @@ $mouse-y: 0px;
 .card:hover .card_image {
     filter: grayscale(0);
     transition: all $transitionSpeed ease-in-out;
-    // transform: scale(3);
-    // transform: scale(1.25) translateX(-10%) translateY(5%);
-    // height: 100%;
-    // z-index: 0 !important;
-    // transform: scale(1.055) translateY(0rem);
     will-change: transform;
-    // border: 1px solid red;
-    // margin-bottom: 1rem;
 }
 
 .card:hover::before {
@@ -143,6 +134,7 @@ $mouse-y: 0px;
     transition: opacity 500ms;
     width: 100%;
     transition: all $transitionSpeed ease-in-out;
+    pointer-events: none;
 }
 
 .card::before {
@@ -269,7 +261,7 @@ $mouse-y: 0px;
 }
 
 .card_info_title {
-    z-index: 999 !important;
+    // z-index: 99 !important;
     // height: 100px;
     // margin: 20px;
     // margin: 0rem auto;
@@ -282,8 +274,9 @@ $titleShadow: #1a1a1a;
     text-align: center;
     font-family: 'GreycliffCF-Bold', sans-serif !important;
     transition: all $transitionSpeed ease-in-out;
-    z-index: 999 !important;
+    // z-index: 99 !important;
     // border: 1px solid red;
+    // user-select: none;
     margin: 0 1rem;
     margin-top: 1rem;
     // text-shadow: #005eff 0px 0px 10px;

@@ -14,12 +14,14 @@ const ProductsGridCardsContext = createContext({
       title: 'Control Alt Download',
       description: `Built-in, lightning-fast Chrome browser side by side with all your downloads in one place, with a dual search to simultaneously find what you want - online and offline.`,
       alt: '',
+      ctaMessage: 'Download Audio MP3',
     },
     {
       id: 'hoverCard2',
       iconString: hoverCardImg2,
       title: 'For creators, by creators',
       description: `The Warp team are developers, designers, and editors. We solved our own frustrations and made it available to you, too!`,
+      ctaMessage: 'Download Audio MP3',
     },
     // then
     // {
@@ -43,22 +45,25 @@ export function ProductsGridCardsContextProvider(props: any) {
       title: 'Audio Personal Edition',
       description: `Built-in, lightning-fast Chrome browser side by side with all your downloads in one place, with a dual search to simultaneously find what you want - online and offline.`,
       alt: '',
+      ctaMessage: 'Go to checkout',
     },
     {
       id: 'videoPersonalEdition',
       iconString: hoverCardImg2,
       title: 'Video Personal Edition',
       description: `The Warp team are developers, designers, and editors. We solved our own frustrations and made it available to you, too!`,
+      ctaMessage: 'Go to checkout',
     },
     {
       id: 'bundlePersonalEdition',
       iconString: hoverCardImg3,
       title: 'Bundle Personal Edition',
       description: `The Warp team are developers, designers, and editors. We solved our own frustrations and made it available to you, too!`,
+      ctaMessage: 'Go to checkout',
     },
   ];
   const getCardID = (id) => {
-    console.log(id);
+    // console.log(id);
   };
   const toggleUserInteracting = () => {
     setUserInteracting((prevState) => !prevState);

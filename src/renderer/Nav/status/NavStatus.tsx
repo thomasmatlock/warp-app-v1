@@ -50,7 +50,7 @@ export default function NavStatus() {
   };
 
   window.electron.ipcRenderer.on('global', (arg) => {
-    console.log(arg);
+    // console.log(arg);
 
     if (arg.platform === 'windows') setPlatformIcon(iconWindows);
     if (arg.platform === 'darwin') setPlatformIcon(iconApple);
