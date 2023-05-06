@@ -32,7 +32,7 @@ export default function GridCard(props: any) {
       <div className={styles.card_content}>
         <div className={styles.card_info_wrapper}>
           <div className={styles.card_info}>
-            <img className={styles.card_image} src={props.iconString} alt="" />
+            <img className={styles.card_image} src={props.image} alt="" />
             {/* <i
                             className={props.iconString}
                             style={{

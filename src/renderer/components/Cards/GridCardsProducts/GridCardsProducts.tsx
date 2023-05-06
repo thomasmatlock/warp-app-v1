@@ -49,7 +49,7 @@ export default function GridCards(props: any) {
           key={item.id}
           id={item.id}
           title={item.title}
-          iconString={item.iconString}
+          image={item.image}
           description={item.description}
           ctaMessage={item.ctaMessage}
         />
