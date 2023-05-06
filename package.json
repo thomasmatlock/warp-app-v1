@@ -1,7 +1,7 @@
 {
     "description": "A foundation for scalable desktop apps",
     "homepage": "https://warpdownload.com",
-    "version": "0.4.7",
+    "version": "0.4.9",
     "bugs": {
         "url": "https://github.com/thomasmatlock/warp-app/issues"
     },

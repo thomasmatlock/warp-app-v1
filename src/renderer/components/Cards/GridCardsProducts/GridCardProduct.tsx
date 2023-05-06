@@ -5,6 +5,7 @@ import { useContext } from 'react';
 import ProductsContext from '../../../../store/productsGridCardsContext';
 
 import styles from './GridCardsProducts.module.scss';
+import CTA from 'renderer/components/CTA/CTA';
 
 export default function GridCard(props: any) {
   const cardsCtx = useContext(ProductsContext);

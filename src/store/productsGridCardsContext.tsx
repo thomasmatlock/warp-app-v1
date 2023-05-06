@@ -37,7 +37,7 @@ export function ProductsGridCardsContextProvider(props: any) {
   const [userInteracting, setUserInteracting] = useState(false);
   const cardsData = [
     {
-      id: 'hoverCard1',
+      id: 'audioPersonalEdition',
       iconString: hoverCardImg1,
       // title: 'Download at the speed of thought',
       title: 'Audio Personal Edition',
@@ -45,21 +45,20 @@ export function ProductsGridCardsContextProvider(props: any) {
       alt: '',
     },
     {
-      id: 'hoverCard2',
+      id: 'videoPersonalEdition',
       iconString: hoverCardImg2,
       title: 'Video Personal Edition',
       description: `The Warp team are developers, designers, and editors. We solved our own frustrations and made it available to you, too!`,
     },
-    // then
-    // {
-    //   id: 'hoverCard3',
-    //   iconString: hoverCardImg3,
-    //   title: 'Free bird',
-    //   description: `No hidden fees. No ads. No subscriptions. The free version of Warp is identical, fast, and as fun to use as the premium version.`,
-    // },
+    {
+      id: 'bundlePersonalEdition',
+      iconString: hoverCardImg3,
+      title: 'Bundle Personal Edition',
+      description: `The Warp team are developers, designers, and editors. We solved our own frustrations and made it available to you, too!`,
+    },
   ];
   const getCardID = (id) => {
-    // console.log(id);
+    console.log(id);
   };
   const toggleUserInteracting = () => {
     setUserInteracting((prevState) => !prevState);
