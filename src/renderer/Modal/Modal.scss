@@ -21,9 +21,9 @@ $gradient-blue: linear-gradient( to left, #0463db 0%, #0b88e6 33%, #13aff2 66%, 
 .modal {
     position: fixed;
     // top: 25%;
-    top: calc(50% - 300px);
+    top: calc(25%);
     // top: calc(50% - 5vh);
-    left: calc(50% - 400px) !important;
+    left: calc(50%) !important;
     background-color: transparent;
     display: flex;
     // border: 5px solid #fff;
