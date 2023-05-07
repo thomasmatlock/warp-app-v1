@@ -3,7 +3,7 @@ import ProductFeatureItem from './ProductFeatureItem';
 
 export default function ProductFeaturesList(props) {
   const { features } = props;
-  console.log(features);
+  // console.log(features);
 
   // return (
   //   <ul className={styles.product_description__list}>

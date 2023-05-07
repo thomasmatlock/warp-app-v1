@@ -58,6 +58,8 @@ export function ProductsGridCardsContextProvider(props: any) {
       ctaMessage: 'Go to checkout',
       expanded: audioCardExpanded,
       collapsed: audioCardCollapsed,
+      threeScene: 'audioPersonalEdition',
+
       features: [
         {
           id: 'audioFeature1',
@@ -66,28 +68,28 @@ export function ProductsGridCardsContextProvider(props: any) {
           image: racingIcon,
         },
         {
-          id: 'audioFeature1',
+          id: 'audioFeature2',
           title: '  Multiple Formats',
           description: `Built-in, lightning-fast Chrome browser side by side with all your downloads in one place, with a dual search to simultaneously find what you want - online and offline.`,
           image: playlistIcon,
           inverted: true,
         },
         {
-          id: 'audioFeature1',
+          id: 'audioFeature3',
           title: 'Channels',
           description: `Built-in, lightning-fast Chrome browser side by side with all your downloads in one place, with a dual search to simultaneously find what you want - online and offline.`,
           image: channelIcon,
           inverted: true,
         },
         {
-          id: 'audioFeature1',
+          id: 'audioFeature4',
           title: 'Playlists',
           description: `Built-in, lightning-fast Chrome browser side by side with all your downloads in one place, with a dual search to simultaneously find what you want - online and offline.`,
           image: playlistIcon,
           inverted: true,
         },
         {
-          id: 'audioFeature1',
+          id: 'audioFeature5',
           title: 'Bulk Import and Export URLS',
           description: `Built-in, lightning-fast Chrome browser side by side with all your downloads in one place, with a dual search to simultaneously find what you want - online and offline.`,
           image: racingIcon,
@@ -102,6 +104,8 @@ export function ProductsGridCardsContextProvider(props: any) {
       description: `The Warp team are developers, designers, and editors. We solved our own frustrations and made it available to you, too!`,
       ctaMessage: 'Go to checkout',
       collapsed: videoCardCollapsed,
+      threeScene: 'videoPersonalEdition',
+
       features: [
         {
           id: 'videoFeature1',
@@ -110,7 +114,7 @@ export function ProductsGridCardsContextProvider(props: any) {
           image: racingIcon,
         },
         {
-          id: 'videoFeature1',
+          id: 'videoFeature2',
           title: 'Simultaneous downloads',
           description: `Built-in, lightning-fast Chrome browser side by side with all your downloads in one place, with a dual search to simultaneously find what you want - online and offline.`,
           image: racingIcon,
@@ -125,6 +129,8 @@ export function ProductsGridCardsContextProvider(props: any) {
       ctaMessage: 'Go to checkout',
       expanded: bundleCardExpanded,
       collapsed: bundleCardCollapsed,
+      threeScene: 'bundlePersonalEdition',
+
       features: [
         {
           id: 'bundleFeature1',

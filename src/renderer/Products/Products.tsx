@@ -55,6 +55,7 @@ export default function Products(props: any) {
           expanded={item.expanded}
           collapsed={item.collapsed}
           features={item.features}
+          threeScene={item.threeScene}
         />
       ))}
     </ul>

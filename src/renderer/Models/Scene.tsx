@@ -1,4 +1,11 @@
-import { Center, OrbitControls, Loader, useGLTF } from '@react-three/drei';
+import {
+  Center,
+  OrbitControls,
+  Loader,
+  useGLTF,
+  Plane,
+  Box,
+} from '@react-three/drei';
 import { Suspense, useRef } from 'react';
 import { Canvas, useFrame, extend } from '@react-three/fiber';
 import styles from './Scene.module.scss';
@@ -16,30 +23,92 @@ const Model = () => {
   const { scene } = useGLTF(modelURL);
   return <primitive object={scene} />;
 };
-function Cylinder() {
+function Audio() {
+  const myref = useRef();
+
+  useFrame(
+    () => (myref.current.rotation.x = myref.current.rotation.y += 0.0025)
+  );
+
+  return (
+    <group>
+      <mesh ref={myref} receiveShadow castShadow>
+        <cylinderGeometry attach="geometry" args={[1, 1, 1]} />
+        <meshStandardMaterial attach="material" color="orange" />
+      </mesh>
+      <Plane
+        receiveShadow
+        rotation={[-Math.PI / 2, 0, 0]}
+        position={[0, -1, 0]}
+        args={[1000, 1000]}
+      >
+        <meshStandardMaterial attach="material" color="white" />
+      </Plane>
+    </group>
+  );
+}
+const Audio2 = () => {
+  const boxRef = useRef();
+  useFrame(() => {
+    boxRef.current.rotation.y += 0.004;
+    boxRef.current.rotation.x += 0.004;
+    boxRef.current.rotation.z += 0.004;
+  });
+  // Set receiveShadow on any mesh that should be in shadow,
+  // and castShadow on any mesh that should create a shadow.
+  return (
+    <group>
+      <Box castShadow receiveShadow ref={boxRef} position={[0, 0.5, 0]}>
+        <meshStandardMaterial attach="material" color="white" />
+      </Box>
+      {/* <Plane
+        receiveShadow
+        rotation={[-Math.PI / 2, 0, 0]}
+        position={[0, -1, 0]}
+        args={[1000, 1000]}
+      >
+        <meshStandardMaterial attach="material" color="white" />
+      </Plane> */}
+    </group>
+  );
+};
+function Video() {
+  const myref = useRef();
+
+  useFrame(
+    () => (myref.current.rotation.x = myref.current.rotation.y += 0.005)
+  );
+
+  return (
+    <mesh ref={myref} receiveShadow castShadow>
+      <cylinderGeometry attach="geometry" args={[1, 1, 1]} />
+      <meshStandardMaterial attach="material" color="#19a9fc" />
+    </mesh>
+  );
+}
+function Bundle() {
   const myref = useRef();
 
   useFrame(() => (myref.current.rotation.x = myref.current.rotation.y += 0.01));
 
   return (
-    <mesh ref={myref}>
-      <cylinderBufferGeometry
-        attach="geometry"
-        args={[2, 2, 2]}
-        receiveShadow
-        castShadow
-      />
-      <meshBasicMaterial attach="material" color="red" />
+    <mesh ref={myref} receiveShadow castShadow>
+      <cylinderGeometry attach="geometry" args={[1, 1, 1]} />
+      <meshStandardMaterial attach="material" color="purple" />
     </mesh>
   );
 }
 
 export default function Scene(props: any) {
+  const { threeScene } = props;
+
   return (
     <div className={styles.scene}>
       <Suspense fallback="loading">
         <Canvas
-          // flat
+          flat
+          // colorManagement
+          // shadowMap
           dpr={[1, 2]}
           gl={{
             powerPreference: 'high-performance',
@@ -52,7 +121,7 @@ export default function Scene(props: any) {
             // zoom: isMobile ? 4500 : 8000, // for orthographic camera
             // zoom: isMobile ? 170 : 300, // dinocrisis
             // zoom: isMobile ? 2 : 2.5, // telescope
-            zoom: 90, // video camera
+            zoom: 50, // video camera
             far: 1500,
             position: [-0.67, 0.3, 0.67],
           }}
@@ -68,20 +137,38 @@ export default function Scene(props: any) {
             enableZoom
             target={[0, 0, 0]}
           />
-          <directionalLight intensity={1} castShadow />
+          <ambientLight intensity={0.1} />
+          <directionalLight
+            intensity={0.5}
+            castShadow
+            shadow-mapSize-height={512}
+            shadow-mapSize-width={512}
+            position={[0, 10, 0]}
+          />
+          {/* <spotLight
+            castShadow
+            intensity={1}
+            args={['blue', 1, 100]}
+            position={[-1, 1, 1]}
+          /> */}
           <color args={['#1a1a1a']} attach="background" />
+          <fog attach="fog" args={['white', 0, 40]} />
+
           {/* <color args={['#fff']} attach="background" /> */}
-          <Center>
-            <ambientLight intensity={1} color="#fff" />
-            {/* <mesh>
+          {/* <Center> */}
+          {/* <ambientLight intensity={0.1} color="#fff" /> */}
+          {/* <mesh>
               <boxGeometry args={[1, 1, 1]} />
               <meshStandardMaterial color="#ff0000" />
             </mesh> */}
 
-            {/* <Model /> */}
-            {/* <Cylinder /> */}
-            {/* <EveryFrame /> */}
-          </Center>
+          {/* <Model /> */}
+          {/* {threeScene === 'audioPersonalEdition' && <Audio />} */}
+          {threeScene === 'audioPersonalEdition' && <Audio2 />}
+          {threeScene === 'videoPersonalEdition' && <Video />}
+          {threeScene === 'bundlePersonalEdition' && <Bundle />}
+          {/* <EveryFrame /> */}
+          {/* </Center> */}
         </Canvas>
         <Loader />
       </Suspense>

@@ -22,8 +22,9 @@ export default function Product(props: any) {
     ctaMessage,
     expanded,
     collapsed,
+    threeScene,
   } = props;
-  console.log(expanded);
+  // console.log(expanded);
 
   const productsCtx = useContext(ProductsContext);
   // console.log(productsCtx);
@@ -52,8 +53,8 @@ export default function Product(props: any) {
       <div className={styles.card_content}>
         <div className={styles.card_info_wrapper}>
           <div className={styles.card_info}>
-            {/* <Scene /> */}
-            <img className={styles.card_image} src={image} alt="" />
+            <Scene threeScene={threeScene} />
+            {/* <img className={styles.card_image} src={image} alt="" /> */}
             <div className={styles.card_info_title}>
               <h3>{title}</h3>
               <h4>{description}</h4>
