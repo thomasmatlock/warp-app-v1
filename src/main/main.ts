@@ -358,6 +358,8 @@ app
   .then(() => {
     PowerMonitor();
     // Prefs.resetPrefs();
+    // set csp security policy
+
     global.prefs = Prefs.getPrefs();
     // console.log(prefs);
     Screen = new ScreenClass(mWin);

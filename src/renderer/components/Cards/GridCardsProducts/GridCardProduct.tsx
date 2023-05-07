@@ -6,6 +6,7 @@ import CTAProduct from 'renderer/components/CTA/CTAProduct';
 import ProductsContext from '../../../../store/productsGridCardsContext';
 
 import styles from './GridCardsProducts.module.scss';
+import Scene from '../../../Models/Scene';
 
 export default function GridCard(props: any) {
   const cardsCtx = useContext(ProductsContext);
@@ -32,14 +33,8 @@ export default function GridCard(props: any) {
       <div className={styles.card_content}>
         <div className={styles.card_info_wrapper}>
           <div className={styles.card_info}>
+            {/* <Scene /> */}
             <img className={styles.card_image} src={props.image} alt="" />
-            {/* <i
-                            className={props.iconString}
-                            style={{
-                                color: 'rgb(240, 240, 240)',
-                                transform: 'translateY(18px)',
-                            }}
-                        ></i> */}
             <div className={styles.card_info_title}>
               <h3>{props.title}</h3>
               <h4>{props.description}</h4>

@@ -1,6 +1,7 @@
 // @import '/styles/base/colors.module.scss';
 // @import '/styles/structure/MediaQueries.module.scss';
 // @import '/components/Structure/structure_variables.module.scss';
+@import '../../../Global/Animations.scss';
 $transitionSpeed: 0.25s;
 @keyframes letterCrackle {
     0% {
@@ -163,6 +164,7 @@ $mouse-y: 0px;
     // height: 0px;
     transition: all $transitionSpeed ease-in-out;
     overflow: hidden;
+    // animation: fadeInUp 0.25s ease-in-out;
     // border: 1px solid red;
     // border: 1px solid yellow;
 }
@@ -200,6 +202,9 @@ $mouse-y: 0px;
 .card_image {
     align-items: center;
     display: flex;
+    // opacity: 0;
+    // animation: fadeInUp 1s ease-in-out;
+    // animation: name duration timing-function delay iteration-count direction fill-mode;
     // height: 100% !important;
     // height: 260px !important;
     width: calc(100% - 2rem);

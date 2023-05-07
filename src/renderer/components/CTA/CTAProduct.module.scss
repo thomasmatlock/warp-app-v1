@@ -1,5 +1,6 @@
 @import './mirrored.module.scss';
 @import './glow.module.scss';
+@import '../../Global/Animations.scss';
 // @import 'glow.module.scss';
 // @import '/components/Structure/structure_variables.module.scss';
 #user_download__header,
@@ -54,39 +55,23 @@
     justify-content: center;
     align-items: center;
     margin: 0 auto;
-    // width: 280px !important;
-    width: auto;
-    // min-width: 350px;
     height: 3rem;
-    // font-size: 0.9rem;
     width: clamp(250px, 30vh, 250px);
-    // width: 280px;
-    // font-size: 1.75vh;
     font-size: 0.85rem;
     cursor: default;
     background-image: linear-gradient(90deg, #19a9fc, #5351fc);
-    // background-image: linear-gradient(90deg, #19a9fc, #5351fc);
-    // background-color: #262627;
     border-radius: 3px;
     color: #ffffff;
-    transition: all 0.25s ease-in-out;
-    // height: 50px;
-    // transition: 0.25s all ease-in-out !important;
-    // height: clamp(50px, 100%, 60px);
-    // width: clamp(200px, 30vh, 250px);
+    transition: all 0.1s ease-in-out !important;
     z-index: 100;
     &:hover {
         z-index: 100;
-        transition: all 0.25s ease-in-out;
-        border: 1px solid #ffffff;
-        // transition: all 0.1s ease-in-out;
-        // transition: all 0.3s ease-in-out;
-        // transition: 0.25s all ease-in-out !important;
+        transition: all 0.1s ease-in-out !important;
+        // border: 1px solid #ffffff;
         background-image: linear-gradient(to left, #fff 0%, #fff 100%);
-        background-color: #fff;
         color: #000;
         cursor: pointer;
-        // animation: pulse 3s infinite;
+        -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
     }
 }
 
