@@ -34,7 +34,15 @@ export default function Scene(props: any) {
 
   // });
   // const { threeScene } = props;
-
+  function EveryFrame() {
+    useFrame((state) => {
+      //  handleResize();
+      console.log(state.camera.zoom);
+      // rotate camera around the origin
+      // state.camera.position.y = Math.sin(state.clock.getElapsedTime()) * 0.1;
+    });
+    return null;
+  }
   return (
     <Canvas
       // flat
@@ -51,7 +59,7 @@ export default function Scene(props: any) {
       camera={{
         position: [-3, 2, 5],
         // fov: 90,
-        zoom: 75,
+        zoom: 100,
         near: 0.1,
         far: 1000,
       }}
@@ -59,11 +67,11 @@ export default function Scene(props: any) {
       <OrbitControls
         makeDefault
         enableDamping
-        dampingFactor={0.15}
+        dampingFactor={0.1}
         autoRotate
         autoRotateSpeed={-1}
         enablePan={false}
-        enableZoom
+        enableZoom={false}
         target={[0, 1, 0]}
       />
       <ambientLight intensity={0.1} />
@@ -78,6 +86,7 @@ export default function Scene(props: any) {
       <fog attach="fog" args={['white', 0, 40]} />
 
       <Model />
+      <EveryFrame />
     </Canvas>
   );
 }
