@@ -27,6 +27,10 @@
     background-image: linear-gradient(90deg, #19a9fc, #5351fc);
     border-radius: 3px;
     color: #ffffff;
+    animation: fadeIn 1s ease-in-out;
+    // animation: fadeInUp 1s ease-in-out;
+    // animation: flickerShadow 2s ease-in-out;
+    // animation: swingInBottomFwd 1s ease-in-out;
     transition: all 0s ease-in-out !important;
     &:hover {
         -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);

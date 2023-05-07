@@ -28,8 +28,8 @@ export default function Scene(props: any) {
     <div className={styles.scene}>
       {/* {threeScene === 'audioPersonalEdition' && <Ballpit />} */}
       {/* {threeScene === 'audioPersonalEdition' && <BoxScene />} */}
-      {/* {threeScene === 'audioPersonalEdition' && <Model />} */}
-      {threeScene === 'audioPersonalEdition' && <Audio />}
+      {threeScene === 'audioPersonalEdition' && <Model />}
+      {/* {threeScene === 'audioPersonalEdition' && <Audio />} */}
       {threeScene === 'videoPersonalEdition' && <Video />}
       {threeScene === 'bundlePersonalEdition' && <Bundle />}
     </div>
