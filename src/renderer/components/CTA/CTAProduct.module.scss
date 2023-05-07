@@ -1,6 +1,19 @@
 @import './mirrored.module.scss';
 @import './glow.module.scss';
 @import '../../Global/Animations.scss';
+@keyframes glowPulse {
+    0% {
+        // box-shadow: 0 0 5px #fff, 0 0 25px #ffffff, 0 0 50px #fff, 0 0 200px rgb(255, 255, 255);
+        box-shadow: 0 0 5px #fff, 0 0 20px #fff 0 0 50px #fff;
+    }
+    50% {
+        box-shadow: 0 0 5px #fff, 0 0 20px #fff;
+    }
+    100% {
+        box-shadow: 0 0 5px #fff;
+    }
+}
+
 .cta_text {
     font-size: 12px;
     white-space: nowrap;
@@ -20,12 +33,15 @@
     color: #ffffff;
     transition: all 0s ease-in-out !important;
     &:hover {
+        -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
         // z-index: 100;
         transition: all 0s ease-in-out !important;
         // border: 1px solid #ffffff;
         background-image: linear-gradient(to left, #fff 0%, #fff 100%);
         color: #000;
         cursor: pointer;
-        -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
+        // box-shadow: 0 0 5px #fff, 0 0 25px #ffffff, 0 0 50px #fff, 0 0 200px rgb(255, 255, 255);
+        // box-shadow: 0 0 5px #fff, 0 0 25px #ffffff, 0 0 50px;
+        // animation: glowPulse 1s ease-in-out infinite;
     }
 }

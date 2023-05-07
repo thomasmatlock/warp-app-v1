@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import styles from './Products.module.scss';
 
-import GridCardProduct from './Product';
+import Product from './Product';
 
 // import HoverCardsContext from '../../../store/gridCardsContext';
 import ProductsContext from '../../store/productsContext';
@@ -45,7 +45,7 @@ export default function Products(props: any) {
       onMouseLeave={mouseLeaveHandler}
     >
       {items.map((item) => (
-        <GridCardProduct
+        <Product
           key={item.id}
           id={item.id}
           title={item.title}

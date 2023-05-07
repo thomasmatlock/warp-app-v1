@@ -7,48 +7,23 @@ import hoverCardImg2 from '../renderer/Global/GridCards/hoverCardImg2.png';
 import hoverCardImg3 from '../renderer/Global/GridCards/hoverCardImg3.png';
 
 const ProductsGridCardsContext = createContext({
+  audioCardExpanded: false,
+  videoCardExpanded: false,
+  bundleCardExpanded: false,
   cardsData: [
     {
-      id: 'hoverCard1',
+      id: 'audioPersonalEdition',
       image: hoverCardImg1,
-      // title: 'Download at the speed of thought',
-      title: 'Control Alt Download',
+      title: 'Audio Personal Edition',
       description: `Built-in, lightning-fast Chrome browser side by side with all your downloads in one place, with a dual search to simultaneously find what you want - online and offline.`,
       alt: '',
-      ctaMessage: 'Download Audio MP3',
+      ctaMessage: 'Go to checkout',
       threeScene: 'audio',
-      expanded: false,
-      features: [
-        {
-          id: 'videoFeature1',
-          title: 'Video Feature 1',
-          description: `The Warp team are developers, designers, and editors. We solved our own frustrations and made it available to you, too!`,
-          icon: racingIcon,
-        },
-      ],
-    },
-    {
-      id: 'hoverCard2',
-      image: hoverCardImg2,
-      expanded: false,
-
-      title: 'For creators, by creators',
-      description: `The Warp team are developers, designers, and editors. We solved our own frustrations and made it available to you, too!`,
-      ctaMessage: 'Download Audio MP3',
-      threeScene: 'video',
-    },
-    {
-      id: 'hoverCard3',
-      image: hoverCardImg3,
-      title: 'Free bird',
-      description: `No hidden fees. No ads. No subscriptions. The free version of Warp is identical, fast, and as fun to use as the premium version.`,
-      ctaMessage: 'Download Audio MP3',
-      threeScene: 'bundle',
       expanded: false,
     },
   ],
-  getCardID: (card: object) => {},
-  toggleUserInteracting: () => {},
+  getCardID: (id: string) => {},
+  // toggleUserInteracting: () => {},
 });
 
 export function ProductsGridCardsContextProvider(props: any) {
@@ -60,18 +35,17 @@ export function ProductsGridCardsContextProvider(props: any) {
     {
       id: 'audioPersonalEdition',
       image: hoverCardImg1,
-      // title: 'Download at the speed of thought',
       title: 'Audio Personal Edition',
       description: `Built-in, lightning-fast Chrome browser side by side with all your downloads in one place, with a dual search to simultaneously find what you want - online and offline.`,
       alt: '',
       ctaMessage: 'Go to checkout',
       threeScene: 'audio',
+      expanded: audioCardExpanded,
     },
     {
       id: 'videoPersonalEdition',
       threeScene: 'video',
-      expanded: false,
-
+      expanded: videoCardExpanded,
       image: hoverCardImg2,
       title: 'Video Personal Edition',
       description: `The Warp team are developers, designers, and editors. We solved our own frustrations and made it available to you, too!`,
@@ -80,7 +54,7 @@ export function ProductsGridCardsContextProvider(props: any) {
     {
       id: 'bundlePersonalEdition',
       threeScene: 'bundle',
-      expanded: false,
+      expanded: bundleCardExpanded,
 
       image: hoverCardImg3,
       title: 'Bundle Personal Edition',
@@ -88,11 +62,25 @@ export function ProductsGridCardsContextProvider(props: any) {
       ctaMessage: 'Go to checkout',
     },
   ];
-  const getCardID = (id) => {
+  const disableAllExpandedCards = () => {
+    setAudioCardExpanded(false);
+    setVideoCardExpanded(false);
+    setBundleCardExpanded(false);
+  };
+  const getCardID = (id: string) => {
+    // disableAllExpandedCards();
+    // console.log(audioCardExpanded, videoCardExpanded, bundleCardExpanded);
+    setTimeout(() => {
+      setVideoCardExpanded(true);
+      console.log(audioCardExpanded, videoCardExpanded, bundleCardExpanded);
+    }, 100);
+    // if (id === 'audioPersonalEdition')
     // console.log(id);
+    // if (id === 'videoPersonalEdition') setVideoCardExpanded(true);
+    // if (id === 'bundlePersonalEdition') setBundleCardExpanded(true);
   };
   const toggleUserInteracting = () => {
-    setUserInteracting((prevState) => !prevState);
+    // setUserInteracting((prevState) => !prevState);
   };
   return (
     <ProductsGridCardsContext.Provider
@@ -102,7 +90,7 @@ export function ProductsGridCardsContextProvider(props: any) {
         videoCardExpanded,
         bundleCardExpanded,
         getCardID,
-        toggleUserInteracting,
+        // toggleUserInteracting,
       }}
     >
       {props.children}

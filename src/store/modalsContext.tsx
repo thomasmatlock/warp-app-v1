@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import NavContext from './navContext';
+
 let prefs;
 const ModalsContext = React.createContext({
   prefs: {},
@@ -64,12 +65,12 @@ export const ModalsContextProvider = (props) => {
   return (
     <ModalsContext.Provider
       value={{
-        prefs: prefs,
-        isModalOpen: isModalOpen,
-        hideModalHandler: hideModalHandler,
-        getID: getID,
-        showModalHandler: showModalHandler,
-        modalStateHandler: modalStateHandler,
+        prefs,
+        isModalOpen,
+        hideModalHandler,
+        getID,
+        showModalHandler,
+        modalStateHandler,
       }}
     >
       {props.children}

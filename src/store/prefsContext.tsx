@@ -4,7 +4,7 @@ let global = {};
 
 const PrefsContext = React.createContext({
   prefs: {},
-  getID: () => {},
+  getID: (id: string) => {},
 });
 export const PrefsContextProvider = (props) => {
   const [prefs, setPrefs] = useState({});
@@ -201,8 +201,8 @@ export const PrefsContextProvider = (props) => {
   return (
     <PrefsContext.Provider
       value={{
-        prefs: prefs,
-        getID: getID,
+        prefs,
+        getID,
       }}
     >
       {props.children}

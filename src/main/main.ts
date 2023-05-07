@@ -250,6 +250,7 @@ const windowController = {
       if (!mWin) {
         throw new Error('"mWin" is not defined');
       }
+
       if (process.env.START_MINIMIZED) {
         mWin.minimize();
       } else {
