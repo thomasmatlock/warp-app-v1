@@ -7,15 +7,20 @@ import Product from './Product';
 import ProductsContext from '../../store/productsContext';
 
 export default function Products(props: any) {
-  const cardsCtx = useContext(ProductsContext);
-  // console.log(cardsCtx.cardsData);
-  const items = cardsCtx.cardsData;
+  const productsCtx = useContext(ProductsContext);
+  // console.log(productsCtx);
+
+  // window.electron.ipcRenderer.on('global', (arg) => {
+  //   console.log(arg);
+  // });
+  // console.log(productsCtx.cardsData);
+  const items = productsCtx.cardsData;
   // set active class
   const mouseEnterHandler = (e: any) => {
-    // cardsCtx.toggleUserInteracting();
+    // productsCtx.toggleUserInteracting();
   };
   const mouseLeaveHandler = (e: any) => {
-    // cardsCtx.toggleUserInteracting();
+    // productsCtx.toggleUserInteracting();
   };
 
   if (typeof window !== 'undefined') {

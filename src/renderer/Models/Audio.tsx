@@ -23,7 +23,7 @@ function InstancedSpheres({ count = 50 }) {
   const [ref] = useSphere((index) => ({
     mass: 100,
     position: [4 - Math.random() * 8, viewport.height, 0, 0],
-    args: [1.2],
+    args: [1],
   }));
   return (
     <instancedMesh
@@ -32,7 +32,7 @@ function InstancedSpheres({ count = 50 }) {
       receiveShadow
       args={[null, null, count]}
     >
-      <sphereBufferGeometry args={[1.2, 32, 32]} />
+      <sphereGeometry args={[1, 32, 32]} />
       <meshLambertMaterial color="#ff8500" />
     </instancedMesh>
   );
@@ -73,7 +73,7 @@ export default function Ballpit() {
       <fog attach="fog" args={['red', 25, 35]} />
       {/* <color attach="background" args={['#1a1a1a']} /> */}
       <ambientLight intensity={1.5} />
-      <directionalLight position={[-10, -10, -5]} intensity={2} />
+      <directionalLight position={[-10, -10, -5]} intensity={1} />
       <directionalLight
         castShadow
         intensity={4}

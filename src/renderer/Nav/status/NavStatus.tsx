@@ -16,7 +16,7 @@ import iconLinux from '../../Global/platform/linux.svg';
 import ProgressIcon from '../../Global/status.svg';
 import NewVersionIcon from '../../Global/rocket.svg';
 import './NavStatus.scss';
-import { log } from 'console';
+// import { log } from 'console';
 
 // let appVersion = '';
 // let appRoot = '';

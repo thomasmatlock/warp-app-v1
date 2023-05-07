@@ -32,7 +32,7 @@ function InstancedSpheres({ count = 50 }) {
       receiveShadow
       args={[null, null, count]}
     >
-      <sphereBufferGeometry args={[1.2, 32, 32]} />
+      <sphereGeometry args={[1, 32, 32]} />
       <meshLambertMaterial color="#5D3FD3" />
     </instancedMesh>
   );

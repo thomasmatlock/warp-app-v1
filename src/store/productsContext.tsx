@@ -3,6 +3,7 @@ import racingIcon from '../renderer/Products/racing.svg';
 // import playlistIcon from '../renderer/Products/playlistAudio.svg';
 import playlistIcon from '../renderer/Products/playlistVideo.svg';
 import channelIcon from '../renderer/Products/channel.svg';
+// import audioThreeModelURL from '../renderer/Global/video.glb';
 // invert svg
 
 import hoverCardImg1 from '../renderer/Global/GridCards/hoverCardImg1.png';
@@ -24,6 +25,7 @@ const ProductsGridCardsContext = createContext({
       alt: '',
       ctaMessage: 'Go to checkout',
       threeScene: 'audio',
+      // threeModelURL: audioThreeModelURL,
       expanded: false,
       collapsed: false,
       features: [
@@ -59,6 +61,7 @@ export function ProductsGridCardsContextProvider(props: any) {
       expanded: audioCardExpanded,
       collapsed: audioCardCollapsed,
       threeScene: 'audioPersonalEdition',
+      // threeModelURL: audioThreeModelURL,
 
       features: [
         {
@@ -105,7 +108,7 @@ export function ProductsGridCardsContextProvider(props: any) {
       ctaMessage: 'Go to checkout',
       collapsed: videoCardCollapsed,
       threeScene: 'videoPersonalEdition',
-
+      // threeModelURL: audioThreeModelURL,
       features: [
         {
           id: 'videoFeature1',
@@ -130,6 +133,7 @@ export function ProductsGridCardsContextProvider(props: any) {
       expanded: bundleCardExpanded,
       collapsed: bundleCardCollapsed,
       threeScene: 'bundlePersonalEdition',
+      // threeModelURL: audioThreeModelURL,
 
       features: [
         {

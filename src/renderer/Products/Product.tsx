@@ -11,6 +11,9 @@ import styles from './Products.module.scss';
 import Scene from '../Models/Scene';
 
 export default function Product(props: any) {
+  window.electron.ipcRenderer.on('global', (arg) => {
+    console.log(arg);
+  });
   // console.log(props);
 
   const {
