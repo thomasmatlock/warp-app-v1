@@ -53,7 +53,7 @@ export function ProductsGridCardsContextProvider(props: any) {
       id: 'audioPersonalEdition',
       image: hoverCardImg1,
       title: 'Audio Personal Edition',
-      description: `Bue, with a dual search to simultaneously find what you want - online and offline.`,
+      description: `The Warp team are developers, designers, and editors. We solved our own frustrations and made it available to you, too!`,
       alt: '',
       ctaMessage: 'Go to checkout',
       expanded: audioCardExpanded,

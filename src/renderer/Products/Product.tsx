@@ -53,13 +53,13 @@ export default function Product(props: any) {
       <div className={styles.card_content}>
         <div className={styles.card_info_wrapper}>
           <div className={styles.card_info}>
+            <img className={styles.card_image} src={image} alt="" />
             <Scene threeScene={threeScene} />
-            {/* <img className={styles.card_image} src={image} alt="" /> */}
             <div className={styles.card_info_title}>
               <h3>{title}</h3>
               <h4>{description}</h4>
             </div>
-            <ProductFeaturesList features={features} />
+            {/* <ProductFeaturesList features={features} /> */}
             <CTAProduct message={ctaMessage} clickHandler={clickHandler} />
           </div>
         </div>

@@ -1,4 +1,6 @@
 .scene {
-    height: 200px;
-    // height: 300px;
+  height: clamp(200px, 200px, 200px);
+  // border: 1px solid red;
+  width: calc(100% - 2rem);
+  // height: 300px;
 }

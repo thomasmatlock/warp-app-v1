@@ -165,6 +165,7 @@ export default function Scene(props: any) {
           {/* <Model /> */}
           {/* {threeScene === 'audioPersonalEdition' && <Audio />} */}
           {threeScene === 'audioPersonalEdition' && <Audio2 />}
+          {/* {threeScene === 'audioPersonalEdition' && <Model />} */}
           {threeScene === 'videoPersonalEdition' && <Video />}
           {threeScene === 'bundlePersonalEdition' && <Bundle />}
           {/* <EveryFrame /> */}
