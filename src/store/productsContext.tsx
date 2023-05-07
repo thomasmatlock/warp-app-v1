@@ -53,7 +53,7 @@ export function ProductsGridCardsContextProvider(props: any) {
       id: 'audioPersonalEdition',
       image: hoverCardImg1,
       title: 'Audio Personal Edition',
-      description: `Built-in, lightning-fast Chrome browser side by side with all your downloads in one place, with a dual search to simultaneously find what you want - online and offline.`,
+      description: `Bue, with a dual search to simultaneously find what you want - online and offline.`,
       alt: '',
       ctaMessage: 'Go to checkout',
       expanded: audioCardExpanded,
@@ -117,23 +117,23 @@ export function ProductsGridCardsContextProvider(props: any) {
         },
       ],
     },
-    // {
-    //   id: 'bundlePersonalEdition',
-    //   image: hoverCardImg3,
-    //   title: 'Bundle Personal Edition',
-    //   description: `The Warp team are developers, designers, and editors. We solved our own frustrations and made it available to you, too!`,
-    //   ctaMessage: 'Go to checkout',
-    //   expanded: bundleCardExpanded,
-    //   collapsed: bundleCardCollapsed,
-    //   features: [
-    //     {
-    //       id: 'bundleFeature1',
-    //       title: 'Bundle Feature 1',
-    //       description: `Built-in, lightning-fast Chrome browser side by side with all your downloads in one place, with a dual search to simultaneously find what you want - online and offline.`,
-    //       image: racingIcon,
-    //     },
-    //   ],
-    // },
+    {
+      id: 'bundlePersonalEdition',
+      image: hoverCardImg3,
+      title: 'Bundle Personal Edition',
+      description: `The Warp team are developers, designers, and editors. We solved our own frustrations and made it available to you, too!`,
+      ctaMessage: 'Go to checkout',
+      expanded: bundleCardExpanded,
+      collapsed: bundleCardCollapsed,
+      features: [
+        {
+          id: 'bundleFeature1',
+          title: 'Bundle Feature 1',
+          description: `Everything in the Audio and Video editions, plus the ability to download entire playlists and channels from YouTub`,
+          image: racingIcon,
+        },
+      ],
+    },
   ];
   const uncollapseAllCards = () => {
     setAudioCardCollapsed(false);

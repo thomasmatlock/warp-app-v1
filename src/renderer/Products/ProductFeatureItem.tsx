@@ -17,8 +17,7 @@ export default function ProductFeaturesItem(props) {
         <div
           className={styles.product_description__list__item__text__description}
         >
-          Download audio in its original Youtube format or adjust it in your
-          preferences to save space
+          {/* {description} */}
         </div>
       </div>
     </li>
