@@ -1,5 +1,9 @@
 import React, { useState, useEffect, createContext } from 'react';
 import racingIcon from '../renderer/Products/racing.svg';
+// import playlistIcon from '../renderer/Products/playlistAudio.svg';
+import playlistIcon from '../renderer/Products/playlistVideo.svg';
+import channelIcon from '../renderer/Products/channel.svg';
+// invert svg
 
 import hoverCardImg1 from '../renderer/Global/GridCards/hoverCardImg1.png';
 // import hoverCardImg2 from '../public/GridCards/hoverCardImg2.webp';
@@ -22,6 +26,14 @@ const ProductsGridCardsContext = createContext({
       threeScene: 'audio',
       expanded: false,
       collapsed: false,
+      features: [
+        {
+          id: 'audioFeature1',
+          title: 'Audio Feature 1',
+          description: `Built-in, lightning-fast Chrome browser side by side with all your downloads in one place, with a dual search to simultaneously find what you want - online and offline.`,
+          image: racingIcon,
+        },
+      ],
     },
   ],
   getCardID: (id: string) => {},
@@ -46,6 +58,41 @@ export function ProductsGridCardsContextProvider(props: any) {
       ctaMessage: 'Go to checkout',
       expanded: audioCardExpanded,
       collapsed: audioCardCollapsed,
+      features: [
+        {
+          id: 'audioFeature1',
+          title: 'Simultaneous downloads',
+          description: `Built-in, lightning-fast Chrome browser side by side with all your downloads in one place, with a dual search to simultaneously find what you want - online and offline.`,
+          image: racingIcon,
+        },
+        {
+          id: 'audioFeature1',
+          title: '  Multiple Formats',
+          description: `Built-in, lightning-fast Chrome browser side by side with all your downloads in one place, with a dual search to simultaneously find what you want - online and offline.`,
+          image: playlistIcon,
+          inverted: true,
+        },
+        {
+          id: 'audioFeature1',
+          title: 'Channels',
+          description: `Built-in, lightning-fast Chrome browser side by side with all your downloads in one place, with a dual search to simultaneously find what you want - online and offline.`,
+          image: channelIcon,
+          inverted: true,
+        },
+        {
+          id: 'audioFeature1',
+          title: 'Playlists',
+          description: `Built-in, lightning-fast Chrome browser side by side with all your downloads in one place, with a dual search to simultaneously find what you want - online and offline.`,
+          image: playlistIcon,
+          inverted: true,
+        },
+        {
+          id: 'audioFeature1',
+          title: 'Bulk Import and Export URLS',
+          description: `Built-in, lightning-fast Chrome browser side by side with all your downloads in one place, with a dual search to simultaneously find what you want - online and offline.`,
+          image: racingIcon,
+        },
+      ],
     },
     {
       id: 'videoPersonalEdition',
@@ -55,16 +102,38 @@ export function ProductsGridCardsContextProvider(props: any) {
       description: `The Warp team are developers, designers, and editors. We solved our own frustrations and made it available to you, too!`,
       ctaMessage: 'Go to checkout',
       collapsed: videoCardCollapsed,
+      features: [
+        {
+          id: 'videoFeature1',
+          title: 'Video Feature 1',
+          description: `Built-in, lightning-fast Chrome browser side by side with all your downloads in one place, with a dual search to simultaneously find what you want - online and offline.`,
+          image: racingIcon,
+        },
+        {
+          id: 'videoFeature1',
+          title: 'Simultaneous downloads',
+          description: `Built-in, lightning-fast Chrome browser side by side with all your downloads in one place, with a dual search to simultaneously find what you want - online and offline.`,
+          image: racingIcon,
+        },
+      ],
     },
-    {
-      id: 'bundlePersonalEdition',
-      image: hoverCardImg3,
-      title: 'Bundle Personal Edition',
-      description: `The Warp team are developers, designers, and editors. We solved our own frustrations and made it available to you, too!`,
-      ctaMessage: 'Go to checkout',
-      expanded: bundleCardExpanded,
-      collapsed: bundleCardCollapsed,
-    },
+    // {
+    //   id: 'bundlePersonalEdition',
+    //   image: hoverCardImg3,
+    //   title: 'Bundle Personal Edition',
+    //   description: `The Warp team are developers, designers, and editors. We solved our own frustrations and made it available to you, too!`,
+    //   ctaMessage: 'Go to checkout',
+    //   expanded: bundleCardExpanded,
+    //   collapsed: bundleCardCollapsed,
+    //   features: [
+    //     {
+    //       id: 'bundleFeature1',
+    //       title: 'Bundle Feature 1',
+    //       description: `Built-in, lightning-fast Chrome browser side by side with all your downloads in one place, with a dual search to simultaneously find what you want - online and offline.`,
+    //       image: racingIcon,
+    //     },
+    //   ],
+    // },
   ];
   const uncollapseAllCards = () => {
     setAudioCardCollapsed(false);

@@ -266,8 +266,8 @@ const windowController = {
         // automate.openPrefsLicense(mWin, 250);
         setTimeout(() => {
           mWin.webContents.send('global', global);
-          // if (!app.isPackaged)
-          // mWin.webContents.send('modal: preferences: license'); // automated
+          if (!app.isPackaged)
+            mWin.webContents.send('modal: preferences: license'); // automated
         }, 250);
         mWin.webContents.send('main: audioDownloads', audioDownloads);
 

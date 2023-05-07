@@ -13,8 +13,16 @@ import styles from './Products.module.scss';
 export default function Product(props: any) {
   // console.log(props);
 
-  const { id, image, title, description, ctaMessage, expanded, collapsed } =
-    props;
+  const {
+    id,
+    image,
+    title,
+    description,
+    features,
+    ctaMessage,
+    expanded,
+    collapsed,
+  } = props;
   console.log(expanded);
 
   const productsCtx = useContext(ProductsContext);
@@ -49,7 +57,7 @@ export default function Product(props: any) {
               <h3>{title}</h3>
               <h4>{description}</h4>
             </div>
-            {/* <ProductFeaturesList /> */}
+            <ProductFeaturesList features={features} />
             <CTAProduct message={ctaMessage} clickHandler={clickHandler} />
           </div>
         </div>
