@@ -8,7 +8,7 @@ import ProductsContext from '../../store/productsContext';
 import ProductFeaturesList from './ProductFeaturesList';
 
 import styles from './Products.module.scss';
-// import Scene from '../Models/Scene';
+import Scene from '../Models/Scene';
 
 export default function Product(props: any) {
   // console.log(props);
@@ -52,6 +52,7 @@ export default function Product(props: any) {
       <div className={styles.card_content}>
         <div className={styles.card_info_wrapper}>
           <div className={styles.card_info}>
+            {/* <Scene /> */}
             <img className={styles.card_image} src={image} alt="" />
             <div className={styles.card_info_title}>
               <h3>{title}</h3>

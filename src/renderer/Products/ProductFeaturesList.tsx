@@ -38,7 +38,6 @@ export default function ProductFeaturesList(props) {
           title={item.title}
           description={item.description}
           image={item.image}
-          inverted={item.inverted}
         />
       ))}
     </ul>
