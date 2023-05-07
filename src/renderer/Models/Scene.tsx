@@ -2,6 +2,8 @@ import { Center, OrbitControls, Loader, useGLTF } from '@react-three/drei';
 import { Suspense } from 'react';
 
 import { Canvas, extend } from '@react-three/fiber';
+import styles from './Scene.module.scss';
+
 // extend Canvas
 extend({ Canvas });
 const Model = () => {
@@ -11,7 +13,7 @@ const Model = () => {
 
 export default function Scene(props: any) {
   return (
-    // <Suspense fallback={<Preloader />}>
+    // <div className={styles.scene}>
     <Suspense fallback="loading">
       <Canvas
         // flat
@@ -27,7 +29,7 @@ export default function Scene(props: any) {
           // zoom: isMobile ? 4500 : 8000, // for orthographic camera
           // zoom: isMobile ? 170 : 300, // dinocrisis
           // zoom: isMobile ? 2 : 2.5, // telescope
-          zoom: 200, // video camera
+          zoom: 150, // video camera
           far: 1500,
           position: [-0.67, 0.3, 0.67],
         }}
@@ -43,12 +45,12 @@ export default function Scene(props: any) {
           enableZoom
           target={[0, 0, 0]}
         />
-        {/* <directionalLight intensity={1} /> */}
+        <directionalLight intensity={1} castShadow />
         <color args={['#FFF']} attach="background" />
         <Center>
           <ambientLight intensity={1.5} color="#fff" />
           <mesh>
-            <boxBufferGeometry args={[1, 1, 1]} />
+            <boxGeometry args={[1, 1, 1]} />
             <meshStandardMaterial color="#ff0000" />
           </mesh>
 

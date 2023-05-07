@@ -482,16 +482,12 @@ if (isDebug) {
     event.reply('modal: preferences', prefs);
   }); // nav listeners
   ipcMain.on('nav: mode: audio', async (event, arg) => {
-    // if (mWin) mWin.webContents.send('count-downloads');
-    // console.log(arg);
     setTitle(mWin, 'audio', user);
   });
   ipcMain.on('nav: mode: video', async (event, arg) => {
-    // if (mWin) mWin.webContents.send('count-downloads');
     setTitle(mWin, 'video', user);
   });
   ipcMain.on('nav: mode: warpstagram', async (event, arg) => {
-    // if (mWin) mWin.webContents.send('count-downloads');
     setTitle(mWin, 'warpstagram', user);
   });
   // SEARCH LISTENERS
@@ -522,8 +518,6 @@ if (isDebug) {
   });
   // BROWSERBAR DOWNLOAD SOURCE LISTENERS
   ipcMain.on('loadActiveSource', async (arg) => {
-    // console.log(arg);
-
     // if (view) view.webContents.loadURL(arg);
     if (view)
       if (view.webContents.getURL().includes('pinterest')) {
