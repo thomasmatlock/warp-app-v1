@@ -46,15 +46,17 @@
     "browserslist": [],
     "prettier": {
         "singleQuote": true,
-        "overrides": [{
-            "files": [
-                ".prettierrc",
-                ".eslintrc"
-            ],
-            "options": {
-                "parser": "json"
+        "overrides": [
+            {
+                "files": [
+                    ".prettierrc",
+                    ".eslintrc"
+                ],
+                "options": {
+                    "parser": "json"
+                }
             }
-        }]
+        ]
     },
     "jest": {
         "moduleDirectories": [
@@ -89,8 +91,10 @@
     "dependencies": {
         "@ffmpeg-installer/ffmpeg": "^1.1.0",
         "@prisma/client": "^4.7.1",
+        "@react-three/cannon": "^6.5.2",
         "@react-three/drei": "^9.66.4",
         "@react-three/fiber": "^8.13.0",
+        "@react-three/postprocessing": "^2.10.0",
         "app-root-dir": "^1.0.2",
         "asar": "^3.2.0",
         "cryptr": "^6.0.3",
@@ -220,7 +224,8 @@
             "gatekeeperAssess": false
         },
         "dmg": {
-            "contents": [{
+            "contents": [
+                {
                     "x": 130,
                     "y": 220
                 },
