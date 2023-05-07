@@ -9,7 +9,7 @@ log.transports.file.level = 'info';
 autoUpdater.autoDownload = false;
 autoUpdater.logger = log;
 function simulateProgress(mWin: BrowserWindow) {
-  mWin.webContents.send('updater_update_available', 'downloading update...');
+  // mWin.webContents.send('updater_update_available', 'downloading update...');
   // mWin.webContents.send(
   //   'updater_download_progress',
   //   `Update ${50}% downloaded`

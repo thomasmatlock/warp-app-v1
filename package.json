@@ -1,7 +1,7 @@
 {
     "description": "A foundation for scalable desktop apps",
     "homepage": "https://warpdownload.com",
-    "version": "0.4.9",
+    "version": "0.4.13",
     "bugs": {
         "url": "https://github.com/thomasmatlock/warp-app/issues"
     },
@@ -46,17 +46,15 @@
     "browserslist": [],
     "prettier": {
         "singleQuote": true,
-        "overrides": [
-            {
-                "files": [
-                    ".prettierrc",
-                    ".eslintrc"
-                ],
-                "options": {
-                    "parser": "json"
-                }
+        "overrides": [{
+            "files": [
+                ".prettierrc",
+                ".eslintrc"
+            ],
+            "options": {
+                "parser": "json"
             }
-        ]
+        }]
     },
     "jest": {
         "moduleDirectories": [
@@ -222,8 +220,7 @@
             "gatekeeperAssess": false
         },
         "dmg": {
-            "contents": [
-                {
+            "contents": [{
                     "x": 130,
                     "y": 220
                 },
