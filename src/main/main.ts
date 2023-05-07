@@ -23,22 +23,22 @@ import {
   screen,
   // Tray,
 } from 'electron';
-
+// import incrementReleaseVersion from "./incrementReleaseVersion";
 import GetUser from '../user/GetUser';
 import ffmpegInit from '../ffmpeg/ffmpegController';
 import GetUserDownloads from '../user/downloads/GetUserDownloads';
 
 // import AddUserDownload from '../user/downloads/AddUserDownload';
 // import UpgradeUser from '../user/UpgradeUser';
-
+// incrementReleaseVersion();
 import * as time from './util/time';
 import updater from './updater';
-import MenuBuilder from './Menu';
+import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
 import BrowserQuery from '../Browser/browserQuery';
 import * as Paths from './paths';
 import * as Downloads from '../downloaders/downloadsController';
-import setTitle from './Title';
+import setTitle from './title';
 import * as Prefs from './prefs';
 import PowerMonitor from './powerMonitor';
 import ScreenClass from './Screen';
