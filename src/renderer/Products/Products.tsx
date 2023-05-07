@@ -53,6 +53,7 @@ export default function Products(props: any) {
           description={item.description}
           ctaMessage={item.ctaMessage}
           expanded={item.expanded}
+          collapsed={item.collapsed}
         />
       ))}
     </ul>

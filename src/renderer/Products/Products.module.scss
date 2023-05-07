@@ -113,14 +113,23 @@ $mouse-y: 0px;
     }
 }
 
-.card_expanded {
+.card__active {
     width: 100%;
+    // flex: 10;
+    border: 3px solid red;
 }
 
-.card_collapsed {
-    width: 0%;
+.card__collapsed {
+    // width: 0% !important;
+    // border: 3px solid green;
+    flex: 0 !important;
+    // flex: 10;
+    // border: 3px solid red;
 }
 
+// .card__collapsed {
+//     width: 0%;
+// }
 .card:hover .card_image {
     filter: grayscale(0);
     transition: all $transitionSpeed ease-in-out;
@@ -216,6 +225,7 @@ $mouse-y: 0px;
     // height: 100% !important;
     // height: 260px !important;
     width: calc(100% - 2rem);
+    max-width: 300px;
     // width: auto;
     justify-content: flex-start;
     overflow: hidden;

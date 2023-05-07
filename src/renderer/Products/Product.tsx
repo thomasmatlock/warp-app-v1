@@ -13,31 +13,34 @@ import styles from './Products.module.scss';
 export default function Product(props: any) {
   // console.log(props);
 
-  const { id, image, title, description, ctaMessage, expanded } = props;
+  const { id, image, title, description, ctaMessage, expanded, collapsed } =
+    props;
+  console.log(expanded);
+
   const productsCtx = useContext(ProductsContext);
   // console.log(productsCtx);
 
   const mouseEnterHandler = (e: any) => {
-    productsCtx.toggleUserInteracting();
+    // productsCtx.toggleUserInteracting();
     // productsCtx.getCardID(id);
   };
   const mouseLeaveHandler = (e: any) => {
-    productsCtx.toggleUserInteracting();
+    // productsCtx.toggleUserInteracting();
   };
   // const activeCardClass = [styles.card__active, styles.card].join(' ');
   const clickHandler = (e: any) => {
     productsCtx.getCardID(id);
   };
   const regularCardClass = [styles.card].join(' ');
-  const expandedCardClass = [styles.card__expanded, styles.card].join(' ');
-  const collapsedCardClass = [styles.card_collapsed, styles.card].join(' ');
-  let cardClass = expanded ? expandedCardClass : regularCardClass;
-  // cardClass = !expanded && productsCtx.userInteracting ? collapsedCardClass : cardClass;
+  const expandedCardClass = [styles.card__active, styles.card].join(' ');
+  const collapsedCardClass = [styles.card__collapsed, styles.card].join(' ');
+  const cardClass = collapsed ? collapsedCardClass : regularCardClass;
+  // cardClass = collapsed ? collapsedCardClass : regularCardClass;
 
   return (
     //                         {overviewDisplayCtx.audioMode && <a className={browserBarBtnClass1}>Download Audio MP3</a>}
 
-    <div className={styles.card} id={id}>
+    <div className={cardClass} id={id}>
       <div className={styles.card_content}>
         <div className={styles.card_info_wrapper}>
           <div className={styles.card_info}>
