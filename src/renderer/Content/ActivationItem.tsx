@@ -35,7 +35,7 @@ import DownloadsContext from 'store/downloadsContext';
 // import itemFormat from './DownloadItemFormat';
 import NavContext from '../../store/navContext';
 import ModalsContext from '../../store/modalsContext';
-import ProductsContext from '../../store/productsContext';
+import ProductsContext from '../../store/archivedProductsContext';
 // console.log(itemFormat);
 export default function ActivationItem(props) {
   const navCtx = useContext(NavContext);

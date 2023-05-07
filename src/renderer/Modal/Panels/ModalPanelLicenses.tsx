@@ -1,13 +1,13 @@
 import { Fragment } from 'react';
 import './ModalPanel.scss';
 import Cards from './Cards';
-import GridCardsProducts from '../../components/Cards/GridCardsProducts/ProductsGridCards';
+import Products from '../../Products/Products';
 
 const ModalPanelLicenses = () => {
   return (
     <div id="" className="modalPrefsPanel_licenses">
       {/* <Cards /> */}
-      <GridCardsProducts />
+      <Products />
     </div>
   );
 };

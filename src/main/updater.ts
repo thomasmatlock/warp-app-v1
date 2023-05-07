@@ -9,7 +9,7 @@ log.transports.file.level = 'info';
 autoUpdater.autoDownload = false;
 autoUpdater.logger = log;
 function simulateProgress(mWin: BrowserWindow) {
-  // mWin.webContents.send('updater_update_available', 'downloading update...');
+  mWin.webContents.send('updater_update_available', 'downloading update...');
   // mWin.webContents.send(
   //   'updater_download_progress',
   //   `Update ${50}% downloaded`
@@ -22,7 +22,7 @@ function simulateProgress(mWin: BrowserWindow) {
 // let updateChecked = false;
 export default function (mWin: BrowserWindow) {
   mWin.webContents.send('updater_update_not_available', '');
-  const delay = app.isPackaged ? 3000 : 1000;
+  const delay = app.isPackaged ? 1000 : 1000;
   // if (updateChecked) return;
   setTimeout(() => {
     // updateChecked = true;

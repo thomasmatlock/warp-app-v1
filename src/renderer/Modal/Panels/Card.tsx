@@ -3,9 +3,9 @@ import './Cards.scss';
 // import './featureCards.scss';
 import './Product.scss';
 import './Products.scss';
-import Products from './Products';
-import Product from './Product';
-import ProductsContext from '../../../store/productsContext';
+import Products from './ArchivedProducts';
+import Product from './ArchivedProduct';
+import ProductsContext from '../../../store/archivedProductsContext';
 // type Props = {
 //   info: {
 //     title: string;

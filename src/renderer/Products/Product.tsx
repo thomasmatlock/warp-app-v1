@@ -3,43 +3,48 @@
 import { useContext } from 'react';
 // import HorizontalCardsContextProvider from '../../../store/gridCardsContext';
 import CTAProduct from 'renderer/components/CTA/CTAProduct';
-import ProductsContext from '../../../../store/productsGridCardsContext';
+import ProductsContext from '../../store/productsContext';
+import ProductFeaturesList from './ProductFeaturesList';
 
-import styles from './GridCardsProducts.module.scss';
-import Scene from '../../../Models/Scene';
+import styles from './Products.module.scss';
+// import Scene from '../Models/Scene';
 
-export default function GridCard(props: any) {
-  const cardsCtx = useContext(ProductsContext);
-  // console.log(cardsCtx);
+export default function Product(props: any) {
+  const { id, image, title, description, ctaMessage } = props;
+  const productsCtx = useContext(ProductsContext);
+  // console.log(productsCtx);
 
   const mouseEnterHandler = (e: any) => {
-    cardsCtx.toggleUserInteracting();
-    cardsCtx.getCardID(props.id);
+    productsCtx.toggleUserInteracting();
+    productsCtx.getCardID(id);
   };
   const mouseLeaveHandler = (e: any) => {
-    cardsCtx.toggleUserInteracting();
+    productsCtx.toggleUserInteracting();
   };
   const activeCardClass = [styles.card__active, styles.card].join(' ');
+  const clickHandler = (e: any) => {
+    console.log('click');
+  };
 
   return (
     //                         {overviewDisplayCtx.audioMode && <a className={browserBarBtnClass1}>Download Audio MP3</a>}
 
     <div
       className={styles.card}
-      id={props.id}
+      id={id}
       onMouseEnter={mouseEnterHandler}
       onMouseLeave={mouseLeaveHandler}
     >
       <div className={styles.card_content}>
         <div className={styles.card_info_wrapper}>
           <div className={styles.card_info}>
-            {/* <Scene /> */}
-            <img className={styles.card_image} src={props.image} alt="" />
+            <img className={styles.card_image} src={image} alt="" />
             <div className={styles.card_info_title}>
-              <h3>{props.title}</h3>
-              <h4>{props.description}</h4>
+              <h3>{title}</h3>
+              <h4>{description}</h4>
             </div>
-            <CTAProduct message={props.ctaMessage} />
+            {/* <ProductFeaturesList /> */}
+            <CTAProduct message={ctaMessage} clickHandler={clickHandler} />
           </div>
         </div>
       </div>

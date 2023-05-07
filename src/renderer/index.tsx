@@ -8,8 +8,8 @@ import { NavContextProvider } from '../store/navContext';
 import { InputContextProvider } from '../store/inputContext';
 import { ModalsContextProvider } from '../store/modalsContext';
 import { PrefsContextProvider } from '../store/prefsContext';
-import { ProductsContextProvider } from '../store/productsContext';
-import { ProductsGridCardsContextProvider } from '../store/productsGridCardsContext';
+import { ProductsContextProvider } from '../store/archivedProductsContext';
+import { ProductsGridCardsContextProvider } from '../store/productsContext';
 import { UserContextProvider } from '../store/userContext';
 
 const container = document.getElementById('root')!;

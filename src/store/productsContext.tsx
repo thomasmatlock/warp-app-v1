@@ -1,138 +1,144 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, createContext } from 'react';
+import racingIcon from '../renderer/Products/racing.svg';
 
-const ProductsContext = React.createContext({
-  audioCardExpanded: false,
-  videoCardExpanded: false,
-  warpstagramCardExpanded: false,
-  bundleCardExpanded: true,
-  isViewingAudio1: false,
-  isViewingAudio2: false,
-  isViewingVideo1: false,
-  isViewingVideo2: false,
-  isViewingWarpstagram1: false,
-  isViewingWarpstagram2: false,
-  isViewingBundle: false,
-  isPurchasingAudio1: false,
-  isPurchasingAudio2: false,
-  isPurchasingVideo1: false,
-  isPurchasingVideo2: false,
-  isPurchasingWarpstagram1: false,
-  isViewingProduct1: false,
-  isViewingProduct2: false,
-  isBuyingProduct1: false,
-  isBuyingProduct2: false,
+import hoverCardImg1 from '../renderer/Global/GridCards/hoverCardImg1.png';
+// import hoverCardImg2 from '../public/GridCards/hoverCardImg2.webp';
+import hoverCardImg2 from '../renderer/Global/GridCards/hoverCardImg2.png';
+import hoverCardImg3 from '../renderer/Global/GridCards/hoverCardImg3.png';
 
-  isPurchasingWarpstagram2: false,
-  isPurchasingBundle: false,
-  expandAudioCard: () => {},
-  expandVideoCard: () => {},
-  expandWarpstagramCard: () => {},
-  expandBundleCard: () => {},
+const ProductsGridCardsContext = createContext({
+  cardsData: [
+    {
+      id: 'hoverCard1',
+      image: hoverCardImg1,
+      // title: 'Download at the speed of thought',
+      title: 'Control Alt Download',
+      description: `Built-in, lightning-fast Chrome browser side by side with all your downloads in one place, with a dual search to simultaneously find what you want - online and offline.`,
+      alt: '',
+      ctaMessage: 'Download Audio MP3',
+      threeScene: 'audio',
+      expanded: false,
+      features: [
+        {
+          id: 'videoFeature1',
+          title: 'Video Feature 1',
+          description: `The Warp team are developers, designers, and editors. We solved our own frustrations and made it available to you, too!`,
+          icon: racingIcon,
+        },
+      ],
+    },
+    {
+      id: 'hoverCard2',
+      image: hoverCardImg2,
+      expanded: false,
+
+      title: 'For creators, by creators',
+      description: `The Warp team are developers, designers, and editors. We solved our own frustrations and made it available to you, too!`,
+      ctaMessage: 'Download Audio MP3',
+      threeScene: 'video',
+    },
+    {
+      id: 'hoverCard3',
+      image: hoverCardImg3,
+      title: 'Free bird',
+      description: `No hidden fees. No ads. No subscriptions. The free version of Warp is identical, fast, and as fun to use as the premium version.`,
+      ctaMessage: 'Download Audio MP3',
+      threeScene: 'bundle',
+      expanded: false,
+    },
+  ],
+  getCardID: (card: object) => {},
+  toggleUserInteracting: () => {},
 });
 
-export const ProductsContextProvider = (props) => {
-  const [audioCardExpanded, setAudioCardExpanded] = useState(true);
+export function ProductsGridCardsContextProvider(props: any) {
+  const [userInteracting, setUserInteracting] = useState(false);
+  const [audioCardExpanded, setAudioCardExpanded] = useState(false);
   const [videoCardExpanded, setVideoCardExpanded] = useState(false);
-  const [warpstagramCardExpanded, setWarpstagramCardExpanded] = useState(false);
   const [bundleCardExpanded, setBundleCardExpanded] = useState(false);
-  const [isViewingAudio1, setIsViewingAudio1] = useState(true);
-  const [isViewingAudio2, setIsViewingAudio2] = useState(true);
-  const [isViewingVideo1, setIsViewingVideo1] = useState(true);
-  const [isViewingVideo2, setIsViewingVideo2] = useState(true);
-  const [isViewingWarpstagram1, setIsViewingWarpstagram1] = useState(true);
-  const [isViewingWarpstagram2, setIsViewingWarpstagram2] = useState(true);
-  const [isViewingBundle, setIsViewingBundle] = useState(true);
-  const [isPurchasingAudio1, setIsPurchasingAudio1] = useState(false);
-  const [isPurchasingAudio2, setIsPurchasingAudio2] = useState(false);
-  const [isPurchasingVideo1, setIsPurchasingVideo1] = useState(false);
-  const [isPurchasingVideo2, setIsPurchasingVideo2] = useState(false);
-  const [isPurchasingWarpstagram1, setIsPurchasingWarpstagram1] =
-    useState(false);
-  const [isPurchasingWarpstagram2, setIsPurchasingWarpstagram2] =
-    useState(false);
-  const [isPurchasingBundle, setIsPurchasingBundle] = useState(false);
-  ////
-  const [isViewingProduct1, setIsViewingProduct1] = useState(false);
-  const [isViewingProduct2, setIsViewingProduct2] = useState(false);
-  const [isBuyingProduct1, setIsBuyingProduct1] = useState(false);
-  const [isBuyingProduct2, setIsBuyingProduct2] = useState(false);
-  const disableAllStates = () => {
-    setIsViewingAudio1(false);
-    setIsViewingAudio2(false);
-    setIsViewingVideo1(false);
-    setIsViewingVideo2(false);
-    setIsViewingWarpstagram1(false);
-    setIsViewingWarpstagram2(false);
-    setIsViewingBundle(false);
+  const cardsData = [
+    {
+      id: 'audioPersonalEdition',
+      image: hoverCardImg1,
+      // title: 'Download at the speed of thought',
+      title: 'Audio Personal Edition',
+      description: `Built-in, lightning-fast Chrome browser side by side with all your downloads in one place, with a dual search to simultaneously find what you want - online and offline.`,
+      alt: '',
+      ctaMessage: 'Go to checkout',
+      threeScene: 'audio',
+    },
+    {
+      id: 'videoPersonalEdition',
+      threeScene: 'video',
+      expanded: false,
 
-    setIsPurchasingAudio1(false);
-    setIsPurchasingAudio2(false);
-    setIsPurchasingVideo1(false);
-    setIsPurchasingVideo2(false);
-    setIsPurchasingWarpstagram1(false);
-    setIsPurchasingWarpstagram2(false);
-    setIsPurchasingBundle(false);
-  };
+      image: hoverCardImg2,
+      title: 'Video Personal Edition',
+      description: `The Warp team are developers, designers, and editors. We solved our own frustrations and made it available to you, too!`,
+      ctaMessage: 'Go to checkout',
+    },
+    {
+      id: 'bundlePersonalEdition',
+      threeScene: 'bundle',
+      expanded: false,
 
-  const collapseAllCards = () => {
-    setAudioCardExpanded(false);
-    setVideoCardExpanded(false);
-    setWarpstagramCardExpanded(false);
-    setBundleCardExpanded(false);
+      image: hoverCardImg3,
+      title: 'Bundle Personal Edition',
+      description: `The Warp team are developers, designers, and editors. We solved our own frustrations and made it available to you, too!`,
+      ctaMessage: 'Go to checkout',
+    },
+  ];
+  const getCardID = (id) => {
+    // console.log(id);
   };
-  const expandAudioCard = () => {
-    collapseAllCards();
-    setAudioCardExpanded(true);
-  };
-  const expandVideoCard = () => {
-    collapseAllCards();
-    setVideoCardExpanded(true);
-  };
-  const expandWarpstagramCard = () => {
-    collapseAllCards();
-    setWarpstagramCardExpanded(true);
-  };
-  const expandBundleCard = () => {
-    collapseAllCards();
-    setBundleCardExpanded(true);
+  const toggleUserInteracting = () => {
+    setUserInteracting((prevState) => !prevState);
   };
   return (
-    <ProductsContext.Provider
+    <ProductsGridCardsContext.Provider
       value={{
-        audioCardExpanded: audioCardExpanded,
-        videoCardExpanded: videoCardExpanded,
-        warpstagramCardExpanded: warpstagramCardExpanded,
-        bundleCardExpanded: bundleCardExpanded,
-
-        expandAudioCard: expandAudioCard,
-        expandVideoCard: expandVideoCard,
-        expandWarpstagramCard: expandWarpstagramCard,
-        expandBundleCard: expandBundleCard,
-
-        isViewingAudio1: isViewingAudio1,
-        isViewingAudio2: isViewingAudio2,
-        isViewingVideo1: isViewingVideo1,
-        isViewingVideo2: isViewingVideo2,
-        isViewingWarpstagram1: isViewingWarpstagram1,
-        isViewingWarpstagram2: isViewingWarpstagram2,
-        isViewingBundle: isViewingBundle,
-        isPurchasingAudio1: isPurchasingAudio1,
-        isPurchasingAudio2: isPurchasingAudio2,
-        isPurchasingVideo1: isPurchasingVideo1,
-        isPurchasingVideo2: isPurchasingVideo2,
-        isPurchasingWarpstagram1: isPurchasingWarpstagram1,
-        isPurchasingWarpstagram2: isPurchasingWarpstagram2,
-        isPurchasingBundle: isPurchasingBundle,
-
-        isViewingProduct1: isViewingProduct1,
-        isViewingProduct2: isViewingProduct2,
-        isBuyingProduct1: isBuyingProduct1,
-        isBuyingProduct2: isBuyingProduct2,
+        cardsData,
+        audioCardExpanded,
+        videoCardExpanded,
+        bundleCardExpanded,
+        getCardID,
+        toggleUserInteracting,
       }}
     >
       {props.children}
-    </ProductsContext.Provider>
+    </ProductsGridCardsContext.Provider>
   );
-};
+}
 
-export default ProductsContext;
+export default ProductsGridCardsContext;
+
+// const ProductsGridCardsContext = React.createContext({
+//   audioCardExpanded: false,
+//   videoCardExpanded: false,
+//   warpstagramCardExpanded: false,
+//   bundleCardExpanded: true,
+//   isViewingAudio1: false,
+//   isViewingAudio2: false,
+//   isViewingVideo1: false,
+//   isViewingVideo2: false,
+//   isViewingWarpstagram1: false,
+//   isViewingWarpstagram2: false,
+//   isViewingBundle: false,
+//   isPurchasingAudio1: false,
+//   isPurchasingAudio2: false,
+//   isPurchasingVideo1: false,
+//   isPurchasingVideo2: false,
+//   isPurchasingWarpstagram1: false,
+//   isViewingProduct1: false,
+//   isViewingProduct2: false,
+//   isBuyingProduct1: false,
+//   isBuyingProduct2: false,
+
+//   isPurchasingWarpstagram2: false,
+//   isPurchasingBundle: false,
+//   expandAudioCard: () => {},
+//   expandVideoCard: () => {},
+//   expandWarpstagramCard: () => {},
+//   expandBundleCard: () => {},
+//   cardsData: [],
+// });

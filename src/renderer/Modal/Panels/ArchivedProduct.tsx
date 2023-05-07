@@ -4,7 +4,7 @@
 import { useContext } from 'react';
 import racingIcon from '../../Products/racing.svg';
 import downloadsIcon from '../../Global/status.svg';
-import ProductsContext from '../../../store/productsContext';
+import ProductsContext from '../../../store/archivedProductsContext';
 import './Product.scss';
 
 const Product = (props: object) => {
