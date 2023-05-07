@@ -119,11 +119,24 @@ $mouse-y: 0px;
     border: 3px solid red;
 }
 
+@keyframes disappear {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        display: none;
+    }
+}
+
 .card__collapsed {
     // width: 0% !important;
     // border: 3px solid green;
     flex: 0 !important;
     // flex: 10;
+    // animation: disappear 0.1s ease-in-out forwards;
+    // animation-delay: 0.1s;
+    display: none;
     // border: 3px solid red;
 }
 
