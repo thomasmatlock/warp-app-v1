@@ -13,7 +13,7 @@ import BoxScene from './BoxScene';
 import Audio from './Audio';
 import Video from './Video';
 import Bundle from './Bundle';
-import Model from './Model';
+import VideoModel from './VideoModel';
 
 // extend Canvas
 extend({ Canvas });
@@ -28,9 +28,9 @@ export default function Scene(props: any) {
     <div className={styles.scene}>
       {/* {threeScene === 'audioPersonalEdition' && <Ballpit />} */}
       {/* {threeScene === 'audioPersonalEdition' && <BoxScene />} */}
-      {/* {threeScene === 'audioPersonalEdition' && <Model />} */}
       {threeScene === 'audioPersonalEdition' && <Audio />}
-      {threeScene === 'videoPersonalEdition' && <Video />}
+      {/* {threeScene === 'videoPersonalEdition' && <Video />} */}
+      {threeScene === 'videoPersonalEdition' && <VideoModel />}
       {threeScene === 'bundlePersonalEdition' && <Bundle />}
     </div>
   );

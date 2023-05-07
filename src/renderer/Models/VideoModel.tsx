@@ -18,7 +18,10 @@ const Model = () => {
   // 'https://github.com/thomasmatlock/react-next-three-fiber-template/raw/main/public/video.glb';
   // 'https://github.com/thomasmatlock/react-next-three-fiber-template/blob/main/public/video.glb';
   //
-  const modelURL = 'https://modelviewer.dev/shared-assets/models/Astronaut.glb';
+  // const modelURL = 'https://modelviewer.dev/shared-assets/models/Astronaut.glb';
+  const modelURL =
+    // 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Sponza/glTF/Sponza.gltf';
+    'https://raw.githubusercontent.com/thomasmatlock/react-next-three-fiber-template/main/public/video.gltf';
   // const { scene } = useGLTF(modelURL);
   // const modelURL = `/Users/nikkirincon/Documents/GitHub/warp-app/assets/video.glb`;
   const { scene } = useGLTF(modelURL);
@@ -48,7 +51,7 @@ export default function Scene(props: any) {
       camera={{
         position: [-3, 2, 5],
         // fov: 90,
-        zoom: 100,
+        zoom: 75,
         near: 0.1,
         far: 1000,
       }}
@@ -56,7 +59,7 @@ export default function Scene(props: any) {
       <OrbitControls
         makeDefault
         enableDamping
-        dampingFactor={1}
+        dampingFactor={0.15}
         autoRotate
         autoRotateSpeed={-1}
         enablePan={false}
