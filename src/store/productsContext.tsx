@@ -15,9 +15,11 @@ import hoverCardImg3 from '../renderer/Global/GridCards/hoverCardImg3.png';
 const ProductsGridCardsContext = createContext({
   audioCardExpanded: false,
   videoCardExpanded: false,
+  warpstagramCardExpanded: false,
   bundleCardExpanded: false,
   audioCardCollapsed: false,
   videoCardCollapsed: false,
+  warpstagramCardCollapsed: false,
   bundleCardCollapsed: false,
   cardsData: [
     {
@@ -50,9 +52,12 @@ export function ProductsGridCardsContextProvider(props: any) {
   const [userInteracting, setUserInteracting] = useState(false);
   const [audioCardExpanded, setAudioCardExpanded] = useState(false);
   const [videoCardExpanded, setVideoCardExpanded] = useState(false);
+  const [warpstagramCardExpanded, setWarpstagramCardExpanded] = useState(false);
   const [bundleCardExpanded, setBundleCardExpanded] = useState(false);
   const [audioCardCollapsed, setAudioCardCollapsed] = useState(false);
   const [videoCardCollapsed, setVideoCardCollapsed] = useState(false);
+  const [warpstagramCardCollapsed, setWarpstagramCardCollapsed] =
+    useState(false);
   const [bundleCardCollapsed, setBundleCardCollapsed] = useState(false);
   const cardsData = [
     {
@@ -105,49 +110,70 @@ export function ProductsGridCardsContextProvider(props: any) {
     },
     {
       id: 'videoPersonalEdition',
-      expanded: videoCardExpanded,
-      image: hoverCardImg2,
+      image: hoverCardImg3,
       title: 'Video Personal Edition',
       description: `The Warp team are developers, designers, and editors. We solved our own frustrations and made it available to you, too!`,
       ctaMessage: 'Go to checkout',
+      expanded: videoCardExpanded,
       collapsed: videoCardCollapsed,
-      threeScene: 'videoPersonalEdition',
+      threeScene: 'bundlePersonalEdition',
       // threeModelURL: audioThreeModelURL,
+
       features: [
         {
           id: 'videoFeature1',
+          title: 'Bundle Feature 1',
+          description: `Everything in the Audio and Video editions, plus the ability to download entire playlists and channels from YouTub`,
+          image: racingIcon,
+        },
+      ],
+    },
+    {
+      id: 'warpstagramPersonalEdition',
+      expanded: warpstagramCardExpanded,
+      image: hoverCardImg2,
+      title: 'Warpstagram Personal Edition',
+      description: `The Warp team are developers, designers, and editors. We solved our own frustrations and made it available to you, too!`,
+      ctaMessage: 'Go to checkout',
+      collapsed: warpstagramCardCollapsed,
+      threeScene: 'warpstagramPersonalEdition',
+      // threeModelURL: audioThreeModelURL,
+      features: [
+        {
+          id: 'warpstagramFeature1',
           title: 'Simultaneous downloads',
           description: `Triple Speed: up to 3 concurrent downloads at once.`,
           image: racingIcon,
         },
         {
-          id: 'videoFeature2',
+          id: 'warpstagramFeature2',
           title: 'Multiple Formats',
           description: `Download videos in MP4 and MKV.`,
           image: playlistIcon,
           inverted: true,
         },
         {
-          id: 'videoFeature3',
+          id: 'warpstagramFeature3',
           title: 'Simultaneous downloads',
           description: `Triple Speed: up to 3 concurrent downloads at once.`,
           image: racingIcon,
         },
         {
-          id: 'videoFeature4',
+          id: 'warpstagramFeature4',
           title: 'Multiple Formats',
           description: `Download videos in MP4 and MKV.`,
           image: playlistIcon,
           inverted: true,
         },
         {
-          id: 'videoFeature5',
+          id: 'warpstagramFeature5',
           title: 'Simultaneous downloads',
           description: `Triple Speed: up to 3 concurrent downloads at once.`,
           image: racingIcon,
         },
       ],
     },
+
     {
       id: 'bundlePersonalEdition',
       image: hoverCardImg3,
@@ -213,9 +239,11 @@ export function ProductsGridCardsContextProvider(props: any) {
         cardsData,
         audioCardExpanded,
         videoCardExpanded,
+        warpstagramCardExpanded,
         bundleCardExpanded,
         audioCardCollapsed,
         videoCardCollapsed,
+        warpstagramCardCollapsed,
         bundleCardCollapsed,
         getCardID,
         goBackHandler,

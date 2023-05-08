@@ -6,7 +6,7 @@ import { useContext, useState } from 'react';
 import CTAProduct from 'renderer/components/CTA/CTAProduct';
 import CTAProductBack from 'renderer/components/CTA/CTAProductBack';
 import ProductTitle from './components/ProductTitle';
-import ProductCheckout from './components/ProductCheckout';
+import ProductCheckout from './Checkout/ProductCheckout';
 import ProductSubtitle from './components/ProductSubtitle';
 import ProductsContext from '../../store/productsContext';
 import ProductFeaturesList from './ProductFeaturesList';
