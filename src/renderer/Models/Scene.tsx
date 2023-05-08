@@ -10,10 +10,10 @@ import { Suspense, useRef } from 'react';
 import { Canvas, useFrame, extend } from '@react-three/fiber';
 import styles from './Scene.module.scss';
 import BoxScene from './BoxScene';
-import Audio from './Audio';
-import Video from './Video';
-import Bundle from './Bundle';
-import VideoModel from './VideoModel';
+import Audio from './AudioProductScene';
+import Video from './VideoProductScene';
+import Bundle from './BundleProductScene';
+import VideoModel from './VideoProductModel';
 
 // extend Canvas
 extend({ Canvas });

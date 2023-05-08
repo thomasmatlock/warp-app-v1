@@ -14,7 +14,7 @@ import iconGeneralDark from '../../Global/gear.svg';
 import iconLicenses from '../../Global/rocket.svg';
 import IconAuths from '../../Global/auths1_white.svg';
 import ThemeContext from '../../../store/themeContext';
-import Scene from '../../Models/VideoModel';
+import Scene from '../../Models/VideoProductModel';
 
 import './ModalPanelNav.scss';
 
