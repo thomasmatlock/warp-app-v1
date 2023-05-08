@@ -66,6 +66,9 @@ export default function Product(props: any) {
   const cardContentStyle = expanded
     ? styles.card_content__expanded
     : styles.card_content;
+  const cardTitleStyle = expanded
+    ? styles.card_info_title__title__expanded
+    : styles.card_info_title__title;
   return (
     <div
       className={expanded ? activeCardClass : cardClass}
@@ -78,7 +81,7 @@ export default function Product(props: any) {
             {/* <img className={styles.card_image} src={image} alt="" /> */}
             <Scene threeScene={threeScene} expanded={expanded} />
             <div className={styles.card_info_title}>
-              <h3 className={styles.card_info_title__title}>{title}</h3>
+              <h3 className={cardTitleStyle}>{title}</h3>
               <h4 className={styles.card_info_title__subtitle}>
                 {description}
               </h4>
@@ -87,11 +90,12 @@ export default function Product(props: any) {
             <CTAProduct
               message={ctaMessage}
               clickHandler={clickHandler}
-              collapsed={collapsed}
-            />
+              expanded={expanded}
+            />{' '}
           </div>
         </div>
       </div>
+      {expanded && <div className={styles.card_checkout}>checkout</div>}
     </div>
   );
 }

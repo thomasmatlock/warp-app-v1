@@ -62,6 +62,7 @@ function Borders() {
 export default function Ballpit() {
   return (
     <Canvas
+      // frameloop="demand"
       shadows
       gl={{
         stencil: false,

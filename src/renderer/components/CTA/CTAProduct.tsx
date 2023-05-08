@@ -5,10 +5,11 @@ import styles from './CTAProduct.module.scss';
 
 export default function CTAProduct(props: any) {
   // console.log(props);
-  const { message, clickHandler, collapsed } = props;
+  const { message, clickHandler, expanded } = props;
+  const ctaStyle = expanded ? styles.cta_product__expanded : styles.cta_product;
 
   return (
-    <div className={styles.cta_product} onClick={clickHandler}>
+    <div className={ctaStyle} onClick={clickHandler}>
       <p className={styles.cta_text}>{message}</p>
     </div>
   );
