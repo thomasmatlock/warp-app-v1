@@ -110,13 +110,13 @@ export function ProductsGridCardsContextProvider(props: any) {
     },
     {
       id: 'videoPersonalEdition',
-      image: hoverCardImg3,
+      image: hoverCardImg2,
       title: 'Video Personal Edition',
       description: `The Warp team are developers, designers, and editors. We solved our own frustrations and made it available to you, too!`,
       ctaMessage: 'Go to checkout',
       expanded: videoCardExpanded,
       collapsed: videoCardCollapsed,
-      threeScene: 'bundlePersonalEdition',
+      threeScene: 'videoPersonalEdition',
       // threeModelURL: audioThreeModelURL,
 
       features: [
@@ -131,7 +131,7 @@ export function ProductsGridCardsContextProvider(props: any) {
     {
       id: 'warpstagramPersonalEdition',
       expanded: warpstagramCardExpanded,
-      image: hoverCardImg2,
+      image: hoverCardImg3,
       title: 'Warpstagram Personal Edition',
       description: `The Warp team are developers, designers, and editors. We solved our own frustrations and made it available to you, too!`,
       ctaMessage: 'Go to checkout',
@@ -198,11 +198,19 @@ export function ProductsGridCardsContextProvider(props: any) {
   const uncollapseAllCards = () => {
     setAudioCardCollapsed(false);
     setVideoCardCollapsed(false);
+    setWarpstagramCardCollapsed(false);
     setBundleCardCollapsed(false);
+  };
+  const collapseAllCards = () => {
+    setAudioCardCollapsed(true);
+    setVideoCardCollapsed(true);
+    setWarpstagramCardCollapsed(true);
+    setBundleCardCollapsed(true);
   };
   const disableAllExpandedCards = () => {
     setAudioCardExpanded(false);
     setVideoCardExpanded(false);
+    setWarpstagramCardExpanded(false);
     setBundleCardExpanded(false);
   };
   const getCardID = (id: string) => {
@@ -213,17 +221,26 @@ export function ProductsGridCardsContextProvider(props: any) {
     if (id === 'audioPersonalEdition') {
       setAudioCardExpanded(true);
       setVideoCardCollapsed(true);
+      setWarpstagramCardCollapsed(true);
       setBundleCardCollapsed(true);
     }
     if (id === 'videoPersonalEdition') {
       setVideoCardExpanded(true);
       setAudioCardCollapsed(true);
+      setWarpstagramCardCollapsed(true);
+      setBundleCardCollapsed(true);
+    }
+    if (id === 'warpstagramPersonalEdition') {
+      setWarpstagramCardExpanded(true);
+      setAudioCardCollapsed(true);
+      setVideoCardCollapsed(true);
       setBundleCardCollapsed(true);
     }
     if (id === 'bundlePersonalEdition') {
       setBundleCardExpanded(true);
       setAudioCardCollapsed(true);
       setVideoCardCollapsed(true);
+      setWarpstagramCardCollapsed(true);
     }
   };
   const goBackHandler = () => {
