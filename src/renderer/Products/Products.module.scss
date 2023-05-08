@@ -113,6 +113,18 @@ $mouse-y: 0px;
     }
 }
 
+// first card
+.card:nth-child(1) {
+    // flex: 1.25;
+    margin-left: 0rem;
+}
+
+// last card
+.card:nth-child(3) {
+    margin-right: 0rem;
+}
+
+// .card:nth-child(1)
 .card__active {
     // width: 100%;
     // flex: 10;
@@ -158,7 +170,9 @@ $mouse-y: 0px;
 
 .card__collapsed {
     animation: disappear 0.25s ease-in-out forwards;
-    margin: 0 -0.25rem;
+    margin: 0 -0.4rem;
+    // padding: 0px;
+    // margin: 0rem;
 }
 
 .card:hover .card_image {
@@ -308,7 +322,7 @@ $mouse-y: 0px;
     height: 100%;
     // gap: 10px;
     flex-direction: column;
-    padding: 0px 20px;
+    // padding: 0px 20px;
     // padding: 1rem;
     // border: 1px solid green;
     transition: all $transitionSpeed ease-in-out;
