@@ -59,7 +59,7 @@ export default function Scene(props: any) {
       camera={{
         position: [-3, 2, 5],
         // fov: 90,
-        zoom: 100,
+        zoom: 50,
         near: 0.1,
         far: 1000,
       }}
