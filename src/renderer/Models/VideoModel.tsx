@@ -22,9 +22,22 @@ const Model = () => {
   const modelURL =
     // 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Sponza/glTF/Sponza.gltf';
     'https://raw.githubusercontent.com/thomasmatlock/react-next-three-fiber-template/main/public/video.gltf';
+  // 'https://raw.githubusercontent.com/thomasmatlock/react-next-three-fiber-template/main/public/street sign.gltf';
+  // 'https://raw.githubusercontent.com/thomasmatlock/react-next-three-fiber-template/main/public/nzxt tower.gltf';
+  // 'https://raw.githubusercontent.com/thomasmatlock/react-next-three-fiber-template/main/public/warp scene.gltf';
   // const { scene } = useGLTF(modelURL);
   // const modelURL = `/Users/nikkirincon/Documents/GitHub/warp-app/assets/video.glb`;
   const { scene } = useGLTF(modelURL);
+  console.log(scene);
+  // traverse the children
+  scene.traverse((child) => {
+    // console.log(child);
+    if (child.isMesh) {
+      child.castShadow = true;
+      child.receiveShadow = true;
+    }
+  });
+
   return <primitive object={scene} />;
 };
 
@@ -37,7 +50,7 @@ export default function Scene(props: any) {
   function EveryFrame() {
     useFrame((state) => {
       //  handleResize();
-      console.log(state.camera.zoom);
+      // console.log(state.camera.zoom);
       // rotate camera around the origin
       // state.camera.position.y = Math.sin(state.clock.getElapsedTime()) * 0.1;
     });
@@ -57,9 +70,10 @@ export default function Scene(props: any) {
       }}
       orthographic
       camera={{
-        position: [-3, 2, 5],
+        position: [-3, 1, 5],
         // fov: 90,
-        zoom: 50,
+        zoom: 50, // video
+        // zoom: 250,
         near: 0.1,
         far: 1000,
       }}
@@ -69,19 +83,31 @@ export default function Scene(props: any) {
         enableDamping
         dampingFactor={0.1}
         autoRotate
-        autoRotateSpeed={-1}
+        autoRotateSpeed={-0.5}
         enablePan={false}
-        enableZoom={false}
+        // enableZoom={false}
         target={[0, 1, 0]}
       />
-      <ambientLight intensity={0.1} />
+      {/* <ambientLight intensity={0.1} />
       <directionalLight
         intensity={1}
         castShadow
         shadow-mapSize-height={512}
         shadow-mapSize-width={512}
         position={[0, 10, 10]}
-      />
+      /> */}
+      <ambientLight intensity={1} />
+      {/* <directionalLight position={[-10, -10, -5]} intensity={1} /> */}
+      {/* <directionalLight
+        castShadow
+        intensity={1}
+        position={[50, 50, 25]}
+        shadow-mapSize={[256, 256]}
+        shadow-camera-left={-10}
+        shadow-camera-right={10}
+        shadow-camera-top={10}
+        shadow-camera-bottom={-10}
+      /> */}
 
       <fog attach="fog" args={['white', 0, 40]} />
 

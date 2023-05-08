@@ -29,8 +29,8 @@ export default function Scene(props: any) {
       {/* {threeScene === 'audioPersonalEdition' && <Ballpit />} */}
       {/* {threeScene === 'audioPersonalEdition' && <BoxScene />} */}
       {threeScene === 'audioPersonalEdition' && <Audio />}
-      {/* {threeScene === 'videoPersonalEdition' && <Video />} */}
-      {threeScene === 'videoPersonalEdition' && <VideoModel />}
+      {threeScene === 'videoPersonalEdition' && <Video />}
+      {/* {threeScene === 'videoPersonalEdition' && <VideoModel />} */}
       {threeScene === 'bundlePersonalEdition' && <Bundle />}
     </div>
   );
