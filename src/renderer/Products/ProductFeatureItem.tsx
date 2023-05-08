@@ -26,10 +26,7 @@ export default function ProductFeaturesItem(props: ProductFeaturesItemProps) {
         <div className={styles.product_description__list__item__text__title}>
           {title}
         </div>
-        <div className={descriptionClass}>
-          {description}
-          {/* hello */}
-        </div>
+        <div className={descriptionClass}>{description}</div>
       </div>
     </li>
   );

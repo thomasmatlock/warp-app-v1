@@ -18,11 +18,12 @@ import VideoModel from './VideoModel';
 // extend Canvas
 extend({ Canvas });
 
-export default function Scene(props: any) {
-  const { threeScene } = props;
-  // window.electron.ipcRenderer.on('global', (arg) => {
-  //   console.log(arg);
-  // });
+type SceneProps = {
+  threeScene: string;
+  expanded: boolean;
+};
+export default function Scene(props: SceneProps) {
+  const { threeScene, expanded } = props;
 
   return (
     <div className={styles.scene}>

@@ -63,20 +63,25 @@ export default function Product(props: any) {
     // cardClass = expanded ? activeCardClass : regularCardClass;
   };
   // cardClass = collapsed ? collapsedCardClass : regularCardClass;
+  const cardContentStyle = expanded
+    ? styles.card_content__expanded
+    : styles.card_content;
   return (
     <div
       className={expanded ? activeCardClass : cardClass}
       id={id}
       // style={displayStyle}
     >
-      <div className={styles.card_content}>
+      <div className={cardContentStyle}>
         <div className={styles.card_info_wrapper}>
           <div className={styles.card_info}>
             {/* <img className={styles.card_image} src={image} alt="" /> */}
-            <Scene threeScene={threeScene} />
+            <Scene threeScene={threeScene} expanded={expanded} />
             <div className={styles.card_info_title}>
-              <h3>{title}</h3>
-              <h4>{description}</h4>
+              <h3 className={styles.card_info_title__title}>{title}</h3>
+              <h4 className={styles.card_info_title__subtitle}>
+                {description}
+              </h4>
             </div>
             <ProductFeaturesList features={features} expanded={expanded} />
             <CTAProduct
