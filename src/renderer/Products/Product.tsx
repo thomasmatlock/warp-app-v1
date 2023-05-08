@@ -4,6 +4,7 @@ import exp from 'constants';
 import { useContext, useState } from 'react';
 // import HorizontalCardsContextProvider from '../../../store/gridCardsContext';
 import CTAProduct from 'renderer/components/CTA/CTAProduct';
+import CTAProductBack from 'renderer/components/CTA/CTAProductBack';
 import ProductsContext from '../../store/productsContext';
 import ProductFeaturesList from './ProductFeaturesList';
 
@@ -11,11 +12,6 @@ import styles from './Products.module.scss';
 import Scene from '../Models/Scene';
 
 export default function Product(props: any) {
-  // window.electron.ipcRenderer.on('global', (arg) => {
-  //   console.log(arg);
-  // });
-  // console.log(props);
-
   const {
     id,
     image,
@@ -27,22 +23,10 @@ export default function Product(props: any) {
     collapsed,
     threeScene,
   } = props;
-  // console.log(expanded);
 
   const productsCtx = useContext(ProductsContext);
-  console.log(
-    productsCtx.audioCardExpanded,
-    productsCtx.videoCardExpanded,
-    productsCtx.bundleCardExpanded
-  );
+  const ctaBackMessage = 'Back';
 
-  const mouseEnterHandler = (e: any) => {
-    // productsCtx.toggleUserInteracting();
-    // productsCtx.getCardID(id);
-  };
-  const mouseLeaveHandler = (e: any) => {
-    // productsCtx.toggleUserInteracting();
-  };
   // const activeCardClass = [styles.card__active, styles.card].join(' ');
   const regularCardClass = [styles.card].join(' ');
   const activeCardClass = [styles.card__active, styles.card].join(' ');
@@ -62,6 +46,10 @@ export default function Product(props: any) {
 
     // cardClass = expanded ? activeCardClass : regularCardClass;
   };
+  const goBackHandler = (e: any) => {
+    productsCtx.goBackHandler();
+  };
+
   // cardClass = collapsed ? collapsedCardClass : regularCardClass;
   const cardContentStyle = expanded
     ? styles.card_content__expanded
@@ -91,7 +79,12 @@ export default function Product(props: any) {
               message={ctaMessage}
               clickHandler={clickHandler}
               expanded={expanded}
-            />{' '}
+            />
+            <CTAProductBack
+              message={ctaBackMessage}
+              clickHandler={goBackHandler}
+              expanded={expanded}
+            />
           </div>
         </div>
       </div>

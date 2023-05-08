@@ -42,6 +42,7 @@ const ProductsGridCardsContext = createContext({
     },
   ],
   getCardID: (id: string) => {},
+  goBackHandler: () => {},
   // toggleUserInteracting: () => {},
 });
 
@@ -197,6 +198,10 @@ export function ProductsGridCardsContextProvider(props: any) {
       setVideoCardCollapsed(true);
     }
   };
+  const goBackHandler = () => {
+    disableAllExpandedCards();
+    uncollapseAllCards();
+  };
   const toggleUserInteracting = () => {
     // setUserInteracting((prevState) => !prevState);
   };
@@ -211,6 +216,7 @@ export function ProductsGridCardsContextProvider(props: any) {
         videoCardCollapsed,
         bundleCardCollapsed,
         getCardID,
+        goBackHandler,
         // toggleUserInteracting,
       }}
     >
