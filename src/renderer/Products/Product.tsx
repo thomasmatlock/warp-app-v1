@@ -5,6 +5,8 @@ import { useContext, useState } from 'react';
 // import HorizontalCardsContextProvider from '../../../store/gridCardsContext';
 import CTAProduct from 'renderer/components/CTA/CTAProduct';
 import CTAProductBack from 'renderer/components/CTA/CTAProductBack';
+import ProductTitle from './ProductTitle';
+import ProductSubtitle from './ProductSubtitle';
 import ProductsContext from '../../store/productsContext';
 import ProductFeaturesList from './ProductFeaturesList';
 
@@ -68,12 +70,12 @@ export default function Product(props: any) {
           <div className={styles.card_info}>
             {/* <img className={styles.card_image} src={image} alt="" /> */}
             <Scene threeScene={threeScene} expanded={expanded} />
-            <div className={styles.card_info_title}>
-              <h3 className={cardTitleStyle}>{title}</h3>
-              <h4 className={styles.card_info_title__subtitle}>
-                {description}
-              </h4>
-            </div>
+            {/* <div className={styles.card_info_title}> */}
+            {/* <h3 className={cardTitleStyle}>{title}</h3> */}
+            <ProductTitle title={title} />
+            {/* <h4 className={styles.card_info_title__subtitle}>{description}</h4> */}
+            <ProductSubtitle description={description} />
+            {/* </div> */}
             <ProductFeaturesList features={features} expanded={expanded} />
             <CTAProduct
               message={ctaMessage}

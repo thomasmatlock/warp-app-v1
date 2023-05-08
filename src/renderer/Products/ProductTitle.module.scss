@@ -1,0 +1,22 @@
+@import '../Global/Animations.scss';
+.card_info_title__title,
+.card_info_title__title__expanded {
+    color: white;
+    text-align: center;
+    font-family: 'GreycliffCF-Bold', sans-serif !important;
+    animation: fadeIn 1s ease-in-out;
+    // animation: flickerText 2s ease-in-out;
+    color: white;
+    transition: all 0.25s ease-in-out;
+    // z-index: 99 !important;
+    // border: 1px solid red;
+    // user-select: none;
+    margin: 0 1rem;
+    margin-top: 1rem;
+    // text-shadow: #005eff 0px 0px 10px;
+    // padding-top: 2rem;
+}
+
+.card_info_title__title__expanded {
+    // max-width: 50%;
+}
