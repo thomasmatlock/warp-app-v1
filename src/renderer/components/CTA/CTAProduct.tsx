@@ -5,7 +5,7 @@ import styles from './CTAProduct.module.scss';
 
 export default function CTAProduct(props: any) {
   // console.log(props);
-  const { message, clickHandler } = props;
+  const { message, clickHandler, collapsed } = props;
 
   return (
     <div className={styles.cta_product} onClick={clickHandler}>

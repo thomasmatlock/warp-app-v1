@@ -1,7 +1,7 @@
 // import Link from 'next/link';
 // import Image from 'next/image';
 import exp from 'constants';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 // import HorizontalCardsContextProvider from '../../../store/gridCardsContext';
 import CTAProduct from 'renderer/components/CTA/CTAProduct';
 import ProductsContext from '../../store/productsContext';
@@ -30,7 +30,11 @@ export default function Product(props: any) {
   // console.log(expanded);
 
   const productsCtx = useContext(ProductsContext);
-  // console.log(productsCtx);
+  console.log(
+    productsCtx.audioCardExpanded,
+    productsCtx.videoCardExpanded,
+    productsCtx.bundleCardExpanded
+  );
 
   const mouseEnterHandler = (e: any) => {
     // productsCtx.toggleUserInteracting();
@@ -40,17 +44,31 @@ export default function Product(props: any) {
     // productsCtx.toggleUserInteracting();
   };
   // const activeCardClass = [styles.card__active, styles.card].join(' ');
+  const regularCardClass = [styles.card].join(' ');
+  const activeCardClass = [styles.card__active, styles.card].join(' ');
+  const collapsedCardClass = [styles.card__collapsed, styles.card].join(' ');
+  let cardClass = regularCardClass;
+  cardClass = collapsed ? collapsedCardClass : regularCardClass;
+  // let displayStyle = collapsed ? { display: 'flex' } : { display: 'flex' };
   const clickHandler = (e: any) => {
     productsCtx.getCardID(id);
-  };
-  const regularCardClass = [styles.card].join(' ');
-  const expandedCardClass = [styles.card__active, styles.card].join(' ');
-  const collapsedCardClass = [styles.card__collapsed, styles.card].join(' ');
-  const cardClass = collapsed ? collapsedCardClass : regularCardClass;
-  // cardClass = collapsed ? collapsedCardClass : regularCardClass;
+    // set card class
+    if (expanded) {
+      cardClass = activeCardClass;
+    }
+    if (collapsed) {
+      cardClass = collapsedCardClass;
+    }
 
+    // cardClass = expanded ? activeCardClass : regularCardClass;
+  };
+  // cardClass = collapsed ? collapsedCardClass : regularCardClass;
   return (
-    <div className={cardClass} id={id}>
+    <div
+      className={expanded ? activeCardClass : cardClass}
+      id={id}
+      // style={displayStyle}
+    >
       <div className={styles.card_content}>
         <div className={styles.card_info_wrapper}>
           <div className={styles.card_info}>
@@ -61,7 +79,11 @@ export default function Product(props: any) {
               <h4>{description}</h4>
             </div>
             {/* <ProductFeaturesList features={features} /> */}
-            <CTAProduct message={ctaMessage} clickHandler={clickHandler} />
+            <CTAProduct
+              message={ctaMessage}
+              clickHandler={clickHandler}
+              collapsed={collapsed}
+            />
           </div>
         </div>
       </div>

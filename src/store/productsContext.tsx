@@ -16,6 +16,9 @@ const ProductsGridCardsContext = createContext({
   audioCardExpanded: false,
   videoCardExpanded: false,
   bundleCardExpanded: false,
+  audioCardCollapsed: false,
+  videoCardCollapsed: false,
+  bundleCardCollapsed: false,
   cardsData: [
     {
       id: 'audioPersonalEdition',
@@ -184,6 +187,9 @@ export function ProductsGridCardsContextProvider(props: any) {
         audioCardExpanded,
         videoCardExpanded,
         bundleCardExpanded,
+        audioCardCollapsed,
+        videoCardCollapsed,
+        bundleCardCollapsed,
         getCardID,
         // toggleUserInteracting,
       }}
