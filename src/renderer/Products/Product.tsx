@@ -5,8 +5,8 @@ import { useContext, useState } from 'react';
 // import HorizontalCardsContextProvider from '../../../store/gridCardsContext';
 import CTAProduct from 'renderer/components/CTA/CTAProduct';
 import CTAProductBack from 'renderer/components/CTA/CTAProductBack';
-import ProductTitle from './ProductTitle';
-import ProductSubtitle from './ProductSubtitle';
+import ProductTitle from './components/ProductTitle';
+import ProductSubtitle from './components/ProductSubtitle';
 import ProductsContext from '../../store/productsContext';
 import ProductFeaturesList from './ProductFeaturesList';
 

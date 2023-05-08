@@ -1,8 +1,8 @@
 import React, { useState, useEffect, createContext } from 'react';
-import racingIcon from '../renderer/Products/racing.svg';
+import racingIcon from '../renderer/Products/assets/racing.svg';
 // import playlistIcon from '../renderer/Products/playlistAudio.svg';
-import playlistIcon from '../renderer/Products/playlistVideo.svg';
-import channelIcon from '../renderer/Products/channel.svg';
+import playlistIcon from '../renderer/Products/assets/playlistVideo.svg';
+import channelIcon from '../renderer/Products/assets/channel.svg';
 // import audioThreeModelURL from '../renderer/Global/video.glb';
 // invert svg
 
