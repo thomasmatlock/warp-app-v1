@@ -1,6 +1,6 @@
 @import '../Global/Animations.scss';
-.card_info_title__title,
-.card_info_title__title__expanded {
+.title,
+.title_expanded {
     color: white;
     text-align: center;
     font-family: 'GreycliffCF-Bold', sans-serif !important;
@@ -17,6 +17,6 @@
     // padding-top: 2rem;
 }
 
-.card_info_title__title__expanded {
+.title_expanded {
     // max-width: 50%;
 }
