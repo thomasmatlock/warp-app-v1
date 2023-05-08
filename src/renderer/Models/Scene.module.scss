@@ -3,10 +3,16 @@
     // height: clamp(200px, 200px, 200px);
     // border: 1px solid red;
     // margin-top: 0.5rem;
-    width: calc(100% - 2rem);
-    width: 100%;
-    height: calc(33%);
-    animation: fadeIn 1s ease-in-out;
+    // width: calc(100% - 2rem);
+    width: 100% !important;
+    height: 33%;
+    animation: fadeIn 2s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    // position: absolute;
+    // top: 200px;
     // height: calc(100%);
     // height: 300px;
 }

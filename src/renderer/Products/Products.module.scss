@@ -116,6 +116,8 @@ $mouse-y: 0px;
 .card__active {
     width: 100%;
     // flex: 10;
+    // transform: rotateY(180deg);
+    transition: all 1s ease-in-out;
     border: 3px solid red;
 }
 
@@ -125,18 +127,21 @@ $mouse-y: 0px;
     }
     100% {
         opacity: 0;
+        // transform: rotateY(180deg);
         display: none;
+        flex: 0;
     }
 }
 
 .card__collapsed {
     // width: 0% !important;
     // border: 3px solid green;
-    flex: 0 !important;
     // flex: 10;
-    // animation: disappear 0.1s ease-in-out forwards;
-    // animation-delay: 0.1s;
-    display: none;
+    // animation: disappear 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    animation: disappear 0.25s ease-in-out forwards;
+    // animation-delay: 1s;
+    // flex: 0 !important;
+    // display: none;
     // border: 3px solid red;
 }
 
