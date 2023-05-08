@@ -52,7 +52,7 @@ export default function Product(props: any) {
         ctaMessage={ctaMessage}
         ctaBackMessage={ctaBackMessage}
       />
-      <ProductCheckout expanded={expanded} />
+      {/* <ProductCheckout expanded={expanded} /> */}
     </div>
   );
 }

@@ -233,7 +233,8 @@ $mouse-y: 0px;
     max-height: 35%;
 }
 
-.card_info_wrapper {
+.card_info_wrapper,
+.card_info_wrapper__expanded {
     transition: all $transitionSpeed ease-in-out;
     align-items: center;
     display: flex;
@@ -247,6 +248,11 @@ $mouse-y: 0px;
     flex-direction: column;
     // border: 1px solid red;
     transition: all $transitionSpeed ease-in-out;
+}
+
+.card_info_wrapper__expanded {
+    max-width: 50%;
+    left: 0px;
 }
 
 .card_info {

@@ -53,13 +53,17 @@ export default function Product(props: any) {
     productsCtx.goBackHandler();
   };
 
-  const cardContentStyle = expanded
-    ? styles.card_content__expanded
-    : styles.card_content;
+  // const cardContentStyle = expanded
+  //   ? styles.card_content__expanded
+  //   : styles.card_content;
+  const cardContentStyle = expanded ? styles.card_content : styles.card_content;
+  const cardWrapperStyle = expanded
+    ? styles.card_info_wrapper__expanded
+    : styles.card_info_wrapper;
 
   return (
     <div id={id} className={cardContentStyle}>
-      <div className={styles.card_info_wrapper}>
+      <div className={cardWrapperStyle}>
         <div className={styles.card_info}>
           {/* <img className={styles.card_image} src={image} alt="" /> */}
           <Scene threeScene={threeScene} expanded={expanded} />
@@ -78,6 +82,7 @@ export default function Product(props: any) {
           />
         </div>
       </div>
+      <ProductCheckout expanded={expanded} />
     </div>
   );
 }
