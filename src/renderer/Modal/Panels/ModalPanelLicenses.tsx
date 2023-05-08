@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 import './ModalPanel.scss';
 import Cards from './Cards';
-import Products from '../../Products/Products';
+import Products from '../../Products/ProductsList';
 
 const ModalPanelLicenses = () => {
   return (

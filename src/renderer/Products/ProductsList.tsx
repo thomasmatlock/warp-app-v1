@@ -1,27 +1,14 @@
 import { useContext } from 'react';
 import styles from './Products.module.scss';
 
-import Product from './Product';
+import Product from './ProductItem';
 
-// import HoverCardsContext from '../../../store/gridCardsContext';
 import ProductsContext from '../../store/productsContext';
 
 export default function Products(props: any) {
   const productsCtx = useContext(ProductsContext);
-  // console.log(productsCtx);
 
-  // window.electron.ipcRenderer.on('global', (arg) => {
-  //   console.log(arg);
-  // });
-  // console.log(productsCtx.cardsData);
   const items = productsCtx.cardsData;
-  // set active class
-  const mouseEnterHandler = (e: any) => {
-    // productsCtx.toggleUserInteracting();
-  };
-  const mouseLeaveHandler = (e: any) => {
-    // productsCtx.toggleUserInteracting();
-  };
 
   if (typeof window !== 'undefined') {
     setTimeout(() => {
@@ -43,12 +30,7 @@ export default function Products(props: any) {
     }, 500);
   }
   return (
-    <ul
-      id={styles.hoverCards}
-      className={styles.hoverCards}
-      onMouseEnter={mouseEnterHandler}
-      onMouseLeave={mouseLeaveHandler}
-    >
+    <ul id={styles.hoverCards} className={styles.hoverCards}>
       {items.map((item) => (
         <Product
           key={item.id}
