@@ -14,6 +14,8 @@ import iconGeneralDark from '../../Global/gear.svg';
 import iconLicenses from '../../Global/rocket.svg';
 import IconAuths from '../../Global/auths1_white.svg';
 import ThemeContext from '../../../store/themeContext';
+import Scene from '../../Models/VideoModel';
+
 import './ModalPanelNav.scss';
 
 const ModalNav = (props: any) => {
@@ -59,6 +61,7 @@ const ModalNav = (props: any) => {
             src={iconVideo}
             // invert
           />
+          {/* <Scene /> */}
           <p>Video</p>
         </div>
         <div

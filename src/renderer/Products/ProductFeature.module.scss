@@ -9,17 +9,15 @@
     // border: 1px dotted red;
     height: calc(100% - 10rem);
     // background-color: $gray-dark-darkest;
-    &__list::-webkit-scrollbar {
-        display: none !important;
-    }
     &__list {
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
+        // justify-content: center;
         align-content: center;
         align-items: center;
         // flex: 1;
-        width: calc(100% - 1rem);
+        width: calc(100%);
         // height: 100%;
         height: auto;
         list-style: none;
@@ -30,13 +28,13 @@
         // padding: 1rem;
         margin: 0.5rem 1rem;
         margin-top: 0px;
-        // width: calc(100% - 16px);
+        width: calc(100% - 2rem);
         // padding: 8px;
-        // border: 1px solid red;
+        // border: 1px dotted gray;
         overflow-x: hidden;
-        // max-height: 100px;
+        // max-height: 300px;
         &__item {
-            // min-height: 54px !important;
+            // min-height: 2rem !important;
             flex: 1;
             // width: calc(100% - 16px);
             // max-height: 3.5rem;
@@ -44,15 +42,19 @@
             display: flex;
             flex-direction: row;
             justify-content: flex-start;
-            align-content: center;
+            // justify-content: center;
+            align-content: flex-start;
             align-items: center;
             border-radius: 4px;
-            width: calc(100% - 16px);
-            margin-top: 8px;
+            width: calc(100% - 2rem);
+            width: 66%;
+            margin: 2px 0px;
             // margin-left: 1rem;
-            // margin-right: 1rem;
+            // margin-right: 0rem;
+            // margin-left: 0rem;
             // margin-right: 1rem;
             // position: relative;
+            // margin: 0.5rem;
             padding: 0.5rem;
             // border: 1px solid #505050;
             overflow: hidden;
@@ -61,21 +63,10 @@
             }
             // border: 1px dotted rgb(151, 151, 151);
             &__icon {
-                // display: flex;
-                // // flex-direction: column;
-                // justify-content: flex-start;
-                margin-left: 0.5rem;
-                margin-right: 0.5rem;
-                // top: 0;
-                transform: translateY(-10px);
-                // // margin: 0;
-                // position: absolute;
-                height: 1rem !important;
-                // border: 1px solid red;
-                // height: 100% !important;
-            }
-            &__icon img {
-                height: 1re !important;
+                display: flex;
+                flex-direction: column;
+                margin: 0 0.5rem;
+                height: 1rem;
             }
             &__text {
                 // flex: 1;
@@ -84,19 +75,21 @@
                 flex-direction: column;
                 height: 100%;
                 // position: absolute;
-                top: 0;
-                left: 56px;
+                // top: 0;
+                // left: 56px;
                 width: 100%;
-                justify-content: center;
-                align-content: center;
+                justify-content: flex-start;
+                align-content: flex-start;
                 align-items: center;
                 align-items: center;
-                // margin-left: 1rem;
+                text-align: center;
+                margin-left: 0.25rem;
                 // border: 1px dotted red;
                 // font-family: 'GreycliffCF-Bold', sans-serif !important;
                 &__title {
-                    // font-family: 'GreycliffCF-Bold', sans-serif !important;
-                    font-family: 'GreycliffCF-Regular';
+                    transform: translateY(1px);
+                    font-family: 'GreycliffCF-Bold', sans-serif !important;
+                    // font-family: 'GreycliffCF-Regular';
                     // border: 1px solid #505050;
                     display: flex;
                     font-size: 12px !important;
@@ -106,6 +99,7 @@
                     // align-items: center;
                     // flex: 1;
                     width: 100%;
+                    // width: auto;
                     // margin-top: 4px;
                     // margin-left: 5rem;
                     // position: absolute;
@@ -114,6 +108,7 @@
                     width: 100%;
                     // margin-top: 8px;
                     margin-top: 4px;
+                    // display: none;
                     // position: absolute;
                     // border: 1px solid #505050;
                     // flex: 1;
@@ -132,8 +127,15 @@
             }
         }
     }
+    &__list::-webkit-scrollbar {
+        display: none !important;
+    }
 }
 
 .product_description__list__item:hover * {
     // filter: invert(100%);
+}
+
+.product_description__list__item__text__description__collapsed {
+    font-size: 0px;
 }

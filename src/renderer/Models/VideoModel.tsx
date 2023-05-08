@@ -52,7 +52,10 @@ export default function Scene(props: any) {
       //  handleResize();
       // console.log(state.camera.zoom);
       // rotate camera around the origin
-      // state.camera.position.y = Math.sin(state.clock.getElapsedTime()) * 0.1;
+      console.log(state.camera.position.x);
+
+      state.camera.position.x = Math.sin(state.clock.getElapsedTime()) * 1;
+      // state.camera.position.y = Math.cos(state.clock.getElapsedTime()) * 2;
     });
     return null;
   }
@@ -72,7 +75,8 @@ export default function Scene(props: any) {
       camera={{
         position: [-3, 1, 5],
         // fov: 90,
-        zoom: 50, // video
+        // zoom: 8, // video nav icon
+        zoom: 60, // video
         // zoom: 250,
         near: 0.1,
         far: 1000,
@@ -82,10 +86,11 @@ export default function Scene(props: any) {
         makeDefault
         enableDamping
         dampingFactor={0.1}
-        autoRotate
-        autoRotateSpeed={-0.5}
+        // autoRotate
+        // autoRotateSpeed={-5}
         enablePan={false}
-        // enableZoom={false}
+        enableZoom={false}
+        enableRotate={false}
         target={[0, 1, 0]}
       />
       {/* <ambientLight intensity={0.1} />

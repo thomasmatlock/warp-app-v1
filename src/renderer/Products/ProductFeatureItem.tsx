@@ -4,10 +4,16 @@ type ProductFeaturesItemProps = {
   title: string;
   description: string;
   image: string;
+  expanded: boolean;
 };
 
 export default function ProductFeaturesItem(props: ProductFeaturesItemProps) {
-  const { title, description, image } = props;
+  const { title, description, image, expanded } = props;
+  // console.log(expanded);
+
+  const descriptionClass = expanded
+    ? styles.product_description__list__item__text__description
+    : styles.product_description__list__item__text__description__collapsed;
   return (
     <li className={styles.product_description__list__item}>
       <img
@@ -20,10 +26,9 @@ export default function ProductFeaturesItem(props: ProductFeaturesItemProps) {
         <div className={styles.product_description__list__item__text__title}>
           {title}
         </div>
-        <div
-          className={styles.product_description__list__item__text__description}
-        >
-          {/* {description} */}
+        <div className={descriptionClass}>
+          {description}
+          {/* hello */}
         </div>
       </div>
     </li>
