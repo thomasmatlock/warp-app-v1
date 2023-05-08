@@ -10,7 +10,6 @@ import ProductCheckout from './components/ProductCheckout';
 import ProductSubtitle from './components/ProductSubtitle';
 import ProductsContext from '../../store/productsContext';
 import ProductFeaturesList from './ProductFeaturesList';
-import ProductContent from './ProductContent';
 
 import styles from './Products.module.scss';
 import Scene from '../Models/Scene';
@@ -38,21 +37,47 @@ export default function Product(props: any) {
   let cardClass = regularCardClass;
   cardClass = collapsed ? collapsedCardClass : regularCardClass;
   // let displayStyle = collapsed ? { display: 'flex' } : { display: 'flex' };
+  const clickHandler = (e: any) => {
+    // console.log('clickHandler');
+
+    productsCtx.getCardID(id);
+    // set card class
+    if (expanded) {
+      cardClass = activeCardClass;
+    }
+    if (collapsed) {
+      cardClass = collapsedCardClass;
+    }
+  };
+  const goBackHandler = (e: any) => {
+    productsCtx.goBackHandler();
+  };
+
+  const cardContentStyle = expanded
+    ? styles.card_content__expanded
+    : styles.card_content;
 
   return (
-    <div className={expanded ? activeCardClass : cardClass} id={id}>
-      <ProductContent
-        id={id}
-        features={features}
-        expanded={expanded}
-        threeScene={threeScene}
-        title={title}
-        description={description}
-        image={image}
-        ctaMessage={ctaMessage}
-        ctaBackMessage={ctaBackMessage}
-      />
-      <ProductCheckout expanded={expanded} />
+    <div id={id} className={cardContentStyle}>
+      <div className={styles.card_info_wrapper}>
+        <div className={styles.card_info}>
+          {/* <img className={styles.card_image} src={image} alt="" /> */}
+          <Scene threeScene={threeScene} expanded={expanded} />
+          <ProductTitle title={title} />
+          <ProductSubtitle description={description} />
+          <ProductFeaturesList features={features} expanded={expanded} />
+          <CTAProduct
+            message={ctaMessage}
+            clickHandler={clickHandler}
+            expanded={expanded}
+          />
+          <CTAProductBack
+            message={ctaBackMessage}
+            clickHandler={goBackHandler}
+            expanded={expanded}
+          />
+        </div>
+      </div>
     </div>
   );
 }

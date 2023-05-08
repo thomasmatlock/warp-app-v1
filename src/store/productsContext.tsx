@@ -180,6 +180,8 @@ export function ProductsGridCardsContextProvider(props: any) {
     setBundleCardExpanded(false);
   };
   const getCardID = (id: string) => {
+    // console.log('id', id);
+
     disableAllExpandedCards();
     uncollapseAllCards();
     if (id === 'audioPersonalEdition') {

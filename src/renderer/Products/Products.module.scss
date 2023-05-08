@@ -209,19 +209,6 @@ $mouse-y: 0px;
     // border: 1px solid red;
 }
 
-.card_checkout {
-    right: 0 !important;
-    // border: 1px solid red;
-    height: 100%;
-    max-width: 50%;
-    border-radius: 0 10px 10px 0;
-    // position: relative;
-    inset: 1px 1px 1px 0px;
-    color: white;
-    transform: translateX(100%);
-    // overflow: hidden;
-}
-
 .card:hover {
     // height: 400px;
     transition: all $transitionSpeed ease-in-out;
