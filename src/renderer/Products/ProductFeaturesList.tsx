@@ -2,7 +2,13 @@ import styles from './ProductFeature.module.scss';
 import ProductFeatureItem from './ProductFeatureItem';
 
 type ProductFeaturesListProps = {
-  features: [];
+  features: {
+    id: string;
+    title: string;
+    description: string;
+    image: string;
+  };
+
   expanded: boolean;
 };
 export default function ProductFeaturesList(props: ProductFeaturesListProps) {
