@@ -70,12 +70,8 @@ export default function Product(props: any) {
           <div className={styles.card_info}>
             {/* <img className={styles.card_image} src={image} alt="" /> */}
             <Scene threeScene={threeScene} expanded={expanded} />
-            {/* <div className={styles.card_info_title}> */}
-            {/* <h3 className={cardTitleStyle}>{title}</h3> */}
             <ProductTitle title={title} />
-            {/* <h4 className={styles.card_info_title__subtitle}>{description}</h4> */}
             <ProductSubtitle description={description} />
-            {/* </div> */}
             <ProductFeaturesList features={features} expanded={expanded} />
             <CTAProduct
               message={ctaMessage}
