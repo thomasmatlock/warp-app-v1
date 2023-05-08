@@ -78,7 +78,7 @@ export default function Product(props: any) {
               <h3>{title}</h3>
               <h4>{description}</h4>
             </div>
-            {/* <ProductFeaturesList features={features} /> */}
+            <ProductFeaturesList features={features} />
             <CTAProduct
               message={ctaMessage}
               clickHandler={clickHandler}

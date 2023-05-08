@@ -127,26 +127,26 @@ export function ProductsGridCardsContextProvider(props: any) {
         },
       ],
     },
-    {
-      id: 'bundlePersonalEdition',
-      image: hoverCardImg3,
-      title: 'Bundle Personal Edition',
-      description: `The Warp team are developers, designers, and editors. We solved our own frustrations and made it available to you, too!`,
-      ctaMessage: 'Go to checkout',
-      expanded: bundleCardExpanded,
-      collapsed: bundleCardCollapsed,
-      threeScene: 'bundlePersonalEdition',
-      // threeModelURL: audioThreeModelURL,
+    // {
+    //   id: 'bundlePersonalEdition',
+    //   image: hoverCardImg3,
+    //   title: 'Bundle Personal Edition',
+    //   description: `The Warp team are developers, designers, and editors. We solved our own frustrations and made it available to you, too!`,
+    //   ctaMessage: 'Go to checkout',
+    //   expanded: bundleCardExpanded,
+    //   collapsed: bundleCardCollapsed,
+    //   threeScene: 'bundlePersonalEdition',
+    //   // threeModelURL: audioThreeModelURL,
 
-      features: [
-        {
-          id: 'bundleFeature1',
-          title: 'Bundle Feature 1',
-          description: `Everything in the Audio and Video editions, plus the ability to download entire playlists and channels from YouTub`,
-          image: racingIcon,
-        },
-      ],
-    },
+    //   features: [
+    //     {
+    //       id: 'bundleFeature1',
+    //       title: 'Bundle Feature 1',
+    //       description: `Everything in the Audio and Video editions, plus the ability to download entire playlists and channels from YouTub`,
+    //       image: racingIcon,
+    //     },
+    //   ],
+    // },
   ];
   const uncollapseAllCards = () => {
     setAudioCardCollapsed(false);
