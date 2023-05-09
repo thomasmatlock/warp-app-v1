@@ -1,5 +1,6 @@
 @import '../../Global/Animations.scss';
-.checkout {
+.checkout,
+.checkout__expanded {
     background-color: #1a1a1a;
     // border-radius: inherit;
     border-radius: 10px 0 0 10px;
@@ -17,12 +18,9 @@
     z-index: 2;
     // height: 0px;
     transition: all 0.25s ease-in-out;
-    overflow: hidden;
+    // overflow: hidden;
     // animation: fadeInUp 0.25s ease-in-out;
     // border: 1px solid yellow;
-}
-
-.checkout {
     right: 0 !important;
     // border: 1px solid red;
     height: 100%;
@@ -32,5 +30,8 @@
     inset: 1px 1px 1px 0px;
     color: white;
     transform: translateX(100%);
+}
+
+.checkout__expanded {
     // overflow: hidden;
 }
