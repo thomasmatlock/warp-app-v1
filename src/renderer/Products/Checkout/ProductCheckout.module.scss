@@ -1,7 +1,10 @@
 @import '../../Global/Animations.scss';
+@import '../../Global/Colors.scss';
 .checkout,
 .checkout__expanded {
     background-color: #1a1a1a;
+    background-color: $gray-dark-dark;
+    // background-color: white;
     // border-radius: inherit;
     border-radius: 10px 0 0 10px;
     display: flex;
@@ -21,7 +24,7 @@
     // overflow: hidden;
     // animation: fadeInUp 0.25s ease-in-out;
     // border: 1px solid yellow;
-    right: 0 !important;
+    right: 0px !important;
     // border: 1px solid red;
     height: 100%;
     max-width: 50%;

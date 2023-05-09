@@ -1,0 +1,32 @@
+@import '../../Global/Animations.scss';
+@import '../../Global/Colors.scss';
+.field {
+    min-height: 64px;
+    max-height: 64px;
+    width: 100%;
+    /* border-radius: 5px 5px 0 0; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin: 0;
+    top: 0;
+    left: 0;
+    // border: 1px solid red;
+}
+
+.field_input {
+    border: 1px solid red;
+    //   border: 1px dotted red;
+    transition: all 0.1s ease-in-out !important;
+    width: 33vw !important;
+    height: 40px;
+    margin: 0px 16px;
+    color: white;
+    border-radius: 3px;
+    background-color: $gray-dark-light;
+    border: 1px solid $gray-dark-lightest;
+    outline: none;
+    font-size: 0.75rem;
+    box-shadow: none;
+}

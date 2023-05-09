@@ -1,0 +1,24 @@
+@import '../../Global/Animations.scss';
+.title {
+    // .title_expanded {
+    color: white;
+    text-align: center;
+    font-family: 'GreycliffCF-Bold', sans-serif !important;
+    animation: fadeIn 1s ease-in-out;
+    // animation: flickerText 2s ease-in-out;
+    font-size: 2rem;
+    color: white;
+    // color: #1a1a1a;
+    transition: all 0.25s ease-in-out;
+    // z-index: 99 !important;
+    // border: 1px solid red;
+    // user-select: none;
+    margin: 0 1rem;
+    margin-top: 1rem;
+    // text-shadow: #005eff 0px 0px 10px;
+    // padding-top: 2rem;
+}
+
+.title_expanded {
+    // max-width: 50%;
+}

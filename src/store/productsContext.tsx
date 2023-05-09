@@ -97,14 +97,14 @@ export function ProductsGridCardsContextProvider(props: any) {
         {
           id: 'audioFeature3',
           title: 'Channels',
-          description: `Clicking 67 times to download 67 videos is a thing of the past. Grab every video with one click.`,
+          description: `Clicking 67 times to download 67 audio files is a thing of the past. Grab audio tracks of a channel with one click.`,
           image: channelIcon,
           inverted: true,
         },
         {
           id: 'audioFeature4',
           title: 'Playlists',
-          description: `Why not download the entire playlist? You can now!`,
+          description: `It takes 900 clicks to get an entire playlist. Just kidding. It takes one! Just when you thought it couldn't get any easier.`,
           image: playlistIcon,
           inverted: true,
         },
@@ -144,7 +144,7 @@ export function ProductsGridCardsContextProvider(props: any) {
         {
           id: 'videoFeature3',
           title: 'Channels',
-          description: `Grab entire channels with one click.`,
+          description: `This does what it says to the left. Grab a channels videos with one click.`,
           image: channelIcon,
           inverted: true,
         },

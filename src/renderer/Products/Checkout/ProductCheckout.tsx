@@ -1,8 +1,19 @@
 import styles from './ProductCheckout.module.scss';
+import ProductCheckoutInputField from './ProductCheckoutInputField';
+import ProductCheckoutTitle from './ProductCheckoutTitle';
 
 export default function ProductCheckout(props: any) {
-  const { title, expanded } = props;
-
+  const { expanded } = props;
+  const title = 'Checkout';
   const componentStyle = expanded ? styles.checkout__expanded : styles.checkout;
-  return <>{expanded && <div className={componentStyle}>checkout NOW</div>}</>;
+  return (
+    <>
+      {expanded && (
+        <div className={componentStyle}>
+          <ProductCheckoutTitle title={title} />
+          <ProductCheckoutInputField />
+        </div>
+      )}
+    </>
+  );
 }
