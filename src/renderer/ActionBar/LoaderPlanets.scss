@@ -41,7 +41,8 @@ $radius4: $smallsize * 5;
     // position: fixed;
     outline: none;
     min-width: $bigsize * 2;
-    min-height: $bigsize/2;
+    // min-height: $bigsize / 2;
+    min-height: calc($bigsize / 2);
     // bottom: 10vh;
     z-index: 10001;
     background: transparent;
@@ -74,8 +75,10 @@ $radius4: $smallsize * 5;
         box-shadow: $goocolor 0 0 24px 4px;
         margin: 0 auto;
         position: absolute;
-        top: $containerheight/2 - $bigsize/2;
-        left: $containerwidth/2 - $bigsize/2;
+        // top: $containerheight/2 - $bigsize/2;
+        top: calc($containerheight/2 - $bigsize/2);
+        // left: $containerwidth/2 - $bigsize/2;
+        left: calc($containerwidth/2 - $bigsize/2);
         animation: scale $animtime * 2 linear infinite, color5 $animtime linear $iteration;
     }
     .loader-mini1 {
@@ -85,8 +88,10 @@ $radius4: $smallsize * 5;
         border-radius: 50%;
         // background:darken($goocolor, 10%);
         background: $goocolor;
-        top: $containerheight/2 -$smallsize/2;
-        left: $containerwidth/2 - $smallsize/2;
+        // top: $containerheight/2 -$smallsize/2;
+        top: calc($containerheight / 2 - $smallsize / 2);
+        // left: $containerwidth/2 - $smallsize/2;
+        left: calc($containerwidth / 2 - $smallsize / 2);
         animation: move1 $animtime linear $iteration, color1 $animtime linear $iteration;
     }
     .loader-mini2 {
@@ -96,8 +101,10 @@ $radius4: $smallsize * 5;
         border-radius: 50%;
         // background:darken($goocolor, 10%);
         background: $goocolor;
-        top: $containerheight/2 -$smallsize/2;
-        left: $containerwidth/2 - $smallsize/2;
+        // top: $containerheight/2 -$smallsize/2;
+        top: calc($containerheight / 2 - $smallsize / 2);
+        // left: $containerwidth/2 - $smallsize/2;
+        left: calc($containerwidth / 2 - $smallsize / 2);
         animation: move2 $animtime + 1s linear $iteration, color2 $animtime + 1s linear $iteration;
     }
     .loader-mini3 {
@@ -107,8 +114,10 @@ $radius4: $smallsize * 5;
         border-radius: 50%;
         // background:darken($goocolor, 15%);
         background: $goocolor;
-        top: $containerheight/2 -$smallsize/2;
-        left: $containerwidth/2 - $smallsize/2;
+        // top: $containerheight/2 -$smallsize/2;
+        top: calc($containerheight / 2 - $smallsize / 2);
+        // left: $containerwidth/2 - $smallsize/2;
+        left: calc($containerwidth / 2 - $smallsize / 2);
         animation: move3 $animtime + 2s linear $iteration, color3 $animtime + 2s linear $iteration;
     }
     .loader-mini4 {
@@ -118,8 +127,10 @@ $radius4: $smallsize * 5;
         border-radius: 50%;
         // background:darken($goocolor, 20%);
         background: $goocolor;
-        top: $containerheight/2 -$smallsize/2;
-        left: $containerwidth/2 - $smallsize/2;
+        // top: $containerheight/2 -$smallsize/2;
+        top: calc($containerheight / 2 - $smallsize / 2);
+        // left: $containerwidth/2 - $smallsize/2;
+        left: calc($containerwidth / 2 - $smallsize / 2);
         animation: move4 $animtime + 3s linear $iteration, color4 $animtime + 3s linear $iteration;
     }
     .loader-radius1 {
@@ -131,8 +142,10 @@ $radius4: $smallsize * 5;
         border: 0.5px solid $goocolor;
         opacity: 0.2;
         background: transparent;
-        top: $containerheight/2 - $radius1;
-        left: $containerwidth/2 - $radius1;
+        // top: $containerheight/2 - $radius1;
+        top: calc($containerheight / 2 - $radius1);
+        // left: $containerwidth/2 - $radius1;
+        left: calc($containerwidth / 2 - $radius1);
         transform: scale(0);
         animation: orbit1 $animtime linear $iteration;
     }
@@ -146,8 +159,10 @@ $radius4: $smallsize * 5;
         opacity: 0.2;
         background: transparent;
         transform: scale(0);
-        top: $containerheight/2 - $radius2;
-        left: $containerwidth/2 - $radius2;
+        // top: $containerheight/2 - $radius2;
+        top: calc($containerheight / 2 - $radius2);
+        // left: $containerwidth/2 - $radius2;
+        left: calc($containerwidth / 2 - $radius2);
         animation: orbit2 $animtime + 1s linear $iteration;
     }
     .loader-radius3 {
@@ -160,8 +175,10 @@ $radius4: $smallsize * 5;
         opacity: 0.2;
         background: transparent;
         transform: scale(0);
-        top: $containerheight/2 - $radius3;
-        left: $containerwidth/2 - $radius3;
+        // top: $containerheight/2 - $radius3;
+        top: calc($containerheight / 2 - $radius3);
+        // left: $containerwidth/2 - $radius3;
+        left: calc($containerwidth / 2 - $radius3);
         animation: orbit3 $animtime + 2s linear $iteration;
     }
     .loader-radius4 {
@@ -174,8 +191,10 @@ $radius4: $smallsize * 5;
         opacity: 0.2;
         background: transparent;
         transform: scale(0);
-        top: $containerheight/2 - $radius4;
-        left: $containerwidth/2 - $radius4;
+        // top: $containerheight/2 - $radius4;
+        top: calc($containerheight / 2 - $radius4);
+        // left: $containerwidth/2 - $radius4;
+        left: calc($containerwidth / 2 - $radius4);
         animation: orbit4 $animtime + 3s linear $iteration;
     }
 }
@@ -196,7 +215,8 @@ $radius4: $smallsize * 5;
 }
 
 .btn-play {
-    left: $containerwidth/2 - ($bigsize + 1);
+    // left: $containerwidth/2 - ($bigsize + 1);
+    // left: calc($containerwidth / 2 - ($bigsize + 1));
 }
 
 @keyframes move1 {

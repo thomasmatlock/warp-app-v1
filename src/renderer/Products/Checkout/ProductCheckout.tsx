@@ -1,6 +1,8 @@
 import styles from './ProductCheckout.module.scss';
 import ProductCheckoutInputField from './ProductCheckoutInputField';
 import ProductCheckoutTitle from './ProductCheckoutTitle';
+import Loader from '../../ActionBar/Loader';
+// import LoaderPlanets from '../../ActionBar/LoaderPlanets';
 
 export default function ProductCheckout(props: any) {
   const { expanded } = props;
@@ -12,6 +14,8 @@ export default function ProductCheckout(props: any) {
         <div className={componentStyle}>
           <ProductCheckoutTitle title={title} />
           <ProductCheckoutInputField />
+          <Loader />
+          {/* <LoaderPlanets /> */}
         </div>
       )}
     </>

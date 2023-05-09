@@ -57,16 +57,17 @@ const ProductsGridCardsContext = createContext({
 });
 
 export function ProductsGridCardsContextProvider(props: any) {
+  const [isCheckoutDev, setCheckoutDev] = useState(true);
   const [userInteracting, setUserInteracting] = useState(false);
-  const [audioCardExpanded, setAudioCardExpanded] = useState(false);
+  const [audioCardExpanded, setAudioCardExpanded] = useState(isCheckoutDev);
   const [videoCardExpanded, setVideoCardExpanded] = useState(false);
   const [warpstagramCardExpanded, setWarpstagramCardExpanded] = useState(false);
   const [bundleCardExpanded, setBundleCardExpanded] = useState(false);
   const [audioCardCollapsed, setAudioCardCollapsed] = useState(false);
-  const [videoCardCollapsed, setVideoCardCollapsed] = useState(false);
+  const [videoCardCollapsed, setVideoCardCollapsed] = useState(isCheckoutDev);
   const [warpstagramCardCollapsed, setWarpstagramCardCollapsed] =
     useState(false);
-  const [bundleCardCollapsed, setBundleCardCollapsed] = useState(false);
+  const [bundleCardCollapsed, setBundleCardCollapsed] = useState(isCheckoutDev);
   const cardsData = [
     {
       id: 'audioPersonalEdition',
