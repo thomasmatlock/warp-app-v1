@@ -69,6 +69,7 @@
             flex-direction: column;
             margin: 0 0.5rem;
             height: 1rem;
+            filter: invert(1);
         }
         &__text {
             // flex: 1;

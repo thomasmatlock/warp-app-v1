@@ -9,11 +9,12 @@ import {
 import { Suspense, useRef } from 'react';
 import { Canvas, useFrame, extend } from '@react-three/fiber';
 import styles from './Scene.module.scss';
-import BoxScene from './BoxScene';
+// import BoxScene from './BoxScene';
 import Audio from './AudioProductScene';
 import Video from './VideoProductScene';
-import Bundle from './BundleProductScene';
-import VideoModel from './VideoProductModel';
+import Warpstagram from './WarpstagramProductScene';
+import Bundle from './Bundle';
+// import VideoModel from './VideoProductModel';
 
 // extend Canvas
 extend({ Canvas });
@@ -31,6 +32,7 @@ export default function Scene(props: SceneProps) {
       {/* {threeScene === 'audioPersonalEdition' && <BoxScene />} */}
       {threeScene === 'audioPersonalEdition' && <Audio />}
       {threeScene === 'videoPersonalEdition' && <Video />}
+      {threeScene === 'warpstagramPersonalEdition' && <Warpstagram />}
       {/* {threeScene === 'videoPersonalEdition' && <VideoModel />} */}
       {threeScene === 'bundlePersonalEdition' && <Bundle />}
     </div>

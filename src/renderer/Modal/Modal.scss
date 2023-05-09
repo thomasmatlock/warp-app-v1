@@ -46,8 +46,9 @@
         $min-height: calc(100% - 10vh);
         $min-height: clamp(480px, 100%, 90vh);
         // $min-width: 1600px;
-        $min-width: clamp(1200px, 70%, 1600px);
+        $min-width: clamp(1200px, 90%, 90%);
         min-width: $min-width; // width: 1200px;
+        width: auto;
         // width: 75%;
         // width: clamp(1200px, 70%, 1600px) !important;
         // width: clamp(1200px, 70%, 1600px) !important;

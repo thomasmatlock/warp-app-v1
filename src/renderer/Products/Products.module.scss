@@ -98,6 +98,7 @@ $mouse-y: 0px;
     justify-content: flex-start;
     align-items: center;
     margin: 1rem 0.25rem;
+    // animation: disappear 0.25s ease-in-out reverse;
     // width: clamp(200px, 310px, 350px);
     // height: clamp(300px, 400px, 400px);
     height: auto;
@@ -136,7 +137,7 @@ $mouse-y: 0px;
 
 .card__collapsed {
     animation: disappear 0.25s ease-in-out forwards;
-    margin: 0 -0.4rem;
+    margin: 1rem -0.4rem;
     // padding: 0px;
     // margin: 0rem;
 }
