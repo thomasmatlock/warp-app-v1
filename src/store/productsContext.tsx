@@ -6,6 +6,11 @@ import channelIcon from '../renderer/Products/assets/channel.svg';
 import linkIcon from '../renderer/Products/assets/link.svg';
 import fastForwardIcon from '../renderer/Products/assets/fastForward.svg';
 import wavIcon from '../renderer/Products/assets/wav.png';
+// import mp4Icon from '../renderer/Products/assets/mp4.png';
+// import mp4Icon from '../renderer/Products/assets/mp4_2.png';
+import mp4Icon from '../renderer/Products/assets/film2.png';
+// import rocketIcon from '../renderer/Products/assets/rocket.png';
+import rocketIcon from '../renderer/Products/assets/rocket2.png';
 // import audioThreeModelURL from '../renderer/Global/video.glb';
 // invert svg
 
@@ -84,7 +89,7 @@ export function ProductsGridCardsContextProvider(props: any) {
         },
         {
           id: 'audioFeature2',
-          title: '  Multiple Formats',
+          title: 'Multiple Formats',
           description: `Download audio in MP3, OGG, and WAV.`,
           image: wavIcon,
           inverted: true,
@@ -92,14 +97,14 @@ export function ProductsGridCardsContextProvider(props: any) {
         {
           id: 'audioFeature3',
           title: 'Channels',
-          description: `Download audio in MP3, OGG, and WAV.`,
+          description: `Clicking 67 times to download 67 videos is a thing of the past. Grab every video with one click.`,
           image: channelIcon,
           inverted: true,
         },
         {
           id: 'audioFeature4',
           title: 'Playlists',
-          description: `Download audio in MP3, OGG, and WAV.`,
+          description: `Why not download the entire playlist? You can now!`,
           image: playlistIcon,
           inverted: true,
         },
@@ -127,19 +132,19 @@ export function ProductsGridCardsContextProvider(props: any) {
           id: 'videoFeature1',
           title: 'Simultaneous downloads',
           description: `Triple Speed: up to 3 concurrent downloads at once.`,
-          image: racingIcon,
+          image: fastForwardIcon,
         },
         {
           id: 'videoFeature2',
-          title: '  Multiple Formats',
+          title: 'Multiple Formats',
           description: `Download audio in MP3, OGG, and WAV.`,
-          image: playlistIcon,
+          image: mp4Icon,
           inverted: true,
         },
         {
           id: 'videoFeature3',
           title: 'Channels',
-          description: `Download audio in MP3, OGG, and WAV.`,
+          description: `Grab entire channels with one click.`,
           image: channelIcon,
           inverted: true,
         },
@@ -154,7 +159,7 @@ export function ProductsGridCardsContextProvider(props: any) {
           id: 'videoFeature5',
           title: 'Bulk Import and Export URLS',
           description: `Download audio in MP3, OGG, and WAV.`,
-          image: racingIcon,
+          image: linkIcon,
         },
       ],
     },
@@ -220,7 +225,7 @@ export function ProductsGridCardsContextProvider(props: any) {
           id: 'bundleFeature1',
           title: 'Bundle Feature 1',
           description: `Everything in the Audio and Video editions, plus the ability to download entire playlists and channels from YouTub`,
-          image: racingIcon,
+          image: rocketIcon,
         },
       ],
     },

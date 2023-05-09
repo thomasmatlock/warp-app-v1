@@ -74,7 +74,7 @@ function InstancedSpheresPurple({ count = 15 }) {
     args: [1],
   }));
   const randomColor = () => {
-    const colors = ['#5D3FD3'];
+    const colors = ['#5D3FD3', '#800080', '#C4B5FD', '#E0D9FE'];
     return colors[Math.floor(Math.random() * colors.length)];
   };
   return (

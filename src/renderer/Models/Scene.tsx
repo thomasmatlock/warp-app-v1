@@ -13,7 +13,7 @@ import styles from './Scene.module.scss';
 import Audio from './AudioProductScene';
 import Video from './VideoProductScene';
 import Warpstagram from './WarpstagramProductScene';
-import Bundle from './Bundle';
+import Bundle from './BundleProductScene';
 // import VideoModel from './VideoProductModel';
 
 // extend Canvas
