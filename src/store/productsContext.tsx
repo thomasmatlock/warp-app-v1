@@ -57,17 +57,42 @@ const ProductsGridCardsContext = createContext({
 });
 
 export function ProductsGridCardsContextProvider(props: any) {
-  const [isCheckoutDev, setCheckoutDev] = useState(true);
-  const [userInteracting, setUserInteracting] = useState(false);
-  const [audioCardExpanded, setAudioCardExpanded] = useState(isCheckoutDev);
-  const [videoCardExpanded, setVideoCardExpanded] = useState(false);
-  const [warpstagramCardExpanded, setWarpstagramCardExpanded] = useState(false);
-  const [bundleCardExpanded, setBundleCardExpanded] = useState(false);
-  const [audioCardCollapsed, setAudioCardCollapsed] = useState(false);
-  const [videoCardCollapsed, setVideoCardCollapsed] = useState(isCheckoutDev);
-  const [warpstagramCardCollapsed, setWarpstagramCardCollapsed] =
-    useState(false);
-  const [bundleCardCollapsed, setBundleCardCollapsed] = useState(isCheckoutDev);
+  // const [isCheckoutDev, setCheckoutDev] = useState(true);
+  // const [userInteracting, setUserInteracting] = useState(false);
+  /// //////////////////////////////////////////
+  // BASICS
+  const [isAudioCheckoutDev, setAudioCheckoutDev] = useState(true); // DEFAULT IS FALSE
+  const [isVideoCheckoutDev, setVideoCheckoutDev] = useState(false); // DEFAULT IS FALSE
+  const [isWarpstagramCheckoutDev, setWarpstagramCheckoutDev] = useState(false); // DEFAULT IS FALSE
+  const [isBundleCheckoutDev, setBundleCheckoutDev] = useState(false); // DEFAULT IS FALSE
+  // BASICS
+  /// //////////////////////////////////////////
+  // EXPANDED
+  const [audioCardExpanded, setAudioCardExpanded] =
+    useState(isAudioCheckoutDev);
+  const [videoCardExpanded, setVideoCardExpanded] =
+    useState(isVideoCheckoutDev);
+  const [warpstagramCardExpanded, setWarpstagramCardExpanded] = useState(
+    isWarpstagramCheckoutDev
+  );
+  const [bundleCardExpanded, setBundleCardExpanded] =
+    useState(isBundleCheckoutDev);
+  // EXPANDED
+  /// //////////////////////////////////////////
+  // COLLAPSED
+  const [audioCardCollapsed, setAudioCardCollapsed] = useState(
+    isVideoCheckoutDev || isWarpstagramCheckoutDev || isBundleCheckoutDev
+  );
+  const [videoCardCollapsed, setVideoCardCollapsed] = useState(
+    isAudioCheckoutDev || isWarpstagramCheckoutDev || isBundleCheckoutDev
+  );
+  const [warpstagramCardCollapsed, setWarpstagramCardCollapsed] = useState(
+    isAudioCheckoutDev || isVideoCheckoutDev || isBundleCheckoutDev
+  );
+  const [bundleCardCollapsed, setBundleCardCollapsed] = useState(
+    isAudioCheckoutDev || isVideoCheckoutDev || isWarpstagramCheckoutDev
+  );
+  // COLLAPSED
   const cardsData = [
     {
       id: 'audioPersonalEdition',
@@ -224,8 +249,14 @@ export function ProductsGridCardsContextProvider(props: any) {
       features: [
         {
           id: 'bundleFeature1',
-          title: 'Bundle Feature 1',
-          description: `Everything in the Audio and Video editions, plus the ability to download entire playlists and channels from YouTub`,
+          title: 'Audio Personal Edition',
+          description: `Everything in the Audio edition. Audiophiles rejoice!`,
+          image: rocketIcon,
+        },
+        {
+          id: 'bundleFeature2',
+          title: 'Video Personal Edition',
+          description: `Everything in the Video edition. What are you, a content creator?`,
           image: rocketIcon,
         },
       ],

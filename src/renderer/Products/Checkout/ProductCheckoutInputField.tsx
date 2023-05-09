@@ -2,6 +2,7 @@ import styles from './ProductCheckoutInputField.module.scss';
 
 export default function ProductCheckoutInputField(props: any) {
   const { title, expanded } = props;
+  // const placeHolderValue;
 
   const componentStyle = expanded ? styles.field : styles.field;
   return (
