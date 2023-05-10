@@ -37,17 +37,17 @@ export default function ProductCheckoutInputField(props: any) {
   );
   const [isZipCodeType, setIsZipCodeType] = useState(type === 'zipCode');
   // VALID TYPES
-  const [isInputValidEmail, setisInputValidEmail] = useState(false);
-  const [isInputValidCreditCard, setisInputValidCreditCard] = useState(false);
-  const [isInputValidExpirationDate, setisInputValidExpirationDate] =
-    useState(false);
-  const [isInputValidCVV, setisInputValidCVV] = useState(false);
-  const [isInputValidNameOnCard, setisInputValidNameOnCard] = useState(false);
-  const [isInputValidZipCode, setisInputValidZipCode] = useState(false);
-  const [isVisaCard, setIsVisaCard] = useState(false);
-  const [isMasterCard, setIsMasterCard] = useState(false);
-  const [isAmexCard, setIsAmexCard] = useState(false);
-  const [isDiscoverCard, setIsDiscoverCard] = useState(false);
+  // const [isInputValidEmail, setisInputValidEmail] = useState(false);
+  // const [isInputValidCreditCard, setisInputValidCreditCard] = useState(false);
+  // const [isInputValidExpirationDate, setisInputValidExpirationDate] =
+  //   useState(false);
+  // const [isInputValidCVV, setisInputValidCVV] = useState(false);
+  // const [isInputValidNameOnCard, setisInputValidNameOnCard] = useState(false);
+  // const [isInputValidZipCode, setisInputValidZipCode] = useState(false);
+  // const [isVisaCard, setIsVisaCard] = useState(false);
+  // const [isMasterCard, setIsMasterCard] = useState(false);
+  // const [isAmexCard, setIsAmexCard] = useState(false);
+  // const [isDiscoverCard, setIsDiscoverCard] = useState(false);
   const [inputClass, setInputClass] = useState(styles.field_input);
   // let inputClass = isInputValid ? styles.field_input : styles.field_input;
   const changeHandler = (e: any) => {
