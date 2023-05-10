@@ -98,8 +98,8 @@ const Search = (props) => {
 
     Array.from(document.getElementsByClassName('search__input')).forEach(
       (item) => {
-        if (!modalsCtx.isModalOpen) item.focus();
-        if (modalsCtx.isModalOpen) item.blur();
+        // if (!modalsCtx.isModalOpen) item.focus();
+        // if (modalsCtx.isModalOpen) item.blur();
         if (event.key === 'Escape') {
           if (inputCtx.searchText.length === 0) item.blur();
         }

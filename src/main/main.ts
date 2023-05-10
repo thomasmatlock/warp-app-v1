@@ -43,7 +43,7 @@ import * as Prefs from './prefs';
 import PowerMonitor from './powerMonitor';
 import ScreenClass from './Screen';
 import * as Browser from '../Browser/browserController';
-import * as Shortcuts from './Shortcuts';
+// import * as Shortcuts from './Shortcuts';
 // console.log(process.env.APPLE_ID);
 import testUrls from '../downloaders/youtube/testURLS';
 
@@ -205,14 +205,13 @@ const windowController = {
     });
     mWin.on('blur', () => {
       // console.log('mWin blurred');
-
-      Shortcuts.removeShortcuts();
+      // Shortcuts.removeShortcuts();
       // Browser.resize(browserPanelState, mWin, view);
     });
     mWin.on('focus', () => {
       // console.log('mWin focused');
 
-      Shortcuts.addShortcuts(mWin, view);
+      // Shortcuts.addShortcuts(mWin, view);
 
       Browser.resize(browserPanelState, mWin, view);
     });
@@ -493,6 +492,8 @@ if (isDebug) {
   });
   // SEARCH LISTENERS
   ipcMain.on('Search: InputChange', async (event, arg) => {
+    console.log('Search: InputChange', arg);
+
     // console.log('Search: InputChange', arg);
     // console.log('Menu: Shortcuts: Restart', arg);
     // event.reply('Search: InputChange', [arg]);

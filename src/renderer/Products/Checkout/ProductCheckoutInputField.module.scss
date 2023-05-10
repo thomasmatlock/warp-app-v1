@@ -9,24 +9,49 @@
     justify-content: center;
     align-items: center;
     flex-direction: row;
-    margin: 0;
+    margin: 1rem;
     top: 0;
     left: 0;
     // border: 1px solid red;
 }
 
-.field_input {
-    // border: 1px solid red;
-    //   border: 1px dotted red;
-    transition: all 0.1s ease-in-out !important;
-    width: 33vw;
+.field_input,
+.field_input__valid {
     height: 40px;
-    margin: 0px 16px;
+    margin: 1rem;
+    // padding: 1rem;
     color: white;
     border-radius: 3px;
     background-color: $gray-dark-light;
     border: 1px solid $gray-dark-lightest;
     outline: none;
     font-size: 0.75rem;
+    font-size: 14px;
+    // font-size: 1rem;
     box-shadow: none;
+    z-index: 10;
+    width: 66%;
+    padding-left: 1rem;
+    &:focus {
+        border: 1px solid $gray-dark-lightest;
+        box-shadow: 0 0 0 0.2rem rgba($gray-dark-lightest, 0.25);
+    }
+}
+
+.field_input__valid {
+    border: 1px solid green;
+}
+
+.field_input * {
+    // color: black;
+}
+
+.field_label {
+    // border: 1px dotted red;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    font-family: 'Proxima Nova Light';
+    font-size: 0.75rem;
+    color: rgb(205, 205, 205);
 }

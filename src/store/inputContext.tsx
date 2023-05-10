@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 const InputContext = React.createContext({
   searchText: '',
   setSearchText: (text: string) => {},
@@ -20,10 +21,10 @@ export const InputContextProvider = (props) => {
   return (
     <InputContext.Provider
       value={{
-        searchText: searchText,
-        setSearchText: setSearchText,
-        searchInputSubmit: searchInputSubmit,
-        // searchInputChangeHandler: searchInputChangeHandler,
+        searchText,
+        setSearchText,
+        searchInputSubmit,
+        // searchInputChangeHandler,
       }}
     >
       {props.children}

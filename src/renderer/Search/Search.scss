@@ -57,7 +57,13 @@
 }
 
 input[type='text'] {
-    padding-left: 40px !important;
+    // padding-left: 40px;
+    // border: 1px solid red;
+    // height: 2.5rem;
+}
+
+#search__input {
+    padding-left: 40px;
     // border: 1px solid red;
     // height: 2.5rem;
 }

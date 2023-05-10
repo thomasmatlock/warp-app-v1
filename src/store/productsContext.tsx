@@ -2,24 +2,16 @@ import React, { useState, useEffect, createContext } from 'react';
 // import data from './productsData';
 
 import racingIcon from '../renderer/Products/assets/racing.svg';
-// import playlistIcon from '../renderer/Products/playlistAudio.svg';
 import playlistIcon from '../renderer/Products/assets/playlistVideo.svg';
 import channelIcon from '../renderer/Products/assets/channel.svg';
 import linkIcon from '../renderer/Products/assets/link.svg';
 import fastForwardIcon from '../renderer/Products/assets/fastForward.svg';
 import wavIcon from '../renderer/Products/assets/wav.png';
-// import mp4Icon from '../renderer/Products/assets/mp4.png';
-// import mp4Icon from '../renderer/Products/assets/mp4_2.png';
 import mp4Icon from '../renderer/Products/assets/film2.png';
-// import rocketIcon from '../renderer/Products/assets/rocket.png';
 import rocketIcon from '../renderer/Products/assets/rocket2.png';
-// import audioThreeModelURL from '../renderer/Global/video.glb';
-// invert svg
 
 import hoverCardImg1 from '../renderer/Global/GridCards/hoverCardImg1.png';
-// import hoverCardImg2 from '../public/GridCards/hoverCardImg2.webp';
 import hoverCardImg2 from '../renderer/Global/GridCards/hoverCardImg2.png';
-// import hoverCardImg2 from '../renderer/Global/GridCards/2.png';
 import hoverCardImg3 from '../renderer/Global/GridCards/hoverCardImg3.png';
 
 const ProductsGridCardsContext = createContext({

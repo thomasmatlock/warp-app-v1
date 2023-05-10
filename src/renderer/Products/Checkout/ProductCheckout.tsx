@@ -14,7 +14,7 @@ export default function ProductCheckout(props: any) {
         <div className={componentStyle}>
           <ProductCheckoutTitle title={title} />
           <ProductCheckoutInputField />
-          <Loader />
+          {/* <Loader /> */}
           {/* <LoaderPlanets /> */}
         </div>
       )}
