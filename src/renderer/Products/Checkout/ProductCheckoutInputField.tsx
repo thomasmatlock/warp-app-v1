@@ -75,55 +75,21 @@ export default function ProductCheckoutInputField(props: any) {
 
   const componentStyle = expanded ? styles.field : styles.field;
   return (
-    <form
-      // onMouseEnter={mouseEnterHandler}
-      // onMouseLeave={mouseLeaveHandler}
-      // style={
-      //   themeCtx.isDarkTheme
-      //     ? { backgroundColor: themeCtx.search.dark.backgroundColor }
-      //     : {
-      //         backgroundColor: themeCtx.search.light.backgroundColor,
-      //       }
-      // }
-      className={componentStyle}
-      // onSubmit={inputCtx.searchInputSubmit}
-      // onMouseEnter={userStartedInteracting}
-      // onMouseLeave={userStoppedInteracting}
-    >
-      {/* <img
-        id="search__input__icon__unfocused"
-        className="search__input__icon search__input__icon__unfocused"
-        style={
-          themeCtx.isDarkTheme
-            ? { filter: 'invert(100%)' }
-            : {
-                filter: 'invert(0%)',
-              }
-        }
-        src={SearchIcon}
-      /> */}
+    <>
       <input
-        // id="search__input"
-        // className={inputClass}
         className={styles.field_input}
-        // className={inputClass}
         style={isInputValid ? {} : { border: '1px solid red' }}
         type="text"
-        // value={emailPlaceholder}
         onChange={changeHandler}
-        // onMouseEnter={userStartedInteracting}
-        // onMouseLeave={userStartedInteracting}
-        // onBlur={searchInputBlurHandler}
         placeholder={placeholder}
-        // spellCheck="false"
       />
       {/* <label
         // id="search__input__label"
         className={styles.field_label}
         // htmlFor="search__input"
-      >
+        >
         {label}
       </label> */}
-    </form>
+    </>
   );
 }

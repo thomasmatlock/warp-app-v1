@@ -41,6 +41,11 @@ export const validateExpirationDate = (expirationDate: string) => {
   if (yearCharactersAsNumber < currentYearLast2CharactersAsNumber) {
     return false;
   }
+  const monthCharacters = expirationDate.slice(0, 2);
+  const monthCharactersAsNumber = Number(monthCharacters);
+  // get the characters of the current month
+  const currentMonth = new Date().getMonth() + 1;
+  console.log(currentMonth);
 
   const re = /^(0[1-9]|1[0-2])\/?([0-9]{2})$/;
   return re.test(expirationDate);
