@@ -48,7 +48,6 @@ export default function ProductCheckoutInputField(props: any) {
   // const [isMasterCard, setIsMasterCard] = useState(false);
   // const [isAmexCard, setIsAmexCard] = useState(false);
   // const [isDiscoverCard, setIsDiscoverCard] = useState(false);
-  const [inputClass, setInputClass] = useState(styles.field_input);
   // let inputClass = isInputValid ? styles.field_input : styles.field_input;
   const changeHandler = (e: any) => {
     if (e.target.value.length > 0) {
@@ -59,21 +58,9 @@ export default function ProductCheckoutInputField(props: any) {
       if (isCvvType) setIsInputValid(validateCVV(e.target.value));
       if (isNameOnCardType) setIsInputValid(validateNameOnCard(e.target.value));
       if (isZipCodeType) setIsInputValid(validateZipCode(e.target.value));
-      // setInputClass(
-      //   isInputValid ? styles.field_input__valid : styles.field_input__invalid
-      // );
     }
   };
 
-  // };
-  const mouseEnterHandler = () => {
-    // console.log('mouse enter');
-  };
-  const mouseLeaveHandler = () => {
-    // console.log('mouse leave');
-  };
-
-  const componentStyle = expanded ? styles.field : styles.field;
   return (
     <>
       <input
