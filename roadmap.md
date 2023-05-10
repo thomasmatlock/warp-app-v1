@@ -1,3 +1,17 @@
+# checkout
+
+- email field
+- card number
+  - card type
+- card expiration
+- card cvc
+- name on card
+- zip code
+- pay CTA
+- add a way to add a coupon
+
+# others
+
 - UpgradeUser
 - fix notarizing
 - add the codepen book thing to checkout

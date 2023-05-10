@@ -55,9 +55,7 @@ import createCheckoutSession from '../user/payments/stripe/createStripeCharge';
 import getStatus from '../user/status';
 // createStripeCharge();
 import * as automate from './automate';
-function getLastItemOfArray(array: any) {
-  return array[array.length - 1];
-}
+
 (async () => {
   // const products = await getProducts();
   // console.log(products);

@@ -6,45 +6,65 @@ import {
   validateEmail,
   validateCreditCard,
   validateCreditCardType,
+  validateExpirationDate,
+  validateNameOnCard,
+  validateZipCode,
+  validateCVV,
 } from '../../../main/util/strings';
-
+// TYPES
+// type: 'email',
+// type: 'creditCard',
+// type: 'expirationDate',
+// type: 'cvv',
+// type: 'nameOnCard',
+// type: 'zipCode',
 export default function ProductCheckoutInputField(props: any) {
-  const { title, expanded } = props;
-  const [isValidCreditCard, setIsValidCreditCard] = useState(true);
+  // PROPS DESTRUCTURING
+  const { expanded, type, label, placeholder } = props.data;
+  //
+  const [isInputValid, setIsInputValid] = useState(true);
+  // TYPES //////////////////////////////
+  const [isEmailType, setIsEmailType] = useState(type === 'email');
+  const [isCreditCardType, setIsCreditCardType] = useState(
+    type === 'creditCard'
+  );
+  const [isExpirationDateType, setIsExpirationDateType] = useState(
+    type === 'expirationDate'
+  );
+  const [isCvvType, setIsCvvType] = useState(type === 'cvv');
+  const [isNameOnCardType, setIsNameOnCardType] = useState(
+    type === 'nameOnCard'
+  );
+  const [isZipCodeType, setIsZipCodeType] = useState(type === 'zipCode');
+  // VALID TYPES
+  const [isInputValidEmail, setisInputValidEmail] = useState(false);
+  const [isInputValidCreditCard, setisInputValidCreditCard] = useState(false);
+  const [isInputValidExpirationDate, setisInputValidExpirationDate] =
+    useState(false);
+  const [isInputValidCVV, setisInputValidCVV] = useState(false);
+  const [isInputValidNameOnCard, setisInputValidNameOnCard] = useState(false);
+  const [isInputValidZipCode, setisInputValidZipCode] = useState(false);
   const [isVisaCard, setIsVisaCard] = useState(false);
   const [isMasterCard, setIsMasterCard] = useState(false);
   const [isAmexCard, setIsAmexCard] = useState(false);
   const [isDiscoverCard, setIsDiscoverCard] = useState(false);
-  const [isValidEmail, setIsValidEmail] = useState(false);
-  // const formik = useFormik({
-  //   initialValues: {
-  //     email: '',
-  //   },
-  //   validate,
-  //   onSubmit: (values) => {
-  //     alert(JSON.stringify(values, null, 2));
-  //   },
-  // });
-  const emailPlaceholder = 'hi@warpdownload.com';
-  const emailChangeHandler = (e: any) => {
-    console.log(e.target.value);
-    setIsValidEmail(validateEmail(e.target.value));
-    // console.log(isValidEmail);
-
-    // if (e.target.value.length > 0) setIsValidCreditCard(true);
-    // // setIsValidCreditCard(validateCreditCard(e.target.value));
-    // setIsValidCreditCard(validateCreditCardType(e.target.value));
-    // const cardType = validateCreditCardType(e.target.value);
-    // console.log(cardType, isValidCreditCard);
+  const [inputClass, setInputClass] = useState(styles.field_input);
+  // let inputClass = isInputValid ? styles.field_input : styles.field_input;
+  const changeHandler = (e: any) => {
+    if (e.target.value.length > 0) {
+      if (isEmailType) setIsInputValid(validateEmail(e.target.value));
+      if (isCreditCardType) setIsInputValid(validateCreditCard(e.target.value));
+      if (isExpirationDateType)
+        setIsInputValid(validateExpirationDate(e.target.value));
+      if (isCvvType) setIsInputValid(validateCVV(e.target.value));
+      if (isNameOnCardType) setIsInputValid(validateNameOnCard(e.target.value));
+      if (isZipCodeType) setIsInputValid(validateZipCode(e.target.value));
+      // setInputClass(
+      //   isInputValid ? styles.field_input__valid : styles.field_input__invalid
+      // );
+    }
   };
-  // const searchInputChangeHandler = (event) => {
-  //   if (event.target.value.length > 0) {
-  //     setClearIcon(true);
-  //     window.electron.ipcRenderer.sendMessage('Search: InputChange', [
-  //       event.target.value,
-  //     ]);
-  //   }
-  //   inputCtx.setSearchText(event.target.value);
+
   // };
   const mouseEnterHandler = () => {
     // console.log('mouse enter');
@@ -52,15 +72,12 @@ export default function ProductCheckoutInputField(props: any) {
   const mouseLeaveHandler = () => {
     // console.log('mouse leave');
   };
-  const inputClass = isValidEmail
-    ? styles.field_input__valid
-    : styles.field_input;
 
   const componentStyle = expanded ? styles.field : styles.field;
   return (
     <form
-      onMouseEnter={mouseEnterHandler}
-      onMouseLeave={mouseLeaveHandler}
+      // onMouseEnter={mouseEnterHandler}
+      // onMouseLeave={mouseLeaveHandler}
       // style={
       //   themeCtx.isDarkTheme
       //     ? { backgroundColor: themeCtx.search.dark.backgroundColor }
@@ -89,22 +106,23 @@ export default function ProductCheckoutInputField(props: any) {
         // id="search__input"
         // className={inputClass}
         className={styles.field_input}
-        style={isValidEmail ? {} : { border: '1px solid red' }}
+        // className={inputClass}
+        style={isInputValid ? {} : { border: '1px solid red' }}
         type="text"
         // value={emailPlaceholder}
-        onChange={emailChangeHandler}
+        onChange={changeHandler}
         // onMouseEnter={userStartedInteracting}
         // onMouseLeave={userStartedInteracting}
         // onBlur={searchInputBlurHandler}
-        placeholder={emailPlaceholder}
+        placeholder={placeholder}
         // spellCheck="false"
       />
       {/* <label
-        id="search__input__label"
+        // id="search__input__label"
         className={styles.field_label}
-        htmlFor="search__input"
+        // htmlFor="search__input"
       >
-        Email
+        {label}
       </label> */}
     </form>
   );

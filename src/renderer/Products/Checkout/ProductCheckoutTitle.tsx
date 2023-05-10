@@ -1,6 +1,6 @@
 import styles from './ProductCheckoutTitle.module.scss';
 
-export default function ProductTitle(props: any) {
+export default function ProductCheckoutTitle(props: any) {
   const { title, expanded } = props;
 
   const componentStyle = expanded ? styles.title_expanded : styles.title;

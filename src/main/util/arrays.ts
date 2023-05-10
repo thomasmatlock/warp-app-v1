@@ -18,3 +18,6 @@ export function shuffleArray(array) {
 
   return array;
 }
+export const getLastItemOfArray = (array: any) => {
+  return array[array.length - 1];
+};

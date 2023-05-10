@@ -117,14 +117,14 @@ export function ProductsGridCardsContextProvider(props: any) {
         {
           id: 'audioFeature3',
           title: 'Channels',
-          description: `Clicking 67 times to download 67 audio files is a thing of the past. Grab audio tracks of a channel with one click.`,
+          description: `Clicking 67 times to download 67 audio files is a thing of the past.`,
           image: channelIcon,
           inverted: true,
         },
         {
           id: 'audioFeature4',
           title: 'Playlists',
-          description: `It takes 900 clicks to get an entire playlist. Just kidding. It takes one! Just when you thought it couldn't get any easier.`,
+          description: `It takes 900 clicks to get an entire playlist. Just kidding. It takes one!`,
           image: playlistIcon,
           inverted: true,
         },
