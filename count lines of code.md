@@ -1,1 +1,1 @@
-git ls-files | grep '\.py' | xargs wc -l
+git ls-files | grep '\.ts' | xargs wc -l
