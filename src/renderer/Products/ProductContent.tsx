@@ -14,7 +14,19 @@ import ProductFeaturesList from './ProductFeaturesList';
 import styles from './Products.module.scss';
 import Scene from '../Models/Scene';
 
-export default function Product(props: any) {
+type Props = {
+  id: string;
+  image: string;
+  title: string;
+  description: string;
+  features: string[];
+  ctaMessage: string;
+  expanded: boolean;
+  collapsed: boolean;
+  threeScene: string;
+  price: number;
+};
+export default function Product(props: Props) {
   const {
     id,
     image,
@@ -69,9 +81,9 @@ export default function Product(props: any) {
         <div className={styles.card_info}>
           {/* <img className={styles.card_image} src={image} alt="" /> */}
           <Scene threeScene={threeScene} expanded={expanded} />
-          <ProductTitle title={title} />
-          <ProductSubtitle description={description} />
-          <ProductFeaturesList features={features} expanded={expanded} />
+          <ProductTitle title={title} expanded />
+          <ProductSubtitle description={description} expanded />
+          <ProductFeaturesList features={features} expanded />
           <CTAProduct
             message={ctaMessage}
             clickHandler={clickHandler}

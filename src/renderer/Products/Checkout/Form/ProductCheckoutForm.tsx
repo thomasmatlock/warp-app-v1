@@ -41,9 +41,13 @@ const creditCardFormData = {
     placeholder: '123',
   },
 };
-export default function ProductCheckoutForm(props: any) {
+type Props = {
+  id: string;
+  expanded: boolean;
+  price: number;
+};
+export default function ProductCheckoutForm(props: Props) {
   const { id, expanded, price } = props;
-  console.log(id);
 
   const [ctaMessage, setCtaMessage] = useState(`Pay $${price}`);
   useEffect(() => {

@@ -14,8 +14,20 @@ import ProductContent from './ProductContent';
 
 import styles from './Products.module.scss';
 import Scene from '../Models/Scene';
+type Props = {
+  id: string;
+  image: string;
+  title: string;
+  description: string;
+  features: string[];
+  ctaMessage: string;
+  expanded: boolean;
+  collapsed: boolean;
+  threeScene: string;
+  price: number;
+};
 
-export default function Product(props: any) {
+export default function Product(props: Props) {
   const {
     id,
     image,

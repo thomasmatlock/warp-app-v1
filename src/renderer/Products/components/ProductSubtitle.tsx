@@ -1,6 +1,10 @@
 import styles from './ProductSubtitle.module.scss';
 
-export default function ProductSubtitle(props: any) {
+type Props = {
+  description: string;
+  expanded: boolean;
+};
+export default function ProductSubtitle(props: Props) {
   const { description, expanded } = props;
 
   const componentStyle = expanded ? styles.subtitle : styles.subtitle;

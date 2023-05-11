@@ -1,6 +1,10 @@
 import styles from './ProductTitle.module.scss';
 
-export default function ProductTitle(props: any) {
+type Props = {
+  title: string;
+  expanded: boolean;
+};
+export default function ProductTitle(props: Props) {
   const { title, expanded } = props;
 
   const componentStyle = expanded ? styles.title_expanded : styles.title;

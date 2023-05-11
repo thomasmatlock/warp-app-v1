@@ -1,13 +1,13 @@
 import styles from './ProductFeature.module.scss';
 
-type ProductFeaturesItemProps = {
+type Props = {
   title: string;
   description: string;
   image: string;
   expanded: boolean;
 };
 
-export default function ProductFeaturesItem(props: ProductFeaturesItemProps) {
+export default function ProductFeaturesItem(props: Props) {
   const { title, description, image, expanded } = props;
   // console.log(expanded);
 

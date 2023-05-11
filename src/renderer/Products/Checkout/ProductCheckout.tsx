@@ -4,8 +4,12 @@ import ProductCheckoutTitle from './Titles/ProductCheckoutTitle';
 import ProductCheckoutSubtitle from './Titles/ProductCheckoutSubtitle';
 import Loader from '../../Preloaders/PreloaderSpinners';
 import PreloaderOrbits from '../../Preloaders/PreloaderOrbits';
-
-export default function ProductCheckout(props: any) {
+type Props = {
+  id: string;
+  expanded: boolean;
+  price: number;
+};
+export default function ProductCheckout(props: Props) {
   const { id, expanded, price } = props;
   // console.log(price);
 

@@ -1,7 +1,10 @@
 import styles from './ProductCheckoutInputFields.module.scss';
 import ProductCheckoutInputField from './ProductCheckoutInputField';
 
-export default function ProductCheckoutCreditCardForm(props: any) {
+type Props = {
+  data: any;
+};
+export default function ProductCheckoutCreditCardForm(props: Props) {
   const { data } = props;
 
   return (
