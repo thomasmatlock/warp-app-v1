@@ -1,6 +1,7 @@
 import { useFormik } from 'formik';
 import { useState } from 'react';
 import ProductCheckoutInputField from './ProductCheckoutInputField';
+import ProductCheckoutCreditCardForm from './ProductCheckoutCreditCardForm';
 import styles from './ProductCheckoutForm.module.scss';
 // import * strings from './ProductCheckoutInputField.strings.json';
 import {
@@ -12,38 +13,19 @@ import {
   validateZipCode,
   validateCVV,
 } from '../../../main/util/strings';
-// TYPES
-// type: 'email',
-// type: 'creditCard',
-// type: 'expirationDate',
-// type: 'cvv',
-// type: 'nameOnCard',
-// type: 'zipCode',
+import { generateRandomName } from '../../../main/util/names';
+
 const fieldData = {
   email: {
     type: 'email',
     label: 'Email',
     placeholder: 'hi@warpdownload.com',
   },
-  creditCard: {
-    type: 'creditCard',
-    label: 'Credit Card',
-    placeholder: '1234 5678 9012 3456',
-  },
-  expirationDate: {
-    type: 'expirationDate',
-    label: 'Card Expiration',
-    placeholder: 'MM/YY',
-  },
-  cvv: {
-    type: 'cvv',
-    label: 'CVV',
-    placeholder: '123',
-  },
   nameOnCard: {
     type: 'nameOnCard',
     label: 'Name on Card',
-    placeholder: 'John Doe',
+    // placeholder: 'John Doe',
+    placeholder: generateRandomName(),
   },
   zipCode: {
     type: 'zipCode',
@@ -107,9 +89,8 @@ export default function ProductCheckoutForm(props: any) {
   return (
     <form className={componentStyle}>
       <ProductCheckoutInputField data={fieldData.email} />
-      <ProductCheckoutInputField data={fieldData.creditCard} />
-      <ProductCheckoutInputField data={fieldData.expirationDate} />
-      <ProductCheckoutInputField data={fieldData.cvv} />
+      <ProductCheckoutCreditCardForm />
+
       <ProductCheckoutInputField data={fieldData.nameOnCard} />
       <ProductCheckoutInputField data={fieldData.zipCode} />
     </form>

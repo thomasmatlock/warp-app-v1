@@ -4,9 +4,11 @@
     height: 100%;
     width: calc(100% - 2rem);
     display: flex;
+    justify-content: center;
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
     margin: 1rem auto;
+    padding-top: 1rem;
     // border: 1px solid red;
 }

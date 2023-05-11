@@ -1,12 +1,10 @@
 # checkout
 
-- email field
-- card number
-  - card type
-- card expiration
-- card cvc
-- name on card
-- zip code
+there needs to be 2 kinds of..
+
+- the field
+- the input
+- combine the credit cards forms
 - pay CTA
 - add a way to add a coupon
 
