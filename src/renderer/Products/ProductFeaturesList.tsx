@@ -6,11 +6,11 @@ type Props = {
     id: string;
     title: string;
   };
-
   expanded: boolean;
 };
 export default function ProductFeaturesList(props: Props) {
   const { features, expanded } = props;
+
   // console.log(expanded);
 
   return (

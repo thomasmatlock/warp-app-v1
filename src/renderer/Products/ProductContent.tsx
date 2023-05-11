@@ -83,7 +83,7 @@ export default function Product(props: Props) {
           <Scene threeScene={threeScene} expanded={expanded} />
           <ProductTitle title={title} expanded />
           <ProductSubtitle description={description} expanded />
-          <ProductFeaturesList features={features} expanded />
+          <ProductFeaturesList features={features} expanded={expanded} />
           <CTAProduct
             message={ctaMessage}
             clickHandler={clickHandler}
