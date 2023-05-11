@@ -46,9 +46,9 @@ export default function ProductCheckoutForm(props: any) {
   return (
     <form className={componentStyle}>
       <ProductCheckoutInputField data={fieldData.email} />
-      <ProductCheckoutCreditCardForm data={creditCardFormData} />
       <ProductCheckoutInputField data={fieldData.nameOnCard} />
       <ProductCheckoutInputField data={fieldData.zipCode} />
+      <ProductCheckoutCreditCardForm data={creditCardFormData} />
     </form>
   );
 }

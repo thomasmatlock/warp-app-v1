@@ -1,6 +1,5 @@
-import { useFormik } from 'formik';
 import { useState, useEffect } from 'react';
-import styles from './ProductCheckoutInputField.module.scss';
+import styles from './ProductCheckoutInputFields.module.scss';
 // import * strings from './ProductCheckoutInputField.strings.json';
 import {
   validateEmail,
@@ -14,7 +13,7 @@ import {
 
 export default function ProductCheckoutInputField(props: any) {
   // PROPS DESTRUCTURING
-  const { expanded, type, label, placeholder } = props.data;
+  const { type, label, placeholder } = props.data;
   //
   const [isInputValid, setIsInputValid] = useState(true);
   // TYPES //////////////////////////////
@@ -57,21 +56,25 @@ export default function ProductCheckoutInputField(props: any) {
   const [fieldStyle, setFieldStyle] = useState(
     isCreditCardType ? styles.field__credit_card : styles.field
   );
+  const [inputStyle, setInputStyle] = useState(styles.field_input);
 
   useEffect(() => {
     if (isCreditCardType) {
       setFieldStyle(styles.field__credit_card);
+      setInputStyle(styles.field_input__credit_card);
     } else if (isCvvType) {
       setFieldStyle(styles.field__cvv);
+      setInputStyle(styles.field_input__cvv);
     } else if (isExpirationDateType) {
       setFieldStyle(styles.field__expiration_date);
+      setInputStyle(styles.field_input__expiration_date);
     }
   }, [isCreditCardType, isExpirationDateType, isCvvType]);
   return (
     // <div className={styles.field}>
     <div className={fieldStyle}>
       <input
-        className={styles.field_input}
+        className={inputStyle}
         style={isInputValid ? {} : { border: '1px solid red' }}
         type="text"
         onChange={changeHandler}

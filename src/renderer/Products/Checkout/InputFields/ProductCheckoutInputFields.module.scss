@@ -1,7 +1,12 @@
 @import '../../../Global/Animations.scss';
 @import '../../../Global/Colors.scss';
+// FIELDS
 .field,
-.field__credit_card {
+.field__credit_card,
+.field__cvv,
+.field_row,
+.field__expiration_date {
+    // .field__credit_card {
     // .field__expiration_date,
     // .field__cvv {
     min-height: 64px;
@@ -16,10 +21,34 @@
     // top: 0;
     // left: 0;
     position: relative;
+    // border: 1px solid red;
 }
 
+.field_row {
+    display: flex;
+    flex-direction: row;
+    // border: 1px solid red;
+    padding: 0rem;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    // width: 66%;
+    margin: 0px;
+    margin-top: -1.5rem;
+}
+
+.field__expiration_date,
+.field__cvv {
+    margin: 0px;
+    width: 50%;
+}
+
+// iNPUTS
 .field_input,
-.field_input__valid {
+.field_input__credit_card,
+.field_input__expiration_date,
+.field_input__cvv {
     height: 40px;
     // margin: 1rem;
     // padding: 1rem;
@@ -44,18 +73,19 @@
     }
 }
 
-.field_input__valid {
-    // border: 1px solid green;
+.field_input__credit_card {
+    border-radius: 3px 3px 0 0;
 }
 
-.field_input__invalid {
-    border: 1px solid red;
+.field_input__expiration_date {
+    border-radius: 0 0 0 3px;
 }
 
-.field_input * {
-    // color: black;
+.field_input__cvv {
+    border-radius: 0 0 3px 0;
 }
 
+// LABELS
 .field_label {
     // border: 1px dotted red;
     // position: absolute;
@@ -64,39 +94,4 @@
     font-family: 'Proxima Nova Light';
     font-size: 0.75rem;
     color: rgb(205, 205, 205);
-}
-
-.field__credit_card {
-    // margin-bottom: -0.5rem !important;
-    // border: 1px solid white;
-    // position: absolute;
-}
-
-.field_row {
-    display: flex;
-    flex-direction: row;
-    // border: 1px solid red;
-    padding: 0rem;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-    // width: 66%;
-    margin-top: -14px;
-}
-
-.field__cvv {
-    // margin-top: -0.5rem !important;
-    // border: 1px solid red;
-    // width: 50%;
-    margin: 0rem;
-    flex: 1;
-    // width: 50%;
-}
-
-.field__expiration_date {
-    // border: 1px solid green;
-    margin: 0rem;
-    // width: 50%;
-    flex: 1;
 }
