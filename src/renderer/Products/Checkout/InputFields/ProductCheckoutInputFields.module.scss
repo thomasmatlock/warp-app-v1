@@ -17,12 +17,17 @@
     justify-content: center;
     align-items: center;
     flex-direction: row;
-    margin: 0.25rem;
     margin: 0.5rem;
     // top: 0;
     // left: 0;
     position: relative;
     // border: 1px solid red;
+}
+
+.field,
+.field__credit_card,
+.field_row {
+    // animation: unfoldFromTop 1s ease-in-out;
 }
 
 // last field
@@ -40,8 +45,9 @@
     align-items: center;
     align-content: center;
     // width: 66%;
-    margin: 0px;
-    margin-top: -1.5rem;
+    // margin: 0px;
+    // margin-bottom: 0.5rem;
+    margin-top: -1.75rem;
 }
 
 .field__expiration_date,
@@ -104,13 +110,18 @@
 
 .field_input__credit_card {
     border-radius: 3px 3px 0 0;
+    // border-bottom: 1px solid transparent;
 }
 
 .field_input__expiration_date {
     border-radius: 0 0 0 3px;
+    border-top: 1px solid transparent;
+    border-right: 1px solid transparent;
 }
 
 .field_input__cvv {
+    border-top: 1px solid transparent;
+    // border-left: 1px solid transparent;
     border-radius: 0 0 3px 0;
 }
 
