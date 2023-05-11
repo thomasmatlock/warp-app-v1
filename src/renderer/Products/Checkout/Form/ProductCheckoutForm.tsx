@@ -2,7 +2,7 @@ import ProductCheckoutInputField from '../InputFields/ProductCheckoutInputField'
 import ProductCheckoutCreditCardForm from '../InputFields/ProductCheckoutCreditCardForm';
 import styles from './ProductCheckoutForm.module.scss';
 
-import { generateRandomName } from '../../../../main/util/names';
+import { generateRandomName } from '../../../../main/util/generate';
 
 const fieldData = {
   email: {
