@@ -10,7 +10,7 @@ import {
   validateNameOnCard,
   validateZipCode,
   validateCVV,
-} from '../../../main/util/strings';
+} from '../../../../main/util/strings';
 
 export default function ProductCheckoutInputField(props: any) {
   // PROPS DESTRUCTURING

@@ -1,7 +1,7 @@
 import styles from './ProductCheckout.module.scss';
-import ProductCheckoutForm from './ProductCheckoutForm';
-import ProductCheckoutTitle from './ProductCheckoutTitle';
-import ProductCheckoutSubtitle from './ProductCheckoutSubtitle';
+import ProductCheckoutForm from './Form/ProductCheckoutForm';
+import ProductCheckoutTitle from './Titles/ProductCheckoutTitle';
+import ProductCheckoutSubtitle from './Titles/ProductCheckoutSubtitle';
 import Loader from '../../Preloaders/PreloaderSpinners';
 import PreloaderOrbits from '../../Preloaders/PreloaderOrbits';
 
