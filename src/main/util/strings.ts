@@ -30,6 +30,16 @@ export const generateRandomId = () => {
 //   return re.test(email);
 // };
 export const validateExpirationDate = (expirationDate: string) => {
+  // MONTH VALIDATION
+  const monthCharacters = expirationDate.slice(0, 2);
+  const monthCharactersAsNumber = Number(monthCharacters);
+  // get the characters of the current month
+  const currentMonth = new Date().getMonth() + 1;
+  // if the month is less than the current month, return false
+  if (monthCharactersAsNumber < currentMonth) {
+    return false;
+  }
+  // YEAR VALIDATION
   // get the last 2 characters of the expiration date
   const yearCharacters = expirationDate.slice(-2);
   const yearCharactersAsNumber = Number(yearCharacters);
@@ -41,11 +51,6 @@ export const validateExpirationDate = (expirationDate: string) => {
   if (yearCharactersAsNumber < currentYearLast2CharactersAsNumber) {
     return false;
   }
-  const monthCharacters = expirationDate.slice(0, 2);
-  const monthCharactersAsNumber = Number(monthCharacters);
-  // get the characters of the current month
-  const currentMonth = new Date().getMonth() + 1;
-  console.log(currentMonth);
 
   const re = /^(0[1-9]|1[0-2])\/?([0-9]{2})$/;
   return re.test(expirationDate);
@@ -60,6 +65,8 @@ export const validateEmail = (email: string) => {
   return re.test(email);
 };
 export const validateNameOnCard = (nameOnCard: string) => {
+  // NEED 2 STRINGS SEPARATED BY A SPACE
+
   const re = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
   return re.test(nameOnCard);
 };
