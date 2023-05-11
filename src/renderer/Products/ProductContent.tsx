@@ -25,7 +25,9 @@ export default function Product(props: any) {
     expanded,
     collapsed,
     threeScene,
+    price,
   } = props;
+  // console.log(id);
 
   const productsCtx = useContext(ProductsContext);
   const ctaBackMessage = 'Back';
@@ -82,7 +84,7 @@ export default function Product(props: any) {
           />
         </div>
       </div>
-      <ProductCheckout expanded={expanded} />
+      <ProductCheckout expanded={expanded} price={price} id={id} />
     </div>
   );
 }

@@ -6,17 +6,11 @@ import Loader from '../../Preloaders/PreloaderSpinners';
 import PreloaderOrbits from '../../Preloaders/PreloaderOrbits';
 
 export default function ProductCheckout(props: any) {
-  const { expanded } = props;
+  const { id, expanded, price } = props;
+  // console.log(price);
+
   const title = 'Checkout';
   const subtitle = 'Enter your payment details';
-
-  // const fieldPlaceholders = {
-  //   email: 'hello@warpdownload.com',
-  //   cardNumber: '1234 5678 9012 3456',
-  //   cardExpirationDate: 'MM/YY',
-  //   cardCVV: '123',
-  //   zipCode: '12345',
-  // };
 
   const componentStyle = expanded ? styles.checkout__expanded : styles.checkout;
   return (
@@ -25,7 +19,7 @@ export default function ProductCheckout(props: any) {
         <div className={componentStyle}>
           <ProductCheckoutTitle title={title} />
           <ProductCheckoutSubtitle title={subtitle} />
-          <ProductCheckoutForm expanded={expanded} />
+          <ProductCheckoutForm expanded={expanded} price={price} id={id} />
 
           {/* <PreloaderOrbits theme="dark" /> */}
           {/* <Loader theme="dark" /> */}

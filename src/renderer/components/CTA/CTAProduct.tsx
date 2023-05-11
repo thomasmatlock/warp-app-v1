@@ -9,7 +9,7 @@ import styles from './CTAProduct.module.scss';
 type Props = {
   type: string;
   message: string;
-  clickHandler: () => void;
+  clickHandler: (e: any) => void;
   expanded: boolean;
 };
 export default function CTAProduct(props: Props) {
@@ -21,7 +21,7 @@ export default function CTAProduct(props: Props) {
   // );
   const ctaStyle = expanded ? styles.cta_product__expanded : styles.cta_product;
   useEffect(() => {
-    console.log(type);
+    // console.log(type);
 
     // if (expanded) setCtaStyle(styles.cta_product__expanded);
     if (type === 'buy') {

@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import CTAProduct from 'renderer/components/CTA/CTAProduct';
 import ProductCheckoutInputField from '../InputFields/ProductCheckoutInputField';
 import ProductCheckoutCreditCardForm from '../InputFields/ProductCheckoutCreditCardForm';
@@ -40,9 +41,21 @@ const creditCardFormData = {
     placeholder: '123',
   },
 };
-const ctaMessage = 'Pay';
 export default function ProductCheckoutForm(props: any) {
-  const { expanded } = props;
+  const { id, expanded, price } = props;
+  console.log(id);
+
+  const [ctaMessage, setCtaMessage] = useState(`Pay $${price}`);
+  useEffect(() => {
+    setCtaMessage(
+      id.toLowerCase().includes('bundle')
+        ? `Pay $${price} (Save 25%)`
+        : `Pay $${price}`
+    );
+  }, [id, price]);
+  // const ctaMessage = `Pay $${price}`;
+  // console.log(price);
+
   const clickHandler = () => {
     console.log('clicked');
   };

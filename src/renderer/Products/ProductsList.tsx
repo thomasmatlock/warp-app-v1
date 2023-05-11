@@ -43,6 +43,7 @@ export default function Products(props: any) {
           collapsed={item.collapsed}
           features={item.features}
           threeScene={item.threeScene}
+          price={item.price}
         />
       ))}
     </ul>

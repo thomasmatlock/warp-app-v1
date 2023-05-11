@@ -98,6 +98,7 @@ export function ProductsGridCardsContextProvider(props: any) {
       expanded: audioCardExpanded,
       collapsed: audioCardCollapsed,
       threeScene: 'audioPersonalEdition',
+      price: 10,
       // threeModelURL: audioThreeModelURL,
 
       features: [
@@ -145,6 +146,8 @@ export function ProductsGridCardsContextProvider(props: any) {
       expanded: videoCardExpanded,
       collapsed: videoCardCollapsed,
       threeScene: 'videoPersonalEdition',
+      price: 10,
+
       // threeModelURL: audioThreeModelURL,
 
       features: [
@@ -183,51 +186,53 @@ export function ProductsGridCardsContextProvider(props: any) {
         },
       ],
     },
-    {
-      id: 'warpstagramPersonalEdition',
-      expanded: warpstagramCardExpanded,
-      image: hoverCardImg3,
-      title: 'Warpstagram Personal Edition',
-      description: `The Warp team are developers, designers, and editors. We solved our own frustrations and made it available to you, too!`,
-      ctaMessage: 'Go to checkout',
-      collapsed: warpstagramCardCollapsed,
-      threeScene: 'warpstagramPersonalEdition',
-      // threeModelURL: audioThreeModelURL,
-      features: [
-        {
-          id: 'warpstagramFeature1',
-          title: 'Simultaneous downloads',
-          description: `Triple Speed: up to 3 concurrent downloads at once.`,
-          image: racingIcon,
-        },
-        {
-          id: 'warpstagramFeature2',
-          title: 'Multiple Formats',
-          description: `Download videos in MP4 and MKV.`,
-          image: playlistIcon,
-          inverted: true,
-        },
-        {
-          id: 'warpstagramFeature3',
-          title: 'Simultaneous downloads',
-          description: `Triple Speed: up to 3 concurrent downloads at once.`,
-          image: racingIcon,
-        },
-        {
-          id: 'warpstagramFeature4',
-          title: 'Multiple Formats',
-          description: `Download videos in MP4 and MKV.`,
-          image: playlistIcon,
-          inverted: true,
-        },
-        {
-          id: 'warpstagramFeature5',
-          title: 'Simultaneous downloads',
-          description: `Triple Speed: up to 3 concurrent downloads at once.`,
-          image: racingIcon,
-        },
-      ],
-    },
+    // {
+    //   id: 'warpstagramPersonalEdition',
+    //   expanded: warpstagramCardExpanded,
+    //   image: hoverCardImg3,
+    //   title: 'Warpstagram Personal Edition',
+    //   description: `The Warp team are developers, designers, and editors. We solved our own frustrations and made it available to you, too!`,
+    //   ctaMessage: 'Go to checkout',
+    //   collapsed: warpstagramCardCollapsed,
+    //   threeScene: 'warpstagramPersonalEdition',
+    //   price: 15,
+
+    //   // threeModelURL: audioThreeModelURL,
+    //   features: [
+    //     {
+    //       id: 'warpstagramFeature1',
+    //       title: 'Simultaneous downloads',
+    //       description: `Triple Speed: up to 3 concurrent downloads at once.`,
+    //       image: racingIcon,
+    //     },
+    //     {
+    //       id: 'warpstagramFeature2',
+    //       title: 'Multiple Formats',
+    //       description: `Download videos in MP4 and MKV.`,
+    //       image: playlistIcon,
+    //       inverted: true,
+    //     },
+    //     {
+    //       id: 'warpstagramFeature3',
+    //       title: 'Simultaneous downloads',
+    //       description: `Triple Speed: up to 3 concurrent downloads at once.`,
+    //       image: racingIcon,
+    //     },
+    //     {
+    //       id: 'warpstagramFeature4',
+    //       title: 'Multiple Formats',
+    //       description: `Download videos in MP4 and MKV.`,
+    //       image: playlistIcon,
+    //       inverted: true,
+    //     },
+    //     {
+    //       id: 'warpstagramFeature5',
+    //       title: 'Simultaneous downloads',
+    //       description: `Triple Speed: up to 3 concurrent downloads at once.`,
+    //       image: racingIcon,
+    //     },
+    //   ],
+    // },
 
     {
       id: 'bundlePersonalEdition',
@@ -238,6 +243,7 @@ export function ProductsGridCardsContextProvider(props: any) {
       expanded: bundleCardExpanded,
       collapsed: bundleCardCollapsed,
       threeScene: 'bundlePersonalEdition',
+      price: 15,
       // threeModelURL: audioThreeModelURL,
 
       features: [
