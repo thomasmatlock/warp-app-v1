@@ -2,6 +2,11 @@
 
 there needs to be 2 kinds of..
 
+- form
+- field
+- input
+- credit card fields wrapper
+
 - the field
 - the input
 - combine the credit cards forms

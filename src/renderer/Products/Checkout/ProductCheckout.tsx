@@ -2,8 +2,8 @@ import styles from './ProductCheckout.module.scss';
 import ProductCheckoutForm from './ProductCheckoutForm';
 import ProductCheckoutTitle from './ProductCheckoutTitle';
 import ProductCheckoutSubtitle from './ProductCheckoutSubtitle';
-import Loader from '../../ActionBar/Loader';
-import LoaderPlanets from '../../ActionBar/LoaderPlanets';
+import Loader from '../../Preloaders/PreloaderSpinners';
+import PreloaderOrbits from '../../Preloaders/PreloaderOrbits';
 
 export default function ProductCheckout(props: any) {
   const { expanded } = props;
@@ -26,15 +26,9 @@ export default function ProductCheckout(props: any) {
           <ProductCheckoutTitle title={title} />
           {/* <ProductCheckoutSubtitle title={subtitle} /> */}
           <ProductCheckoutForm expanded={expanded} />
-          {/* <ProductCheckoutInputField data={fieldData.email} />
-          <ProductCheckoutInputField data={fieldData.creditCard} />
-          <ProductCheckoutInputField data={fieldData.expirationDate} />
-          <ProductCheckoutInputField data={fieldData.cvv} />
-          <ProductCheckoutInputField data={fieldData.nameOnCard} />
-          <ProductCheckoutInputField data={fieldData.zipCode} /> */}
 
-          {/* <Loader /> */}
-          {/* <LoaderPlanets /> */}
+          <PreloaderOrbits theme="dark" />
+          <Loader theme="dark" />
         </div>
       )}
     </>

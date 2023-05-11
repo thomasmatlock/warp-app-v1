@@ -20,7 +20,7 @@ import PrefsContext from '../../store/prefsContext';
 import SourcesContext from '../../store/sourcesContext';
 import DownloadsContext from '../../store/downloadsContext';
 import UserContext from '../../store/userContext';
-import Loader from './Loader';
+import Loader from '../Preloaders/PreloaderSpinners';
 import LoaderPlanets from './LoaderPlanets';
 
 const BrowserBar = () => {
