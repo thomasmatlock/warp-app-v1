@@ -15,6 +15,7 @@
 }
 
 .cta_product,
+.cta_product__buy,
 .cta_product__expanded {
     display: flex;
     flex-direction: row;
@@ -48,6 +49,18 @@
 .cta_product__expanded {
     animation: disappearX 0.25s ease-in-out forwards;
     // display: none;
+}
+
+.cta_product__buy {
+    // animation: glowPulse 2s ease-in-out infinite;
+    // border: 10px solid white;
+    // animation: fadeIn 1s ease-in-out;
+    // animation: swingInBottomFwd 1s ease-in-out;
+    // animation: flickerShadow 2s ease-in-out;
+    margin: 1rem auto;
+    margin-top: 3rem;
+    position: relative;
+    // animation: glow 1
 }
 
 .cta_text {

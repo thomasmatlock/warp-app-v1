@@ -1,16 +1,48 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 
+import { useScroll } from '@react-three/drei';
+import { useEffect, useState } from 'react';
 import styles from './CTAProduct.module.scss';
 
-export default function CTAProduct(props: any) {
+type Props = {
+  type: string;
+  message: string;
+  clickHandler: () => void;
+  expanded: boolean;
+};
+export default function CTAProduct(props: Props) {
   // console.log(props);
-  const { message, clickHandler, expanded } = props;
+  const { type, message, clickHandler, expanded } = props;
+  const [isBuy, setIsBuy] = useState(false);
+  // const [ctaStyle, setCtaStyle] = useState(
+  //   expanded ? styles.cta_product__expanded : styles.cta_product
+  // );
   const ctaStyle = expanded ? styles.cta_product__expanded : styles.cta_product;
+  useEffect(() => {
+    console.log(type);
 
-  return (
-    <div className={ctaStyle} onClick={clickHandler}>
-      <p className={styles.cta_text}>{message}</p>
-    </div>
-  );
+    // if (expanded) setCtaStyle(styles.cta_product__expanded);
+    if (type === 'buy') {
+      setIsBuy(true);
+      // ctaStyle = styles.cta_product__buy;
+    }
+  }, [type, expanded]);
+  const CTA = () => {
+    if (isBuy) {
+      return (
+        <div className={styles.cta_product__buy} onClick={clickHandler}>
+          <p className={styles.cta_text}>{message}</p>
+        </div>
+      );
+    }
+    return (
+      <div className={ctaStyle} onClick={clickHandler}>
+        <p className={styles.cta_text}>{message}</p>
+      </div>
+    );
+  };
+
+  return <CTA />;
 }

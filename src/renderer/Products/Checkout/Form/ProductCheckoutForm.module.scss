@@ -1,6 +1,7 @@
 @import '../../../Global/Animations.scss';
 @import '../../../Global/Colors.scss';
 .form {
+    // height: auto;
     height: 100%;
     width: calc(100% - 2rem);
     display: flex;
@@ -9,6 +10,7 @@
     align-items: center;
     flex-direction: column;
     margin: 1rem auto;
-    padding-top: 1rem;
-    // border: 1px solid red;
+    // padding-top: 1rem;
+    position: relative;
+    // border: 1px dotted gray;
 }

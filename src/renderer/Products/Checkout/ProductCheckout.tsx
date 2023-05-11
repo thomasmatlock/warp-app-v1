@@ -24,7 +24,7 @@ export default function ProductCheckout(props: any) {
       {expanded && (
         <div className={componentStyle}>
           <ProductCheckoutTitle title={title} />
-          {/* <ProductCheckoutSubtitle title={subtitle} /> */}
+          <ProductCheckoutSubtitle title={subtitle} />
           <ProductCheckoutForm expanded={expanded} />
 
           {/* <PreloaderOrbits theme="dark" /> */}

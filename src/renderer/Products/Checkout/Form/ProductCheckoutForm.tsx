@@ -1,6 +1,8 @@
+import CTAProduct from 'renderer/components/CTA/CTAProduct';
 import ProductCheckoutInputField from '../InputFields/ProductCheckoutInputField';
 import ProductCheckoutCreditCardForm from '../InputFields/ProductCheckoutCreditCardForm';
 import styles from './ProductCheckoutForm.module.scss';
+// import CTAProduct from '../../components/CTA/CTAProduct';
 
 import { generateRandomName } from '../../../../main/util/generate';
 
@@ -38,10 +40,12 @@ const creditCardFormData = {
     placeholder: '123',
   },
 };
-
+const ctaMessage = 'Pay';
 export default function ProductCheckoutForm(props: any) {
   const { expanded } = props;
-
+  const clickHandler = () => {
+    console.log('clicked');
+  };
   const componentStyle = expanded ? styles.form : styles.form;
   return (
     <form className={componentStyle}>
@@ -49,6 +53,12 @@ export default function ProductCheckoutForm(props: any) {
       <ProductCheckoutCreditCardForm data={creditCardFormData} />
       <ProductCheckoutInputField data={fieldData.nameOnCard} />
       <ProductCheckoutInputField data={fieldData.zipCode} />
+      <CTAProduct
+        message={ctaMessage}
+        clickHandler={clickHandler}
+        expanded={false}
+        type="buy"
+      />
     </form>
   );
 }
