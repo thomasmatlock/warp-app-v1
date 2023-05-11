@@ -27,8 +27,8 @@ export default function ProductCheckout(props: any) {
           {/* <ProductCheckoutSubtitle title={subtitle} /> */}
           <ProductCheckoutForm expanded={expanded} />
 
-          <PreloaderOrbits theme="dark" />
-          <Loader theme="dark" />
+          {/* <PreloaderOrbits theme="dark" /> */}
+          {/* <Loader theme="dark" /> */}
         </div>
       )}
     </>

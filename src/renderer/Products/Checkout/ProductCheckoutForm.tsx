@@ -21,6 +21,24 @@ const fieldData = {
     placeholder: '12345',
   },
 };
+const creditCardFormData = {
+  creditCard: {
+    type: 'creditCard',
+    label: 'Credit Card',
+    placeholder: '1234 5678 9012 3456',
+  },
+  expirationDate: {
+    type: 'expirationDate',
+    label: 'Card Expiration',
+    placeholder: 'MM/YY',
+  },
+  cvv: {
+    type: 'cvv',
+    label: 'CVV',
+    placeholder: '123',
+  },
+};
+
 export default function ProductCheckoutForm(props: any) {
   const { expanded } = props;
 
@@ -28,8 +46,7 @@ export default function ProductCheckoutForm(props: any) {
   return (
     <form className={componentStyle}>
       <ProductCheckoutInputField data={fieldData.email} />
-      <ProductCheckoutCreditCardForm />
-
+      <ProductCheckoutCreditCardForm data={creditCardFormData} />
       <ProductCheckoutInputField data={fieldData.nameOnCard} />
       <ProductCheckoutInputField data={fieldData.zipCode} />
     </form>
