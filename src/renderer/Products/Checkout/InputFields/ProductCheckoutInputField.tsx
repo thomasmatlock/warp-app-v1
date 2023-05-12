@@ -1,5 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import styles from './ProductCheckoutInputFields.module.scss';
+import CheckoutContext from '../../../../store/checkoutContext';
+
 // import * strings from './ProductCheckoutInputField.strings.json';
 import {
   validateEmail,
@@ -11,7 +13,14 @@ import {
   validateCVV,
 } from '../../../../main/util/strings';
 
+type Props = {
+  type: string;
+  label: string;
+  placeholder: string;
+};
 export default function ProductCheckoutInputField(props: any) {
+  const checkoutCtx = useContext(CheckoutContext);
+
   // PROPS DESTRUCTURING
   const { type, label, placeholder } = props.data;
   //
@@ -30,27 +39,35 @@ export default function ProductCheckoutInputField(props: any) {
   );
   const [isZipCodeType, setIsZipCodeType] = useState(type === 'zipCode');
   // VALID TYPES
-  // const [isInputValidEmail, setisInputValidEmail] = useState(false);
-  // const [isInputValidCreditCard, setisInputValidCreditCard] = useState(false);
-  // const [isInputValidExpirationDate, setisInputValidExpirationDate] =
-  //   useState(false);
-  // const [isInputValidCVV, setisInputValidCVV] = useState(false);
-  // const [isInputValidNameOnCard, setisInputValidNameOnCard] = useState(false);
-  // const [isInputValidZipCode, setisInputValidZipCode] = useState(false);
-  // const [isVisaCard, setIsVisaCard] = useState(false);
-  // const [isMasterCard, setIsMasterCard] = useState(false);
-  // const [isAmexCard, setIsAmexCard] = useState(false);
-  // const [isDiscoverCard, setIsDiscoverCard] = useState(false);
-  // let inputClass = isInputValid ? styles.field_input : styles.field_input;
+
   const changeHandler = (e: any) => {
     if (e.target.value.length > 0) {
-      if (isEmailType) setIsInputValid(validateEmail(e.target.value));
-      if (isCreditCardType) setIsInputValid(validateCreditCard(e.target.value));
-      if (isExpirationDateType)
+      if (isEmailType) {
+        checkoutCtx.setIsValidEmail(validateEmail(e.target.value));
+        setIsInputValid(validateEmail(e.target.value));
+      }
+      if (isCreditCardType) {
+        setIsInputValid(validateCreditCard(e.target.value));
+        checkoutCtx.setIsValidCardNumber(validateCreditCard(e.target.value));
+      }
+      if (isExpirationDateType) {
         setIsInputValid(validateExpirationDate(e.target.value));
-      if (isCvvType) setIsInputValid(validateCVV(e.target.value));
-      if (isNameOnCardType) setIsInputValid(validateNameOnCard(e.target.value));
-      if (isZipCodeType) setIsInputValid(validateZipCode(e.target.value));
+        checkoutCtx.setIsValidExpirationDate(
+          validateExpirationDate(e.target.value)
+        );
+      }
+      if (isCvvType) {
+        setIsInputValid(validateCVV(e.target.value));
+        checkoutCtx.setIsValidCVV(validateCVV(e.target.value));
+      }
+      if (isNameOnCardType) {
+        setIsInputValid(validateNameOnCard(e.target.value));
+        checkoutCtx.setIsValidNameOnCard(validateNameOnCard(e.target.value));
+      }
+      if (isZipCodeType) {
+        setIsInputValid(validateZipCode(e.target.value));
+        checkoutCtx.setIsValidZipCode(validateZipCode(e.target.value));
+      }
     }
   };
   const [fieldStyle, setFieldStyle] = useState(

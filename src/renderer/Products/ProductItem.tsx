@@ -39,6 +39,7 @@ export default function Product(props: Props) {
     collapsed,
     threeScene,
     price,
+    goBackHandler,
   } = props;
 
   const productsCtx = useContext(ProductsContext);
@@ -65,6 +66,7 @@ export default function Product(props: Props) {
         ctaMessage={ctaMessage}
         ctaBackMessage={ctaBackMessage}
         price={price}
+        goBackHandler={goBackHandler}
       />
       {/* <ProductCheckout expanded={expanded} /> */}
     </div>

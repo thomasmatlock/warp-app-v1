@@ -4,9 +4,11 @@ import styles from './Products.module.scss';
 import Product from './ProductItem';
 
 import ProductsContext from '../../store/productsContext';
+import CheckoutContext from '../../store/checkoutContext';
 
 export default function Products(props: any) {
   const productsCtx = useContext(ProductsContext);
+  const checkoutCtx = useContext(CheckoutContext);
 
   const items = productsCtx.cardsData;
 
@@ -29,6 +31,10 @@ export default function Products(props: any) {
       }
     }, 500);
   }
+  const goBackHandler = (e: any) => {
+    productsCtx.goBackHandler();
+    checkoutCtx.resetAllFields();
+  };
   return (
     <ul id={styles.hoverCards} className={styles.hoverCards}>
       {items.map((item) => (
@@ -44,6 +50,7 @@ export default function Products(props: any) {
           features={item.features}
           threeScene={item.threeScene}
           price={item.price}
+          goBackHandler={goBackHandler}
         />
       ))}
     </ul>

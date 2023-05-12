@@ -1,6 +1,7 @@
 @import './mirrored.module.scss';
 @import './glow.module.scss';
 @import '../../Global/Animations.scss';
+@import '../../Global/Colors.scss';
 @keyframes glowPulse {
     0% {
         // box-shadow: 0 0 5px #fff, 0 0 25px #ffffff, 0 0 50px #fff, 0 0 200px rgb(255, 255, 255);
@@ -16,6 +17,7 @@
 
 .cta_product,
 .cta_product__buy,
+.cta_product__buy__isSubmittable,
 .cta_product__expanded {
     display: flex;
     flex-direction: row;
@@ -32,6 +34,7 @@
     border-radius: 3px;
     color: #ffffff;
     animation: fadeIn 1s ease-in-out;
+    // animation: unfoldFromTop 1s ease-in-out;
     // animation: fadeInUp 1s ease-in-out;
     // animation: flickerShadow 2s ease-in-out;
     // animation: swingInBottomFwd 1s ease-in-out;
@@ -47,20 +50,41 @@
 }
 
 .cta_product__expanded {
+    display: none;
     animation: disappearX 0.25s ease-in-out forwards;
     // display: none;
 }
 
-.cta_product__buy {
-    // animation: glowPulse 2s ease-in-out infinite;
+.cta_product__buy,
+.cta_product__buy__isSubmittable {
     // border: 10px solid white;
-    // animation: fadeIn 1s ease-in-out;
+    animation: fadeIn 0s ease-in-out;
     // animation: swingInBottomFwd 1s ease-in-out;
     // animation: flickerShadow 2s ease-in-out;
     margin: 1rem auto;
     margin-top: 3rem;
     position: relative;
     // animation: glow 1
+    // animation: glowPulse 2s ease-in-out infinite;
+}
+
+.cta_product__buy {
+    background-image: linear-gradient( 90deg, $gray-dark-lightest, $gray-dark-lightest);
+    color: gray;
+    transition: 0s all !important;
+    &:hover {
+        background-image: linear-gradient( 90deg, $gray-dark-lightest, $gray-dark-lightest);
+        color: gray;
+        cursor: default;
+        transition: 0s all !important;
+        -webkit-box-reflect: below 0px linear-gradient(transparent, rgba(255, 255, 255, 0));
+        // background-image: linear-gradient(to left, #fff 0%, #fff 100%);
+    }
+}
+
+.cta_product__buy__isSubmittable {
+    // border: 10px solid green;
+    animation: glowPulse 3s ease-in-out infinite;
 }
 
 .cta_text {

@@ -25,6 +25,7 @@ type Props = {
   collapsed: boolean;
   threeScene: string;
   price: number;
+  goBackHandler: any;
 };
 export default function Product(props: Props) {
   const {
@@ -38,8 +39,9 @@ export default function Product(props: Props) {
     collapsed,
     threeScene,
     price,
+    goBackHandler,
   } = props;
-  // console.log(id);
+  // console.log(goBackHandler);
 
   const productsCtx = useContext(ProductsContext);
   const ctaBackMessage = 'Back';
@@ -63,9 +65,10 @@ export default function Product(props: Props) {
       cardClass = collapsedCardClass;
     }
   };
-  const goBackHandler = (e: any) => {
-    productsCtx.goBackHandler();
-  };
+  // const goBackHandler = (e: any) => {
+  //   productsCtx.goBackHandler();
+  //   // checkoutCtx.resetAllFields();
+  // };
 
   // const cardContentStyle = expanded
   //   ? styles.card_content__expanded

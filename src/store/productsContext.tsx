@@ -14,7 +14,7 @@ import hoverCardImg1 from '../renderer/Global/GridCards/hoverCardImg1.png';
 import hoverCardImg2 from '../renderer/Global/GridCards/hoverCardImg2.png';
 import hoverCardImg3 from '../renderer/Global/GridCards/hoverCardImg3.png';
 
-const ProductsGridCardsContext = createContext({
+const ProductsContext = createContext({
   audioCardExpanded: false,
   videoCardExpanded: false,
   warpstagramCardExpanded: false,
@@ -50,7 +50,7 @@ const ProductsGridCardsContext = createContext({
   // toggleUserInteracting: () => {},
 });
 
-export function ProductsGridCardsContextProvider(props: any) {
+export function ProductsContextProvider(props: any) {
   // const [isCheckoutDev, setCheckoutDev] = useState(true);
   // const [userInteracting, setUserInteracting] = useState(false);
   /// //////////////////////////////////////////
@@ -318,7 +318,7 @@ export function ProductsGridCardsContextProvider(props: any) {
     // setUserInteracting((prevState) => !prevState);
   };
   return (
-    <ProductsGridCardsContext.Provider
+    <ProductsContext.Provider
       value={{
         cardsData,
         audioCardExpanded,
@@ -335,8 +335,8 @@ export function ProductsGridCardsContextProvider(props: any) {
       }}
     >
       {props.children}
-    </ProductsGridCardsContext.Provider>
+    </ProductsContext.Provider>
   );
 }
 
-export default ProductsGridCardsContext;
+export default ProductsContext;

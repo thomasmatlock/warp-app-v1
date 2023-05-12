@@ -11,10 +11,12 @@ type Props = {
   message: string;
   clickHandler: (e: any) => void;
   expanded: boolean;
+  isSubmittable: boolean;
 };
 export default function CTAProduct(props: Props) {
   // console.log(props);
-  const { type, message, clickHandler, expanded } = props;
+  const { type, message, clickHandler, expanded, isSubmittable } = props;
+
   const [isBuy, setIsBuy] = useState(false);
   // const [ctaStyle, setCtaStyle] = useState(
   //   expanded ? styles.cta_product__expanded : styles.cta_product
@@ -31,8 +33,11 @@ export default function CTAProduct(props: Props) {
   }, [type, expanded]);
   const CTA = () => {
     if (isBuy) {
+      const buyBtnClass = isSubmittable
+        ? styles.cta_product__buy__isSubmittable
+        : styles.cta_product__buy;
       return (
-        <div className={styles.cta_product__buy} onClick={clickHandler}>
+        <div className={buyBtnClass} onClick={clickHandler}>
           <p className={styles.cta_text}>{message}</p>
         </div>
       );
