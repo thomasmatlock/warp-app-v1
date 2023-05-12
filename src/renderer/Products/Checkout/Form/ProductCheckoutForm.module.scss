@@ -2,7 +2,7 @@
 @import '../../../Global/Colors.scss';
 .form {
     // height: auto;
-    height: 100%;
+    height: auto;
     width: calc(100% - 2rem);
     display: flex;
     justify-content: center;
@@ -12,5 +12,5 @@
     margin: 1rem auto;
     // padding-top: 1rem;
     position: relative;
-    // border: 1px dotted gray;
+    border: 1px dotted gray;
 }

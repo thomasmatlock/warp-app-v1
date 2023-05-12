@@ -2,10 +2,9 @@
 
 there needs to be 2 kinds of..
 
-- form
-- field
-- input
-- credit card fields wrapper
+- labels
+- icons for CTAs, perhaps
+- form submitted in productsContext
 
 - the field
 - the input

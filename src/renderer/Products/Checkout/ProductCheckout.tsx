@@ -22,11 +22,10 @@ export default function ProductCheckout(props: Props) {
       {expanded && (
         <div className={componentStyle}>
           <ProductCheckoutTitle title={title} />
-          <ProductCheckoutSubtitle title={subtitle} />
-          <ProductCheckoutForm expanded={expanded} price={price} id={id} />
-
-          <PreloaderOrbits theme="dark" />
+          {/* <ProductCheckoutSubtitle title={subtitle} /> */}
           {/* <Loader theme="dark" /> */}
+          {/* <PreloaderOrbits theme="dark" /> */}
+          <ProductCheckoutForm expanded={expanded} price={price} id={id} />
         </div>
       )}
     </>

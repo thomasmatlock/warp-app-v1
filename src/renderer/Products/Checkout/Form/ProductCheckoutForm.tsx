@@ -3,6 +3,8 @@ import CTAProduct from 'renderer/components/CTA/CTAProduct';
 import ProductCheckoutInputField from '../InputFields/ProductCheckoutInputField';
 import ProductCheckoutCreditCardForm from '../InputFields/ProductCheckoutCreditCardForm';
 import styles from './ProductCheckoutForm.module.scss';
+import Loader from '../../../Preloaders/PreloaderSpinners';
+
 // import CTAProduct from '../../components/CTA/CTAProduct';
 
 import { generateRandomName } from '../../../../main/util/generate';
@@ -21,7 +23,7 @@ const fieldData = {
   zipCode: {
     type: 'zipCode',
     label: 'Card Zip Code',
-    placeholder: '12345',
+    placeholder: '54321',
   },
 };
 const creditCardFormData = {
@@ -38,7 +40,7 @@ const creditCardFormData = {
   cvv: {
     type: 'cvv',
     label: 'CVV',
-    placeholder: '123',
+    placeholder: '321',
   },
 };
 type Props = {
@@ -66,10 +68,12 @@ export default function ProductCheckoutForm(props: Props) {
   const componentStyle = expanded ? styles.form : styles.form;
   return (
     <form className={componentStyle}>
+      {/* <Loader theme="dark" /> */}
+
       <ProductCheckoutInputField data={fieldData.email} />
       <ProductCheckoutCreditCardForm data={creditCardFormData} />
-      <ProductCheckoutInputField data={fieldData.nameOnCard} />
-      <ProductCheckoutInputField data={fieldData.zipCode} />
+      {/* <ProductCheckoutInputField data={fieldData.nameOnCard} /> */}
+      {/* <ProductCheckoutInputField data={fieldData.zipCode} /> */}
       <CTAProduct
         message={ctaMessage}
         clickHandler={clickHandler}

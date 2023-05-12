@@ -1,6 +1,6 @@
 const names = [
-  'Tommy Shelby',
-  'Tyrion Lannister',
+  // 'Tommy Shelby',
+  // 'Tyrion Lannister',
   'John Wick',
   // 'Bilbo Baggins',
 ];
