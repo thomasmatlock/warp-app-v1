@@ -10,8 +10,9 @@ const CheckoutContext = createContext({
   isValidZipCode: false,
   areAllFieldsValid: false,
   isSubmittable: false,
+  isSubmitted: false,
 
-  submitPayment: (product_id: string) => {},
+  submitForm: (product_id: string) => {},
   setIsValidEmail: (isValidEmail: boolean) => {},
   setIsValidCardNumber: (isValidCardNumber: boolean) => {},
   setIsValidExpirationDate: (isValidExpirationDate: boolean) => {},
@@ -34,6 +35,7 @@ export function CheckoutContextProvider(props: any) {
     isValidEmail && isValidCardNumber && isValidExpirationDate && isValidCVV
   );
   const [isSubmittable, setIsSubmittable] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   // console.log('SEPARATOR');
   useEffect(() => {
     setAreAllFieldsValid(
@@ -67,14 +69,16 @@ export function CheckoutContextProvider(props: any) {
     setIsValidZipCode(false);
     setAreAllFieldsValid(false);
     setIsSubmittable(false);
+    setIsSubmitted(false);
   };
-  const submitPayment = (product_id: string) => {
+  const submitForm = (product_id: string) => {
     if (isSubmittable) console.log('submitting payment for ', product_id);
     if (!isSubmittable)
       console.log(
         'cant submit payment, all fields are not valid for ',
         product_id
       );
+    setIsSubmitted(true);
   };
   return (
     <CheckoutContext.Provider
@@ -87,7 +91,8 @@ export function CheckoutContextProvider(props: any) {
         isValidZipCode,
         areAllFieldsValid,
         isSubmittable,
-        submitPayment,
+        isSubmitted,
+        submitForm,
         setIsValidEmail,
         setIsValidCardNumber,
         setIsValidExpirationDate,

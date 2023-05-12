@@ -53,14 +53,16 @@ type Props = {
   id: string;
   expanded: boolean;
   price: number;
+  productTitle: string;
 };
 export default function ProductCheckoutForm(props: Props) {
   const checkoutCtx = useContext(CheckoutContext);
   // console.log('checkoutCtx', checkoutCtx);
 
-  const { id, expanded, price } = props;
+  const { id, expanded, price, productTitle } = props;
   const title = 'Checkout';
-  const subtitle = 'Enter your payment details';
+  // const subtitle = `Enter your payment details to purchase ${productTitle} for $${price}`;
+  const subtitle = `Enter your payment details to purchase your ${productTitle} license`;
   const [ctaMessage, setCtaMessage] = useState(`Pay $${price}`);
   useEffect(() => {
     setCtaMessage(
@@ -73,27 +75,29 @@ export default function ProductCheckoutForm(props: Props) {
   // console.log(price);
 
   const submitHandler = () => {
-    checkoutCtx.submitPayment(id);
+    checkoutCtx.submitForm(id);
   };
   const componentStyle = expanded ? styles.form : styles.form;
   return (
     <form className={componentStyle}>
       <ProductCheckoutTitle title={title} />
       <ProductCheckoutSubtitle title={subtitle} />
-      {/* <Loader theme="dark" /> */}
       {/* <PreloaderOrbits theme="dark" /> */}
 
       <ProductCheckoutInputField data={fieldData.email} />
       <ProductCheckoutCreditCardForm data={creditCardFormData} />
       {/* <ProductCheckoutInputField data={fieldData.nameOnCard} /> */}
       {/* <ProductCheckoutInputField data={fieldData.zipCode} /> */}
-      <CTAProduct
-        message={ctaMessage}
-        clickHandler={submitHandler}
-        expanded={false}
-        type="buy"
-        isSubmittable={checkoutCtx.isSubmittable}
-      />
+      {checkoutCtx.isSubmitted && <Loader theme="dark" />}
+      {!checkoutCtx.isSubmitted && (
+        <CTAProduct
+          message={ctaMessage}
+          clickHandler={submitHandler}
+          expanded={false}
+          type="buy"
+          isSubmittable={checkoutCtx.isSubmittable}
+        />
+      )}
     </form>
   );
 }

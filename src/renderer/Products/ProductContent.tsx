@@ -99,7 +99,12 @@ export default function Product(props: Props) {
           />
         </div>
       </div>
-      <ProductCheckout expanded={expanded} price={price} id={id} />
+      <ProductCheckout
+        expanded={expanded}
+        price={price}
+        id={id}
+        productTitle={title}
+      />
     </div>
   );
 }

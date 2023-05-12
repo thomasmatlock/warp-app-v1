@@ -8,13 +8,16 @@ type Props = {
   id: string;
   expanded: boolean;
   price: number;
+  productTitle: string;
 };
 export default function ProductCheckout(props: Props) {
-  const { id, expanded, price } = props;
+  const { id, expanded, price, productTitle } = props;
+  // console.log(productTitle);
+
   // console.log(price);
 
   const title = 'Checkout';
-  const subtitle = 'Enter your payment details';
+  const subtitle = `Enter your payment details to purchase ${productTitle} for $${price}`;
 
   const componentStyle = expanded ? styles.checkout__expanded : styles.checkout;
   return (
@@ -23,7 +26,12 @@ export default function ProductCheckout(props: Props) {
         <div className={componentStyle}>
           {/* <Loader theme="dark" /> */}
           {/* <PreloaderOrbits theme="dark" /> */}
-          <ProductCheckoutForm expanded={expanded} price={price} id={id} />
+          <ProductCheckoutForm
+            expanded={expanded}
+            price={price}
+            id={id}
+            productTitle={productTitle}
+          />
         </div>
       )}
     </>
