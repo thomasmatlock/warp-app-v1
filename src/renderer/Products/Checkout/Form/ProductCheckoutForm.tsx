@@ -3,6 +3,9 @@ import CTAProduct from 'renderer/components/CTA/CTAProduct';
 import ProductCheckoutInputField from '../InputFields/ProductCheckoutInputField';
 import ProductCheckoutCreditCardForm from '../InputFields/ProductCheckoutCreditCardForm';
 import styles from './ProductCheckoutForm.module.scss';
+import ProductCheckoutTitle from '../Titles/ProductCheckoutTitle';
+import ProductCheckoutSubtitle from '../Titles/ProductCheckoutSubtitle';
+
 import Loader from '../../../Preloaders/PreloaderSpinners';
 
 // import CTAProduct from '../../components/CTA/CTAProduct';
@@ -50,7 +53,8 @@ type Props = {
 };
 export default function ProductCheckoutForm(props: Props) {
   const { id, expanded, price } = props;
-
+  const title = 'Checkout';
+  const subtitle = 'Enter your payment details';
   const [ctaMessage, setCtaMessage] = useState(`Pay $${price}`);
   useEffect(() => {
     setCtaMessage(
@@ -68,6 +72,8 @@ export default function ProductCheckoutForm(props: Props) {
   const componentStyle = expanded ? styles.form : styles.form;
   return (
     <form className={componentStyle}>
+      <ProductCheckoutTitle title={title} />
+      <ProductCheckoutSubtitle title={subtitle} />
       {/* <Loader theme="dark" /> */}
 
       <ProductCheckoutInputField data={fieldData.email} />
