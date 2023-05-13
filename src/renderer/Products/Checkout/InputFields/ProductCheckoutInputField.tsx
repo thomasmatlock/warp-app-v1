@@ -1,5 +1,4 @@
 import { useState, useEffect, useContext } from 'react';
-import * as EmailValidator from 'email-validator';
 import styles from './ProductCheckoutInputFields.module.scss';
 import CheckoutContext from '../../../../store/checkoutContext';
 import visaIcon from '../../../Global/CheckoutPaymentTypes/pack1/visa.png';

@@ -59,11 +59,6 @@ export const validateCVV = (cvv: string) => {
   return re.test(cvv);
 };
 export const validateEmail = (email: string) => {
-  // // result cannot have invalid domain
-  // const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  // // const re =
-  // // /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-  // return re.test(email);
   return EmailValidator.validate(email);
 };
 export const validateNameOnCard = (nameOnCard: string) => {
