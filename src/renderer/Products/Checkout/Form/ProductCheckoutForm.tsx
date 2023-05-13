@@ -81,7 +81,7 @@ export default function ProductCheckoutForm(props: Props) {
   };
   const componentStyle = expanded ? styles.form : styles.form;
   return (
-    <form className={componentStyle}>
+    <form className={componentStyle} onSubmit={submitHandler}>
       <ProductCheckoutTitle title={title} />
       <ProductCheckoutSubtitle title={subtitle} />
       {/* <PreloaderOrbits theme="dark" /> */}

@@ -107,6 +107,7 @@
         "electron-log": "^4.4.8",
         "electron-store": "^8.1.0",
         "electron-updater": "^5.2.2",
+        "email-validator": "^2.0.4",
         "fluent-ffmpeg": "^2.1.2",
         "formik": "^2.2.9",
         "got": "^11.8.3",

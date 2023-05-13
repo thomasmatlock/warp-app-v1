@@ -1,3 +1,5 @@
+import * as EmailValidator from 'email-validator';
+
 export const capitalizeFirstLetter = (string: string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 };
@@ -25,10 +27,7 @@ export const stringToNumber = (str: string) => {
 export const generateRandomId = () => {
   return Math.random().toString(36).substr(2, 9);
 };
-// export const validateEmail = (email: string) => {
-//   const re = /\S+@\S+\.\S+/;
-//   return re.test(email);
-// };
+
 export const validateExpirationDate = (expirationDate: string) => {
   // MONTH VALIDATION
   const monthCharacters = expirationDate.slice(0, 2);
@@ -60,9 +59,12 @@ export const validateCVV = (cvv: string) => {
   return re.test(cvv);
 };
 export const validateEmail = (email: string) => {
-  const re =
-    /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-  return re.test(email);
+  // // result cannot have invalid domain
+  // const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  // // const re =
+  // // /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+  // return re.test(email);
+  return EmailValidator.validate(email);
 };
 export const validateNameOnCard = (nameOnCard: string) => {
   // NEED 2 STRINGS SEPARATED BY A SPACE

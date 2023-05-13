@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
+import * as EmailValidator from 'email-validator';
 import styles from './ProductCheckoutInputFields.module.scss';
 import CheckoutContext from '../../../../store/checkoutContext';
 import visaIcon from '../../../Global/CheckoutPaymentTypes/pack1/visa.png';
@@ -70,13 +71,22 @@ export default function ProductCheckoutInputField(props: any) {
     }
     if (e.target.value.length > 0) {
       if (isEmailType) {
+        // EmailValidator.validate(e.target.value)
+        // console.log(EmailValidator.validate(e.target.value));
+
         checkoutCtx.setIsValidEmail(validateEmail(e.target.value));
+        // checkoutCtx.setIsValidEmail(EmailValidator.validate(e.target.value));
         setIsInputValid(validateEmail(e.target.value));
       }
       if (isCreditCardType) {
-        const cardType = creditCardType(e.target.value)[0].type;
+        let cardType;
+        try {
+          cardType = creditCardType(e.target.value)[0].type;
+        } catch (error) {
+          // console.log('error');
+        }
         // console.log(cardType);
-        if (cardType !== undefined) {
+        if (cardType) {
           if (cardType === 'visa') setIsVisaCardType(true);
           if (cardType === 'discover') setIsDiscoverCardType(true);
           if (cardType === 'amex') setIsAmexCardType(true);
