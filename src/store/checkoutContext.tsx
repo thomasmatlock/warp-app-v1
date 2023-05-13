@@ -72,13 +72,16 @@ export function CheckoutContextProvider(props: any) {
     setIsSubmitted(false);
   };
   const submitForm = (product_id: string) => {
-    if (isSubmittable) console.log('submitting payment for ', product_id);
+    if (isSubmittable) {
+      setIsSubmitted(true);
+
+      console.log('submitting payment for ', product_id);
+    }
     if (!isSubmittable)
       console.log(
         'cant submit payment, all fields are not valid for ',
         product_id
       );
-    setIsSubmitted(true);
   };
   return (
     <CheckoutContext.Provider

@@ -55,6 +55,11 @@ export function ProductsContextProvider(props: any) {
   // const [userInteracting, setUserInteracting] = useState(false);
   /// //////////////////////////////////////////
   // BASICS
+  const [isDevMode, setDevMode] = useState(
+    process.env.NODE_ENV === 'development'
+  );
+  console.log('isDevMode: ', isDevMode);
+
   const [isAudioCheckoutDev, setAudioCheckoutDev] = useState(true); // DEFAULT IS FALSE
   const [isVideoCheckoutDev, setVideoCheckoutDev] = useState(false); // DEFAULT IS FALSE
   const [isWarpstagramCheckoutDev, setWarpstagramCheckoutDev] = useState(false); // DEFAULT IS FALSE
