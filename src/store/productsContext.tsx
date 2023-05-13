@@ -58,6 +58,7 @@ export function ProductsContextProvider(props: any) {
   const [isDevMode, setDevMode] = useState(
     process.env.NODE_ENV === 'development'
   );
+  // console.log('isDevMode: ', isDevMode);
 
   const [isAudioCheckoutDev, setAudioCheckoutDev] = useState(true); // DEFAULT IS FALSE
   const [isVideoCheckoutDev, setVideoCheckoutDev] = useState(false); // DEFAULT IS FALSE
