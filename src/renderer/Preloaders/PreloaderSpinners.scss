@@ -1,12 +1,15 @@
 .loader_container {
     width: 100%;
-    height: 4rem;
+    // height: 4rem;
+    height: 3rem;
     display: flex;
     justify-content: center;
     align-items: center;
     align-content: center;
     position: relative;
     // border: 1px solid gray;
+    // margin-top: 0.5rem;
+    // margin-bottom: 1rem;
 }
 
 $loader1Width: 32px;

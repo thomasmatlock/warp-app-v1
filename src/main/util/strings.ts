@@ -88,9 +88,15 @@ export const validateCreditCardType = (creditCard: string) => {
   const testMastercard = '5105105105105100';
   const testDiscover = '6011111111111117';
   // return true;
-  // const re = /^(?:4[0-9]{12}(?:[0-9]{3})?)$/; // this is for visa
-  // const re = /^(?:3[47][0-9]{13})$/; // this is for amex
-  // const re = /^(?:5[1-5][0-9]{14})$/; // this is for mastercard
-  const re = /^(?:6(?:011|5[0-9][0-9])[0-9]{12})$/; // this is for discover
-  return re.test(creditCard);
+  if (creditCard.length === 16) {
+    if (creditCard[0] === '4') {
+      return true;
+    }
+    if (creditCard[0] === '5') {
+      return true;
+    }
+    if (creditCard[0] === '6') {
+      return true;
+    }
+  }
 };

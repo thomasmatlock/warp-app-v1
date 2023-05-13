@@ -19,7 +19,7 @@ const fieldData = {
   email: {
     type: 'email',
     label: 'Email',
-    placeholder: 'hi@warpdownload.com',
+    placeholder: 'hello@warpdownload.com',
   },
   nameOnCard: {
     type: 'nameOnCard',
@@ -35,18 +35,20 @@ const fieldData = {
 const creditCardFormData = {
   creditCard: {
     type: 'creditCard',
-    label: 'Credit Card',
-    placeholder: '1234 5678 9012 3456',
+    label: 'Card information',
+    placeholder: 'Card number',
   },
   expirationDate: {
     type: 'expirationDate',
-    label: 'Card Expiration',
+    // label: 'Card Expiration',
+    label: '',
     placeholder: 'MM/YY',
   },
   cvv: {
     type: 'cvv',
-    label: 'CVV',
-    placeholder: '321',
+    // label: 'CVV',
+    label: '',
+    placeholder: 'CVV',
   },
 };
 type Props = {
@@ -89,6 +91,7 @@ export default function ProductCheckoutForm(props: Props) {
       {/* <ProductCheckoutInputField data={fieldData.nameOnCard} /> */}
       {/* <ProductCheckoutInputField data={fieldData.zipCode} /> */}
       {checkoutCtx.isSubmitted && <Loader theme="dark" />}
+      {/* <Loader theme="dark" /> */}
       {!checkoutCtx.isSubmitted && (
         <CTAProduct
           message={ctaMessage}

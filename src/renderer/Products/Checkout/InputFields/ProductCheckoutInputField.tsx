@@ -1,17 +1,34 @@
 import { useState, useEffect, useContext } from 'react';
 import styles from './ProductCheckoutInputFields.module.scss';
 import CheckoutContext from '../../../../store/checkoutContext';
+import visaIcon from '../../../Global/CheckoutPaymentTypes/pack1/visa.png';
+import discoverIcon from '../../../Global/CheckoutPaymentTypes/pack2/discover.png';
+import amexIcon from '../../../Global/CheckoutPaymentTypes/pack1/amex.png';
 
 // import * strings from './ProductCheckoutInputField.strings.json';
 import {
   validateEmail,
   validateCreditCard,
-  validateCreditCardType,
   validateExpirationDate,
   validateNameOnCard,
   validateZipCode,
   validateCVV,
 } from '../../../../main/util/strings';
+
+const creditCardType = require('credit-card-type');
+
+const visaCards = creditCardType('4111');
+// console.log(creditCardType);
+
+// console.log(visaCards[0].type); // 'visa'
+
+const ambiguousCards = creditCardType('6');
+// console.log(ambiguousCards); // 6
+
+// console.log(ambiguousCards.length); // 6
+// console.log(ambiguousCards[0].niceType); // 'Discover'
+// console.log(ambiguousCards[1]); // 'UnionPay'
+// console.log(ambiguousCards[2].niceType);
 
 type Props = {
   type: string;
@@ -39,14 +56,33 @@ export default function ProductCheckoutInputField(props: any) {
   );
   const [isZipCodeType, setIsZipCodeType] = useState(type === 'zipCode');
   // VALID TYPES
+  const [isVisaCardType, setIsVisaCardType] = useState(false);
+  const [isDiscoverCardType, setIsDiscoverCardType] = useState(false);
+  const [isAmexCardType, setIsAmexCardType] = useState(false);
+  const [isMasterCardType, setIsMasterCardType] = useState(false);
 
   const changeHandler = (e: any) => {
+    if (e.target.value.length === 0) {
+      setIsAmexCardType(false);
+      setIsDiscoverCardType(false);
+      setIsVisaCardType(false);
+      setIsMasterCardType(false);
+    }
     if (e.target.value.length > 0) {
       if (isEmailType) {
         checkoutCtx.setIsValidEmail(validateEmail(e.target.value));
         setIsInputValid(validateEmail(e.target.value));
       }
       if (isCreditCardType) {
+        const cardType = creditCardType(e.target.value)[0].type;
+        // console.log(cardType);
+        if (cardType !== undefined) {
+          if (cardType === 'visa') setIsVisaCardType(true);
+          if (cardType === 'discover') setIsDiscoverCardType(true);
+          if (cardType === 'amex') setIsAmexCardType(true);
+          if (cardType === 'master-card') setIsMasterCardType(true);
+        }
+
         setIsInputValid(validateCreditCard(e.target.value));
         checkoutCtx.setIsValidCardNumber(validateCreditCard(e.target.value));
       }
@@ -97,13 +133,16 @@ export default function ProductCheckoutInputField(props: any) {
         onChange={changeHandler}
         placeholder={placeholder}
       />
-      {/* <label
-        // id="search__input__label"
-        className={styles.field_label}
-        // htmlFor="search__input"
-        >
-        {label}
-      </label> */}
+      {isCreditCardType && isVisaCardType && (
+        <img className={styles.field_icon} src={visaIcon} alt="" />
+      )}{' '}
+      {isCreditCardType && isAmexCardType && (
+        <img className={styles.field_icon} src={amexIcon} alt="" />
+      )}{' '}
+      {isCreditCardType && isDiscoverCardType && (
+        <img className={styles.field_icon} src={discoverIcon} alt="" />
+      )}
+      <label className={styles.field_label}>{label}</label>
     </div>
   );
 }

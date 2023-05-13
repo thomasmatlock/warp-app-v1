@@ -17,10 +17,11 @@
     justify-content: center;
     align-items: center;
     flex-direction: row;
-    margin: 0.5rem;
+    margin: 1rem;
     // top: 0;
     // left: 0;
     position: relative;
+    transition: all 0.25s ease-in-out !important;
     // border: 1px solid red;
 }
 
@@ -47,7 +48,7 @@
     // width: 66%;
     // margin: 0px;
     // margin-bottom: 0.5rem;
-    margin-top: -1.75rem;
+    margin-top: -2.25rem;
 }
 
 .field__expiration_date,
@@ -89,6 +90,7 @@
     z-index: 10;
     width: 100%;
     padding-left: 1rem;
+    transition: all 0.25s ease-in-out !important;
     &:focus {
         transition: 0s !important;
         border: 1px solid $gray-dark-lightest2;
@@ -110,6 +112,7 @@
 
 .field_input__credit_card {
     border-radius: 3px 3px 0 0;
+    // margin-top: 1rem;
     // border-bottom: 1px solid transparent;
 }
 
@@ -117,6 +120,7 @@
     border-radius: 0 0 0 3px;
     border-top: 1px solid transparent;
     border-right: 1px solid transparent;
+    // margin-top: 0px;
 }
 
 .field_input__cvv {
@@ -125,13 +129,23 @@
     border-radius: 0 0 3px 0;
 }
 
+// CARD TYPE, VISA, MASTERCARD, AMEX, DISCOVER
+.field_icon {
+    height: 1.75rem;
+    position: absolute;
+    right: 0.75rem;
+    filter: invert(100%);
+    // transform: translateX(-2.5rem);
+    z-index: 100;
+}
+
 // LABELS
 .field_label {
     // border: 1px dotted red;
-    // position: absolute;
-    left: 0px;
-    top: 0px;
-    font-family: 'Proxima Nova Light';
+    position: absolute;
+    left: 2px;
+    top: -12px;
+    font-family: 'Proxima Nova Regular';
     font-size: 0.75rem;
     color: rgb(205, 205, 205);
 }
