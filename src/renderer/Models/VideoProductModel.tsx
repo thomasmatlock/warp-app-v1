@@ -30,6 +30,7 @@ const Model = () => {
     // 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Sponza/glTF/Sponza.gltf';
     // 'https://raw.githubusercontent.com/thomasmatlock/react-next-three-fiber-template/main/public/video.gltf';
     'https://raw.githubusercontent.com/thomasmatlock/react-next-three-fiber-template/main/public/gear.glb';
+  // 'https://raw.githubusercontent.com/thomasmatlock/react-next-three-fiber-template/main/public/rocket.glb';
   // 'https://raw.githubusercontent.com/thomasmatlock/react-next-three-fiber-template/main/public/street sign.gltf';
   // 'https://raw.githubusercontent.com/thomasmatlock/react-next-three-fiber-template/main/public/nzxt tower.gltf';
   // 'https://raw.githubusercontent.com/thomasmatlock/react-next-three-fiber-template/main/public/warp scene.gltf';
