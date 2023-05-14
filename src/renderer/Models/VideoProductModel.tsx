@@ -6,12 +6,19 @@ import {
   Plane,
   Box,
 } from '@react-three/drei';
-import { Suspense, useRef } from 'react';
+import { Suspense, useRef, useState } from 'react';
 import { Canvas, useFrame, extend } from '@react-three/fiber';
+import * as THREE from 'three';
 import styles from './Scene.module.scss';
 
 extend({ Canvas });
 const Model = () => {
+  // white material
+  const whiteMat = new THREE.MeshStandardMaterial({
+    color: 'white',
+    metalness: 0.5,
+    roughness: 0.5,
+  });
   // const modelURL =
   // 'https://github.com/thomasmatlock/react-next-three-fiber-template/raw/main/public/portal.glb';
   // const modelURL =
@@ -21,7 +28,8 @@ const Model = () => {
   // const modelURL = 'https://modelviewer.dev/shared-assets/models/Astronaut.glb';
   const modelURL =
     // 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Sponza/glTF/Sponza.gltf';
-    'https://raw.githubusercontent.com/thomasmatlock/react-next-three-fiber-template/main/public/video.gltf';
+    // 'https://raw.githubusercontent.com/thomasmatlock/react-next-three-fiber-template/main/public/video.gltf';
+    'https://raw.githubusercontent.com/thomasmatlock/react-next-three-fiber-template/main/public/gear.glb';
   // 'https://raw.githubusercontent.com/thomasmatlock/react-next-three-fiber-template/main/public/street sign.gltf';
   // 'https://raw.githubusercontent.com/thomasmatlock/react-next-three-fiber-template/main/public/nzxt tower.gltf';
   // 'https://raw.githubusercontent.com/thomasmatlock/react-next-three-fiber-template/main/public/warp scene.gltf';
@@ -35,6 +43,8 @@ const Model = () => {
     if (child.isMesh) {
       child.castShadow = true;
       child.receiveShadow = true;
+      // add white material
+      child.material = whiteMat;
     }
   });
 
@@ -42,6 +52,9 @@ const Model = () => {
 };
 
 export default function Scene(props: any) {
+  const [isDevMode, setDevMode] = useState(
+    process.env.NODE_ENV === 'development'
+  );
   // window.electron.ipcRenderer.on('global', (arg) => {
   //   console.log(arg);
 
@@ -49,13 +62,8 @@ export default function Scene(props: any) {
   // const { threeScene } = props;
   function EveryFrame() {
     useFrame((state) => {
-      //  handleResize();
-      // console.log(state.camera.zoom);
-      // rotate camera around the origin
-      console.log(state.camera.position.x);
-
-      state.camera.position.x = Math.sin(state.clock.getElapsedTime()) * 1;
-      // state.camera.position.y = Math.cos(state.clock.getElapsedTime()) * 2;
+      state.camera.position.x = Math.sin(state.clock.getElapsedTime()) * 2.5;
+      state.camera.position.y = Math.sin(state.clock.getElapsedTime()) * 1;
     });
     return null;
   }
@@ -73,10 +81,12 @@ export default function Scene(props: any) {
       }}
       orthographic
       camera={{
-        position: [-3, 1, 5],
+        // position: [-3, 1, 5],
+        position: [-3, 0, 5],
         // fov: 90,
         // zoom: 8, // video nav icon
-        zoom: 60, // video
+        // zoom: 60, // video
+        zoom: 50, // gear
         // zoom: 250,
         near: 0.1,
         far: 1000,
@@ -89,19 +99,18 @@ export default function Scene(props: any) {
         // autoRotate
         // autoRotateSpeed={-5}
         enablePan={false}
-        enableZoom={false}
-        enableRotate={false}
-        target={[0, 1, 0]}
+        enableZoom={!!isDevMode}
+        enableRotate={!!isDevMode}
+        target={[0, 0, 0]}
       />
-      {/* <ambientLight intensity={0.1} />
       <directionalLight
-        intensity={1}
+        intensity={2}
         castShadow
         shadow-mapSize-height={512}
         shadow-mapSize-width={512}
-        position={[0, 10, 10]}
-      /> */}
-      <ambientLight intensity={1} />
+        position={[10, 10, 10]}
+      />
+      <ambientLight intensity={0.1} />
       {/* <directionalLight position={[-10, -10, -5]} intensity={1} /> */}
       {/* <directionalLight
         castShadow
@@ -114,7 +123,7 @@ export default function Scene(props: any) {
         shadow-camera-bottom={-10}
       /> */}
 
-      <fog attach="fog" args={['white', 0, 40]} />
+      {/* <fog attach="fog" args={['white', 0, 40]} /> */}
 
       <Model />
       <EveryFrame />

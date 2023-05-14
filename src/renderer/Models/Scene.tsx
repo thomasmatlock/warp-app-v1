@@ -14,7 +14,7 @@ import Audio from './AudioProductScene';
 import Video from './VideoProductScene';
 import Warpstagram from './WarpstagramProductScene';
 import Bundle from './BundleProductScene';
-// import VideoModel from './VideoProductModel';
+import VideoModel from './VideoProductModel';
 
 // extend Canvas
 extend({ Canvas });
@@ -32,8 +32,8 @@ export default function Scene(props: SceneProps) {
       {/* {threeScene === 'audioPersonalEdition' && <BoxScene />} */}
       {threeScene === 'audioPersonalEdition' && <Audio />}
       {threeScene === 'videoPersonalEdition' && <Video />}
-      {threeScene === 'warpstagramPersonalEdition' && <Warpstagram />}
       {/* {threeScene === 'videoPersonalEdition' && <VideoModel />} */}
+      {threeScene === 'warpstagramPersonalEdition' && <Warpstagram />}
       {threeScene === 'bundlePersonalEdition' && <Bundle />}
     </div>
   );
