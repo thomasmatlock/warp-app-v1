@@ -31,8 +31,8 @@ export default function Scene(props: SceneProps) {
       {/* {threeScene === 'audioPersonalEdition' && <Ballpit />} */}
       {/* {threeScene === 'audioPersonalEdition' && <BoxScene />} */}
       {threeScene === 'audioPersonalEdition' && <Audio />}
-      {/* {threeScene === 'videoPersonalEdition' && <Video />} */}
-      {threeScene === 'videoPersonalEdition' && <VideoModel />}
+      {threeScene === 'videoPersonalEdition' && <Video />}
+      {/* {threeScene === 'videoPersonalEdition' && <VideoModel />} */}
       {/* {threeScene === 'warpstagramPersonalEdition' && <Warpstagram />} */}
       {threeScene === 'bundlePersonalEdition' && <Bundle />}
     </div>
