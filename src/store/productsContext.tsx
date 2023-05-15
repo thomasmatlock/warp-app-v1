@@ -60,7 +60,7 @@ export function ProductsContextProvider(props: any) {
   );
   // console.log('isDevMode: ', isDevMode);
 
-  const [isAudioCheckoutDev, setAudioCheckoutDev] = useState(false); // DEFAULT IS FALSE
+  const [isAudioCheckoutDev, setAudioCheckoutDev] = useState(true); // DEFAULT IS FALSE
   const [isVideoCheckoutDev, setVideoCheckoutDev] = useState(false); // DEFAULT IS FALSE
   const [isWarpstagramCheckoutDev, setWarpstagramCheckoutDev] = useState(false); // DEFAULT IS FALSE
   const [isBundleCheckoutDev, setBundleCheckoutDev] = useState(false); // DEFAULT IS FALSE

@@ -1,20 +1,10 @@
 # checkout
 
-there needs to be 2 kinds of..
-
-- labels
-- icons for CTAs, perhaps
-- form submitted in productsContext
-
-- the field
-- the input
-- combine the credit cards forms
-- pay CTA
-- add a way to add a coupon
+- stripe authorization
+- UpgradeUser
 
 # others
 
-- UpgradeUser
 - fix notarizing
 - add the codepen book thing to checkout
 - add the gridcards to checkout

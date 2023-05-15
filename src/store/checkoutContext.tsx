@@ -1,7 +1,19 @@
 import React, { useState, useEffect, createContext } from 'react';
-// import data from './productsData';
 
 const CheckoutContext = createContext({
+  email: '',
+  cardNumber: '',
+  expirationDate: '',
+  cvv: '',
+  nameOnCard: '',
+  zipCode: '',
+  setEmail: (email: string) => {},
+  setCardNumber: (cardNumber: string) => {},
+  setExpirationDate: (expirationDate: string) => {},
+  setCVV: (cvv: string) => {},
+  setNameOnCard: (nameOnCard: string) => {},
+  setZipCode: (zipCode: string) => {},
+
   isValidEmail: false,
   isValidCardNumber: false,
   isValidExpirationDate: false,
@@ -24,7 +36,12 @@ const CheckoutContext = createContext({
 
 export function CheckoutContextProvider(props: any) {
   // const [isAudioCheckoutDev, setAudioCheckoutDev] = useState(true); // DEFAULT IS FALSE
-
+  const [email, setEmail] = useState('');
+  const [cardNumber, setCardNumber] = useState('');
+  const [expirationDate, setExpirationDate] = useState('');
+  const [cvv, setCVV] = useState('');
+  const [nameOnCard, setNameOnCard] = useState('');
+  const [zipCode, setZipCode] = useState('');
   const [isValidEmail, setIsValidEmail] = useState(false);
   const [isValidCardNumber, setIsValidCardNumber] = useState(false);
   const [isValidExpirationDate, setIsValidExpirationDate] = useState(false);
@@ -71,21 +88,46 @@ export function CheckoutContextProvider(props: any) {
     setIsSubmittable(false);
     setIsSubmitted(false);
   };
-  const submitForm = (product_id: string) => {
+  type SubmitDataProps = {
+    id: string;
+  };
+  const submitForm = (id: string) => {
+    // const { id } = data;
+    console.log(
+      id,
+      email,
+      cardNumber,
+      expirationDate,
+      cvv,
+      nameOnCard,
+      zipCode
+    );
+
     if (isSubmittable) {
       setIsSubmitted(true);
-
-      console.log('submitting payment for ', product_id);
+      console.log('submitting payment for ', id);
     }
+
     if (!isSubmittable)
-      console.log(
-        'cant submit payment, all fields are not valid for ',
-        product_id
-      );
+      console.log('cant submit payment, all fields are not valid for ', id);
   };
   return (
     <CheckoutContext.Provider
       value={{
+        email,
+        cardNumber,
+        expirationDate,
+        cvv,
+        nameOnCard,
+        zipCode,
+
+        setEmail,
+        setCardNumber,
+        setExpirationDate,
+        setCVV,
+        setNameOnCard,
+        setZipCode,
+
         isValidEmail,
         isValidCardNumber,
         isValidExpirationDate,
@@ -95,6 +137,7 @@ export function CheckoutContextProvider(props: any) {
         areAllFieldsValid,
         isSubmittable,
         isSubmitted,
+
         submitForm,
         setIsValidEmail,
         setIsValidCardNumber,

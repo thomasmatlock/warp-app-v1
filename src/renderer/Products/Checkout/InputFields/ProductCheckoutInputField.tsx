@@ -74,6 +74,9 @@ export default function ProductCheckoutInputField(props: any) {
         // console.log(EmailValidator.validate(e.target.value));
 
         checkoutCtx.setIsValidEmail(validateEmail(e.target.value));
+        checkoutCtx.setEmail(e.target.value);
+        // console.log(`email: ${checkoutCtx.email}`);
+
         // checkoutCtx.setIsValidEmail(EmailValidator.validate(e.target.value));
         setIsInputValid(validateEmail(e.target.value));
       }
@@ -94,24 +97,29 @@ export default function ProductCheckoutInputField(props: any) {
 
         setIsInputValid(validateCreditCard(e.target.value));
         checkoutCtx.setIsValidCardNumber(validateCreditCard(e.target.value));
+        checkoutCtx.setCardNumber(e.target.value);
       }
       if (isExpirationDateType) {
         setIsInputValid(validateExpirationDate(e.target.value));
         checkoutCtx.setIsValidExpirationDate(
           validateExpirationDate(e.target.value)
         );
+        checkoutCtx.setExpirationDate(e.target.value);
       }
       if (isCvvType) {
         setIsInputValid(validateCVV(e.target.value));
         checkoutCtx.setIsValidCVV(validateCVV(e.target.value));
+        checkoutCtx.setCVV(e.target.value);
       }
       if (isNameOnCardType) {
         setIsInputValid(validateNameOnCard(e.target.value));
         checkoutCtx.setIsValidNameOnCard(validateNameOnCard(e.target.value));
+        checkoutCtx.setNameOnCard(e.target.value);
       }
       if (isZipCodeType) {
         setIsInputValid(validateZipCode(e.target.value));
         checkoutCtx.setIsValidZipCode(validateZipCode(e.target.value));
+        checkoutCtx.setZipCode(e.target.value);
       }
     }
   };
