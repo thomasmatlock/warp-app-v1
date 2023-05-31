@@ -4,11 +4,6 @@ import chalk from 'chalk';
 import APIVariables from './API Variables';
 
 export default async function getStatus() {
-  // return fetch(APIVariables.statusEndpoint)
-  //   .then((response) => response.json())
-  //   .then((data) => {
-  //     return data;
-  //   });
   const status = {
     complete: [''],
     inProgress: ['Development status on server currently unreachable'],

@@ -24,7 +24,7 @@ import {
   // Tray,
 } from 'electron';
 // import incrementReleaseVersion from "./incrementReleaseVersion";
-import GetUser from '../user/GetUser';
+import GetUser from '../user/database/GetUser';
 import ffmpegInit from '../ffmpeg/ffmpegController';
 import GetUserDownloads from '../user/downloads/GetUserDownloads';
 
@@ -48,15 +48,26 @@ import * as Browser from '../Browser/browserController';
 import testUrls from '../downloaders/youtube/testURLS';
 
 // console.log(dotenv);
-// import { createCustomer } from '../user/payments/stripe/stripe';
+import { createCustomer } from '../user/payments/stripe/customers/createStripeCustomer';
+import {
+  GetStripeCustomerByEmail,
+  GetStripeCustomerByID,
+} from '../user/payments/stripe/customers/GetStripeCustomer';
 import getProducts from '../user/payments/stripe/products/stripeGetAllProducts';
 // import createStripeCharge
 import createCheckoutSession from '../user/payments/stripe/createStripeCharge';
-import getStatus from '../user/status';
+import getStatus from '../user/database/status';
 // createStripeCharge();
-import * as automate from './automate';
+// import * as automate from './automate';
 
 (async () => {
+  const testEmail = 'hello@gmail.com';
+  const customer = await GetStripeCustomerByEmail(testEmail);
+  // console.log(customer);
+  const customerID = 'cus_NtviPTJQDAkVMr';
+  const customer2 = await GetStripeCustomerByID(customerID);
+  // console.log(customer2);
+
   // const products = await getProducts();
   // console.log(products);
   // const lastProduct = await getLastItemOfArray(products.data);
@@ -84,7 +95,7 @@ if (!isSingleInstance) {
 }
 
 const appRootDir = require('app-root-dir').get();
-// test, just added apple id/pass to gh secrets
+
 let updateChecked = false;
 let prefs: object;
 let user: object;
@@ -94,7 +105,10 @@ let global = {
   appRoot: appRootDir,
   platform: '',
   prefs: {},
-  serverDownloads: { audio: [], video: [] },
+  serverDownloads: {
+    audio: [],
+    video: [],
+  },
   serverAuthenticated: false,
   status: {},
   user: {
@@ -400,7 +414,7 @@ app
       //   action
       // );
 
-      const downloads = await GetUserDownloads(); // ONLINE
+      const downloads = (await GetUserDownloads()) || { audio: [], video: [] }; // ONLINE
       // const downloads = { audio: [], video: [] }; // OFFLINE
       global.serverDownloads = downloads;
       // console.log(global.downloads);
@@ -707,6 +721,12 @@ if (isDebug) {
   });
   ipcMain.on('showBrowser', async (event, arg) => {
     Browser.showBrowser(mWin, view);
+  });
+})();
+(function checkoutListeners() {
+  ipcMain.on('checkout', async (event, arg) => {
+    console.log(arg);
+    createCustomer(arg);
   });
 })();
 

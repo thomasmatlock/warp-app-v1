@@ -2,7 +2,7 @@
 import got from 'got';
 import chalk from 'chalk';
 import { machineId } from 'node-machine-id';
-import APIVariables from '../API Variables';
+import APIVariables from '../database/API Variables';
 
 export default async function GetUserDownloads() {
   const userDownloads: object = {

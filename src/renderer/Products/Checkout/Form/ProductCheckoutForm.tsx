@@ -77,9 +77,6 @@ export default function ProductCheckoutForm(props: Props) {
   // console.log(price);
 
   const submitHandler = () => {
-    const data = {
-      id,
-    };
     checkoutCtx.submitForm(id);
   };
   const componentStyle = expanded ? styles.form : styles.form;

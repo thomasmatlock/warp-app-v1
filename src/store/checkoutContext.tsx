@@ -93,6 +93,15 @@ export function CheckoutContextProvider(props: any) {
   };
   const submitForm = (id: string) => {
     // const { id } = data;
+    const checkoutData = {
+      id,
+      email,
+      cardNumber,
+      expirationDate,
+      cvv,
+      nameOnCard,
+      zipCode,
+    };
     console.log(
       id,
       email,
@@ -105,6 +114,8 @@ export function CheckoutContextProvider(props: any) {
 
     if (isSubmittable) {
       setIsSubmitted(true);
+      window.electron.ipcRenderer.sendMessage('checkout', checkoutData);
+
       console.log('submitting payment for ', id);
     }
 
