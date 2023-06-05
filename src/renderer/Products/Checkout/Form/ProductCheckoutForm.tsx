@@ -101,6 +101,7 @@ export default function ProductCheckoutForm(props: Props) {
           isSubmittable={checkoutCtx.isSubmittable}
         />
       )}
+      <button type="">test checkout</button>
     </form>
   );
 }

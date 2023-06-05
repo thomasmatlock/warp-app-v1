@@ -10,12 +10,14 @@ function Plane({ color, ...props }) {
 function Mouse() {
   const { viewport } = useThree();
   const [, api] = useSphere(() => ({ type: 'Kinematic', args: [6] }));
-  return useFrame((state) =>
-    api.position.set(
-      (state.mouse.x * viewport.width) / 2,
-      (state.mouse.y * viewport.height) / 2,
-      7
-    )
+  return useFrame(
+    (state) =>
+      api.position.set(
+        (state.mouse.x * viewport.width) / 2,
+        (state.mouse.y * viewport.height) / 2,
+        7
+      )
+    // console.log(state.mouse.x);
   );
 }
 function InstancedSpheres({ count = 50 }) {
@@ -36,6 +38,12 @@ function InstancedSpheres({ count = 50 }) {
       <meshLambertMaterial color="#ff8500" />
     </instancedMesh>
   );
+}
+function EveryFrame() {
+  useFrame(({ mouse }) => {
+    console.log(mouse.x);
+  });
+  return null;
 }
 
 function Borders() {
@@ -93,22 +101,9 @@ export default function Ballpit() {
           <Mouse />
           <Borders />
           <InstancedSpheres />
+          <EveryFrame />
         </group>
       </Physics>
-      {/* <EffectComposer> */}
-      {/* <SSAO
-          radius={0.4}
-          intensity={50}
-          luminanceInfluence={0.4}
-          color="red"
-        /> */}
-      {/* <Bloom
-          intensity={1.25}
-          kernelSize={3}
-          luminanceThreshold={0.5}
-          luminanceSmoothing={0.0}
-        /> */}
-      {/* </EffectComposer> */}
     </Canvas>
   );
 }

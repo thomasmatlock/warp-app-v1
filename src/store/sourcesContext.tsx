@@ -15,10 +15,8 @@ const SourcesContext = React.createContext({
   activeSource: '',
   currentURL: '',
   enabledSources: [],
-  // toggleAudioPanelCollapsed: () => {},
   setActiveSource: () => {},
   removeAllActiveSources: () => {},
-  // toggleVideoPanelCollapsed: () => {},
 });
 let sources = [
   {

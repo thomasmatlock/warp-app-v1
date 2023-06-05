@@ -2,7 +2,7 @@ import { Fragment, useState, useContext } from 'react';
 import ReactDOM from 'react-dom';
 import NavContext from '../../store/navContext';
 import './Modal.scss';
-import astronaut from '../../../assets/astronauts/png/Asset 8 whitened.png';
+// import astronaut from '../../../assets/astronauts/png/Asset 8 whitened.png';
 const Backdrop = (props) => {
   return <div className="backdrop" onClick={props.onClose} />;
 };
@@ -26,7 +26,7 @@ const portalElement = document.getElementById('overlays');
 const Modal = (props) => {
   // console.log(navCtx.licenseModePrefs);
   return (
-    <Fragment>
+    <>
       {ReactDOM.createPortal(
         <Backdrop onClose={props.onClose} />,
         portalElement
@@ -35,7 +35,7 @@ const Modal = (props) => {
         <ModalOverlay>{props.children}</ModalOverlay>,
         portalElement
       )}
-    </Fragment>
+    </>
   );
 };
 export default Modal;

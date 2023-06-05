@@ -28,8 +28,6 @@ export default function Scene(props: SceneProps) {
   const sceneStyle = expanded ? styles.scene__expanded : styles.scene;
   return (
     <div className={sceneStyle}>
-      {/* {threeScene === 'audioPersonalEdition' && <Ballpit />} */}
-      {/* {threeScene === 'audioPersonalEdition' && <BoxScene />} */}
       {threeScene === 'audioPersonalEdition' && <Audio />}
       {threeScene === 'videoPersonalEdition' && <Video />}
       {/* {threeScene === 'videoPersonalEdition' && <VideoModel />} */}

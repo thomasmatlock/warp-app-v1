@@ -506,7 +506,6 @@ if (isDebug) {
   ipcMain.on('Search: InputChange', async (event, arg) => {
     console.log('Search: InputChange', arg);
 
-    // console.log('Search: InputChange', arg);
     // console.log('Menu: Shortcuts: Restart', arg);
     // event.reply('Search: InputChange', [arg]);
   });
@@ -517,8 +516,6 @@ if (isDebug) {
     if (view) {
       submitSearchQuery(view.webContents.getURL(), arg);
     }
-    // console.log('Menu: Shortcuts: Restart', arg);
-    // event.reply('Search: Submit', [arg]);
   });
   // NAV BAR LISTENERS
   ipcMain.on('nav: mode: audio', async () => {

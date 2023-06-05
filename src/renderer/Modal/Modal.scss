@@ -44,7 +44,7 @@
         transition: all 0.25s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;
         // HEIGHT
         $minHeightLicense: 480px; // CHANGE THIS TO YOUR DESIRED MIN HEIGHT
-        $desiredHeightLicense: 800px; // CHANGE THIS TO YOUR DESIRED HEIGHT
+        $desiredHeightLicense: 95%; // CHANGE THIS TO YOUR DESIRED HEIGHT
         $maxHeightLicense: 900px; // CHANGE THIS TO YOUR DESIRED MAX HEIGHT
         height: clamp( $minHeightLicense, $desiredHeightLicense, $maxHeightLicense) !important;
         top: calc(50% - $desiredHeightLicense / 2) !important;
@@ -54,6 +54,7 @@
         $maxWidthLicense: 1400px; // CHANGE THIS TO YOUR DESIRED MAX WIDTH
         width: clamp( $minWidthLicense, $desiredWidthLicense, $maxWidthLicense) !important;
         left: calc(50% - $maxWidthLicense / 2) !important;
+        // margin: 2rem auto !important;
         // transform: translateX(-10rem);
     }
     &__astronaut {
