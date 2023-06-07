@@ -113,7 +113,7 @@ export const UserContextProvider = (props) => {
     }
   }
   window.electron.ipcRenderer.on('global', (arg) => {
-    // console.log(arg.user);
+    console.log(arg);
 
     //  serverDownloads = arg.serverDownloads;
     setServerDownloads(arg.serverDownloads);

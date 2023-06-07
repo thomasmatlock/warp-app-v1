@@ -317,7 +317,6 @@ app
     PowerMonitor();
 
     global.prefs = Prefs.getPrefs();
-    // console.log(global.prefs);
     Screen = new ScreenClass(mWin);
 
     setActiveURL();
