@@ -401,7 +401,7 @@ app
         // }
       }
 
-      // windowController.createMainWin();
+      windowController.createMainWin();
       if (mWin) updater(mWin);
     })();
     // createTray(mWin);
