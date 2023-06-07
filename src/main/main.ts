@@ -406,7 +406,7 @@ app
         // }
       }
 
-      // windowController.createMainWin();
+      windowController.createMainWin();
       if (mWin) updater(mWin);
     })();
     // createTray(mWin);
@@ -446,74 +446,33 @@ if (isDebug) {
   // require('electron-debug')(); // ENABLE FOR DEVTOOLS
 }
 
-(function appListeners() {
-  // BROWSERBAR DOWNLOAD SOURCE LISTENERS
-  ipcMain.on('loadActiveSource', async () => {
-    if (view)
-      if (view.webContents.getURL().includes('pinterest')) {
-        view.webContents.insertCSS('html, body, { background-color: #fff;  }');
-        view.webContents.insertCSS('scrollbar, {    width: 10px;}');
-      }
+(function contextMenuListeners() {
+  // CONTEXT MENU LISTENERS
+  ipcMain.on('context: show_in_folder', async (event, matchingDownload) => {
+    // console.log(matchingDownload);
+    shell.showItemInFolder(matchingDownload.path);
   });
-  ipcMain.on('source: change', async (event, arg) => {
-    if (view) view.webContents.loadURL(arg);
-    if (view)
-      if (view.webContents.getURL().includes('pinterest')) {
-        if (view)
-          view.webContents.insertCSS(
-            'html, body, { background-color: #fff;  }'
-          );
-      }
+  ipcMain.on('context: copy_link_address', async (event, matchingDownload) => {
+    const url = matchingDownload.video_url;
+    clipboard.writeText(url);
   });
-  // BROWSERBAR DOWNLOAD BUTTON LISTENERS
-  ipcMain.on('BrowserBar: button: downloadAudio', async () => {
-    const items = [];
-    const item = { url: '' };
+  ipcMain.on('context: open_in_browser', async (event, matchingDownload) => {
+    console.log(matchingDownload);
 
-    if (view) item.url = view.webContents.getURL();
-    items.push(item);
-    if (mWin) Downloads.DownloadItems(mWin, items, prefs, 'audio');
-    // event.reply('BrowserBar: button: downloadAudio successful');
+    const url = matchingDownload.video_url;
+    if (view) view.webContents.loadURL(url);
   });
-  ipcMain.on('BrowserBar: button: downloadAudioPlaylist', async () => {
-    if (mWin && view)
-      Downloads.playlist(mWin, view.webContents.getURL(), prefs, 'audio');
-    // event.reply('BrowserBar: button: downloadAudio successful');
+  ipcMain.on('context: remove_item', async (_event, matchingDownload) => {
+    Downloads.removeMatchingDownload(matchingDownload.id);
   });
-  ipcMain.on('BrowserBar: button: downloadVideo', async () => {
-    const items = [];
-    const item = { url: '' };
-
-    if (view) item.url = view.webContents.getURL();
-    items.push(item);
-    if (mWin) Downloads.DownloadItems(mWin, items, prefs, 'video');
+  ipcMain.on('context: remove_all', async (event, matchingDownloadID) => {
+    Downloads.removeAllDownloads(matchingDownloadID);
   });
-  ipcMain.on('browserPanelSize', async (event, arg) => {
-    browserPanelState = arg;
-    if (mWin && view) Browser.resize(browserPanelState, mWin, view);
+  ipcMain.on('context: delete_file', async (event, downloadID) => {
+    Downloads.deleteDownload(downloadID);
   });
-  ipcMain.on('BrowserBar: button: goBack', async () => {
-    if (view) view.webContents.goBack();
-  });
-  ipcMain.on('BrowserBar: button: goForward', async () => {
-    if (view) view.webContents.goForward();
-  });
-  ipcMain.on('BrowserBar: button: reload', async () => {
-    if (view) view.webContents.reload();
-  });
-  // FILTERBAR LISTENERS
-  ipcMain.on('FilterBar: Warpstagram: FilterTypeAll', async (event) => {
-    event.reply('FilterBar: Warpstagram: FilterTypeAll successful'); // sends message to renderer
-  });
-  ipcMain.on('FilterBar: Warpstagram: FilterTypeUsers', async (event) => {
-    event.reply('FilterBar: Warpstagram: FilterTypeUsers successful'); // sends message to renderer
-  });
-  ipcMain.on('FilterBar: Warpstagram: FilterTypeHashtags', async (event) => {
-    event.reply('FilterBar: Warpstagram: FilterTypeHashtags successful'); // sends message to renderer
-  });
-  ipcMain.on('FilterBar: Warpstagram: FilterTypeLocations', async (event) => {
-    event.reply('FilterBar: Warpstagram: FilterTypeLocations successful'); // sends message to renderer
-  });
+})();
+(function modalListeners() {
   // MODAL PREFS LISTENERS
   ipcMain.on('global', async (event, arg) => {
     global = arg;
@@ -593,29 +552,76 @@ if (isDebug) {
     // console.log(matchingDownload);
     // shell.showItemInFolder(matchingDownload.path);
   });
-  // CONTEXT MENU LISTENERS
-  ipcMain.on('context: show_in_folder', async (event, matchingDownload) => {
-    // console.log(matchingDownload);
-    shell.showItemInFolder(matchingDownload.path);
+})();
+(function filterBarListeners() {
+  // FILTERBAR LISTENERS
+  ipcMain.on('FilterBar: Warpstagram: FilterTypeAll', async (event) => {
+    event.reply('FilterBar: Warpstagram: FilterTypeAll successful'); // sends message to renderer
   });
-  ipcMain.on('context: copy_link_address', async (event, matchingDownload) => {
-    const url = matchingDownload.video_url;
-    clipboard.writeText(url);
+  ipcMain.on('FilterBar: Warpstagram: FilterTypeUsers', async (event) => {
+    event.reply('FilterBar: Warpstagram: FilterTypeUsers successful'); // sends message to renderer
   });
-  ipcMain.on('context: open_in_browser', async (event, matchingDownload) => {
-    console.log(matchingDownload);
+  ipcMain.on('FilterBar: Warpstagram: FilterTypeHashtags', async (event) => {
+    event.reply('FilterBar: Warpstagram: FilterTypeHashtags successful'); // sends message to renderer
+  });
+  ipcMain.on('FilterBar: Warpstagram: FilterTypeLocations', async (event) => {
+    event.reply('FilterBar: Warpstagram: FilterTypeLocations successful'); // sends message to renderer
+  });
+})();
+(function browserBarListeners() {
+  // BROWSERBAR DOWNLOAD SOURCE LISTENERS
+  ipcMain.on('loadActiveSource', async () => {
+    if (view)
+      if (view.webContents.getURL().includes('pinterest')) {
+        view.webContents.insertCSS('html, body, { background-color: #fff;  }');
+        view.webContents.insertCSS('scrollbar, {    width: 10px;}');
+      }
+  });
+  ipcMain.on('source: change', async (event, arg) => {
+    if (view) view.webContents.loadURL(arg);
+    if (view)
+      if (view.webContents.getURL().includes('pinterest')) {
+        if (view)
+          view.webContents.insertCSS(
+            'html, body, { background-color: #fff;  }'
+          );
+      }
+  });
+  // BROWSERBAR DOWNLOAD BUTTON LISTENERS
+  ipcMain.on('BrowserBar: button: downloadAudio', async () => {
+    const items = [];
+    const item = { url: '' };
 
-    const url = matchingDownload.video_url;
-    if (view) view.webContents.loadURL(url);
+    if (view) item.url = view.webContents.getURL();
+    items.push(item);
+    if (mWin) Downloads.DownloadItems(mWin, items, prefs, 'audio');
+    // event.reply('BrowserBar: button: downloadAudio successful');
   });
-  ipcMain.on('context: remove_item', async (_event, matchingDownload) => {
-    Downloads.removeMatchingDownload(matchingDownload.id);
+  ipcMain.on('BrowserBar: button: downloadAudioPlaylist', async () => {
+    if (mWin && view)
+      Downloads.playlist(mWin, view.webContents.getURL(), prefs, 'audio');
+    // event.reply('BrowserBar: button: downloadAudio successful');
   });
-  ipcMain.on('context: remove_all', async (event, matchingDownloadID) => {
-    Downloads.removeAllDownloads(matchingDownloadID);
+  ipcMain.on('BrowserBar: button: downloadVideo', async () => {
+    const items = [];
+    const item = { url: '' };
+
+    if (view) item.url = view.webContents.getURL();
+    items.push(item);
+    if (mWin) Downloads.DownloadItems(mWin, items, prefs, 'video');
   });
-  ipcMain.on('context: delete_file', async (event, downloadID) => {
-    Downloads.deleteDownload(downloadID);
+  ipcMain.on('browserPanelSize', async (event, arg) => {
+    browserPanelState = arg;
+    if (mWin && view) Browser.resize(browserPanelState, mWin, view);
+  });
+  ipcMain.on('BrowserBar: button: goBack', async () => {
+    if (view) view.webContents.goBack();
+  });
+  ipcMain.on('BrowserBar: button: goForward', async () => {
+    if (view) view.webContents.goForward();
+  });
+  ipcMain.on('BrowserBar: button: reload', async () => {
+    if (view) view.webContents.reload();
   });
 })();
 (function navBarListeners() {
