@@ -31,8 +31,6 @@ export function setPrefs(prefsObj: any) {
 export function setAudioPath(path: string) {
   const newPrefs = getPrefs();
   newPrefs.audio.folders[0].placeholder = path;
-  // console.log(newPrefs.audio.folders[0]);
-
   setPrefs(newPrefs);
 }
 export function setVideoPath(path: string) {

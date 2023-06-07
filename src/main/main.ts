@@ -66,6 +66,7 @@ import getStatus from '../user/database/status';
   // const customerID = 'cus_NtviPTJQDAkVMr';
   // const customer2 = await GetStripeCustomerByID(customerID);
 })();
+console.log('starting...');
 
 const isSingleInstance = app.requestSingleInstanceLock();
 if (!isSingleInstance) {
