@@ -312,13 +312,10 @@ app
   .whenReady()
   .then(() => {
     PowerMonitor();
-    // Prefs.resetPrefs();
-    // set csp security policy
 
     global.prefs = Prefs.getPrefs();
-    // console.log(prefs);
+    // console.log(global.prefs);
     Screen = new ScreenClass(mWin);
-    // console.log('Screen', Screen);
 
     setActiveURL();
 
