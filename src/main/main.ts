@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint global-require: off, no-console: off, promise/always-return: off */
 
 /**
@@ -178,23 +177,7 @@ const windowController = {
       minHeight: 500,
       show: false,
       darkTheme: true,
-      // titleBarStyle: 'hidden',
-      // titleBarOverlay: {
-      //   color: '#1a1a1a',
-      //   symbolColor: '#eee',
-      //   height: 40,
-      // },
-      // if (nativeTheme.shouldUseDarkColors === true) {
-      //   mWin.setBackgroundColor('#1a1a1a');
-      // } else {
-      //   mWin.setBackgroundColor('#fff');
-      // }
-
-      // nativeTheme.shouldUseDarkColors ? mWin.setBackgroundColor('#1a1a1a') : mWin.setBackgroundColor('#fff'),
       icon: getAssetPath('icon.png'),
-      //  nativeTheme.shouldUseDarkColors
-      // ? getAssetPath('icon.png')
-      // : getAssetPath('icon.png'),
       webPreferences: {
         preload: app.isPackaged
           ? path.join(__dirname, 'preload.js')
@@ -215,31 +198,21 @@ const windowController = {
       if (mWin) mWin.menuBarVisible = false;
       if (view) view.setBounds(displayBounds);
     });
-    mWin.on('blur', () => {
-      // console.log('mWin blurred');
-      // Shortcuts.removeShortcuts();
-      // Browser.resize(browserPanelState, mWin, view);
-    });
+    mWin.on('blur', () => {});
     mWin.on('focus', () => {
-      // console.log('mWin focused');
-
-      // Shortcuts.addShortcuts(mWin, view);
-
-      Browser.resize(browserPanelState, mWin, view);
+      if (mWin && view) Browser.resize(browserPanelState, mWin, view);
     });
     mWin.on('leave-full-screen', () => {});
     mWin.on('leave-html-full-screen', () => {
       if (mWin) mWin.menuBarVisible = true;
-      if (view) Browser.showBrowser(mWin, view);
+      if (view && mWin) Browser.showBrowser(mWin, view);
     });
     mWin.on('maximize', () => {
-      Browser.resize(browserPanelState, mWin, view);
-      Screen.setScreenState(mWin);
+      if (mWin && view) Browser.resize(browserPanelState, mWin, view);
+      if (mWin) Screen.setScreenState(mWin);
     });
     mWin.on('minimize', () => {});
-    // if (isDebug) {
-    //   // await installExtensions();
-    // }
+
     mWin.on('ready-to-show', () => {
       if (mWin) mWin.webContents.send('ready-to-show');
       if (mWin) {
@@ -288,30 +261,25 @@ const windowController = {
         );
       }
     });
-    // mWin.maximize();
-    // setTimeout(() => {
-    //   mWin.maximize();
-    // }, 1000);
-    // console.log(mWin.isMaximized());
 
     mWin.on('resize', () => {});
     mWin.on('moved', () => {
-      Screen.setScreenState(mWin);
+      if (mWin) Screen.setScreenState(mWin);
     });
     mWin.on('unmaximize', () => {
-      Browser.resize(browserPanelState, mWin, view);
-      Screen.setScreenState(mWin);
+      if (mWin && view) Browser.resize(browserPanelState, mWin, view);
+      if (mWin) Screen.setScreenState(mWin);
     });
     mWin.on('resized', () => {
-      Browser.resize(browserPanelState, mWin, view);
-      Screen.setScreenState(mWin);
+      if (mWin && view) Browser.resize(browserPanelState, mWin, view);
+      if (mWin) Screen.setScreenState(mWin);
     });
     mWin.on('restore', () => {
-      Browser.resize(browserPanelState, mWin, view);
+      if (mWin && view) Browser.resize(browserPanelState, mWin, view);
     });
 
     mWin.on('show', () => {
-      Browser.resize(browserPanelState, mWin, view);
+      if (mWin && view) Browser.resize(browserPanelState, mWin, view);
     });
   },
   // console.log('mWin', mWin);
@@ -438,12 +406,8 @@ app
         // }
       }
 
-      // console.log('user', user);
-
-      // console.log(typeof user);
-
       windowController.createMainWin();
-      updater(mWin);
+      if (mWin) updater(mWin);
     })();
     // createTray(mWin);
     // Shortcuts(view);
@@ -466,8 +430,6 @@ async function submitSearchQuery(currentURL: string, query: string) {
   if (view) view.webContents.loadURL(joinedQuery);
 }
 
-// let activeURL: string;
-
 const contextMenu = require('electron-context-menu');
 
 contextMenu({});
@@ -485,50 +447,27 @@ if (isDebug) {
 }
 
 (function appListeners() {
-  // MENU LISTENERS
-  ipcMain.on('Menu: Shortcuts: Restart', async (event, arg) => {
-    event.reply('Menu: Shortcuts: Restart', arg);
-  });
-  ipcMain.on('modal: preferences', async (event, arg) => {
-    event.reply('modal: preferences', prefs);
-  }); // nav listeners
-  ipcMain.on('nav: mode: audio', async (event, arg) => {
-    setTitle(mWin, 'audio', user);
-  });
-  ipcMain.on('nav: mode: video', async (event, arg) => {
-    setTitle(mWin, 'video', user);
-  });
-  ipcMain.on('nav: mode: warpstagram', async (event, arg) => {
-    setTitle(mWin, 'warpstagram', user);
-  });
   // SEARCH LISTENERS
   ipcMain.on('Search: InputChange', async (event, arg) => {
     console.log('Search: InputChange', arg);
-
-    // console.log('Menu: Shortcuts: Restart', arg);
-    // event.reply('Search: InputChange', [arg]);
   });
   ipcMain.on('Search: Submit', async (event, arg) => {
-    // console.log('Search: Submit', arg);
-
-    // console.log('Search: Submit', arg);
     if (view) {
       submitSearchQuery(view.webContents.getURL(), arg);
     }
   });
   // NAV BAR LISTENERS
   ipcMain.on('nav: mode: audio', async () => {
-    Browser.showBrowser(mWin, view);
+    if (mWin && view) Browser.showBrowser(mWin, view);
   });
   ipcMain.on('nav: mode: video', async () => {
-    Browser.showBrowser(mWin, view);
+    if (mWin && view) Browser.showBrowser(mWin, view);
   });
   ipcMain.on('nav: mode: warpstagram', async () => {
     Browser.hideBrowser(view);
   });
   // BROWSERBAR DOWNLOAD SOURCE LISTENERS
-  ipcMain.on('loadActiveSource', async (arg) => {
-    // if (view) view.webContents.loadURL(arg);
+  ipcMain.on('loadActiveSource', async () => {
     if (view)
       if (view.webContents.getURL().includes('pinterest')) {
         view.webContents.insertCSS('html, body, { background-color: #fff;  }');
@@ -536,8 +475,6 @@ if (isDebug) {
       }
   });
   ipcMain.on('source: change', async (event, arg) => {
-    // console.log('source: change', arg);
-
     if (view) view.webContents.loadURL(arg);
     if (view)
       if (view.webContents.getURL().includes('pinterest')) {
@@ -548,64 +485,54 @@ if (isDebug) {
       }
   });
   // BROWSERBAR DOWNLOAD BUTTON LISTENERS
-  ipcMain.on('BrowserBar: button: downloadAudio', async (event, arg) => {
+  ipcMain.on('BrowserBar: button: downloadAudio', async () => {
     const items = [];
     const item = { url: '' };
 
     if (view) item.url = view.webContents.getURL();
     items.push(item);
-    Downloads.DownloadItems(mWin, items, prefs, 'audio');
+    if (mWin) Downloads.DownloadItems(mWin, items, prefs, 'audio');
     // event.reply('BrowserBar: button: downloadAudio successful');
   });
-  ipcMain.on(
-    'BrowserBar: button: downloadAudioPlaylist',
-    async (event, arg) => {
-      // if (view) console.log(view.webContents.getURL());
-
+  ipcMain.on('BrowserBar: button: downloadAudioPlaylist', async () => {
+    if (mWin && view)
       Downloads.playlist(mWin, view.webContents.getURL(), prefs, 'audio');
-      // event.reply('BrowserBar: button: downloadAudio successful');
-    }
-  );
-  ipcMain.on('BrowserBar: button: downloadVideo', async (event, arg) => {
+    // event.reply('BrowserBar: button: downloadAudio successful');
+  });
+  ipcMain.on('BrowserBar: button: downloadVideo', async () => {
     const items = [];
     const item = { url: '' };
 
     if (view) item.url = view.webContents.getURL();
     items.push(item);
-    Downloads.DownloadItems(mWin, items, prefs, 'video');
+    if (mWin) Downloads.DownloadItems(mWin, items, prefs, 'video');
   });
   ipcMain.on('browserPanelSize', async (event, arg) => {
     browserPanelState = arg;
-    Browser.resize(browserPanelState, mWin, view);
+    if (mWin && view) Browser.resize(browserPanelState, mWin, view);
   });
-  ipcMain.on('BrowserBar: button: goBack', async (event, arg) => {
+  ipcMain.on('BrowserBar: button: goBack', async () => {
     if (view) view.webContents.goBack();
   });
-  ipcMain.on('BrowserBar: button: goForward', async (event, arg) => {
+  ipcMain.on('BrowserBar: button: goForward', async () => {
     if (view) view.webContents.goForward();
   });
-  ipcMain.on('BrowserBar: button: reload', async (event, arg) => {
+  ipcMain.on('BrowserBar: button: reload', async () => {
     if (view) view.webContents.reload();
   });
   // FILTERBAR LISTENERS
-  ipcMain.on('FilterBar: Warpstagram: FilterTypeAll', async (event, arg) => {
+  ipcMain.on('FilterBar: Warpstagram: FilterTypeAll', async (event) => {
     event.reply('FilterBar: Warpstagram: FilterTypeAll successful'); // sends message to renderer
   });
-  ipcMain.on('FilterBar: Warpstagram: FilterTypeUsers', async (event, arg) => {
+  ipcMain.on('FilterBar: Warpstagram: FilterTypeUsers', async (event) => {
     event.reply('FilterBar: Warpstagram: FilterTypeUsers successful'); // sends message to renderer
   });
-  ipcMain.on(
-    'FilterBar: Warpstagram: FilterTypeHashtags',
-    async (event, arg) => {
-      event.reply('FilterBar: Warpstagram: FilterTypeHashtags successful'); // sends message to renderer
-    }
-  );
-  ipcMain.on(
-    'FilterBar: Warpstagram: FilterTypeLocations',
-    async (event, arg) => {
-      event.reply('FilterBar: Warpstagram: FilterTypeLocations successful'); // sends message to renderer
-    }
-  );
+  ipcMain.on('FilterBar: Warpstagram: FilterTypeHashtags', async (event) => {
+    event.reply('FilterBar: Warpstagram: FilterTypeHashtags successful'); // sends message to renderer
+  });
+  ipcMain.on('FilterBar: Warpstagram: FilterTypeLocations', async (event) => {
+    event.reply('FilterBar: Warpstagram: FilterTypeLocations successful'); // sends message to renderer
+  });
   // MODAL PREFS LISTENERS
   ipcMain.on('global', async (event, arg) => {
     global = arg;
@@ -616,54 +543,57 @@ if (isDebug) {
   ipcMain.on(
     'global: prefs: chooseOutputFolder',
     async (event, outputFolderID) => {
-      // console.log(outputFolderID);
       if (outputFolderID.toLowerCase().includes('audio')) {
-        dialog
-          .showOpenDialog(mWin, {
-            buttonLabel: 'Confirm Audio Folder',
-            properties: ['openDirectory'],
-            defaultPath: Paths.getDefaultAudioPath(),
-          })
-          .then((result) => {
-            if (!result.canceled) Prefs.setAudioPath(result.filePaths[0]);
-            global.prefs = Prefs.getPrefs();
-            mWin.webContents.send('global', global);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+        if (mWin)
+          dialog
+            .showOpenDialog(mWin, {
+              buttonLabel: 'Confirm Audio Folder',
+              properties: ['openDirectory'],
+              defaultPath: Paths.getDefaultAudioPath(),
+            })
+            .then((result) => {
+              if (!result.canceled) Prefs.setAudioPath(result.filePaths[0]);
+              global.prefs = Prefs.getPrefs();
+              if (mWin) mWin.webContents.send('global', global);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
       }
       if (outputFolderID.toLowerCase().includes('video')) {
-        dialog
-          .showOpenDialog(mWin, {
-            buttonLabel: 'Confirm Video Folder',
-            properties: ['openDirectory'],
-            defaultPath: Paths.getDefaultVideoPath(),
-          })
-          .then((result) => {
-            if (!result.canceled) Prefs.setVideoPath(result.filePaths[0]);
-            global.prefs = Prefs.getPrefs();
-            if (mWin) mWin.webContents.send('global', global);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+        if (mWin)
+          dialog
+            .showOpenDialog(mWin, {
+              buttonLabel: 'Confirm Video Folder',
+              properties: ['openDirectory'],
+              defaultPath: Paths.getDefaultVideoPath(),
+            })
+            .then((result) => {
+              if (!result.canceled) Prefs.setVideoPath(result.filePaths[0]);
+              global.prefs = Prefs.getPrefs();
+              if (mWin) mWin.webContents.send('global', global);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
       }
       if (outputFolderID.toLowerCase().includes('warpstagram')) {
-        dialog
-          .showOpenDialog(mWin, {
-            buttonLabel: 'Confirm Warpstagram Folder',
-            properties: ['openDirectory'],
-            defaultPath: Paths.getDefaultWarpstagramPath(),
-          })
-          .then((result) => {
-            if (!result.canceled) Prefs.setWarpstagramPath(result.filePaths[0]);
-            global.prefs = Prefs.getPrefs();
-            if (mWin) mWin.webContents.send('global', global);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+        if (mWin)
+          dialog
+            .showOpenDialog(mWin, {
+              buttonLabel: 'Confirm Warpstagram Folder',
+              properties: ['openDirectory'],
+              defaultPath: Paths.getDefaultWarpstagramPath(),
+            })
+            .then((result) => {
+              if (!result.canceled)
+                Prefs.setWarpstagramPath(result.filePaths[0]);
+              global.prefs = Prefs.getPrefs();
+              if (mWin) mWin.webContents.send('global', global);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
       }
     }
   );
@@ -688,7 +618,7 @@ if (isDebug) {
     shell.showItemInFolder(matchingDownload.path);
   });
   ipcMain.on('context: copy_link_address', async (event, matchingDownload) => {
-    let url = matchingDownload.video_url;
+    const url = matchingDownload.video_url;
     clipboard.writeText(url);
   });
   ipcMain.on('context: open_in_browser', async (event, matchingDownload) => {
@@ -707,7 +637,23 @@ if (isDebug) {
     Downloads.deleteDownload(downloadID);
   });
 })();
-
+(function menuListeners() {
+  ipcMain.on('Menu: Shortcuts: Restart', async (event, arg) => {
+    event.reply('Menu: Shortcuts: Restart', arg);
+  });
+  ipcMain.on('modal: preferences', async (event) => {
+    event.reply('modal: preferences', prefs);
+  }); // nav listeners
+  ipcMain.on('nav: mode: audio', async () => {
+    if (mWin) setTitle(mWin, 'audio', user);
+  });
+  ipcMain.on('nav: mode: video', async () => {
+    if (mWin) setTitle(mWin, 'video', user);
+  });
+  ipcMain.on('nav: mode: warpstagram', async () => {
+    if (mWin) setTitle(mWin, 'warpstagram', user);
+  });
+})();
 (function bWinListeners() {
   ipcMain.on('screenshot', async (event, arg) => {
     Browser.screenshot(mWin, view);
