@@ -612,5 +612,11 @@ const urls = {
     'https://www.tiktok.com/@foodies/video/6895167017570127109',
   ],
 };
-export default urls;
+const randomYoutubeURL = () => {
+  return urls.youtube[Math.floor(Math.random() * urls.youtube.length)];
+};
+module.exports = {
+  urls,
+  randomYoutubeURL,
+};
 // module.exports = urls;

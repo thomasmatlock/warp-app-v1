@@ -45,7 +45,7 @@ import ScreenClass from './Screen';
 import * as Browser from '../Browser/browserController';
 // import * as Shortcuts from './Shortcuts';
 // console.log(process.env.APPLE_ID);
-import testUrls from '../downloaders/youtube/testURLS';
+import * as urls from '../downloaders/youtube/testURLS';
 // console.log(dotenv);
 import { createCustomer } from '../user/payments/stripe/customers/createStripeCustomer';
 import {
@@ -295,7 +295,7 @@ const windowController = {
     if (app.isPackaged) {
       view.webContents.loadURL('https://www.youtube.com');
     } else {
-      view.webContents.loadURL(randomYoutubeURL);
+      view.webContents.loadURL(urls.randomYoutubeURL());
     }
     view.webContents.insertCSS('scrollbar{    width: 100px;}');
     // view.webContents.loadURL('https://open.spotify.com/');
@@ -415,8 +415,8 @@ app
   })
   .catch(console.log);
 
-let randomYoutubeURL =
-  testUrls.youtube[Math.floor(Math.random() * testUrls.youtube.length)];
+// let randomYoutubeURL =
+//   testUrls.youtube[Math.floor(Math.random() * testUrls.youtube.length)];
 
 async function submitSearchQuery(currentURL: string, query: string) {
   // let joinedQuery: string;
