@@ -105,9 +105,9 @@ let mWin: BrowserWindow | null;
 let view: BrowserView | null = null;
 let Screen: ScreenClass;
 let activeURL: string;
-const audioDownloads = Downloads.getLocalAudioDownloads();
-const videoDownloads = Downloads.getLocalVideoDownloads();
-const warpstagramDownloads = Downloads.getLocalWarpstagramDownloads();
+const localAudioDownloads = Downloads.getLocalAudioDownloads();
+const localVideoDownloads = Downloads.getLocalVideoDownloads();
+const localWarpstagramDownloads = Downloads.getLocalWarpstagramDownloads();
 const viewBounds = {
   x: 0,
   y: 130,
@@ -228,12 +228,12 @@ const windowController = {
           // if (!app.isPackaged)
           // if (mWin) mWin.webContents.send('modal: preferences: license'); // automated
         }, 250);
-        mWin.webContents.send('main: audioDownloads', audioDownloads);
+        mWin.webContents.send('main: audioDownloads', localAudioDownloads);
 
-        mWin.webContents.send('main: videoDownloads', videoDownloads);
+        mWin.webContents.send('main: videoDownloads', localVideoDownloads);
         mWin.webContents.send(
           'main: warpstagramDownloads',
-          warpstagramDownloads
+          localWarpstagramDownloads
         );
       }
     });
