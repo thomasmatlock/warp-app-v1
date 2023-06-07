@@ -1,7 +1,6 @@
-import { Fragment } from 'react';
-import './RenameThis.scss';
+// import './RenameThis.scss';
 
 const RenameThis = () => {
-  return <Fragment></Fragment>;
+  return <></>;
 };
 export default RenameThis;

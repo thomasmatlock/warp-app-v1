@@ -274,11 +274,10 @@ const windowController = {
         // if (view === null && global.serverAuthenticated)
         // windowController.createbView();
 
-        // automate.openPrefsLicense(mWin, 250);
         setTimeout(() => {
-          mWin.webContents.send('global', global);
+          if (mWin) mWin.webContents.send('global', global);
           if (!app.isPackaged)
-            mWin.webContents.send('modal: preferences: license'); // automated
+            if (mWin) mWin.webContents.send('modal: preferences: license'); // automated
         }, 250);
         mWin.webContents.send('main: audioDownloads', audioDownloads);
 

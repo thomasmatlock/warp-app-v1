@@ -1,4 +1,3 @@
-import { Fragment } from 'react';
 import './ModalPanel.scss';
 import ModalSpacer from '../Components/ModalSpacer';
 import ModalOutputFolder from '../Components/ModalOutputFolder';
@@ -13,24 +12,22 @@ const ModalPanelVideo = (props) => {
     placeholder: 'C:/Users/Tommy/Documents/Warp/Video',
   };
   return (
-    <Fragment>
-      <div id="modalPrefsPanel_video" className="modalPrefsPanel">
-        <ModalOutputFolder
+    <div id="modalPrefsPanel_video" className="modalPrefsPanel">
+      <ModalOutputFolder
+        getID={props.getID}
+        item={props.prefs.video.folders[0]}
+      />
+      <div className="modalDropdownContainer">
+        <ModalDropdownList
           getID={props.getID}
-          item={props.prefs.video.folders[0]}
+          item={props.prefs.video.dropdowns[0]}
         />
-        <div className="modalDropdownContainer">
-          <ModalDropdownList
-            getID={props.getID}
-            item={props.prefs.video.dropdowns[0]}
-          />
-          <ModalDropdownList
-            getID={props.getID}
-            item={props.prefs.video.dropdowns[1]}
-          />
-        </div>
+        <ModalDropdownList
+          getID={props.getID}
+          item={props.prefs.video.dropdowns[1]}
+        />
       </div>
-    </Fragment>
+    </div>
   );
 };
 export default ModalPanelVideo;
