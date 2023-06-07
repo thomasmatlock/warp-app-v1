@@ -406,7 +406,7 @@ app
         // }
       }
 
-      windowController.createMainWin();
+      // windowController.createMainWin();
       if (mWin) updater(mWin);
     })();
     // createTray(mWin);
@@ -447,25 +447,6 @@ if (isDebug) {
 }
 
 (function appListeners() {
-  // SEARCH LISTENERS
-  ipcMain.on('Search: InputChange', async (event, arg) => {
-    console.log('Search: InputChange', arg);
-  });
-  ipcMain.on('Search: Submit', async (event, arg) => {
-    if (view) {
-      submitSearchQuery(view.webContents.getURL(), arg);
-    }
-  });
-  // NAV BAR LISTENERS
-  ipcMain.on('nav: mode: audio', async () => {
-    if (mWin && view) Browser.showBrowser(mWin, view);
-  });
-  ipcMain.on('nav: mode: video', async () => {
-    if (mWin && view) Browser.showBrowser(mWin, view);
-  });
-  ipcMain.on('nav: mode: warpstagram', async () => {
-    Browser.hideBrowser(view);
-  });
   // BROWSERBAR DOWNLOAD SOURCE LISTENERS
   ipcMain.on('loadActiveSource', async () => {
     if (view)
@@ -637,6 +618,17 @@ if (isDebug) {
     Downloads.deleteDownload(downloadID);
   });
 })();
+(function navBarListeners() {
+  ipcMain.on('nav: mode: audio', async () => {
+    if (mWin && view) Browser.showBrowser(mWin, view);
+  });
+  ipcMain.on('nav: mode: video', async () => {
+    if (mWin && view) Browser.showBrowser(mWin, view);
+  });
+  ipcMain.on('nav: mode: warpstagram', async () => {
+    Browser.hideBrowser(view);
+  });
+})();
 (function menuListeners() {
   ipcMain.on('Menu: Shortcuts: Restart', async (event, arg) => {
     event.reply('Menu: Shortcuts: Restart', arg);
@@ -652,6 +644,17 @@ if (isDebug) {
   });
   ipcMain.on('nav: mode: warpstagram', async () => {
     if (mWin) setTitle(mWin, 'warpstagram', user);
+  });
+})();
+(function searchListeners() {
+  // SEARCH LISTENERS
+  ipcMain.on('Search: InputChange', async (event, arg) => {
+    console.log('Search: InputChange', arg);
+  });
+  ipcMain.on('Search: Submit', async (event, arg) => {
+    if (view) {
+      submitSearchQuery(view.webContents.getURL(), arg);
+    }
   });
 })();
 (function bWinListeners() {
