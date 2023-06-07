@@ -66,8 +66,11 @@ const UserContext = React.createContext({
   ],
   // getID: () => {},
 });
-
-export const UserContextProvider = (props) => {
+type Props = {
+  children: React.ReactNode;
+};
+export const UserContextProvider = (props: Props) => {
+  const { children } = props;
   const downloadsCtx = useContext(DownloadsContext);
 
   // console.log(downloadsCtx);
@@ -113,22 +116,14 @@ export const UserContextProvider = (props) => {
     }
   }
   window.electron.ipcRenderer.on('global', (arg) => {
-    console.log(arg);
+    // console.log(arg);
 
     //  serverDownloads = arg.serverDownloads;
     setServerDownloads(arg.serverDownloads);
     setUser(arg.user);
-
-    // console.log(serverDownloads);
+    // console.log(user);
   });
-  // let dollarsSynArray = ['bucks', 'rupees'];
-  // let randomDollarSyn =
-  //   dollarsSynArray[Math.floor(Math.random() * dollarsSynArray.length)];
-  // let verbsArray = ['Spend', 'Invest'];
-  // let randomVerb = verbsArray[Math.floor(Math.random() * verbsArray.length)];
-  // let directObjectArr = ['yourself', 'your workflow'];
-  // let randomDirectObject =
-  //   directObjectArr[Math.floor(Math.random() * directObjectArr.length)];
+
   const audioDownloadsActivationArr = [
     {
       id: 'activateAudio',
@@ -163,7 +158,7 @@ export const UserContextProvider = (props) => {
         // getID: getID,
       }}
     >
-      {props.children}
+      {children}
     </UserContext.Provider>
   );
 };
