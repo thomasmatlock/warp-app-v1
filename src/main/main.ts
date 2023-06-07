@@ -31,6 +31,7 @@ import GetUserDownloads from '../user/downloads/GetUserDownloads';
 // import UpgradeUser from '../user/UpgradeUser';
 // incrementReleaseVersion();
 import * as time from './util/time';
+import * as Search from './search';
 import updater from './updater';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
@@ -45,7 +46,6 @@ import * as Browser from '../Browser/browserController';
 // import * as Shortcuts from './Shortcuts';
 // console.log(process.env.APPLE_ID);
 import testUrls from '../downloaders/youtube/testURLS';
-
 // console.log(dotenv);
 import { createCustomer } from '../user/payments/stripe/customers/createStripeCustomer';
 import {
@@ -58,6 +58,7 @@ import createCheckoutSession from '../user/payments/stripe/createStripeCharge';
 import getStatus from '../user/database/status';
 // createStripeCharge();
 // import * as automate from './automate';
+Search.f1();
 
 (async () => {
   const testEmail = 'hello@gmail.com';
@@ -81,12 +82,6 @@ import getStatus from '../user/database/status';
   // console.log(session);
   // }
 })();
-
-// const { networkInterfaces } = require('os');
-// console.log(networkInterfaces());
-
-// const { Address6 } = require('ip-address').Address6;
-// console.log(new Address6('2001:db8:1234::1').isValid());
 
 const isSingleInstance = app.requestSingleInstanceLock();
 if (!isSingleInstance) {
@@ -406,7 +401,7 @@ app
         // }
       }
 
-      windowController.createMainWin();
+      // windowController.createMainWin();
       if (mWin) updater(mWin);
     })();
     // createTray(mWin);
@@ -537,6 +532,8 @@ if (isDebug) {
       }
     }
   );
+})();
+(function downloadItemsListeners() {
   ipcMain.on('item-download-progress', async (event, args) => {
     // console.log(args);
     // let id = args[0];
