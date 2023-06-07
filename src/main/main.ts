@@ -45,7 +45,8 @@ import ScreenClass from './Screen';
 import * as Browser from '../Browser/browserController';
 // import * as Shortcuts from './Shortcuts';
 // console.log(process.env.APPLE_ID);
-import testUrls from '../downloaders/youtube/testURLS';
+// import testUrls from '../downloaders/youtube/testURLS';
+import * as testUrls from '../downloaders/youtube/testURLS';
 // console.log(dotenv);
 import { createCustomer } from '../user/payments/stripe/customers/createStripeCustomer';
 import {
@@ -295,7 +296,7 @@ const windowController = {
     if (app.isPackaged) {
       view.webContents.loadURL('https://www.youtube.com');
     } else {
-      view.webContents.loadURL(randomYoutubeURL);
+      view.webContents.loadURL(testUrls.randomYoutubeURL());
     }
     view.webContents.insertCSS('scrollbar{    width: 100px;}');
     // view.webContents.loadURL('https://open.spotify.com/');
@@ -331,14 +332,9 @@ app
   .whenReady()
   .then(() => {
     PowerMonitor();
-    // Prefs.resetPrefs();
-    // set csp security policy
-
     global.prefs = Prefs.getPrefs();
-    // console.log(prefs);
-    Screen = new ScreenClass(mWin);
-    // console.log('Screen', Screen);
-
+    // console.log(global.prefs);
+    if (mWin) Screen = new ScreenClass(mWin);
     setActiveURL();
 
     (async function init() {
@@ -377,8 +373,10 @@ app
       // );
 
       const downloads = (await GetUserDownloads()) || { audio: [], video: [] }; // ONLINE
+      // console.log(downloads);
+
       // const downloads = { audio: [], video: [] }; // OFFLINE
-      global.serverDownloads = downloads;
+      global.serverDownloads.audio = downloads.audio;
       // console.log(global.downloads);
 
       // console.log(downloads.audio.length, downloads.video.length);
@@ -414,9 +412,6 @@ app
     });
   })
   .catch(console.log);
-
-let randomYoutubeURL =
-  testUrls.youtube[Math.floor(Math.random() * testUrls.youtube.length)];
 
 async function submitSearchQuery(currentURL: string, query: string) {
   // let joinedQuery: string;
@@ -638,7 +633,8 @@ if (isDebug) {
   });
   ipcMain.on('modal: preferences', async (event) => {
     event.reply('modal: preferences', prefs);
-  }); // nav listeners
+  });
+  // nav listeners
   ipcMain.on('nav: mode: audio', async () => {
     if (mWin) setTitle(mWin, 'audio', user);
   });
