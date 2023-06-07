@@ -12,7 +12,7 @@ const stripe = new Stripe(stripeKey, {
 //   return customer;
 // }
 export async function GetStripeCustomerByEmail(email: string) {
-  console.log(`searching Stripe for customer with email: ${email}`);
+  // console.log(`searching Stripe for customer with email: ${email}`);
   try {
     const customer = await stripe.customers.search({
       query: `email:'${email}'`,
@@ -29,7 +29,7 @@ export async function GetStripeCustomerByEmail(email: string) {
   // return customer;
 }
 export async function GetStripeCustomerByID(id: string) {
-  console.log(`searching Stripe for customer by id: ${id}`);
+  // console.log(`searching Stripe for customer by id: ${id}`);
   try {
     const customer = await stripe.customers.retrieve(id);
     return customer;

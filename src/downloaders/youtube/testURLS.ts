@@ -1,4 +1,4 @@
-const urls = {
+export const urls = {
   // youtube: ['https://www.youtube.com/watch?v=h3fUgOKFMNU&t=559s'],
   private: ['https://www.youtube.com/watch?v=3SyzalvPX60'],
   youtube: [
@@ -612,11 +612,8 @@ const urls = {
     'https://www.tiktok.com/@foodies/video/6895167017570127109',
   ],
 };
-const randomYoutubeURL = () => {
+// iife
+function getRandomURL() {
   return urls.youtube[Math.floor(Math.random() * urls.youtube.length)];
-};
-module.exports = {
-  urls,
-  randomYoutubeURL,
-};
-// module.exports = urls;
+}
+export const randomYoutubeURL = getRandomURL();

@@ -79,20 +79,20 @@ export async function downloadItem(
   if (mWin && item != undefined)
     if (mode === 'audio') {
       decreaseCurrentDownloads();
-      let audioDownloads = getAudioDownloads();
+      let audioDownloads = getLocalAudioDownloads();
       audioDownloads.push(item);
       setAudioDownloads(audioDownloads);
       mWin.webContents.send('main: item-downloaded', [item, 'audio']);
     }
   if (mode === 'video') {
     decreaseCurrentDownloads();
-    let videoDownloads = getVideoDownloads();
+    let videoDownloads = getLocalVideoDownloads();
     videoDownloads.push(item);
     setVideoDownloads(videoDownloads);
     mWin.webContents.send('main: item-downloaded', [item, 'video']);
   }
 }
-export function getAudioDownloads() {
+export function getLocalAudioDownloads() {
   let audioDownloads = settings.get('audioDownloads');
   if (audioDownloads === undefined) {
     settings.set('audioDownloads', downloadsAudioDefaults);
@@ -101,7 +101,7 @@ export function getAudioDownloads() {
     return audioDownloads;
   }
 }
-export function getVideoDownloads() {
+export function getLocalVideoDownloads() {
   let videoDownloads = settings.get('videoDownloads');
   if (videoDownloads === undefined) {
     settings.set('videoDownloads', downloadsVideoDefaults);
@@ -110,7 +110,7 @@ export function getVideoDownloads() {
     return videoDownloads;
   }
 }
-export function getWarpstagramDownloads() {
+export function getLocalWarpstagramDownloads() {
   let warpstagramDownloads = settings.get('warpstagramDownloads');
   if (warpstagramDownloads === undefined) {
     settings.set('warpstagramDownloads', downloadsWarpstagramDefaults);
@@ -127,8 +127,8 @@ export function setVideoDownloads(items) {
 }
 
 export function removeMatchingDownload(downloadID) {
-  let audioDownloads = getAudioDownloads();
-  let videoDownloads = getVideoDownloads();
+  let audioDownloads = getLocalAudioDownloads();
+  let videoDownloads = getLocalVideoDownloads();
   for (const download of audioDownloads) {
     if (download.id === downloadID) {
       audioDownloads.splice(audioDownloads.indexOf(download), 1);
@@ -145,8 +145,8 @@ export function removeMatchingDownload(downloadID) {
   }
 }
 export function removeAllDownloads(downloadID) {
-  let audioDownloads = getAudioDownloads();
-  let videoDownloads = getVideoDownloads();
+  let audioDownloads = getLocalAudioDownloads();
+  let videoDownloads = getLocalVideoDownloads();
   for (const download of audioDownloads) {
     if (download.id === downloadID) {
       audioDownloads = [];
@@ -163,8 +163,8 @@ export function removeAllDownloads(downloadID) {
   }
 }
 export function deleteDownload(downloadID: string) {
-  let audioDownloads = getAudioDownloads();
-  let videoDownloads = getVideoDownloads();
+  let audioDownloads = getLocalAudioDownloads();
+  let videoDownloads = getLocalVideoDownloads();
   for (const download of audioDownloads) {
     if (download.id === downloadID) {
       fs.unlink(download.path, (err) => {
@@ -192,9 +192,9 @@ module.exports = {
   DownloadItems,
   downloadItem,
   playlist,
-  getAudioDownloads,
-  getVideoDownloads,
-  getWarpstagramDownloads,
+  getLocalAudioDownloads,
+  getLocalVideoDownloads,
+  getLocalWarpstagramDownloads,
   setAudioDownloads,
   setVideoDownloads,
   removeMatchingDownload,

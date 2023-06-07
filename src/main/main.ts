@@ -40,7 +40,7 @@ import * as Paths from './paths';
 import * as Downloads from '../downloaders/downloadsController';
 import setTitle from './title';
 import * as Prefs from './prefs';
-import PowerMonitor from './powerMonitor';
+import PowerMonitor from './power';
 import ScreenClass from './Screen';
 import * as Browser from '../Browser/browserController';
 // import * as Shortcuts from './Shortcuts';
@@ -58,45 +58,26 @@ import createCheckoutSession from '../user/payments/stripe/createStripeCharge';
 import getStatus from '../user/database/status';
 // createStripeCharge();
 // import * as automate from './automate';
-Search.f1();
 
 (async () => {
-  const testEmail = 'hello@gmail.com';
-  const customer = await GetStripeCustomerByEmail(testEmail);
-  // console.log(customer);
-  const customerID = 'cus_NtviPTJQDAkVMr';
-  const customer2 = await GetStripeCustomerByID(customerID);
-  // console.log(customer2);
-
-  // const products = await getProducts();
-  // console.log(products);
-  // const lastProduct = await getLastItemOfArray(products.data);
-  // console.log(lastProduct);
-  // const customer = await createCustomer();
-  // console.log(customer);
-  // if (customer !== undefined) {
-  // const session = await createCheckoutSession(
-  //   customer.id,
-  //   lastProduct.default_price
-  // );
-  // console.log(session);
-  // }
+  // const testEmail = 'hello@gmail.com';
+  // const customer = await GetStripeCustomerByEmail(testEmail);
+  // // console.log(customer);
+  // const customerID = 'cus_NtviPTJQDAkVMr';
+  // const customer2 = await GetStripeCustomerByID(customerID);
 })();
 
 const isSingleInstance = app.requestSingleInstanceLock();
 if (!isSingleInstance) {
   app.quit();
 }
-
-const appRootDir = require('app-root-dir').get();
-
 let updateChecked = false;
 let prefs: object;
 let user: object;
 let browserPanelState = 'default';
 let global = {
   appVersion: '',
-  appRoot: appRootDir,
+  appRoot: app.getAppPath(),
   platform: '',
   prefs: {},
   serverDownloads: {
@@ -124,9 +105,9 @@ let mWin: BrowserWindow | null;
 let view: BrowserView | null = null;
 let Screen: ScreenClass;
 let activeURL: string;
-const audioDownloads = Downloads.getAudioDownloads();
-const videoDownloads = Downloads.getVideoDownloads();
-const warpstagramDownloads = Downloads.getWarpstagramDownloads();
+const audioDownloads = Downloads.getLocalAudioDownloads();
+const videoDownloads = Downloads.getLocalVideoDownloads();
+const warpstagramDownloads = Downloads.getLocalWarpstagramDownloads();
 const viewBounds = {
   x: 0,
   y: 130,
@@ -244,8 +225,8 @@ const windowController = {
 
         setTimeout(() => {
           if (mWin) mWin.webContents.send('global', global);
-          if (!app.isPackaged)
-            if (mWin) mWin.webContents.send('modal: preferences: license'); // automated
+          // if (!app.isPackaged)
+          // if (mWin) mWin.webContents.send('modal: preferences: license'); // automated
         }, 250);
         mWin.webContents.send('main: audioDownloads', audioDownloads);
 
@@ -295,7 +276,7 @@ const windowController = {
     if (app.isPackaged) {
       view.webContents.loadURL('https://www.youtube.com');
     } else {
-      view.webContents.loadURL(urls.randomYoutubeURL());
+      view.webContents.loadURL(urls.randomYoutubeURL);
     }
     view.webContents.insertCSS('scrollbar{    width: 100px;}');
     // view.webContents.loadURL('https://open.spotify.com/');
@@ -414,9 +395,6 @@ app
     });
   })
   .catch(console.log);
-
-// let randomYoutubeURL =
-//   testUrls.youtube[Math.floor(Math.random() * testUrls.youtube.length)];
 
 async function submitSearchQuery(currentURL: string, query: string) {
   // let joinedQuery: string;
