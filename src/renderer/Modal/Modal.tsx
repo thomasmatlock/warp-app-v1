@@ -6,8 +6,13 @@ import './Modal.scss';
 const Backdrop = (props) => {
   return <div className="backdrop" onClick={props.onClose} />;
 };
-const ModalOverlay = (props) => {
+type Props = {
+  onClose: () => void;
+  children: React.ReactNode;
+};
+const ModalOverlay = (props: Props) => {
   const navCtx = useContext(NavContext);
+  const { children } = props;
 
   return (
     <div
@@ -16,23 +21,21 @@ const ModalOverlay = (props) => {
       }
     >
       {/* <img src={astronaut} alt="" className="modal__astronaut" /> */}
-      <div className="modal__content">{props.children}</div>
+      <div className="modal__content">{children}</div>
     </div>
   );
 };
 
 const portalElement = document.getElementById('overlays');
 
-const Modal = (props) => {
+const Modal = (props: Props) => {
+  const { onClose, children } = props;
   // console.log(navCtx.licenseModePrefs);
   return (
     <>
+      {ReactDOM.createPortal(<Backdrop onClose={onClose} />, portalElement)}
       {ReactDOM.createPortal(
-        <Backdrop onClose={props.onClose} />,
-        portalElement
-      )}
-      {ReactDOM.createPortal(
-        <ModalOverlay>{props.children}</ModalOverlay>,
+        <ModalOverlay>{children}</ModalOverlay>,
         portalElement
       )}
     </>
